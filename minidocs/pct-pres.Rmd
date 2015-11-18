@@ -74,7 +74,7 @@ http://campfire.theoildrum.com/node/5976
 ## Transport planning tools: expensive!
 
 ```{r, echo=FALSE}
-grid.raster(readPNG("figures/software-costs.png"))
+grid.raster(readPNG("../figures/software-costs.png"))
 ```
 
 ## And difficult
@@ -223,17 +223,14 @@ runExample()
 
 ```{r, echo=FALSE}
 # shinyAppDir("~/repos/learning-shiny/himod/")
-grid.raster(readPNG("~/repos/learning-shiny/images/Selection_303.png"))
+grid.raster(readPNG("../figures/modifying.png"))
 ```
 
-## A second example
-
-```{r, echo=FALSE}
-# shinyAppDir("~/repos/learning-shiny/rentSplit/")
-grid.raster(readPNG("~/repos/learning-shiny/images/Selection_304.png"))
-```
+## More examples
 
 See [geo8.webarch.net/robin/rentSplit/](http://geo8.webarch.net/robin/rentSplit/)
+
+GEOSTAT 2015 Visualisation Competition winner: [geo8.webarch.net/robin/vizcomp/](http://geo8.webarch.net/robin/vizcomp/)
 
 ## Leaflet
 
