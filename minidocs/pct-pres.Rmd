@@ -74,7 +74,7 @@ http://campfire.theoildrum.com/node/5976
 ## Transport planning tools: expensive!
 
 ```{r, echo=FALSE}
-grid.raster(readPNG("figures/software-costs.png"))
+grid.raster(readPNG("../figures/software-costs.png"))
 ```
 
 ## And difficult
@@ -223,17 +223,14 @@ runExample()
 
 ```{r, echo=FALSE}
 # shinyAppDir("~/repos/learning-shiny/himod/")
-grid.raster(readPNG("~/repos/learning-shiny/images/Selection_303.png"))
+grid.raster(readPNG("../figures/modifying.png"))
 ```
 
-## A second example
-
-```{r, echo=FALSE}
-# shinyAppDir("~/repos/learning-shiny/rentSplit/")
-grid.raster(readPNG("~/repos/learning-shiny/images/Selection_304.png"))
-```
+## More examples
 
 See [geo8.webarch.net/robin/rentSplit/](http://geo8.webarch.net/robin/rentSplit/)
+
+GEOSTAT 2015 Visualisation Competition winner: [geo8.webarch.net/robin/vizcomp/](http://geo8.webarch.net/robin/vizcomp/)
 
 ## Leaflet
 
@@ -278,14 +275,14 @@ See: [cedar.iph.cam.ac.uk/research/modelling/npct-tool](http://www.cedar.iph.cam
 > - Tidy!
 
 ```{r, echo=FALSE}
-grid.raster(readPNG("~/Pictures/Selection_114.png"))
+grid.raster(readPNG("../figures/haystack.png"))
 ```
 
 
 ## Early user testing
 
 ```{r, echo=FALSE}
-grid.raster(readPNG("~/Pictures/Selection_115.png"))
+grid.raster(readPNG("../figures/early.png"))
 ```
 
 # III: The propensity to cycle tool
@@ -307,7 +304,7 @@ grid.raster(readPNG("../figures/coventry-centroids.png"))
 ## Zoom-dependent selection and freeze Scope
 
 ```{r, echo=FALSE}
-grid.raster(readPNG("~/Pictures/Selection_156.png"))
+grid.raster(readPNG("../figures/Selection_156.png"))
 ```
 
 ## Model output tab I: Coventry
@@ -559,7 +556,7 @@ grid.raster(readPNG("../figures/fast-quiet-man.png"))
 # 
 # # V: Esperanzas y sueños
 # 
-file.copy("/minidocs/pct-pres.html", "~/repos/robinlovelace.github.io/presentations/pct-pres-civil-engineers.html")
+# file.copy("/minidocs/pct-pres.html", "~/repos/robinlovelace.github.io/presentations/pct-pres-civil-engineers.html")
 
 # library(shiny)
 # runExample("01_hello")
