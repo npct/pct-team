@@ -45,8 +45,8 @@ region_path <- file.path("pct-data", region)
 if(!dir.exists(region_path)) dir.create(region_path) # create data directory
 
 # Minimum flow between od pairs, subsetting lines. High means fewer lines.
-mflow <- 100
-mdist <- 15 # maximum euclidean distance (km) for subsetting lines
+mflow <- 200
+mdist <- 20 # maximum euclidean distance (km) for subsetting lines
 min_zones <- 60 # minumum number of zones in study area before buffer used
 buff_dist <- 0 # buffer (km) used to select additional zones (often zero = ok)
 ```
@@ -631,6 +631,7 @@ zones@data <- left_join(zones@data, cents@data[,!c_in_z])
 # 
 # # Save objects
 # Save objects # uncomment these lines to save model output
+if(exists("isolated")) file.create(paste0("pct-data/", region, "/isolated"))
 saveRDS(zones, paste0("pct-data/", region, "/z.Rds"))
 saveRDS(cents, paste0("pct-data/", region, "/c.Rds"))
 saveRDS(l, paste0("pct-data/", region, "/l.Rds"))

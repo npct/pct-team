@@ -2,9 +2,10 @@ source("set-up.R")
 library(knitr)
 
 
-la_all <- c("West-Yorkshire")
+la_all <- c("West-Sussex")
 
 for(i in la_all){
+  isolated <- TRUE
   region <- i
   print(i)
   knitr::knit2html(
