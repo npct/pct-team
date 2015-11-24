@@ -1,7 +1,7 @@
 ---
-title: "The National Propensity to Cycle Tool"
-author: "Robin Lovelace, University of Leeds. Slides: robinlovelace.net"
-date: "CIVE 3707 Integrated Design Project, Civil Engineering, 14th October 2015"
+title: "New methods for the on-line interactive display of transport-related Big Data"
+author: "Robin Lovelace, University of Leeds."
+date: "1st Dec. 2015, Institute for Transport Studies"
 output:
   ioslides_presentation:
     transition: slower
@@ -22,10 +22,10 @@ lapply(pkgs, library, character.only = T)
 ## Presentation structure
 
 > - Introduction
-> - Software
-> - Context
-> - The Propensity to Cycle Tool (PCT)
-> - Study ideas
+> - Software for Big Data and Transport
+> - Propensity to Cycle Tool
+> - Interactive session: exploring cycling in Leeds
+> - Bonus: research ideas
 
 # Introduction
 
@@ -45,54 +45,29 @@ http://groups.energyshare.com/ewb-sheffield-wind/
 > - Geography (with computers!)
 > - Transport studies
 
-## Engineering as a discipline
+## The wider context
 
-![](http://i.ytimg.com/vi/6a8QLiC4LV8/hqdefault.jpg)
-
-> - I love engineering!
-
-## Engineering as magic
-
-![](https://upload.wikimedia.org/wikipedia/en/thumb/1/12/Fantasia-poster-1940.jpg/220px-Fantasia-poster-1940.jpg)
-
-> - How do you want to use your magic wand?
-
-## Engineering as art
-
-![](https://upload.wikimedia.org/wikipedia/commons/1/1e/Tanjor_bicycle_trailer.jpg)
-
-> - We learn best when we play!
-
-## You can build the future
-
-![](http://www.theoildrum.com/files/Robin_Figure7_500.JPG)
-
-http://campfire.theoildrum.com/node/5976
+![for recumbents](http://homepage.ntlworld.com/pete.meg/wcc/facility-of-the-month/prestonpipeline.jpg)
 
 # I: Software
 
-## Transport planning tools: expensive!
+## Transport planning tools: expensive...
 
 ```{r, echo=FALSE}
 grid.raster(readPNG("../figures/software-costs.png"))
 ```
 
-## And difficult
+## And potentially dangerous!
 
-Proprietary software cannot:
+![](../figures/holander.png)
 
-> -  be changed
-> - modified by the user
-> - extended by the user
-> - shared
-> - updated
+Source: [Who will save us from transport models](http://www.ctthink.com/publications.html) (Hollander 2015)
 
 ## The solution
 
-> - Go Open Source!
+> - New breed of software products
 
 ![](https://themodernmonk.files.wordpress.com/2012/03/open-source28129.jpg)
-
 
 ## Jobs
 
@@ -105,17 +80,16 @@ Good transport companies - ready for a transition away from fossil fuels:
 - [Arup](http://www.arup.com/Services/Transport_Consulting.aspx)
 - [Steer Davies Gleave](http://www.steerdaviesgleave.com/)
 
-## Exciting opportunities
+## Opportunities
 
 ![](http://cyclecityconnect.co.uk/images/schematic-big.jpg)
 
-## New tools (toys) to play with
+## New tools of the trade
 
 > - QGIS
 > - GRASS
 > - R
 > - Python
-> -  C
 
 ## Program or be programmed
 
@@ -183,7 +157,6 @@ lapply(c(pkgs, "leaflet", "stplanr"), library, character.only = T) # load all
 > - A (small) growing community of developers centred around RStudio
 > - A way to structure online tools: separation of GUI and server via `server.R` and `ui.R` files.
 
-
 ## Alternatives
 
 > - **animate** package
@@ -243,11 +216,7 @@ leaflet() %>%
   addCircleMarkers(data = cent)
 ```
 
-# II: Context
-
-## Joined-up strategic cycling **networks**
-
-![for recumbents](http://homepage.ntlworld.com/pete.meg/wcc/facility-of-the-month/prestonpipeline.jpg)
+# II: The propensity to cycle tool (PCT)
 
 ## Policy context
 
@@ -278,18 +247,15 @@ See: [cedar.iph.cam.ac.uk/research/modelling/npct-tool](http://www.cedar.iph.cam
 grid.raster(readPNG("../figures/haystack.png"))
 ```
 
-
 ## Early user testing
 
 ```{r, echo=FALSE}
 grid.raster(readPNG("../figures/early.png"))
 ```
 
-# III: The propensity to cycle tool
-
 ## The underlying theory
 
-> - Check out our academic paper:
+> - Check out our paper:
 http://arxiv.org/abs/1509.04425
 
 ## Live demo!
@@ -367,7 +333,9 @@ grid.raster(readPNG("../figures/man-cov-output.png"))
 grid.raster(readPNG("../figures/fast-quiet-man.png"))
 ```
 
-# Study ideas
+# IV Live demo!
+
+# V Study ideas
 
 ## 1: identify what you're motivated by
 
@@ -556,7 +524,7 @@ grid.raster(readPNG("../figures/fast-quiet-man.png"))
 # 
 # # V: Esperanzas y sueños
 # 
-# file.copy("/minidocs/pct-pres.html", "~/repos/robinlovelace.github.io/presentations/pct-pres-civil-engineers.html")
+file.copy("minidocs/pct-pres.html", "~/repos/robinlovelace.github.io/presentations/pct-pres.html", overwrite = T)
 
 # library(shiny)
 # runExample("01_hello")
