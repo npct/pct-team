@@ -9,21 +9,19 @@ author:
 - Ali Abbas (University of Cambridge)
 - James Woodcock (University of Cambridge)
 csl: elsevier-harvard.csl
-bibliography: ../documents/Transport.bib
+output:
+  word_document: default
+  pdf_document:
+    fig_caption: yes
+    keep_tex: yes
+    number_sections: yes
+  html_document: default
+header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
+bibliography: ../references.bib
 ---
 
 ```{r, echo=FALSE, include=FALSE}
 # date: '`r format(Sys.time(), ''%d %B %Y'')`'
-# output:
-#   word_document: default
-#   pdf_document:
-#     fig_caption: yes
-#     keep_tex: yes
-#     number_sections: yes
-# header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
-# output: word_document
-    # fig_caption: yes
-
 # output:
 #   pdf_document:
 #     fig_caption: yes
@@ -74,8 +72,20 @@ if(grepl(pattern = "pct$", x = getwd())){
   setwd("documents")
 }
 # source("../set-up.R")
-pkgs <- c("stplanr", "knitr", "xtable", "sp", "grid", "png")
-vapply(pkgs, require, character.only = T, FUN.VALUE = logical(1))
+pkgs <- c("stplanr", "knitr", "xtable", "sp", "grid", "png", "RefManageR")
+to_install <- !vapply(pkgs, require, character.only = T, FUN.VALUE = logical(1))
+if(to_install) install.packages(pkgs[to_install])
+
+# Bibliography dl
+# generated via https://github.com/ZotPlus/zotero-better-bibtex
+# downloader::download("https://www.zotero.org/api/groups/418217/collections/TUEXXIV4/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
+# 
+# 
+# b1 <- readLines("references.bib")
+# b2 <- readLines("documents/Transport.bib")
+# writeLines(c(b1, b2), con = "references.bib")
+
+# biblio <- ReadZotero(group = "energy-and-transport",  .params = list(qmode = "everything", collection = "TUEXXIV4"))
 
 # To do:
 # Add speed-bumps/speed cameras/cycling priority or remove lanes for motorised traffic
@@ -112,18 +122,18 @@ assist with the global transition away from fossil fuels.
 
 # Introduction
 
-Cycling can play an important role in making transport systems more
-sustainable, healthy and equitable.
-This mode of transport already provides fast, affordable,
+Cycling can play an important role in creating
+sustainable, healthy and equitable transport systems.
+Cycling already provides fast, affordable,
 and convenient mobility to millions of people each day [@Komanoff2004].
-Mounting evidence of the external costs associated with car-dominated
+Mounting evidence of the external costs of car-based
 transport systems [@Newman1999;@Han2008;@Mizutani2011;@Shergold2012]
 and the benefits of cycling [@Oja2011;@Woodcock2013;@DeNazelle2011]
 has pushed cycling up the
-transport agenda.
+transport agenda in recent years.
 Cycling is increasingly central to sustainable transport strategies, as
 illustrated, for example, by funding for cycling
-policies^[Several examples
+policies worldwide^[Several examples
 of multi-million Euro projects are provided by the
 [European Cyclist' Federation](http://www.ecf.com/advocary/eu-funding-2/examples-of-cycling-projects-co-funded-by-the-eu/), the
 [FIA Foundation](http://www.unep.org/transport/sharetheroad/PDF/SharetheRoadReportweb.pdf) and the
@@ -132,14 +142,15 @@ There has been little academic research on the proportion of transport budgets
 allocated to cycling worldwide, hence the use of resources from
 NGOs here.
 ]
-and the global
-proliferation of publicly subsidized 'bike share' schemes
+and the
+proliferation of publicly subsidized 'bike share' schemes at the city level
 [@OBrien2014a].^[An
 interactive web map associated with @OBrien2014a
 illustrates the distribution of many of the
 largest
 bike share schemes worldwide. See
 [bikes.oobrien.com](http://bikes.oobrien.com).]
+
 Emerging evidence illustrates that high-quality infrastructure
 is an effective way of promoting cycling
 as a safe, accessible and convenient
@@ -150,7 +161,9 @@ would have to depend on motorised modes or other people [@Aldred2008].
 
 Within this fast-moving policy context,
 the question of where to construct new cycle infrastructure
-is of strategic importance. In response, professional transport planners and
+is of strategic importance
+[@larsen_build_2013].
+In response, professional transport planners and
 consultancies have developed new methods for identifying cost-effective infrastructure
 interventions, such as Aecom's proprietary Permeability Assessment Tool
 [@Payne2014]. Yet geographically specific prioritisation of new infrastructure
@@ -1286,9 +1299,9 @@ Health.
 # this fails
 # system("bibtool -x documents/flow-model.aux -o ~/Documents/Transport.bib")
 
-# file.copy("documents/flow-model.docx", "~/Dropbox/DfT bid/Draft Writeups/Robin/flow-model.docx", overwrite = T)
-file.copy("flow-model/flow-model.docx", "~/Dropbox/DfT bid/Draft Writeups/Robin/flow-model.docx", overwrite = T)
-file.copy("flow-model/flow-model.pdf", "~/Dropbox/DfT bid/Draft Writeups/Robin/flow-model.pdf", overwrite = T)
+old <- setwd("flow-model")
+system("latexdiff flow-model-s1.tex flow-model.tex > dif.tex")
+setwd(old)
 
 ```
 
