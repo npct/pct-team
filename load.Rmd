@@ -58,11 +58,11 @@ The input zones area are summarised in this section.
 
 ```{r plotzones, message=FALSE, warning=FALSE, results='hide', echo=FALSE}
 # ukmsoas <- shapefile("pct-bigdata/national/msoas.shp")
-# gMapshape("pct-bigdata/national/msoas.shp", 8)
-# ukmsoas <- shapefile("pct-bigdata/national/msoasmapshaped_8%.shp")
-# ukmsoas <- spTransform(ukmsoas, CRS("+init=epsg:4326"))
+# mapshape("pct-bigdata/national/msoas.shp")
+ukmsoas <- shapefile("pct-bigdata/national/msoasmapshaped_25%.shp")
+ukmsoas <- spTransform(ukmsoas, CRS("+init=epsg:4326"))
 # geojson_write(ukmsoas, file = "pct-bigdata/national/msoas.geojson")
-ukmsoas <- geojson_read("pct-bigdata/national/msoas.geojson", what = "sp")
+# ukmsoas <- geojson_read("pct-bigdata/national/msoas.geojson", what = "sp")
 
 # Load population-weighted centroids
 cents <- readOGR("pct-bigdata/national/cents.geojson", layer = "OGRGeoJSON")
