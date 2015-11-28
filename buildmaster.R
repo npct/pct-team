@@ -2,7 +2,7 @@ source("set-up.R")
 library(knitr)
 
 
-la_all <- c("West-Sussex")
+la_all <- c("Oxfordshire")
 
 for(i in la_all){
   isolated <- TRUE
@@ -15,11 +15,11 @@ for(i in la_all){
   )
 }
 
-# regions <- geojson_read("pct-bigdata/national/regions.geojson", what = "sp")
-# regions$Region
-#
-# regions$Region[1:10]
-# dput(as.character(regions$Region[2:4]))
+regions <- geojson_read("pct-bigdata/national/regions.geojson", what = "sp")
+regions$Region
+
+regions$Region[1:10]
+dput(as.character(regions$Region[2:4]))
 #
 #
 #
