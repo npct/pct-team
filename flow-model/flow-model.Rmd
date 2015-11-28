@@ -10,12 +10,12 @@ author:
 - James Woodcock (University of Cambridge)
 csl: elsevier-harvard.csl
 output:
-  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
+  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
 bibliography: ../references.bib
 ---
@@ -78,7 +78,7 @@ if(to_install) install.packages(pkgs[to_install])
 
 # Bibliography dl
 # generated via https://github.com/ZotPlus/zotero-better-bibtex
-# downloader::download("https://www.zotero.org/api/groups/418217/collections/TUEXXIV4/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
+downloader::download("https://www.zotero.org/api/groups/418217/collections/TUEXXIV4/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
 # 
 # 
 # b1 <- readLines("references.bib")
@@ -94,31 +94,32 @@ if(to_install) install.packages(pkgs[to_install])
 
 # Abstract
 
-Encouraging cycling, as part of a wider sustainable mobility strategy, is an 
+Encouraging modal shift to cycling, as part of a wider sustainable mobility strategy, is an 
 increasingly common objective in transport planning institutions worldwide. 
-Emerging evidence shows that providing appropriate high-quality infrastructure 
-can boost local cycling rates. To maximize the benefits and cost-effectiveness
-of new infrastructure, it is important to build in the right places. Cycle
-paths, for example, will have the greatest impact if they are constructed along
+Evidence suggests that high-quality infrastructure 
+can boost local cycling rates, especially when
+constructed along
 'desire lines' of greatest latent demand. The Propensity to Cycle Tool (PCT)
-seeks to inform such decisions by providing an evidence-based support tool that
-models current and potential future distributions and volumes of cycling across
-cities and regions. This paper describes this model and its application to case
+is an evidence-based support tool for deciding where to prioritise new
+infrastructure and policies at
+city, region and country levels.
+This paper describes the PCT and its application to case
 study cities in England. Origin-destination (OD) data, combined with 
 quantitative information at the level of administrative zones, form the basis of
-the model, which estimates cycling potential as a function of route distance,
-hilliness and other factors at the OD and area level. Multiple scenarios were
-generated and interactively displayed. These were: 'Government Target', in which
-the rate of cycling doubles in England; 'Gender Equality', in which women cycle
-as much as men; 'Go Dutch', in which English people cycle as much as people in 
-the Netherlands; and 'E-bikes', an exploratory analysis of increasing the
-distance people are willing to cycle due to new technology. The model is freely
-available online and can be accessed at
-[geo8.webarch.net/master/](http://geo8.webarch.net/master/). This paper also
-explains how the PCT's open source approach allows it to be
-deployed in new cities and countries. We conclude that the method can help
-plan for modal shift to active travel, which can in turn improve citizen health and
-assist with the global transition away from fossil fuels.
+the model. Using a model that estimates cycling potential as a function of route
+distance,
+hilliness and other factors at the OD and area level, multiple scenarios were
+generated and interactively displayed using the PCT.
+These included 'Gender Equality', in which women cycle
+as much as men and 'Go Dutch', in which English people cycle as much as people in 
+the Netherlands. The PCT is based entirely on open source software and is freely
+available online at
+[geo8.webarch.net/master/](http://geo8.webarch.net/master/). 
+This open access and open source approach allows the PCT to be
+modified for use in new contexts without licensing or cost restrictions.
+We conclude that the method can help plan for a future in which
+cycling is the natural choice for short trips, as
+part of a wider global transition away from fossil fuels.
 
 # Introduction
 
