@@ -34,7 +34,7 @@ The preset values used to select the study area and filter the origin destinatio
 
 ```{r, echo=FALSE}
 # Create default LA name if none exists
-if(!exists("region")) region <- "West-Yorkshire" 
+if(!exists("region")) region <- "Oxfordshire" 
 ```
 
 
@@ -49,6 +49,7 @@ mflow <- 200
 mdist <- 20 # maximum euclidean distance (km) for subsetting lines
 min_zones <- 60 # minumum number of zones in study area before buffer used
 buff_dist <- 0 # buffer (km) used to select additional zones (often zero = ok)
+buff_geo_dist <- 250 # buffer (m) for removing line start and end points for network
 ```
 
 ## Input zone data
@@ -219,9 +220,9 @@ if(sum(grepl("l", f)) == 0){
 }
 
 # Create or load route allocated lines (depending on past loading)
-if(file.exists(paste0("pct-data/", region, "/rf_ttwa.Rds"))){
-  rf <- readRDS(paste0("pct-data/", region, "/rf_ttwa.Rds")) # if you've loaded them
-  rq <- readRDS(paste0("pct-data/", region, "/rq_ttwa.Rds"))
+if(file.exists(paste0("pct-data/", region, "/rf.Rds"))){
+  rf <- readRDS(paste0("pct-data/", region, "/rf.Rds")) # if you've loaded them
+  rq <- readRDS(paste0("pct-data/", region, "/rq.Rds"))
   # l <- readRDS(paste0("pct-data/", region, "/l.Rds"))
   # nrow(rf) == nrow(l)
 } else {
@@ -596,8 +597,14 @@ The value of each segment in the network corresponds to the total number of cycl
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="The route network, with widths proportional to the current estimated number of commuter cyclists"}
 # Scenario names - may need updating
 # nrow(l) == nrow(rf)
+
 rf@data["base_olc"] <- l@data["base_olc"]
-rnet <- overline(rf, "base_olc")
+rft <- toptail(rf, toptail_dist = buff_geo_dist)
+if(length(rft) == length(rf)){
+  row.names(rft) <- row.names(rf)
+  rft <- SpatialLinesDataFrame(rft, rf@data)
+} else print("Error: toptailed lines do not match lines")
+rnet <- overline(rft, "base_olc")
 rf$clc <- NULL
 # test the resulting plot
 plot(rnet, lwd = rnet$base_olc / mean(rnet$base_olc))
