@@ -34,7 +34,7 @@ The preset values used to select the study area and filter the origin destinatio
 
 ```{r, echo=FALSE}
 # Create default LA name if none exists
-if(!exists("region")) region <- "Oxfordshire" 
+if(!exists("region")) region <- "Sheffield" 
 ```
 
 
@@ -45,8 +45,8 @@ region_path <- file.path("pct-data", region)
 if(!dir.exists(region_path)) dir.create(region_path) # create data directory
 
 # Minimum flow between od pairs, subsetting lines. High means fewer lines.
-mflow <- 200
-mdist <- 20 # maximum euclidean distance (km) for subsetting lines
+mflow <- 50
+mdist <- 15 # maximum euclidean distance (km) for subsetting lines
 min_zones <- 60 # minumum number of zones in study area before buffer used
 buff_dist <- 0 # buffer (km) used to select additional zones (often zero = ok)
 buff_geo_dist <- 250 # buffer (m) for removing line start and end points for network
@@ -70,8 +70,12 @@ cents$geo_code <- as.character(cents$geo_code)
 
 # Load local authorities and districts
 las <- readOGR(dsn = "pct-bigdata/national/las-pcycle.geojson", layer = "OGRGeoJSON")
-# las <- readOGR(dsn = "pct-bigdata/national/cuas-mf.geojson", layer = "OGRGeoJSON")
-regions <- geojson_read("pct-bigdata/national/regions.geojson", what = "sp")
+if(geo_level == "cua"){
+  regions <- readOGR(dsn = "pct-bigdata/national/cuas-mf.geojson", layer = "OGRGeoJSON")
+  regions$Region <- regions$CTYUA12NM
+}else{
+  regions <- geojson_read("pct-bigdata/national/regions.geojson", what = "sp")
+}
 las_cents <- SpatialPoints(coordinates(las))
 
 # create region shape (and add buffer in m)
@@ -111,7 +115,8 @@ The characteristics of zones are as follows:
 
 ```{r, echo=FALSE}
 nzones <- nrow(zones) # how many zones?
-mzarea <- round(median(gArea(zones, byid = T) / 10000), 1) # average area of zones, sq km
+zones_wgs <- spTransform(zones, CRS("+init=epsg:27700"))
+mzarea <- round(median(gArea(zones_wgs, byid = T) / 10000), 1) # average area of zones, sq km
 ```
 
 - Number of zones: `r nzones`, compared with 6791 in England
@@ -230,16 +235,17 @@ if(file.exists(paste0("pct-data/", region, "/rf.Rds"))){
   # mytoken <- "f3fe3d078ac34737" # warning: not a real key 
   mytoken <- readLines("~/Dropbox/dotfiles/cyclestreets-api-key-rl")
   Sys.setenv(CYCLESTREET = mytoken)
-  rf <- line2route(l[ l$dist > 0, ], silent = T)
-  rq <- line2route(l[ l$dist > 0, ], plan = "quietest", silent = T)
+  rf <- line2route(l, silent = T)
+  rq <- line2route(l, plan = "quietest", silent = T)
 }
 saveRDS(rf, paste0("pct-data/", region, "/rf_ttwa.Rds")) # save the routes
 saveRDS(rq, paste0("pct-data/", region, "/rq_ttwa.Rds"))
+
+# which paths succeeded (use the line ids)
+path_ok <- row.names(l) %in% row.names(rf) &
+                   row.names(l) %in% row.names(rq)
   
-path_fail <- !1:nrow(l) %in% as.numeric(row.names(rf)) | 
-  !1:nrow(l) %in% as.numeric(row.names(rq))
-  
-l <- l[!path_fail,]
+l <- l[path_ok,]
 
 # Process route data
 rf$length <- rf$length / 1000
@@ -257,7 +263,13 @@ lines(rf, col = "red")
 lines(rq, col = "green")
 ```
 
-Of the lines allocated to the route network, `length(!path_fail)` failed.
+```{r check-line, warning=FALSE, echo = FALSE, fig.cap="Check a single line"}
+plot(l[nrow(l),])
+lines(rf[nrow(l),], col = "red")
+lines(rq[nrow(l),], col = "green")
+```
+
+Of the lines allocated to the route network, `sum(!path_ok)` failed.
 
 ```{r, echo=FALSE}
 
@@ -605,15 +617,15 @@ if(length(rft) == length(rf)){
   rft <- SpatialLinesDataFrame(rft, rf@data)
 } else print("Error: toptailed lines do not match lines")
 rnet <- overline(rft, "base_olc")
-rf$clc <- NULL
+rft$clc <- NULL
 # test the resulting plot
 plot(rnet, lwd = rnet$base_olc / mean(rnet$base_olc))
 scens <- c("cdp_slc", "gendereq_slc", "dutch_slc", "ebike_slc")
 for(i in scens){
-  rf@data[i] <- l@data[i]
-  rnet_tmp <- overline(rf, i)
+  rft@data[i] <- l@data[i]
+  rnet_tmp <- overline(rft, i)
   rnet@data[i] <- rnet_tmp@data[i]
-  rf@data[i] <- NULL
+  rft@data[i] <- NULL
 }
 # plot(rnet, lwd = rnet$cdp_slc / mean(rnet$base_olc))
 ```
