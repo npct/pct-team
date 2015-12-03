@@ -29,21 +29,24 @@ lapply(pkgs, library, character.only = T)
 
 # Introduction
 
-## A little about me
+```{r, echo=FALSE}
+# 
+# ## Career progression
+# 
+# > - Geography
+# > - Bicycle mechanic
+# > - Environmental science
+# > - Some engineering!
+# > - Energy studies
+# > - Geography (with computers!)
+# > - Transport studies
+```
+
+## Software as tools
 
 ![](http://groups.energyshare.com/var/uploads/1307616612-windturbine7.jpg)
 
 http://groups.energyshare.com/ewb-sheffield-wind/
-
-## Career progression
-
-> - Geography
-> - Bicycle mechanic
-> - Environmental science
-> - Some engineering!
-> - Energy studies
-> - Geography (with computers!)
-> - Transport studies
 
 ## The wider context
 
@@ -285,28 +288,37 @@ grid.raster(readPNG("../figures/mod-output-cov.png"))
 grid.raster(readPNG("../figures/man-cov-output.png"))
 ```
 
-## Planned feature: network tab
+```{r, echo=FALSE}
+# ## Planned feature: network tab
+# 
+# <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Estimating cycling rate allocated to the road network with <a href="https://t.co/DuzyCQCA50">https://t.co/DuzyCQCA50</a>. Looks like streams + rivers! <a href="http://t.co/geaV0mVKdG">pic.twitter.com/geaV0mVKdG</a></p>&mdash; Robin Lovelace (@robinlovelace) <a href="https://twitter.com/robinlovelace/status/633152722926206976">August 17, 2015</a></blockquote>
+# <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+# 
+# ## Other planned features
+# 
+# **Beta**
+# 
+# > - Network analysis (various options)
+# > - Hilliness allocated to cycle network
+# **Version 1 - nationwide (June 2016)**
+# 
+# > - HEAT outputs
+# > - Incorporation of user feedback
+# > - Travel to school layer (data pending)
+# 
+# **Version 2 - nationwide (June 2017)**
+# 
+# > - Micro-level analysis
+# > - Socio-demographic variables (new scenarios?)
+```
 
-<blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Estimating cycling rate allocated to the road network with <a href="https://t.co/DuzyCQCA50">https://t.co/DuzyCQCA50</a>. Looks like streams + rivers! <a href="http://t.co/geaV0mVKdG">pic.twitter.com/geaV0mVKdG</a></p>&mdash; Robin Lovelace (@robinlovelace) <a href="https://twitter.com/robinlovelace/status/633152722926206976">August 17, 2015</a></blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+# IV Practical
 
-## Other planned features
+## Break up into groups of 2 to 3/4
 
-**Beta**
-
-> - Network analysis (various options)
-> - Hilliness allocated to cycle network
-
-**Version 1 - nationwide (June 2016)**
-
-> - HEAT outputs
-> - Incorporation of user feedback
-> - Travel to school layer (data pending)
-
-**Version 2 - nationwide (June 2017)**
-
-> - Micro-level analysis
-> - Socio-demographic variables (new scenarios?)
+> - Work through the practical
+> - Answer the questions
+> - Feed back as a group
 
 ## Potential futures: e.g. community contributed
 
@@ -332,8 +344,6 @@ grid.raster(readPNG("../figures/man-cov-output.png"))
 ```{r, echo=FALSE}
 grid.raster(readPNG("../figures/fast-quiet-man.png"))
 ```
-
-# IV Live demo!
 
 # V Study ideas
 
