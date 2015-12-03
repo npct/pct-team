@@ -8,7 +8,6 @@ author:
 - Nikolai Berkoff (independent web developer)
 - Ali Abbas (University of Cambridge)
 - James Woodcock (University of Cambridge)
-csl: elsevier-harvard.csl
 output:
   pdf_document:
     fig_caption: yes
@@ -17,7 +16,7 @@ output:
   html_document: default
   word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
-bibliography: ../references.bib
+bibliography: ../documents/Transport.bib
 ---
 
 ```{r, echo=FALSE, include=FALSE}
@@ -78,12 +77,12 @@ if(to_install) install.packages(pkgs[to_install])
 
 # Bibliography dl
 # generated via https://github.com/ZotPlus/zotero-better-bibtex
-downloader::download("https://www.zotero.org/api/groups/418217/collections/TUEXXIV4/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
-# 
-# 
+# downloader::download("https://www.zotero.org/api/groups/418217/collections/TUEXXIV4/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
+# # 
+# # 
 # b1 <- readLines("references.bib")
 # b2 <- readLines("documents/Transport.bib")
-# writeLines(c(b1, b2), con = "references.bib")
+# writeLines(c(b1, b2), con = "documents/Transport.bib")
 
 # biblio <- ReadZotero(group = "energy-and-transport",  .params = list(qmode = "everything", collection = "TUEXXIV4"))
 
@@ -94,14 +93,19 @@ downloader::download("https://www.zotero.org/api/groups/418217/collections/TUEXX
 
 # Abstract
 
-Encouraging modal shift to cycling, as part of a wider sustainable mobility strategy, is an 
+
+Modal shift to cycling is an 
 increasingly common objective in transport planning institutions worldwide. 
 Evidence suggests that high-quality infrastructure 
 can boost local cycling rates, especially when
 constructed along
-'desire lines' of greatest latent demand. The Propensity to Cycle Tool (PCT)
-is an evidence-based support tool for deciding where to prioritise new
-infrastructure and policies at
+'desire lines' of greatest latent demand.
+Yet transport planners lack tools to visualise
+the geographical distribution of cycling potential for strategic planning.
+This paper describes the Propensity to Cycle Tool (PCT), an
+evidence-based support tool for visualising future cycling scenarios.
+Specifically, the PCT was designed to help decide where to prioritise new
+infrastructure and policies locally for transport authorities operating at
 city, region and country levels.
 This paper describes the PCT and its application to case
 study cities in England. Origin-destination (OD) data, combined with 
@@ -118,8 +122,9 @@ available online at
 This open access and open source approach allows the PCT to be
 modified for use in new contexts without licensing or cost restrictions.
 We conclude that the method can help plan for a future in which
-cycling is the natural choice for short trips, as
-part of a wider global transition away from fossil fuels.
+cycling is the natural choice for short trips, as part of a wider
+sustainable mobility strategy and a key element in the
+global transition away from fossil fuels.
 
 # Introduction
 
