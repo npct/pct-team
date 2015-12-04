@@ -104,25 +104,30 @@ Yet transport planners lack tools to visualise
 the geographical distribution of cycling potential for strategic planning.
 This paper describes the Propensity to Cycle Tool (PCT), an
 evidence-based support tool for visualising future cycling scenarios.
-Specifically, the PCT was designed to help decide where to prioritise new
-infrastructure and policies locally for transport authorities operating at
-city, region and country levels.
-This paper describes the PCT and its application to case
-study cities in England. Origin-destination (OD) data, combined with 
-quantitative information at the level of administrative zones, form the basis of
-the model. Using a model that estimates cycling potential as a function of route
-distance,
-hilliness and other factors at the OD and area level, multiple scenarios were
-generated and interactively displayed using the PCT.
-These included 'Gender Equality', in which women cycle
-as much as men and 'Go Dutch', in which English people cycle as much as people in 
-the Netherlands. The PCT is based entirely on open source software and is freely
-available online at
+Specifically, the PCT aims to help  transport authorities operating at
+city, region and country levels envision where new cycle trips are likely to
+be generated, to prioritise where to prioritise new pro-cycling
+infrastructure, investment and policies, for maximum effectiveness.
+Case study cities in England are used to illustrate the tool's capabilities, which
+uses origin-destination (OD) data on travel patterns as the basis of
+of a model which generates future scenarios.
+The model used in the case study estimates cycling potential as a function of route
+distance, hilliness and other factors at the OD and area level, although more
+sophisticated models (e.g. to estimate the local impact of new cycle paths)
+could subsequently be used.
+The most innovative feature of the PCT is its
+interactive displayed of the shifting spatial distribution of cycling potential
+under different scenarios.
+In the case study these included 'Gender Equality' and 'Go Dutch',
+although many other scenarios could be added, building
+on the open source code-base. Critically, the PCT enables public
+engagement in the transport modelling process, through its browser-based
+interface:
 [geo8.webarch.net/master/](http://geo8.webarch.net/master/). 
-This open access and open source approach allows the PCT to be
+This approach allows the PCT to be
 modified for use in new contexts without licensing or cost restrictions.
 We conclude that the method can help plan for a future in which
-cycling is the natural choice for short trips, as part of a wider
+cycling is the natural choice for intra-city trips, as part of a wider
 sustainable mobility strategy and a key element in the
 global transition away from fossil fuels.
 
