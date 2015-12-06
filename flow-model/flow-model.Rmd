@@ -620,11 +620,19 @@ on the route network assuming a *circuity* value of 1.3, as reported by
 Only 1.4% of cycle commutes recorded in the
 National Travel Survey exceeded a distance of 20 km.
 
-## The regression model
+## Modelling cycling uptake at the desire line level
 
-Once the input data (discussed in the previous section)
-has been processed and sub-setted to the area of interest,
-it is passed to a regression model.
+The output of the data processing phase, described above, formed
+the basis of a model which estimates the future rate of cycling,
+based on current travel behaviour, under various senarios.
+It is important to note that a wide range of scenario-based or
+predictive models could be used to estimate future cycling rates
+to be visualised by the PCT. Although the model is important, it is
+making-sense of and visualising its output which can lead to improved
+decision making. Therefore, this section should be seen as a case study
+of model scenarios, rather than the 'official' scenarios used in the PCT.
+Different scenarios, and models of cycling uptake, will be appropriate
+in different contexts.
 
 For all scenarios except *gender equality*, a regression model was used
 to estimate the potential rate of cycling at the OD level.
