@@ -645,12 +645,13 @@ was used in the model to describe the (non-linear) relationship
 between the route distance of OD pairs and the proportion of trips made by cycling.
 Euclidean distance could be used in contexts where route distance is not known.
 
-It is well-known that
-$pcycle$ tends to decrease with increasing distance [@Iacono2010].
+It is well-known that the proportion of trips made by cycle (henceforth
+$pcycle$) tends to decrease with increasing distance [@Iacono2010].
 Based on this work and exploratory analysis of the data we estimated
 the $log$ of $pcycle$ rather than $pcycle$ directly.
-Hilliness was included as a continuous variable in our model
-and was expected to have a linear impact on $pcycle$.
+Hilliness was included as a continuous variable in our
+model and was found to have a linear relationship with $pcycle$,
+based on data from the National Travel Survey.
 The formula chosen was:
 
 (@) $$ log(pcycle) = \alpha + \beta_1 d + \beta_2 d^{0.5} + \gamma H $$
@@ -674,19 +675,24 @@ to account for the aforementioned exponential decay.
 ## Zone Buffer
 
 Running the PCT region-by-region means
-ignoring all the MSOA zones outside the region. If the region is a
-self-contained transport system this will not create problems.
+ignoring all zones outside the region. If the region is a
+self-contained transport system this makes sense.
 If the region is part
-of a larger conurbation, however, the clipping could be problematic.
-To solve this problem we created buffer zones around each region,
-from which additional zones were sampled in regions in which
-the number of MSOA zones fell below some threshold, chosen to be 60.
-For example, this meant that additional zones were
-selected outside the City of Manchester, which has 57 MSOAs
-(see Fig. 7 below).
+of a larger travel network, however, this could be problematic.
+To solve this problem, buffers were used to expand regions
+deemed to be part of a wider system.^[Various criteria were considered
+to decide whether or not a buffer was needed and to select the size of the
+buffer, for example
+whener the number of MSOA zones fell below some threshold
+and the amount of inter-region travel. Ultimately it was decided to
+add buffers on an ad-hoc basis, where they were deemed necessary.]
+To illustrate how the buffers worked,
+buffer was used to select zones
+outside the City of Manchester (see Fig. 7 below).
 This protocol increased the sample size by including all
 zones whose population-weighted centroid lies inside the
-buffer, the width of which can also be pre-specified.
+buffer, the width of which can also be set based on knowledge of
+the local area.
 
 ## The Model Output tab
 
@@ -707,11 +713,12 @@ Scenarios were developed to indicate how local cycle use
 could increase.  Current constraints to cycling, including the
 aforementioned factors of distance and hilliness, can to some degree
 be overcome by new technology (see the *ebike* scenario below).
-
-The four scenarios developed for the case study cities were developed to
-explore different cycling futures in England.
-Because time-scales are not specified, they are not
-necessarily mutually exclusive.
+The four scenarios were developed to
+explore cycling futures in England.
+They are not intended to be predictions of the future but
+snapshots that indicate how the spatial distribution of cycling is
+likely to shift as cycling grows. The scenarios have also have an
+order, ranging from near-term to longer term visions. They were: 
 
 - Government target (*govtarget*). This scenario represents a doubling of
 the number of cycling trips in England.
@@ -719,36 +726,36 @@ Although this is a substantial increase in relative terms, cycle use still
 remains low in this scenario compared with countries such as the Netherlands,
 rising from 3% to 6% of commutes.
 *govtarget* allows for different rates of growth in different places.
-Above-average percentage increases (i.e. more than a doubling) are projected in areas
+Above-average percentage point increases (i.e. more than a doubling) are projected in areas
 with many short (i.e. potentially cyclable)
 trips and a low current rate of cycling.
 Conversely, areas with higher cycle use and a low proportion
 of short commutes will have below-average growth.
 *govtarget* represents a slight reduction
 (but not elimination) of the localised infrastructural or cultural
-constraints which deter cycle use more in some places than in others.
-It therefore indicates where investment in increased cycle use might achieve the greatest impact in the short term.
+constraints which deter cycle use more in some places than in others and
+is designed to indicate where investment might have the greatest short-term impact.
 
 - Gender Equality (*gendereq*). This scenario illustrates the increase in cycling
-that would result if women cycled as much as men, all other variables being equal.
-Specifically, the scenario sets the proportion of female cycle commuters
+that would result if women were as likely as men to cycle a given trip.
+Specifically, the scenario sets the proportion of female cycle commuters to be equal
 to the current proportion of males in each OD pair.
 The scenario is based on the observation that in places where cycling is the norm,
 women cycle at least as much as men (Pucher et al 2010).
 *gendereq* thus represents
 the elimination of one specific cultural constraint.
-This scenario has greatest relative impact in areas where
+This scenario has the greatest relative impact in areas where
 the rate of cycling is highly gender-unequal (Fig. 4).
 In absolute terms, cycling increases most in this scenario where cycling
 is already a common mode of transport.
 
 - Go Dutch (*godutch*).
 While *govtarget* and *gendereq* build on current cycling behaviour,
-the *godutch* scenario focuses on long-term potential.
-The 'Go Dutch' scenario models what would happen if
-English people were as likely to cycle for a given trip (i.e. of the same
-distance and hilliness) as Dutch people, by applying Dutch
-distance decay curves to English travel patterns.
+'Go Dutch' focuses on long-term potential.
+*godutch* represents what would happen if English people were as likely to cycle a given trip
+(in terms of distance and hilliness, in this case) as Dutch people.
+It works by assigning Dutch
+distance decay parameters to English travel patterns.
 The scenario represents the elimination of the
 infrastructural and cultural constraints which currently hold back cycle
 use in England, including all localised differences.
@@ -762,7 +769,9 @@ in cycle use that would be achieved through the widespread uptake of electric
 cycles ('E-bikes').
 E-bikes enable longer journeys and make cycling a more viable option for
 a number of people, including those with low fitness and people
-with impaired mobility. This scenario is based on the Go Dutch scenario.
+with impaired mobility.
+This scenario is currently implemented as an extension of the Go Dutch scenario.
+In future research it could also be implemented for other scenarios.
 
 These scenarios are described more fully below.
 They are not intended to be definitive scenarios of cycling futures
