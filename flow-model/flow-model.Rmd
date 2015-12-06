@@ -3,12 +3,12 @@ title: 'The Propensity to Cycle Tool: An open source online system for sustainab
   transport planning'
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
 output:
+  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
-  word_document: default
 bibliography: ../documents/Transport.bib
 ---
 
@@ -709,16 +709,20 @@ grid.raster(readPNG("../figures/model-outpute.png"))
 
 # Model scenarios
 
-Scenarios were developed to indicate how local cycle use
-could increase.  Current constraints to cycling, including the
-aforementioned factors of distance and hilliness, can to some degree
-be overcome by new technology (see the *ebike* scenario below).
-The four scenarios were developed to
+Four scenarios were developed to
 explore cycling futures in England.
-They are not intended to be predictions of the future but
-snapshots that indicate how the spatial distribution of cycling is
-likely to shift as cycling grows. The scenarios have also have an
-order, ranging from near-term to longer term visions. They were: 
+These can be framed in terms of the removal of different barriers
+preventing cycling becoming the natural mode of choice for urban trips:
+infrastructural, cultural and technological.
+The scenarios are context-specific and based partly on
+political commitments to cycling (see *govtarget*).
+Use of the PCT in new contexts will benefit from new scenarios that
+relate to both the current policy context and long-term aspirations.
+The scenarios are not intended to be predictions of the future.
+They are snapshots that indicate how the spatial distribution of cycling is
+likely to shift as cycling grows.
+The scenarios have also have an
+order, ranging from near-term to longer term visions. They are: 
 
 - Government target (*govtarget*). This scenario represents a doubling of
 the number of cycling trips in England.
@@ -774,9 +778,6 @@ This scenario is currently implemented as an extension of the Go Dutch scenario.
 In future research it could also be implemented for other scenarios.
 
 These scenarios are described more fully below.
-They are not intended to be definitive scenarios of cycling futures
-in England or anywhere else; we encourage users of the PCT to
-develop new scenarios relevant to new contexts.
 
 ## Government Target
 
@@ -796,8 +797,9 @@ commuter trips and the trip distance.
 
 At the heart of the *govtarget* scenario is the previously discussed
 regression model (labelled $natmod$) estimating
-the dependent variable (*pcycle*).
-The new rate of cycling ($pcycle(govtarget)$) is the current rate of
+the dependent variable, namely the percentage of commuters who cycle (*pcycle*).
+The new percentage of commuters who cycle ($pcycle(govtarget)$)
+for each desire line is calculated as the current rate of
 cycling plus this model-based estimate:
 
 (@) $$ pcycle(govtarget)_{ij} = (pcycle_{ij} + pcycle(natmod)_d) $$
@@ -814,32 +816,27 @@ to convert the proportion into a number of cyclists, i.e.:
 where $SLC(govtarget)_{ij}$ is the *Scenario-based Level of Cycling* for this scenario for the $ij$ OD pair.
 An example of this scenario for an imaginary OD pair $ab$ with Euclidean
 distance 4.5 km is as follows.
-Based on a representative sample of OD pairs in the UK
-and under the 'national doubling',
+In a representative sample of OD pairs in the UK
+of distance 4-5km, the average proportion of cycle commuters was 5%.
+Under the 'national doubling',
 assume an additional 5% of commuters now cycle for all
 trips of 4.5km --- i.e. $pcycle(natmod)_{4.5} = 0.05$.
-For our OD pair $ab$ in the Census there are
-200 commuters of which 2 are cyclists, $pcycle_{ab} = 0.01$.  Applying the scenario
-adds an additional 5% of commuters which represents an
-additional 10 cyclists, far more than doubling.
+For our specific OD pair $ab$ in the Census there are
+200 commuters, of which 2 are cyclists ($pcycle_{ab} = 0.01$).
+The scenario adds an additional 5% of commuters: an
+additional 10 cyclists, i.e. an increase from 2 to 12: more than double.
 The same methodology is applied to all distances represented in the OD matrix.
 
 The approach assumes that cycling potential against a given national
 increase is always a positive number.
-The larger the increase in cycling for the scenario, the less the current level matters.
-By contrast, the larger the current rate of cycling, the lower the
-impact this scenario has on the future rate of cycling.
-
-Our implementation of the *govtarget* scenario is thus in line with findings from
-@Sloman2014 and @Heinen2015, who found that it is initially
-easier to achieve growth in cycle use in places where cycling is
-already common.
-However, with sustained investment in overcoming the infrastructural and
+When only modest increases in cycling are assumed
+(e.g. from 3% to 6% as an overall mode share),
+the pre-existing cycling demographic contributes considerably to the new demographic.
+In more ambitious cycling scenarios the pre-existing distribution matters less.
+This corresponds to the insight that, with sustained investment in overcoming the infrastructural and
 cultural constraints which limit cycle use,
-there is great long-term potential for
-increased cycling in many areas that currently have a low rate of cycling.
-This is modelled in the Go Dutch scenario (described after the *gendereq* scenario).
-
+the long-term potential becomes more important
+than the current rate of cycling.
 
 ## Gender equality
 
@@ -857,7 +854,7 @@ are male, although this varies geographically [@Aldred2015].
 A prerequisite is a model-based estimate of the number of male
 and female cyclists between origin and destinations for
 the observed data.
-This involves splitting the number of cyclists project by the model,
+This involves splitting the number of cyclists estimated by the model,
 the *Scenario-based Level of Cycling*, into
 male ($SLC(gendereq)_m$) and female ($SLC(gendereq)_f$) components:
 
@@ -976,13 +973,13 @@ only by trip distances and hilliness.
 
 ## E-bikes
 
-The aim of this scenario was to provide an indication of the rate of cycling increase
-possible due to the uptake of electric cycles ('E-bikes').
-The scenario represents a reduction in the degree to which cycle use is
-constrained by trip distances.
+This scenario aims to provide insight into how cycling
+could shift with the uptake of electric cycles ('E-bikes').
+The scenario builds on 'Go Dutch'and represents
+a reduction in the degree to which cycle use is
+constrained by trip distances and technology.
 This is the most ambitious and speculative
-scenario presented in this paper; it
-builds on 'Go Dutch'.
+scenario presented in this paper.
 
 The results are
 based on the decision to increase by a small amount the $\beta_1$ distance decay parameter,
@@ -995,7 +992,7 @@ be possible in this model. In future work we plan to
 update this scenario, basing the changes to the distance decay
 parameters on real data from the Dutch National Travel Survey.
 This will build on analysis of the influence of E-bikes on propensity to cycle
-in the Netherlands that is being undertaken in parallel to the work
+in the Netherlands, research that is being undertaken in parallel to the work
 presented in this paper.
 
 # Results
@@ -1033,8 +1030,8 @@ grid.raster(readPNG("../figures/man-nor-output-2.png"))
 The difference between the spatial distribution in cycling potential between
 the Government Target (*govtarget*) and Go Dutch
 (*godutch*) scenarios is illustrated in Fig. 6 for Norwich.
-Note that the top 20 OD pairs
-in Norwich under *govtarget* assumptions are dominated by the current rate of cycling,
+The top 20 OD pairs
+in Norwich in *govtarget* are dominated by the current rate of cycling,
 with the most travelled desire lines projected to continue to be found towards the east of
 the city (this can be explained by the location of the University of
 East Anglia to the east of the city).
@@ -1043,7 +1040,7 @@ the pattern of cycling shifts substantially to the west.
 The cycling patterns under the *godutch* scenario
 are more representative of short-distance trips across the city overall.
 In both cases the desire lines are focused around Norwich city centre: the region
-has a mono-centric regional economy, making trips beyond around 5 km from the
+has a mono-centric regional economy, making commute trips beyond around 5 km from the
 centre much less likely to be made by cycling.
 
 ```{r, echo=FALSE, fig.cap="Model output illustrating the top 20 most cycled OD pairs in Norwich under Government Target and Go Dutch scenarios."}
@@ -1053,9 +1050,10 @@ grid.raster(readPNG("../figures/nor-cdp-dutch.png"))
 The equivalent results are shown for the city of Manchester in Fig. 7. This shows that
 Manchester has a poly-centric structure, favouring the construction of cycle
 routes between the various sub-centres, not just in radial routes to a single
-centre. Note in both scenarios the large increase in the level of cycling 
-between *govtarget* (which represents only a doubling nationwide) and *godutch*
-scenarios (which represents a more ambitious plan for cycling uptake).
+centre. As shown in the scale bar up the left-hand side,
+the absolute level of cycling is much lower in *govtarget*
+(which represents only a doubling nationwide)
+than in the much more ambitious *godutch* scenario.
 
 ```{r, echo=FALSE, fig.cap="Model output illustrating the top 20 most cycled OD pairs in Manchester under Government Target and Go Dutch scenarios."}
 grid.raster(readPNG("../figures/man-cdp-dutch.png"))
@@ -1067,8 +1065,8 @@ the travel network. 'Fastest' and
 these routes can be important from a transport planning perspective.
 Fig. 8 illustrates this by showing route in Manchester with the highest cycling
 potential under the *govtarget* scenario.
-The 'quietest' route is substantially further, with a
-distance of 2.8 km (as shown by clicking on the line). The 'fastest'
+The 'quietest' route is substantially longer: 2.8 km
+(as shown by clicking on the line). The 'fastest'
 route is more direct (with a route distance of 2.3 km) but passes
 along Trinity Way (the A6042), a busy dual carriage way.
 The PCT (with the 'Straight Lines' option) tells us that Euclidean distance
@@ -1080,7 +1078,8 @@ in this case).
 Dutch evidence suggests that cyclists are generally unwilling to
 take a path that is more than around 1.3 to 1.5 times the length of the
 'crow-flies' Euclidean distance (defined as $q$ above).
-The same research suggests target "for cycle provision should be 1.2" [@crow2007].
+The same research suggests that circuity values for
+"for cycle provision should be 1.2" [@crow2007].
 This suggests that high quality cycle infrastructure along the Trinity Way route
 would be much better used by commuters than an
 alternative quiet route that diverges greatly from the shortest path.
@@ -1112,26 +1111,28 @@ changes to the interface (such as 'freeze scope') and longer-term needs
 Planners can use the different scenarios to consider short, medium, and
 long-term potential for cycling locally and along specific routes,
 in combination with local knowledge.
-In the PCT can therefore shed light on the following question,
+Future versions of the PCT could therefore help answer following question,
 previously raised by  @Sloman2014 and @Aldred2014:
 Should cycling investment prioritise
 areas of relatively low current propensity but high potential, or those of relatively
 high current propensity but lower potential?
 
-In the Netherlands (representing long-term ambition for cycling),
-cycling is equally common
-among males and females. Cycling levels are also even
-between different socio-economic groups,
-although ethnic and religious differences exist [@Fishman2015].
+In the Netherlands (representing long-term ambition),
+cycling is equally popular
+among males and females and across
+different socio-economic and age groups,
+although some ethnic and religious differences exist [@Fishman2015].
 Demographics should therefore play less of a
 role in estimating cycling potential for strategic purposes
 than for identifying 'quick-win' policies based on current propensities.
-Based on this understanding, the PCT has the ability to represent different
-scenarios of change. An indication of how the
+
+Based on this understanding, the PCT has the potential to represent spatial
+*and* demographic shifts in cycling as it grows. An indication of how the
 pattern of cycling could shift to new transport corridors in the
 hypothetical future represented by 'Go Dutch' was illustrated with examples
-from Norwich and Manchester. These show that as cycling grows, its
-spatial distribution will shift, to areas with high latent demand.
+from Norwich and Manchester. These showed
+a shifting cycling 'centre of gravity', to areas with high latent demand but
+low current rates of cycling.
 This feature of the PCT was
 described as 'very useful' by transport planners during user testing,
 coinciding with the finding that 'visioning' has great potential
@@ -1141,8 +1142,9 @@ The results of user testing indicated the utility of online, interactive and ope
 web applications for cost-effective
 allocation of investment. Local Authority transport planners working in active
 travel said that the tool
-could be useful for setting local targets or implementing
-locally-specific policies. To follow-up on such feedback, modifications of the methods
+could be useful for setting local targets, supporting business cases and implementing
+locally-specific policies to meet national ambitions.
+To follow-up on such feedback, modifications of the methods
 described in this paper are planned, to help determine the suitability of localised
 cycling targets in relation to investment
 options.^[Targets have proliferated in recent years. For instance, an official
@@ -1153,8 +1155,9 @@ all of Scotland over various time-scales [@Beatley2012]. A mode share of
 Orlando.]
 Moreover, as illustrated by the *govtarget* scenario, the method can be used to
 translate national targets into local aspirations.
-However, the implementation of the PCT presented in this paper does have
-some limitations: the reliance on Census OD data means that the results are
+
+As with any model, the implementation of the PCT in this paper has
+limitations: the reliance on 2011 Census OD data means that the results are
 not up-to-date; there are no scenarios representing specific infrastructure
 interventions; and the user interface is constrained to a few discrete scenarios.
 These limitations open-up the potential for future work, including:
@@ -1167,18 +1170,18 @@ presented here include:
 
 - Additional 'output tabs' in the PCT's user interface, to estimate the
 quantitative benefits of cycling uptake at the local (and potentially
-route-allocated) level. Benefits estimated could include health savings
-through increased physical activity to feed into models such as HEAT
-[@Fraser2011]. Geographically specific energy and
+route-allocated) level. Benefits estimated could include
+health gains due to increased physical activity, as estimated using models such as
+HEAT [@Fraser2011]. Geographically specific energy and
 carbon savings of cycling uptake could also be estimated [@Lovelace2011c].
 
 - Deployment of the PCT for entire countries.
 This would depend on having appropriate OD data and could
-could build on emerging 'Big Data' sources for origin-destination
+build on emerging 'Big Data' sources for origin-destination
 flows [@Alexander2015].
 
 - International comparisons of cycling potential.
-This could include include an exploration of
+This could include an exploration of
 the relationship between places of high potential and investment.
 We have already begun this by using Dutch distance decay functions in an English
 context, but more could be done by fully implementing the model in different
@@ -1199,8 +1202,8 @@ This could include data on the spatial distribution of air pollution to minimise
 the location of new developments, such as  houses, schools or shops;
 and road traffic speed and volumes.
 
-The PCT's open source licence allows others to
-modify it for their own needs. We actively encourage practitioners
+The PCT's open source license allows others to
+modify it for their own needs. We encourage practitioners
 to 'fork' the project [@lima2014coding],
 to modify the scenarios, input data and display of the results to suit
 local contexts. This could, for example, help to visualise city-level targets for
@@ -1215,18 +1218,13 @@ sustainable transport.
 
 Transport policy is a
 complex and contested field [@Banister2008].
-Therefore policy, politics, leadership and vision are key ingredients for sustainable
-urban mobility that computer models alone cannot provide [@Melia2015a].
+Policy, politics, leadership and vision are key ingredients for sustainable
+urban mobility that computer models alone cannot supply [@Melia2015a].
 The approach described here can assist in this wider context by providing
-new tools for assessing the best available evidence.
-The PCT thus supports informed and open decision making.
-A more specific limitation of the PCT is its current lack of inclusion
-of detailed cycle route quality data (e.g. width and bumpiness of
-path), which could help planners assess the scale of
-changes needed to enable substantial uptake.  Future versions of the tool could
-make use of
-data derived from new network assessment technologies
-[@Joo2013].
+new tools for assessing the best available evidence,
+particularly given the open source and freely available nature to the tool.
+The PCT thus supports the informed and open transport decision making
+advocated @golub_making_2013, @Tamminga2012 and others.
 
 ```{r, echo=FALSE}
 # However, we would argue that cycle path quality is not something
@@ -1238,7 +1236,7 @@ data derived from new network assessment technologies
 # of 'telecommuting', for example, based on Finnish data [@Helminen2007].
 ```
 
-The flexibility of the approach outlined in this paper means that
+The flexibility of the approach outlined in this paper means that the
 PCT can be seen not only as a tool but as a framework for strategic
 transport planning.
 Under this interpretation the case study of cycling in England is
@@ -1249,23 +1247,25 @@ Indeed, one of the major motivations for writing this paper is to showcase the m
 for use by others to avoid 'reinventing the wheel' to solve such a ubiquitous
 and embedded problem as the un-sustainability of current travel patterns.
 
-Future work will focus on enabling practitioners to add
-new features to the PCT. This is based on the understanding
-that the people who best understand the
-requirements of transport planners are the transport planners themselves.
-By reducing barriers to entry in scenario-based transport modelling,
-the PCT methodology can empower decision-makers, planners and citizens to
-supplement their understanding of transport systems with evidence and plausible
-visions of the future.
+```{r}
+# Future work will focus on enabling practitioners to add
+# new features to the PCT. This is based on the understanding
+# that the people who best understand the
+# requirements of transport planners are the transport planners themselves.
+# By reducing barriers to entry in scenario-based transport modelling,
+# the PCT methodology can empower decision-makers, planners and citizens to
+# supplement their understanding of transport systems with evidence and plausible
+# visions of the future.
+```
 
-The PCT is highly policy relevant.
+In conclusion, the PCT is highly policy relevant.
 By identifying specific routes where intervention is expected to be most effective,
 it can help to build business cases for further investment and policy change.
 Moreover, by highlighting the importance of 'arterial' routes to key destinations,
 the PCT can help rejuvenate long-standing debates
 such as the re-allocation of road space away from
 private cars [@Jones2014;@Sharples2009;@Black1992].
-In conclusion, new tools such as the PCT can inform the decision of where to construct
+As such, new tools such as the PCT can inform the decision of where to construct
 new cycling infrastructure and, more widely,
 strengthen the evidence-base needed for a transition
 towards sustainable transport systems.
