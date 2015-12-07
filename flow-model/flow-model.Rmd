@@ -118,8 +118,8 @@ Emerging evidence has demonstrated the important role
 that high-quality infrastructure can play in modal shift to cycling [@Parkin_2012].
 Off-road cycle paths and interventions a safe, accessible and convenient
 transport option for people of all ages and abilities [@Heinen2015].
-Thanks to various designs of modified cycles (e.g. quadricycles and handcycles),
-cycling can also provide an efficient means of self propulsion for people who
+In addition, modified cycles (e.g. quadricycles and handcycles)
+allow cycling to provide an efficient means of self propulsion for people who
 would have to depend on motorised modes or other people [@Aldred2008],
 infrastructure permitting.
 
@@ -188,7 +188,7 @@ models such as SUMO and PTV VISSIM, which simulate vehicular traffic in
 real time [@Behrisch2014;@Krajzewicz2014].
 The focus on a single mode
 enabled rapid and open development of the tool
-whilst retain a relatively simple interface that is focussed on
+whilst retaining a relatively simple interface that is focussed on
 a single purpose: where to prioritise pro-cycling interventions. 
 This makes the PCT scalable to national levels,
 while maintaining its ability to estimate cycling potential at
@@ -246,9 +246,9 @@ More localised approaches, which use information about the route network
 and the trajectories of cyclists using GPS data, have great potential
 for creating an evidence-base for prioritising investment in cycle paths locally
 [@Ehrgott2012;@Broach2012].
-By allocating the results of an individual-level regression model to the
+By allocating modelled demand to the
 route network, a method presented by @Zhang2014 was able to
-prioritise routes to "achieve maximum impacts early on".
+identify routes that would "achieve maximum impacts early on".
 
 A key limitation of such models is that
 they do not simulate a range of scenios in the long term.
@@ -258,7 +258,7 @@ strategies" [@brommelstroet_equip_2010].
 Moreover, a wider issue with the various transport models
 mentioned in this section is that the results they produce
 are often inaccessible to transport planners
-(e.g. requiring sophisticated software from their interpretation)
+(e.g. requiring sophisticated software for their interpretation)
 and hidden from public view.
 
 ```{r, echo=FALSE}
@@ -315,7 +315,7 @@ and hidden from public view.
 # Google Maps, which many users will have experience with).
 ```
 
-To overcome these roadblocks, the
+To overcome these barriers, the
 OD data for each scenario are pre-calculated,
 enabling the outcome to be displayed rapidly.
 Further, the user is not required to specify any
@@ -687,14 +687,15 @@ the local area.
 ## The Model Output tab
 
 Users can view a summary of the model via the 'Model Output' tab (Fig. 3).
-The tab was added in response to feedback during the user testing sessions.
-The output tab communicates the results of the model,
-including key statistics, diagnostic plots and model-results on a per-region
-basis. This means that a different summary document is provided depending on
-which local authority the user is currently exploring.
+The tab was added in response to feedback during the user testing sessions to
+communicate the results of the model. It
+includes key statistics, diagnostic plots and model-results on a per-region
+basis. Because the content is created 'live' for each regional 'build',
+a different summary document is provided depending on
+the region currently being viewed.
 
-```{r, echo=FALSE, fig.cap="The Output Tab of the Propensity to Cycle Tool"}
-grid.raster(readPNG("../figures/model-outpute.png"))
+```{r, echo=FALSE, fig.cap="Sample content from the Model Output Tab of the Propensity to Cycle Tool"}
+grid.raster(readPNG("../figures/model-output.png"))
 ```
 
 # Model scenarios
@@ -992,20 +993,21 @@ how the scenarios work in practice and to provide an overview of the results,
 Fig. 5 illustrates the observed level of cycling
 ($OLC$, from the
 2011 Census) and the scenario-based level of cycling
-in two Local Authorities (Manchester and Norwich). Note that while Manchester
-has a much higher total number of trips than Norwich, the proportion of those
+in two Local Authorities (Manchester and Norwich).
+These case study cities were chosen by the Department for Transport to demonstrate the tool's performance in different contexts: one is a polycentric city with a low but growing rate of cycling (Manchester) while the other is monocentric and has a high historical rate of cycling (Norwich).
+While Manchester has more trips than Norwich overall, the proportion of those
 trips that are made by cycling is lower. There is noticeable distance decay
 for all modes of transport, especially for cycle trips in Norwich,
 where cycle trips above 7.5 km observed from 2011 census data are
-comparatively rare.
+comparatively rare (Fig. 5).
 
 Note that although Manchester and Norwich have very
 different initial levels of cycling, the final level estimated from the
 *godutch* and *ebike* scenarios there are similar. This is because
-trip distance distributions in the two cities are comparable --- these long-term
+trip distance distributions in the two cities are comparable and because long-term
 scenarios are not influenced by the current rate of cycling.
-Note also that the *govtarget* scenario
-in Manchester has a considerably higher rate of cycling than the *gendereq*
+In Manchester the *govtarget* scenario
+has a considerably higher rate of cycling than the *gendereq*
 scenario, whereas in Norwich these scenarios are very similar. This is because
 Manchester is starting from a lower baseline, so a doubling nationwide
 results in a relatively high absolute increase in cycling locally. In Norwich,
@@ -1088,9 +1090,8 @@ grid.raster(readPNG("../figures/fast-quiet-man.png"))
 The flexibility of the PCT methodology
 enables its use for applications that go beyond those described
 in this paper. Because the underlying
-methods and computer code are transparent and open source, it is
-possible to use the PCT as a platform for further research and planning
-applications. This flexibility
+methods and computer code are transparent and open source, the PCT can be readily used as a platform for further research and applied transport planning.
+This flexibility
 has been demonstrated by the tool's ability to be deployed in any
 Local Authority (or other administrative area)
 in England. Extensibility has been demonstrated by the addition of
@@ -1098,10 +1099,10 @@ new scenarios. Three user testing sessions have helped identify shorter-term
 changes to the interface (such as 'freeze scope') and longer-term needs
 (such as the use of additional data sources).
 
-Planners can use the different scenarios to consider short, medium, and
-long-term potential for cycling locally and along specific routes,
-in combination with local knowledge.
-Future versions of the PCT could therefore help answer following question,
+Planners can use the different scenarios to consider shorter (e.g. 'Government Target') and
+longer (e.g. 'Go Dutch') timescales for local cycling potential along specific routes.
+In this context, the tool can provide an evidence base to support local knowledge.
+Furthermore, future (more sophisticated) versions of the PCT could provide a visual evidence base to help following question,
 previously raised by  @Sloman2014 and @Aldred2014:
 Should cycling investment prioritise
 areas of relatively low current propensity but high potential, or those of relatively
@@ -1162,8 +1163,10 @@ presented here include:
 quantitative benefits of cycling uptake at the local (and potentially
 route-allocated) level. Benefits estimated could include
 health gains due to increased physical activity, as estimated using models such as
-HEAT [@Fraser2011]. Geographically specific energy and
-carbon savings of cycling uptake could also be estimated [@Lovelace2011c].
+the Health Economic Assessment Tool
+(HEAT), endorsed by the World Health Organisation [@Fraser2011].
+The tool could also be used as a basis for estimating and communicating the local energy and
+carbon savings of cycling uptake, previously estimated at city levels [e.g. @Lovelace2011c].
 
 - Deployment of the PCT for entire countries.
 This would depend on having appropriate OD data and could
