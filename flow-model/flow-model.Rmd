@@ -3,12 +3,12 @@ title: 'The Propensity to Cycle Tool: An open source online system for sustainab
   transport planning'
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
 output:
-  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
+  word_document: default
 bibliography: ../documents/Transport.bib
 ---
 
@@ -432,9 +432,9 @@ commute from locations within and between administrative zones (MSOAs)
 # For docx and latex: use kable
 data("flow")
 names(flow) <- gsub("\\.", " ", names(flow))
-names(flow)[4] <- "Total no. commuters"
-names(flow)[5] <- "No. cycle commuters"
-kable(head(flow[c(1:4, 13)]), row.names = F)
+names(flow)[3] <- "Total no. commuters"
+names(flow)[12] <- "No. cycle commuters"
+kable(head(flow[c(1:3, 12)]), row.names = F)
 ```
 
 Table: Sample of the zone level input dataset. The coordinates represent the population-weighted centroids of MSOA zones, whose codes are also presented in Table 1.
@@ -443,7 +443,8 @@ Table: Sample of the zone level input dataset. The coordinates represent the pop
 # t2 <- xtable(as.data.frame(cents[1:3,-c(3,4)]), caption = "Sample of the 'cents' input dataset, representing the geographical location of the population-weighted centroids of MSOA zones described in Table~\\ref{tbl:flow}", label = "tbl:cents")
 # print(t2, type = "latex", comment = FALSE, caption.placement = "top")
 data("cents")
-cents1 <- as.data.frame(cents[1:3,-c(3,4)])
+sel <- which(cents$geo_code == flow$`Area of residence`[1])
+cents1 <- as.data.frame(cents[c(1:3, sel),-c(3,4)])
 names(cents1) <- c(
   "Area of residence",
   "Area name",
@@ -460,10 +461,10 @@ grid.raster(readPNG("../figures/coventry-centroids.png"))
 
 We used the Census 2011 travel to work dataset for its comprehensive coverage of
 the population, high geographic resolution and assurances surrounding data
-quality. It worth noting that
+quality. It is worth noting that
 a variety of emerging sources could be used instead to
-provide OD data. This includes emerging sources of 'Big Data'
-[@Kitchin2013] such as: mobile
+provide OD data. This includes 'Big Data'
+[@Kitchin2013] sources such as: mobile
 telephone service providers [@smoreda2013spatiotemporal];
 public transport data, which can highlights local demand short trips;
 household travel surveys [@TransportforNSW2014];
@@ -606,7 +607,7 @@ Another way to subset OD pairs is to set the maximum Euclidean
 We tested various values for `mdist` and settled on
 15 km. This translates to around 20 km
 on the route network assuming a *circuity* value of 1.3, as reported by
-[@cole_quantitative_1968].
+[@Cole_King_1968].
 Only 1.4% of cycle commutes recorded in the
 National Travel Survey exceeded a distance of 20 km.
 
@@ -616,13 +617,11 @@ The output of the data processing phase, described above, formed
 the basis of a model which estimates the future rate of cycling,
 based on current travel behaviour, under various senarios.
 It is important to note that a wide range of scenario-based or
-predictive models could be used to estimate future cycling rates
-to be visualised by the PCT. Although the model is important, it is
-making-sense of and visualising its output which can lead to improved
-decision making. Therefore, this section should be seen as a case study
-of model scenarios, rather than the 'official' scenarios used in the PCT.
-Different scenarios, and models of cycling uptake, will be appropriate
-in different contexts.
+predictive models could be used to estimate future cycling rates,
+which in turn could be visualised by the PCT. Although the model is important, it is the
+making sense of and visualisation of its output which will most likely lead to improved
+decision making.
+Therefore, this section should be seen as a case study of one particular approach to modeling particular, context-specific scenarios. Future users of the PCT may choose to use different models of cycling uptake and to examine different scenarios.
 
 For all scenarios except *gender equality*, a regression model was used
 to estimate the potential rate of cycling at the OD level.
@@ -702,9 +701,7 @@ grid.raster(readPNG("../figures/model-output.png"))
 
 Four scenarios were developed to
 explore cycling futures in England.
-These can be framed in terms of the removal of different barriers
-preventing cycling becoming the natural mode of choice for urban trips:
-infrastructural, cultural and technological.
+These can be framed in terms of the removal of different infrastructural, cultural and technological barriers that currently prevent cycling being the natural mode of choice for urban trips. 
 The scenarios are context-specific and based partly on
 political commitments to cycling (see *govtarget*).
 Use of the PCT in new contexts will benefit from new scenarios that
@@ -721,7 +718,7 @@ Although this is a substantial increase in relative terms, cycle use still
 remains low in this scenario compared with countries such as the Netherlands,
 rising from 3% to 6% of commutes.
 *govtarget* allows for different rates of growth in different places.
-Above-average percentage point increases (i.e. more than a doubling) are projected in areas
+Above-average percentage point increases (i.e. more than a 3% point increase) are projected in areas
 with many short (i.e. potentially cyclable)
 trips and a low current rate of cycling.
 Conversely, areas with higher cycle use and a low proportion
@@ -747,15 +744,13 @@ is already a common mode of transport.
 - Go Dutch (*godutch*).
 While *govtarget* and *gendereq* build on current cycling behaviour,
 'Go Dutch' focuses on long-term potential.
-*godutch* represents what would happen if English people were as likely to cycle a given trip
-(in terms of distance and hilliness, in this case) as Dutch people.
+*godutch* represents what would happen if English people were as likely as Dutch people to cycle a trip of a given distance and level of hilliness.
 It works by assigning Dutch
 distance decay parameters to English travel patterns.
 The scenario represents the elimination of the
 infrastructural and cultural constraints which currently hold back cycle
 use in England, including all localised differences.
-So, unlike the *govtarget* and *gendereq* scenarios,
-the predicted levels of cycle use in *godutch*
+As such, whereas the *govtarget* and *gendereq* scenarios take current levels as a starting point, the predicted levels of cycle use in  *godutch*
 are unrelated to current levels, and are constrained
 only by local trip distance distributions and hilliness.
 
@@ -813,10 +808,12 @@ Under the 'national doubling',
 assume an additional 5% of commuters now cycle for all
 trips of 4.5km --- i.e. $pcycle(natmod)_{4.5} = 0.05$.
 For our specific OD pair $ab$ in the Census there are
-200 commuters, of which 2 are cyclists ($pcycle_{ab} = 0.01$).
-The scenario adds an additional 5% of commuters: an
-additional 10 cyclists, i.e. an increase from 2 to 12: more than double.
-The same methodology is applied to all distances represented in the OD matrix.
+200 commuters, of whom only 2 are cyclists ($pcycle_{ab} = 0.01$).
+The scenario adds an additional 5% of commuters, i.e. an additional 10 cyclists which more than doubles the total number of cyclists from 2 to 12.
+The same methodology is applied to all distances represented in the OD
+matrix.^[Thus
+this particular OD pair has gone from a current proportion of cyclists to 1% (five times lower than the national average of 5%) to having a scenario proportion of cyclists of 6% (just over half the national average of 10%).  This illustrates the point that this scenario tends to equalize, but does not remove, pre-existing differences in cycling levels.
+]
 
 The approach assumes that cycling potential against a given national
 increase is always a positive number.
@@ -839,7 +836,7 @@ countries with a high rate of cycling [@Fishman2015].
 The Gender Equality scenario (*gendereq*) builds on such insights
 and is based *observed level of cycling* (*OLC*) from the 2011 Census.
 
-On average in England around 3/4 of cycle commuters
+On average in England around three quarters of cycle commuters
 are male, although this varies geographically [@Aldred2015].
 *gendereq* assumes that gender equality is reached in cycling.
 A prerequisite is a model-based estimate of the number of male
@@ -1149,7 +1146,7 @@ translate national targets into local aspirations.
 
 As with any model, the implementation of the PCT in this paper has
 limitations: the reliance on 2011 Census OD data means that the results are
-not up-to-date; there are no scenarios representing specific infrastructure
+not up to date; there are no scenarios representing specific infrastructure
 interventions; and the user interface is constrained to a few discrete scenarios.
 These limitations open-up the potential for future work, including:
 using more up-to-date sources of OD data; creating a version of the model
@@ -1240,7 +1237,7 @@ Indeed, one of the major motivations for writing this paper is to showcase the m
 for use by others to avoid 'reinventing the wheel' to solve such a ubiquitous
 and embedded problem as the un-sustainability of current travel patterns.
 
-```{r}
+```{r, echo=FALSE}
 # Future work will focus on enabling practitioners to add
 # new features to the PCT. This is based on the understanding
 # that the people who best understand the
