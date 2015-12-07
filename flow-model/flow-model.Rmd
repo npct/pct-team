@@ -65,7 +65,7 @@ constructed along
 'desire lines' of greatest latent demand.
 The importance of building in the right place creates the need for tools to visualise the geographical distribution of cycling potential. 
 This paper describes the Propensity to Cycle Tool (PCT), an online, interactive evidence-based planning support system for envisioning the local implications of different regional or national cycling scenarios.
-Specifically, the PCT uses origin-destination (OD) data to model the likely spatial distribution of new cycling routes.
+Specifically, the PCT uses origin-destination (OD) data to model where cycle traffic has the greatest potential to grow.
 Cycling potential is modelled as a function of route distance, hilliness and other factors at the OD and area level, although more sophisticated models could subsequently be used and visualised throught the PCT.
 The most innovative feature of the PCT is its interactive display of the shifting spatial distribution of cycling potential under different scenarios.
 Case study cities are used to illustrate the tool's capabilities under four scenarios, including 'Gender Equality' and 'Go Dutch'.
@@ -74,9 +74,14 @@ Critically, the accessible, browser-based interface of the PCT
 enables public participation in the transport planning process. 
 The PCT is completely open source, enabling its rapid deployment new contexts without licensing or cost restrictions.
 We conclude that the method can help plan for a future in which
-cycling is the natural choice short trips, as part of a wider
-sustainable mobility strategy and a key element in the
-global transition towards low carbon, physically active transport.
+cycling is the natural choice short trips.
+
+
+```{r, echo=FALSE}
+# part of a wider
+# shift towards healthy, low carbon transport systems.
+```
+
 
 # Introduction
 
