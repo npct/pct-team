@@ -3,12 +3,12 @@ title: 'The Propensity to Cycle Tool: An open source online system for sustainab
   transport planning'
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
 output:
+  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
-  word_document: default
 bibliography: ../documents/Transport.bib
 ---
 
@@ -52,7 +52,7 @@ if(to_install) install.packages(pkgs[to_install])
 
 # To do:
 # Add speed-bumps/speed cameras/cycling priority or remove lanes for motorised traffic
-# Thanks also to Phil Tate for comments
+# Add ref to Singleton's stuff
 ```
 
 # Abstract
@@ -414,7 +414,7 @@ in both directions). We calculated mean gradient per MSOA zone using publicly av
 digital
 elevation model (DEM) data supplied by NASA.^[See 
 [srtm.csi.cgiar.org/](http://srtm.csi.cgiar.org/) for the data and the
-[steepness.R](https://github.com/Robinlovelace/pct/blob/master/loading-data/steepness.R)
+[steepness.R](https://github.com/npct/pct/blob/master/loading-data/steepness.R)
 file in the project's repository for the processing algorithm used. "Version 4"
 of the dataset was used. To allocate this area-based hilliness metric to OD
 pairs, we calculated the average hilliness of origin and destination zones. This
@@ -1163,7 +1163,7 @@ health gains due to increased physical activity, as estimated using models such 
 the Health Economic Assessment Tool
 (HEAT), endorsed by the World Health Organisation [@Fraser2011].
 The tool could also be used as a basis for estimating and communicating the local energy and
-carbon savings of cycling uptake, previously estimated at city levels [e.g. @Lovelace2011c].
+carbon savings of cycling uptake, building on previous work in the field [@Lovelace2011c;@Singleton2014a].
 
 - Deployment of the PCT for entire countries.
 This would depend on having appropriate OD data and could
