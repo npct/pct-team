@@ -3,12 +3,12 @@ title: 'The Propensity to Cycle Tool: An open source online system for sustainab
   transport planning'
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
 output:
+  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
-  word_document: default
 bibliography: ../documents/Transport.bib
 ---
 
@@ -62,17 +62,18 @@ Modal shift to cycling is an increasingly common objective in transport planning
 Evidence suggests that high-quality infrastructure 
 can boost local cycling rates, especially when
 constructed along
-'desire lines' of greatest latent demand.
+'desire lines' of high latent demand.
 The importance of building in the right place creates the need for tools to visualise the geographical distribution of cycling potential. 
-This paper describes the Propensity to Cycle Tool (PCT), an online, interactive evidence-based planning support system for envisioning the local implications of different regional or national cycling scenarios.
-Specifically, the PCT uses origin-destination (OD) data to model where cycle traffic has the greatest potential to grow.
-Cycling potential is modelled as a function of route distance, hilliness and other factors at the OD and area level, although more sophisticated models could subsequently be used and visualised throught the PCT.
+This paper describes the Propensity to Cycle Tool (PCT), an online, interactive evidence-based planning support system to explore possible cycling futures at the local level.
+Specifically, the PCT uses origin-destination (OD) data to estimate where cycle traffic has the greatest potential to grow.
+A simple but useful model was used to generate these localised 'cycling futures' for commuter trips, as a function of route distance, hilliness and other factors.
+More sophisticated and context-specific 'back ends' for the PCT could also be developed.
 The most innovative feature of the PCT is its interactive display of the shifting spatial distribution of cycling potential under different scenarios.
-Case study cities are used to illustrate the tool's capabilities under four scenarios, including 'Gender Equality' and 'Go Dutch'.
+Case study cities were used to illustrate the tool's capabilities under four scenarios, including 'Gender Equality' and 'Go Dutch'.
 Critically, the accessible, browser-based interface of the PCT
 ([geo8.webarch.net/master/](http://geo8.webarch.net/master/))
 enables public participation in the transport planning process. 
-The PCT is completely open source, enabling its rapid deployment new contexts without licensing or cost restrictions.
+The PCT is completely open source, enabling its rapid deployment other contexts without licensing or cost restrictions.
 We conclude that the method can help plan for a future in which
 cycling is the natural choice short trips.
 
@@ -91,11 +92,11 @@ This active travel mode already provides fast, affordable,
 and convenient mobility to millions of people each day [@Komanoff2004] and
 mounting evidence of the external costs of car-based
 transport systems [@Newman1999;@Han2008;@Mizutani2011;@Shergold2012],
-and the benefits of cycling [@Oja2011;@Woodcock2013;@DeNazelle2011],
+and the benefits of cycling [e.g. @Oja2011;@Woodcock2013;@DeNazelle2011],
 has pushed cycling further up the
 transport agenda in recent years.
 Cycling is increasingly central to sustainable transport strategies, as
-illustrated, for example, by major investment
+illustrated, for example, by major (yet small in comparison with motorised travel spend) investment
 strategies worldwide^[Several examples
 of multi-million Euro projects are provided by the
 [European Cyclist' Federation](http://www.ecf.com/advocary/eu-funding-2/examples-of-cycling-projects-co-funded-by-the-eu/), the
@@ -116,12 +117,9 @@ bike share schemes worldwide. See
 
 Emerging evidence has demonstrated the important role
 that high-quality infrastructure can play in modal shift to cycling [@Parkin_2012].
-Off-road cycle paths and interventions a safe, accessible and convenient
-transport option for people of all ages and abilities [@Heinen2015].
-In addition, modified cycles (e.g. quadricycles and handcycles)
-allow cycling to provide an efficient means of self propulsion for people who
-would have to depend on motorised modes or other people [@Aldred2008],
-infrastructure permitting.
+Off-road cycle paths can help make cycling a safe, accessible and convenient
+option for people of all ages and abilities [@Heinen2015].
+Further using modified cycles, such as quadricycles and handcycles, can provide independence and mobility for disabled people [@Aldred2008], where appropriate infrastructure allows.
 
 The design [@Heath2006;@TfL2014;@WG2014]
 and geographic location [@Aultman-Hall1997;@Minikel2012]
@@ -151,7 +149,7 @@ provides a range of information to the user to inform evidence-based policy
 [@Pettit2013]. The PCT differs from previous PSS, however, in its:
 
 - Focus on wide ranging scenarios for cycling growth. This expands the 'option space' visible to transport planners, encouraging consideration of short and long-term planning horizons simultaneously.
-- Estimation and visualisation of cycling potential at 'desire line' level. Unlike area-based estimates, this matches the linear nature of cycle paths, the location of which cannot be easily prioritised using area-based measures alone.
+- Estimation and visualisation of cycling potential at 'desire line' level. Unlike area-based estimates, this matches the linear and sometimes lengthy nature of cycling desire lines. The location of lengthy paths cannot easily be prioritised using area-based measures alone.
 - Route-allocation of the desire lines. This facilitates the identification of specific segments of the transport network to be targeted for improvement.
 
 The PCT was commissioned by the UK's Department for Transport to identify
@@ -238,7 +236,7 @@ city [@Lovelace2011c] or area levels [@muller2008travel].
 In relation to cycling, @Parkin2008 used
 a multiple regression model to estimate levels of commuter cycling at an
 area level. Similarly local survey data has been used to identify areas with
-high numbers of 'potentially cyclable trips' in London [@TfL2010].
+high numbers of 'potentially cycleable trips' in London [@TfL2010].
 However, neither analysis identified the travel corridors along which
 these simulated cycle trips would be made.
 
@@ -332,7 +330,7 @@ widespread availability of OD data (as discussed in the next section),
 should make the PCT easy to deploy in new contexts.
 
 A key strength of the PCT is its provision of detailed, interactive results from simple inputs.
-The aim is not to produce a full transport-land use model, nor to provide a full mode choice model. Instead, the tool seeks to assist decision makers and planners in considering, visualizing and analyzing what cycling growth might look like – and necessitate in terms of infrastructure provision. Within the English context at least, ambitious local and national cycling targets are often set in terms of mode share, but without any detailed consideration of what this might mean in terms of cycling flows along specific routes. The PCT provides a representation of what, if such targets are achieved, the spatial distribution of cycling trips might look like at the area and network level in practice.  
+The aim is not to produce a full transport-land use model, nor to provide a full mode choice model. Instead, the tool seeks to assist decision makers and planners in considering, visualizing and analysing what cycling growth might look like – and necessitate in terms of infrastructure provision. Within the English context at least, ambitious local and national cycling targets are often set in terms of mode share, but without any detailed consideration of what this might mean in terms of cycling flows along specific routes. The PCT provides a representation of what, if such targets are achieved, the spatial distribution of cycling trips might look like at the area and network level in practice.  
 
 ```{r, echo=FALSE}
 # We plan to encourage a user community to
@@ -583,7 +581,7 @@ are not used to represent the paths that cyclists currently take:
 route choice models based on GPS data
 have been developed for this purpose [@Broach2012;@Ehrgott2012].
 The 'fastest' routes produced defined by CycleStreets.net will often
-involve traveling on large, busy roads.
+involve travelling on large, busy roads.
 But cyclists express a strong preference for direct routes [@crow2007]
 suggesting that these are where the highest latent demand
 for safe routes are located.
@@ -615,13 +613,13 @@ National Travel Survey exceeded a distance of 20 km.
 
 The output of the data processing phase, described above, formed
 the basis of a model which estimates the future rate of cycling,
-based on current travel behaviour, under various senarios.
+based on current travel behaviour, under various scenarios.
 It is important to note that a wide range of scenario-based or
 predictive models could be used to estimate future cycling rates,
 which in turn could be visualised by the PCT. Although the model is important, it is the
 making sense of and visualisation of its output which will most likely lead to improved
 decision making.
-Therefore, this section should be seen as a case study of one particular approach to modeling particular, context-specific scenarios. Future users of the PCT may choose to use different models of cycling uptake and to examine different scenarios.
+Therefore, this section should be seen as a case study of one particular approach to modelling particular, context-specific scenarios. Future users of the PCT may choose to use different models of cycling uptake and to examine different scenarios.
 
 For all scenarios except *gender equality*, a regression model was used
 to estimate the potential rate of cycling at the OD level.
@@ -672,7 +670,7 @@ To solve this problem, buffers were used to expand regions
 deemed to be part of a wider system.^[Various criteria were considered
 to decide whether or not a buffer was needed and to select the size of the
 buffer, for example
-whener the number of MSOA zones fell below some threshold
+whenever the number of MSOA zones fell below some threshold
 and the amount of inter-region travel. Ultimately it was decided to
 add buffers on an ad-hoc basis, where they were deemed necessary.]
 To illustrate how the buffers worked,
@@ -704,7 +702,7 @@ explore cycling futures in England.
 These can be framed in terms of the removal of different infrastructural, cultural and technological barriers that currently prevent cycling being the natural mode of choice for urban trips. 
 The scenarios are context-specific and based partly on
 political commitments to cycling (see *govtarget*).
-Use of the PCT in new contexts will benefit from new scenarios that
+Use of the PCT in other contexts will likely benefit from new scenarios that
 relate to both the current policy context and long-term aspirations.
 The scenarios are not intended to be predictions of the future.
 They are snapshots that indicate how the spatial distribution of cycling is
@@ -719,7 +717,7 @@ remains low in this scenario compared with countries such as the Netherlands,
 rising from 3% to 6% of commutes.
 *govtarget* allows for different rates of growth in different places.
 Above-average percentage point increases (i.e. more than a 3% point increase) are projected in areas
-with many short (i.e. potentially cyclable)
+with many short (i.e. potentially cycleable)
 trips and a low current rate of cycling.
 Conversely, areas with higher cycle use and a low proportion
 of short commutes will have below-average growth.
@@ -963,7 +961,7 @@ only by trip distances and hilliness.
 
 This scenario aims to provide insight into how cycling
 could shift with the uptake of electric cycles ('E-bikes').
-The scenario builds on 'Go Dutch'and represents
+The scenario builds on 'Go Dutch' and represents
 a reduction in the degree to which cycle use is
 constrained by trip distances and technology.
 This is the most ambitious and speculative
@@ -971,7 +969,7 @@ scenario presented in this paper.
 
 The results are
 based on the decision to increase by a small amount the $\beta_1$ distance decay parameter,
-that corresponds to distance as a linear term.
+which corresponds to distance as a linear term.
 Specifically, we increased this value by 0.025, as we found
 this to be sufficiently small to avoid generating an
 implausibly high rate of cycling but sufficiently large to create a noticeable effect.
@@ -991,7 +989,7 @@ Fig. 5 illustrates the observed level of cycling
 ($OLC$, from the
 2011 Census) and the scenario-based level of cycling
 in two Local Authorities (Manchester and Norwich).
-These case study cities were chosen by the Department for Transport to demonstrate the tool's performance in different contexts: one is a polycentric city with a low but growing rate of cycling (Manchester) while the other is monocentric and has a high historical rate of cycling (Norwich).
+These case study cities were chosen by the Department for Transport to demonstrate the tool's performance in different contexts: one is a poly-centric city with a low but growing rate of cycling (Manchester) while the other is mono-centric and has a high historical rate of cycling (Norwich).
 While Manchester has more trips than Norwich overall, the proportion of those
 trips that are made by cycling is lower. There is noticeable distance decay
 for all modes of transport, especially for cycle trips in Norwich,
@@ -1097,7 +1095,7 @@ changes to the interface (such as 'freeze scope') and longer-term needs
 (such as the use of additional data sources).
 
 Planners can use the different scenarios to consider shorter (e.g. 'Government Target') and
-longer (e.g. 'Go Dutch') timescales for local cycling potential along specific routes.
+longer (e.g. 'Go Dutch') time-scales for local cycling potential along specific routes.
 In this context, the tool can provide an evidence base to support local knowledge.
 Furthermore, future (more sophisticated) versions of the PCT could provide a visual evidence base to help following question,
 previously raised by  @Sloman2014 and @Aldred2014:
@@ -1187,10 +1185,7 @@ to inform more targeted interventions [@Lovelace2014-jtg].
 An 'education layer' would enable prioritisation of 'safe routes to school',
 building on methods analysing 'school commute' data [@Singleton2014a].
 
-- The extension of the tool to take into account additional data.
-This could include data on the spatial distribution of air pollution to minimise exposure [@Farrell_Weichenthal_Goldberg_Hatzopoulou_2015];
-the location of new developments, such as  houses, schools or shops;
-and road traffic speed and volumes.
+- The extension of the tool to take into account additional data such as the location of new developments and road traffic speed and volumes. This work could build on recently developed GIS for route planning in relation to safety and air pollution [@Farrell_Weichenthal_Goldberg_Hatzopoulou_2015;@larsen_build_2013].
 
 The PCT's open source license allows others to
 modify it for their own needs. We encourage practitioners
@@ -1234,8 +1229,7 @@ just one of many potential applications.
 Still, a number of the lessons learned throughout the
 development and user testing of the tool are generalisable internationally.
 Indeed, one of the major motivations for writing this paper is to showcase the method
-for use by others to avoid 'reinventing the wheel' to solve such a ubiquitous
-and embedded problem as the un-sustainability of current travel patterns.
+for use by others to avoid 'reinventing the wheel' to help answer the common question of where to build.
 
 ```{r, echo=FALSE}
 # Future work will focus on enabling practitioners to add
