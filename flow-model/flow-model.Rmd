@@ -412,7 +412,7 @@ in both directions). We calculated mean gradient per MSOA zone using publicly av
 digital
 elevation model (DEM) data supplied by NASA.^[See 
 [srtm.csi.cgiar.org/](http://srtm.csi.cgiar.org/) for the data and the
-[steepness.R](https://github.com/Robinlovelace/pct/blob/master/loading-data/steepness.R)
+[steepness.R](https://github.com/npct/pct/blob/master/loading-data/steepness.R)
 file in the project's repository for the processing algorithm used. "Version 4"
 of the dataset was used. To allocate this area-based hilliness metric to OD
 pairs, we calculated the average hilliness of origin and destination zones. This
