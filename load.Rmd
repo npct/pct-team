@@ -34,7 +34,7 @@ The preset values used to select the study area and filter the origin destinatio
 
 ```{r, echo=FALSE}
 # Create default LA name if none exists
-if(!exists("region")) region <- "Sheffield" 
+if(!exists("region")) region <- "Liverpool-City-Region" 
 ```
 
 
@@ -57,9 +57,9 @@ buff_geo_dist <- 250 # buffer (m) for removing line start and end points for net
 The input zones area are summarised in this section.
 
 ```{r plotzones, message=FALSE, warning=FALSE, results='hide', echo=FALSE}
-# ukmsoas <- shapefile("pct-bigdata/national/msoas.shp")
 # mapshape("pct-bigdata/national/msoas.shp")
-ukmsoas <- shapefile("pct-bigdata/national/msoasmapshaped_25%.shp")
+# ukmsoas <- shapefile("pct-bigdata/national/msoasmapshaped_25%.shp")
+ukmsoas <- geojson_read("pct-bigdata/national/msoas.geojson", what = "sp")
 ukmsoas <- spTransform(ukmsoas, CRS("+init=epsg:4326"))
 # geojson_write(ukmsoas, file = "pct-bigdata/national/msoas.geojson")
 # ukmsoas <- geojson_read("pct-bigdata/national/msoas.geojson", what = "sp")
@@ -69,6 +69,7 @@ cents <- readOGR("pct-bigdata/national/cents.geojson", layer = "OGRGeoJSON")
 cents$geo_code <- as.character(cents$geo_code)
 
 # Load local authorities and districts
+if(!exists("geo_level")) geo_level <- "regions"
 las <- readOGR(dsn = "pct-bigdata/national/las-pcycle.geojson", layer = "OGRGeoJSON")
 if(geo_level == "cua"){
   regions <- readOGR(dsn = "pct-bigdata/national/cuas-mf.geojson", layer = "OGRGeoJSON")
@@ -228,6 +229,9 @@ if(sum(grepl("l", f)) == 0){
 if(file.exists(paste0("pct-data/", region, "/rf.Rds"))){
   rf <- readRDS(paste0("pct-data/", region, "/rf.Rds")) # if you've loaded them
   rq <- readRDS(paste0("pct-data/", region, "/rq.Rds"))
+  
+  rf$length <- rf$length / 1000 # set length correctly
+  rq$length <- rq$length / 1000
   # l <- readRDS(paste0("pct-data/", region, "/l.Rds"))
   # nrow(rf) == nrow(l)
 } else {
@@ -248,8 +252,6 @@ path_ok <- row.names(l) %in% row.names(rf) &
 l <- l[path_ok,]
 
 # Process route data
-rf$length <- rf$length / 1000
-rq$length <- rq$length / 1000
 rf$id <- l$id
 rq$id <- l$id
 proj4string(rf) <- proj4string(l)
@@ -664,7 +666,8 @@ saveRDS(mod_logsqr, paste0("pct-data/", region, "/model.Rds"))
 file.copy("load.Rmd", paste0("pct-data/", region, "/load.Rmd"))
 
 # Create folder in shiny app folder (assuming it's next to pct)
-mess <- paste0("cp -r ../pct-shiny/coventry/ ../pct-shiny/", region)
+dir.create(paste0("../pct-shiny/", region))
+mess <- paste0("cp ../pct-shiny/coventry/* ../pct-shiny/", region)
 system(mess)
 server_text <- readLines("../pct-shiny/coventry/server.R")
 server_text <- gsub(pattern = "coventry", replacement = region, x = server_text)

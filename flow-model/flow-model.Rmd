@@ -3,12 +3,12 @@ title: 'The Propensity to Cycle Tool: An open source online system for sustainab
   transport planning'
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
 output:
-  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
+  word_document: default
 bibliography: ../documents/Transport.bib
 ---
 
