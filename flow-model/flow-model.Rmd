@@ -1,15 +1,19 @@
 ---
 title: 'The Propensity to Cycle Tool: An open source online system for sustainable
   transport planning'
-header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
+header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs} \usepackage{setspace} \doublespacing
+# documentclass: jtlu-article-2col
 output:
   pdf_document:
     fig_caption: yes
     keep_tex: yes
+    latex_engine: xelatex
     number_sections: yes
   html_document: default
   word_document: default
+fontsize: 12pt
 bibliography: ../documents/Transport.bib
+csl: ../documents/elsevier-harvard.csl
 ---
 
 ```{r, echo=FALSE, include=FALSE}
@@ -40,6 +44,7 @@ to_install <- !vapply(pkgs, require, character.only = T, FUN.VALUE = logical(1))
 if(to_install) install.packages(pkgs[to_install])
 
 # Bibliography dl
+# download.file("https://github.com/citation-style-language/styles/raw/master/elsevier-harvard.csl", "documents/elsevier-harvard.csl")
 # generated via https://github.com/ZotPlus/zotero-better-bibtex
 # downloader::download("https://www.zotero.org/api/groups/418217/collections/TUEXXIV4/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
 # # 
@@ -69,13 +74,13 @@ Specifically, the PCT uses origin-destination (OD) data to estimate where cycle 
 A simple but useful model was used to generate these localised 'cycling futures' for commuter trips, as a function of route distance, hilliness and other factors.
 More sophisticated and context-specific 'back ends' for the PCT could also be developed.
 The most innovative feature of the PCT is its interactive display of the shifting spatial distribution of cycling potential under different scenarios.
-Case study cities were used to illustrate the tool's capabilities under four scenarios, including 'Gender Equality' and 'Go Dutch'.
+Case study cities in England illustrate the tool's capabilities under four scenarios, including 'Gender Equality' and 'Go Dutch', in which a dramatic increase in cycling is illustrated.
 Critically, the accessible, browser-based interface of the PCT
 ([geo8.webarch.net/master/](http://geo8.webarch.net/master/))
 enables public participation in the transport planning process. 
-The PCT is completely open source, enabling its rapid deployment other contexts without licensing or cost restrictions.
-We conclude that the method can help plan for a future in which
-cycling is the natural choice short trips.
+The PCT is completely open source, enabling its rapid deployment new contexts, without cost or licensing restrictions.
+We conclude that the approach can help plan for a future in which
+cycling is the main mode for short urban journeys.
 
 
 ```{r, echo=FALSE}
@@ -612,14 +617,14 @@ National Travel Survey exceeded a distance of 20 km.
 ## Modelling cycling uptake at the desire line level
 
 The output of the data processing phase, described above, formed
-the basis of a model which estimates the future rate of cycling,
-based on current travel behaviour, under various scenarios.
+the basis of a model which estimates the rate of cycling
+under various scenarios.
 It is important to note that a wide range of scenario-based or
-predictive models could be used to estimate future cycling rates,
-which in turn could be visualised by the PCT. Although the model is important, it is the
-making sense of and visualisation of its output which will most likely lead to improved
-decision making.
-Therefore, this section should be seen as a case study of one particular approach to modelling particular, context-specific scenarios. Future users of the PCT may choose to use different models of cycling uptake and to examine different scenarios.
+predictive models could be used to estimate future cycling rates.
+The results of a wide range of such 'back end' models, which could even include agent-based approaches, could be visualised by the PCT, provided the results are aggregated to the desire line level. Although the model choice is important to the PCT, it is often the
+making sense of and visualisation of its output that affects decision making.
+This section is therefore a case study of one particular model for generating context-specific scenarios.
+Future users of the PCT will likely choose to use different models to examine different scenarios.
 
 For all scenarios except *gender equality*, a regression model was used
 to estimate the potential rate of cycling at the OD level.
