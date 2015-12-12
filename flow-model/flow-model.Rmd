@@ -7,7 +7,7 @@ output:
   pdf_document:
     fig_caption: yes
     keep_tex: yes
-    latex_engine: xelatex
+    # latex_engine: xelatex
     number_sections: yes
   html_document: default
   word_document: default
@@ -64,8 +64,8 @@ if(to_install) install.packages(pkgs[to_install])
 
 
 Modal shift to cycling is an increasingly common objective in transport planning institutions worldwide. 
-Evidence suggests that high-quality infrastructure 
-can boost local cycling rates, especially when
+Evidence shows that high-quality infrastructure 
+can boost local cycling rates, when
 constructed along
 'desire lines' of high latent demand.
 The importance of building in the right place creates the need for tools to visualise the geographical distribution of cycling potential. 
