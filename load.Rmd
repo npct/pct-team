@@ -45,7 +45,7 @@ region_path <- file.path("pct-data", region)
 if(!dir.exists(region_path)) dir.create(region_path) # create data directory
 
 # Minimum flow between od pairs, subsetting lines. High means fewer lines.
-mflow <- 50
+mflow <- 20
 mdist <- 15 # maximum euclidean distance (km) for subsetting lines
 min_zones <- 60 # minumum number of zones in study area before buffer used
 buff_dist <- 0 # buffer (km) used to select additional zones (often zero = ok)
@@ -214,46 +214,55 @@ An illustration of these routes is presented below.
 # Calculate distances (eventually use route distance)
 
 # # # # # # # # # # # # # # #
-# Allocate OD pairs to network #
+# Allocate OD pairs2network #
 # Warning: time-consuming!  #
 # Needs CycleStreet.net API #
 # # # # # # # # # # # # # # #
 
-
-f <- list.files(paste0("pct-data/", region, "/"))
-if(sum(grepl("l", f)) == 0){
-  saveRDS(l, paste0("pct-data/", region, "/l_all.Rds"))
-}
-
 # Create or load route allocated lines (depending on past loading)
-if(file.exists(paste0("pct-data/", region, "/rf.Rds"))){
-  rf <- readRDS(paste0("pct-data/", region, "/rf.Rds")) # if you've loaded them
-  rq <- readRDS(paste0("pct-data/", region, "/rq.Rds"))
-  
-  rf$length <- rf$length / 1000 # set length correctly
-  rq$length <- rq$length / 1000
+if(file.exists(paste0("pct-data/", region, "/rf_ttwa.Rds")) &
+   file.exists(paste0("pct-data/", region, "/rf_ttwa.Rds"))){
+  rf <- readRDS(paste0("pct-data/", region, "/rf_ttwa.Rds")) # if you've loaded them
+  rq <- readRDS(paste0("pct-data/", region, "/rq_ttwa.Rds"))
   # l <- readRDS(paste0("pct-data/", region, "/l.Rds"))
   # nrow(rf) == nrow(l)
 } else {
   # see ?line2route from stplanr package
   # mytoken <- "f3fe3d078ac34737" # warning: not a real key 
-  mytoken <- readLines("~/Dropbox/dotfiles/cyclestreets-api-key-rl")
-  Sys.setenv(CYCLESTREET = mytoken)
-  rf <- line2route(l, silent = T)
+  rf <- line2route(l, silent = TRUE)
   rq <- line2route(l, plan = "quietest", silent = T)
+  rf$length <- rf$length / 1000 # set length correctly
+  rq$length <- rq$length / 1000
+  saveRDS(rf, paste0("pct-data/", region, "/rf_ttwa.Rds")) # save the routes
+  saveRDS(rq, paste0("pct-data/", region, "/rq_ttwa.Rds"))
 }
-saveRDS(rf, paste0("pct-data/", region, "/rf_ttwa.Rds")) # save the routes
-saveRDS(rq, paste0("pct-data/", region, "/rq_ttwa.Rds"))
 
 # which paths succeeded (use the line ids)
 path_ok <- row.names(l) %in% row.names(rf) &
                    row.names(l) %in% row.names(rq)
+# summary(path_ok)
   
 l <- l[path_ok,]
+rf <- rf[path_ok,]
+rq <- rq[path_ok,]
+
+# for testing: reduce to top n lines
+top_n <- 100 # e.g. top 5, 10, 100
+sel_top <- order(l$All, decreasing = T)[1:top_n]
+l_old <- l
+l <- l[sel_top,]
+rf <- rf[sel_top,]
+rq <- rq[sel_top,]
+
+# # small manual test to check the data is ok
+# i = 2
+# plot(rf[i,])
+# plot(l[i,], add = T)
+# plot(rq[i,], add = T)
+# row.names(l[i,])
+# row.names(rf[i,])
 
 # Process route data
-rf$id <- l$id
-rq$id <- l$id
 proj4string(rf) <- proj4string(l)
 proj4string(rq) <- proj4string(l)
 ```
@@ -521,24 +530,19 @@ l$clc <- l$Bicycle / l$All
 l$slc <- l$base_slc / l$All
 
 nrow(l)
-idsel <- l$id
-rf <- rf[rf@data$id %in% idsel,]
-rq <- rq[rq@data$id %in% idsel,]
+idsel <- row.names(l)
+rf <- rf[row.names(rf) %in% idsel,]
+rq <- rq[row.names(rf) %in% idsel,]
 
 # Sanity test
 head(l@data[1:5])
-cents_ttwa <- cents # copy cents data (we'll overwrite cents)
-
-# # Subset to zone
-# cents <- cents_ttwa[zone,] # subset centroids geographically
-# zones <- zones[cents,]
 ```
 
 ```{r, echo=FALSE, results='hide', fig.cap="Illustration of OD pairs on travel network"}
 zbuf <- spTransform(region_shape, CRS("+init=epsg:4326"))
 plot(zbuf)
 plot(zones, add = T)
-points(cents_ttwa, col = "red")
+points(cents, col = "red")
 lines(l, col = "black")
 lines(rq, col = "green")
 lines(rf, col = "blue")
@@ -612,14 +616,15 @@ The value of each segment in the network corresponds to the total number of cycl
 # Scenario names - may need updating
 # nrow(l) == nrow(rf)
 
-rf@data["base_olc"] <- l@data["base_olc"]
+
+# proj4string(rf)
 rft <- toptail(rf, toptail_dist = buff_geo_dist)
 if(length(rft) == length(rf)){
   row.names(rft) <- row.names(rf)
   rft <- SpatialLinesDataFrame(rft, rf@data)
 } else print("Error: toptailed lines do not match lines")
+rft$base_olc <- l$base_olc
 rnet <- overline(rft, "base_olc")
-rft$clc <- NULL
 # test the resulting plot
 plot(rnet, lwd = rnet$base_olc / mean(rnet$base_olc))
 scens <- c("cdp_slc", "gendereq_slc", "dutch_slc", "ebike_slc")
@@ -667,8 +672,7 @@ file.copy("load.Rmd", paste0("pct-data/", region, "/load.Rmd"))
 
 # Create folder in shiny app folder (assuming it's next to pct)
 dir.create(paste0("../pct-shiny/", region))
-mess <- paste0("cp ../pct-shiny/coventry/* ../pct-shiny/", region)
-system(mess)
+
 server_text <- readLines("../pct-shiny/coventry/server.R")
 server_text <- gsub(pattern = "coventry", replacement = region, x = server_text)
 writeLines(server_text, con = paste0("../pct-shiny/", region, "/server.R"))
