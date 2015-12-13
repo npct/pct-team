@@ -2,11 +2,11 @@ source("set-up.R")
 library(knitr)
 
 
-la_all <- c("Sheffield", "Cambridgeshire")
+la_all <- c("Oxfordshire", "Shropshire")
 
 for(i in la_all){
   # What geographic level are we working at (cua or regional)
-  geo_level <- "cua"
+  geo_level <- "region"
   isolated <- TRUE
   region <- i
   print(i)

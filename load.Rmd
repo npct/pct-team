@@ -45,7 +45,7 @@ region_path <- file.path("pct-data", region)
 if(!dir.exists(region_path)) dir.create(region_path) # create data directory
 
 # Minimum flow between od pairs, subsetting lines. High means fewer lines.
-mflow <- 20
+mflow <- 150
 mdist <- 15 # maximum euclidean distance (km) for subsetting lines
 min_zones <- 60 # minumum number of zones in study area before buffer used
 buff_dist <- 0 # buffer (km) used to select additional zones (often zero = ok)
@@ -246,13 +246,13 @@ l <- l[path_ok,]
 rf <- rf[path_ok,]
 rq <- rq[path_ok,]
 
-# for testing: reduce to top n lines
-top_n <- 100 # e.g. top 5, 10, 100
-sel_top <- order(l$All, decreasing = T)[1:top_n]
-l_old <- l
-l <- l[sel_top,]
-rf <- rf[sel_top,]
-rq <- rq[sel_top,]
+# # for testing: reduce to top n lines
+# top_n <- 100 # e.g. top 5, 10, 100
+# sel_top <- order(l$All, decreasing = T)[1:top_n]
+# l_old <- l
+# l <- l[sel_top,]
+# rf <- rf[sel_top,]
+# rq <- rq[sel_top,]
 
 # # small manual test to check the data is ok
 # i = 2
@@ -672,7 +672,7 @@ file.copy("load.Rmd", paste0("pct-data/", region, "/load.Rmd"))
 
 # Create folder in shiny app folder (assuming it's next to pct)
 dir.create(paste0("../pct-shiny/", region))
-
+file.copy("../pct-shiny/leeds/ui.R", paste0("../pct-shiny/", region, "/ui.R"))
 server_text <- readLines("../pct-shiny/coventry/server.R")
 server_text <- gsub(pattern = "coventry", replacement = region, x = server_text)
 writeLines(server_text, con = paste0("../pct-shiny/", region, "/server.R"))
