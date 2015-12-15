@@ -222,10 +222,10 @@ An illustration of these routes is presented below.
 # # # # # # # # # # # # # # #
 
 # Create or load route allocated lines (depending on past loading)
-if(file.exists(paste0("pct-data/", region, "/rf_ttwa.Rds")) &
-   file.exists(paste0("pct-data/", region, "/rf_ttwa.Rds"))){
-  rf <- readRDS(paste0("pct-data/", region, "/rf_ttwa.Rds")) # if you've loaded them
-  rq <- readRDS(paste0("pct-data/", region, "/rq_ttwa.Rds"))
+if(file.exists(paste0("pct-data/", region, "/rf.Rds")) &
+   file.exists(paste0("pct-data/", region, "/rq.Rds"))){
+  rf <- readRDS(paste0("pct-data/", region, "/rf")) # if you've loaded them
+  rq <- readRDS(paste0("pct-data/", region, "/rq.Rds"))
   # l <- readRDS(paste0("pct-data/", region, "/l.Rds"))
   # nrow(rf) == nrow(l)
 } else {
@@ -235,8 +235,8 @@ if(file.exists(paste0("pct-data/", region, "/rf_ttwa.Rds")) &
   rq <- line2route(l, plan = "quietest", silent = T)
   rf$length <- rf$length / 1000 # set length correctly
   rq$length <- rq$length / 1000
-  saveRDS(rf, paste0("pct-data/", region, "/rf_ttwa.Rds")) # save the routes
-  saveRDS(rq, paste0("pct-data/", region, "/rq_ttwa.Rds"))
+  saveRDS(rf, paste0("pct-data/", region, "/rf.Rds")) # save the routes
+  saveRDS(rq, paste0("pct-data/", region, "/rq.Rds"))
 }
 
 # which paths succeeded (use the line ids)
