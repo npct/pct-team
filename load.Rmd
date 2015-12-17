@@ -222,10 +222,10 @@ An illustration of these routes is presented below.
 # # # # # # # # # # # # # # #
 
 # Create or load route allocated lines (depending on past loading)
-if(file.exists(paste0("pct-bigdata/", region, "/rf.Rds")) &
-   file.exists(paste0("pct-bigdata/", region, "/rq.Rds"))){
-  rf <- readRDS(paste0("pct-bigdata/", region, "/rf.Rds")) # if you've loaded them
-  rq <- readRDS(paste0("pct-bigdata/", region, "/rq.Rds"))
+if(file.exists(paste0("pct-data/", region, "/rf.Rds")) &
+   file.exists(paste0("pct-data/", region, "/rq.Rds"))){
+  rf <- readRDS(paste0("pct-data/", region, "/rf.Rds")) # if you've loaded them
+  rq <- readRDS(paste0("pct-data/", region, "/rq.Rds"))
   # l <- readRDS(paste0("pct-bigdata/", region, "/l.Rds"))
   # nrow(rf) == nrow(l)
 } else {
@@ -235,8 +235,8 @@ if(file.exists(paste0("pct-bigdata/", region, "/rf.Rds")) &
   rq <- line2route(l, plan = "quietest", silent = T)
   rf$length <- rf$length / 1000 # set length correctly
   rq$length <- rq$length / 1000
-  saveRDS(rf, paste0("pct-bigdata/", region, "/rf.Rds")) # save the routes
-  saveRDS(rq, paste0("pct-bigdata/", region, "/rq.Rds"))
+  saveRDS(rf, paste0("pct-data/", region, "/rf.Rds")) # save the routes
+  saveRDS(rq, paste0("pct-data/", region, "/rq.Rds"))
 }
 
 # which paths succeeded (use the line ids)
@@ -353,7 +353,10 @@ to `r nrow(l)`.
 
 l$clc <- l$Bicycle / l$All   
 l$clcar <- (l$Car_driver + l$Car_passenger) / l$All
+<<<<<<< HEAD
 l$clfoot <- l$Foot / l$All   #% walk population
+=======
+>>>>>>> parent of 565ffb6... Updated sources links + %walk var added
 
 flow_ttwa <- flow # save OD pairs for the ttwa
 flow <- l@data
@@ -378,8 +381,7 @@ mod_nat <- readRDS("pct-bigdata/national/mod_logsqr_national_8.Rds")
 
 ```{r, echo=FALSE}
 rcycle <- round(100 * sum(l$Bicycle) / sum(l$All), 1)
-rcarusers <- round (100 * sum(l$Car_driver+l$Car_passenger) / sum(l$All), 1)
-rfoot <- round (100 * sum(l$Foot) / sum(l$All), 1)
+rcarusers <- round (100 * sum(l$Car_driver+l$Car_passenger) / sum(l$All), 1))
 
 natcyc <- sum(luk$Bicycle) / sum(luk$All)
 ```
