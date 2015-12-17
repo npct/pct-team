@@ -351,9 +351,9 @@ to `r nrow(l)`.
 # Estimates slc from olc  #
 # # # # # # # # # # # # # #
 
-l$clc <- l$Bicycle / l$All
+l$clc <- l$Bicycle / l$All   
 l$clcar <- (l$Car_driver + l$Car_passenger) / l$All
-l$clfoot <- l$Foot / l$All
+l$clfoot <- l$Foot / l$All   #% walk population
 
 flow_ttwa <- flow # save OD pairs for the ttwa
 flow <- l@data
