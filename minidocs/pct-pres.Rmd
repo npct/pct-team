@@ -1,11 +1,11 @@
 ---
-title: "New methods for the on-line interactive display of transport-related Big Data"
+title: "The Propensity to Cycle Tool: Software, design and uses"
 author: "Robin Lovelace, University of Leeds."
-date: "1st Dec. 2015, Institute for Transport Studies"
+date: "9th Dec. 2015. Slides: [rpubs.com/RobinLovelace](http://rpubs.com/RobinLovelace)"
 output:
   ioslides_presentation:
     transition: slower
-logo: /home/robin/Dropbox/Public/img/logos/cdrc-square.png
+logo: ../figures/pct-logo.png
 ---
 
 ```{r, echo=FALSE, include=FALSE}
@@ -21,13 +21,12 @@ lapply(pkgs, library, character.only = T)
 
 ## Presentation structure
 
-> - Introduction
-> - Software for Big Data and Transport
-> - Propensity to Cycle Tool
-> - Interactive session: exploring cycling in Leeds
-> - Bonus: research ideas
+> - Software for sustainable transport
+> - Propensity to Cycle Tool: design and development
+> - Uses: exploring cycling in Leeds
+> - Further research ideas
 
-# Introduction
+# Software for sustainable transport
 
 ```{r, echo=FALSE}
 # 
@@ -66,37 +65,48 @@ grid.raster(readPNG("../figures/software-costs.png"))
 
 Source: [Who will save us from transport models](http://www.ctthink.com/publications.html) (Hollander 2015)
 
+See also work by [Robert Bain](http://ibtta.org/sites/default/files/The%20Reasonableness%20of%20Traffic%20Forecasts.pdf)
+
 ## The solution
 
 > - New breed of software products
 
 ![](https://themodernmonk.files.wordpress.com/2012/03/open-source28129.jpg)
 
-## Jobs
+## Why open source?
 
 > - The global transition away from fossil fuels is big business
-> - Many cities are scrambling to make their cities healthier and cleaner
-> - Check out some of the jobs that are available, decide which one YOU want
+> - Many planners are scrambling to make their cities healthier and cleaner
+> - But if solutions cannot be controled and shared, how can they scale?
 
-Good transport companies - ready for a transition away from fossil fuels:
+Which companies are ready for a transition away from fossil fuels:
 
-- [Arup](http://www.arup.com/Services/Transport_Consulting.aspx)
-- [Steer Davies Gleave](http://www.steerdaviesgleave.com/)
+- [Arup](http://www.arup.com/Services/Transport_Consulting.aspx)?
+- [Steer Davies Gleave](http://www.steerdaviesgleave.com/)?
 
-## Opportunities
+## New software can enable more democratic decision making
 
 ![](http://cyclecityconnect.co.uk/images/schematic-big.jpg)
 
-## New tools of the trade
+## Tools of the trade
+
+<div class="columns-2">
+![](http://www.wpclipart.com/tools/drill/electric_drill_large_BW_T.png)
 
 > - QGIS
 > - GRASS
 > - R
 > - Python
 
+</div>
+
+
 ## Program or be programmed
 
 ![](http://www.socialmemorycomplex.net/images/porbp-199x300.jpg)
+
+> - Rushkoff, D. (2010). Program or be programmed: Ten commands for a digital age. Or Books.
+
 
 ## R's spatial ecosystem
 
@@ -110,7 +120,7 @@ http://www.maths.lancs.ac.uk/~rowlings/Teaching/UseR2012/introduction2Talk.html
 
 ## New software: aequilibrae
 
-![](/home/robin/Selection_004.png)
+![](http://www.aequilibrae.com/img/skims.png)
 
 http://www.aequilibrae.com/ 
 
@@ -119,7 +129,7 @@ http://www.aequilibrae.com/
 See the free, open source, online tutorial [github.com/robinlovelace/Creating-maps-in-R](https://github.com/Robinlovelace/Creating-maps-in-R).
 
 ```{r, echo=FALSE}
-f <- "/home/robin/repos/Creating-maps-in-R/figure/facet_london.png"
+f <- "../../Creating-maps-in-R/figure/facet_london.png"
 grid.raster(readPNG(f))
 ```
 
@@ -141,7 +151,7 @@ lapply(c(pkgs, "leaflet", "stplanr"), library, character.only = T) # load all
 RStudio Desktop is highly recommended for Shiny development.
 
 ```{r, echo=FALSE}
-img <- readPNG("/home/robin/repos/robinlovelace.github.io/img/rstudio-shiny-button.png")
+img <- readPNG("../figures/run-app.png")
 grid.raster(img)
 ```
 
@@ -219,7 +229,7 @@ leaflet() %>%
   addCircleMarkers(data = cent)
 ```
 
-# II: The propensity to cycle tool (PCT)
+# II: The Propensity to Cycle Tool (PCT): design
 
 ## Policy context
 
@@ -230,6 +240,12 @@ leaflet() %>%
 > - Phase II: nationwide deployment (November 2015 - 2018)
 
 See: [cedar.iph.cam.ac.uk/research/modelling/npct-tool](http://www.cedar.iph.cam.ac.uk/research/modelling/npct-tool/)
+
+## Modelling context
+
+![](http://bettertransport.org.uk/sites/default/files/12.04.17.DfT_forecasts_LTT_phil_goodwin.jpg)
+
+Context: [Campaign for Better Transport](http://bettertransport.org.uk/campaigns/roads-to-nowhere/ltt-130412)
 
 ## Interactive online tools
 
@@ -289,36 +305,63 @@ grid.raster(readPNG("../figures/man-cov-output.png"))
 ```
 
 ```{r, echo=FALSE}
-# ## Planned feature: network tab
-# 
-# <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Estimating cycling rate allocated to the road network with <a href="https://t.co/DuzyCQCA50">https://t.co/DuzyCQCA50</a>. Looks like streams + rivers! <a href="http://t.co/geaV0mVKdG">pic.twitter.com/geaV0mVKdG</a></p>&mdash; Robin Lovelace (@robinlovelace) <a href="https://twitter.com/robinlovelace/status/633152722926206976">August 17, 2015</a></blockquote>
-# <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-# 
-# ## Other planned features
-# 
-# **Beta**
-# 
-# > - Network analysis (various options)
-# > - Hilliness allocated to cycle network
-# **Version 1 - nationwide (June 2016)**
-# 
-# > - HEAT outputs
-# > - Incorporation of user feedback
-# > - Travel to school layer (data pending)
-# 
-# **Version 2 - nationwide (June 2017)**
-# 
-# > - Micro-level analysis
-# > - Socio-demographic variables (new scenarios?)
+
 ```
 
-# IV Practical
+# III: Uses of the PCT
 
-## Break up into groups of 2 to 3/4
+## What kind of questions can it help answer?
 
-> - Work through the practical
-> - Answer the questions
-> - Feed back as a group
+> - Where should we build for existing cyclists?
+> - New cyclists in the medium term?
+> - Long-term strategy?
+> - Try it for a city!
+
+## Example: Trinity Way, Manchester
+
+```{r, echo=FALSE}
+grid.raster(readPNG("../figures/fast-quiet-man.png"))
+```
+
+## Other planned features
+
+**Beta**
+
+> - Network analysis (various options)
+> - Hilliness allocated to cycle network
+**Version 1 - nationwide (June 2016)**
+
+> - HEAT outputs
+> - Incorporation of user feedback
+> - Travel to school layer (data pending)
+
+**Version 2 - nationwide (June 2017)**
+
+> - Micro-level analysis
+> - Socio-demographic variables (new scenarios?)
+
+# IV Future research ideas
+
+## Future development (near term)
+
+<blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Estimating cycling rate allocated to the road network with <a href="https://t.co/DuzyCQCA50">https://t.co/DuzyCQCA50</a>. Looks like streams + rivers! <a href="http://t.co/geaV0mVKdG">pic.twitter.com/geaV0mVKdG</a></p>&mdash; Robin Lovelace (@robinlovelace) <a href="https://twitter.com/robinlovelace/status/633152722926206976">August 17, 2015</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+
+```{r, echo=FALSE}
+# ## Break up into groups of 2 to 3/4
+# 
+# > - Work through the practical
+# > - Answer the questions
+# > - Feed back as a group
+
+# # V Study ideas
+# 
+# ## 1: identify what you're motivated by
+# 
+# ![](http://www.chrissopa.com/wp-content/uploads/2013/04/trust-higher-power-300x238.jpg)
+```
 
 ## Potential futures: e.g. community contributed
 
@@ -328,28 +371,6 @@ grid.raster(readPNG("../figures/man-cov-output.png"))
 > - International comparisons of propensity to cycle
 > - A global propensity to cycle map?
 
-## Fork my code!
-
-![](https://help.github.com/assets/images/site/fork-a-repo.gif)
-
-- The work is open source so can used as a foundation for further work by others
-
-> - E.g. councils with the technical know-how
-> - E.g. cycle campaigner 'hackers'
-
-- Check out the project's repository: [github.com/npct/pct-shiny](https://github.com/npct/pct-shiny)
-
-## Example: Trinity Way, Manchester
-
-```{r, echo=FALSE}
-grid.raster(readPNG("../figures/fast-quiet-man.png"))
-```
-
-# V Study ideas
-
-## 1: identify what you're motivated by
-
-![](http://www.chrissopa.com/wp-content/uploads/2013/04/trust-higher-power-300x238.jpg)
 
 ## How could transport infrastructure change if people worked from home?
 
@@ -362,6 +383,17 @@ grid.raster(readPNG("../figures/fast-quiet-man.png"))
 ## How transport engineers can encourage car sharing?
 
 ![](http://www.ferrytoll.org/liftsharelogo.jpg)
+
+## Fork my code!
+
+![](https://help.github.com/assets/images/site/fork-a-repo.gif)
+
+- The work is open source so can used as a foundation for further work by others
+
+> - E.g. councils with the technical know-how
+> - E.g. cycle campaigner 'hackers'
+
+- Check out the project's repository: [github.com/npct/pct-shiny](https://github.com/npct/pct-shiny)
 
 ## Links and references
 

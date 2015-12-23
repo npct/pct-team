@@ -59,8 +59,10 @@ The input zones area are summarised in this section.
 ```{r plotzones, message=FALSE, warning=FALSE, results='hide', echo=FALSE}
 # mapshape("pct-bigdata/national/msoas.shp")
 # ukmsoas <- shapefile("pct-bigdata/national/msoasmapshaped_25%.shp")
-ukmsoas <- geojson_read("pct-bigdata/national/msoas.geojson", what = "sp")
+#ukmsoas <- geojson_read("pct-bigdata/national/msoas.geojson", what = "sp")
+ukmsoas <- shapefile("pct-bigdata/national/msoas.shp")
 ukmsoas <- spTransform(ukmsoas, CRS("+init=epsg:4326"))
+
 # geojson_write(ukmsoas, file = "pct-bigdata/national/msoas.geojson")
 # ukmsoas <- geojson_read("pct-bigdata/national/msoas.geojson", what = "sp")
 
@@ -220,11 +222,11 @@ An illustration of these routes is presented below.
 # # # # # # # # # # # # # # #
 
 # Create or load route allocated lines (depending on past loading)
-if(file.exists(paste0("pct-data/", region, "/rf_ttwa.Rds")) &
-   file.exists(paste0("pct-data/", region, "/rf_ttwa.Rds"))){
-  rf <- readRDS(paste0("pct-data/", region, "/rf_ttwa.Rds")) # if you've loaded them
-  rq <- readRDS(paste0("pct-data/", region, "/rq_ttwa.Rds"))
-  # l <- readRDS(paste0("pct-data/", region, "/l.Rds"))
+if(file.exists(paste0("pct-data/", region, "/rf.Rds")) &
+   file.exists(paste0("pct-data/", region, "/rq.Rds"))){
+  rf <- readRDS(paste0("pct-data/", region, "/rf.Rds")) # if you've loaded them
+  rq <- readRDS(paste0("pct-data/", region, "/rq.Rds"))
+  # l <- readRDS(paste0("pct-bigdata/", region, "/l.Rds"))
   # nrow(rf) == nrow(l)
 } else {
   # see ?line2route from stplanr package
@@ -233,8 +235,8 @@ if(file.exists(paste0("pct-data/", region, "/rf_ttwa.Rds")) &
   rq <- line2route(l, plan = "quietest", silent = T)
   rf$length <- rf$length / 1000 # set length correctly
   rq$length <- rq$length / 1000
-  saveRDS(rf, paste0("pct-data/", region, "/rf_ttwa.Rds")) # save the routes
-  saveRDS(rq, paste0("pct-data/", region, "/rq_ttwa.Rds"))
+  saveRDS(rf, paste0("pct-data/", region, "/rf.Rds")) # save the routes
+  saveRDS(rq, paste0("pct-data/", region, "/rq.Rds"))
 }
 
 # which paths succeeded (use the line ids)
@@ -349,7 +351,13 @@ to `r nrow(l)`.
 # Estimates slc from olc  #
 # # # # # # # # # # # # # #
 
-l$clc <- l$Bicycle / l$All
+l$clc <- l$Bicycle / l$All   
+l$clcar <- (l$Car_driver + l$Car_passenger) / l$All
+<<<<<<< HEAD
+l$clfoot <- l$Foot / l$All   #% walk population
+=======
+>>>>>>> parent of 565ffb6... Updated sources links + %walk var added
+
 flow_ttwa <- flow # save OD pairs for the ttwa
 flow <- l@data
 ```
@@ -373,6 +381,8 @@ mod_nat <- readRDS("pct-bigdata/national/mod_logsqr_national_8.Rds")
 
 ```{r, echo=FALSE}
 rcycle <- round(100 * sum(l$Bicycle) / sum(l$All), 1)
+rcarusers <- round (100 * sum(l$Car_driver+l$Car_passenger) / sum(l$All), 1))
+
 natcyc <- sum(luk$Bicycle) / sum(luk$All)
 ```
 
