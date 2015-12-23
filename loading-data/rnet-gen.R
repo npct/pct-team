@@ -1,14 +1,30 @@
 # Purpose: to generate the network analysis layer from l and rf objects
 library(stplanr)
 
-la <- "devon"
+la <- "leeds"
 
 l <- readRDS(paste0("pct-data/", la, "/l.Rds"))
 rf <- readRDS(paste0("pct-data/", la, "/rf.Rds"))
 
 nrow(l) == nrow(rf)
-rf@data["base_olc"] <- l@data["base_olc"]
-rnet <- gOverline(rf, "base_olc")
+
+rft <- toptail(rf, toptail_dist = buff_geo_dist)
+if(length(rft) == length(rf)){
+  row.names(rft) <- row.names(rf)
+  rft <- SpatialLinesDataFrame(rft, rf@data)
+} else print("Error: toptailed lines do not match lines")
+rft$base_olc <- l$base_olc
+rnet <- overline(rft, "base_olc")
+# test the resulting plot
+plot(rnet, lwd = rnet$base_olc / mean(rnet$base_olc))
+scens <- c("cdp_slc", "gendereq_slc", "dutch_slc", "ebike_slc")
+for(i in scens){
+  rft@data[i] <- l@data[i]
+  rnet_tmp <- overline(rft, i)
+  rnet@data[i] <- rnet_tmp@data[i]
+  rft@data[i] <- NULL
+}
+
 rf$clc <- NULL
 # test the resulting plot
 plot(rnet, lwd = rnet$base_olc / mean(rnet$base_olc))

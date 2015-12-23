@@ -104,25 +104,5 @@ lasp2 <- SpatialPointsDataFrame(gCentroid(las, byid = T), data = data.frame(n = 
 lasp2@data <- las@data
 regions <- aggregate(lasp2["Region"], regions, FUN = function(x) x[1])
 
-regions$url <- paste0("http://geo8.webarch.net/", regions$Region)
-
-library(shiny)
-
-a(regions$Region[1], href = regions$url[1])
-
-regions$url_text <- NA
-for(i in 1:nrow(regions)){
-  regions$url_text[i] <- as.character(a(regions$Region[i], href = regions$url[i]))
-  regions$url_text[i] <- gsub('">', '" target ="_top">', regions$url_text[i])
-}
-
-library(tmap)
-shapefile(regions, file = "/tmp/regions")
-plot(regions)
-text(coordinates(regions), label = regions$url_text)
-geojson_write(regions, file = "pct-bigdata/national/regions.geojson")
-
-leaflet() %>% addTiles() %>% addPolygons(data = regions, popup = regions$url_text)
-
-
+# geojson_write(regions, file = "../pct-bigdata/regions.geojson")
 
