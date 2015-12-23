@@ -1,17 +1,17 @@
 # Aim: set-up the regions names
 
-regions <- geojson_read("../pct-bigdata/regions.geojson", what = "sp")
-regions$Region_upper <- gsub("-", " ", regions$Region)
+# regions <- geojson_read("../pct-bigdata/regions.geojson", what = "sp")
+regions$R_upper <- gsub("-", " ", regions$Region)
 simpleCap <- function(x) {
   s <- strsplit(x, " ")[[1]]
   paste(toupper(substring(s, 1,1)), substring(s, 2),
         sep="", collapse=" ")
 }
-regions$Region_upper <- sapply(regions$Region_upper, simpleCap)
+regions$R_upper <- sapply(regions$R_upper, simpleCap)
 regions$url <- paste0("http://geo8.webarch.net/", regions$Region)
 
 library(shiny)
-a(regions$Region_upper[1], href = regions$url[1])
+a(regions$R_upper[1], href = regions$url[1])
 
 las <- readRDS("../pct-bigdata/las.Rds")
 summary(las$pcycle)
@@ -28,7 +28,7 @@ regions$url_text <- regions$pcycle <- NA
 # regions <- SpatialPolygonsDataFrame(regions_simple, regions@data)
 
 for(i in 1:nrow(regions)){
-  regions$url_text[i] <- as.character(a(regions$Region_upper[i], href = regions$url[i]))
+  regions$url_text[i] <- as.character(a(regions$R_upper[i], href = regions$url[i]))
   regions$url_text[i] <- gsub('">', '" target ="_top">', regions$url_text[i])
 
   # Now: pcycle
@@ -45,6 +45,7 @@ for(i in 1:nrow(regions)){
 # shapefile(regions, file = "regions_new")
 # mapshape("regions_new.shp", percent = 9)
 # regions <- shapefile("regions_newmapshaped_9%.shp")
+regions <- geojson_read("../pct-bigdata/regions.geojson", what = "sp")
 
 qpal <- colorBin("RdYlGn", regions$pcycle, bins = c(0, 3, 5, 10), pretty = TRUE)
 
@@ -55,3 +56,5 @@ m <- leaflet() %>% addProviderTiles("CartoDB.Positron") %>%
   addLegend(pal = qpal, values = regions$pcycle, opacity = 1, title = "% Cycling")
 
 htmlwidgets::saveWidget(m, file = "../pct-shiny/map.html")
+
+# geojson_write(regions2, file = "../pct-bigdata/regions.geojson")
