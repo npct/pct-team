@@ -1,0 +1,63 @@
+---
+title: "Propensity to Cycle Hackathon"
+author: "Robin Lovelace"
+date: "January 14, 2016"
+output: html_document
+---
+
+## Prerequisites
+
+R must be installed, in addition to the development version of the stplanr package: https://github.com/ropensci/stplanr
+
+It will help if you have Git installed on your computer.
+With it installed the following commands will download all files you need to reproduce the tool:
+
+```{r, engine='bash', eval=FALSE}
+# clone the pct data creation scripts
+git clone git@github.com:npct/pct-load.git 
+
+# clone the data (warning - large)
+git clone git@github.com:npct/pct-data.git --depth 1
+
+# clone the shiny online visualisation framework
+git clone git@github.com:npct/pct-shiny.git 
+
+# clone the national level input data
+git clone git@github.com:npct/pct-bigdata.git 
+```
+
+## Agenda
+
+The rough running order of the event will be as follows:
+
+### Getting up to speed (1 hr)
+
+The aim of this section is to get started.
+
+- Introduction to the Propensity to Cycle Project and quick demo (Robin - 10 minutes)
+
+- Policy relevance and the type of questions we want to answer (Rachel and someone from Merseyside cycle campaign - 20 minutes)
+
+- Meet and greet - talk to person next to you and decide what you want to get out of it (15 minutes)
+
+- Open question and answer and a chance for people to get the PCT installed (15 minutes)
+
+### Learning to use and hack the PCT (2 hrs)
+
+The aim of this section is to learn skills needed for the hackathon. By the end of it everyone should be in a team with a plan.
+
+- Split session. Getting up to speed with the tool - Robin, Nikolai and Ali to do tech explanation for people with PCT installed, Rachel, Clare and Martin to demonstrate use cases for people without (1 hr)
+
+- Free time to play with the tool, test hacks and network to form teams (1 hr)
+
+### The hackathon (3 hrs)
+
+This is where the bulk of the work will take place
+
+- Reconvene to hear and discuss team ideas (30 minutes, ~5 min per team)
+
+- Free time for hackathon (2 hrs)
+
+- Presentation of hacks (3 minutes)
+
+
