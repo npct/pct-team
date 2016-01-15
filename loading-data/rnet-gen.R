@@ -1,5 +1,5 @@
 # Purpose: to generate the network analysis layer from l and rf objects
-library(stplanr)
+source("set-up.R")
 
 la <- "gm"
 
@@ -25,17 +25,31 @@ for(i in scens){
   rft@data[i] <- NULL
 }
 
+
+
 rf$clc <- NULL
+
+
 # test the resulting plot
 plot(rnet, lwd = rnet$base_olc / mean(rnet$base_olc))
-scens <- c("cdp_slc", "gendereq_slc", "dutch_slc", "ebike_slc")
-# for(i in scens){
-#   print(paste0("Working on the ", i, " scenario"))
-#   rf@data[i] <- l@data[i]
-#   rnet_tmp <- gOverline(rf, i)
-#   rnet@data[i] <- rnet_tmp@data[i]
-#   rf@data[i] <- NULL
-# }
+
+plot(rnet, lwd = rnet$cdp_slc / mean(rnet$base_olc))
+
+object.size(rnet) / 1000000
+
+raster::shapefile(rnet, "/tmp/rnet")
+mapshape("/tmp/rnet.shp", percent = 5)
+
+rnet <- shapefile("/tmp/rnetmapshaped_5%.shp")
+
+object.size(rnet) / 1000000
+
+mapview::mapview(rnet)
+
+saveRDS(rnet, paste0("../pct-data/", la, "/rnet.Rds"))
+rnet <- readRDS( paste0("../pct-data/", la, "/rnet.Rds"))
+rf <- readRDS( paste0("../pct-data/", la, "/rf.Rds"))
+
 
 # if that fails...
 for(i in scens){
@@ -43,6 +57,4 @@ for(i in scens){
   rnet@data[i] <- rnet$base_olc
 }
 
-plot(rnet, lwd = rnet$cdp_slc / mean(rnet$base_olc))
 
-saveRDS(rnet, paste0("pct-data/", la, "/rnet.Rds"))
