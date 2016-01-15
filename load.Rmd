@@ -382,6 +382,7 @@ mod_nat <- readRDS("pct-bigdata/national/mod_logsqr_national_8.Rds")
 ```{r, echo=FALSE}
 rcycle <- round(100 * sum(l$Bicycle) / sum(l$All), 1)
 rcarusers <- round (100 * sum(l$Car_driver+l$Car_passenger) / sum(l$All), 1))
+rfoot <- round (100 * sum(l$Foot) / sum(l$All), 1)
 
 natcyc <- sum(luk$Bicycle) / sum(luk$All)
 ```
