@@ -1,18 +1,21 @@
 # pct: Propensity to cycle tool
 
-This repository allows users to estimate the 'propensity to cycle' between
-different origin-destination pairs.
+This repo contains miscellaneous R scipts, documentation and figures related to the Propensity to Cycle Tool.
+
+This repo is not needed to run the PCT on your computer. For that, see [pct-load](https://github.com/npct/pct-load).
+
+
+## Information on the PCT
 
 The project is funded by the Department for Transport (DfT) so the initial
 case studies will be taken from the UK. However, it is expected that the 
 methods will be of use elsewhere. For that reason, attempts have been made
 to make the examples generalisable. All examples presented here
-are reproducible using code in this [repository](https://github.com/npct/pct)
-and data stored in the [pct-data repository](https://github.com/npct/pct-data/).
-
-If you run the following lines of code on from a local copy of the [pct repository](https://github.com/npct/pct) you will get the same results.
+are reproducible using data stored in the [pct-data repository](https://github.com/npct/pct-data/).
 
 ## A simple example
+
+If you run the following lines of code on from a local copy of the [pct repository](https://github.com/npct/pct) you will get the same results.
 
 
 ```r
@@ -75,7 +78,7 @@ for(i in which(fleeds$Area.of.residence == leeds$geo_code[1])){
 }
 ```
 
-![](README_files/figure-html/unnamed-chunk-4-1.png) 
+![](README_files/figure-html/unnamed-chunk-4-1.png)\
 
 ## Set the `CS_API_KEY` Environment variable
 
@@ -112,7 +115,7 @@ rgdal::getGDALVersionInfo()
 # Should return GDAL 1.11.2, released 2015/02/10 (or newer)
 ```
 
-It is possible to use the following Personal Package Archive (PPA) to get the latest version of gdal
+It is possible to use the following Personal Package Archive (PPA) to get the latest version of gdal on Ubuntu.
 
 
 ```bash
