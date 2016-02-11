@@ -1,0 +1,16 @@
+
+- Updates on shift to new server (e.g. implications of using Docker, deadline for getting a '1st draft' of model, workflow to push to 'production' branch) - Nikolai you're central to all this.
+
+- Review of the use of pull requests. My view is it's going well, allowing testing and questions before merge, e.g.: https://github.com/npct/pct-shiny/pull/132
+
+- Anna's new model is in there: https://github.com/npct/pct-load/pull/35  We can discuss the work that needs to be done to add 'invisible lines': https://github.com/npct/pct-load/issues/37 https://github.com/npct/pct-load/issues/36
+
+- The plan to use pre-saved lines and pre-generated model results (thanks to Anna for these - will decrease build times)
+
+- A very quick 'go round' of the issues.
+
+- Manchester traffic model: main point, best approach to add this to the current interface. My work so far has been into getting the GM model closer to what we already have (i.e creating daily flows at MSOA level). An alternative would also be to emphasize the differences (e.g. the different types of traffic by times of day), which can possibly be added later.  I’m working on it now so any preferences/questions let me know.
+ 
+- HEAT: same about the integration. I’ve got a preliminary version for cycling and some figures. Version we can hold to add walking, or integrate straight away.
+
+- Label consistency is already on the list of issues, plus some minor questions about the new structure.

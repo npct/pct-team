@@ -1,0 +1,65 @@
+---
+title: "Atkins meeting"
+author: "Robin Lovelace"
+date: "January 12, 2016"
+output: html_document
+---
+
+New National Trip Ends Model - contract held by Atkins.
+Planning on using various platforms.
+
+Will all be running on a Microsoft Azure platform hosted by the DfT.
+Language used: SQL and, err, scripts in some other language.
+
+
+
+Aecom also involved on the national trip ends model.
+
+Idea: create the open source national transport model.
+Trying to get contract signed asap.
+
+Joe Gaytten - economist at DfT
+
+Chris Hanley - head of sustainable travel at Atkins - works lots with LAs.
+
+Shane: received the tome on the PCT and hugely impressed.
+Not part of the CWIS.
+The first time we're in a position to do some serious analysis.
+Great feedback from practitioners.
+"For the first time, we can map cycling potential to the road network."
+
+"Where should you invest the money."
+
+Rapid Evidence Reviews - being taken on-board by the DfT: huge impact
+
+T-TEAR framework ends March 2017 - 15 month.
+"If we need to shift things around we can. But No way to extend this."
+
+Spending review - just re-announcing money that was already there
+As a department we're interested in how cycling can contribute to emissions reductions
+
+Greatest risk: making micro-level model.
+
+Potential for a 'letter of support' from DfT to get DoE data.
+Would be an idea to sound them out about if it would have more weight from DfT - default: just apply for it!
+
+Transport Systems Catupult - possible launch place: walk from station.
+IM data portal.
+
+Yaron Hollander.
+
+Brazil, Wales, cross validation (e.g. Strava, TrafficMaster)
+
+DoH data on obesity 
+
+Next 3 months:
+
+co-benefits model
+
+Descriptive stats
+
+Nick Carey: head of digital
+
+
+
+
