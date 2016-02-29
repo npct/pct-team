@@ -1,0 +1,78 @@
+---
+title: "Updating centroids"
+author: "Robin Lovelace"
+date: "February 29, 2016"
+output: pdf_document
+---
+
+Aim: update centroids used in the PCT
+
+```{r}
+## load centroids
+source("set-up.R")
+centsa = readOGR("../pct-bigdata/cents.geojson", "OGRGeoJSON")
+
+# identify problematic centroids
+p = readxl::read_excel("/tmp/160229_MovePoints.xlsx")
+head(p)
+head(p$msoa11cd)
+p = rename(p, geo_code = msoa11cd)
+head(cents$geo_code)
+sel = centsa$geo_code %in% p$geo_code
+sum(sel)
+```
+
+# where are they?
+
+```{r}
+r = read_osm(bb(centsa))
+tm_shape(r) +
+  tm_raster() +
+  tm_shape(centsa[sel,]) +
+  tm_dots(size = 0.3)
+```
+
+```{r}
+# plot just one:
+eg_old = centsa[which(sel)[1],]
+r2 = read_osm(bb(centsa[which(sel)[1]:(which(sel)[1] - 1),], ext = 2))
+tm_shape(r2) +
+  tm_raster() +
+  tm_shape(eg_old) +
+  tm_dots(size = 0.3)
+```
+
+```{r}
+# change the coordinates
+cfrom = coordinates(centsa[sel,])
+cto = inner_join(centsa@data, p[c("geo_code", "new_longitude", "new_latitiude")])
+plot(coordinates(centsa[sel,])[,1], cto$new_longitude)
+cor(coordinates(centsa[sel,])[,1], cto$new_longitude) # good fit!
+plot(coordinates(centsa[sel,])[,2], cto$new_latitiude)
+cor(coordinates(centsa[sel,])[,2], cto$new_latitiude) # good fit
+
+# coordinates(centsa[sel,]) <- cto[c("new_longitude", "new_latitiude")] # fail
+centsa@coords[sel,1] <- cto$new_longitude
+centsa@coords[sel,2] <- cto$new_latitiude
+```
+
+```{r}
+# plot updated example:
+# r2 = read_osm(bb(centsa[which(sel)[1]:(which(sel)[1] - 1),], ext = 2))
+tm_shape(r2) +
+  tm_raster() +
+  tm_shape(centsa[which(sel)[1],]) +
+  tm_dots(size = 0.3, col = "red") +
+  tm_shape(eg_old) +
+  tm_dots(size = 0.3)
+```
+
+Save the result:
+
+```{r}
+# geojson_write(centsa, file = "../pct-bigdata/cents.geojson")
+writeOGR(centsa, dsn = "../pct-bigdata/cents", layer = "OGRGeoJSON", driver = "GeoJSON")
+file.rename(from = "../pct-bigdata/cents", to = "../pct-bigdata/cents.geojson")
+```
+
+
