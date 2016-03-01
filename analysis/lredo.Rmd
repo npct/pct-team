@@ -1,7 +1,18 @@
+---
+title: "Lines to redo"
+author: "Robin Lovelace"
+date: "February 28, 2016"
+output: html_document
+---
+
+Here is code to redo the lines - hope it works.
+
+```{r}
 start_time <- Sys.time()
 
 l11 <- readRDS("/home/robin/npct/pct-bigdata/flow.Rds")
 lredox <- readxl::read_excel("/tmp/NEWlinestoredo_rfonly_160226.xls")
+cents <- geojsonio::geojson_read("/home/robin/npct/pct-bigdata/cents.geojson", what = "sp")
 
 head(l11)
 l11$id <- paste(l11$Area.of.residence, l11$Area.of.workplace)
@@ -22,15 +33,18 @@ nrow(lredox) # yay same number of lines
 # plan the routes
 
 library("stplanr")
+l11 <- od2line(l11, zones = cents)
+bbox(l11)
+plot(l11)
 
 rfmini <- line2route(l11, n_print = 100)
 rqmini <- line2route(l11, plan = "quietest",
                      n_print = 100)
-saveRDS(rfmini, "rfmini.Rds")
-saveRDS(rqmini, "rqmini.Rds")
+saveRDS(rfmini, "/tmp/rfmini2.Rds")
+saveRDS(rqmini, "/tmp/rqmini2.Rds")
 
-rfmini = readRDS("rfmini.Rds")
-rqmini = readRDS("rqmini.Rds")
+# rfmini1 <- readRDS("/tmp/rfmini.Rds")
+# rqmini <- readRDS("/tmp/rqmini.Rds")
 
 # join the data
 l11$dist_fast <- rfmini$length
@@ -57,7 +71,7 @@ lines(rfmini[n,], add = T, col = "red")
 lines(rqmini[n,], add = T, col = "green")
 
 # save the result
-# write.csv(l11@data, "D://tmp/lines-mini-2016-02-26-rl.csv")
+write.csv(l11@data, "/tmp/lines-mini-2016-02-28-rl.csv")
 
 # make the results clear to all
 # library(knitr)
@@ -82,3 +96,5 @@ lines(rqmini[n,], add = T, col = "green")
 # test2 # line in another
 
 Sys.time() - start_time
+```
+
