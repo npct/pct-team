@@ -1,0 +1,72 @@
+\documentclass{article}
+\begin{document}
+
+% begin.rcode 
+# Renaming/updating data for pct-shiny
+
+# get system time
+start <- Sys.time()
+
+library(dplyr)
+
+# load original and new data
+l <- readRDS("~/npct/pct-bigdata/pct_lines_oneway_shapes.Rds")
+install.packages("readstata13") # install package to read stata13 data
+l_new <- readstata13::read.dta13("~/Dropbox/PCT/160229_AreaLines/pct_lines_160229.dta")
+
+# names
+names(l_new)
+names(l)
+
+# names in old data but not new
+names(l)[!names(l) %in% names(l_new)]
+
+
+# which flows are included?
+nrow(l)
+nrow(l_new)
+
+
+summary(l_new$all) # all lines
+summary(l$All) # much higher average
+
+# rename lines
+l_new <- dplyr::rename(l_new,
+                       Area.of.residence = msoa1,
+                       Area.of.workplace = msoa2,
+                       All = all,
+                       Bicycle = bicycle,
+                       avslope = avslope_perc,
+                       Rail = light_rail,
+                       Bus = bus,
+                       Car_driver = car_driver,
+                       Car_passenger = car_passenger,
+                       Foot = foot,
+                       Other = other
+                       )
+
+# remove excess columns
+l_new$Rail <- l_new$Rail + l_new$train
+l_new$train <- NULL
+
+# check they are the same - nope!
+plot(l$All, l_new$All)
+head(l$id)
+l_new$id <- paste(l_new$Area.of.residence, l_new$Area.of.workplace)
+
+newdat <- left_join(l@data["id"], l_new)
+
+nrow(newdat)
+nrow(l)
+
+l@data <- newdat
+
+# save the new data:
+saveRDS(l, "~/npct/pct-bigdata/pct_lines_oneway_shapes.Rds")
+# knitr::spin("../pct/analysis/rename-line-vars.R", format = "Rtex")
+
+# How long did it all take?
+Sys.time() - start
+% end.rcode
+
+\end{document}
