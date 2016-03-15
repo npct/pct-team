@@ -1,5 +1,5 @@
 ---
-title: "Modelling and visualising large data for active travel"
+title: "Modelling and visualising Big Data for active travel"
 author: "Robin Lovelace (CDRC Leeds), James Woodcock (CEDAR Cambridge)"
 date: "Obesity Network workshop, 16th March 2016, Cambridge"
 output:
@@ -14,8 +14,59 @@ library(RefManageR)
 refs = ReadZotero(group = "418217", .params = list(collection = "JFR868KJ"))
 # RefManageR::WriteBib(refs, "refs.bib")
 # names(refs)
+library(grid)
+library(png)
 ```
 
+# How we've used Big Data in the Propensity to Cycle Tool
+
+## The Propensity to Cycle Tool is a Big Data project
+
+> "The PCT is a brilliant example of using Big Data to better plan infrastructure investment. It will allow us to have more confidence that new schemes are built in places and along travel corridors where there is high latent demand."
+
+Shane Snow: Head of Seamless Travel Team, Sustainable and Acessible Travel Division 
+
+## Simplify large datasets to tell a story
+
+```{r, echo=FALSE, fig.cap="Input: A mass of data"}
+knitr::include_graphics("../figures/haystack.png")
+```
+
+
+## Interactive map of current flows
+
+![](../figures/coventry-centroids-4pres.png)
+
+## Route allocation
+
+![](../figures/fast-quiet-man.png)
+
+## Route network analysis
+
+![](../figures/cov-rnet.png)
+
+## Zoom to a specific area
+
+![](../figures/cov-rnet-local.png)
+
+## 4 scenarios of change
+
+- Government Target
+- Gender Equality
+- Go Dutch
+- Ebikes
+
+## Scenario shift in desire lines
+
+![](../figures/man-cdp-dutch-mini.png)
+
+## Scenario shift in network load I
+
+![](../figures/cov-rnet-govtarget.png)
+
+## Scenario shift in network load II
+
+![](../figures/cov-rnet-godutch.png)
 
 # What is Big Data? A technical perspective
 
@@ -26,8 +77,6 @@ Big data is an ubrella term.
 "**unconventional**  datasets  that  are  **difficult**  to  analyze
 **using established methods**. Often this difficulty relates to **size** but the form, format, and **complexity** are equally important" [[@lovelace_big_2016]](http://onlinelibrary.wiley.com/doi/10.1111/gean.12081/pdf). 
 
-<!-- ![](https://openclipart.org/image/300px/svg_to_png/170637/1339577112.png) -->
-
 ```{r, echo=FALSE, fig.width=3}
 # download.file("https://openclipart.org/image/300px/svg_to_png/170637/1339577112.png",
 #               "figure/umbrella.png")
@@ -35,9 +84,15 @@ knitr::include_graphics("../figure/umbrella.png", )
 ```
 
 
-<img src="https://openclipart.org/image/300px/svg_to_png/170637/1339577112.png&disposition=attachment" alt="Red Umbrella" title="Red Umbrella by  gnokii ( https://openclipart.org/user-detail/gnokii )" />
+
 
 # Implications for research workflow
+
+## Challenges around making the work accessible
+
+```{r, echo=FALSE}
+grid.raster(readPNG("../figures/software-costs.png"))
+```
 
 ## 10 commandments for working with Big Data
 
