@@ -1,0 +1,54 @@
+---
+title: "Untitled"
+author: "PCT Team"
+date: "January 23, 2016"
+output: html_document
+---
+
+## Agenda
+
+The rough running order of the event will be as follows:
+
+### 10 - 11: Getting up to speed (1 hr)
+
+The aim of this section is to get started.
+
+- 15 mins - quick round the room introduction, who's here (all)
+
+- Introduction to the Propensity to Cycle Project and quick demo (Robin - 10 minutes)
+
+- Policy relevance and the type of questions we want to answer (Rachel and someone from Merseyside cycle campaign - 20 minutes)
+
+- Meet and greet - talk to person next to you and decide what you want to get out of it (15 minutes)
+
+- Open question and answer and a chance for people to get the PCT installed (15 minutes)
+
+**15 minute break**
+
+### 11:30 - 1: Learning to use and hack the PCT (1.5 hrs, 2 streams)
+
+The aim of this section is to learn skills needed for the hackathon. By the end of it (or lunch, at least!) everyone should be in a team with a plan.
+
+- Split session. Getting up to speed with the tool
+
+- Stream 1 - Robin, Nikolai & Clare to do tech explanation for people with PCT installed (1 hr)
+
+- Stream 2 - Session led by Rachel (with Martin?) - theme 'Blue Sky Thinking for Cycling in the Liverpool City Region, and how the PCT can help' (1 hr). Intended to get participants ideas of the kinds of things they think would transform cycling in and around Liverpool, with brainstorming sessions in smaller groups and feedback (depending on numbers). Rachel to respond on how the PCT can help think about the 'where' and 'how many' questions.
+
+- Stream 1 - Free time to play with the tool, test hacks and network to form teams (30 mins, continues over lunch)
+
+- Stream 2 - Free time to play with the tool, get an idea of how it can help with the topics already discussed (30 mins, discussion continues over lunch)
+
+**1 - 2: lunch**
+
+### 2 - 5: The hackathon (3 hrs)
+
+This is where the bulk of the work will take place
+
+- Reconvene to hear and discuss team ideas (30 minutes, ~5 min per team)
+
+- Free time for hackathon (2 hrs, in small groups/teams)
+
+- 4:30: Presentation of hacks (30 minutes)
+
+## 5pm on: networking/drinks

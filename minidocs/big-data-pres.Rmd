@@ -1,0 +1,57 @@
+---
+title: "Modelling and visualising large data for active travel"
+author: "Robin Lovelace (CDRC Leeds), James Woodcock (CEDAR Cambridge)"
+date: "Obesity Network workshop, 16th March 2016, Cambridge"
+output:
+  ioslides_presentation:
+    transition: slower
+logo: ../figures/cdrc-square.png
+bibliography: ../refs.bib
+---
+
+```{r, echo=FALSE}
+library(RefManageR)
+refs = ReadZotero(group = "418217", .params = list(collection = "JFR868KJ"))
+# RefManageR::WriteBib(refs, "refs.bib")
+# names(refs)
+```
+
+
+# What is Big Data? A technical perspective
+
+## Our definition
+
+Big data is an ubrella term.
+
+"**unconventional**  datasets  that  are  **difficult**  to  analyze
+**using established methods**. Often this difficulty relates to **size** but the form, format, and **complexity** are equally important" [[@lovelace_big_2016]](http://onlinelibrary.wiley.com/doi/10.1111/gean.12081/pdf). 
+
+<!-- ![](https://openclipart.org/image/300px/svg_to_png/170637/1339577112.png) -->
+
+```{r, echo=FALSE, fig.width=3}
+# download.file("https://openclipart.org/image/300px/svg_to_png/170637/1339577112.png",
+#               "figure/umbrella.png")
+knitr::include_graphics("../figure/umbrella.png", )
+```
+
+
+<img src="https://openclipart.org/image/300px/svg_to_png/170637/1339577112.png&disposition=attachment" alt="Red Umbrella" title="Red Umbrella by  gnokii ( https://openclipart.org/user-detail/gnokii )" />
+
+# Implications for research workflow
+
+## 10 commandments for working with Big Data
+
+# Teamwork on Big Data projects
+
+# Discussion: what we'd do different
+
+## Abstract
+
+Title: 
+
+Big Data, taken to mean emerging large and diverse datasets that are difficult to process using conventional tools, has the potential to greatly enhance our understanding of the behaviours that lead to obesity and non-communicable disease more widely. However, it is self-evident that access to Big Data alone is not sufficient to advance human knowledge in this area,  let alone inform or alter policy. Much work is needed to 'add value' to large datasets, including data cleaning, filtering, manipulation, analysis and modelling.
+
+This paper illustrates these points with reference to the authors' 
+experience developing an evidence-based tool for guiding active travel policies in relation to cycling. The Propensity to Cycle Tool (PCT) is in many respects a Big Data project, using the latest data analysis and visualisation technology to make sense of large OD matrices on travel to work which would otherwise under-utilised and meaningless to the majority of users. We use the case study to tell the story of how we used open source software development practices, in combination with an open and user-centred interface design process, to make the data 'tell a story' that is of maximum use to policy makers. The use of intuitive scenarios and a 'slippy' web map similar to Google Maps were found to be critical to the tools uptake and use.
+
+In the final section the implications of the work for future obesity-related research will be considered. We look to the future in the field and comment on the potential of the model underlying the PCT to be refined by using additional Big Data sources, for example from mobile telephone logs and social media. We conclude with comments on how lessons learned during the PCT's development could be applicable to other branches of obesity-related research beyond cycling and active travel.
