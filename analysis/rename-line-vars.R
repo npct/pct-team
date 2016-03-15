@@ -16,7 +16,7 @@ names(l)
 
 # names in old data but not new
 names(l)[!names(l) %in% names(l_new)]
-
+names(l_new)[!names(l_new) %in% names(l)]
 
 # which flows are included?
 nrow(l)
@@ -40,6 +40,11 @@ l_new <- dplyr::rename(l_new,
                        Foot = foot,
                        Other = other
                        )
+
+# # second attempt (after 1st round)
+# l@data <- rename(l@data,
+#                  Taxi = taxi,
+#                  Motorbike = motorbike)
 
 # remove excess columns
 l_new$Rail <- l_new$Rail + l_new$train

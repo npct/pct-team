@@ -1,9 +1,13 @@
 
 - Updates on shift to new server (e.g. implications of using Docker, deadline for getting a '1st draft' of model, workflow to push to 'production' branch) - Nikolai you're central to all this.
 
+This shouldn't affect any of the code in pct-shiny but someone needs communicate with Nikolai on what to move and how to move it (not till 25th Feb).
+
 - Review of the use of pull requests. My view is it's going well, allowing testing and questions before merge, e.g.: https://github.com/npct/pct-shiny/pull/132
 
-- Anna's new model is in there: https://github.com/npct/pct-load/pull/35  We can discuss the work that needs to be done to add 'invisible lines': https://github.com/npct/pct-load/issues/37 https://github.com/npct/pct-load/issues/36
+- Anna's new model is partly in there: https://github.com/npct/pct-load/pull/35  We can discuss the work that needs to be done to add 'invisible lines': https://github.com/npct/pct-load/issues/37 https://github.com/npct/pct-load/issues/36
+
+If we were to be trying to convert that code into stata
 
 - The plan to use pre-saved lines and pre-generated model results (thanks to Anna for these - will decrease build times)
 
