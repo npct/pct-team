@@ -9,7 +9,6 @@ output:
     keep_tex: yes
     number_sections: yes
   html_document: default
-  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
   \usepackage{setspace} \doublespacing
 bibliography: ../documents/Transport.bib
@@ -242,6 +241,13 @@ area level. Similarly local survey data has been used to identify areas with
 high numbers of 'potentially cycleable trips' in London [@TfL2010].
 However, neither analysis identified the travel corridors along which
 these simulated cycle trips would be made.
+
+A flow diagram illustrating how the PCT is designed to be used (acknowledging it may have other uses) is presented in Figure 1.
+
+```{r, echo=FALSE, fig.cap="Schematic diagram illustrating how the PCT was designed to be used."}
+knitr::include_graphics("../figures/flow-diagram-uses.png")
+```
+
 
 More localised approaches, which use information about the route network
 and the trajectories of cyclists using GPS data, have great potential
