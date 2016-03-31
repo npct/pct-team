@@ -23,4 +23,15 @@ g = add_node(g, label = "Route network level", from = c(1, 2), to = c(3, 4))
 # g = add_edge(g, 5, 6)
 # g = add_edge(g, 6, 7)
 # g = add_edge(g, 7, 8)
+
+# New diagram focussing on inputs and outputs
+
+n = create_nodes(
+  label = c(
+    "Zone level data",
+    "Origin-destination data",
+    "Data processing scripts",
+
+  )
+  )
 render_graph(g)
