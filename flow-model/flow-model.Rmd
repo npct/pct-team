@@ -244,8 +244,8 @@ these simulated cycle trips would be made.
 
 A flow diagram illustrating how the PCT is designed to be used (acknowledging it may have other uses) is presented in Figure 1.
 
-```{r, echo=FALSE, fig.cap="Schematic diagram illustrating how the PCT was designed to be used."}
-knitr::include_graphics("../figures/flow-diagram-uses.png")
+```{r, echo=FALSE, fig.cap="Flow diagram illustrating the input data, processes and visual outputs produced by the PCT. These are represented with oval shapes with black, red and blue outlines respectively."}
+knitr::include_graphics("../figures/flow-diag-data.png")
 ```
 
 
