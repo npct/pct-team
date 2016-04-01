@@ -44,7 +44,7 @@ if(to_install) install.packages(pkgs[to_install])
 # Bibliography dl
 # download.file("https://github.com/citation-style-language/styles/raw/master/elsevier-harvard.csl", "documents/elsevier-harvard.csl")
 # generated via https://github.com/ZotPlus/zotero-better-bibtex
-# downloader::download("https://www.zotero.org/api/groups/418217/collections/TUEXXIV4/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
+# download.file("https://www.zotero.org/api/groups/418217/collections/TUEXXIV4/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
 # # 
 # # 
 # b1 <- readLines("references.bib")
@@ -55,28 +55,24 @@ if(to_install) install.packages(pkgs[to_install])
 
 # To do:
 # Add speed-bumps/speed cameras/cycling priority or remove lanes for motorised traffic
-# Thanks also to Phil Tate for comments
 ```
 
-# Abstract
+## Abstract
 
 
 Modal shift to cycling is an increasingly common objective in transport planning institutions worldwide. 
 Evidence shows that high-quality infrastructure 
-can boost local cycling rates, when
-constructed along
+can boost local cycling rates.
+Yet it is important for interventions to happen in appropriate places, such as along
 'desire lines' of high latent demand.
-The importance of building in the right place creates the need for tools to visualise the geographical distribution of cycling potential. 
-This paper describes the Propensity to Cycle Tool (PCT), an online, interactive evidence-based planning support system to explore possible cycling futures at the local level.
-Specifically, the PCT uses origin-destination (OD) data to estimate where cycle traffic has the greatest potential to grow.
-A simple but useful model was used to generate these localised 'cycling futures' for commuter trips, as a function of route distance, hilliness and other factors.
-More sophisticated and context-specific 'back ends' for the PCT could also be developed.
-The most innovative feature of the PCT is its interactive display of the shifting spatial distribution of cycling potential under different scenarios.
-Case study cities in England illustrate the tool's capabilities under four scenarios, including 'Gender Equality' and 'Go Dutch', in which a dramatic increase in cycling is illustrated.
-Critically, the accessible, browser-based interface of the PCT
-([geo8.webarch.net/master/](http://geo8.webarch.net/master/))
-enables public participation in the transport planning process.
-Its open source license enables its adaptation for new contexts.
+This creates the need for tools to communicate the geographical distribution of cycling potential. 
+The Propensity to Cycle Tool (PCT) is an online, interactive planning support system to explore and map this potential under different scenarios of the future.
+Using origin-destination (OD) data, the PCT estimates where cycling has the greatest potential to grow.
+Localised 'cycling futures' for commuter trips were generated as a function of route distance, hilliness and gender, and more sophisticated and context-specific 'back ends' are planned.
+Central to the PCT's approach is the online browser-based user interface
+(see [pct.bike](http://pct.bike/)) which is intended to
+enable public participation in the transport planning process.
+The open source license enables its adaptation for new contexts.
 We conclude that the open access and interactive approach to planning illustrated by the PCT can help design for cycling uptake at city, regional and national levels worldwide.
 
 
@@ -90,16 +86,15 @@ We conclude that the open access and interactive approach to planning illustrate
 
 Cycling can play an important role in creating
 sustainable, healthy and equitable transport systems.
-This active travel mode already provides fast, affordable,
-and convenient mobility to millions of people each day [@Komanoff2004] and
-mounting evidence of the external costs of car-based
+Cycling provides fast, affordable,
+and convenient mobility to millions of people each day [@Komanoff2004]
+and is growing in popularity and political importance in large cities such as London,
+New York and Barcelona [@fishman_cycling_2016].
+There is mounting evidence of the external costs of car-based
 transport systems [@Newman1999;@Han2008;@Mizutani2011;@Shergold2012],
 and the benefits of cycling [e.g. @Oja2011;@Woodcock2013;@DeNazelle2011],
-has pushed cycling further up the
-transport agenda in recent years.
-Cycling is increasingly central to sustainable transport strategies, as
-illustrated, for example, by major (yet small in comparison with motorised travel spend) investment
-strategies worldwide^[Several examples
+pushing making cycling increasingly central to sustainable transport strategies.
+This is illustrated by cycling investment projects^[Several examples
 of multi-million Euro projects are provided by the
 [European Cyclist' Federation](http://www.ecf.com/advocary/eu-funding-2/examples-of-cycling-projects-co-funded-by-the-eu/), the
 [FIA Foundation](http://www.unep.org/transport/sharetheroad/PDF/SharetheRoadReportweb.pdf) and the
@@ -110,28 +105,33 @@ NGOs here.
 ]
 and the
 proliferation of publicly subsidized 'bike share' schemes
-[@OBrien2014a].^[An
+[@OBrien2014a] worldwide.^[An
 interactive web map associated with @OBrien2014a
 illustrates the distribution of many of the
 largest
 bike share schemes worldwide. See
 [bikes.oobrien.com](http://bikes.oobrien.com).]
 
-Emerging evidence has demonstrated the important role
-that high-quality infrastructure can play in modal shift to cycling [@Parkin_2012].
-Off-road cycle paths can help make cycling a safe, accessible and convenient
+High-quality infrastructure can play a key role in modal shift to cycling [@Parkin_2012].
+Off-road cycle paths, for example, can help make cycling a safe, accessible and convenient
 option for people of all ages and abilities [@Heinen2015].
-Furthermore, modified cycles, such as quadricycles and handcycles, can provide independence and mobility for disabled people [@Aldred2008], where appropriate infrastructure allows.
+Further, modified cycles such as quadricycles and handcycles can enable idependent mobility for disabled people [@Aldred2008], where appropriate infrastructure allows.
 
+
+But where should this infrastructure be built? And where are policy interventions such as reduced speed limits, better enforcement of road traffic laws and space realocation likely to have the greatest impact?
+This paper seeks to demonstrate a reproducible and accessible methodology for answering that question with reference to the Propensity to Cycle Tool (PCT), an online planning support system funded by the UK's Department for Transport (DfT). The aim is to illustrate the potential for online mapping technology to provide a publicly available evidence-base for sustainable transport planning. As such, rather than focus on the specific policy and geographical context of the PCT's development, we endeavour to present the tool in a generalisable way.
+
+The paper is structured as follows. The Literature Review (Section 2) provides an overview of existing tools for the prioritisation of investment in cycling and active travel. Section 3 describes the data and methods underlying the PCT, with reference to a technical Appendix. Section 4 provides an outline of the scenarios developed for the DfT with reference to alternative scenarios that could be envisioned using the PCT. Finally, in Section 5, we discuss some of the limitations of the approach taken in the developement of the PCT and outline promising directions for future research and development in the nascent area of planning support systems for sustainable transport.
+
+# Literature review
 The design [@Heath2006;@TfL2014;@WG2014]
 and geographic location [@Aultman-Hall1997;@Minikel2012]
 of cycle paths are
 important factors influencing the attractiveness of cycling
 and the rate of cycling [@Pucher2010].
 Thus the question of where to construct new cycle infrastructure
-is of strategic importance [@larsen_build_2013] and
-highlights the need
-for evidence-based tools for active travel [@Payne2014] where
+is of strategic importance [@larsen_build_2013].
+There is increasing interest in evidence-based tools for active travel [@Payne2014] where
 the 'predict and provide' paradigm fails [@na_ess_transport_2014].
 Within this context the Propensity to Cycle Tool (PCT)
 represents an open source and open access approach to transport modelling,
