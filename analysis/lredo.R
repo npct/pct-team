@@ -4,7 +4,7 @@ rf = readRDS("../pct-bigdata/rf.Rds")
 rf$nv = n_vertices(rf)
 rf_redo = rf[rf$nv < 3,]
 plot(rf_redo)
-l = readRDS("../pct-bigdata/l.Rds")
+l = readRDS("../pct-bigdata/pct_lines_oneway_shapes.Rds")
 l_redo = l[rf$nv < 3,]
 plot(l_redo)
 names(l_redo)
@@ -41,6 +41,8 @@ rq2@data = cbind(l2do@data[1:2], rq2@data)
 write_csv(rf2@data, "/tmp/rf2.csv")
 write_csv(rq2@data, "/tmp/rq2.csv")
 write_csv(l2do@data, "/tmp/l2.csv")
+geojson_write(rf2, file = "/tmp/rf2.geojson")
+geojson_write(rq2, file = "/tmp/rq2.geojson")
 
 # plot(cents_check[1,])
 # lines(l_redo[])
