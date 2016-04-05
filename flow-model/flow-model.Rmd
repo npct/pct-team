@@ -4,6 +4,7 @@ title: 'The Propensity to Cycle Tool: An open source online system for sustainab
 csl: ../documents/elsevier-harvard.csl
 fontsize: 12pt
 output:
+  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
@@ -60,27 +61,20 @@ if(to_install) install.packages(pkgs[to_install])
 ## Abstract
 
 
-Modal shift to cycling is an increasingly common objective in transport planning institutions worldwide. 
+Encouraging cycling is an increasingly common objective in transport planning institutions worldwide. 
 Evidence shows that high-quality infrastructure 
 can boost local cycling rates.
 Yet it is important for interventions to happen in appropriate places, such as along
 'desire lines' of high latent demand.
 This creates the need for tools to communicate the geographical distribution of cycling potential. 
 The Propensity to Cycle Tool (PCT) is an online, interactive planning support system to explore and map this potential under different scenarios of the future.
-Using origin-destination (OD) data, the PCT estimates where cycling has the greatest potential to grow.
-Localised 'cycling futures' for commuter trips were generated as a function of route distance, hilliness and gender, and more sophisticated and context-specific 'back ends' are planned.
+Using origin-destination data, the PCT estimates where cycling has the greatest potential to grow.
+Localised 'cycling futures' for commuter trips in England were generated as a function of route distance, hilliness and gender, including scenarios examining the potential role of electrical cycles.
 Central to the PCT's approach is the online browser-based user interface
-(see [pct.bike](http://pct.bike/)) which is intended to
-enable public participation in the transport planning process.
-The open source license enables its adaptation for new contexts.
-We conclude that the open access and interactive approach to planning illustrated by the PCT can help design for cycling uptake at city, regional and national levels worldwide.
-
-
-```{r, echo=FALSE}
-# part of a wider
-# shift towards healthy, low carbon transport systems.
-```
-
+(see [pct.bike](http://pct.bike/)).
+The PCT is intended to serve as a tool for transport planners while also enabling public participation in transport planning.
+Its open source license enables its adaptation for new contexts and the creation of local scenarios.
+Discussion of directions for future research outline how the approach could encourage public participation in the transport planning process for more sustainable transport systems worldwide.
 
 # Introduction
 
@@ -119,250 +113,31 @@ Further, modified cycles such as quadricycles and handcycles can enable idepende
 
 
 But where should this infrastructure be built? And where are policy interventions such as reduced speed limits, better enforcement of road traffic laws and space realocation likely to have the greatest impact?
-This paper seeks to demonstrate a reproducible and accessible methodology for answering that question with reference to the Propensity to Cycle Tool (PCT), an online planning support system funded by the UK's Department for Transport (DfT). The aim is to illustrate the potential for online mapping technology to provide a publicly available evidence-base for sustainable transport planning. As such, rather than focus on the specific policy and geographical context of the PCT's development, we endeavour to present the tool in a generalisable way.
-
-The paper is structured as follows. The Literature Review (Section 2) provides an overview of existing tools for the prioritisation of investment in cycling and active travel. Section 3 describes the data and methods underlying the PCT, with reference to a technical Appendix. Section 4 provides an outline of the scenarios developed for the DfT with reference to alternative scenarios that could be envisioned using the PCT. Finally, in Section 5, we discuss some of the limitations of the approach taken in the developement of the PCT and outline promising directions for future research and development in the nascent area of planning support systems for sustainable transport.
-
-# Literature review
-The design [@Heath2006;@TfL2014;@WG2014]
-and geographic location [@Aultman-Hall1997;@Minikel2012]
-of cycle paths are
-important factors influencing the attractiveness of cycling
-and the rate of cycling [@Pucher2010].
-Thus the question of where to construct new cycle infrastructure
-is of strategic importance [@larsen_build_2013].
-There is increasing interest in evidence-based tools for active travel [@Payne2014] where
-the 'predict and provide' paradigm fails [@na_ess_transport_2014].
-Within this context the Propensity to Cycle Tool (PCT)
-represents an open source and open access approach to transport modelling,
-providing an accessible evidence-base for modals shift.
-
-The PCT can also be framed in the context of planning support systems (PSS).
-These decision support tools have recently received attention from transport and
-land-use planning communities [@brommelstroet_equip_2010].
-Motivated by the observation that transport planning has tended to be
-"closed to public over-sight", @golub_making_2013 created a proof-of-concept
-tool to enable public engagement with strategic transport plans.
-Building on such motivations, the PCT is an interactive map-based PSS
-[@Geertman2009]. As with other previously documented online systems
-[e.g. @CPE:CPE3282],
-the PCT
-provides a range of information to the user to inform evidence-based policy
-[@Pettit2013]. The PCT differs from previous PSS, however, in its:
-
-- Focus on wide ranging scenarios for cycling growth. This expands the 'option space' visible to transport planners, encouraging consideration of short and long-term planning horizons simultaneously.
-- Estimation and visualisation of cycling potential at 'desire line' level. Unlike area-based estimates, this matches the linear and sometimes lengthy nature of cycling desire lines. The location of lengthy paths cannot easily be prioritised using area-based measures alone.
-- Route-allocation of the desire lines. This facilitates the identification of specific segments of the transport network to be targeted for improvement.
-
-The PCT was commissioned by the UK's Department for Transport to identify
-"parts of [England] with the greatest propensity to cycle" to help
-prioritise strategic investment in active travel [@DepartmentforTransport2015].
-Part of the prototype development involved user testing sessions.
-Feedback from over 70 practitioners and policy-makers showed that the tool meets
-needs not addressed by existing tools
-and that it can help decision-making, for example by helping planners decide
-what cycling capacity to plan for along a specific route.
-
-The PCT is, to the authors' knowledge, the first online and interactive
-planning support system focussed on cycling.
-The code underlying the PCT is publicly available at
-[github.com/npct](https://github.com/npct) under the open source AGPL licence.
-This enables the methods described here to be
-reproduced and used by others, while obliging further developments to be shared
-with the community. With access to appropriate data (described in the next section)
-and programming skills, the PCT can thus be rapidly deployed in new
-contexts.
-The PCT is built entirely on open source software.
-The aggregate level OD model underlying the PCT was written in R
-[@RCoreTeam2015] and the
-interface was written in **shiny**, an R package for creating online
-web applications for data visualisation [@Chang2015].
-
-## The PCT's relation to transport models
-
-The policy relevance of the tool stems from its ability to develop, compare and visualise the local consequences of
-various scenarios for cycling futures at city to national levels. 
-The PCT is a *strategic* transport planning tool, operating at a higher geographic
-level than 'microscopic' transport
-models such as SUMO and PTV VISSIM, which simulate vehicular traffic in
-real time [@Behrisch2014;@Krajzewicz2014].
-The focus on a single mode
-enabled rapid and open development of the tool
-whilst retaining a relatively simple interface that is focussed on
-a single purpose: where to prioritise pro-cycling interventions. 
-This makes the PCT scalable to national levels,
-while maintaining its ability to estimate cycling potential at
-relatively fine-grained (and flexible) levels of geographic resolution.
-
-National-level scenario-based transport models, by contrast,
-often lack local geographical
-detail [e.g. @McCollum2009].
-The PCT approach is thus distinctive in combining strategic overview
-with the local (and highly flexible) geographical visualization scenario outcomes.
-This makes the tool especially well-suited to local-level analysis of
-the impacts of achieving a regional or national target level of cycling
-(typically measured as a proportion of all trips).
-The 'Government Target' scenario, for example, assumes a doubling in
-the level of cycling in England (DfT 2014).
-The PCT provides a method to answer the question:
-if cycling increases by 'x' nationally or regionally,
-how might this increase be distributed spatially?
-More specifically: along which routes would the new
-cycle trips plausibly occur?
+This paper seeks to demonstrate a reproducible and accessible methodology for answering that question with reference to the Propensity to Cycle Tool (PCT), an online planning support system funded by the UK's Department for Transport (DfT). The aim is to illustrate the potential for online mapping technology to provide a publicly available evidence-base for sustainable transport planning.
 
 ```{r, echo=FALSE}
-#  As highlighted in the discussion,
-# future work building on tools such as the PCT could help answer more complex
-# and policy-relevant questions, such as:
-# Which modes would new cycle trips replace?
-# And hence, what would be the net benefits of these changes?
-# ^[We
-# use the term 'cycle' instead of 'bicycle' to include trips made by
-# tricycles, quadricycles and hand cycles.]
+# As such, rather than focus on the specific policy and geographical context of the PCT's development, we endeavour to present the tool in a generalisable way.
+# 
+# The paper is structured as follows. The Literature Review (Section 2) provides an overview of existing tools for the prioritisation of investment in cycling and active travel. Section 3 describes the data and methods underlying the PCT, with reference to a technical Appendix. Section 4 provides an outline of the scenarios developed for the DfT with reference to alternative scenarios that could be envisioned using the PCT. Finally, in Section 5, we discuss some of the limitations of the approach taken in the developement of the PCT and outline promising directions for future research and development in the nascent area of planning support systems for sustainable transport.
 ```
 
-The evidence-base underlying the PCT's route level scenarios is 'OD data'.
-An 'OD pair' in this context can be represented visually as a
-desire line: a line connecting the origin
-(O) with the destination (D)
-[@Chan2003]. These concepts are related to the common
-$T_{ij}$ matrix notation in transport modelling, which represent the number
-of trips between OD pairs
-[@Ortuzar2001;@Simini2012].
-Based on this work, the model estimates the rate of cycling
-between OD pairs.
+# Literature review
 
-The visualisation of cycling desire lines
-differs from models of modal shift that operate at
-city [@Lovelace2011c] or area levels [@muller2008travel].
-In relation to cycling, @Parkin2008 used
-a multiple regression model to estimate levels of commuter cycling at an
-area level. Similarly local survey data has been used to identify areas with
-high numbers of 'potentially cycleable trips' in London [@TfL2010].
-However, neither analysis identified the travel corridors along which
-these simulated cycle trips would be made.
+Transport tools for active travel infrastructure
+The design (Heath et al., 2006; Transport for London, 2014; Welsh Government, 2014) and geographic location (Aultman-Hall et al., 1997; Minikel, 2012) of cycle paths are important factors influencing the attractiveness of cycling and the rate of cycling (Pucher et al., 2010). Thus the question of where to construct new cycle infrastructure is of strategic importance (Larsen et al., 2013). There is increasing interest in evidence-based tools for active travel (Payne, 2014) where the 'predict and provide' paradigm fails (Naess et al., 2014). In particular, planning support systems have recently received attention from transport and land-use planning communities (Brommelstroet, 2010).  These decision support tools provide a range of information to the user to inform evidence-based policy (Pettit et al., 2013), including through interactive map-based systems (Geertman and Stillwell, 2009).
+In this context, the PCT was commissioned by the UK's Department for Transport to identify "parts of [England] with the greatest propensity to cycle" to help prioritise strategic investment in cycling (Department for Transport, 2015).  The aim of the tool was produce a full transport-land use model, nor to provide a full mode choice model. Instead, the tool seeks to assist decision makers and planners in considering, visualizing and analysing what cycling growth might look like – and what such growth might necessitate in terms of infrastructure provision. Within the English context at least, ambitious local and national cycling targets are often set in terms of mode share, but without any detailed consideration of what this might mean in terms of cycling flows along specific routes. The PCT provides a representation of what, if such targets are achieved, the spatial distribution of cycling trips might look like at the area and network level in practice.
+The PCT is, to the authors' knowledge, the first online and interactive planning support system that focuses specifically on cycling.  Other innovative features of the PCT include:
+Estimation and visualisation of cycling potential at both the ‘area’ level and the 'desire line' level. This contrasts with most previous models of modal shift, which typically only produce outputs the area level (e.g. Lovelace et al., 2011; Müller et al., 2008). In relation to cycling, Parkin et al. (2008) used a multiple regression model to estimate levels of commuter cycling at an area level. Similarly local survey data has been used to identify areas with high numbers of 'potentially cycleable trips' in London (Transport for London, 2010). However, neither analysis identified the travel corridors along which these simulated cycle trips would be made.  
+Route-allocation of the desire lines. This facilitates the identification of specific segments of the transport network to be targeted for improvement. Such an approach has considerable potential for creating an evidence-base for prioritising investment in cycle paths locally (Broach et al., 2012; Ehrgott et al., 2012), for example by identifying routes that would "achieve maximum impacts early on"(Zhang et al. 2014).
+Ability to produce outputs at multiple geographic levels.  Users of the PCT choose whether to examine cycling potential at a very local level (e.g. just a few streets) or at a more regional level (e.g. across a large metropolitan area). Line-level outputs can be aggregated to networks, while area-level outputs can be aggregated to the regional or national level.  This contrasts with previous national-level scenario-based transport models, which often lack any local geographical detail (e.g. McCollum and Yang, 2009).  In addition, the PCT is well suited to local-level analysis of the impacts of achieving a regional or national target level of cycling, highlighting one way in which this is a strategic tool.
+Focus on wide ranging scenarios for cycling growth, including long-term, ambitious scenarios. This expands the 'option space' visible to transport planners, encouraging consideration of short and long-term planning horizons simultaneously.  This addresses one identified limitation of many existing models, namely that they do not simulate long-term scenarios and "do not sufficiently support the generation of new strategies" (Brommelstroet, 2010).
+Making results available through a freely-accessible interface and open access model. In the past, transport planning has tended to be "closed to public over-sight", preventing public engagement with strategic transport plans (Golub et al. 2013). There is, however, now a trend in transport research towards greater transparency in software development and collaboration (Novosel et al., 2015; Tamminga et al., 2012).   The PCT is part of this trend, having been created with open access software, with the underlying code having been made publicly available under an open source AGPL licence (github.com/npct).
 
-A flow diagram illustrating how the PCT is designed to be used (acknowledging it may have other uses) is presented in Figure 1.
 
 ```{r, echo=FALSE, fig.cap="Flow diagram illustrating the input data, processes and visual outputs produced by the PCT. These are represented with oval shapes with black, red and blue outlines respectively."}
 knitr::include_graphics("../figures/flow-diag-data.png")
 ```
-
-
-More localised approaches, which use information about the route network
-and the trajectories of cyclists using GPS data, have great potential
-for creating an evidence-base for prioritising investment in cycle paths locally
-[@Ehrgott2012;@Broach2012].
-By allocating modelled demand to the
-route network, a method presented by @Zhang2014 was able to
-identify routes that would "achieve maximum impacts early on".
-
-A key limitation of such models is that
-they do not simulate a range of scenios in the long term.
-Indeed, it was found in survey of practitioners that existing tools
-"do not sufficiently support the generation of new
-strategies" [@brommelstroet_equip_2010].
-Moreover, a wider issue with the various transport models
-mentioned in this section is that the results they produce
-are often inaccessible to transport planners
-(e.g. requiring sophisticated software for their interpretation)
-and hidden from public view.
-
-```{r, echo=FALSE}
-# This is thanks in part to the flexible online interface.
-# Key to the PCT's utility as a PSS for strategic sustainable transport planning
-# is its ability to visualise various scenarios for cycling futures. The
-# OD level model described in the Methods section explains how these scenarios
-# can be translated into OD pairs at high geographical resolution and allocated to the
-# route network. Scenarios can be based on national, regional or city-wide targets
-# or alternative criteria, such as the outputs of an agent based model.
-# Due to the open approach in model development the PCT methodology can be
-# replicated in many other locations worldwide. We therefore expect this article
-# to be useful not only academically, in terms of development of a OD level
-# model for cycling and visualisation of the results, but also practically,
-# for practitioners designing sustainable transport plans.
-
-# The PCT was funded by the UK's Department
-# for Transport (DfT). As a result, the approach was originally designed for
-# use by Local Authority transport planners
-# to prioritise where to investment in cycling, down to the route level,
-# across England. However, the tool has much wider potential applications.
-
-# The PCT model presented in this paper was deployed for three
-# 'pilot' cities which
-# acted as a 'proof of concept' for the DfT: Coventry,
-# Manchester and Norwich. The method is described in a generalisable way
-# so it is applicable to any city or region where the appropriate datasets
-# are available. The 'generalisability' of the method is important due to
-# the momentum behind cycling in cities across the world.
-# Planning support tools such as the PCT can help the
-# associated investment to be spent effectively, yielding more efficient
-# targeting of resources.
-```
-
-```{r, echo=FALSE}
-# This transition is needed to prevent runaway
-# climate change . The worldwide uptake of cycling, driven by well-placed
-# infrastructure,
-# 'soft' policy incentives and wider cultural shifts away from the car will also
-# have enormous health benefits.
-# The design of such infrastructure and policies
-# can be enhanced by tools such as the
-# PCT. Given the tool's great potential for wider social benefit, it is
-# vital to communicate the underlying methods and software.
-
-# The aim of the present paper is to explain the underlying model which drives
-# the scenarios used in the PCT. This is of academic interest due to
-# the increased accuracy with which the method can estimate the
-# spatial distribution for cycle infrastructure. It is also of
-# great policy relevance during a time of transition away from energy inefficient
-# forms of transport such as the personal automobile.
-# The model described in this paper is easy to modify and extend,
-# despite the online interface being easy to learn (it little more complex than
-# Google Maps, which many users will have experience with).
-```
-
-To overcome these barriers, the
-OD data for each scenario are pre-calculated,
-enabling the outcome to be displayed rapidly.
-Further, the user is not required to specify any
-numerical parameters to interact with
-the PCT. The only software needed for users to run the PCT is a web
-browser, reducing a key technological barrier to transport planning.
-The PCT's open source approach reduces two additional barriers to
-effective use of transport planning software: cost and access to source code.
-The PCT is part of a wider trend in transport research towards
-greater transparency in software development and collaboration
-[@Tamminga2012;@novosel2015agent].
-This open source approach, combined with the
-widespread availability of OD data (as discussed in the next section),
-should make the PCT easy to deploy in new contexts.
-
-A key strength of the PCT is its provision of detailed, interactive results from simple inputs.
-The aim is not to produce a full transport-land use model, nor to provide a full mode choice model. Instead, the tool seeks to assist decision makers and planners in considering, visualizing and analysing what cycling growth might look like – and necessitate in terms of infrastructure provision. Within the English context at least, ambitious local and national cycling targets are often set in terms of mode share, but without any detailed consideration of what this might mean in terms of cycling flows along specific routes. The PCT provides a representation of what, if such targets are achieved, the spatial distribution of cycling trips might look like at the area and network level in practice.  
-
-```{r, echo=FALSE}
-# We plan to encourage a user community to
-# build up around the tool and to create new versions for specific applications
-# in future versions of the PCT.
-# This could involve running training sessions for transport planners with
-# programming experience.
-
-# All of the code underlying PCT has been made available open source under the
-# MIT license on the GitHub platform.^[See
-# [github.com/npct/pct](https://github.com/npct/pct).]
-# The model is implemented in R, a mature language for statistical computing.
-# This use of open source code and freely-available software,
-# in combination with the use of input data that are widely available in many settings,
-# means that the model has the potential to support transport planning in contexts.
-# The remainder of this paper therefore describes the model underlying the PCT,
-# presents a case study in which these methods are applied to three cities in England,
-# and describes how the approach could be applied to other settings.
-```
-
-
 # Data
-
 
 The PCT relies on two key input datasets:
 
