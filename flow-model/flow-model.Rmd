@@ -121,9 +121,8 @@ This paper seeks to demonstrate a reproducible and accessible methodology for an
 # The paper is structured as follows. The Literature Review (Section 2) provides an overview of existing tools for the prioritisation of investment in cycling and active travel. Section 3 describes the data and methods underlying the PCT, with reference to a technical Appendix. Section 4 provides an outline of the scenarios developed for the DfT with reference to alternative scenarios that could be envisioned using the PCT. Finally, in Section 5, we discuss some of the limitations of the approach taken in the developement of the PCT and outline promising directions for future research and development in the nascent area of planning support systems for sustainable transport.
 ```
 
-# Literature review
+## Transport tools for active travel infrastructure
 
-Transport tools for active travel infrastructure
 The design (Heath et al., 2006; Transport for London, 2014; Welsh Government, 2014) and geographic location (Aultman-Hall et al., 1997; Minikel, 2012) of cycle paths are important factors influencing the attractiveness of cycling and the rate of cycling (Pucher et al., 2010). Thus the question of where to construct new cycle infrastructure is of strategic importance (Larsen et al., 2013). There is increasing interest in evidence-based tools for active travel (Payne, 2014) where the 'predict and provide' paradigm fails (Naess et al., 2014). In particular, planning support systems have recently received attention from transport and land-use planning communities (Brommelstroet, 2010).  These decision support tools provide a range of information to the user to inform evidence-based policy (Pettit et al., 2013), including through interactive map-based systems (Geertman and Stillwell, 2009).
 In this context, the PCT was commissioned by the UK's Department for Transport to identify "parts of [England] with the greatest propensity to cycle" to help prioritise strategic investment in cycling (Department for Transport, 2015).  The aim of the tool was produce a full transport-land use model, nor to provide a full mode choice model. Instead, the tool seeks to assist decision makers and planners in considering, visualizing and analysing what cycling growth might look like – and what such growth might necessitate in terms of infrastructure provision. Within the English context at least, ambitious local and national cycling targets are often set in terms of mode share, but without any detailed consideration of what this might mean in terms of cycling flows along specific routes. The PCT provides a representation of what, if such targets are achieved, the spatial distribution of cycling trips might look like at the area and network level in practice.
 The PCT is, to the authors' knowledge, the first online and interactive planning support system that focuses specifically on cycling.  Other innovative features of the PCT include:
@@ -137,6 +136,7 @@ Making results available through a freely-accessible interface and open access m
 ```{r, echo=FALSE, fig.cap="Flow diagram illustrating the input data, processes and visual outputs produced by the PCT. These are represented with oval shapes with black, red and blue outlines respectively."}
 knitr::include_graphics("../figures/flow-diag-data.png")
 ```
+
 # Data
 
 The PCT relies on two key input datasets:
