@@ -1,0 +1,4 @@
+Tool/method,Modes covered,Geographical coverage,Level of outputs,Scenarios,Source code: language and license
+Propensity to Cycle Tool,Cycling,National: England,"Area, desire line, route, route network",Baseline and flexible future scenario generation,Open source: AGP License
+Prioritization Index (Larsen et al. 2013),Cycling,Local: city level,Grid cells,No,Unknown
+Permeability Assessment Tool (Payne 2014),"Cycling, walking",Local: city level,Desire line and route level,-,Unknown
