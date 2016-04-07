@@ -6,30 +6,27 @@ centsa = readOGR("../pct-bigdata/cents.geojson", "OGRGeoJSON")
 
 head(centsa)
 names(centsa)[names(centsa) == "MSOA11NM"] = "geo_label"
-l_new <- readstata13::read.dta13("C:/Users/georl/Dropbox/PCT/160229_AreaLines/pct_lines_160229.dta")
+l_new <- readstata13::read.dta13("/tmp/newdata/160401_AreaLines/pct_lines.dta")
 
 l_new <- dplyr::rename(l_new,
                        Area.of.residence = msoa1,
                        Area.of.workplace = msoa2,
                        All = all,
                        Bicycle = bicycle,
-                       avslope = avslope_perc,
-                       Rail = light_rail,
+                       Train = train,
                        Bus = bus,
                        Car_driver = car_driver,
                        Car_passenger = car_passenger,
                        Foot = foot,
+                       Other = other,
+                       Taxi = taxi,
+                       Motorbike = motorbike,
                        Other = other
 )
 
-# second attempt (after 1st round)
-l@data <- rename(l@data,
-                 Taxi = taxi,
-                 Motorbike = motorbike)
-
 # remove excess columns
-l_new$Rail <- l_new$Rail + l_new$train
-l_new$train <- NULL
+l_new$Rail <- l_new$Train + l_new$light_rail
+l_new$Train <- NULL
 
 summary(sel <- l_new$Area.of.residence == l_new$Area.of.workplace)
 l_new_cents = l_new[sel,]
