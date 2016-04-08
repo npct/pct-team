@@ -8,7 +8,8 @@ library(dplyr)
 # load original and new data
 l <- readRDS("~/npct/pct-bigdata/pct_lines_oneway_shapes.Rds")
 # install.packages("readstata13") # install package to read stata13 data
-l_new <- readstata13::read.dta13("~/Dropbox/PCT/160229_AreaLines/pct_lines_160229.dta")
+# l_new <- readstata13::read.dta13("~/Dropbox/PCT/160229_AreaLines/pct_lines_160229.dta")
+l_new <- readstata13::read.dta13("/tmp/newdata/160401_AreaLines/pct_lines.dta")
 
 # names
 names(l_new)
@@ -32,26 +33,23 @@ l_new <- dplyr::rename(l_new,
                        Area.of.workplace = msoa2,
                        All = all,
                        Bicycle = bicycle,
-                       avslope = avslope_perc,
-                       Rail = light_rail,
+                       Train = train,
                        Bus = bus,
                        Car_driver = car_driver,
                        Car_passenger = car_passenger,
                        Foot = foot,
+                       Other = other,
+                       Taxi = taxi,
+                       Motorbike = motorbike,
                        Other = other
-                       )
-
-# # second attempt (after 1st round)
-# l@data <- rename(l@data,
-#                  Taxi = taxi,
-#                  Motorbike = motorbike)
+)
 
 # remove excess columns
-l_new$Rail <- l_new$Rail + l_new$train
-l_new$train <- NULL
+l_new$Rail <- l_new$Train + l_new$light_rail
+l_new$Train <- NULL
 
 # check they are the same - nope!
-plot(l$All, l_new$All)
+# plot(l$All, l_new$All)
 head(l$id)
 l_new$id <- paste(l_new$Area.of.residence, l_new$Area.of.workplace)
 
@@ -61,7 +59,7 @@ nrow(newdat)
 nrow(l)
 
 l@data <- newdat
-
+names(newdat)
 # save the new data:
 saveRDS(l, "~/npct/pct-bigdata/pct_lines_oneway_shapes.Rds")
 # knitr::spin("../pct/analysis/rename-line-vars.R", format = "Rtex")
