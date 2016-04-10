@@ -27,9 +27,14 @@ summary(rf$id == l$id) # they're the same ids
 plot(rf[nrow(rf),])
 plot(l[nrow(l),], add = T) # yes they're the same!
 
-sel = rf$nv < 3
+rq$nv = n_vertices(rq)
+
+
+sel = rq$nv < 3
+summary(sel)
 l_redo = l[sel,]
 plot(l_redo)
+plot(rq[sel,])
 plot(rf[sel,], add = T, col = "red")
 names(l_redo)
 destnames = c(l_redo$Area.of.residence, l_redo$Area.of.workplace)
@@ -101,6 +106,26 @@ for(i in mc){
 sum(n_vertices(rf) < 3) == 0
 # save
 saveRDS(rf, "../pct-bigdata/rf.Rds")
+
+
+
+
+# make l and rq identical
+head(l$id)
+head(rq$id)
+# update rq id
+nchar(rq$id[1:2])
+id1 = stringr::str_sub(rq$id, 1, 9)
+head(id1)
+id2 = stringr::str_sub(rq$id, 10, 18)
+rq$id = paste(id1, id2)
+
+rq = rq[rq$id %in% l$id,] # subset
+nrow(rq) # the right length
+nrow(l)
+summary(rq$id == l$id) # they're the same ids
+plot(rq[nrow(rq),])
+plot(l[nrow(l),], add = T) # yes they're the same!
 
 nverts = n_vertices(rq)
 sel = nverts < 3
