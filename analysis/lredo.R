@@ -1,15 +1,143 @@
 # update broken lines
 source("set-up.R")
+library(leaflet)
+
+# load data
+centsa = geojson_read("../pct-bigdata/cents-scenarios.geojson", what = "sp")
 rf = readRDS("../pct-bigdata/rf.Rds")
+rq = readRDS("../pct-bigdata/rq.Rds")
 rf$nv = n_vertices(rf)
-rf_redo = rf[rf$nv < 3,]
-plot(rf_redo)
 l = readRDS("../pct-bigdata/pct_lines_oneway_shapes.Rds")
-l_redo = l[rf$nv < 3,]
+nrow(l)
+nrow(rf)
+
+# make l and rf identical
+head(l$id)
+head(rf$id)
+# update rf id
+nchar(rf$id[1:2])
+id1 = stringr::str_sub(rf$id, 1, 9)
+head(id1)
+id2 = stringr::str_sub(rf$id, 10, 18)
+rf$id = paste(id1, id2)
+
+rf = rf[rf$id %in% l$id,] # subset
+nrow(rf) # the right length
+summary(rf$id == l$id) # they're the same ids
+plot(rf[nrow(rf),])
+plot(l[nrow(l),], add = T) # yes they're the same!
+
+sel = rf$nv < 3
+l_redo = l[sel,]
 plot(l_redo)
+plot(rf[sel,], add = T, col = "red")
 names(l_redo)
-destnames = c(l$Area.of.residence, l$Area.of.workplace)
-top_20 = sort(table(destnames), decreasing=TRUE)[1:20]
+destnames = c(l_redo$Area.of.residence, l_redo$Area.of.workplace)
+
+sum(sel)
+s = which(sel)
+message(paste0(length(s), " 'quiet' lines are straight"))
+# pdf = sapply(rf[sel,]@lines, function(x) x@Lines[[1]]@coords)
+m = leaflet() %>% addTiles() %>% addPolylines(data = rf[s,], col = "red") %>%
+  addCircles(data = centsa)
+
+for(i in s){
+  # mapview(rf[i,])
+  # if(i == 362) next()
+  # plot(rf[i,])
+  p = line2points(rf[i,])
+  # nl = route_cyclestreet(p[1,], p[2,], plan = "fastest")
+  pdists1 = spDistsN1(centsa, pt = p[1,])
+  pdists2 = spDistsN1(centsa, pt = p[2,])
+  sel_mindist1 = which.min(pdists1)
+  sel_mindist2 = which.min(pdists2)
+  # pl = spDistsN1(pts = p, pt = centsa[sel_mindist,])
+  tryCatch({
+    # if(which.min(pl) == 2)
+      nl = route_cyclestreet(centsa[sel_mindist1,], centsa[sel_mindist2,], plan = "fastest")
+  # else
+        # nl = route_cyclestreet(p[2,], centsa[sel_mindist,], plan = "fastest")
+      plot(nl)
+      plot(rf[i,], add = T)
+      rf@lines[[i]] <- Lines(nl@lines[[1]]@Lines, row.names(rf[i,]))
+      rf@data[i,][1:ncol(nl)] = nl@data
+  }, error = function(e){warning(paste0("Fail for line number ", i))})
+
+  # plot(rf[i,], add = T)
+  # mapview(rf[i,])
+  message(i)
+}
+mapview::mapview(rf[s,])
+centsa_old = geojson_read("../pct-bigdata/cents-scenarios.geojson", what = "sp")
+leaflet() %>% addTiles() %>% addCircles(data = centsa_old[mc,]) %>%
+  addCircles(data = centsa[mc,], col = "green")
+geojson_write(centsa_old[mc,], file = "data-sources/failing-points.geojson")
+
+new_nverts = n_vertices(rf[s,])
+sum(new_nverts < 3) # halved the number of 'bad' lines
+
+# Move the centroids that fail more than once using nearest in osrm
+top_n = sort(table(destnames), decreasing=TRUE)
+top_n = top_n[1:8]
+c_update = names(top_n)
+# nearest2spdf(lat = centsa@coords[1,2],  lng = centsa@coords[1,1],
+#              osrmurl = "http://router.project-osrm.org/") # not working...
+mc = which(centsa$geo_code %in% c_update)
+length(mc) # number of points that need updating
+for(i in mc){
+  print(which(i == mc))
+  tryCatch({
+  ci = centsa[i,]
+  coordinates(ci)
+  new_cent = nearest_cyclestreets(lat = ci@coords[2], lng = ci@coords[1])
+  # new_cent = nearest_google(lat = ci@coords[2], lng = ci@coords[1], google_api = gapi)
+  coordinates(new_cents)
+  centsa@coords[i,] = new_cent@coords
+  }
+  , error = function(e){warning(paste0("Fail for line number ", i))})
+}
+
+# now iterate, until
+sum(n_vertices(rf) < 3) == 0
+# save
+saveRDS(rf, "../pct-bigdata/rf.Rds")
+
+nverts = n_vertices(rq)
+sel = nverts < 3
+sum(sel)
+s = which(sel)
+plot(rq[sel,]) # lots of quiet routes
+message(paste0(length(s), " 'quiet' lines are straight in "))
+
+for(i in s){
+  # mapview(rq[i,])
+  # if(i == 362) next()
+  # plot(rq[i,])
+  p = line2points(rq[i,])
+  # nl = route_cyclestreet(p[1,], p[2,], plan = "fastest")
+  pdists1 = spDistsN1(centsa, pt = p[1,])
+  pdists2 = spDistsN1(centsa, pt = p[2,])
+  sel_mindist1 = which.min(pdists1)
+  sel_mindist2 = which.min(pdists2)
+  # pl = spDistsN1(pts = p, pt = centsa[sel_mindist,])
+  tryCatch({
+    # if(which.min(pl) == 2)
+    nl = route_cyclestreet(centsa[sel_mindist1,], centsa[sel_mindist2,], plan = "fastest")
+    # else
+    # nl = route_cyclestreet(p[2,], centsa[sel_mindist,], plan = "fastest")
+    plot(nl)
+    plot(rq[i,], add = T)
+    rq@lines[[i]] <- Lines(nl@lines[[1]]@Lines, row.names(rq[i,]))
+    rq@data[i,][1:ncol(nl)] = nl@data
+  }, error = function(e){warning(paste0("Fail for line number ", i))})
+
+  # plot(rq[i,], add = T)
+  # mapview(rq[i,])
+  message(i)
+}
+
+
+
 geojson_write(l_redo, file = "/tmp/l_redo.geojson") # to plot in qgis
 
 lredo_code = readxl::read_excel("/tmp/160331_ExtraODpairs.xlsx", sheet = 2)
