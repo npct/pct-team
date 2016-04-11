@@ -53,5 +53,6 @@ head(centsa@data)
 plot(centsa)
 cents_df = centsa@data
 View(cents_df)
+
 geojson_write(centsa)
 file.copy("myfile.geojson", "../pct-bigdata/cents-scenarios.geojson", overwrite = T)
