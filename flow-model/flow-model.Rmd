@@ -47,6 +47,7 @@ if(to_install) install.packages(pkgs[to_install])
 # download.file("https://github.com/citation-style-language/styles/raw/master/elsevier-harvard.csl", "documents/elsevier-harvard.csl")
 # generated via https://github.com/ZotPlus/zotero-better-bibtex
 # download.file("https://www.zotero.org/api/groups/418217/collections/TUEXXIV4/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
+# This is from the group 'energy-and-transport': https://www.zotero.org/groups/energy-and-transport/items/collectionKey/TUEXXIV4
 # # 
 # # 
 # b1 <- readLines("references.bib")
@@ -113,7 +114,11 @@ Further, modified cycles such as quadricycles and handcycles can enable idepende
 
 
 But where should this infrastructure be built? And where are policy interventions such as reduced speed limits, better enforcement of road traffic laws and space realocation likely to have the greatest impact?
-This paper seeks to demonstrate a reproducible and accessible methodology for answering that question with reference to the Propensity to Cycle Tool (PCT), an online planning support system funded by the UK's Department for Transport (DfT). The aim is to illustrate the potential for online mapping technology to provide a publicly available evidence-base for sustainable transport planning.
+This paper seeks to demonstrate a reproducible and accessible methodology for answering such questions with reference to the Propensity to Cycle Tool (PCT).
+The PCT is an online planning support system funded by the UK's Department for Transport, the primary aim of which is to map where cycling potential is greatest, to optimise infrastracture investments and other cycling interventions (Department for Transport, 2015).
+The remit was not to produce a full transport-land use model but to assist decision makers and planners by focussing on cycling.
+This involved visualizing, analysing and modelling available data on where people cycle and the routes they take.
+The aim of the paper is to illustrate and discuss the potential for online mapping technology to provide a publicly available evidence-base for sustainable transport planning.
 
 ```{r, echo=FALSE}
 # As such, rather than focus on the specific policy and geographical context of the PCT's development, we endeavour to present the tool in a generalisable way.
@@ -124,19 +129,22 @@ This paper seeks to demonstrate a reproducible and accessible methodology for an
 ## Tool and methods for assessing cycling potential
 
 A number of factors influence
-the attractiveness of cycling for everyday trips internationally [@Pucher2010].
-Factors over which local authorities have some control
-include the design [@Heath2006;@TfL2014;@WG2014], directness 
-[@crow2007] and geographic location [@Aultman-Hall1997;@Minikel2012]
-of cycle paths.
-Traditional methods and tools transport planning, in the 'predict and provide' paradigm,
-and poorly suited to incorporate such factors into investment [@na_ess_transport_2014].
-In response, there has been a proliferation of research into the impact of infrastructure on
-cycling, but little academic work on how to operationalise the knowledge that infrastructure affects uptake for guiding investment.
-Specifically, there has been an "absence of research into how 
-to  systematically  prioritize  and  locate  facilities  that  are  to  be  built"
-[@larsen_build_2013], although there has been much research into the related question of cycling potential.
-This work is briefly reviewed below, for three categories levels of detail, before the PCT is put in the wider context of planning support tools for transport planning.
+the attractiveness of cycling for everyday trips [@Pucher2010].
+Factors over which local authorities have some control, as opposed to national policies such 'strict liability' [@fedtke_strict_2003], are primarily related to the transport network.
+Reducing speed limits, creating car free zones and improving the urban realm have all be proposed to make places more cyclable, but the intervention that has received the most attention has been the construction of new cycle paths. Local authorities can clearly have a large influence on these paths, including their design (e.g. width) [@Heath2006;@TfL2014;@WG2014], directness  [@crow2007] and geographic location [@Aultman-Hall1997;@Minikel2012].
+The PCT focusses on the last of these factors.
+
+```{r, echo=FALSE}
+# Traditional methods and tools transport planning, in the 'predict and provide' paradigm,
+# and poorly suited to incorporate such factors into investment [@na_ess_transport_2014].
+```
+
+Conventional transport planning tools within the 'predict and provide' paradigm [@na_ess_transport_2014] have limited capacity to inform the decision making process in relation to these issues. There has been a proliferation of research into the impact of infrastructure on
+cycling, but little academic work on how to operationalise the knowledge that infrastructure affects uptake for guiding investment by creating tools and frameworks to prioritise investment.
+@larsen_build_2013 identified an "absence of research into how 
+to  systematically  prioritize  and  locate  facilities  that  are  to  be  built".
+There has, however, been research into the related question of cycling potential, which generally fits into the following three categories:
+
 
 - Area-based measures are based primarily on data at the level of administrative zones. Outputs from these measures can assist with the location of non-linear transport infrastructure such as cycle parking.
 
@@ -145,10 +153,13 @@ This work is briefly reviewed below, for three categories levels of detail, befo
 - Route-based measures are the most geographically disagregated level using and producing output at the level of segments of the transport network that can be visualised on a map.
 This is the most geographically detailed level of analysis and of most relevance to transport planners designing core cycle networks.
 
-Of course there is some overlap between these levels of analysis. @Zhang2014, for example, illustrated that data from all three levels can be combined using GIS and modelling to prioritise cycling investement at the city level.
-However, most studies predominantly focus on the three levels. Examples from the literature of each of the levels are provided below.
+The other line of research linked to the PCT surrounds the idea of Planning Support Systems (PSS). Both areas of literature are briefly reviewed in this section to put the PCT in its wider context.^[Of
+course there is some overlap between the analysis of cycling potential at different levels and PSS. @Zhang2014, for example, is primarily focussed on cycling potential but could be used as the basis of a PSS. @Zhang2014 also use data from area, individual and route network levels although the analysis is primarily focussed on on level (the individual).
+]
 
-## Area-based measures of cycling potential
+## Research into cycling potential 
+
+### Area-based measures of cycling potential
 
 Motivated by this observation, an area-based 'prioritization index'
 was developed, based on four variables: the area's current level of cycling,
@@ -163,6 +174,10 @@ developed Permeability Assessment Tool (PAT).
 The full methodology underlying the PAT have not, to the author's knowledge, been published and
 the only 
 @Zhang2014 
+
+### Individiual-level measures of cycling potential
+
+### Route-level measures of cycling potential
 
 Route-allocation of the desire lines. This facilitates the identification of specific segments of the transport network to be targeted for improvement. Such an approach has considerable potential for creating an evidence-base for prioritising investment in cycle paths locally (Broach et al., 2012; Ehrgott et al., 2012), for example by identifying routes that would "achieve maximum impacts early on"(Zhang et al. 2014).
 ...
@@ -181,6 +196,8 @@ pander(df, split.table = Inf)
 \newpage
 \elandscape
 
+## Planning support systems
+
 In the wider field of land-use and transport planning, Planning Support 
 Systems (PSS) have been advocated as a way to overcome the limitations of traditional
 methods (Brommelstroet, 2010).
@@ -188,12 +205,13 @@ PSS typically works by presenting evidence about the characteristics and needs
 of areas in an interactive map (Geertman and Stillwell, 2009; Pettit et al., 2013).
 
 In this context the PCT can be understood as a PSS designed to tackle the 'where to build' question.
-It originated from a project funded by the UK's transport departement to identify "parts of [England] with the greatest propensity to cycle" (Department for Transport, 2015).
-The aim of the tool was thus not to produce a full transport-land use model nor to cover all modes. Instead the tool aims to assist decision makers and planners in considering, visualizing and analysing the spatial distribution of cycling growth.
-Evidence on the areas and routes with greatest unmet demand can then be prioritised for cost-effective
-infrastructure and policy intervention.
 
-The policy relevance of this work stems from local and national cycling targets, wich are often set in terms of mode share. However, with little insight into what meeting these targets would mean for the rate of cycling flows along specific routes, it is hard to translate ambitious targets  into specific policies and plans. The PCT provides, to the authors' knowledge, the first online and interactive planning support system that tackles these issues for cycling.
+```{r, echo=FALSE}
+# The policy relevance of this work stems from local and national cycling targets, wich are often set in terms of mode share. However, with little insight into what meeting these targets would mean for the rate of cycling flows along specific routes, it is hard to translate ambitious targets  into specific policies and plans. The PCT provides, to the authors' knowledge, the first online and interactive planning support system that tackles these issues for cycling.
+```
+
+
+
 
 Other innovative features of the PCT include:
 Estimation and visualisation of cycling potential at both the ‘area’ level and the 'desire line' level. This contrasts with most previous models of modal shift, which typically only produce outputs the area level (e.g. Lovelace et al., 2011; Müller et al., 2008). In relation to cycling, Parkin et al. (2008) used a multiple regression model to estimate levels of commuter cycling at an area level. Similarly local survey data has been used to identify areas with high numbers of 'potentially cycleable trips' in London (Transport for London, 2010). However, neither analysis identified the travel corridors along which these simulated cycle trips would be made.  
