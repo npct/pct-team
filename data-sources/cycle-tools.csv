@@ -1,5 +1,6 @@
-Tool/method,Modes included,Scale of deployment,Accessibility of user interface,Level of outputs,Timescales/scenarios,Source code: language and license
-Propensity to Cycle Tool,Cycling,National: England,"Free, publicly available, online interactive map","Area, desire line, route, route network",Current cycling levels and future scenarios,Open source: AGP License
-Prioritization Index (Larsen et al. 2013),Cycling,Local: Montreal,GIS software and static maps in publication,Area,Current cycling levels,Unknown
-Permeability Assessment Tool (Payne 2014),"Cycling, walking",Local: Dublin,GIS software and static maps in publication,"Desire line, route",Current cycling levels,Unknown
-Usage intensity index (Zhang et al. 2014),Cycling,Local: Belo Horizonte,NA,Route,Current cycling levels,Unknown
+Tool/method,Mode,Scale,Accessibility ,Level,Timescale,License
+Propensity to Cycle Tool,Cycling,National: England,Publicly available online map,"Area, desire line, route, route network",Current and future scenarios,R: Open source (AGPL)
+Prioritization Index (Larsen et al. 2013),Cycling,Local: Montreal,GIS software and static maps,Area,Current,ArcGIS: Proprietary
+Permeability Assessment Tool (Payne 2014),"Cycling, walking",Local: Dublin,GIS software and static maps,"Desire line, route",Current,Unknown
+Usage intensity index (Zhang et al. 2014),Cycling,Local: Belo Horizonte,GIS software and static maps,"Area, individual, route",Current,ArcGIS: Proprietary
+Bicycle share model (Parkin et al. 2008),Cycling,National: England and Wales,Static results,Area,Current,Unknown
