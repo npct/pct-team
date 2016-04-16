@@ -131,13 +131,9 @@ The aim of the paper is to illustrate and discuss the potential for online mappi
 A number of factors influence
 the attractiveness of cycling for everyday trips [@Pucher2010].
 Factors over which local authorities have some control, as opposed to national policies such 'strict liability' [@fedtke_strict_2003], are primarily related to the transport network.
-Reducing speed limits, creating car free zones and improving the urban realm have all be proposed to make places more cyclable, but the intervention that has received the most attention has been the construction of new cycle paths. Local authorities can clearly have a large influence on these paths, including their design (e.g. width) [@Heath2006;@TfL2014;@WG2014], directness  [@crow2007] and geographic location [@Aultman-Hall1997;@Minikel2012].
-The PCT focusses on the last of these factors.
-
-```{r, echo=FALSE}
-# Traditional methods and tools transport planning, in the 'predict and provide' paradigm,
-# and poorly suited to incorporate such factors into investment [@na_ess_transport_2014].
-```
+Reducing speed limits, creating car free zones and improving the urban realm have all be proposed to make places more cyclable. However, the intervention that has received the most attention has been the construction of new cycle paths. With devolved transport budgets, local and regional authorities can often influence the design of strategic cycling networks including the width, quality [@Heath2006;@TfL2014;@WG2014], directness  [@crow2007] and geographic location of the paths.
+  Much has written about best practice for the physical design of cycle paths [e.g. @transport_for_london_london_2015] but little work has explicitly tackled the question of where this high quality quality infrastructure should be built [see @Aultman-Hall1997;@Minikel2012].
+The PCT focusses explicitly on *where* to build (and intervene in other ways, e.g. by re-allocating space away from motorised traffic and reducing speed limits) rather than *what* to build.
 
 Conventional transport planning tools within the 'predict and provide' paradigm [@na_ess_transport_2014] have limited capacity to inform the decision making process in relation to these issues. There has been a proliferation of research into the impact of infrastructure on
 cycling, but little academic work on how to operationalise the knowledge that infrastructure affects uptake for guiding investment by creating tools and frameworks to prioritise investment.
