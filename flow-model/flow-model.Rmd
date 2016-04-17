@@ -209,11 +209,31 @@ pander(df, split.table = Inf)
 
 ## Planning support systems
 
-In the wider field of land-use and transport planning, Planning Support 
-Systems (PSS) have been advocated as a way to overcome the limitations of traditional
-methods (Brommelstroet, 2010).
+Planning Support 
+Systems (PSS) have received increasing attention over nearly two decades
+as a method to encourage evidence-based
+policy in land-use planning [e.g. @klosterman_what_1999].
+In the context of transport planning PSS can be defined as a tool
+"that systematically introduces relevant (spatial) information to a
+specific process of related planning actions". Thus, the PCT
+can be seen as a PSS: it is systematic in the sense that it works in
+the same way, using the same input data, for all parts of the study region
+(in this case England) and related to a specific planning process ---
+where to prioritise investment in cycling and cycle paths.
+
 PSS typically works by presenting evidence about the characteristics and needs
-of areas in an interactive map (Geertman and Stillwell, 2009; Pettit et al., 2013).
+of areas in an interactive map.
+Central to the utility of PSS is its ability to visualise the impacts of
+alternative scenarios of the future.
+The emergence of open source libraries for web mapping [@haklay_web_2008]
+has in recent years allowed the PSS methodology to be deployed online and
+be potentially available to everyone with an internet connection.
+These features of the 'Online What if?' tool for general transport planning
+influenced the design of the PCT [@pettit_online_2013].
+
+
+the limitations of traditional methods (Brommelstroet, 2010).
+
 
 In this context the PCT can be understood as a PSS designed to tackle the 'where to build' question.
 
