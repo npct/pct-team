@@ -147,7 +147,7 @@ The major challenge from a policy perspective is how to 'operationalise' this bo
 to  systematically  prioritize  and  locate  facilities  that  are  to  be  built".
 
 There is an emerging literature that seeks to explore the related question of cycling potential. The link is clear: if one can identify which areas/routes/people have the highest potential, this can provide an evidence base about where to invest.
-This work does not generally seek to provide systematic, quantitative or interactive evidence for transport planners. The methods broadly
+With the notable exceptions of @larsen_build_2013 and @Zhang2014, the work does not generally seek to provide systematic, quantitative or interactive evidence for transport planners. The methods broadly
 fit into three categories depending on the level of the input data used:
 
 - Area-based measures are based primarily on data at the level of administrative zones. Outputs from these measures can assist with the location of non-linear transport infrastructure such as cycle parking.
@@ -159,7 +159,8 @@ fit into three categories depending on the level of the input data used:
 None of tools reviewed use route level data as the primary data source.
 This work is reviewed below and summarised in Table 1.
 
-### Area-based measures of cycling potential
+
+<!-- ### Area-based measures of cycling potential -->
 
 Motivated by the need for an evidence base to inform where to build new cycle paths,
 @larsen_build_2013 created
@@ -172,17 +173,26 @@ the information was aggregated to the level of evenly spread cells covering the 
 The resulting heat map was used to recommend the construction or upgrade of cycling paths on specific roads in Montreal.
 
 @Payne2014 used the concept of 'filtered permeability' to inform the commercially
-developed Permeability Assessment Tool (PAT). 
-The full methodology underlying the PAT have not been published but it does ...
-... and....
+developed Permeability Assessment Tool (PAT).
+The PAT works by combining geographical data, including the location of popular destinations
+and existing transport infrastructure, with on-site audit data of areas that have
+been shortlisted. Unlike the prioritization index of Larsen et al. (2013) and the PCT, which are primarily aimed at informing a strategic cycling network, the results of the PAT are designed to guide smaller, site specific interventions such as 'contraflow' paths and new traffic signals to allow cyclists greater freedom than motorists.
 
-@Zhang2014 
+At the opposite end of the scale spectrum, @Parkin2008 created a regression model, operating at the level of wards, to estimate the proportion of commuter trips cycled across England and Wales.
+Ethnic minorities, low income, road defects, rainfall and hills were all associated with low levels of cycling, leading to the conclusion that policy makers must engage with a mixture of social and physical barriers to effectively promote cycling.
 
-### Individiual-based measures of cycling potential
+<!-- ### Individiual-based measures of cycling potential -->
 
-Route-allocation of the desire lines. This facilitates the identification of specific segments of the transport network to be targeted for improvement. Such an approach has considerable potential for creating an evidence-base for prioritising investment in cycle paths locally (Broach et al., 2012; Ehrgott et al., 2012), for example by identifying routes that would "achieve maximum impacts early on"(Zhang et al. 2014).
-...
-...
+@Zhang2014 created an individual-level model of cycling potential to prioritise where to build cycle paths to "achieve maximum impacts early on".
+The output of this model were aggregated to the level of 67 statistical zones in the study area of Belo Horizonte and used to generate a 'usage intensity index' for potential cycle paths.
+This, combined with survey data on cyclists' preferences for where to construct new cycle paths and origin-destination data on travel to work, was used to rank key routes in the city in terms of their cycling potential. Although origin-destination data was used in this study, it was not central to the route-allocated estimates of cycling potential as it is in the Propensity to Cycle Tool.
+
+<!-- A key feature of this tool was its integration of data sources from many different sources. -->
+<!-- Unlike @larsen_build_2013, @Zhang2014  Using socio-demographic data, groups who were most likely to cycle were identified.  -->
+
+<!-- Route-allocation of the desire lines. This facilitates the identification of specific segments of the transport network to be targeted for improvement. Such an approach has considerable potential for creating an evidence-base for prioritising investment in cycle paths locally (Broach et al., 2012; Ehrgott et al., 2012), for example by []. -->
+<!-- ... -->
+<!-- ... -->
 
 \newpage
 \blandscape
