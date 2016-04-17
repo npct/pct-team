@@ -126,21 +126,28 @@ Beyond describing the Propensity to Cycle Tool, the wider aim of the paper is to
 # The paper is structured as follows. The Literature Review (Section 2) provides an overview of existing tools for the prioritisation of investment in cycling and active travel. Section 3 describes the data and methods underlying the PCT, with reference to a technical Appendix. Section 4 provides an outline of the scenarios developed for the DfT with reference to alternative scenarios that could be envisioned using the PCT. Finally, in Section 5, we discuss some of the limitations of the approach taken in the developement of the PCT and outline promising directions for future research and development in the nascent area of planning support systems for sustainable transport.
 ```
 
-# Tools and methods for assessing cycling potential
+# The Propensity to Cycle Tool in context
 
 A number of factors influence
 the attractiveness of cycling for everyday trips [@Pucher2010].
 Factors over which local authorities have some control, as opposed to national policies such 'strict liability' [@fedtke_strict_2003], are primarily related to the transport network.
-Reducing speed limits, creating car free zones and improving the urban realm have all be proposed to make places more cyclable. However, the intervention that has received the most attention has been the construction of new cycle paths. With devolved transport budgets, local and regional authorities can create and influence the design of strategic cycling networks. Design options include the width [@wegman_urban_1979;@pikora_developing_2002], quality [@Heath2006], directness  [@crow2007] and geographic location of the paths.
+Reducing speed limits, creating car free zones and improving the urban realm have all been proposed to make cycling more attractive. However, the intervention that has received the most attention has been the construction of new cycle paths. With devolved transport budgets, local and regional authorities can create and influence the design of strategic cycling networks. Design options include the width [@wegman_urban_1979;@pikora_developing_2002], quality [@Heath2006], directness  [@crow2007] and geographic location of the paths.
 Much evidence and guidance has been produced about the design of cycle paths [e.g. @transport_for_london_london_2015;@WG2014]. Yet little work has explicitly tackled the question of where this high quality infrastructure should be built [see @Aultman-Hall1997;@Minikel2012].
 The PCT focusses explicitly on *where* to build (and intervene in other ways, e.g. by re-allocating space away from motorised traffic and reducing speed limits) rather than *what* to build.
 
-Conventional transport planning tools within the 'predict and provide' paradigm [@naess_transport_2014] have limited capacity to inform the decision making process in relation to these issues. There has been a proliferation of research into the impact of infrastructure on
-cycling, but little academic work on how to operationalise the knowledge that infrastructure affects uptake for guiding investment by creating tools and frameworks to prioritise investment.
-@larsen_build_2013 identified an "absence of research into how 
-to  systematically  prioritize  and  locate  facilities  that  are  to  be  built".
-There has, however, been research into the related question of cycling potential, which generally fits into the following three categories:
+A wider issue related to the broader sustainable urban mobility question is that the tools and concepts within the 'predict and provide' paradigm have limited capacity to inform 'sustainable mobility' policies [@naess_transport_2014].
+In this context, the other line of research linked to the PCT relates to Planning Support Systems (PSS), interactive tools to assist the planning process [@klosterman_what_1999]. The subsequent review of the associated literature puts the tool in the wider context of emerging tools for transport planning.
 
+## Research into cycling potential 
+
+As outlined in the previous section much research has explored the impact of infrastructure on
+cycling. The major challenge from a policy perspective is how to 'operationalise' this body of knowledge, to prioritise where to invest and in what. This research gap was described by
+@larsen_build_2013, who identified an "absence of research into how 
+to  systematically  prioritize  and  locate  facilities  that  are  to  be  built".
+
+There is an emerging literature that seeks to explore related question of cycling potential, however. The link is clear: if one can identify which areas/routes/people have the highest potential, this can provide an evidence base about where to invest.
+This work does not generally seek to provide systematic, quantitative or interactive evidence for transport planners. The methods broadly
+fit into three categories depending on the level of the input data used:
 
 - Area-based measures are based primarily on data at the level of administrative zones. Outputs from these measures can assist with the location of non-linear transport infrastructure such as cycle parking.
 
@@ -149,31 +156,27 @@ There has, however, been research into the related question of cycling potential
 - Route-based measures are the most geographically disagregated level using and producing output at the level of segments of the transport network that can be visualised on a map.
 This is the most geographically detailed level of analysis and of most relevance to transport planners designing core cycle networks.
 
-The other line of research linked to the PCT surrounds the idea of Planning Support Systems (PSS). Both areas of literature are briefly reviewed in this section to put the PCT in its wider context.^[Of
-course there is some overlap between the analysis of cycling potential at different levels and PSS. @Zhang2014, for example, is primarily focussed on cycling potential but could be used as the basis of a PSS. @Zhang2014 also use data from area, individual and route network levels although the analysis is primarily focussed the individual level of analysis and the route level of outputs.
-]
-
-## Research into cycling potential 
+A summary of tools and level at which they operate (in terms of data input and output) is presented in Table 1.
 
 ### Area-based measures of cycling potential
 
-Motivated by this observation, an area-based 'prioritization index'
-was developed, based on four variables: the area's current level of cycling,
-its cycling potential, the number cycle collisions and cyclists' preferences
-of the areas that should be upgraded [@larsen_build_2013]. Since then
-a number of other methods and tools have been developed to answer the
-question, which are outlined below to put the PCT in context
-(see Table 1 for a summary).
+Motivated by the need for an evidence base to inform where to build new cycle paths,
+and a review of the state-of-the-art, @larsen_build_2013 created
+an area-based 'prioritization index'.
+This was based on four variables: the area's current level of cycling,
+its cycling potential, the number cycle collisions, and cyclists' preferences
+of the areas that should be upgraded [@larsen_build_2013].
 
-@Payne2014 uses the concept of 'filtered permeability' to inform the commercially
+...
+
+@Payne2014 used the concept of 'filtered permeability' to inform the commercially
 developed Permeability Assessment Tool (PAT). 
-The full methodology underlying the PAT have not, to the author's knowledge, been published and
-the only 
+The full methodology underlying the PAT have not been published but it does ...
+... and....
+
 @Zhang2014 
 
-### Individiual-level measures of cycling potential
-
-### Route-level measures of cycling potential
+### Individiual-based measures of cycling potential
 
 Route-allocation of the desire lines. This facilitates the identification of specific segments of the transport network to be targeted for improvement. Such an approach has considerable potential for creating an evidence-base for prioritising investment in cycle paths locally (Broach et al., 2012; Ehrgott et al., 2012), for example by identifying routes that would "achieve maximum impacts early on"(Zhang et al. 2014).
 ...
