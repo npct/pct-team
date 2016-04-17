@@ -140,34 +140,36 @@ In this context, the other line of research linked to the PCT relates to Plannin
 
 ## Research into cycling potential 
 
-As outlined in the previous section much research has explored the impact of infrastructure on
-cycling. The major challenge from a policy perspective is how to 'operationalise' this body of knowledge, to prioritise where to invest and in what. This research gap was described by
+Much research has explored the impact of infrastructure on
+cycling, as outlined in the previous section.
+The major challenge from a policy perspective is how to 'operationalise' this body of knowledge, to help planners prioritise where to invest and in what. This research gap was described by
 @larsen_build_2013, who identified an "absence of research into how 
 to  systematically  prioritize  and  locate  facilities  that  are  to  be  built".
 
-There is an emerging literature that seeks to explore related question of cycling potential, however. The link is clear: if one can identify which areas/routes/people have the highest potential, this can provide an evidence base about where to invest.
+There is an emerging literature that seeks to explore the related question of cycling potential. The link is clear: if one can identify which areas/routes/people have the highest potential, this can provide an evidence base about where to invest.
 This work does not generally seek to provide systematic, quantitative or interactive evidence for transport planners. The methods broadly
 fit into three categories depending on the level of the input data used:
 
 - Area-based measures are based primarily on data at the level of administrative zones. Outputs from these measures can assist with the location of non-linear transport infrastructure such as cycle parking.
 
-- Individual-based measures are based on individual level survey data, typically a household travel survey. These measures can help target specific groups, e.g. through tailored cycled training schemes.
+- Individual-based measures are based on individual level survey data, typically a household travel survey. These measures can help target specific groups, e.g. through tailored cycled training schemes, but is not always geographically specific.
 
-- Route-based measures are the most geographically disagregated level using and producing output at the level of segments of the transport network that can be visualised on a map.
-This is the most geographically detailed level of analysis and of most relevance to transport planners designing core cycle networks.
+- Route-based measures are use origin-destination data which can be used to create 'desire lines' and (using route allocation) estimates of the potential demand at each point on the road network.
 
-A summary of tools and level at which they operate (in terms of data input and output) is presented in Table 1.
+None of tools reviewed use route level data as the primary data source.
+This work is reviewed below and summarised in Table 1.
 
 ### Area-based measures of cycling potential
 
 Motivated by the need for an evidence base to inform where to build new cycle paths,
-and a review of the state-of-the-art, @larsen_build_2013 created
+@larsen_build_2013 created
 an area-based 'prioritization index'.
 This was based on four variables: the area's current level of cycling,
-its cycling potential, the number cycle collisions, and cyclists' preferences
-of the areas that should be upgraded [@larsen_build_2013].
-
-...
+its cycling potential, the number cycle collisions, and the locations mentioned by
+current cyclists of the areas that should be upgraded [@larsen_build_2013].
+The method used to combine these four sources was rasterisation, whereby
+the information was aggregated to the level of evenly spread cells covering the study area.
+The resulting heat map was used to recommend the construction or upgrade of cycling paths on specific roads in Montreal.
 
 @Payne2014 used the concept of 'filtered permeability' to inform the commercially
 developed Permeability Assessment Tool (PAT). 
