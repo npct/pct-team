@@ -242,16 +242,14 @@ Central to the utility of PSS is its ability to visualise the impacts of
 alternative scenarios of the future.
 The results of traditional scenario-based models of the future [e.g. @McCollum2009;@Lovelace2011c]
 are typically not presented locally at area, let-alone route-specific levels.
-PSS overcomes this issue using interactive maps.
-The emergence of open source libraries for web mapping [@haklay_web_2008]
-has in recent years allowed the PSS methodology to be deployed online and
-be potentially available to everyone with an internet connection.
+Online PSS can overcome this issue by using interactive maps to show local manifestations
+of different scenarios [@pettit_online_2013].
+The development of online PSS has been facilitated by the emergence of open source libraries for web mapping [@haklay_web_2008], allowing the results to transport and land-use
+be available to everyone with an internet connection.
 Linked with the proliferation of open source software in transport planning
 [e.g. @Tamminga2012;@novosel2015agent;@waddell_urbansim_2002],
-PSS offers the potential to tackle the issue that transport models tend to be
-"closed to public over-sight"  [@golub_making_2013].
-These considerations
-influenced the design of the PCT.
+PSS therefore helps tackle the issue that transport models tend to be
+'black boxes', closed to public scrutiny [@golub_making_2013].
 
 Much has been written about the characteristics of an effective PSS
 of relavence to the PCT.
@@ -260,9 +258,9 @@ it has been found that 'soft' factors can impede their utility for practitioners
 In a review of the effectiveness of PSS uptake in the Netherlands
 @brommelstroet_equip_2010 identified timing and limited options for scenario
 developement as key 'bottlenecks'.
-These issues suggest that practitioners should be more involved in
-the development of the software underlying PSS.
-We return to this issue in the Discussion.
+These insights from the PSS literature influenced the design of the PCT
+and the critique of PSS that practitioners should be more involved in
+their development is returned to in the Discussion.
 
 ```{r, echo=FALSE}
 # The policy relevance of this work stems from local and national cycling targets, wich are often set in terms of mode share. However, with little insight into what meeting these targets would mean for the rate of cycling flows along specific routes, it is hard to translate ambitious targets  into specific policies and plans. The PCT provides, to the authors' knowledge, the first online and interactive planning support system that tackles these issues for cycling.
