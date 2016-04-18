@@ -247,7 +247,7 @@ of different scenarios [@pettit_online_2013].
 The development of online PSS has been facilitated by the emergence of open source libraries for web mapping [@haklay_web_2008], allowing the results to transport and land-use
 be available to everyone with an internet connection.
 Linked with the proliferation of open source software in transport planning
-[e.g. @Tamminga2012;@novosel2015agent;@waddell_urbansim_2002],
+[@Tamminga2012;@novosel2015agent;@borning_urbansim:_2008],
 PSS therefore helps tackle the issue that transport models tend to be
 'black boxes', closed to public scrutiny [@golub_making_2013].
 
@@ -277,27 +277,17 @@ Focus on wide ranging scenarios for cycling growth, including long-term, ambitio
 Making results available through a freely-accessible interface and open access model. In the past, transport planning has tended to be "closed to public over-sight", preventing public engagement with strategic transport plans (Golub et al. 2013). There is, however, now a trend in transport research towards greater transparency in software development and collaboration (Novosel et al., 2015; Tamminga et al., 2012).   The PCT is part of this trend, having been created with open access software, with the underlying code having been made publicly available under an open source AGPL licence (github.com/npct).
 ```
 
-
-```{r, echo=FALSE, fig.cap="Flow diagram illustrating the input data, processes and visual outputs produced by the PCT. These are represented with oval shapes with black, red and blue outlines respectively."}
-knitr::include_graphics("../figures/flow-diag-data.png")
-```
-
 # Data
 
-The PCT relies on two key input datasets:
-
-- *Origin-destination* (OD) data relating the number of trips
-taking place between administrative zones. These can be represented as
-straight 'desire lines' or allocated to the route network.
-- *Geographical data* providing the coordinates of trip
-origins and destinations.
-
-The OD model described in this paper can work for
-anywhere that has access to such data.
-Hilliness and route network distance were also included in the regression model.
-To link the OD and geographic datasets together, *zone ids* are needed in both
-datasets. An R package, **stplanr**, was developed to assist with this and
-other data processing tasks [@lovelace_stplanr_2015].
+The PCT primarily relies on origin-destination (OD) data relating the number of trips
+taking place between administrative zones. Combined with geographical data on the coordinates of the population-weighted centroid of each zones,
+these can be represented as
+straight 'desire lines' or (using a route-allocation algorithm) as routes allocated to the transport network.
+The route-allocation stage (outlined below) allowed
+hilliness and route network distance to be included as additional variables to the OD data.
+Unique zone codes were used to link the geographic coordinates of the centroids to the
+flows. R package, **stplanr**, was developed to convert the non-geographic
+OD data into straight and route-alocated lines that could be visualised in the on-line map [@lovelace_stplanr_2015].
 
 ```{r, echo=FALSE}
 # ^[The
