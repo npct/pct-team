@@ -215,14 +215,14 @@ as a method to encourage evidence-based
 policy in land-use planning [e.g. @klosterman_what_1999].
 In the context of transport planning PSS can be defined as a tool
 "that systematically introduces relevant (spatial) information to a
-specific process of related planning actions". Thus, the PCT
-can be seen as a PSS: it is systematic in the sense that it works in
-the same way, using the same input data, for all parts of the study region
-(in this case England) and related to a specific planning process ---
-where to prioritise investment in cycling and cycle paths.
+specific process of related planning actions". Under this definition the PCT
+is a PSS: it is systematic in its use of national data
+for all parts of the study region
+(in this case England) and relates to a specific planning process ---
+where to build cycle paths.
 
 PSS typically works by presenting evidence about the characteristics and needs
-of areas in an interactive map.
+of study region in an interactive map.
 Central to the utility of PSS is its ability to visualise the impacts of
 alternative scenarios of the future.
 The emergence of open source libraries for web mapping [@haklay_web_2008]
@@ -231,18 +231,23 @@ be potentially available to everyone with an internet connection.
 These features of the 'Online What if?' tool for general transport planning
 influenced the design of the PCT [@pettit_online_2013].
 
-
-the limitations of traditional methods (Brommelstroet, 2010).
-
-
-In this context the PCT can be understood as a PSS designed to tackle the 'where to build' question.
+Much has been written about the characteristics of an effective PSS.
+It is worth briefly reviewing these in relation to the PCT.
+Although PSS are primarily technical projects to *develop*, it has been found that 'soft' factors can impede their utility for practitioners.
+In a review of the effectiveness of PSS uptake in the Netherlands
+@brommelstroet_equip_2010 identified timing and limited options for scenario
+developement as key 'bottlenecks'.
+These issues suggest that practitioners should be more involved in
+the development of the software underlying PSS.
+We return to this issue in the Discussion.
 
 ```{r, echo=FALSE}
 # The policy relevance of this work stems from local and national cycling targets, wich are often set in terms of mode share. However, with little insight into what meeting these targets would mean for the rate of cycling flows along specific routes, it is hard to translate ambitious targets  into specific policies and plans. The PCT provides, to the authors' knowledge, the first online and interactive planning support system that tackles these issues for cycling.
 ```
 
+```{r, echo=FALSE, eval=FALSE}
 
-
+```
 
 Other innovative features of the PCT include:
 Estimation and visualisation of cycling potential at both the ‘area’ level and the 'desire line' level. This contrasts with most previous models of modal shift, which typically only produce outputs the area level (e.g. Lovelace et al., 2011; Müller et al., 2008). In relation to cycling, Parkin et al. (2008) used a multiple regression model to estimate levels of commuter cycling at an area level. Similarly local survey data has been used to identify areas with high numbers of 'potentially cycleable trips' in London (Transport for London, 2010). However, neither analysis identified the travel corridors along which these simulated cycle trips would be made.  
