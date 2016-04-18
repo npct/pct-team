@@ -4,14 +4,14 @@ title: 'The Propensity to Cycle Tool: An open source online system for sustainab
 csl: ../documents/elsevier-harvard.csl
 fontsize: 12pt
 output:
-  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
+  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
-  \usepackage{setspace} \doublespacing \usepackage{lscape} \newcommand{\blandscape}{\begin{landscape}}
+  \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx} \newcommand{\blandscape}{\begin{landscape}}
   \newcommand{\elandscape}{\end{landscape}}
 bibliography: ../documents/Transport.bib
 ---
@@ -187,6 +187,13 @@ Ethnic minorities, low income, road defects, rainfall and hills were all associa
 The output of this model were aggregated to the level of 67 statistical zones in the study area of Belo Horizonte and used to generate a 'usage intensity index' for potential cycle paths.
 This, combined with survey data on cyclists' preferences for where to construct new cycle paths and origin-destination data on travel to work, was used to rank key routes in the city in terms of their cycling potential. Although origin-destination data was used in this study, it was not central to the route-allocated estimates of cycling potential as it is in the Propensity to Cycle Tool.
 
+Another method that used individual-level to identify areas with high numbers of
+'potentially cycleable trips' funded by London's transport authority [@TfL2010].
+This method was based primarily on the London Travel Demand Survey and analysed
+which segments of the population were most willing to cycle. The results were
+presented as a static heatmap and used to prioritise where to build new cycle
+paths and cycle hire points.
+
 <!-- A key feature of this tool was its integration of data sources from many different sources. -->
 <!-- Unlike @larsen_build_2013, @Zhang2014  Using socio-demographic data, groups who were most likely to cycle were identified.  -->
 
@@ -195,17 +202,23 @@ This, combined with survey data on cyclists' preferences for where to construct 
 <!-- ... -->
 
 \newpage
-\blandscape
+<!-- \blandscape -->
 
-```{r, echo=FALSE}
-df = readr::read_csv("../data-sources/cycle-tools.csv")
-# knitr::kable(df)
+```{r, echo=FALSE, results='asis'}
+dft = readr::read_csv("../data-sources/cycle-tools.csv")
+# knitr::kable(dft)
 library(pander)
-pander(df, split.table = Inf)
+# pander(dft, split.table = Inf)
+# stargazer::stargazer(dft, summary = FALSE)
+library(xtable)
+xt = xtable(dft, caption = "The Propensity to Cycle Tool in the context of other tools for deciding where to prioritise cycle paths.")
+align(xt) = "Xp{2.7cm}|XXXXX"
+print(xt, comment = FALSE, include.rownames = FALSE,  hline.after = 0:nrow(dft),
+  tabular.environment = "tabularx", width = "\\textwidth", booktabs = T, caption.placement = "top")
 ```
 
-\newpage
-\elandscape
+<!-- \newpage -->
+<!-- \elandscape -->
 
 ## Planning support systems
 
@@ -213,15 +226,17 @@ Planning Support
 Systems (PSS) have received increasing attention over nearly two decades
 as a method to encourage evidence-based
 policy in land-use planning [e.g. @klosterman_what_1999].
-In the context of transport planning PSS can be defined as a tool
+PSS have more recently been applied transport planning.
+In this context PSS is a tool
 "that systematically introduces relevant (spatial) information to a
-specific process of related planning actions". Under this definition the PCT
-is a PSS: it is systematic in its use of national data
+specific process of related planning actions" [@te_brommelstroet_developing_2008].
+Thus the PCT can usefully be understood as a PSS:
+it is systematic in its use of national data
 for all parts of the study region
 (in this case England) and relates to a specific planning process ---
 where to build cycle paths.
 
-PSS typically works by presenting evidence about the characteristics and needs
+PSS typically work by presenting evidence about the characteristics and needs
 of study region in an interactive map.
 Central to the utility of PSS is its ability to visualise the impacts of
 alternative scenarios of the future.
@@ -231,9 +246,10 @@ be potentially available to everyone with an internet connection.
 These features of the 'Online What if?' tool for general transport planning
 influenced the design of the PCT [@pettit_online_2013].
 
-Much has been written about the characteristics of an effective PSS.
-It is worth briefly reviewing these in relation to the PCT.
-Although PSS are primarily technical projects to *develop*, it has been found that 'soft' factors can impede their utility for practitioners.
+Much has been written about the characteristics of an effective PSS
+of relavence to the PCT.
+Although PSS are primarily technical projects to *develop*,
+it has been found that 'soft' factors can impede their utility for practitioners.
 In a review of the effectiveness of PSS uptake in the Netherlands
 @brommelstroet_equip_2010 identified timing and limited options for scenario
 developement as key 'bottlenecks'.
@@ -246,11 +262,9 @@ We return to this issue in the Discussion.
 ```
 
 ```{r, echo=FALSE, eval=FALSE}
-
-```
-
 Other innovative features of the PCT include:
 Estimation and visualisation of cycling potential at both the ‘area’ level and the 'desire line' level. This contrasts with most previous models of modal shift, which typically only produce outputs the area level (e.g. Lovelace et al., 2011; Müller et al., 2008). In relation to cycling, Parkin et al. (2008) used a multiple regression model to estimate levels of commuter cycling at an area level. Similarly local survey data has been used to identify areas with high numbers of 'potentially cycleable trips' in London (Transport for London, 2010). However, neither analysis identified the travel corridors along which these simulated cycle trips would be made.  
+```
 
 Ability to produce outputs at multiple geographic levels.  Users of the PCT choose whether to examine cycling potential at a very local level (e.g. just a few streets) or at a more regional level (e.g. across a large metropolitan area). Line-level outputs can be aggregated to networks, while area-level outputs can be aggregated to the regional or national level.  This contrasts with previous national-level scenario-based transport models, which often lack any local geographical detail (e.g. McCollum and Yang, 2009).  In addition, the PCT is well suited to local-level analysis of the impacts of achieving a regional or national target level of cycling, highlighting one way in which this is a strategic tool.
 Focus on wide ranging scenarios for cycling growth, including long-term, ambitious scenarios. This expands the 'option space' visible to transport planners, encouraging consideration of short and long-term planning horizons simultaneously.  This addresses one identified limitation of many existing models, namely that they do not simulate long-term scenarios and "do not sufficiently support the generation of new strategies" (Brommelstroet, 2010).
