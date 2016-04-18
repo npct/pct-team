@@ -240,7 +240,7 @@ PSS typically work by presenting evidence about the characteristics and needs
 of study region in an interactive map.
 Central to the utility of PSS is its ability to visualise the impacts of
 alternative scenarios of the future.
-The results of traditional scenarios-based models of the future [e.g. @McCollum2009;@Lovelace2011c]
+The results of traditional scenario-based models of the future [e.g. @McCollum2009;@Lovelace2011c]
 are typically not presented locally at area, let-alone route-specific levels.
 PSS overcomes this issue using interactive maps.
 The emergence of open source libraries for web mapping [@haklay_web_2008]
