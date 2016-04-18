@@ -11,8 +11,8 @@ output:
   html_document: default
   word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
-  \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx} \newcommand{\blandscape}{\begin{landscape}}
-  \newcommand{\elandscape}{\end{landscape}}
+  \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
+  \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
 bibliography: ../documents/Transport.bib
 ---
 
