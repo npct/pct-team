@@ -85,11 +85,11 @@ Cycling provides fast, affordable,
 and convenient mobility to millions of people each day [@Komanoff2004]
 and is growing in popularity and political importance in large cities such as London,
 New York and Barcelona [@fishman_cycling_2016].
-There is mounting evidence of the external costs of car-based
+There is mounting evidence about the external costs of car-dominated
 transport systems [@Newman1999;@Han2008;@Mizutani2011;@Shergold2012],
 and the benefits of cycling [e.g. @Oja2011;@Woodcock2013;@DeNazelle2011],
-making cycling increasingly central to sustainable transport strategies.
-This is illustrated by cycling investment projects^[Several examples
+pushing cycling up the transport policy agenda.
+This is illustrated by the proliferation of cycling investment projects^[Several examples
 of multi-million Euro projects are provided by the
 [European Cyclist' Federation](http://www.ecf.com/advocary/eu-funding-2/examples-of-cycling-projects-co-funded-by-the-eu/), the
 [FIA Foundation](http://www.unep.org/transport/sharetheroad/PDF/SharetheRoadReportweb.pdf) and the
@@ -98,8 +98,7 @@ There has been little academic research on the proportion of transport budgets
 allocated to cycling worldwide, hence the use of resources from
 NGOs here.
 ]
-and the
-proliferation of publicly subsidized 'bike share' schemes
+and publicly subsidized 'bike share' schemes
 [@OBrien2014a] worldwide.^[An
 interactive web map associated with @OBrien2014a
 illustrates the distribution of many of the
