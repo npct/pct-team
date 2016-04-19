@@ -138,25 +138,23 @@ In this context, the other line of research linked to the PCT relates to Plannin
 
 ## Research into cycling potential 
 
-Much research has explored the impact of infrastructure on
-cycling, as outlined in the previous section.
-The major challenge from a policy perspective is how to 'operationalise' this body of knowledge, to help planners prioritise where to invest and in what. This research gap was described by
+Previous research has explored the impact of infrastructure on cycling, as outlined in the previous section. A major policy challenge is how to 'operationalise' this body of knowledge, to help planners prioritise where to invest. This research gap was described by
 @larsen_build_2013, who identified an "absence of research into how 
 to  systematically  prioritize  and  locate  facilities  that  are  to  be  built".
-
-There is an emerging literature that seeks to explore the related question of cycling potential. The link is clear: if one can identify which areas/routes/people have the highest potential, this can provide an evidence base about where to invest.
-With the notable exceptions of @larsen_build_2013 and @Zhang2014, the work does not generally seek to provide systematic, quantitative or interactive evidence for transport planners. The methods broadly
+There is, however, an emerging literature exploring cycling potential.
+This links to the question of 'where to build' because 
+areas and routes with the highest potential are likely to be cost-effective places for investment.
+With the notable exceptions of @larsen_build_2013 and @Zhang2014, this body of research has not provided systematic or quantitative evidence for transport planners.
+The methods broadly
 fit into three categories depending on the level of the input data used:
 
-- Area-based measures are based primarily on data at the level of administrative zones. Outputs from these measures can assist with the location of non-linear transport infrastructure such as cycle parking.
+- Area-based measures are based primarily on data at the level of administrative zones. Outputs from these measures can assist with the location of site-specific transport infrastructure such as cycle parking.
 
-- Individual-based measures are based on individual level survey data, typically a household travel survey. These measures can help target specific groups, e.g. through tailored cycled training schemes, but is not always geographically specific.
+- Individual-based measures are based on individual level survey data, typically a household travel survey. These measures can help target specific groups, e.g. through tailored cycle training schemes, but are not always geographically specific.
 
-- Route-based measures are use origin-destination data which can be used to create 'desire lines' and (using route allocation) estimates of the potential demand at each point on the road network.
+- Route-based measures use origin-destination data which can be used to create 'desire lines' and (using route allocation) estimates of the potential demand at each point on the road network.
 
-None of tools reviewed use route level data as the primary data source.
-This work is reviewed below and summarised in Table 1.
-
+This work is reviewed in relation to the PCT below and summarised in Table 1.
 
 <!-- ### Area-based measures of cycling potential -->
 
@@ -164,13 +162,13 @@ Motivated by the need for an evidence base to inform where to build new cycle pa
 @larsen_build_2013 created
 an area-based 'prioritization index'.
 This was based on four variables: the area's current level of cycling,
-its cycling potential, the number cycle collisions, and the locations mentioned by
-current cyclists of the areas that should be upgraded [@larsen_build_2013].
+its cycling potential (estimated based on the shortest path between the the origin and destination of short car trips from a travel survey), the number of injuries to cyclists,
+and locations prioritised by current cyclists for improvement  [@larsen_build_2013].
 The method used to combine these four sources was rasterisation, whereby
 the information was aggregated to the level of evenly spread cells covering the study area.
 The resulting heat map was used to recommend the construction or upgrade of cycling paths on specific roads in Montreal.
 
-@Payne2014 used the concept of 'filtered permeability' to inform the commercially
+@Payne2014 used the concept of 'filtered permeability' --- providing a more direct route to cyclists than car drivers [@Melia2015a] --- to inform the commercially
 developed Permeability Assessment Tool (PAT).
 The PAT works by combining geographical data, including the location of popular destinations
 and existing transport infrastructure, with on-site audit data of areas that have
@@ -183,14 +181,18 @@ Ethnic minorities, low income, road defects, rainfall and hills were all associa
 
 @Zhang2014 created an individual-level model of cycling potential to prioritise where to build cycle paths to "achieve maximum impacts early on".
 The output of this model were aggregated to the level of 67 statistical zones in the study area of Belo Horizonte and used to generate a 'usage intensity index' for potential cycle paths.
-This, combined with survey data on cyclists' preferences for where to construct new cycle paths and origin-destination data on travel to work, was used to rank key routes in the city in terms of their cycling potential. Although origin-destination data was used in this study, it was not central to the route-allocated estimates of cycling potential as it is in the Propensity to Cycle Tool.
+This, combined with survey data on cyclists' preferences for where to construct new cycle paths and origin-destination data on travel to work, was used to rank key routes in the city in terms of their cycling potential.
 
-Another method that used individual-level to identify areas with high numbers of
-'potentially cycleable trips' funded by London's transport authority [@TfL2010].
-This method was based primarily on the London Travel Demand Survey and analysed
-which segments of the population were most willing to cycle. The results were
-presented as a static heatmap and used to prioritise where to build new cycle
-paths and cycle hire points.
+<!-- Another method that used individual-level to identify areas with high numbers of -->
+<!-- 'potentially cycleable trips' funded by London's transport authority [@TfL2010]. -->
+<!-- This method was based primarily on the London Travel Demand Survey and analysed -->
+<!-- which segments of the population were most willing to cycle. The results were -->
+<!-- presented as a static heatmap and used to prioritise where to build new cycle -->
+<!-- paths and cycle hire points. -->
+
+The Analysis of Cycling Potential tool [@TfL2010] combined area and individual-level data to produce a heat map estimating cycling potential across London. The model examined which types of trips are most likely to be cycled, based on the types of trips that are currently cycled (e.g. time of day, characteristics of the traveler, distance).
+Unlike the other tools this was practitioner-led and the results have informed planning aspects of local cycling schemes (for example, where to build new cycle share points and improve off-road paths).
+The Analysis of Cycling Potential tool does not use origin-destination data or methods of network allocation.
 
 <!-- A key feature of this tool was its integration of data sources from many different sources. -->
 <!-- Unlike @larsen_build_2013, @Zhang2014  Using socio-demographic data, groups who were most likely to cycle were identified.  -->
