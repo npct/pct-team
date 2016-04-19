@@ -112,7 +112,8 @@ option for people of all ages and abilities [@Heinen2015].
 Further, modified cycles such as quadricycles and handcycles can enable independent mobility for disabled people [@Aldred2008], where appropriate infrastructure allows.
 
 
-But where should this infrastructure be built? And where are policy interventions such as reduced speed limits, better enforcement of road traffic laws and space realocation likely to have the greatest impact?
+But where should this infrastructure be built? 
+And where are local policy interventions --- such as reducing speed limits, enforcing road traffic laws, creating cycle hire schemes, providing free cycle training and reallocating road space for walking and cycling --- likely to have the greatest impact?
 This paper seeks to demonstrate a reproducible and accessible methodology for answering such questions with reference to the Propensity to Cycle Tool (PCT).
 The PCT is an online planning support system funded by the UK's Department for Transport, the primary aim of which is to map where cycling potential is greatest, to optimise infrastructure investments and other cycling interventions (Department for Transport, 2015).
 The remit was not to produce a full transport-land use model but to assist decision makers and planners by focussing on cycling.
