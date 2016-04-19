@@ -1,0 +1,29 @@
+---
+title: "Flow-model for PCT"
+output: html_document
+---
+
+Plan with RG:
+
+Phase 1: Use a spatial interaction model (the radiation model) to estimate flows.
+
+Primarily useful for inter-settlement flows.
+
+Phase 2: Estimate the emission and allocate them to the route network
+
+Datasets:
+
+- Data on population of settlements
+- Modal/distance split of commutes
+- Allocating trips by mode
+- Use the Google API to get route-allocated times
+- Output from Google API
+
+Visualisation:
+
+- We'll make an interactive map of the results
+
+Software
+
+- An interface to the Google travel times API
+- R coding: primarily
