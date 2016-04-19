@@ -66,24 +66,23 @@ Encouraging cycling is an increasingly common objective in transport planning in
 Evidence shows that high-quality infrastructure 
 can boost local cycling rates.
 Yet it is important for interventions to happen in appropriate places, such as along
-'desire lines' of high latent demand.
-This creates the need for tools to communicate the geographical distribution of cycling potential. 
-The Propensity to Cycle Tool (PCT) is an online, interactive planning support system to explore and map this potential under different scenarios of the future.
-Using origin-destination data, the PCT estimates where cycling has the greatest potential to grow.
-Localised 'cycling futures' for commuter trips in England were generated as a function of route distance, hilliness and gender, including scenarios examining the potential role of electrical cycles.
-Central to the PCT's approach is the online browser-based user interface
-(see [pct.bike](http://pct.bike/)).
-The PCT is intended to serve as a tool for transport planners while also enabling public participation in transport planning.
-Its open source license enables its adaptation for new contexts and the creation of local scenarios.
-Discussion of directions for future research outline how the approach could encourage public participation in the transport planning process for more sustainable transport systems worldwide.
+'desire lines' of high latent demand, for new cycle paths and other 'space for cycling' policies to be effective.
+This creates the need for tools to decide where such interventions are most needed. 
+This paper describes the context, design and potential applications of such a tool.
+The Propensity to Cycle Tool (PCT) is an online, interactive planning support system to explore and map cycling potential under different scenarios of the future (see [pct.bike](http://pct.bike/)).
+Using origin-destination data for commuter trips in England, the PCT estimates
+localised 'cycling futures'.
+Scenarios including 'Go Dutch' and 'Ebikes' (which explored the impact of electrical cycles on cycling uptake) were developed.
+The PCT's open source license allows others to develop new scenarios, e.g. for other cities, regions and countries where new investments in cycling are planned.
+We conclude that the PCT provides insight into how new digital technologies could make planning a more open and community-led process for designing sustainable transport policies.
 
 # Introduction
 
 Cycling can play an important role in creating
 sustainable, healthy and equitable transport systems.
 Cycling provides fast, affordable,
-and convenient mobility to millions of people each day [@Komanoff2004]
-and is growing in popularity and political importance in large cities such as London,
+and convenient mobility to millions of people each day [@Komanoff2004] and
+is one of the fastest growing modes of transport in large cities such as London,
 New York and Barcelona [@fishman_cycling_2016].
 There is mounting evidence about the external costs of car-dominated
 transport systems [@Newman1999;@Han2008;@Mizutani2011;@Shergold2012],
@@ -99,14 +98,14 @@ allocated to cycling worldwide, hence the use of resources from
 NGOs here.
 ]
 and publicly subsidized 'bike share' schemes
-[@OBrien2014a] worldwide.^[An
+[@OBrien2014a].^[An
 interactive web map associated with @OBrien2014a
 illustrates the distribution of many of the
 largest
 bike share schemes worldwide. See
 [bikes.oobrien.com](http://bikes.oobrien.com).]
 
-High-quality infrastructure can play a key role in modal shift to cycling [@Parkin_2012].
+High-quality infrastructure can play a key role in modal shift to cycling [@parkin_cycling_2012].
 Off-road cycle paths, for example, can help make cycling a safe, accessible and convenient
 option for people of all ages and abilities [@Heinen2015].
 Further, modified cycles such as quadricycles and handcycles can enable independent mobility for disabled people [@Aldred2008], where appropriate infrastructure allows.
@@ -129,7 +128,8 @@ Beyond describing the Propensity to Cycle Tool, the wider aim of the paper is to
 A number of factors influence
 the attractiveness of cycling for everyday trips [@Pucher2010].
 Factors over which decision-makers have some control, as opposed to national policies such as 'strict liability' [@fedtke_strict_2003], are primarily related to the transport network.
-Reducing speed limits, creating car free zones and improving the urban realm have all been proposed to make cycling more attractive [@parkin_planning_2015]. However, the intervention that has received the most attention has been the construction of new cycle paths. With devolved transport budgets, local and regional authorities can create and influence the design of strategic cycling networks. Design options include the width [@wegman_urban_1979;@pikora_developing_2002], quality [@Heath2006], directness  [@crow2007] and geographic location of the paths.
+A wide range of measures under the banner 'space for cycling' has been proposed to make cycling more attractive [@parkin_planning_2015].
+These include reducing speed limits, creating car free zones and improving the urban realm (ibid.). However, the intervention that has received the most attention has been the construction of new cycle paths. With devolved transport budgets, local and regional authorities can create and influence the design of strategic cycling networks. Design options include the width [@wegman_urban_1979;@pikora_developing_2002], quality [@Heath2006], directness  [@crow2007] and geographic location of the paths.
 Much evidence and guidance has been produced about the design of cycle paths [e.g. @transport_for_london_london_2015;@WG2014]. Yet little work has explicitly tackled the question of where this high quality infrastructure should be built [see @Aultman-Hall1997;@Minikel2012].
 The PCT focusses explicitly on the question of *where* to build rather than *what* to build.
 
@@ -302,7 +302,7 @@ The PCT is, to the authors' knowledge, the first online and interactive planning
 
 - Its level of accessibility. The tool is publicly available on-line and developers are encourage to modify the PCT (e.g. to create alternative scenarios) by provision of the source code underlying the PCT under the open source AGP License (the source code and licenses can be found at [github.com/npct](https://github.com/npct/)).
 
-# Data
+# Data and methods
 
 The PCT primarily relies on origin-destination (OD) data relating the number of trips
 taking place between administrative zones. Combined with geographical data on the coordinates of the population-weighted centroid of each zones,
