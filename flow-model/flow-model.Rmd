@@ -129,7 +129,7 @@ Beyond describing the Propensity to Cycle Tool, the wider aim of the paper is to
 A number of factors influence
 the attractiveness of cycling for everyday trips [@Pucher2010].
 Factors over which decision-makers have some control, as opposed to national policies such as 'strict liability' [@fedtke_strict_2003], are primarily related to the transport network.
-Reducing speed limits, creating car free zones and improving the urban realm have all been proposed to make cycling more attractive [@parkin2015planning]. However, the intervention that has received the most attention has been the construction of new cycle paths. With devolved transport budgets, local and regional authorities can create and influence the design of strategic cycling networks. Design options include the width [@wegman_urban_1979;@pikora_developing_2002], quality [@Heath2006], directness  [@crow2007] and geographic location of the paths.
+Reducing speed limits, creating car free zones and improving the urban realm have all been proposed to make cycling more attractive [@parkin_planning_2015]. However, the intervention that has received the most attention has been the construction of new cycle paths. With devolved transport budgets, local and regional authorities can create and influence the design of strategic cycling networks. Design options include the width [@wegman_urban_1979;@pikora_developing_2002], quality [@Heath2006], directness  [@crow2007] and geographic location of the paths.
 Much evidence and guidance has been produced about the design of cycle paths [e.g. @transport_for_london_london_2015;@WG2014]. Yet little work has explicitly tackled the question of where this high quality infrastructure should be built [see @Aultman-Hall1997;@Minikel2012].
 The PCT focusses explicitly on the question of *where* to build rather than *what* to build.
 
@@ -192,7 +192,7 @@ This, combined with survey data on cyclists' preferences for where to construct 
 
 The Analysis of Cycling Potential tool [@TfL2010] combined area and individual-level data to produce a heat map estimating cycling potential across London. The model examined which types of trips are most likely to be cycled, based on the types of trips that are currently cycled (e.g. time of day, characteristics of the traveler, distance).
 Unlike the other tools this was practitioner-led and the results have informed planning aspects of local cycling schemes (for example, where to build new cycle share points and improve off-road paths).
-The Analysis of Cycling Potential tool does not use origin-destination data or methods of network allocation.
+The Analysis of Cycling Potential tool does not use origin-destination data or methods of route allocation.
 
 <!-- A key feature of this tool was its integration of data sources from many different sources. -->
 <!-- Unlike @larsen_build_2013, @Zhang2014  Using socio-demographic data, groups who were most likely to cycle were identified.  -->
