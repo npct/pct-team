@@ -109,7 +109,7 @@ bike share schemes worldwide. See
 High-quality infrastructure can play a key role in modal shift to cycling [@Parkin_2012].
 Off-road cycle paths, for example, can help make cycling a safe, accessible and convenient
 option for people of all ages and abilities [@Heinen2015].
-Further, modified cycles such as quadricycles and handcycles can enable idependent mobility for disabled people [@Aldred2008], where appropriate infrastructure allows.
+Further, modified cycles such as quadricycles and handcycles can enable independent mobility for disabled people [@Aldred2008], where appropriate infrastructure allows.
 
 
 But where should this infrastructure be built? And where are policy interventions such as reduced speed limits, better enforcement of road traffic laws and space realocation likely to have the greatest impact?
