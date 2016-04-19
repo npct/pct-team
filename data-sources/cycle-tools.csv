@@ -4,4 +4,4 @@ Prioritization Index (Larsen et al. 2013),Local: Montreal,GIS-based,"Area, route
 Permeability Assessment Tool (Payne 2014),Local: Dublin,GIS-based,"Area, desire line, route","Desire line, route",Unknown
 Usage intensity index (Zhang et al. 2014),Local: Belo Horizonte,GIS-based,"Area, desire line, route, individual","Area, individual, route",ArcGIS: Proprietary
 Bicycle share model (Parkin et al. 2008),"National: England, Wales",Static results,"Area, route",Area,Unknown
-Potentially Cycle Trips (TfL 2010),Local: London,Static results,"Area, individual","Area, population segment",Unknown
+Cycling Potential Tool (TfL 2010),Local: London,Static results,"Area, individual","Area, population segment",Unknown
