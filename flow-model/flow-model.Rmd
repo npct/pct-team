@@ -947,6 +947,7 @@ where cycle trips above 7.5 km observed from 2011 census data are
 comparatively rare (Fig. 5).
 This visual representation of the data could be used to highlight that both cities have high cycling potential: because a large proportion of trips are within cyclable distance, there is a strong case that cycling investment can be justified.
 
+```{r, echo=FALSE,eval=FALSE}
 Note that although Manchester and Norwich have very
 different initial levels of cycling, the final level estimated from the
 *godutch* and *ebike* scenarios there are similar. This is because
@@ -960,6 +961,7 @@ results in a relatively high absolute increase in cycling locally. In Norwich,
 by contrast, the current rate of cycling is considerably greater than the
 national average, so the *govtarget* scenario represents less than a doubling in
 cycling.
+```
 
 ```{r, echo=FALSE, fig.cap="Results of observed and scenario-based levels of cycling from PCT model runs for the city of Manchester (left) and Norwich (right)."}
 grid.raster(readPNG("../figures/man-nor-output-2.png"))
