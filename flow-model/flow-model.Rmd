@@ -60,7 +60,7 @@ if(to_install) install.packages(pkgs[to_install])
 # Add speed-bumps/speed cameras/cycling priority or remove lanes for motorised traffic
 ```
 
-## Abstract
+# Abstract
 
 Encouraging cycling is an increasingly common objective in transport planning institutions worldwide. 
 Evidence shows that high-quality infrastructure 
@@ -248,7 +248,7 @@ The development of online PSS has been facilitated by the emergence of open sour
 be available to everyone with an internet connection.
 Linked with the proliferation of open source software in transport planning
 [@Tamminga2012;@novosel2015agent;@borning_urbansim:_2008],
-PSS therefore helps tackle the issue that transport models tend to be
+PSS therefore helps tackle the issue that tools for transport planning are often
 'black boxes', closed to public scrutiny [@golub_making_2013].
 
 Much has been written about the characteristics of an effective PSS
@@ -434,8 +434,6 @@ and output from transport demand models controlled by local government.
 # become more widely available to researchers, this could constitute one of the
 # most single most valuable data sources for transport planners worldwide.
 ```
-
-# Data manipulation and modelling
 
 ## Geographic data
 
@@ -643,7 +641,7 @@ the region currently being viewed.
 grid.raster(readPNG("../figures/model-output.png"))
 ```
 
-# Model scenarios
+## Model scenarios
 
 Four scenarios were developed to
 explore cycling futures in England.
@@ -929,7 +927,7 @@ This will build on analysis of the influence of E-bikes on propensity to cycle
 in the Netherlands, research that is being undertaken in parallel to the work
 presented in this paper.
 
-# Visual outputs from the Propensity to Cycle Tool
+# Outputs of the Propensity to Cycle Tool
 
 Because the Propensity to Cycle Tool aims to inform and influence policy, with a launch date in July 2016, it is premature to report on its results in terms of transport planning.
 Instead, this section shows some visual outputs from the tool, to illustrate how the tool could be used. 
@@ -1077,14 +1075,11 @@ described as 'very useful' by transport planners during user testing,
 coinciding with the finding that 'visioning' has great potential
 to improve transport planning for the long-term [@Tight2011].
 
-The results of user testing indicated the utility of online, interactive and open source
-web applications for cost-effective
-allocation of investment. Local Authority transport planners working in active
-travel said that the tool
-could be useful for setting local targets, supporting business cases and implementing
-locally-specific policies to meet national ambitions.
-To follow-up on such feedback, modifications of the methods
-described in this paper are planned, to help determine the suitability of localised
+An evaluation of the PCT *after* it has been launched (July 2016) and used by practitioners will be needed to assess the extent to which the approach assists wil transport-land use planning.
+This work will test our hypothesis that the tool could help setting local targets (by indicating what the potential is relative to other regions), supporting business cases (by showing that there is high cycling potential along proposed routes) and planning for capacity increases in cycling via the ambition Go Dutch and Ebike scenarios.
+Above all, we believe the PCT will help design strategic cycling networks.
+
+ determine the suitability of localised
 cycling targets in relation to investment
 options.^[Targets have proliferated in recent years. For instance, an official
 target to reach 10% of trips made by bicycle has been
