@@ -436,28 +436,26 @@ and output from transport demand models controlled by local government.
 
 ## Geographic data
 
-To ensure reproducibility and enable deployment of the model outside the
-original case study cities, a systematic data loading method was
-developed. The computational work to load the various datasets
-was developed in a series of modular scripts that were subsequently
-integrated into a single script: `load.Rmd`. This approach ensures that
-each component of the data (e.g. OD data, administrative zones,
-topography data) can be loaded separately with a single 'master'
-script to bring together the diverse data
-sources.^[See
-[github.com/npct/pct/tree/master/loading-data](https://github.com/npct/pct/tree/master/loading-data) for a full list of the loading scripts used for the PCT.]
-
-Instead of running the model for the entirety of England, the loading
-script, OD model and output visualisations were run on a region-by-region basis.
-This was partly because transport decisions
-tend to be made at the local level [@Gaffron2003] and partly to reduce the
+Instead of running the model for the entirety of England, the script to
+load the national data into memory, and generate the outputs for visualisation,
+ran on a region-by-region basis (see [github.com/npct/pct-load/](https://github.com/npct/pct-load/blob/master/build_region.R)).
+The regional focus was selected because transport decisions
+tend to be made at the local level [@Gaffron2003] and to reduce the
 computational requirements of each regional 'build' for scalability.
-Using only one regional geographic level could also has limitations,
+Using only one regional geographic level also has limitations,
 for example reducing emphasis on 'edge zones' straddling two
 or more regions (Fig. 2). To overcome this issue the PCT scripts were updated
-to enable 'builds' for various geographical levels.
-Another solution to the problem of 'edge zones'
-is to create buffers around the regions (as discussed below).
+to enable 'builds' for various geographical levels. London, for example,
+was 'built' at 2 different levels, one covering the entirety of the city
+and another which divided the city into 4 quadrants
+(see [pct.bike/london/](http://pct.bike/london/) and
+[pct.bike/london-east/](http://pct.bike/london-east/) respectively)
+Another solution to the issue of edge-zones that was tested
+(but not implemented following user feedback)
+was the creation of buffers around the regions.
+This involves expanding the outline of a region,
+creating an area of overlap between two regions that are side-by-side.
+
 
 ```{r, echo=FALSE}
 # The wider national policy context should be considered when selecting
@@ -604,27 +602,27 @@ A 'quasipoisson' general linear model was used to implement this formula
 using the base R function `glm`, which predicts $log(pcycle)$
 to account for the aforementioned exponential decay.
 
-## Zone Buffer
+<!-- ## Zone Buffer -->
 
-Running the PCT region-by-region means
-ignoring all zones outside the region. If the region is a
-self-contained transport system this makes sense.
-If the region is part
-of a larger travel network, however, this could be problematic.
-To solve this problem, buffers were used to expand regions
-deemed to be part of a wider system.^[Various criteria were considered
-to decide whether or not a buffer was needed and to select the size of the
-buffer, for example
-whenever the number of MSOA zones fell below some threshold
-and the amount of inter-region travel. Ultimately it was decided to
-add buffers on an ad-hoc basis, where they were deemed necessary.]
-To illustrate how the buffers worked,
-buffer was used to select zones
-outside the City of Manchester (see Fig. 7 below).
-This protocol increased the sample size by including all
-zones whose population-weighted centroid lies inside the
-buffer, the width of which can also be set based on knowledge of
-the local area.
+<!-- Running the PCT region-by-region means -->
+<!-- ignoring all zones outside the region. If the region is a -->
+<!-- self-contained transport system this makes sense. -->
+<!-- If the region is part -->
+<!-- of a larger travel network, however, this could be problematic. -->
+<!-- To solve this problem, buffers were used to expand regions -->
+<!-- deemed to be part of a wider system.^[Various criteria were considered -->
+<!-- to decide whether or not a buffer was needed and to select the size of the -->
+<!-- buffer, for example -->
+<!-- whenever the number of MSOA zones fell below some threshold -->
+<!-- and the amount of inter-region travel. Ultimately it was decided to -->
+<!-- add buffers on an ad-hoc basis, where they were deemed necessary.] -->
+<!-- To illustrate how the buffers worked, -->
+<!-- buffer was used to select zones -->
+<!-- outside the City of Manchester (see Fig. 7 below). -->
+<!-- This protocol increased the sample size by including all -->
+<!-- zones whose population-weighted centroid lies inside the -->
+<!-- buffer, the width of which can also be set based on knowledge of -->
+<!-- the local area.i -->
 
 ## The Model Output tab
 
