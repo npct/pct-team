@@ -1,4 +1,9 @@
+# Aim: update regions
+
 source("set-up.R")
+regions = geojson_read("../pct-bigdata/regions.geojson", what = "sp")
+
+# Regions 1: london
 
 lnd_files = list.files(path = "../pct-bigdata/london/", pattern = "shp", full.names = T)
 lnd_regions = NULL
@@ -12,11 +17,7 @@ for(i in 1:length(lnd_files)){
 }
 
 plot(lnd_regions)
-
 head(lnd_regions)
-
-regions = geojson_read("../pct-bigdata/regions.geojson", what = "sp")
-
 head(regions)
 
 lnd_regions@data = data.frame(
@@ -49,3 +50,43 @@ geojson_write(regions, file = "../pct-bigdata/regions-london.geojson")
 
 # generate report
 # knitr::spin("analysis/update-regions.R")
+
+# 2 update warwickshire
+las = readOGR(dsn = "../pct-bigdata/cuas-mf.geojson", layer = "OGRGeoJSON")
+cov = las[grepl(pattern = "oventry", las$CTYUA12NM), ]
+cov = gBuffer(cov, byid = T, width = 0.007)
+plot(cov)
+library(rmapshaper)
+cov_simple = ms_simplify(input = cov, keep = 0.1)
+plot(cov_simple, add = T)
+plot(regions, add = T)
+
+cov_cent = gCentroid(cov)
+plot(cov_cent, add = T)
+sel = grep(pattern = "west-mid", regions$Region)
+wm = regions[cov_cent,]
+wm_new = gDifference(wm, cov_simple)
+spChFIDs(wm_new) = row.names(regions@data[sel,])
+wm_new = SpatialPolygonsDataFrame(Sr = wm_new, data = regions@data[sel,])
+
+plot(wm_new, col = "red", add = T)
+
+# double check regions are right
+plot(regions[sel,])
+plot(wm_new, add = T, col = "red")
+regions@polygons[[sel]] = wm_new@polygons[[1]]
+plot(cov_simple)
+plot(regions[sel,], add =T)
+plot(regions, add = T, col = "grey")
+s = which(regions$Region == "warwickshire")
+plot(regions[s,], col = "red", add  = T)
+war_new = rgeos::gUnion(regions[s,], cov_simple)
+plot(war_new, add = T, col = "blue")
+plot(war_new)
+plot(cov, add = T)
+regions@polygons[[s]] = war_new@polygons[[1]]
+plot(regions)
+plot(regions[s,], add = T, col = "red")
+plot(cov, col = "blue", add = T)
+
+geojson_write(regions, file = "../pct-bigdata/regions.geojson")
