@@ -4,12 +4,12 @@ title: 'The Propensity to Cycle Tool: An open source online system for sustainab
 csl: ../documents/elsevier-harvard.csl
 fontsize: 12pt
 output:
+  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
-  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
   \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
   \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
@@ -74,7 +74,7 @@ Using origin-destination data for commuter trips in England, the PCT estimates
 localised 'cycling futures'.
 Scenarios including 'Go Dutch' and 'Ebikes' (which explored the impact of electrical cycles on cycling uptake) were developed.
 The PCT's open source license allows others to develop new scenarios, e.g. for other cities, regions and countries where new investments in cycling are planned.
-We conclude that the PCT provides insight into how new digital technologies could make planning a more open and community-led process for designing sustainable transport policies.
+We conclude with a discussion of how new interactive and online tools such as the PCT could contribute enable transport planning to become a more open and community-led process.
 
 # Introduction
 
