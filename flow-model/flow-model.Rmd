@@ -436,18 +436,24 @@ and output from transport demand models controlled by local government.
 
 ## Geographic data
 
-Instead of running the model for the entirety of England, the script to
-load the national data into memory, and generate the outputs for visualisation,
-ran on a region-by-region basis (see [github.com/npct/pct-load/](https://github.com/npct/pct-load/blob/master/build_region.R)).
+Instead of running the model for the entirety of England, a region-by-region approach
+to data generation and visualisation was developed.
 The regional focus was selected because transport decisions
-tend to be made at the local level [@Gaffron2003] and to reduce the
-computational requirements of each regional 'build' for scalability.
-Using only one regional geographic level also has limitations,
-for example reducing emphasis on 'edge zones' straddling two
-or more regions (Fig. 2). To overcome this issue the PCT scripts were updated
-to enable 'builds' for various geographical levels. London, for example,
+tend to be made at the local level [@Gaffron2003].
+The regional approach also reduced the computational
+requirements of each regional 'build', by reducing the amount of RAM needed
+for key stages in the data generation process.
+This increased the scalability of the PCT, allowing nationwide data to be generated on
+desktop computers, albeit with large (16 GB+) amounts of RAM.
+
+A potential limitation of this single regional geographic level is
+that 'edge zones', straddling two
+or more regions (Fig. 2), can become marginalised.
+To overcome this issue the 'build' scripts were written to
+enable custom regions. London, for example,
 was 'built' at 2 different levels, one covering the entirety of the city
-and another which divided the city into 4 quadrants
+and another which divided the city into 4 quadrants based on a zoning system
+used by Transport for London
 (see [pct.bike/london/](http://pct.bike/london/) and
 [pct.bike/london-east/](http://pct.bike/london-east/) respectively)
 Another solution to the issue of edge-zones that was tested
