@@ -4,12 +4,12 @@ title: 'The Propensity to Cycle Tool: An open source online system for sustainab
 csl: ../documents/elsevier-harvard.csl
 fontsize: 12pt
 output:
-  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
+  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
   \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
   \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
@@ -568,7 +568,14 @@ cyclists' preference for direct routes [@crow2007].
 <!-- a relatively small number of OD pairs along major travel corridors -->
 <!-- account for a disproportionately high proportion of travel. -->
 
-Discuss network creation here.
+Information about the cycling potential along specific routes between OD pairs provides a useful evidence base for informing where new cycle paths should be built: planners can select the 'top n' routes with the highest cyclin.
+However, even more useful is information about the *aggregate cycling potential* on specific segments on the road network.
+By adding together the overlapping flows from multiple OD pairs a 'route network' of cycling potential can be created. As illustrated in Fig. XX, this can result in much higher estimates of cycling potential than the route-allocated OD data alone. Fix. XX shows the rate of cycling allong Otley Road rise from 73 to 296 based on a single OD pair but a much larger absolute rise of 301 to 1133 when all route-allocated OD pairs are considered.
+For the route allocation process the R function `overline` was written [@lovelace_stplanr_2015].^[Thanks to Barry Rowlingson from the University of Lancaster for assistance developingthis function.]
+
+```{r, echo=FALSE, out.width = '50%', fig.cap="Illustration of route-allocated OD data (left) compared with route network data (right) which was produced by aggregating all overlapping route-aggregated OD pairs, using the 'overline' function from the stplanr R package.", fig.show='hold'}
+knitr::include_graphics(c("../figures/fastest-headingly.png", "../figures/fastest-net-headingly.png"))
+```
 
 
 ## Modelling cycling uptake at the desire line level
