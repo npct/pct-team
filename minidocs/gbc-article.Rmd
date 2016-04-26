@@ -1,0 +1,43 @@
+---
+title: 'The Propensity to Cycle Tool: a new resource for designing cycling plans'
+author: "Robin Lovelace"
+date: "26 April 2016"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+The Propensity to Cycle Tool (PCT) will be launched in July 2016 by the Department for Transport, who commissioned the work in early 2015 to identify "parts of [England] with the greatest propensity to cycle" [@DepartmentforTransport2015]. The policy subtext was clear: there is renewed interest in and some funding for cycling, but little in the way of evidence to suggest where this investment should go. With some expenditure being criticised for being sub-optimally allocated, it was important to identify the routes that would have the greatest impact *before* construction started.
+
+Fast forward to spring 2016 and we have a nationally working Propensity to Cycle Tool. It is publicly accessible to use at the project's website, a first for DfT funded planning tools: [pct.bike](http://pct.bike). It seems to have exceeded many expectations (including our own) from its humble beginnings. Phase I of the project (January to June 2015) was to develop a prototype for 3 cities and research the evidence about the preferences that different socio-demographic groups have for different types of cycling infrastructure. These reports are now published by the DfT as a publicly available resource on how best to promote cycling (see [gov.uk/government/publications/national-propensity-to-cycle-first-phase-development-study](https://www.gov.uk/government/publications/national-propensity-to-cycle-first-phase-development-study)). Following the success of Phase I we were commissioned to undertake Phase II of the project, which primarily involved scaling up the tool nationwide.
+
+This article focusses on the tool itself. Elsewhere we have written about its policy context, the methodology and technologies used to create it and other methodologies for estimating cycling potential. In the context of academic literature, the PCT can be usefully understood as a planning support system (PSS) about which there is a substantial literature. This article walks the reader through the functionality of the PCT in order of complexity, first focussing on its ability to visualise data multiple levels and then describing the scenarios of future cycling possibility that we have created to inform the transport planning process. The PCT provides data at area, 'desire line', route and route network levels. The scenarios commissioned by the DfT were Government Target (in which the rate of cycling doubles), Gender Equality (in which women cycle as much as men along each desire line), Go Dutch (which illustrates what could happen if English people cycled as much as Dutch people for given distances and hilliness levels) and Ebikes (representing the potential for electric cycles to enable longer trips to be cycled, building on Go Dutch).
+
+## Using the PCT to visualise cycling at multiple geographic levels
+
+### Area level data
+
+The first thing that the PCT shows is the level of cycling per local area. Specifically, that means the number of inhabitants in each Medium Super Output Areas (MSOA is a standard geographic unit used for geographically aggregating statistical data with an average population of almost 8,000) who reported cycling as their main mode of travel to work in the 2011 Census. In West Yorkshire, for example, the PCT instantly reveals the north of Leeds to have the rate of cycling in the region.
+
+This raises, but does not answer, the following question: why do more people cycle to work here than other parts of West Yorkshire? The Index of Multiple Deprivation layer can shed light on this: the north of Leeds is predominantly a wealthy area, close enough to the city centre and major employers such as the University of Leeds and Leeds General Infirmary to enable inhabitants with high skilled jobs to cycle to work. Almost all other areas of West Yorkshire are shown to have low rates of cycling, raising the questions: why is the cycling rate so low? what are the barriers?
+
+### Cycling 'desire lines'
+
+'Desire lines' are straight lines connecting where people live to where they want to travel. In the context of the travel to work 'flow data' used by the PCT, this means lines connecting home and work locations. By showing the desire lines with the highest rates of cycling, the PCT can illustrate where there is the highest demand for *cycling flows*. This information is more detailed and policy relevant than simply showing where cyclists live, because cycle infrastructure must account for where cyclists pass through, not just where their trips begin and end. In Leeds, for example, the desire lines show that the city is highly 'monocentric', suggesting high latent demand for radial routes. In Manchester, by contrast, the cycling desire lines show that the city is more 'polycentric', with demand for cycling distributed across the city.
+
+### Route allocated flows
+
+### The route network
+
+## Scenarios of cycling futures
+
+
+
+## Using the Propensity to Cycle Tool
+
+
+in terms of the excite from all parts of the wider transport planning community. Local authority planners have said it will provide an important evidence base for 
