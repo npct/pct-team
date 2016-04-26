@@ -4,12 +4,12 @@ title: 'The Propensity to Cycle Tool: An open source online system for sustainab
 csl: ../documents/elsevier-harvard.csl
 fontsize: 12pt
 output:
+  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
-  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
   \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
   \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
@@ -513,8 +513,8 @@ creating an area of overlap between two regions that are side-by-side.
 # visualisation.
 ```
 
-```{r cuas-lads, echo=FALSE, fig.cap="The regional units used to iteratively load the geographical data. These were English Local Authority Districts (LADs, above) and County and Unitary Authorities (CUAs, below) levels of transport planning."}
-grid.raster(readPNG("../figures/cuas-las.png"))
+```{r cuas-lads, echo=FALSE, fig.cap="The front page of the Propensity to Cycle Tool for England, showing the regional units used load and visualise the data. The tool itself initiates when one of the regions (such as West Yorkshire, shown) is selected."}
+knitr::include_graphics("../figures/pct-frontpage.png")
 ```
 
 ## Route allocation and network generation
