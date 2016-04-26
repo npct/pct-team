@@ -4,12 +4,12 @@ title: 'The Propensity to Cycle Tool: An open source online system for sustainab
 csl: ../documents/elsevier-harvard.csl
 fontsize: 12pt
 output:
-  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
+  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
   \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
   \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
@@ -60,7 +60,7 @@ if(to_install) install.packages(pkgs[to_install])
 # Add speed-bumps/speed cameras/cycling priority or remove lanes for motorised traffic
 ```
 
-# Abstract
+# Abstract {-}
 
 Encouraging cycling is an increasingly common objective in transport planning institutions worldwide. 
 Evidence shows that high-quality infrastructure 
@@ -571,19 +571,22 @@ cyclists' preference for direct routes [@crow2007].
 Information about the cycling potential along specific routes between OD pairs provides a useful evidence base for informing where new cycle paths should be built: planners can select the 'top n' routes with the highest cyclin.
 However, even more useful is information about the *aggregate cycling potential* on specific segments on the road network.
 By adding together the overlapping flows from multiple OD pairs a 'route network' of cycling potential can be created. As illustrated in Fig. XX, this can result in much higher estimates of cycling potential than the route-allocated OD data alone. Fix. XX shows the rate of cycling allong Otley Road rise from 73 to 296 based on a single OD pair but a much larger absolute rise of 301 to 1133 when all route-allocated OD pairs are considered.
-For the route allocation process the R function `overline` was written [@lovelace_stplanr_2015].^[Thanks to Barry Rowlingson from the University of Lancaster for assistance developingthis function.]
+For the route allocation process the R function `overline` was written [@lovelace_stplanr_2015].^[Thanks to Barry Rowlingson from the University of Lancaster for assistance developing this function.]
 
 ```{r, echo=FALSE, out.width = '50%', fig.cap="Illustration of route-allocated OD data (left) compared with route network data (right) which was produced by aggregating all overlapping route-aggregated OD pairs, using the 'overline' function from the stplanr R package.", fig.show='hold'}
 knitr::include_graphics(c("../figures/fastest-headingly.png", "../figures/fastest-net-headingly.png"))
 ```
 
+# Scenarios
 
-## Modelling cycling uptake at the desire line level
+The PCT is primarily based on OD data so the future scenarios also operate at this level.
+It is important to emphasise that any model could be used to estimate the future update of cycling at this 'desire line' level and a wide range of scenarios could be developed and used in the PCT (further scenarios that could be developed are considered in the discussion).
+This section outlines the scenarios used in the English version of the PCT.
+These were informed by the the policy context of a government target to double the number of cycle trips [@DepartmentforTransport2014] and evidence from overseas of the proportion of trips of certain distances that *could* be made by cycling, especially in relation gender equality in cycling rates and uptake of electric cycles (Ebikes).
+The section deliberately avoids going into technical detail on the specifics of the baseline model and how the parameters for each scenario were derived (see the Appendix for this technical information).
+Instead, it provides a high-level overview of the scenarios and how they were developed, which should be of use to others developing alternative cycling scenarios to inform the transport planning process.
 
-The output of the data processing phase, described above, formed
-the basis of a model which estimates the rate of cycling
-under various scenarios.
-It is important to note that a wide range of scenario-based or
+A wide range of scenario-based or
 predictive models could be used to estimate future cycling rates.
 The results of a wide range of such 'back end' models, which could even include agent-based approaches, could be visualised by the PCT, provided the results are aggregated to the desire line level. Although the model choice is important to the PCT, it is often the
 making sense of and visualisation of its output that affects decision making.
@@ -649,20 +652,6 @@ to account for the aforementioned exponential decay.
 <!-- zones whose population-weighted centroid lies inside the -->
 <!-- buffer, the width of which can also be set based on knowledge of -->
 <!-- the local area.i -->
-
-## The Model Output tab
-
-Users can view a summary of the model via the 'Model Output' tab (Fig. 3).
-The tab was added in response to feedback during the user testing sessions to
-communicate the results of the model. It
-includes key statistics, diagnostic plots and model-results on a per-region
-basis. Because the content is created 'live' for each regional 'build',
-a different summary document is provided depending on
-the region currently being viewed.
-
-```{r, echo=FALSE, fig.cap="Sample content from the Model Output Tab of the Propensity to Cycle Tool"}
-grid.raster(readPNG("../figures/model-output.png"))
-```
 
 ## Model scenarios
 
@@ -1054,6 +1043,20 @@ groups who currently cycle the least.
 grid.raster(readPNG("../figures/fast-quiet-man.png"))
 ```
 
+## The Model Output tab
+
+Users can view a summary of the model via the 'Model Output' tab (Fig. 3).
+The tab was added in response to feedback during the user testing sessions to
+communicate the results of the model. It
+includes key statistics, diagnostic plots and model-results on a per-region
+basis. Because the content is created 'live' for each regional 'build',
+a different summary document is provided depending on
+the region currently being viewed.
+
+```{r, echo=FALSE, fig.cap="Sample content from the Model Output Tab of the Propensity to Cycle Tool"}
+grid.raster(readPNG("../figures/model-output.png"))
+```
+
 # Discussion
 
 The flexibility of the PCT methodology
@@ -1068,11 +1071,10 @@ new scenarios. Three user testing sessions have helped identify shorter-term
 changes to the interface (such as 'freeze scope') and longer-term needs
 (such as the use of additional data sources).
 
-Planners can use the different scenarios to consider shorter (e.g. 'Government Target') and
-longer (e.g. 'Go Dutch') time-scales for local cycling potential along specific routes.
-In this context, the tool can provide an evidence base to support local knowledge.
-Furthermore, future (more sophisticated) versions of the PCT could provide a visual evidence base to help following question,
-previously raised by  @Sloman2014 and @Aldred2014:
+In addition to the scenarios representing shorter ('Government Target') and
+longer (e.g. 'Go Dutch') time-scales, additional scenarios could be developed to illustrate a wider range of 'cycling futures'. These could include medium-term targets between Government Target and Go Dutch and local-specific scenarios such as 'Go York', whereby the rate of cycling reflects that would be attained if all people in England cycled as much as people do in York (where 12% of commuters cycle to work), accounting for hilliness and distance.
+Such developments could enhance the PCT's ability to provide an evidence base to support local knowledge.
+Future (more sophisticated) versions of the PCT could provide a visual evidence base to help answer the following question [see @Sloman2014; @Aldred2014]:  
 Should cycling investment prioritise
 areas of relatively low current propensity but high potential, or those of relatively
 high current propensity but lower potential?
