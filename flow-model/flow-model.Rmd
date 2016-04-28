@@ -398,10 +398,10 @@ kable(cents1, row.names = F)
 ```
 
 
-```{r, echo=FALSE, fig.cap="Overview of the PCT map interface. The lines represent trips between origin and destination pairs for Coventry. Width represents the total number of trips. Note the use of population-weighted (as opposed to geographic) centroids for the point of departure and destination."}
+```{r, echo=FALSE, fig.cap="Overview of the PCT map interface, showing area and OD-level data. The zone color represents the number of people who cycle to work in each administrative zones. The lines represent the top 6 most cycled commuter routes in Leeds (moving the slider 'N. Lines (most cycled)' increases the number of lines). Width is proportional to the total number of cycle trips. Note the use of population-weighted (as opposed to geographic) centroids for the point of departure and destination and the variable width of the centroids, which are proportional to intra-zonal (within zone) flow."}
 # data("flowlines")
 # plot(flowlines, lwd = flowlines$All / 10)
-grid.raster(readPNG("../figures/coventry-centroids.png"))
+grid.raster(readPNG("../figures/od-data-leeds.png"))
 ```
 
 We used the Census 2011 travel to work origin-destination dataset for its comprehensive coverage of
@@ -570,7 +570,7 @@ cyclists' preference for direct routes [@crow2007].
 
 Information about the cycling potential along specific routes between OD pairs provides a useful evidence base for informing where new cycle paths should be built: planners can select the 'top n' routes with the highest cyclin.
 However, even more useful is information about the *aggregate cycling potential* on specific segments on the road network.
-By adding together the overlapping flows from multiple OD pairs a 'route network' of cycling potential can be created. As illustrated in Fig. XX, this can result in much higher estimates of cycling potential than the route-allocated OD data alone. Fix. XX shows the rate of cycling allong Otley Road rise from 73 to 296 based on a single OD pair but a much larger absolute rise of 301 to 1133 when all route-allocated OD pairs are considered.
+By adding together the overlapping flows from multiple OD pairs a 'route network' of cycling potential can be created. This can result in much higher estimates of cycling potential than the route-allocated OD data alone. This is illustrated in Fig. 3, which shows the rate of cycling allong Otley Road rise from 73 to 296 based on a single OD pair but a much larger absolute rise of 301 to 1133 when all route-allocated OD pairs are considered.
 For the route allocation process the R function `overline` was written [@lovelace_stplanr_2015].^[Thanks to Barry Rowlingson from the University of Lancaster for assistance developing this function.]
 
 ```{r, echo=FALSE, out.width = '50%', fig.cap="Illustration of route-allocated OD data (left) compared with route network data (right) which was produced by aggregating all overlapping route-aggregated OD pairs, using the 'overline' function from the stplanr R package.", fig.show='hold'}
@@ -579,24 +579,17 @@ knitr::include_graphics(c("../figures/fastest-headingly.png", "../figures/fastes
 
 # Scenarios
 
-The PCT is primarily based on OD data so the future scenarios also operate at this level.
-It is important to emphasise that any model could be used to estimate the future update of cycling at this 'desire line' level and a wide range of scenarios could be developed and used in the PCT (further scenarios that could be developed are considered in the discussion).
-This section outlines the scenarios used in the English version of the PCT.
+The PCT future scenarios operate at the OD level: the future rate of cycling is estimated per desire line.
+A wide range of models could be used to estimate cycling potential at this level and scenarios are constrained only by the imagination (as considered in the Discussion).
+This section outlines the scenarios that were commissioned for the English version of the PCT.
 These were informed by the the policy context of a government target to double the number of cycle trips [@DepartmentforTransport2014] and evidence from overseas of the proportion of trips of certain distances that *could* be made by cycling, especially in relation gender equality in cycling rates and uptake of electric cycles (Ebikes).
 The section deliberately avoids going into technical detail on the specifics of the baseline model and how the parameters for each scenario were derived (see the Appendix for this technical information).
 Instead, it provides a high-level overview of the scenarios and how they were developed, which should be of use to others developing alternative cycling scenarios to inform the transport planning process.
 
-A wide range of scenario-based or
-predictive models could be used to estimate future cycling rates.
-The results of a wide range of such 'back end' models, which could even include agent-based approaches, could be visualised by the PCT, provided the results are aggregated to the desire line level. Although the model choice is important to the PCT, it is often the
-making sense of and visualisation of its output that affects decision making.
-This section is therefore a case study of one particular model for generating context-specific scenarios.
-Future users of the PCT will likely choose to use different models to examine different scenarios.
-
 For all scenarios except *gender equality*, a regression model was used
 to estimate the potential rate of cycling at the OD level.
 It does so using Ordinary Least Squares (OLS) to
-optimize a number of model parameters
+optimize parameters
 linking distance ($d$) and hilliness ($H$) to the *dependent variable*:
 the proportion of trips made per OD pair ($pcycle$).
 The concept of 'distance decay' [@Martinez2013]
@@ -607,29 +600,36 @@ Euclidean distance could be used in contexts where route distance is not known.
 It is well-known that the proportion of trips made by cycle (henceforth
 $pcycle$) tends to decrease with increasing distance [@Iacono2010].
 Based on this work and exploratory analysis of the data we estimated
-the $log$ of $pcycle$ rather than $pcycle$ directly.
-Hilliness was included as a continuous variable in our
-model and was found to have a linear relationship with $pcycle$,
-based on data from the National Travel Survey.
-The formula chosen was:
+the $logit$ of $pcycle$ rather than $pcycle$ directly.
+The logit function converts a logistic curve for values between 0 and 1 (typically a probability, $p$)
+into a linear curve via the relation:
 
-(@) $$ log(pcycle) = \alpha + \beta_1 d + \beta_2 d^{0.5} + \gamma H $$
+(@) $$ logit(p) = log(\frac{p}{1 - p}) $$
+
+We estimated the logit of $pcycle$ rather than $pcycle$ directly because it was found to improve model fit,
+removing much of the non-linearity in distance decay curves.
+Hilliness was included as a continuous variable ($h$), representing the average along-route incline
+(as a %) in both directions along the route.
+Preliminary analysis found $h$ to have a linear relationship with $pcycle$,
+and interaction with distance, such that routes that were both hilly and
+lengthy were disproportionately unlikely to be cycled,
+based on data from the National Travel Survey.
+After an iterative process of model testing, the formula chosen was:
+
+(@) $$ log(pcycle) = \alpha + \beta_1 d + \beta_2 d^{0.5} + \beta_3 d^2 + \gamma h + \delta_1 d h + \delta_2 d^{0.5} h $$
 
 ```{r, echo=FALSE}
 # {#eq:description}
 ```
 
 where $d$ is distance (km, route distance between population weighted centroids) and
-$H$ is the hilliness (average angular degrees of origin and destination zones)
+$h$ is the hilliness
 per OD pair. The remaining values are scalar
 coefficients to be estimated.
 $\alpha$ represents the intercept (the rate of cycling very short
-trips). $\beta_1$ (which must be negative for $pcycle$ to tend to zero as
-distance tends to infinity) and $\beta_2$ represent the rate of distance decay.
-$\gamma$ represents the impact of hilliness on cycling.
-A 'quasipoisson' general linear model was used to implement this formula
-using the base R function `glm`, which predicts $log(pcycle)$
-to account for the aforementioned exponential decay.
+trips). $\beta_1$, $\beta_2$ and $\beta_3$ represent the rate of distance decay.
+$\gamma$ represents the impact of hilliness on cycling and the $\delta$ coefficients represent
+the interaction between distance and hilliness (see Appendix).
 
 <!-- ## Zone Buffer -->
 
@@ -653,7 +653,7 @@ to account for the aforementioned exponential decay.
 <!-- buffer, the width of which can also be set based on knowledge of -->
 <!-- the local area.i -->
 
-## Model scenarios
+## Four scenarios of cycling uptake in England
 
 Four scenarios were developed to
 explore cycling futures in England.
@@ -719,230 +719,230 @@ with impaired mobility.
 This scenario is currently implemented as an extension of the Go Dutch scenario.
 In future research it could also be implemented for other scenarios.
 
-These scenarios are described more fully below.
+<!-- These scenarios are described more fully below. -->
 
-## Government Target
+<!-- ## Government Target -->
 
-The Government Target scenario (*govtarget*)
-is based on the UK government's proposed target
-(as set out in its draft Cycling Delivery Plan [@DepartmentforTransport2014])
-to double cycling in England, from 0.8 billion stages currently to 1.6 billion stages by 2025.
-However @DepartmentforTransport2014 says nothing about where these additional
-trips would come from. The *govtarget* scenario is therefore based on our own
-assumptions about this. It aims to assist transport
-planners in identifying where new demand for cycling is likely to be greatest in
-the near term.
+<!-- The Government Target scenario (*govtarget*) -->
+<!-- is based on the UK government's proposed target -->
+<!-- (as set out in its draft Cycling Delivery Plan [@DepartmentforTransport2014]) -->
+<!-- to double cycling in England, from 0.8 billion stages currently to 1.6 billion stages by 2025. -->
+<!-- However @DepartmentforTransport2014 says nothing about where these additional -->
+<!-- trips would come from. The *govtarget* scenario is therefore based on our own -->
+<!-- assumptions about this. It aims to assist transport -->
+<!-- planners in identifying where new demand for cycling is likely to be greatest in -->
+<!-- the near term. -->
 
-The key point about this scenario is that cycling does not double in all
-areas. Instead, the increase is related to the current
-commuter trips and the trip distance.
+<!-- The key point about this scenario is that cycling does not double in all -->
+<!-- areas. Instead, the increase is related to the current -->
+<!-- commuter trips and the trip distance. -->
 
-At the heart of the *govtarget* scenario is the previously discussed
-regression model (labelled $natmod$) estimating
-the dependent variable, namely the percentage of commuters who cycle (*pcycle*).
-The new percentage of commuters who cycle ($pcycle(govtarget)$)
-for each desire line is calculated as the current rate of
-cycling plus this model-based estimate:
+<!-- At the heart of the *govtarget* scenario is the previously discussed -->
+<!-- regression model (labelled $natmod$) estimating -->
+<!-- the dependent variable, namely the percentage of commuters who cycle (*pcycle*). -->
+<!-- The new percentage of commuters who cycle ($pcycle(govtarget)$) -->
+<!-- for each desire line is calculated as the current rate of -->
+<!-- cycling plus this model-based estimate: -->
 
-(@) $$ pcycle(govtarget)_{ij} = (pcycle_{ij} + pcycle(natmod)_d) $$
+<!-- (@) $$ pcycle(govtarget)_{ij} = (pcycle_{ij} + pcycle(natmod)_d) $$ -->
 
-where $pcycle_{ij}$ is the 2011 Census proportion of commuters who cycle for an OD pair $ij$
-of distance $d$ apart and $pcycle(natmod)_d$ is the proportion of commuters expected to
-cycle the distance $d$ based on the national-level regression model.
-The sum of these values
-can be multiplied by the total number of commuters for all modes $tflow_{ij}$
-to convert the proportion into a number of cyclists, i.e.:
+<!-- where $pcycle_{ij}$ is the 2011 Census proportion of commuters who cycle for an OD pair $ij$ -->
+<!-- of distance $d$ apart and $pcycle(natmod)_d$ is the proportion of commuters expected to -->
+<!-- cycle the distance $d$ based on the national-level regression model. -->
+<!-- The sum of these values -->
+<!-- can be multiplied by the total number of commuters for all modes $tflow_{ij}$ -->
+<!-- to convert the proportion into a number of cyclists, i.e.: -->
 
-(@) $$ SLC(govtarget)_{ij} = (pcycle_{ij} + pcycle(natmod)_d) * tflow_{ij} $$
+<!-- (@) $$ SLC(govtarget)_{ij} = (pcycle_{ij} + pcycle(natmod)_d) * tflow_{ij} $$ -->
 
-where $SLC(govtarget)_{ij}$ is the *Scenario-based Level of Cycling* for this scenario for the $ij$ OD pair.
-An example of this scenario for an imaginary OD pair $ab$ with Euclidean
-distance 4.5 km is as follows.
-In a representative sample of OD pairs in the UK
-of distance 4-5km, the average proportion of cycle commuters was 5%.
-Under the 'national doubling',
-assume an additional 5% of commuters now cycle for all
-trips of 4.5km --- i.e. $pcycle(natmod)_{4.5} = 0.05$.
-For our specific OD pair $ab$ in the Census there are
-200 commuters, of whom only 2 are cyclists ($pcycle_{ab} = 0.01$).
-The scenario adds an additional 5% of commuters, i.e. an additional 10 cyclists which more than doubles the total number of cyclists from 2 to 12.
-The same methodology is applied to all distances represented in the OD
-matrix.^[Thus
-this particular OD pair has gone from a current proportion of cyclists to 1% (five times lower than the national average of 5%) to having a scenario proportion of cyclists of 6% (just over half the national average of 10%).  This illustrates the point that this scenario tends to equalize, but does not remove, pre-existing differences in cycling levels.
-]
+<!-- where $SLC(govtarget)_{ij}$ is the *Scenario-based Level of Cycling* for this scenario for the $ij$ OD pair. -->
+<!-- An example of this scenario for an imaginary OD pair $ab$ with Euclidean -->
+<!-- distance 4.5 km is as follows. -->
+<!-- In a representative sample of OD pairs in the UK -->
+<!-- of distance 4-5km, the average proportion of cycle commuters was 5%. -->
+<!-- Under the 'national doubling', -->
+<!-- assume an additional 5% of commuters now cycle for all -->
+<!-- trips of 4.5km --- i.e. $pcycle(natmod)_{4.5} = 0.05$. -->
+<!-- For our specific OD pair $ab$ in the Census there are -->
+<!-- 200 commuters, of whom only 2 are cyclists ($pcycle_{ab} = 0.01$). -->
+<!-- The scenario adds an additional 5% of commuters, i.e. an additional 10 cyclists which more than doubles the total number of cyclists from 2 to 12. -->
+<!-- The same methodology is applied to all distances represented in the OD -->
+<!-- matrix.^[Thus -->
+<!-- this particular OD pair has gone from a current proportion of cyclists to 1% (five times lower than the national average of 5%) to having a scenario proportion of cyclists of 6% (just over half the national average of 10%).  This illustrates the point that this scenario tends to equalize, but does not remove, pre-existing differences in cycling levels. -->
+<!-- ] -->
 
-The approach assumes that cycling potential against a given national
-increase is always a positive number.
-When only modest increases in cycling are assumed
-(e.g. from 3% to 6% as an overall mode share),
-the pre-existing cycling demographic contributes considerably to the new demographic.
-In more ambitious cycling scenarios the pre-existing distribution matters less.
-This corresponds to the insight that, with sustained investment in overcoming the infrastructural and
-cultural constraints which limit cycle use,
-the long-term potential becomes more important
-than the current rate of cycling.
+<!-- The approach assumes that cycling potential against a given national -->
+<!-- increase is always a positive number. -->
+<!-- When only modest increases in cycling are assumed -->
+<!-- (e.g. from 3% to 6% as an overall mode share), -->
+<!-- the pre-existing cycling demographic contributes considerably to the new demographic. -->
+<!-- In more ambitious cycling scenarios the pre-existing distribution matters less. -->
+<!-- This corresponds to the insight that, with sustained investment in overcoming the infrastructural and -->
+<!-- cultural constraints which limit cycle use, -->
+<!-- the long-term potential becomes more important -->
+<!-- than the current rate of cycling. -->
 
-## Gender equality
+<!-- ## Gender equality -->
 
-The next scenario to be discussed is Gender Equality (*gendereq*). In this
-scenario cycling tends to grow more in areas that already have a high
-rate of cycling. The scenario
-recognizes that this disparity is reduced or absent in
-countries with a high rate of cycling [@Fishman2015].
-The Gender Equality scenario (*gendereq*) builds on such insights
-and is based *observed level of cycling* (*OLC*) from the 2011 Census.
+<!-- The next scenario to be discussed is Gender Equality (*gendereq*). In this -->
+<!-- scenario cycling tends to grow more in areas that already have a high -->
+<!-- rate of cycling. The scenario -->
+<!-- recognizes that this disparity is reduced or absent in -->
+<!-- countries with a high rate of cycling [@Fishman2015]. -->
+<!-- The Gender Equality scenario (*gendereq*) builds on such insights -->
+<!-- and is based *observed level of cycling* (*OLC*) from the 2011 Census. -->
 
-On average in England around three quarters of cycle commuters
-are male, although this varies geographically [@Aldred2015].
-*gendereq* assumes that gender equality is reached in cycling.
-A prerequisite is a model-based estimate of the number of male
-and female cyclists between origin and destinations for
-the observed data.
-This involves splitting the number of cyclists estimated by the model,
-the *Scenario-based Level of Cycling*, into
-male ($SLC(gendereq)_m$) and female ($SLC(gendereq)_f$) components:
+<!-- On average in England around three quarters of cycle commuters -->
+<!-- are male, although this varies geographically [@Aldred2015]. -->
+<!-- *gendereq* assumes that gender equality is reached in cycling. -->
+<!-- A prerequisite is a model-based estimate of the number of male -->
+<!-- and female cyclists between origin and destinations for -->
+<!-- the observed data. -->
+<!-- This involves splitting the number of cyclists estimated by the model, -->
+<!-- the *Scenario-based Level of Cycling*, into -->
+<!-- male ($SLC(gendereq)_m$) and female ($SLC(gendereq)_f$) components: -->
 
-(@) $$ SLC(gendereq) = SLC(gendereq)_m + SLC(gendereq)_f $$
+<!-- (@) $$ SLC(gendereq) = SLC(gendereq)_m + SLC(gendereq)_f $$ -->
 
-More males cycle to work than females in every Local Authority in England
-(Fig. 4). For this reason, the *gendereq* scenario
-is based on the assumption that the rate of cycling amongst
-females increases to match the rate of cycling amongst males.
-Under *gendereq* $SLC(gendereq)_m = OLC_m$, there are no additional male cyclists.
-Note that this is not as simple as $SLC(gendereq)_f = SLC(gendereq)_m$,
-as the absolute number of female and male cyclists will also depend on the gender split of the total commuting population within each OD pair.^[To
-illustrate this point, consider an OD pair in which the total number of female
-commuters is larger than the total number of male commuters.
-In this case, the number of female cyclists would exceed the
-number of male cyclists in the *gendereq* scenario.
-]
-It is the *proportion* of males and females
-per OD pair who cycle that becomes equal, as follows.
+<!-- More males cycle to work than females in every Local Authority in England -->
+<!-- (Fig. 4). For this reason, the *gendereq* scenario -->
+<!-- is based on the assumption that the rate of cycling amongst -->
+<!-- females increases to match the rate of cycling amongst males. -->
+<!-- Under *gendereq* $SLC(gendereq)_m = OLC_m$, there are no additional male cyclists. -->
+<!-- Note that this is not as simple as $SLC(gendereq)_f = SLC(gendereq)_m$, -->
+<!-- as the absolute number of female and male cyclists will also depend on the gender split of the total commuting population within each OD pair.^[To -->
+<!-- illustrate this point, consider an OD pair in which the total number of female -->
+<!-- commuters is larger than the total number of male commuters. -->
+<!-- In this case, the number of female cyclists would exceed the -->
+<!-- number of male cyclists in the *gendereq* scenario. -->
+<!-- ] -->
+<!-- It is the *proportion* of males and females -->
+<!-- per OD pair who cycle that becomes equal, as follows. -->
 
-(@) $$ pcycle(gendereq)_f = pcycle_{m}$$
+<!-- (@) $$ pcycle(gendereq)_f = pcycle_{m}$$ -->
 
-(@) $$ \frac{SLC(gendereq)_f}{tflow_f} = \frac{OLC_m}{tflow_m} $$
+<!-- (@) $$ \frac{SLC(gendereq)_f}{tflow_f} = \frac{OLC_m}{tflow_m} $$ -->
 
-(@) $$ SLC(gendereq)_f = tflow_f * \frac{OLC_m}{tflow_m}$$
+<!-- (@) $$ SLC(gendereq)_f = tflow_f * \frac{OLC_m}{tflow_m}$$ -->
 
-$OLC_m$ is the observed number of male cycle commuters
-(in the 2011 Census in this case),
-$SLC(gendereq)_f$ is number of female cycle commuters in the gender equality scenario, and
-$tflow_m$ and $tflow_f$ are the total numbers of males
-and females in the OD pair respectively.
+<!-- $OLC_m$ is the observed number of male cycle commuters -->
+<!-- (in the 2011 Census in this case), -->
+<!-- $SLC(gendereq)_f$ is number of female cycle commuters in the gender equality scenario, and -->
+<!-- $tflow_m$ and $tflow_f$ are the total numbers of males -->
+<!-- and females in the OD pair respectively. -->
 
-$tflow_m$ and $tflow_f$  are both available at the OD level in the 2011 Census,
-as is the total number of cyclists ($OLC$).  The proportion of cyclists who are male
-in each OD pair ($pmale_(cyclist)$) is not available in the published 2011 datasets.
-The smallest level at which the gender breakdown of cyclists is currently available
-is the zone level ('$pmale_{cyclist}(zone)$'), and we assume that all OD pairs have
-this same proportion of male cyclists. This allows the estimation
-the number of male cycle commuters as $OLC_m = OLC * pmale_{cyclist}(zone)$, so that
+<!-- $tflow_m$ and $tflow_f$  are both available at the OD level in the 2011 Census, -->
+<!-- as is the total number of cyclists ($OLC$).  The proportion of cyclists who are male -->
+<!-- in each OD pair ($pmale_(cyclist)$) is not available in the published 2011 datasets. -->
+<!-- The smallest level at which the gender breakdown of cyclists is currently available -->
+<!-- is the zone level ('$pmale_{cyclist}(zone)$'), and we assume that all OD pairs have -->
+<!-- this same proportion of male cyclists. This allows the estimation -->
+<!-- the number of male cycle commuters as $OLC_m = OLC * pmale_{cyclist}(zone)$, so that -->
 
-(@) $$ SLC(gendereq)_f = OLC * pmale_{cyclist}(zone) *  \frac{tflow_f}{tflow_m} $$
+<!-- (@) $$ SLC(gendereq)_f = OLC * pmale_{cyclist}(zone) *  \frac{tflow_f}{tflow_m} $$ -->
 
-and therefore the total number of trips for gender equality $SLC(gendereq)$ would be
+<!-- and therefore the total number of trips for gender equality $SLC(gendereq)$ would be -->
 
-(@) $$ SLC(gendereq) = OLC_m + SLC(gendereq)_f $$
+<!-- (@) $$ SLC(gendereq) = OLC_m + SLC(gendereq)_f $$ -->
 
-(@) $$ SLC(gendereq) = OLC * pmale_{cyclist}(zone) * (1 + \frac{tflow_f}{tflow_m}) $$
+<!-- (@) $$ SLC(gendereq) = OLC * pmale_{cyclist}(zone) * (1 + \frac{tflow_f}{tflow_m}) $$ -->
 
-```{r, echo=FALSE, fig.cap="Cycling and the gender balance of cycling in England. The choropleth maps illustrate the spatial distribution of the two variables. The scatter plot illustrates the relationship between the two variables cycle commuting (x axis) against the proportion of commuter cyclists who are male (y axis) for all 326 Local Authorities (including Districts) in the UK."}
-grid.raster(readPNG("../figures/las-gender-pcycle.png"))
-```
+<!-- ```{r, echo=FALSE, fig.cap="Cycling and the gender balance of cycling in England. The choropleth maps illustrate the spatial distribution of the two variables. The scatter plot illustrates the relationship between the two variables cycle commuting (x axis) against the proportion of commuter cyclists who are male (y axis) for all 326 Local Authorities (including Districts) in the UK."} -->
+<!-- grid.raster(readPNG("../figures/las-gender-pcycle.png")) -->
+<!-- ``` -->
 
-To illustrate how this method works in practice, imagine an OD pair in which
-50 from a total of 500 people commute by cycle ($tflow = 500; OLC = 50$).
-300 of the total trips in the OD pair are made by males
-($tflow_m = 300$) and 200 by females ($tflow_f = 200$).
-In addition, 70% of commuter cycling in the wider zone is by
-males ($pmale_{cyclist}(zone) = 0.70$). This means that
-an estimated $50 * 0.70 = 35$ cycle commuters are male ($OLC_m = 35$) and
-15 are female ($OLC_f = 15$).
+<!-- To illustrate how this method works in practice, imagine an OD pair in which -->
+<!-- 50 from a total of 500 people commute by cycle ($tflow = 500; OLC = 50$). -->
+<!-- 300 of the total trips in the OD pair are made by males -->
+<!-- ($tflow_m = 300$) and 200 by females ($tflow_f = 200$). -->
+<!-- In addition, 70% of commuter cycling in the wider zone is by -->
+<!-- males ($pmale_{cyclist}(zone) = 0.70$). This means that -->
+<!-- an estimated $50 * 0.70 = 35$ cycle commuters are male ($OLC_m = 35$) and -->
+<!-- 15 are female ($OLC_f = 15$). -->
 
-Applying the formulae presented previously:
+<!-- Applying the formulae presented previously: -->
 
-(@) $$ SLC(gendereq)_f = OLC * pmale_{cyclists}(zone) * (1 + \frac{tflow_f}{tflow_m}) $$
+<!-- (@) $$ SLC(gendereq)_f = OLC * pmale_{cyclists}(zone) * (1 + \frac{tflow_f}{tflow_m}) $$ -->
 
-(@) $$ SLC(gendereq) = 50 * 0.70 * (1 + \frac{200}{300} ) = 58.3 $$
+<!-- (@) $$ SLC(gendereq) = 50 * 0.70 * (1 + \frac{200}{300} ) = 58.3 $$ -->
 
-```{r, echo=FALSE}
-tflow <- 500
-olc <- 50 #  the currect rate of cycling between origin (o) and destination (d)
-tflow_m <- 0.6 # the proportion of all trips o and d by males
-pcyclez_m <- 0.75 # the proportion of cycle trips in the zone/region made by males
-tflow_m <- tflow * tflow_m
-tflow_f <- tflow * (1 - tflow_m)
-olc_m <- olc * pcyclez_m
-olc_f <- olc - olc_m
-pmale_c <- olc_m / tflow_m
-slc_gendereq_f <- tflow_f * pmale_c
-# print(olc_f)
-# print(slc_gendereq_f)
-```
+<!-- ```{r, echo=FALSE} -->
+<!-- tflow <- 500 -->
+<!-- olc <- 50 #  the currect rate of cycling between origin (o) and destination (d) -->
+<!-- tflow_m <- 0.6 # the proportion of all trips o and d by males -->
+<!-- pcyclez_m <- 0.75 # the proportion of cycle trips in the zone/region made by males -->
+<!-- tflow_m <- tflow * tflow_m -->
+<!-- tflow_f <- tflow * (1 - tflow_m) -->
+<!-- olc_m <- olc * pcyclez_m -->
+<!-- olc_f <- olc - olc_m -->
+<!-- pmale_c <- olc_m / tflow_m -->
+<!-- slc_gendereq_f <- tflow_f * pmale_c -->
+<!-- # print(olc_f) -->
+<!-- # print(slc_gendereq_f) -->
+<!-- ``` -->
 
-The increase from 50 cyclists to 58.3 represents an increase
-of 17% from the observed rate of cycling
-in total numbers of cyclists.  All of these extra 8.3
-cyclists are female, giving a new total of 15 + 8.3 = 23.3 female cyclists
-(and still 35 male cyclists).
-Gender equality in cycling has been reached, such that an estimated 11.7%
-of commute trips are made by cycling among both men (35/300)
-and women (23.3 / 200).
+<!-- The increase from 50 cyclists to 58.3 represents an increase -->
+<!-- of 17% from the observed rate of cycling -->
+<!-- in total numbers of cyclists.  All of these extra 8.3 -->
+<!-- cyclists are female, giving a new total of 15 + 8.3 = 23.3 female cyclists -->
+<!-- (and still 35 male cyclists). -->
+<!-- Gender equality in cycling has been reached, such that an estimated 11.7% -->
+<!-- of commute trips are made by cycling among both men (35/300) -->
+<!-- and women (23.3 / 200). -->
 
-## Go Dutch
+<!-- ## Go Dutch -->
 
-The 'Go Dutch' scenario represents the rate of cycling that would occur
-if people had the same propensity to cycle as the Dutch do, for trips of
-the same length and hilliness. It is
-important to note that this is not a 'top down' scenario in which the national
-level of cycling is set to levels found in The Netherlands. The scenario is
-'bottom up' because the proportion of trips being cycled is set per OD pair
-and the end result for any particular region depends on the local distribution
-of trip distances.
-Although the Dutch currently cycle far more frequently than the
-English for short trips, their propensity to cycle still drops rapidly with
-distance, with relatively few utility trips being made beyond around 15 km.
+<!-- The 'Go Dutch' scenario represents the rate of cycling that would occur -->
+<!-- if people had the same propensity to cycle as the Dutch do, for trips of -->
+<!-- the same length and hilliness. It is -->
+<!-- important to note that this is not a 'top down' scenario in which the national -->
+<!-- level of cycling is set to levels found in The Netherlands. The scenario is -->
+<!-- 'bottom up' because the proportion of trips being cycled is set per OD pair -->
+<!-- and the end result for any particular region depends on the local distribution -->
+<!-- of trip distances. -->
+<!-- Although the Dutch currently cycle far more frequently than the -->
+<!-- English for short trips, their propensity to cycle still drops rapidly with -->
+<!-- distance, with relatively few utility trips being made beyond around 15 km. -->
 
-Based on these insights, the essence of the 'Go Dutch' scenario
-is the application of distance decay parameters
-found in the Netherlands to each OD pair in the study area.
+<!-- Based on these insights, the essence of the 'Go Dutch' scenario -->
+<!-- is the application of distance decay parameters -->
+<!-- found in the Netherlands to each OD pair in the study area. -->
 
-In contrast to *govtarget* and *gendereq* scenarios,
-*godutch* is unrelated to the current rate of cycling. The scenario
-thus represents the elimination of localised
-constraints which inhibit cycle use more in some area than others.
-Local cycle use in *godutch* is therefore constrained
-only by trip distances and hilliness.
+<!-- In contrast to *govtarget* and *gendereq* scenarios, -->
+<!-- *godutch* is unrelated to the current rate of cycling. The scenario -->
+<!-- thus represents the elimination of localised -->
+<!-- constraints which inhibit cycle use more in some area than others. -->
+<!-- Local cycle use in *godutch* is therefore constrained -->
+<!-- only by trip distances and hilliness. -->
 
-## E-bikes
+<!-- ## E-bikes -->
 
-This scenario aims to provide insight into how cycling
-could shift with the uptake of electric cycles ('E-bikes').
-The scenario builds on 'Go Dutch' and represents
-a reduction in the degree to which cycle use is
-constrained by trip distances and technology.
-This is the most ambitious and speculative
-scenario presented in this paper.
+<!-- This scenario aims to provide insight into how cycling -->
+<!-- could shift with the uptake of electric cycles ('E-bikes'). -->
+<!-- The scenario builds on 'Go Dutch' and represents -->
+<!-- a reduction in the degree to which cycle use is -->
+<!-- constrained by trip distances and technology. -->
+<!-- This is the most ambitious and speculative -->
+<!-- scenario presented in this paper. -->
 
-The results are
-based on the decision to increase by a small amount the $\beta_1$ distance decay parameter,
-which corresponds to distance as a linear term.
-Specifically, we increased this value by 0.025, as we found
-this to be sufficiently small to avoid generating an
-implausibly high rate of cycling but sufficiently large to create a noticeable effect.
-This allows us to illustrate the type of output that will
-be possible in this model. In future work we plan to
-update this scenario, basing the changes to the distance decay
-parameters on real data from the Dutch National Travel Survey.
-This will build on analysis of the influence of E-bikes on propensity to cycle
-in the Netherlands, research that is being undertaken in parallel to the work
-presented in this paper.
+<!-- The results are -->
+<!-- based on the decision to increase by a small amount the $\beta_1$ distance decay parameter, -->
+<!-- which corresponds to distance as a linear term. -->
+<!-- Specifically, we increased this value by 0.025, as we found -->
+<!-- this to be sufficiently small to avoid generating an -->
+<!-- implausibly high rate of cycling but sufficiently large to create a noticeable effect. -->
+<!-- This allows us to illustrate the type of output that will -->
+<!-- be possible in this model. In future work we plan to -->
+<!-- update this scenario, basing the changes to the distance decay -->
+<!-- parameters on real data from the Dutch National Travel Survey. -->
+<!-- This will build on analysis of the influence of E-bikes on propensity to cycle -->
+<!-- in the Netherlands, research that is being undertaken in parallel to the work -->
+<!-- presented in this paper. -->
 
 # Outputs of the Propensity to Cycle Tool
 
 Because the Propensity to Cycle Tool aims to inform and influence policy, with a launch date in July 2016, it is premature to report on its results in terms of transport planning.
-Instead, this section shows some visual outputs from the tool, to illustrate how the tool could be used. 
+Instead, this section shows some visual outputs from the tool, to illustrate how the tool can be used. 
 
 To demonstrate
 how the scenarios work in practice and to provide an overview of the results,
