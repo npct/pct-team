@@ -517,18 +517,24 @@ creating an area of overlap between two regions that are side-by-side.
 knitr::include_graphics("../figures/pct-frontpage.png")
 ```
 
+\newpage
+
 ## Route allocation and network generation
 
 Flows assigned to the transport network were generated when OD pairs were
 mapped onto the current
 travel network.
 This network-level data generation
-was undertaken by CycleStreets.net (a routing service for
-planning cycle trips).
+was undertaken by CycleStreets.net (a routing service developed by cyclists),
+and the results are illustrated in Fig. 3.
 This, and the aggregation of routes to create the 'route network',
-were the most computationally intensive part of the model.
+were the most computationally intensive part of the PCT data generation process.
 To make these route-allocation and aggregregation processes fast and scalable,
 a number of steps were taken:
+
+```{r, echo=FALSE, fig.cap="Illustration of desire lines shown in Fig. 1 after they have been allocated to the road network by CycleStreets.net. Purple lines are the 'fastest' routes and turquoise routes were the 'quitest' routes."}
+knitr::include_graphics("../figures/od-data-fast-quiet.png")
+```
 
 - Adjustable selection criteria were used to sample the lines before route allocation. Maximum Euclidean distance (`mdist`) and minimum all-mode number of commutes (`mflow`) parameters were set to 15 km and more than 10 commuters. For London, due to the unwieldy size of the route network, only OD pairs with more than 50 commuters were
 selected.^[To illustrate the effectiveness of these selection criteria,
@@ -570,7 +576,7 @@ cyclists' preference for direct routes [@crow2007].
 
 Information about the cycling potential along specific routes between OD pairs provides a useful evidence base for informing where new cycle paths should be built: planners can select the 'top n' routes with the highest cyclin.
 However, even more useful is information about the *aggregate cycling potential* on specific segments on the road network.
-By adding together the overlapping flows from multiple OD pairs a 'route network' of cycling potential can be created. This can result in much higher estimates of cycling potential than the route-allocated OD data alone. This is illustrated in Fig. 3, which shows the rate of cycling allong Otley Road rise from 73 to 296 based on a single OD pair but a much larger absolute rise of 301 to 1133 when all route-allocated OD pairs are considered.
+By adding together the overlapping flows from multiple OD pairs a 'route network' of cycling potential can be created. This can result in much higher estimates of cycling potential than the route-allocated OD data alone. This is illustrated in Fig. 4, which shows the rate of cycling allong Otley Road rise from 73 to 296 based on a single OD pair but a much larger absolute rise of 301 to 1133 when all route-allocated OD pairs are considered.
 For the route allocation process the R function `overline` was written [@lovelace_stplanr_2015].^[Thanks to Barry Rowlingson from the University of Lancaster for assistance developing this function.]
 
 ```{r, echo=FALSE, out.width = '50%', fig.cap="Illustration of route-allocated OD data (left) compared with route network data (right) which was produced by aggregating all overlapping route-aggregated OD pairs, using the 'overline' function from the stplanr R package.", fig.show='hold'}
@@ -693,7 +699,7 @@ women cycle at least as much as men (Pucher et al 2010).
 *gendereq* thus represents
 the elimination of one specific cultural constraint.
 This scenario has the greatest relative impact in areas where
-the rate of cycling is highly gender-unequal (Fig. 4).
+the rate of cycling is highly gender-unequal.
 In absolute terms, cycling increases most in this scenario where cycling
 is already a common mode of transport.
 
@@ -979,22 +985,21 @@ grid.raster(readPNG("../figures/man-nor-output-2.png"))
 
 The difference between the spatial distribution in cycling potential between
 the Government Target (*govtarget*) and Go Dutch
-(*godutch*) scenarios is illustrated in Fig. 6 for Norwich.
-The top 20 OD pairs
-in Norwich in *govtarget* are dominated by the current rate of cycling,
-with the most travelled desire lines projected to continue to be found towards the east of
-the city (this can be explained by the location of the University of
-East Anglia to the east of the city).
+(*godutch*) scenarios is illustrated in Fig. 6 for Leeds.
+The top 6 OD pairs
+in Norwich in *govtarget* are dominated by the current rate of cycling.
+As such, cycle commuting is projected to continue to be most common in the
+North the city (see Fig. 1 for comparison).
 Under *godutch* assumptions, by contrast,
-the pattern of cycling shifts substantially to the west.
+the pattern of cycling shifts substantially to the south of the city.
 The cycling patterns under the *godutch* scenario
 are more representative of short-distance trips across the city overall.
-In both cases the desire lines are focused around Norwich city centre: the region
+In both cases the desire lines are focused around Leeds city centre: the region
 has a mono-centric regional economy, making commute trips beyond around 5 km from the
 centre much less likely to be made by cycling.
 
-```{r, echo=FALSE, fig.cap="Model output illustrating the top 20 most cycled OD pairs in Norwich under Government Target and Go Dutch scenarios."}
-grid.raster(readPNG("../figures/nor-cdp-dutch.png"))
+```{r, echo=FALSE, fig.cap="Model output illustrating the top 20 most cycled OD pairs in Leeds under Government Target and Go Dutch scenarios.",fig.show='hold'}
+knitr::include_graphics(c("../figures/od-gov-leeds.png", "../figures/od-godutch-leeds.png"))
 ```
 
 The equivalent results are shown for the city of Manchester in Fig. 7. This shows that
