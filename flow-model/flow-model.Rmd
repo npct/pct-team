@@ -4,15 +4,15 @@ title: 'The Propensity to Cycle Tool: An open source online system for sustainab
 csl: ../documents/elsevier-harvard.csl
 fontsize: 12pt
 output:
+  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
-  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
   \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
-  \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}} 
+  \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
   \usepackage{caption} \captionsetup[table]{skip=10pt}
 bibliography: ../documents/Transport.bib
 ---
@@ -59,6 +59,7 @@ if(to_install) install.packages(pkgs[to_install])
 
 # To do:
 # Add speed-bumps/speed cameras/cycling priority or remove lanes for motorised traffic
+# Mention how the PCT could be used to create a systematic evidence base
 ```
 
 # Abstract {-}
@@ -87,7 +88,7 @@ is one of the fastest growing modes of transport in large cities such as London,
 New York and Barcelona [@fishman_cycling_2016].
 There is mounting evidence about the external costs of car-dominated
 transport systems [@Newman1999;@Han2008;@Mizutani2011;@Shergold2012],
-and the benefits of cycling [e.g. @Oja2011;@Woodcock2013;@DeNazelle2011],
+and the benefits of cycling [@Oja2011;@Woodcock2013;@DeNazelle2011],
 pushing cycling up the transport policy agenda.
 This is illustrated by the proliferation of cycling investment projects^[Several examples
 of multi-million Euro projects are provided by the
@@ -238,7 +239,7 @@ PSS typically work by presenting evidence about the characteristics and needs
 of study region in an interactive map.
 Central to the utility of PSS is its ability to visualise the impacts of
 alternative scenarios of the future.
-The results of traditional scenario-based models of the future [e.g. @McCollum2009;@Lovelace2011c]
+The results of traditional scenario-based models of the future [@McCollum2009;@Lovelace2011c]
 are typically not presented locally at area, let-alone route-specific levels.
 Online PSS can overcome this issue by using interactive maps to show local manifestations
 of different scenarios [@pettit_online_2013].
@@ -1084,11 +1085,16 @@ grid.raster(readPNG("../figures/model-output.png"))
 
 # Discussion
 
-The flexibility of the PCT enables its use for many applications.
-Because the underlying methods and computer code are open source,
-enabling the PCT to be used as a basis for further work.
-The project is available on [github.com/npct](https://github.com/npct),
-making it easy for others to 'fork' and modify the code [see @lima2014coding].
+In this paper we have outlined a method for estimating and visualising the spatial
+distribution of cycling flows, currently and under various scenarios of the future.
+Inspired by previous approaches to estimating cycling potential [@larsen_build_2013;@Zhang2014]
+and online, interactive planning support systems (PSS) [@pettit_online_2013], the
+PCT tackles the important yet largely unresolved issue
+of how to create a systematic evidence base to prioritise where to build new cycle paths.
+We have presented a couple of illustrative use cases of the PCT which show that the spatial distribution
+of cycling demand is likely to shift as cycling grows. 
+The underlying code is open source (see [github.com/npct](https://github.com/npct)),
+making it easy for others use the project as a basis for further work [@lima2014coding].
 This flexibility
 has been demonstrated by the tool's ability to be deployed in any
 Local Authority (or other administrative area)
@@ -1196,15 +1202,23 @@ building on methods analysing 'school commute' data [@Singleton2014a].
 <!-- enable public engagement in the strategic planning process around -->
 <!-- sustainable transport. -->
 
-Transport policy is a
+Transport planning is a
 complex and contested field [@Banister2008].
 Policy, politics, leadership and vision are key ingredients for sustainable
 urban mobility that computer models alone cannot supply [@Melia2015a].
 The approach described here can assist in this wider context by providing
-new tools for assessing the best available evidence,
-particularly given the open source and freely available nature to the tool.
+new tools for assessing the best available evidence, and, by making the results
+publicly available, encouraging informed debate.
 The PCT thus supports the informed and open transport decision making
-advocated @golub_making_2013, @Tamminga2012 and others.
+advocated [@golub_making_2013;@Tamminga2012].
+<!-- Moreover, by highlighting the importance of 'arterial' routes to key destinations, -->
+<!-- the PCT can help rejuvenate long-standing debates -->
+<!-- such as the re-allocation of road space away from -->
+<!-- private cars [@Jones2014;@Sharples2009;@Black1992]. -->
+Tools such as the PCT can inform the decision of where to construct
+new cycling infrastructure and, more widely,
+strengthen the evidence-base needed for a transition
+towards sustainable transport systems.
 
 ```{r, echo=FALSE}
 # However, we would argue that cycle path quality is not something
@@ -1237,17 +1251,6 @@ advocated @golub_making_2013, @Tamminga2012 and others.
 # visions of the future.
 ```
 
-In conclusion, the PCT is highly policy relevant.
-By identifying specific routes where intervention is expected to be most effective,
-it can help to build business cases for further investment and policy change.
-Moreover, by highlighting the importance of 'arterial' routes to key destinations,
-the PCT can help rejuvenate long-standing debates
-such as the re-allocation of road space away from
-private cars [@Jones2014;@Sharples2009;@Black1992].
-As such, new tools such as the PCT can inform the decision of where to construct
-new cycling infrastructure and, more widely,
-strengthen the evidence-base needed for a transition
-towards sustainable transport systems.
 
 ```{r, echo=FALSE}
 # # Acknowledgements:
