@@ -305,6 +305,7 @@ The PCT is, to the authors' knowledge, the first online and interactive planning
 # Data and methods
 
 This section describes the data and methods that generate the input data for the PCT.
+This is summarised in Fig. 1 and described in detail in the Appendix.
 Central to the PCT is origin-destination (OD) data recording the travel flow between administrative zones.
 Combined with geographical data on the coordinates of the population-weighted centroid of each zones,
 these can be represented as
@@ -322,7 +323,12 @@ OD data into geographic objects and to automate the route allocation work [@love
 # **stplanr**. See [github.com/Robinlovelace/stplanr/](https://github.com/Robinlovelace/stplanr/blob/master/R/gFlow.R).]
 ```
 
-Tables 1 and 2 illustrate the two tables that comprise the OD data. Figure 1
+```{r, echo=FALSE, fig.cap="Flow diagram illustrating the input data and processing steps used to create the input data used by the PCT."}
+knitr::include_graphics("../figures/160229x8_NatModel_MSOA.pdf")
+```
+
+
+Tables 1 and 2 illustrate the two tables that comprise the OD data. Figure 2
 shows a visualisation of the output, straight lines with attributes for
 each OD pair in both directions. These are also referred to as 'desire lines' when
 represented as straight lines on the map [see @Tobler1987;@Chan2003].
@@ -448,7 +454,7 @@ desktop computers, albeit with large (16 GB+) amounts of RAM.
 
 A potential limitation of this single regional geographic level is
 that 'edge zones', straddling two
-or more regions (Fig. 2), can become marginalised.
+or more regions, can become marginalised.
 To overcome this issue the 'build' scripts were written to
 enable custom regions. London, for example,
 was 'built' at 2 different levels, one covering the entirety of the city
@@ -513,7 +519,7 @@ creating an area of overlap between two regions that are side-by-side.
 # visualisation.
 ```
 
-```{r cuas-lads, echo=FALSE, fig.cap="The front page of the Propensity to Cycle Tool for England, showing the regional units used load and visualise the data. The tool itself initiates when one of the regions (such as West Yorkshire, shown) is selected."}
+```{r cuas-lads, eval=FALSE, echo=FALSE, fig.cap="The front page of the Propensity to Cycle Tool for England, showing the regional units used load and visualise the data. The tool itself initiates when one of the regions (such as West Yorkshire, shown) is selected."}
 knitr::include_graphics("../figures/pct-frontpage.png")
 ```
 
@@ -950,6 +956,8 @@ In future research it could also be implemented for other scenarios.
 Because the Propensity to Cycle Tool aims to inform and influence policy, with a launch date in July 2016, it is premature to report on its results in terms of transport planning.
 Instead, this section shows some visual outputs from the tool, to illustrate how the tool can be used. 
 
+## Trip distance distributions
+
 To demonstrate
 how the scenarios work in practice and to provide an overview of the results,
 Fig. 5 illustrates the observed level of cycling
@@ -963,7 +971,10 @@ where cycle trips above 7.5 km observed from 2011 census data are
 comparatively rare (Fig. 5).
 This visual representation of the data could be used to highlight that both cities have high cycling potential: because a large proportion of trips are within cyclable distance, there is a strong case that cycling investment can be justified.
 
-```{r, echo=FALSE,eval=FALSE}
+```{r, echo=FALSE, fig.cap="Trip frequency-distance distributions of observed and scenario-based levels of cycling from PCT model runs for the city of Manchester (left) and Norwich (right)."}
+grid.raster(readPNG("../figures/man-nor-output-2.png"))
+```
+
 Note that although Manchester and Norwich have very
 different initial levels of cycling, the final level estimated from the
 *godutch* and *ebike* scenarios there are similar. This is because
@@ -977,17 +988,14 @@ results in a relatively high absolute increase in cycling locally. In Norwich,
 by contrast, the current rate of cycling is considerably greater than the
 national average, so the *govtarget* scenario represents less than a doubling in
 cycling.
-```
 
-```{r, echo=FALSE, fig.cap="Results of observed and scenario-based levels of cycling from PCT model runs for the city of Manchester (left) and Norwich (right)."}
-grid.raster(readPNG("../figures/man-nor-output-2.png"))
-```
+## The shifting spatial distribution of cycling demand
 
 The difference between the spatial distribution in cycling potential between
 the Government Target (*govtarget*) and Go Dutch
 (*godutch*) scenarios is illustrated in Fig. 6 for Leeds.
-The top 6 OD pairs
-in Norwich in *govtarget* are dominated by the current rate of cycling.
+The top 6 OD pairs (6 was used to allow focus on the city centre)
+in Leeds in *govtarget* are dominated by the current rate of cycling.
 As such, cycle commuting is projected to continue to be most common in the
 North the city (see Fig. 1 for comparison).
 Under *godutch* assumptions, by contrast,
@@ -998,8 +1006,8 @@ In both cases the desire lines are focused around Leeds city centre: the region
 has a mono-centric regional economy, making commute trips beyond around 5 km from the
 centre much less likely to be made by cycling.
 
-```{r, echo=FALSE, fig.cap="Model output illustrating the top 20 most cycled OD pairs in Leeds under Government Target and Go Dutch scenarios.",fig.show='hold'}
-knitr::include_graphics(c("../figures/od-gov-leeds.png", "../figures/od-godutch-leeds.png"))
+```{r, echo=FALSE, fig.cap="Model output illustrating the top 6 most cycled OD pairs in Leeds under Government Target and Go Dutch scenarios."}
+knitr::include_graphics("../figures/od-scens-leeds.png")
 ```
 
 The equivalent results are shown for the city of Manchester in Fig. 7. This shows that
@@ -1020,13 +1028,13 @@ the travel network. 'Fastest' and
 these routes can be important from a transport planning perspective.
 Fig. 8 illustrates this by showing route in Manchester with the highest cycling
 potential under the *govtarget* scenario.
-The 'quietest' route is substantially longer: 2.8 km
+The 'quietest' route is substantially longer: 2.6 km
 (as shown by clicking on the line). The 'fastest'
 route is more direct (with a route distance of 2.3 km) but passes
 along Trinity Way (the A6042), a busy dual carriage way.
 The PCT (with the 'Straight Lines' option) tells us that Euclidean distance
 associated with this OD pair is 1.6 km, resulting in circuity values of
-1.44 and 1.75 respectively. We refer to the difference between the 'fastest'
+1.4 and 1.6 respectively. We refer to the difference between the 'fastest'
 and 'quietest' routes as the 'quietness diversion factor' ($qdf = 1.2$
 in this case).
 
@@ -1042,11 +1050,18 @@ The decline in cycling propensity with distance supports this approach.
 The faster decline for women and older people, combined with their greater
 preference for protected infrastructure, highlights the importance of
 providing direct and safe routes to encourage cycling amongst
-groups who currently cycle the least.
+groups who currently cycle the least. 
 
 ```{r, echo=FALSE, fig.cap="Close-up of the 'fastest' and 'quietest' routes from CycleStreets.net of the OD pair with highest cycling potential under the *govtarget* scenario in Manchester. This provides an indication of the local 'quietness diversion factor'"}
-grid.raster(readPNG("../figures/fast-quiet-man.png"))
+grid.raster(readPNG("../figures/man-trinity-way.png"))
 ```
+
+Note also that Fig. 8 demonstrates
+another feature of the PCT's interactive map: the ability to turn the transparency
+of the colours representing the area level of cycling on or off, allowing users to
+see more clearly the basemap. Following user testing a range of additional
+basemaps were added.
+Changing the basemap can show how latent demand for cycling relates to current cycle infrastructure (with the OpenCycleMap basemap), levels of deprivation (with the 'IMD' layer) and road width for space re-allocation for cycle and walking paths (with the satellite basemap) (see [pct.bike](http://pct.bike) to test these).
 
 ## The Model Output tab
 
@@ -1067,18 +1082,16 @@ grid.raster(readPNG("../figures/model-output.png"))
 The flexibility of the PCT methodology
 enables its use for applications that go beyond those described
 in this paper. Because the underlying
-methods and computer code are transparent and open source, the PCT can be readily used as a platform for further research and applied transport planning.
+methods and computer code are transparent and open source, the PCT can be readily used as a platform for further research and applied transport planning. We encourage practitioners
+to 'fork' the project [@lima2014coding] and modify it for their own work.
 This flexibility
 has been demonstrated by the tool's ability to be deployed in any
 Local Authority (or other administrative area)
 in England. Extensibility has been demonstrated by the addition of
-new scenarios. Three user testing sessions have helped identify shorter-term
-changes to the interface (such as 'freeze scope') and longer-term needs
-(such as the use of additional data sources).
+new scenarios, and the addition of new features to the tool following user feedback. 
 
-In addition to the scenarios representing shorter ('Government Target') and
-longer (e.g. 'Go Dutch') time-scales, additional scenarios could be developed to illustrate a wider range of 'cycling futures'. These could include medium-term targets between Government Target and Go Dutch and local-specific scenarios such as 'Go York', whereby the rate of cycling reflects that would be attained if all people in England cycled as much as people do in York (where 12% of commuters cycle to work), accounting for hilliness and distance.
-Such developments could enhance the PCT's ability to provide an evidence base to support local knowledge.
+The PCT could be extended in various directions. Aditional scenarios could be developed to illustrate a wider range of 'cycling futures', including medium-term and local targets such as 'Go York' (where 12% of commuters cycle to work).
+<!-- Such developments could further enhance the PCT's ability to provide an evidence base to support local knowledge. -->
 Future (more sophisticated) versions of the PCT could provide a visual evidence base to help answer the following question [see @Sloman2014; @Aldred2014]:  
 Should cycling investment prioritise
 areas of relatively low current propensity but high potential, or those of relatively
@@ -1097,13 +1110,11 @@ Based on this understanding, the PCT has the potential to represent spatial
 *and* demographic shifts in cycling as it grows. An indication of how the
 pattern of cycling could shift to new transport corridors in the
 hypothetical future represented by 'Go Dutch' was illustrated with examples
-from Norwich and Manchester. These showed
+from Leeds and Manchester. These showed
 a shifting cycling 'centre of gravity', to areas with high latent demand but
 low current rates of cycling.
-This feature of the PCT was
-described as 'very useful' by transport planners during user testing,
-coinciding with the finding that 'visioning' has great potential
-to improve transport planning for the long-term [@Tight2011].
+This feature of the PCT suggests it can be used for 'visioning', a method that
+has been proposed to encourage transport planners to consider long-term futures [@Tight2011].
 
 An evaluation of the PCT *after* it has been launched (July 2016) and used by practitioners will be needed to assess the extent to which the approach assists transport-land use planners.
 This will test our hypothesese that the tool can help translate national targets into local aspirations (as illustrated by the *govtarget* scenario), set local targets (by indicating what the potential is relative to other regions),^[Targets have proliferated in recent years. For instance, an official
@@ -1163,19 +1174,18 @@ building on methods analysing 'school commute' data [@Singleton2014a].
 
 - The extension of the tool to take into account additional data such as the location of new developments and road traffic speed and volumes. This work could build on recently developed GIS for route planning in relation to safety and air pollution [@Farrell_Weichenthal_Goldberg_Hatzopoulou_2015;@larsen_build_2013].
 
-The PCT's open source license allows others to
-modify it for their own needs. We encourage practitioners
-to 'fork' the project [@lima2014coding],
-to modify the scenarios, input data and display of the results to suit
-local contexts. This could, for example, help to visualise city-level targets for
-the proportion cycling by a certain year and
-which will vary considerably from place to place in ways not yet well understood.
-Modifying the code base would also allow transport planners
-to decide on and create the precise set of online tools that are most useful for their work.
-Building on participatory models at the macro-level [@Macmillan2014], extensions
-to the model could include using the PCT methodology to
-enable public engagement in the strategic planning process around
-sustainable transport.
+<!-- The PCT's open source license allows others to -->
+<!-- modify it for their own needs. , -->
+<!-- to modify the scenarios, input data and display of the results to suit -->
+<!-- local contexts. This could, for example, help to visualise city-level targets for -->
+<!-- the proportion cycling by a certain year and -->
+<!-- which will vary considerably from place to place in ways not yet well understood. -->
+<!-- Modifying the code base would also allow transport planners -->
+<!-- to decide on and create the precise set of online tools that are most useful for their work. -->
+<!-- Building on participatory models at the macro-level [@Macmillan2014], extensions -->
+<!-- to the model could include using the PCT methodology to -->
+<!-- enable public engagement in the strategic planning process around -->
+<!-- sustainable transport. -->
 
 Transport policy is a
 complex and contested field [@Banister2008].
@@ -1197,15 +1207,15 @@ advocated @golub_making_2013, @Tamminga2012 and others.
 # of 'telecommuting', for example, based on Finnish data [@Helminen2007].
 ```
 
-The flexibility of the approach outlined in this paper means that the
-PCT can be seen not only as a tool but as a framework for strategic
-transport planning.
-Under this interpretation the case study of cycling in England is
-just one of many potential applications.
-Still, a number of the lessons learned throughout the
-development and user testing of the tool are generalisable internationally.
-Indeed, one of the major motivations for writing this paper is to showcase the method
-for use by others to avoid 'reinventing the wheel' to help answer the common question of where to build.
+<!-- The flexibility of the approach outlined in this paper means that the -->
+<!-- PCT can be seen not only as a tool but as a framework for strategic -->
+<!-- transport planning. -->
+<!-- Under this interpretation the case study of cycling in England is -->
+<!-- just one of many potential applications. -->
+<!-- Still, a number of the lessons learned throughout the -->
+<!-- development and user testing of the tool are generalisable internationally. -->
+<!-- Indeed, one of the major motivations for writing this paper is to showcase the method -->
+<!-- for use by others to avoid 'reinventing the wheel' to help answer the common question of where to build. -->
 
 ```{r, echo=FALSE}
 # Future work will focus on enabling practitioners to add
