@@ -1,0 +1,13 @@
+---
+title: 'Cycling and transport policy: embedding active travel in every stage of the planning process'
+date: "`r Sys.Date()`"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Abstract
+
+The humble bicycle, alongside alternative cycles such as tricycles, quadricycles and handcycles, has received much political attention and funding in large cities such as Barcelona, New York and London. Yet active travel is still not central to transport planning, despite the well-known benefits. This talk will focus on how cycling can fit into the wider policy agendas related to the digital revolution, participatory democracy, human health and long-term environmental change. Using real world examples it will conclude with insight into how new technologies, used in parallel with new priorities, can help create a transport system that is safe, enjoyable and accessible for all.

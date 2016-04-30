@@ -1,0 +1,13 @@
+---
+title: 'Tools of the trade: adapting 20th Century transport models for 21st Century challenges'
+date: "`r Sys.Date()`"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Abstract
+
+Transport models have an enormous influence on transport plans, with major impacts on the attractiveness of active travel. Yet these models were developed in a different era, when the aims of transport policy were very different from what they are today. This paper provides a brief review of what transport models are, demystifying the methods and software underlying their operation. The review finds that transport models provide useful and relatively objective information to public and private sector researchers but that their public utility is hindered by proprietary licenses, inaccessibility to the public and emphasis on unsustainable modes. Overall it seems that transport models are not fit for solving 21^st^ Century issues: they reduce the 'option space' visible to policy makers and perpetuate the 1950s view of a car dominated future, rather than illustrating what is possible. Opportunities for the future are demonstrated with reference to a new breed of open source, citizen contributed and publicly accessible transport planning tools. Rather than start from scratch, the paper explores how methods and concepts from traditional transport models, such as 'predict and provide' can be repurposed for active travel planning. The paper concludes with insight into how the transport planning tools of the 20^th^ Century can be upgraded, and in some cases replaced, so they can tackle the challenges of the 21^st^. 
