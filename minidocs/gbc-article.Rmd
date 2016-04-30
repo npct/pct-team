@@ -2,7 +2,7 @@
 title: 'The Propensity to Cycle Tool: a new resource for designing cycling plans'
 author: "Robin Lovelace"
 date: "26 April 2016"
-output: pdf_document
+output: word_document
 bibliography: ../documents/Transport.bib
 ---
 
