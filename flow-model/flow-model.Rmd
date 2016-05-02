@@ -4,12 +4,12 @@ title: 'The Propensity to Cycle Tool: An open source online system for sustainab
 csl: ../documents/elsevier-harvard.csl
 fontsize: 12pt
 output:
-  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
+  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
   \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
   \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
@@ -47,7 +47,7 @@ if(to_install) install.packages(pkgs[to_install])
 # Bibliography dl
 # download.file("https://github.com/citation-style-language/styles/raw/master/elsevier-harvard.csl", "documents/elsevier-harvard.csl")
 # generated via https://github.com/ZotPlus/zotero-better-bibtex
-download.file("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
+# download.file("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
 # # This is from the group 'energy-and-transport': https://www.zotero.org/groups/energy-and-transport/items/collectionKey/TUEXXIV4
 # b1 <- readLines("references.bib")
 # b2 <- readLines("documents/Transport.bib")
