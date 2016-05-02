@@ -76,7 +76,7 @@ Using origin-destination data for commuter trips in England, the PCT estimates
 localised 'cycling futures'.
 Scenarios including 'Go Dutch' and 'Ebikes' (which explored the impact of electrical cycles on cycling uptake) were developed and visualised for case study cities.
 The PCT's open source license allows others to develop new scenarios, e.g. for other cities, regions and countries where new investments in cycling are planned.
-We conclude with a discussion of how new interactive and online tools such as the PCT could help make transport planning a more open and community-led process.
+We conclude with a discussion of how new interactive and online tools such as the PCT could help make transport planning a more open and citizen led process.
 
 # Introduction
 
@@ -1206,14 +1206,13 @@ complex and contested field [@banister_sustainable_2008].
 Policy, politics, leadership and vision are key ingredients for sustainable
 urban mobility that computer models alone cannot supply [@melia_urban_2015].
 The approach described here can assist in this wider context by providing
-new tools for assessing the best available evidence, and, by making the results
-publicly available, encouraging informed debate.
-The PCT thus supports the informed and open transport decision making
-advocated [@golub_making_2013;@tamminga_design_2012].
-Tools such as the PCT can inform the decision of where to construct
-new cycling infrastructure and, more widely,
-strengthen the evidence-base needed for a transition
-towards sustainable transport systems.
+new tools for exploring the best available evidence.
+By providing transport authorities, campaign groups and the public with access to the same evidence base,
+we hypothesise that tools such as the PCT can encourage informed and rigorous debate,
+as advocated by @golub_making_2013.
+In conclusion, although the PCT aimed to inform the narrow question of where to construct
+new infrastructure for cycling, it relates to the wider
+question of how to create an evidence-base for designing sustainable transport plans.
 
 <!-- Moreover, by highlighting the importance of 'arterial' routes to key destinations, -->
 <!-- the PCT can help rejuvenate long-standing debates -->
