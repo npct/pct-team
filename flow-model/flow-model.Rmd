@@ -76,7 +76,7 @@ Using origin-destination data for commuter trips in England, the PCT estimates
 localised 'cycling futures'.
 Scenarios including 'Go Dutch' and 'Ebikes' (which explored the impact of electrical cycles on cycling uptake) were developed and visualised for case study cities.
 The PCT's open source license allows others to develop new scenarios, e.g. for other cities, regions and countries where new investments in cycling are planned.
-We conclude with a discussion of how new interactive and online tools such as the PCT could contribute enable transport planning to become a more open and community-led process.
+We conclude with a discussion of how new interactive and online tools such as the PCT could help make transport planning a more open and community-led process.
 
 # Introduction
 
