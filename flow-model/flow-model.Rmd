@@ -47,7 +47,7 @@ if(to_install) install.packages(pkgs[to_install])
 # Bibliography dl
 # download.file("https://github.com/citation-style-language/styles/raw/master/elsevier-harvard.csl", "documents/elsevier-harvard.csl")
 # generated via https://github.com/ZotPlus/zotero-better-bibtex
-download.file("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
+# download.file("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
 # # This is from the group 'energy-and-transport': https://www.zotero.org/groups/energy-and-transport/items/collectionKey/TUEXXIV4
 # b1 <- readLines("references.bib")
 # b2 <- readLines("documents/Transport.bib")
@@ -93,9 +93,10 @@ There is mounting evidence about the external costs of car-dominated
 transport systems [@newman_costs_1999;@han_assessment_2008;@mizutani_estimation_2011;@shergold_rural_2012],
 and the benefits of cycling [@oja_health_2011;@woodcock_health_2013;@de_nazelle_improving_2011],
 pushing cycling up the transport policy agenda.
-In this context there is growing interest in investing in cycling infrastructure, including in countries
-with historically low rates of cycling
-[@buehler_bikeway_2016].^[Several examples
+In this context there is growing interest, and in some cases investment,
+in cycling infrastructure, including in countries
+with historically low rates of cycling.^[
+Several examples
 of multi-million Euro projects are provided by the
 [European Cyclist' Federation](http://www.ecf.com/advocary/eu-funding-2/examples-of-cycling-projects-co-funded-by-the-eu/), the
 [FIA Foundation](http://www.unep.org/transport/sharetheroad/PDF/SharetheRoadReportweb.pdf) and the
@@ -104,22 +105,19 @@ Another illustration of increased interest in cycling investment is provided by
 the proliferation of publicly subsidized 'bike share'
 [@obrien_mining_2014], which can be viewed in an interactive map at
 [bikes.oobrien.com](http://bikes.oobrien.com).
-There has been little academic research on the proportion of transport budgets
-allocated to cycling worldwide, hence the use of resources from
-NGOs.
 ]
 
-High-quality infrastructure can play a key role in cycling uptake [@parkin_cycling_2012].
-Off-road cycle paths, for example, can help make cycling a safe, accessible and convenient
-option for people of all ages and abilities [@heinen_changes_2015].
-Further, modified cycles such as quadricycles and handcycles can enable independent mobility for disabled people [@aldred_transport:_2008], where appropriate infrastructure allows.
+Providing high-quality infrastructure can play a key role in cycling uptake [@parkin_cycling_2012].
+Off-road cycle paths, for example, have been found to be associated with an increased
+share of commute trips made by cycling locally [@heinen_changes_2015].
+Overall there is strong evidence from dozens of studies linking cycling infrastructure to an increased rate of cycling [@buehler_bikeway_2016].
+But where should this infrastructure be built?
+This paper seeks to demonstrate the potential of online, evidence-based tools to help
+answer this question, with reference to the Propensity to Cycle Tool (PCT).
+The PCT is an online planning support system funded by the UK's Department for Transport
+to map cycling potential (Department for Transport, 2015).
 
-
-But where should this infrastructure be built? 
-And where are local policy interventions --- such as reducing speed limits, enforcing road traffic laws, creating cycle hire schemes, providing free cycle training and reallocating road space for walking and cycling --- likely to have the greatest impact?
-This paper seeks to demonstrate a reproducible and accessible methodology for answering such questions with reference to the Propensity to Cycle Tool (PCT).
-The PCT is an online planning support system funded by the UK's Department for Transport, the primary aim of which is to map cycling potential, to optimise infrastructure investments and other cycling interventions (Department for Transport, 2015).
-Beyond describing the Propensity to Cycle Tool, the wider aim of the paper is to illustrate and discuss the potential for online mapping technology to provide a publicly available evidence-base for sustainable transport planning.
+<!-- And where are local policy interventions --- such as reducing speed limits, enforcing road traffic laws, creating cycle hire schemes, providing free cycle training and reallocating road space for walking and cycling --- likely to have the greatest impact? -->
 
 ```{r, echo=FALSE}
 # As such, rather than focus on the specific policy and geographical context of the PCT's development, we endeavour to present the tool in a generalisable way.
