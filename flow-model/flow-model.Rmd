@@ -47,7 +47,7 @@ if(to_install) install.packages(pkgs[to_install])
 # Bibliography dl
 # download.file("https://github.com/citation-style-language/styles/raw/master/elsevier-harvard.csl", "documents/elsevier-harvard.csl")
 # generated via https://github.com/ZotPlus/zotero-better-bibtex
-# download.file("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
+download.file("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
 # # This is from the group 'energy-and-transport': https://www.zotero.org/groups/energy-and-transport/items/collectionKey/TUEXXIV4
 # b1 <- readLines("references.bib")
 # b2 <- readLines("documents/Transport.bib")
@@ -64,18 +64,21 @@ if(to_install) install.packages(pkgs[to_install])
 
 # Abstract {-}
 
-Encouraging cycling is an increasingly common objective in transport planning institutions worldwide. 
+Getting people cycling is an increasingly common objective in transport planning institutions worldwide. 
 Evidence shows that high-quality infrastructure 
 can boost local cycling rates.
-It is important for interventions to happen in appropriate places, such as along
-'desire lines' of high latent demand, for new cycle paths and other 'space for cycling' policies to be effective.
-This creates the need for tools to decide where such interventions are most needed. 
+Yet for infrastructure and other 'space for cycling' measures to be effective,
+it is important to intervene in the right places, such as along desire lines of high latent demand,
+creating the need for tools to help answer the question 'where to build?'. 
 This paper describes the context, design and potential applications of such a tool.
-The Propensity to Cycle Tool (PCT) is an online, interactive planning support system to explore and map cycling potential under different scenarios of the future (see [pct.bike](http://pct.bike/)).
-Using origin-destination data for commuter trips in England, the PCT estimates
-localised 'cycling futures'.
-Scenarios including 'Go Dutch' and 'Ebikes' (which explored the impact of electrical cycles on cycling uptake) were developed and visualised for case study cities.
-The PCT's open source license allows others to develop new scenarios, e.g. for other cities, regions and countries where new investments in cycling are planned.
+The Propensity to Cycle Tool (PCT) is an online, interactive planning support system which has
+been developed to to explore and map cycling potential across England
+(see [pct.bike](http://pct.bike/)).
+The PCT is based on origin-destination data, which it uses to model and visualise
+the rate of cycling use at area, desire line, route and route network levels,
+currently and under a range of 'cycling futures', which represent different levels of ambition.
+Scenarios including 'Go Dutch' and 'Ebikes' (which explored the impact of electric cycles on cycling uptake) were developed and visualised.
+The PCT's use of open source software enables others to create alternative scenarios, for example to represent the route network capacity implications of acheiving local cycling targets and could facilitate its deployment in new cities and countries where origin-destination data is available.
 We conclude with a discussion of how new interactive and online tools such as the PCT could help make transport planning a more open and citizen led process.
 
 # Introduction
@@ -90,22 +93,21 @@ There is mounting evidence about the external costs of car-dominated
 transport systems [@newman_costs_1999;@han_assessment_2008;@mizutani_estimation_2011;@shergold_rural_2012],
 and the benefits of cycling [@oja_health_2011;@woodcock_health_2013;@de_nazelle_improving_2011],
 pushing cycling up the transport policy agenda.
-This is illustrated by the proliferation of cycling investment projects^[Several examples
+In this context there is growing interest in investing in cycling infrastructure, including in countries
+with historically low rates of cycling
+[@buehler_bikeway_2016].^[Several examples
 of multi-million Euro projects are provided by the
 [European Cyclist' Federation](http://www.ecf.com/advocary/eu-funding-2/examples-of-cycling-projects-co-funded-by-the-eu/), the
 [FIA Foundation](http://www.unep.org/transport/sharetheroad/PDF/SharetheRoadReportweb.pdf) and the
 [World Cycling Atlas](http://www.worldwidecyclingatlas.com/).
+Another illustration of increased interest in cycling investment is provided by
+the proliferation of publicly subsidized 'bike share'
+[@obrien_mining_2014], which can be viewed in an interactive map at
+[bikes.oobrien.com](http://bikes.oobrien.com).
 There has been little academic research on the proportion of transport budgets
 allocated to cycling worldwide, hence the use of resources from
-NGOs here.
+NGOs.
 ]
-and publicly subsidized 'bike share' schemes
-[@obrien_mining_2014].^[An
-interactive web map associated with @obrien_mining_2014
-illustrates the distribution of many of the
-largest
-bike share schemes worldwide. See
-[bikes.oobrien.com](http://bikes.oobrien.com).]
 
 High-quality infrastructure can play a key role in cycling uptake [@parkin_cycling_2012].
 Off-road cycle paths, for example, can help make cycling a safe, accessible and convenient
