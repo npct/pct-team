@@ -129,20 +129,22 @@ to map cycling potential (Department for Transport, 2015).
 
 A number of factors influence
 the attractiveness of cycling for everyday trips [@pucher_infrastructure_2010].
-Factors over which decision-makers have some control, as opposed to national policies such as 'strict liability' [@fedtke_strict_2003], are primarily related to the transport network.
-A wide range of measures under the banner 'space for cycling' has been proposed to make cycling more attractive [@parkin_planning_2015].
-These include reducing speed limits, creating car free zones and improving the urban realm (ibid.). However, the intervention that has received the most attention has been the construction of new cycle paths. With devolved transport budgets, local and regional authorities can create and influence the design of strategic cycling networks. Design options include the width [@wegman_urban_1979;@pikora_developing_2002], quality [@heath_effectiveness_2006], directness  [@crow_design_2007] and geographic location of the paths.
+There is a wide range of interventions related to infrastructure which can be grouped the banner 'space for cycling' [@parkin_planning_2015].
+These include reducing speed limits, implementing car free zones and improving the urban realm.
+However, the intervention that has received the most attention has been the construction of new cycle paths. With devolved transport budgets, the design of cycling networks is one policy lever over which local authorities have some control.
+Design options include the width [@wegman_urban_1979;@pikora_developing_2002], quality [@heath_effectiveness_2006], directness  [@crow_design_2007] and geographic location of the paths.
 Much evidence and guidance has been produced about the design of cycle paths [e.g. @transport_for_london_london_2015;@welsh_government_guidance_2014].
 Yet little work has explicitly tackled the question of where this high quality infrastructure should be built
 [@aultman-hall_analysis_1997;@minikel_cyclist_2012].
-The PCT focusses explicitly on the question of *where* to build rather than *what* to build.
+The PCT focusses explicitly on the question of *where* to build rather than *what* to build (although it does provide evidence on future capacity for different route segments, which is related to width).
 
 A wider issue related to the broader sustainable urban mobility question is that the tools and concepts within the 'predict and provide' paradigm have limited capacity to inform 'sustainable mobility' policies [@naess_transport_2014].
 In this context, the other line of research linked to the PCT relates to Planning Support Systems (PSS), interactive tools to assist the planning process [@klosterman_what_1999]. The subsequent review of the associated literature puts the tool in the wider context of emerging tools for transport planning.
 
 ## Research into cycling potential 
 
-Previous research has explored the impact of infrastructure on cycling, as outlined in the previous section. A major policy challenge is how to 'operationalise' this body of knowledge, to help planners prioritise where to invest. This research gap was described by
+Previous research has explored the impact of infrastructure on cycling, as outlined in the previous section. A major policy challenge is how to 'operationalise' this body of knowledge, to help planners prioritise where to invest.
+This research gap was described by
 @larsen_build_2013, who identified an "absence of research into how 
 to  systematically  prioritize  and  locate  facilities  that  are  to  be  built".
 There is, however, an emerging literature exploring cycling potential.
@@ -154,9 +156,9 @@ fit into three categories depending on the level of the input data used:
 
 - Area-based measures are based primarily on data at the level of administrative zones. Outputs from these measures can assist with the location of site-specific transport infrastructure such as cycle parking.
 
-- Individual-based measures are based on individual level survey data, typically a household travel survey. These measures can help target specific groups, e.g. through tailored cycle training schemes, but are not always geographically specific.
+- Individual-based measures are based on individual level survey data, typically a household travel survey. These measures can help target specific groups, e.g. through tailored cycle training schemes, but are not always geographically specific. These measures tend to identify specific demographic groups seen as ‘near-market’ due to, for instance, their professional role, age and gender.
 
-- Route-based measures use origin-destination data which can be used to create 'desire lines' and (using route allocation) estimates of the potential demand at each point on the road network.
+- Route-based measures use origin-destination data which can be used to create 'desire lines' and (using route allocation) estimates of existing and potential demand at each point on the road network.
 
 This work is reviewed in relation to the PCT below and summarised in Table 1.
 
@@ -176,10 +178,10 @@ The resulting heat map was used to recommend the construction or upgrade of cycl
 developed Permeability Assessment Tool (PAT).
 The PAT works by combining geographical data, including the location of popular destinations
 and existing transport infrastructure, with on-site audit data of areas that have
-been shortlisted. Unlike the prioritization index of Larsen et al. (2013) and the PCT, which are primarily aimed at informing a strategic cycling network, the results of the PAT are designed to guide smaller, site specific interventions such as 'contraflow' paths and new traffic signals to allow cyclists greater freedom than motorists.
+been shortlisted. Unlike the prioritization index of Larsen et al. (2013), which is primarily aimed at informing a strategic cycling network, the results of the PAT are designed to guide smaller, site specific interventions such as 'contraflow' paths and cyclist priority traffic signals.
 
-At the opposite end of the scale spectrum, @parkin_estimation_2008 created a regression model, operating at the level of wards, to estimate the proportion of commuter trips cycled across England and Wales.
-Ethnic minorities, low income, road defects, rainfall and hills were all associated with low levels of cycling, leading to the conclusion that policy makers must engage with a mixture of social and physical barriers to effectively promote cycling.
+At the opposite end of the scale spectrum, @parkin_estimation_2008 created a regression model to estimate the proportion of commuter trips cycled across wards in England and Wales.
+Ethnic minorities, low income, road defects, rainfall and hills were all associated with low levels of cycling, leading to the conclusion that policy makers must engage with a mixture of social and physical barriers to effectively promote cycling, with the implication that some areas are more likely to respond to investment than others.
 
 <!-- ### Individiual-based measures of cycling potential -->
 
@@ -223,10 +225,9 @@ print(xt, comment = FALSE, include.rownames = FALSE,  hline.after = 0:nrow(dft),
 
 ## Planning support systems
 
-Planning Support 
-Systems (PSS) have received increasing attention over nearly two decades
-as a method to encourage evidence-based
-policy in land-use planning [e.g. @klosterman_what_1999].
+As discussed above, in general tools to identify cycling potential have been created on an ad hoc basis, and are not freely available. The PCT instead draws on the tradition of Planning Support Systems (PSS) to create an interactive map that can be used both by planners and by interested members of the public.
+
+PSS were initially developed to encourage evidence-based policy in land-use planning [e.g. @klosterman_what_1999].
 PSS have more recently been applied transport planning.
 In this context PSS is a tool
 "that systematically introduces relevant (spatial) information to a
