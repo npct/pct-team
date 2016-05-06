@@ -299,6 +299,11 @@ The PCT tackles this issue by estimating rate of cycling locally under different
 
 - Its level of accessibility. The tool is publicly available on-line and developers are encourage to modify the PCT (e.g. to create alternative scenarios) by provision of the source code underlying the PCT under the open source AGP License.
 
+As with any tool, its utility depends on people knowing how to use it.
+For that reason a Manual was added as a 'tab' that can be view while using the tool.
+This provides some further details on how to create custom scenarios.
+Further enhancements to the Manual are planned following user feedback.
+
 # Data and methods
 
 This section describes the data and methods that generate the input data for the PCT.
