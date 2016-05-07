@@ -583,7 +583,8 @@ After some experimentation, these were set to 15 km and more than 10 commuters.
 - Pre-processing of route-allocated lines. This meant that CycleStreets.net was not called for every build.
 Instead, a pre-generated file of downloaded routes was used.
 
-- Parallel code. We used the R package **foreach**  to make the slowest process in the build script run on multiple computer cores. This roughly halved the build times.
+- Parallel code. We used the R package **foreach**  to make the slowest process in the build script run on multiple computer cores.
+<!-- This roughly halved the build times. -->
 
 It is important to note that the routes provided by CycleStreets.net
 do not necessarily represent the paths that cyclists currently take;
@@ -593,7 +594,8 @@ Of the available routes provided by CycleStreets.net ('quietest', 'balanced' and
 the 'fastest' option was used
 (see [cyclestreets.net/journey/help](https://www.cyclestreets.net/journey/help/howtouse/) for more information).
 This option was chosen because when designing infrastructure, planners should consider
-cyclists' preference for direct routes [@crow_design_2007].
+cyclists' preference for direct routes [@crow_design_2007]
+and that cycling potential falls quickly with increasing distance.
 
 <!-- To reduce data processing and visualisation times -->
 <!-- a sub-sample of OD pairs was used. -->
@@ -607,10 +609,14 @@ cyclists' preference for direct routes [@crow_design_2007].
 
 The spatial distribution of cycling potential can be explored interactively by selecting the 'top n' routes with the highest estimated cycing demand.
 Information about the *aggregate cycling potential* on on the road network is shown in the Route Network layer.
-Because it adds together overlapping from all routes,
-this layer results much higher estimates of cycling potential than the route-allocated OD data alone.
-Figure 5 which shows output from this layer along Otley Road, where cycling under the Go Dutch scenario rises from 73 to 296 at the route level but 301 to 1133 for the Route Network layer.
-The routes were aggregated using the R function `overline` [@lovelace_stplanr:_2016].^[Thanks to Barry Rowlingson from the University of Lancaster for assistance developing this function.]
+This layer adds together the number of cycle trips for all routes,
+and relates to the *capacity* that infrastructure may need to handle under different scenarios,
+as illustrated in Figure 5.
+Cycling along Otley Road, under the Go Dutch scenario, rises from 73 to 296
+along a single route, but from 301 to 1133 in the Route Network.
+The Route Network was generated with the R function `overline` [@lovelace_stplanr:_2016].
+
+<!-- ^[Thanks to Barry Rowlingson from the University of Lancaster for assistance developing this function.] -->
 
 ```{r, echo=FALSE, out.width = '50%', fig.cap="Illustration of route-allocated OD data (left) compared with route network data (right) which was produced by aggregating all overlapping route-aggregated OD pairs, using the 'overline' function from the stplanr R package.", fig.show='hold'}
 knitr::include_graphics(c("fastest-headingly.png", "fastest-net-headingly.png"))
