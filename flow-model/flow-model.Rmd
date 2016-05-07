@@ -300,7 +300,8 @@ The PCT tackles this issue by estimating rate of cycling locally under different
 - Its level of accessibility. The tool is publicly available on-line and developers are encourage to modify the PCT (e.g. to create alternative scenarios) by provision of the source code underlying the PCT under the open source AGP License.
 
 As with any tool, its utility depends on people knowing how to use it.
-For that reason a Manual was added as a 'tab' that can be view while using the tool.
+For that reason a Manual was added as a 'tab' that can be view while using the tool
+(the tab headings are displayed in Figure 3 and described in Section 5).
 This provides some further details on how to create custom scenarios.
 Further enhancements to the Manual are planned following user feedback.
 
@@ -324,8 +325,10 @@ and hillines was used to create plausible scenarios of cycling futures.
 For the purposes of this study, model parameters were derived from
 English and Dutch travel survey data (see the Appendix).
 Changing the height and shape of distance decay curves
-and 'hilliness decay curves' (illustrated in Figure 2) allowed estimates of the model split
-of cycling to generated for every route-allocated OD pair.
+(and, for the 'Ebike scenario, 'hilliness decay curves')
+based on a baseline from the English National Travel Survey
+(illustrated in Figure 2) allowed estimates of the model split
+of cycling to be generated for every route-allocated OD pair for each scenario.
 
 It is important that even in high-cycling countries such as the Netherlands there
 is a strong relationship between cycling levels and trip distance,
@@ -352,7 +355,7 @@ knitr::include_graphics("dd-anna.png")
 
 The raw OD data was preprocessed before being used in the PCT.
 The R package **stplanr** was developed for this task [@lovelace_stplanr:_2016].
-Tables 1 and 2 illustrate the two tables that comprise the OD data. Figure 2
+Tables 1 and 2 illustrate the two tables that comprise the OD data. Figure 3
 shows a visualisation of the output, straight lines with attributes for
 each OD pair in both directions. These are also referred to as 'desire lines' when
 represented as straight lines on the map [@tobler_experiments_1987;@chan_multi-criteria_2003].
@@ -367,19 +370,16 @@ We used the file `wu03ew_v2.csv`, obtained from the UK Data Service
 (see Table 2 for a sample of this dataset)^[See [wicid.ukdataservice.ac.uk/cider/wicid/downloads.php](https://wicid.ukdataservice.ac.uk/cider/wicid/downloads.php).]  This dataset was derived by the Office for National Statistics from responses to questions 40 ("In your main job, what is the address of your
 workplace?") and 41 ("How do you usually travel to work?") in the English 2011 Census (see [ons.gov.uk/census](http://www.ons.gov.uk/census/2011census/howourcensusworks/howwetookthe2011census/howwecollectedtheinformation/questionnairesdeliverycompletionandreturn) for further information).
 
-- The population-weighted centroids of local
-administrative zones (see Table 1). We used Medium Super
-Output Areas (MSOAs) (average population: 7,800),
-as the zonal system for both origins and destinations. MSOAs were the highest
-geographical resolution at which the mode-specific OD data were available.
-MSOA zone boundaries were provided under the UK's Open Government
-Licence.^[See [data.gov.uk/dataset/lower-layer-super-output-areas-ew-2011-population-weighted-centroids](http://data.gov.uk/dataset/lower-layer-super-output-areas-ew-2011-population-weighted-centroids).]
+- The population-weighted centroids of
+administrative zones (see Table 1). Medium Super
+Output Areas (MSOAs) (average population: 7,800)
+were used for both origins and destinations.^[This
+data was provided under the UK's Open Government
+Licence [data.gov.uk/dataset/lower-layer-super-output-areas-ew-2011-population-weighted-centroids](http://data.gov.uk/dataset/lower-layer-super-output-areas-ew-2011-population-weighted-centroids).]
 
 - Route distance, assigned to each desire line
 using the CycleStreets.net
-API.^[To implement this functionality in a generalisable way
-a custom function, `route_cyclestreet()`, was
-written for the R package **stplanr**.]
+API using the **stplanr** R package.
 
 - Hilliness of zones and routes. There are various ways to generate this data,
 ranging from the simple (e.g. vertical displacement between origin and
@@ -438,16 +438,16 @@ kable(cents1, row.names = F)
 knitr::include_graphics("od-data-leeds.png")
 ```
 
-We used the Census 2011 travel to work origin-destination dataset for its comprehensive coverage of
-the population, high geographic resolution and assurances surrounding data
-quality. The MSOA It is worth noting that
-a variety of emerging sources could be used instead to
-provide OD data. This includes 'Big Data'
-[@kitchin_big_2013] sources such as: mobile
-telephone service providers [@smoreda_spatiotemporal_2013];
-public transport data, which can highlights local demand short trips;
-household travel surveys [@transport_for_nsw_household_2014]
-and output from transport demand models controlled by local government.
+<!-- We used the Census 2011 travel to work origin-destination dataset for its comprehensive coverage of -->
+<!-- the population, high geographic resolution and assurances surrounding data -->
+<!-- quality. The MSOA It is worth noting that -->
+<!-- a variety of emerging sources could be used instead to -->
+<!-- provide OD data. This includes 'Big Data' -->
+<!-- [@kitchin_big_2013] sources such as: mobile -->
+<!-- telephone service providers [@smoreda_spatiotemporal_2013]; -->
+<!-- public transport data, which can highlights local demand short trips; -->
+<!-- household travel surveys [@transport_for_nsw_household_2014] -->
+<!-- and output from transport demand models controlled by local government. -->
 
 ```{r, echo=FALSE}
 # In practice using multiple datasets may be the most appropriate option.
@@ -479,21 +479,21 @@ for key stages in the data generation process.
 This increased the scalability of the PCT, allowing nationwide data to be generated on
 desktop computers, albeit with large (16 GB+) amounts of RAM.
 
-A potential limitation of this single regional geographic level is
-that 'edge zones', straddling two
-or more regions, can become marginalised.
-To overcome this issue the 'build' scripts were written to
-enable custom regions. London, for example,
-was 'built' at 2 different levels, one covering the entirety of the city
-and another which divided the city into 4 quadrants based on a zoning system
-used by Transport for London
-(see [pct.bike/london/](http://pct.bike/london/) and
-[pct.bike/london-east/](http://pct.bike/london-east/) respectively)
-Another solution to the issue of edge-zones that was tested
-(but not implemented following user feedback)
-was the creation of buffers around the regions.
-This involves expanding the outline of a region,
-creating an area of overlap between two regions that are side-by-side.
+<!-- A potential limitation of this single regional geographic level is -->
+<!-- that 'edge zones', straddling two -->
+<!-- or more regions, can become marginalised. -->
+<!-- To overcome this issue the 'build' scripts were written to -->
+<!-- enable custom regions. London, for example, -->
+<!-- was 'built' at 2 different levels, one covering the entirety of the city -->
+<!-- and another which divided the city into 4 quadrants based on a zoning system -->
+<!-- used by Transport for London -->
+<!-- (see [pct.bike/london/](http://pct.bike/london/) and -->
+<!-- [pct.bike/london-east/](http://pct.bike/london-east/) respectively) -->
+<!-- Another solution to the issue of edge-zones that was tested -->
+<!-- (but not implemented following user feedback) -->
+<!-- was the creation of buffers around the regions. -->
+<!-- This involves expanding the outline of a region, -->
+<!-- creating an area of overlap between two regions that are side-by-side. -->
 
 
 ```{r, echo=FALSE}
@@ -558,7 +558,7 @@ travel network.
 This network-level data generation
 was undertaken by CycleStreets.net (a routing service developed by cyclists),
 and the results are illustrated in Figure 4.
-This, and the aggregation of routes to create the 'route network',
+This, and the aggregation of routes to create the 'route network' (see Figure 5),
 were the most computationally intensive part of the PCT data generation process.
 To make these route-allocation and aggregregation processes fast and scalable,
 a number of steps were taken:
@@ -605,10 +605,12 @@ cyclists' preference for direct routes [@crow_design_2007].
 <!-- a relatively small number of OD pairs along major travel corridors -->
 <!-- account for a disproportionately high proportion of travel. -->
 
-Information about the cycling potential along specific routes between OD pairs provides a useful evidence base for informing where new cycle paths should be built: planners can select the 'top n' routes with the highest estimated cycing demand.
-However, even more useful is information about the *aggregate cycling potential* on specific segments on the road network.
-By adding together the overlapping flows from multiple OD pairs a 'route network' of cycling potential can be created. This can result in much higher estimates of cycling potential than the route-allocated OD data alone. This is illustrated in Figure 5, which shows the rate of cycling allong Otley Road rise from 73 to 296 based on a single OD pair but a much larger absolute rise of 301 to 1133 when all route-allocated OD pairs are considered.
-For the route allocation process the R function `overline` was written [@lovelace_stplanr:_2016].^[Thanks to Barry Rowlingson from the University of Lancaster for assistance developing this function.]
+The spatial distribution of cycling potential can be explored interactively by selecting the 'top n' routes with the highest estimated cycing demand.
+Information about the *aggregate cycling potential* on on the road network is shown in the Route Network layer.
+Because it adds together overlapping from all routes,
+this layer results much higher estimates of cycling potential than the route-allocated OD data alone.
+Figure 5 which shows output from this layer along Otley Road, where cycling under the Go Dutch scenario rises from 73 to 296 at the route level but 301 to 1133 for the Route Network layer.
+The routes were aggregated using the R function `overline` [@lovelace_stplanr:_2016].^[Thanks to Barry Rowlingson from the University of Lancaster for assistance developing this function.]
 
 ```{r, echo=FALSE, out.width = '50%', fig.cap="Illustration of route-allocated OD data (left) compared with route network data (right) which was produced by aggregating all overlapping route-aggregated OD pairs, using the 'overline' function from the stplanr R package.", fig.show='hold'}
 knitr::include_graphics(c("fastest-headingly.png", "fastest-net-headingly.png"))
@@ -979,28 +981,45 @@ In future research it could also be implemented for other scenarios.
 # Outputs of the Propensity to Cycle Tool
 
 Because the Propensity to Cycle Tool aims to inform and influence policy, with a launch date in July 2016, it is premature to report on its results in terms of transport planning.
-Instead, this section shows some visual outputs from the tool, to illustrate how the tool can be used. 
+Instead, this section describes and illustrates some outputs from the PCT,
+alongside discussion of how these outputs could be used. 
+
+## Model output tabs
+
+Although the main component of the PCT and focus of this paper is the interactive map,
+the PCT contains 6 'tabs' (see Figure 3).
+The first four provide region-specific information:
+
+- **Map**: This is the interactive map which shows cycling potential at area, desire-line, route and route network levels under different scenarios of the future, as described throughout this paper.
+
+- **Lines**: When lines are displayed, this tab provides the raw data as a table at the desire line level. Variables shown include the origin and destination of the route, current number of commutes by rail, bus, car and bicycle, the increase in cyclists under different scenarios, and geographical data such as straight line distance, hilliness and circuity.
+
+- **Areas**: This tab provides the same data as for the lines tab but at the area level.
+
+- **Model output**: This tab added in response to feedback from users who wanted more detail about the origin of the.
+It includes key statistics, diagnostic plots and model-results on a per-region
+basis. Since the contents of the this tab are created based on the data for each regional 'build',
+it produces a different summary document depending on
+the region currently being viewed. By showing the different distance decay curves for each scenario (see Figure 6),
+it provides insight into local travel patterns and how they relate to cycling potential in the region overall. 
 
 ## Trip distance distributions
 
 Figure 6 shows how the proportion of trips made by cycling
 varies as a function of distance in two regions
-currently, and under scenarios of the future.
-Note that Oxfordshire, which has a high rate of cycling,
-has a tall and steep distance decay curve
-whereas West Yorkshire has a low and comparatively shallow curve,
-for the current rate of cycling. Note also differences in the
-trip-distance distribution overall between the two regions,
-suggesting that a higher proportion of trips overall are cyclable
-in Oxfordshire than in West Yorkshire.
-
-There is noticeable distance decay
-for all modes of transport, especially in Oxfordshire which has a
-noticeable peak in trips between 2 and 3 km long, well within cycling distance.
-The visual presentation of trip distance distributions in the PCT (in the Model Output tab)
-can be used to support the argument that there is high cycling potential in both Oxfordshire and West Yorkshire:
-because a large proportion of trips are within cyclable distance,
-there is a strong case that cycling investment can be justified.
+currently, and under the PCT's four scenarios of change.
+It is clear that each region has a different spatial structure:
+Oxfordshire, which has a high rate of cycling,
+has a tall and steep distance decay curve for all modes.
+The high proportion of short trips (e.g. under 4 km)
+helps explain the high rate of cycling there.
+West Yorkshire, by contrast, has a shallower rate of distance decay for all modes
+and a low and comparatively shallow curve for cycling currently.
+These results (presented in the Model Output tab in the PCT)
+suggest that there is high cycling potential in both regions
+but imply that West Yorkshire should prioritise the 'low hanging fruit'
+of short trips not currently cycled whereas in Oxfordshire extra cycling
+potential is more evenly distributed across all cyclable distances.
 
 ```{r, echo=FALSE, fig.cap="Trip frequency-distance distributions of observed and scenario-based levels of cycling from PCT model runs for the city of Manchester (left) and Norwich (right).", eval=FALSE}
 # commented out as it's been superceded
@@ -1029,9 +1048,9 @@ cycling.
 
 The difference between the spatial distribution in cycling potential between
 the Government Target (*govtarget*) and Go Dutch
-(*godutch*) scenarios is illustrated in Figure 7 for Leeds.
-The top 6 OD pairs (6 was used to allow focus on the city centre)
-in Leeds in *govtarget* are dominated by the current rate of cycling.
+(*godutch*) scenarios is illustrated in Figure 7 for Leeds (which is in West Yorkshire).
+The top 6 OD pairs (a low number was used to focus on the city centre)
+in Leeds under *govtarget* reflect the current rate of cycling.
 As such, cycle commuting is projected to continue to be most common in the
 North the city.
 Under *godutch* assumptions, by contrast,
@@ -1099,15 +1118,8 @@ see more clearly the basemap. Following user testing a range of additional
 basemaps were added.
 Changing the basemap can show how latent demand for cycling relates to current cycle infrastructure (with the OpenCycleMap basemap), levels of deprivation (with the 'IMD' layer) and road width for space re-allocation for cycle and walking paths (with the satellite basemap) (see [pct.bike](http://pct.bike) to test these).
 
-## The Model Output tab
+<!-- ## The Model Output tab -->
 
-Users can view a summary of the model via a 'Model Output' tab.
-The tab was added in response to feedback during the user testing sessions to
-communicate the results of the model. It
-includes key statistics, diagnostic plots and model-results on a per-region
-basis. Since the contents of the this tab are created based on the data for each regional 'build',
-it produces a different summary document depending on
-the region currently being viewed.
 
 ```{r, echo=FALSE, fig.cap="Sample content from the Model Output Tab of the Propensity to Cycle Tool", eval=FALSE}
 # commented out for now as it's a weak figure
