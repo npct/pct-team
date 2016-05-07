@@ -624,11 +624,19 @@ knitr::include_graphics(c("fastest-headingly.png", "fastest-net-headingly.png"))
 
 # Scenarios
 
-The PCT future scenarios operate at the OD level: the future rate of cycling is estimated per desire line.
+The scenarios presented in the PCT operate at the OD level:
+change in the rate of cycling is estimated per desire line, and subsequently aggregated up to the level of areas
+and, via steps outlined above, down to the Route Network level.
 A wide range of models could be used to estimate cycling potential at this level and scenarios are constrained only by the imagination (as considered in the Discussion).
-This section outlines the scenarios that were commissioned for the English version of the PCT.
-These were informed by the the policy context of a government target to double the number of cycle trips [@department_for_transport_cycling_2014] and evidence from overseas of the proportion of trips of certain distances that *could* be made by cycling, especially in relation gender equality in cycling rates and uptake of electric cycles (Ebikes).
-The section deliberately avoids going into technical detail on the specifics of the baseline model and how the parameters for each scenario were derived (see the Appendix for this technical information).
+This section outlines the scenarios produced for the English version of the PCT.
+These were informed by a government target to double the number of cycle trips
+[@department_for_transport_cycling_2014] and evidence from overseas
+about which trips *could* be made by cycling,
+especially in relation to gender equality in cycling rates and uptake of electric assist cycles (Ebikes).
+
+This section deliberately avoids technical detail about
+the functional form of the model and how model parameters
+for each scenario were derived (see the Appendix for this technical information).
 Instead, it provides a high-level overview of the scenarios and how they were developed, which should be of use to others developing alternative cycling scenarios to inform the transport planning process.
 
 For all scenarios except *gender equality*, a regression model was used
@@ -657,24 +665,24 @@ Hilliness was included as a continuous variable ($h$), representing the average 
 (as a %) in both directions along the route.
 Preliminary analysis found $h$ to have a linear relationship with $pcycle$,
 and interaction with distance, such that routes that were both hilly and
-lengthy were disproportionately unlikely to be cycled,
+length were disproportionately unlikely to be cycled,
 based on data from the National Travel Survey.
-After an iterative process of model testing, the formula chosen was:
+<!-- After an iterative process of model testing, the formula chosen was: -->
 
-(@) $$ logit(pcycle) = \alpha + \beta_1 d + \beta_2 d^{0.5} + \beta_3 d^2 + \gamma h + \delta_1 d h + \delta_2 d^{0.5} h $$
+<!-- (@) $$ logit(pcycle) = \alpha + \beta_1 d + \beta_2 d^{0.5} + \beta_3 d^2 + \gamma h + \delta_1 d h + \delta_2 d^{0.5} h $$ -->
 
 ```{r, echo=FALSE}
 # {#eq:description}
 ```
 
-where $d$ is distance (km, route distance between population weighted centroids) and
-$h$ is the hilliness
-per OD pair. The remaining values are scalar
-coefficients to be estimated.
-$\alpha$ represents the intercept (the rate of cycling very short
-trips). $\beta_1$, $\beta_2$ and $\beta_3$ represent the rate of distance decay.
-$\gamma$ represents the impact of hilliness on cycling and the $\delta$ coefficients represent
-the interaction between distance and hilliness (see Appendix).
+<!-- where $d$ is distance (km, route distance between population weighted centroids) and -->
+<!-- $h$ is the hilliness -->
+<!-- per OD pair. The remaining values are scalar -->
+<!-- coefficients to be estimated. -->
+<!-- $\alpha$ represents the intercept (the rate of cycling very short -->
+<!-- trips). $\beta_1$, $\beta_2$ and $\beta_3$ represent the rate of distance decay. -->
+<!-- $\gamma$ represents the impact of hilliness on cycling and the $\delta$ coefficients represent -->
+<!-- the interaction between distance and hilliness (see Appendix). -->
 
 <!-- ## Zone Buffer -->
 
