@@ -738,13 +738,13 @@ that would result if women were as likely as men to cycle a given trip.
 Specifically, the scenario sets the proportion of female cycle commuters to be equal
 to the current proportion of males in each OD pair.
 The scenario is based on the observation that in places where cycling is the norm,
-women cycle at least as much as men (Pucher et al 2010).
-*gendereq* thus represents
+women cycle at least as much as men [@pucher_infrastructure_2010;@aldred_does_2016].
+*gendereq* represents
 the elimination of one specific cultural constraint.
 This scenario has the greatest relative impact in areas where
 the rate of cycling is highly gender-unequal.
-In absolute terms, cycling increases most in this scenario where cycling
-is already a common mode of transport.
+<!-- In absolute terms, cycling increases most in this scenario where cycling -->
+<!-- is already a common mode of transport. -->
 
 - Go Dutch (*godutch*).
 While *govtarget* and *gendereq* build on current cycling behaviour,
