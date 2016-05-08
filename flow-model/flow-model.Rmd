@@ -1245,7 +1245,7 @@ to inform more targeted interventions [@lovelace_spatial_2014].
 An 'education layer' would enable prioritisation of 'safe routes to school',
 building on methods analysing 'school commute' data [@singleton_gis_2014].
 
-- Use of alternative input data data, such as the location of new developments and road traffic speed and volumes. This work could build on recently developed GIS for transport planning [@farrell_evaluating_2015].
+- Use of alternative input data data, such as the location of new developments and road traffic speed and volumes. This work could build on recently developed GIS-based methods for transport planning [@farrell_evaluating_2015].
 
 <!-- The PCT's open source license allows others to -->
 <!-- modify it for their own needs. , -->
