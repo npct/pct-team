@@ -4,12 +4,12 @@ title: 'The Propensity to Cycle Tool: An open source online system for sustainab
 csl: ../documents/elsevier-harvard.csl
 fontsize: 12pt
 output:
-  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
+  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
   \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
   \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
@@ -656,12 +656,11 @@ into a linear curve via the relation:
 
 (@) $$ logit(p) = log(\frac{p}{1 - p}) $$
 
-Hilliness was included as a continuous variable ($h$), representing the average along-route incline
-(as a %) in both directions along the route.
 Preliminary analysis found $h$ to have a linear relationship with $pcycle$,
 and interaction with distance, such that routes that were both hilly and
 length were disproportionately unlikely to be cycled,
-based on data from the National Travel Survey.
+based on data from the National Travel Survey (see Appendix).
+
 <!-- After an iterative process of model testing, the formula chosen was: -->
 
 <!-- (@) $$ logit(pcycle) = \alpha + \beta_1 d + \beta_2 d^{0.5} + \beta_3 d^2 + \gamma h + \delta_1 d h + \delta_2 d^{0.5} h $$ -->
