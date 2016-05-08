@@ -4,12 +4,12 @@ title: 'The Propensity to Cycle Tool: An open source online system for sustainab
 csl: ../documents/elsevier-harvard.csl
 fontsize: 12pt
 output:
+  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
-  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
   \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
   \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
@@ -1088,7 +1088,7 @@ Cycle paths built to help achieve ambitious targets, such as the *godutch* scena
 be of sufficient width to accomodate the estimated flows: around 1000 cycle *commuters* would
 use parts of York Road under this scenario and infrastructure design should adapt accordingly.
 
-```{r, echo=FALSE, fig.cap="Model output illustrating the top 20 most cycled OD pairs in Manchester under Government Target and Go Dutch scenarios."}
+```{r, echo=FALSE, fig.cap="The Route Network layer illustrating the shifting spatial distribution of cycling flows in Leeds under Government Target (top) and Go Dutch (bottom) scenarios."}
 knitr::include_graphics("leeds-rnet-gov-go.png")
 ```
 
