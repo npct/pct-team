@@ -78,7 +78,7 @@ The PCT is based on origin-destination data, which it uses to model and visualis
 the rate of cycling use at area, desire line, route and route network levels,
 currently and under a range of 'cycling futures', which represent different levels of ambition.
 Scenarios including 'Go Dutch' and 'Ebikes' (which explored the impact of electric cycles on cycling uptake) were developed and visualised.
-The PCT's use of open source software enables others to create alternative scenarios, for example to represent the route network capacity implications of acheiving local cycling targets and could facilitate its deployment in new cities and countries where origin-destination data is available.
+The PCT's use of open source software enables others to create alternative scenarios, for example to represent the route network capacity implications of achieving local cycling targets and could facilitate its deployment in new cities and countries where origin-destination data is available.
 We conclude with a discussion of how new interactive and online tools such as the PCT could help make transport planning a more open and citizen led process.
 
 # Introduction
@@ -178,7 +178,7 @@ The resulting heat map was used to recommend the construction or upgrade of cycl
 developed Permeability Assessment Tool (PAT).
 The PAT works by combining geographical data, including the location of popular destinations
 and existing transport infrastructure, with on-site audit data of areas that have
-been shortlisted. Unlike the prioritization index of Larsen et al. (2013), which is primarily aimed at informing a strategic cycling network, the results of the PAT are designed to guide smaller, site specific interventions such as 'contraflow' paths and cyclist priority traffic signals.
+been short-listed. Unlike the prioritization index of Larsen et al. (2013), which is primarily aimed at informing a strategic cycling network, the results of the PAT are designed to guide smaller, site specific interventions such as 'contraflow' paths and cyclist priority traffic signals.
 
 At the opposite end of the scale spectrum, @parkin_estimation_2008 created a regression model to estimate the proportion of commuter trips cycled across wards in England and Wales.
 Ethnic minorities, low income, road defects, rainfall and hills were all associated with low levels of cycling, leading to the conclusion that policy makers must engage with a mixture of social and physical barriers to effectively promote cycling, with the implication that some areas are more likely to respond to investment than others.
@@ -196,7 +196,7 @@ This, combined with survey data on cyclists' preferences for where to construct 
 <!-- presented as a static heatmap and used to prioritise where to build new cycle -->
 <!-- paths and cycle hire points. -->
 
-The Analysis of Cycling Potential tool [@transport_for_london_analysis_2010] combined area and individual-level data to produce a heat map estimating cycling potential across London. The model examined which types of trips are most likely to be cycled, based on the types of trips that are currently cycled (e.g. time of day, characteristics of the traveler, distance).
+The Analysis of Cycling Potential tool [@transport_for_london_analysis_2010] combined area and individual-level data to produce a heat map estimating cycling potential across London. The model examined which types of trips are most likely to be cycled, based on the types of trips that are currently cycled (e.g. time of day, characteristics of the traveller, distance).
 Unlike the other tools this was practitioner-led and the results have informed planning aspects of local cycling schemes (for example, where to build new cycle share points and improve off-road paths).
 The Analysis of Cycling Potential tool does not use origin-destination data or methods of route allocation.
 
@@ -322,7 +322,7 @@ knitr::include_graphics("160229x8_NatModel_MSOA.pdf")
 ```
 
 A model estimating cycling uptake as a function of distance, via distance decay curves [@iacono_access_2008],
-and hillines was used to create plausible scenarios of cycling futures.
+and hilliness was used to create plausible scenarios of cycling futures.
 For the purposes of this study, model parameters were derived from
 English and Dutch travel survey data (see the Appendix).
 Changing the height and shape of distance decay curves
@@ -607,7 +607,7 @@ and that cycling potential falls quickly with increasing distance.
 <!-- a relatively small number of OD pairs along major travel corridors -->
 <!-- account for a disproportionately high proportion of travel. -->
 
-The spatial distribution of cycling potential can be explored interactively by selecting the 'top n' routes with the highest estimated cycing demand.
+The spatial distribution of cycling potential can be explored interactively by selecting the 'top n' routes with the highest estimated cycling demand.
 Information about the *aggregate cycling potential* on on the road network is shown in the Route Network layer.
 This layer adds together the number of cycle trips for all routes,
 and relates to the *capacity* that infrastructure may need to handle under different scenarios,
@@ -715,26 +715,22 @@ The scenarios are context-specific and based partly on
 political commitments to cycling (see *govtarget*).
 Use of the PCT in other contexts will likely benefit from new scenarios that
 relate to both the current policy context and long-term aspirations.
-The scenarios are not intended to be predictions of the future.
-They are snapshots that indicate how the spatial distribution of cycling is
-likely to shift as cycling grows.
-The scenarios have also have an
-order, ranging from near-term to longer term visions. They are: 
+The scenarios are not predictions of the future.
+They are snapshots indicating how the spatial distribution
+of cycling may shift as cycling grows based on current travel patterns.
+The first two are shorter-term and the second two longer-term.
 
 - Government target (*govtarget*). This scenario represents a doubling of
 the number of cycling trips in England.
-Although this is a substantial increase in relative terms, cycle use still
-remains low in this scenario compared with countries such as the Netherlands,
-rising from 3% to 6% of commutes.
-*govtarget* allows for different rates of growth in different places.
-Above-average percentage point increases (i.e. more than a 3% point increase) are projected in areas
-with many short (i.e. potentially cycleable)
-trips and a low current rate of cycling.
-Conversely, areas with higher cycle use and a low proportion
-of short commutes will have below-average growth.
-*govtarget* represents a slight reduction
-(but not elimination) of the localised infrastructural or cultural
-constraints which deter cycle use more in some places than in others and
+Although substantial in relative terms (rising from 3% to 6% of commutes), the rate of cycling under this scenario
+remains low compared with countries such as the Netherlands.
+Growth in cycling is not uniform.
+Above-average percentage point increases are projected in areas
+with many short, flat trips and a low current rate of cycling.
+Conversely, areas with higher cycle use and many long-distance hilly commuter routes will have below-average growth.
+*govtarget* thus represents a slight reduction
+(but not elimination) of local
+constraints deterring cycle use more in some places than in others and
 is designed to indicate where investment might have the greatest short-term impact.
 
 - Gender Equality (*gendereq*). This scenario illustrates the increase in cycling
@@ -1160,7 +1156,7 @@ new scenarios, and the addition of new features to the tool following user feedb
 
 An indication of how the
 tool could be used was illustrated
-with maps showing the shifting distribution of cyling
+with maps showing the shifting distribution of cling
 under 'Government Target' and 'Go Dutch' 
 scenarios in Leeds and Manchester. These outputs suggested
 the 'centre of gravity' for gravity will shift, towards areas with high
@@ -1187,7 +1183,7 @@ The scenarios suggest the PCT could be used for 'visioning' transport futures fu
 <!-- *and* demographic shifts in cycling as it grows. -->
 
 An evaluation of the PCT *after* it has been launched (July 2016) and used by practitioners will be needed to assess the extent to which the approach assists transport-land use planners.
-This will test our hypothesese that the tool can help translate national targets into local aspirations (as illustrated by the *govtarget* scenario), set local targets (by indicating what the potential is relative to other regions),^[Targets have proliferated in recent years. For instance, an official
+This will test our hypotheses that the tool can help translate national targets into local aspirations (as illustrated by the *govtarget* scenario), set local targets (by indicating what the potential is relative to other regions),^[Targets have proliferated in recent years. For instance, an official
 target to reach 10% of trips made by bicycle has been
 made by authorities in Dublin, Leicester and across
 all of Scotland over various time-scales [@beatley_green_2012]. A mode share of
@@ -1211,7 +1207,7 @@ and the implementation of continuous variables to define future scenarios.
 Further extensions of the PCT 
 could include:
 
-- Aditional scenarios to illustrate a wider range of 'cycling futures', including medium-term and local targets such as 'Go York' (where 12% of commuters cycle to work).
+- Additional scenarios to illustrate a wider range of 'cycling futures', including medium-term and local targets such as 'Go York' (where 12% of commuters cycle to work).
 
 - Additional 'output tabs' in the PCT's user interface, to estimate the
 quantitative benefits of cycling uptake at the local (and potentially
