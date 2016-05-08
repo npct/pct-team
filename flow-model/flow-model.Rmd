@@ -1039,7 +1039,7 @@ knitr::include_graphics("man-nor-output-2.png")
 knitr::include_graphics(c("../figures/dd-west-yorks.png", "../figures/dd-ox.png"))
 ```
 
-Note that although West Yorkshire and Oxfordshire have very
+Although West Yorkshire and Oxfordshire have very
 different initial levels of cycling, the final level estimated from the
 *godutch* and *ebike* scenarios there are similar. This is because
 trip distance distributions in the two cities are comparable and because long-term
@@ -1074,22 +1074,29 @@ centre much less likely to be made by cycling.
 knitr::include_graphics("od-scens-leeds.png")
 ```
 
-The equivalent results are shown for the city of Manchester in Figure 8. This shows that
-Manchester has a poly-centric structure, favouring the construction of cycle
-routes between the various sub-centres, not just in radial routes to a single
-centre. As shown in the scale bar up the left-hand side,
-the absolute level of cycling is much lower in *govtarget*
-(which represents only a doubling nationwide)
-than in the much more ambitious *godutch* scenario.
+<!-- The equivalent results are shown for the city of Manchester in Figure 8. This shows that -->
+<!-- Manchester has a poly-centric structure, favouring the construction of cycle -->
+<!-- routes between the various sub-centres, not just in radial routes to a single -->
+<!-- centre. As shown in the scale bar up the left-hand side, -->
+<!-- the absolute level of cycling is much lower in *govtarget* -->
+<!-- (which represents only a doubling nationwide) -->
+<!-- than in the much more ambitious *godutch* scenario. -->
+
+The same scenario is illustrated in Figure 8 with the Route Network layer.
+This shows how the shift in cycling to become more evenly spread across the city translates into estimates of cyclist flows on specific road segments.
+The number of cyclists expected on York Road, highlighted with a popup, more than triples (from 71 to 236)
+under *govtarget* and increases more than 10 fold under *godutch* (from 71 to 966).
+This contrast with Otley Road (highlighted in Figure 5), which 'only' triples under *godutch*.
+These results suggest that as cycling grows, policy interventions in Leeds should shift from
+the cycling heatland in the Northwest of the city to desire lines which have low current rates
+of cycling but high potential such as York Road to the East.
 
 ```{r, echo=FALSE, fig.cap="Model output illustrating the top 20 most cycled OD pairs in Manchester under Government Target and Go Dutch scenarios."}
-knitr::include_graphics("man-cdp-dutch.png")
+knitr::include_graphics("leeds-rnet-gov-go.png")
 ```
 
-As described earlier, Cyclestreets.net was used to allocate OD pairs to
-the travel network. 'Fastest' and
-'quietest' routes were estimated by the service and the difference between
-these routes can be important from a transport planning perspective.
+Another potentially useful output of the PCT is the difference between
+'fastest' and 'quietest' routes.
 Figure 9 illustrates this by showing routes in Manchester with the highest cycling
 potential under the *govtarget* scenario.
 The 'quietest' route is substantially longer: 2.6 km
@@ -1150,8 +1157,9 @@ making it easy for others use the project as a basis for further work [@lima_cod
 This flexibility
 has been demonstrated by the tool's ability to be deployed in any
 Local Authority (or other administrative area)
-in England. Extensibility has been demonstrated by the addition of
-new scenarios, and the addition of new features to the tool following user feedback. 
+in England.
+<!-- Extensibility has been demonstrated by the addition of -->
+<!-- new scenarios, and the addition of new features to the tool following user feedback.  -->
 
 An indication of how the
 tool could be used was illustrated
