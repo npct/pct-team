@@ -4,12 +4,12 @@ title: 'The Propensity to Cycle Tool: An open source online system for sustainab
 csl: ../documents/elsevier-harvard.csl
 fontsize: 12pt
 output:
+  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
-  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
   \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
   \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
@@ -47,7 +47,7 @@ if(to_install) install.packages(pkgs[to_install])
 # Bibliography dl
 # download.file("https://github.com/citation-style-language/styles/raw/master/elsevier-harvard.csl", "documents/elsevier-harvard.csl")
 # generated via https://github.com/ZotPlus/zotero-better-bibtex
-# download.file("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
+download.file("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
 # # This is from the group 'energy-and-transport': https://www.zotero.org/groups/energy-and-transport/items/collectionKey/TUEXXIV4
 # b1 <- readLines("references.bib")
 # b2 <- readLines("documents/Transport.bib")
@@ -641,14 +641,11 @@ Instead, it provides a high-level overview of the scenarios and how they were de
 
 For all scenarios except *gender equality*, a regression model was used
 to estimate the potential rate of cycling at the OD level.
-It does so using Ordinary Least Squares (OLS) to
-optimize parameters
-linking distance ($d$) and hilliness ($H$) to the *dependent variable*:
-the proportion of trips made per OD pair ($pcycle$).
-The concept of 'distance decay' [@iacono_access_2008]
-was used in the model to describe the (non-linear) relationship
-between the route distance of OD pairs and the proportion of trips made by cycling.
-Euclidean distance could be used in contexts where route distance is not known.
+The parameters were estimated using trips level data from the National Travel Survey
+using a logistic regression model estimating the *dependent variable*,
+the probability of a trip being made by cycling $pcycle$, based on
+distance ($d$) and hilliness ($H$)
+For aggregate data, this translates into the proportion of trips made by cycling.
 
 It is well-known that the proportion of trips made by cycle (henceforth
 $pcycle$) tends to decrease with increasing distance [@iacono_access_2008].
@@ -659,8 +656,6 @@ into a linear curve via the relation:
 
 (@) $$ logit(p) = log(\frac{p}{1 - p}) $$
 
-We estimated the logit of $pcycle$ rather than $pcycle$ directly because it was found to improve model fit,
-removing much of the non-linearity in distance decay curves.
 Hilliness was included as a continuous variable ($h$), representing the average along-route incline
 (as a %) in both directions along the route.
 Preliminary analysis found $h$ to have a linear relationship with $pcycle$,
@@ -1090,6 +1085,9 @@ This contrast with Otley Road (highlighted in Figure 5), which 'only' triples un
 These results suggest that as cycling grows, policy interventions in Leeds should shift from
 the cycling heatland in the Northwest of the city to desire lines which have low current rates
 of cycling but high potential such as York Road to the East.
+Cycle paths built to help achieve ambitious targets, such as the *godutch* scenario, should
+be of sufficient width to accomodate the estimated flows: around 1000 cycle *commuters* would
+use parts of York Road under this scenario and infrastructure design should adapt accordingly.
 
 ```{r, echo=FALSE, fig.cap="Model output illustrating the top 20 most cycled OD pairs in Manchester under Government Target and Go Dutch scenarios."}
 knitr::include_graphics("leeds-rnet-gov-go.png")
@@ -1201,7 +1199,7 @@ for capacity increases in cycling along the route network via the network analys
 Above all, post-launch evaluation will be able to assess the extent to which the approach can
 help design strategic cycling networks.
 
-As with any model, the implementation of the PCT in this paper has
+As with any modelling tool, the approach presented in this paper has
 limitations: the reliance on 2011 Census OD data means that the results are
 not up-to-date;
 there are no scenarios representing specific infrastructure
@@ -1271,7 +1269,7 @@ new tools for exploring the best available evidence.
 By providing transport authorities, campaign groups and the public with access to the same evidence base,
 we hypothesise that tools such as the PCT can encourage informed and rigorous debate,
 as advocated by @golub_making_2013.
-In conclusion, although the PCT aimed to inform the narrow question of where to construct
+In conclusion, although the PCT aims to inform the specific issue of where to construct
 new infrastructure for cycling, it relates to the wider
 question of how to create an evidence-base for designing sustainable transport plans.
 
