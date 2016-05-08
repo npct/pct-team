@@ -759,14 +759,13 @@ As such, whereas the *govtarget* and *gendereq* scenarios take current levels as
 are unrelated to current levels, and are constrained
 only by local trip distance distributions and hilliness.
 
-- E-bikes (*ebikes*). This scenario models the additional increase
+- Ebikes (*ebikes*). This scenario models the additional increase
 in cycle use that would be achieved through the widespread uptake of electric
-cycles ('E-bikes').
-E-bikes enable longer journeys and make cycling a more viable option for
-a number of people, including those with low fitness and people
-with impaired mobility.
-This scenario is currently implemented as an extension of the Go Dutch scenario.
-In future research it could also be implemented for other scenarios.
+cycles.
+Electric assist cycles enable longer journeys and make cycling a more viable option for
+people with low fitness and impaired mobility.
+This scenario is currently implemented as an extension *godutch*
+but could be implemented as an add-on for other scenarios.
 
 <!-- These scenarios are described more fully below. -->
 
