@@ -508,7 +508,7 @@ about which trips *could* be made by cycling,
 especially in relation to gender equality in cycling rates and uptake of electric assist cycles (Ebikes).
 Summaries of the four scenarios are as follows (see the Appendix for full details):
 
-- Government Target. This scenario represents a doubling of the level of of cycling in England, informed by a government target to this effect [@department_for_transport_cycling_2014].Although substantial in relative terms (rising from 3% to 6% of commuters), the rate of cycling under this scenario remains low compared with countries such as the Netherlands. Growth in cycling is not uniform in this scenario, in either absolute or relatibe terms. Areas with many short, flat trips and a below-average current rate of cycling are projected to more than double. Conversely, areas with above-averge cycle use and many long-distance hilly commuter routes will experience less than a doubling. govtarget thus generates a slight reduction (but not elimination) of local variation in cycle use that reflects constraints other than distance and hilliness.  This scenario is designed to indicate where investment might have the greatest short-term impact.
+- Government Target. This scenario represents a doubling of the level of of cycling in England, informed by a government target to this effect [@department_for_transport_cycling_2014].Although substantial in relative terms (rising from 3% to 6% of commuters), the rate of cycling under this scenario remains low compared with countries such as the Netherlands. Growth in cycling is not uniform in this scenario, in either absolute or relatibe terms. Areas with many short, flat trips and a below-average current rate of cycling are projected to more than double. Conversely, areas with above-averge cycle use and many long-distance hilly commuter routes will experience less than a doubling. Government Target thus generates a slight reduction (but not elimination) of local variation in cycle use that reflects constraints other than distance and hilliness.  This scenario is designed to indicate where investment might have the greatest short-term impact.
 
 - Gender Equality. This scenario illustrates the increase in cycling
 that would result if women were as likely as men to cycle a given trip.
@@ -524,6 +524,9 @@ the rate of cycling is highly gender-unequal.
 <!-- is already a common mode of transport. -->
 
 - Go Dutch.
+While Government Target and Gender Equality model relatively modest increases in cycle commuting, 'Go Dutch' focuses on long-term potential. Go Dutch represents what would happen if English people were as likely as Dutch people to cycle a trip of a given distance and level of hilliness. This scenario captures the proportion of commuters that would be expected to cycle if all areas of England had the same infrastructure  and cycling culture as the Netherlands (but retained  their current hilliness levels  and profile of commuting trip distances) . As such, whereas the Government Target and Gender Equality scenarios take current levels as a starting point, the predicted levels of cycle use in Go Dutch are unrelated to current levels, and are constrained only by local trip distance distributions and hilliness.
+
+
 While Government Target and Gender Equality build on current cycling behaviour,
 'Go Dutch' focuses on long-term potential.
 Go Dutch represents what would happen if English people were as likely as Dutch people to cycle a trip of a given distance and level of hilliness.
@@ -543,6 +546,9 @@ Electric assist cycles enable longer journeys and make cycling a more viable opt
 people with low fitness and impaired mobility.
 This scenario is currently implemented as an extension Go Dutch
 but could be implemented as an add-on for other scenarios.
+
+Additional scenarios could be developed (see Discussion). If deployed in other countries, the PCT will likely benefit from scenarios that relate to both the current policy context and long-term aspirations.
+OD data must be available for scenarios to be generated in new places, however, as the scenarios primarily operate at the OD level. The estimated changes in the number of cyclists are then aggregated up to the level of areas and allocated to the route network, allowing health and other impacts to be related to transport infrastructure.
 
 ## Estimation of health impacts
 
@@ -645,7 +651,7 @@ knitr::include_graphics("pct-frontpage.png")
 
 <!-- ## Route allocation and network generation -->
 
-The desire lines allocated to the route network are illustrated in Figure 4.
+Desire lines that have been allocated to the route network are illustrated in Figure 4.
 Note that this shows two route options: the 'fastest' route,
 which represents an estimate of the route taken by cyclists to minimise travel time
 and the 'quietest' route which preferentially selects small roads.
@@ -669,10 +675,11 @@ This option was chosen because when designing infrastructure, planners should co
 cyclists' preference for direct routes [@crow_design_2007]
 and that cycling potential falls quickly with increasing distance.
 
-To generate the 'Route Network' layer, overlapping fast routes were aggregated (see Figure 5). These stages were computationally intensive, leading to a number of steps being taken to make them fast and scalable:
+To generate the Route Network layer, overlapping fast routes were aggregated (see Figure 5). These stages were computationally intensive, leading to a number of steps being taken to make them fast and scalable:
 
-- Adjustable selection criteria were used to sample the lines before route allocation. Maximum Euclidean distance (`mdist`) and minimum all-mode number of commutes (`mflow`) parameters were made adjustable for each build.
+- Adjustable selection criteria were used to sample the lines before route allocation. Parameter setting the Euclidean distance and minimum all-mode number of commutes were set for each build.
 After some experimentation, these were set to 15 km and more than 10 commuters.
+Note that only between-zone (interzonal) commutes were represented on the route network due to the difficulty of estimating the route taken for a trip that starts and ends in the same zone.
 
 <!-- ^[To illustrate the effectiveness of these selection criteria, -->
 <!-- consider the example of Manchester. Setting `mflow` to 30 reduced the number of OD pairs by 85%, yet -->
@@ -1016,9 +1023,7 @@ knitr::include_graphics(c("fastest-headingly.png", "fastest-net-headingly.png"))
 
 # Outputs of the Propensity to Cycle Tool
 
-Because the Propensity to Cycle Tool aims to inform and influence policy, with a launch date in July 2016, it is premature to report on its results in terms of transport planning.
-Instead, this section describes and illustrates some outputs from the PCT,
-alongside discussion of how these outputs could be used. 
+This section describes and illustrates some outputs from the PCT, alongside discussion of how these outputs could be used in transport planning.
 
 ## Model output tabs
 
