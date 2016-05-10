@@ -588,16 +588,30 @@ knitr::include_graphics("pct-frontpage.png")
 <!-- ## Route allocation and network generation -->
 
 The desire lines allocated to the route network are illustrated in Figure 4.
-Note that two route types were computed: the 'fastest' route,
+Note that this shows two route options: the 'fastest' route,
 which represents an estimate of the route taken by cyclists to minimise travel time
 and the 'quietest' route which preferentially selects small roads.
-Overlapping fast routes were aggregated to create the 'Route Network' layer (see Figure 5).
-These stages were computationally intensive, leading to a number of steps
-being taken to make them fast and scalable:
+
+<!-- Overlapping fast routes were aggregated to create the 'Route Network' layer (see Figure 5). -->
+<!-- These stages were computationally intensive, leading to a number of steps -->
+<!-- being taken to make them fast and scalable: -->
 
 ```{r, echo=FALSE, fig.cap="Illustration of desire lines shown in Figure 3 after they have been allocated to the road network by CycleStreets.net. Purple lines are the 'fastest' routes and turquoise routes were the 'quitest' routes."}
 knitr::include_graphics("od-data-fast-quiet.png")
 ```
+
+It is important to note that the routes provided by CycleStreets.net
+do not necessarily represent the paths that cyclists currently take;
+route choice models based on GPS data
+have been developed for this purpose [@broach_where_2012;@ehrgott_bi-objective_2012].
+Of the available routes provided by CycleStreets.net ('quietest', 'balanced' and 'fastest'),
+the 'fastest' option was used
+(see [cyclestreets.net/journey/help](https://www.cyclestreets.net/journey/help/howtouse/) for more information).
+This option was chosen because when designing infrastructure, planners should consider
+cyclists' preference for direct routes [@crow_design_2007]
+and that cycling potential falls quickly with increasing distance.
+
+To generate the 'Route Network' layer, overlapping fast routes were aggregated (see Figure 5). These stages were computationally intensive, leading to a number of steps being taken to make them fast and scalable:
 
 - Adjustable selection criteria were used to sample the lines before route allocation. Maximum Euclidean distance (`mdist`) and minimum all-mode number of commutes (`mflow`) parameters were made adjustable for each build.
 After some experimentation, these were set to 15 km and more than 10 commuters.
@@ -621,17 +635,6 @@ Instead, a pre-generated file of downloaded routes was used.
 - Parallel code. We used the R package **foreach**  to make the slowest process in the build script run on multiple computer cores.
 <!-- This roughly halved the build times. -->
 
-It is important to note that the routes provided by CycleStreets.net
-do not necessarily represent the paths that cyclists currently take;
-route choice models based on GPS data
-have been developed for this purpose [@broach_where_2012;@ehrgott_bi-objective_2012].
-Of the available routes provided by CycleStreets.net ('quietest', 'balanced' and 'fastest'),
-the 'fastest' option was used
-(see [cyclestreets.net/journey/help](https://www.cyclestreets.net/journey/help/howtouse/) for more information).
-This option was chosen because when designing infrastructure, planners should consider
-cyclists' preference for direct routes [@crow_design_2007]
-and that cycling potential falls quickly with increasing distance.
-
 <!-- To reduce data processing and visualisation times -->
 <!-- a sub-sample of OD pairs was used. -->
 <!-- The aim was to reduce the number of OD pairs whilst retaining the overall -->
@@ -643,7 +646,7 @@ and that cycling potential falls quickly with increasing distance.
 <!-- account for a disproportionately high proportion of travel. -->
 
 The spatial distribution of cycling potential can be explored interactively by selecting the 'top n' routes with the highest estimated cycling demand.
-Information about the *aggregate cycling potential* on on the road network is shown in the Route Network layer.
+Information about the *aggregate cycling potential* on the road network is shown in the Route Network layer.
 This layer adds together the number of cycle trips for all routes,
 and relates to the *capacity* that infrastructure may need to handle under different scenarios,
 as illustrated in Figure 5.
