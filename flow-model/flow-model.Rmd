@@ -730,41 +730,41 @@ along a single route, but from 301 to 1133 in the Route Network.
 knitr::include_graphics(c("fastest-headingly.png", "fastest-net-headingly.png"))
 ```
 
-# Scenarios
+<!-- # Scenarios -->
 
-The scenarios presented in the PCT operate at the OD level:
-change in the rate of cycling is estimated per desire line, and subsequently aggregated up to the level of areas
-and, via steps outlined above, down to the Route Network level.
-A wide range of models could be used to estimate cycling potential at this level and scenarios are constrained only by the imagination (as considered in the Discussion).
-This section outlines the scenarios produced for the English version of the PCT.
+<!-- The scenarios presented in the PCT operate at the OD level: -->
+<!-- change in the rate of cycling is estimated per desire line, and subsequently aggregated up to the level of areas -->
+<!-- and, via steps outlined above, down to the Route Network level. -->
+<!-- A wide range of models could be used to estimate cycling potential at this level and scenarios are constrained only by the imagination (as considered in the Discussion). -->
+<!-- This section outlines the scenarios produced for the English version of the PCT. -->
 
 
-This section deliberately avoids technical detail about
-the functional form of the model and how model parameters
-for each scenario were derived (see the Appendix for this technical information).
-Instead, it provides a high-level overview of the scenarios and how they were developed, which should be of use to others developing alternative cycling scenarios to inform the transport planning process.
+<!-- This section deliberately avoids technical detail about -->
+<!-- the functional form of the model and how model parameters -->
+<!-- for each scenario were derived (see the Appendix for this technical information). -->
+<!-- Instead, it provides a high-level overview of the scenarios and how they were developed, which should be of use to others developing alternative cycling scenarios to inform the transport planning process. -->
 
-For all scenarios except *gender equality*, a regression model was used
-to estimate the potential rate of cycling at the OD level.
-The parameters were estimated using trips level data from the National Travel Survey
-using a logistic regression model estimating the *dependent variable*,
-the probability of a trip being made by cycling $pcycle$, based on
-distance ($d$) and hilliness ($H$)
-For aggregate data, this translates into the proportion of trips made by cycling.
+<!-- For all scenarios except *gender equality*, a regression model was used -->
+<!-- to estimate the potential rate of cycling at the OD level. -->
+<!-- The parameters were estimated using trips level data from the National Travel Survey -->
+<!-- using a logistic regression model estimating the *dependent variable*, -->
+<!-- the probability of a trip being made by cycling $pcycle$, based on -->
+<!-- distance ($d$) and hilliness ($H$) -->
+<!-- For aggregate data, this translates into the proportion of trips made by cycling. -->
 
-It is well-known that the proportion of trips made by cycle (henceforth
-$pcycle$) tends to decrease with increasing distance [@iacono_access_2008].
-Based on this work and exploratory analysis of the data we estimated
-the $logit$ of $pcycle$ rather than $pcycle$ directly.
-The logit function converts a logistic curve for values between 0 and 1 (typically a probability, $p$)
-into a linear curve via the relation:
+<!-- It is well-known that the proportion of trips made by cycle (henceforth -->
+<!-- $pcycle$) tends to decrease with increasing distance [@iacono_access_2008]. -->
+<!-- Based on this work and exploratory analysis of the data we estimated -->
+<!-- the $logit$ of $pcycle$ rather than $pcycle$ directly. -->
+<!-- The logit function converts a logistic curve for values between 0 and 1 (typically a probability, $p$) -->
+<!-- into a linear curve via the relation: -->
 
-(@) $$ logit(p) = log(\frac{p}{1 - p}) $$
+<!-- (@) $$ logit(p) = log(\frac{p}{1 - p}) $$ -->
 
-Preliminary analysis found $h$ to have a linear relationship with $pcycle$,
-and interaction with distance, such that routes that were both hilly and
-length were disproportionately unlikely to be cycled,
-based on data from the National Travel Survey (see Appendix).
+<!-- Preliminary analysis found $h$ to have a linear relationship with $pcycle$, -->
+<!-- and interaction with distance, such that routes that were both hilly and -->
+<!-- length were disproportionately unlikely to be cycled, -->
+<!-- based on data from the National Travel Survey (see Appendix). -->
 
 <!-- After an iterative process of model testing, the formula chosen was: -->
 
