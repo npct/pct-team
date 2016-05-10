@@ -336,7 +336,7 @@ The central input dataset for PCT-England was origin-destination (OD) data from 
 D1 was derived from responses to questions 40 ("In your main job, what is the address of your workplace?") and 41 ("How do you usually travel to work?") in the [English 2011 Census](http://www.ons.gov.uk/census/).
 
 The R package **stplanr** was developed to assign additional variables to D1 [@lovelace_stplanr:_2016].
-This method used the population-weighted centroid of each MSOA to assign geographic coordinates to the OD data, allowing them to be plotted as 'desire lines' (see Figure 1). CycleStreets.net was used estimate of the distance and hilliness (the average gradient, in %) for each desire line (see D3 in Figure 1).
+This method used the population-weighted centroid of each MSOA to assign geographic coordinates to the OD data, allowing them to be plotted on a map. CycleStreets.net was used estimate of the distance and hilliness (the average gradient, in %) for each desire line (see D3 in Figure 1).
 Other input datasets included mortality data per local authority (D2) and an estimate of the gender composition of cyclists in each OD pair (D4) (see the Appendix for further details).
 
 Table: Sample of the OD input dataset, representing the number of people who
@@ -370,13 +370,6 @@ kable(head(flow[c(1:3, 12)]), row.names = F)
 <!--   "Latitude") -->
 <!-- kable(cents1, row.names = F) -->
 <!-- ``` -->
-
-
-```{r, echo=FALSE, fig.cap="Overview of the PCT map interface, showing area and OD-level data. The zone color represents the number of people who cycle to work in each administrative zone. The lines represent the top 6 most cycled commuter routes in Leeds (moving the slider 'N. Lines (most cycled)' increases the number of lines). Width is proportional to the total number of cycle trips. Note the use of population-weighted (as opposed to geographic) centroids for the point of departure and destination and the variable width of the centroids, which are proportional to intra-zonal (within zone) flow."}
-# data("flowlines")
-# plot(flowlines, lwd = flowlines$All / 10)
-knitr::include_graphics("od-data-leeds.png")
-```
 
 <!-- A model estimating cycling uptake as a function of distance, via distance decay curves [@iacono_access_2008], -->
 <!-- and hilliness was used to create plausible scenarios of cycling futures. -->
@@ -509,6 +502,18 @@ requirements of each regional 'build'.
 This increased the scalability of the PCT, allowing nationwide data to be generated on
 desktop computers, albeit with large (16 GB+) amounts of RAM.
 
+Figure 3 shows a visualisation of the output, straight lines with attributes for each OD pair aggregated
+in both directions. 
+These represent cycling 'desire lines' [@tobler_experiments_1987;@chan_multi-criteria_2003].
+The visualisation of the OD data builds
+on published work on cartographic visualisation [@rae_spatial_2009;@wood_visualisation_2010].
+
+```{r, echo=FALSE, fig.cap="Overview of the PCT map interface, showing area and OD-level data. The zone color represents the number of people who cycle to work in each administrative zone. The lines represent the top 6 most cycled commuter routes in Leeds (moving the slider 'N. Lines (most cycled)' increases the number of lines). Width is proportional to the total number of cycle trips. Note the use of population-weighted (as opposed to geographic) centroids for the point of departure and destination and the variable width of the centroids, which are proportional to intra-zonal (within zone) flow."}
+# data("flowlines")
+# plot(flowlines, lwd = flowlines$All / 10)
+knitr::include_graphics("od-data-leeds.png")
+```
+
 <!-- A potential limitation of this single regional geographic level is -->
 <!-- that 'edge zones', straddling two -->
 <!-- or more regions, can become marginalised. -->
@@ -580,7 +585,7 @@ desktop computers, albeit with large (16 GB+) amounts of RAM.
 knitr::include_graphics("pct-frontpage.png")
 ```
 
-## Route allocation and network generation
+<!-- ## Route allocation and network generation -->
 
 The desire lines allocated to the route network are illustrated in Figure 4.
 Note that two route types were computed: the 'fastest' route,
