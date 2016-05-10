@@ -503,23 +503,12 @@ of cycling may shift as cycling grows based on current travel patterns.
 The first two are shorter-term and the second two longer-term.
 
 The choice of scenarios was informed by a government target to double the number of cycle trips
-[@department_for_transport_cycling_2014] and evidence from overseas
+and evidence from overseas
 about which trips *could* be made by cycling,
 especially in relation to gender equality in cycling rates and uptake of electric assist cycles (Ebikes).
 Summaries of the four scenarios are as follows (see the Appendix for full details):
 
-- Government Target. This scenario represents a doubling of
-the number of cycling trips in England.
-Although substantial in relative terms (rising from 3% to 6% of commutes), the rate of cycling under this scenario
-remains low compared with countries such as the Netherlands.
-Growth in cycling is not uniform.
-Above-average percentage point increases are projected in areas
-with many short, flat trips and a low current rate of cycling.
-Conversely, areas with higher cycle use and many long-distance hilly commuter routes will have below-average growth.
-Government Target thus represents a slight reduction
-(but not elimination) of local
-constraints deterring cycle use more in some places than in others and
-is designed to indicate where investment might have the greatest short-term impact.
+- Government Target. This scenario represents a doubling of the level of of cycling in England, informed by a government target to this effect [@department_for_transport_cycling_2014].Although substantial in relative terms (rising from 3% to 6% of commuters), the rate of cycling under this scenario remains low compared with countries such as the Netherlands. Growth in cycling is not uniform in this scenario, in either absolute or relatibe terms. Areas with many short, flat trips and a below-average current rate of cycling are projected to more than double. Conversely, areas with above-averge cycle use and many long-distance hilly commuter routes will experience less than a doubling. govtarget thus generates a slight reduction (but not elimination) of local variation in cycle use that reflects constraints other than distance and hilliness.  This scenario is designed to indicate where investment might have the greatest short-term impact.
 
 - Gender Equality. This scenario illustrates the increase in cycling
 that would result if women were as likely as men to cycle a given trip.
