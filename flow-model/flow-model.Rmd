@@ -506,9 +506,9 @@ The choice of scenarios was informed by a government target to double the number
 [@department_for_transport_cycling_2014] and evidence from overseas
 about which trips *could* be made by cycling,
 especially in relation to gender equality in cycling rates and uptake of electric assist cycles (Ebikes).
-Summaries of the four scenarios are as follows, with full details (including equations) in the Appendix:
+Summaries of the four scenarios are as follows (see the Appendix for full details):
 
-- Government target (*govtarget*). This scenario represents a doubling of
+- Government Target. This scenario represents a doubling of
 the number of cycling trips in England.
 Although substantial in relative terms (rising from 3% to 6% of commutes), the rate of cycling under this scenario
 remains low compared with countries such as the Netherlands.
@@ -516,43 +516,43 @@ Growth in cycling is not uniform.
 Above-average percentage point increases are projected in areas
 with many short, flat trips and a low current rate of cycling.
 Conversely, areas with higher cycle use and many long-distance hilly commuter routes will have below-average growth.
-*govtarget* thus represents a slight reduction
+Government Target thus represents a slight reduction
 (but not elimination) of local
 constraints deterring cycle use more in some places than in others and
 is designed to indicate where investment might have the greatest short-term impact.
 
-- Gender Equality (*gendereq*). This scenario illustrates the increase in cycling
+- Gender Equality. This scenario illustrates the increase in cycling
 that would result if women were as likely as men to cycle a given trip.
 Specifically, the scenario sets the proportion of female cycle commuters to be equal
 to the current proportion of males in each OD pair.
 The scenario is based on the observation that in places where cycling is the norm,
 women cycle at least as much as men [@pucher_infrastructure_2010;@aldred_does_2016].
-*gendereq* represents
+Gender Equality represents
 the elimination of one specific cultural constraint.
 This scenario has the greatest relative impact in areas where
 the rate of cycling is highly gender-unequal.
 <!-- In absolute terms, cycling increases most in this scenario where cycling -->
 <!-- is already a common mode of transport. -->
 
-- Go Dutch (*godutch*).
-While *govtarget* and *gendereq* build on current cycling behaviour,
+- Go Dutch.
+While Government Target and Gender Equality build on current cycling behaviour,
 'Go Dutch' focuses on long-term potential.
-*godutch* represents what would happen if English people were as likely as Dutch people to cycle a trip of a given distance and level of hilliness.
+Go Dutch represents what would happen if English people were as likely as Dutch people to cycle a trip of a given distance and level of hilliness.
 It works by assigning Dutch
 distance decay parameters to English travel patterns.
 The scenario represents the elimination of the
 infrastructural and cultural constraints which currently hold back cycle
 use in England, including all localised differences.
-As such, whereas the *govtarget* and *gendereq* scenarios take current levels as a starting point, the predicted levels of cycle use in  *godutch*
+As such, whereas the Government Target and Gender Equality scenarios take current levels as a starting point, the predicted levels of cycle use in  Go Dutch
 are unrelated to current levels, and are constrained
 only by local trip distance distributions and hilliness.
 
-- Ebikes (*ebikes*). This scenario models the additional increase
+- Ebikes. This scenario models the additional increase
 in cycle use that would be achieved through the widespread uptake of electric
 cycles.
 Electric assist cycles enable longer journeys and make cycling a more viable option for
 people with low fitness and impaired mobility.
-This scenario is currently implemented as an extension *godutch*
+This scenario is currently implemented as an extension Go Dutch
 but could be implemented as an add-on for other scenarios.
 
 ## Estimation of health impacts
@@ -809,12 +809,12 @@ knitr::include_graphics(c("fastest-headingly.png", "fastest-net-headingly.png"))
 
 <!-- ## Government Target -->
 
-<!-- The Government Target scenario (*govtarget*) -->
+<!-- The Government Target scenario -->
 <!-- is based on the UK government's proposed target -->
 <!-- (as set out in its draft Cycling Delivery Plan [@department_for_transport_cycling_2014]) -->
 <!-- to double cycling in England, from 0.8 billion stages currently to 1.6 billion stages by 2025. -->
 <!-- However @department_for_transport_cycling_2014 says nothing about where these additional -->
-<!-- trips would come from. The *govtarget* scenario is therefore based on our own -->
+<!-- trips would come from. The Government Target scenario is therefore based on our own -->
 <!-- assumptions about this. It aims to assist transport -->
 <!-- planners in identifying where new demand for cycling is likely to be greatest in -->
 <!-- the near term. -->
@@ -823,7 +823,7 @@ knitr::include_graphics(c("fastest-headingly.png", "fastest-net-headingly.png"))
 <!-- areas. Instead, the increase is related to the current -->
 <!-- commuter trips and the trip distance. -->
 
-<!-- At the heart of the *govtarget* scenario is the previously discussed -->
+<!-- At the heart of the Government Target scenario is the previously discussed -->
 <!-- regression model (labelled $natmod$) estimating -->
 <!-- the dependent variable, namely the percentage of commuters who cycle (*pcycle*). -->
 <!-- The new percentage of commuters who cycle ($pcycle(govtarget)$) -->
@@ -870,17 +870,17 @@ knitr::include_graphics(c("fastest-headingly.png", "fastest-net-headingly.png"))
 
 <!-- ## Gender equality -->
 
-<!-- The next scenario to be discussed is Gender Equality (*gendereq*). In this -->
+<!-- The next scenario to be discussed is Gender Equality. In this -->
 <!-- scenario cycling tends to grow more in areas that already have a high -->
 <!-- rate of cycling. The scenario -->
 <!-- recognizes that this disparity is reduced or absent in -->
 <!-- countries with a high rate of cycling [@Fishman2015]. -->
-<!-- The Gender Equality scenario (*gendereq*) builds on such insights -->
+<!-- The Gender Equality scenario builds on such insights -->
 <!-- and is based *observed level of cycling* (*OLC*) from the 2011 Census. -->
 
 <!-- On average in England around three quarters of cycle commuters -->
 <!-- are male, although this varies geographically [@Aldred2015]. -->
-<!-- *gendereq* assumes that gender equality is reached in cycling. -->
+<!-- Gender Equality assumes that gender equality is reached in cycling. -->
 <!-- A prerequisite is a model-based estimate of the number of male -->
 <!-- and female cyclists between origin and destinations for -->
 <!-- the observed data. -->
@@ -891,16 +891,16 @@ knitr::include_graphics(c("fastest-headingly.png", "fastest-net-headingly.png"))
 <!-- (@) $$ SLC(gendereq) = SLC(gendereq)_m + SLC(gendereq)_f $$ -->
 
 <!-- More males cycle to work than females in every Local Authority in England -->
-<!-- (Fig. 4). For this reason, the *gendereq* scenario -->
+<!-- (Fig. 4). For this reason, the Gender Equality scenario -->
 <!-- is based on the assumption that the rate of cycling amongst -->
 <!-- females increases to match the rate of cycling amongst males. -->
-<!-- Under *gendereq* $SLC(gendereq)_m = OLC_m$, there are no additional male cyclists. -->
+<!-- Under Gender Equality $SLC(gendereq)_m = OLC_m$, there are no additional male cyclists. -->
 <!-- Note that this is not as simple as $SLC(gendereq)_f = SLC(gendereq)_m$, -->
 <!-- as the absolute number of female and male cyclists will also depend on the gender split of the total commuting population within each OD pair.^[To -->
 <!-- illustrate this point, consider an OD pair in which the total number of female -->
 <!-- commuters is larger than the total number of male commuters. -->
 <!-- In this case, the number of female cyclists would exceed the -->
-<!-- number of male cyclists in the *gendereq* scenario. -->
+<!-- number of male cyclists in the Gender Equality scenario. -->
 <!-- ] -->
 <!-- It is the *proportion* of males and females -->
 <!-- per OD pair who cycle that becomes equal, as follows. -->
@@ -994,11 +994,11 @@ knitr::include_graphics(c("fastest-headingly.png", "fastest-net-headingly.png"))
 <!-- is the application of distance decay parameters -->
 <!-- found in the Netherlands to each OD pair in the study area. -->
 
-<!-- In contrast to *govtarget* and *gendereq* scenarios, -->
-<!-- *godutch* is unrelated to the current rate of cycling. The scenario -->
+<!-- In contrast to Government Target and Gender Equality scenarios, -->
+<!-- Go Dutch is unrelated to the current rate of cycling. The scenario -->
 <!-- thus represents the elimination of localised -->
 <!-- constraints which inhibit cycle use more in some area than others. -->
-<!-- Local cycle use in *godutch* is therefore constrained -->
+<!-- Local cycle use in Go Dutch is therefore constrained -->
 <!-- only by trip distances and hilliness. -->
 
 <!-- ## E-bikes -->
@@ -1079,30 +1079,30 @@ knitr::include_graphics(c("../figures/dd-west-yorks.png", "../figures/dd-ox.png"
 
 Although West Yorkshire and Oxfordshire have very
 different initial levels of cycling, the final level estimated from the
-*godutch* and *ebike* scenarios there are similar. This is because
+Go Dutch and Ebikes scenarios there are similar. This is because
 trip distance distributions in the two cities are comparable and because long-term
 scenarios are not influenced by the current rate of cycling.
-In Manchester the *govtarget* scenario
-has a considerably higher rate of cycling than the *gendereq*
+In Manchester the Government Target scenario
+has a considerably higher rate of cycling than the Gender Equality
 scenario, whereas in Norwich these scenarios are very similar. This is because
 Manchester is starting from a lower baseline, so a doubling nationwide
 results in a relatively high absolute increase in cycling locally. In Norwich,
 by contrast, the current rate of cycling is considerably greater than the
-national average, so the *govtarget* scenario represents less than a doubling in
+national average, so the Government Target scenario represents less than a doubling in
 cycling.
 
 ## The shifting spatial distribution of cycling demand
 
 The difference between the spatial distribution in cycling potential between
-the Government Target (*govtarget*) and Go Dutch
-(*godutch*) scenarios is illustrated in Figure 7 for Leeds (which is in West Yorkshire).
+the Government Target and Go Dutch
+scenarios is illustrated in Figure 7 for Leeds (which is in West Yorkshire).
 The top 6 OD pairs (a low number was used to focus on the city centre)
-in Leeds under *govtarget* reflect the current rate of cycling.
+in Leeds under Government Target reflect the current rate of cycling.
 As such, cycle commuting is projected to continue to be most common in the
 North the city.
-Under *godutch* assumptions, by contrast,
+Under Go Dutch assumptions, by contrast,
 the pattern of cycling shifts substantially to the south of the city.
-The cycling patterns under the *godutch* scenario
+The cycling patterns under the Go Dutch scenario
 are more representative of short-distance trips across the city overall.
 In both cases the desire lines are focused around Leeds city centre: the region
 has a mono-centric regional economy, making commute trips beyond around 5 km from the
@@ -1116,19 +1116,19 @@ knitr::include_graphics("od-scens-leeds.png")
 <!-- Manchester has a poly-centric structure, favouring the construction of cycle -->
 <!-- routes between the various sub-centres, not just in radial routes to a single -->
 <!-- centre. As shown in the scale bar up the left-hand side, -->
-<!-- the absolute level of cycling is much lower in *govtarget* -->
+<!-- the absolute level of cycling is much lower in Government Target -->
 <!-- (which represents only a doubling nationwide) -->
-<!-- than in the much more ambitious *godutch* scenario. -->
+<!-- than in the much more ambitious Go Dutch scenario. -->
 
 The same scenario is illustrated in Figure 8 with the Route Network layer.
 This shows how the shift in cycling to become more evenly spread across the city translates into estimates of cyclist flows on specific road segments.
 The number of cyclists expected on York Road, highlighted with a popup, more than triples (from 71 to 236)
-under *govtarget* and increases more than 10 fold under *godutch* (from 71 to 966).
-This contrast with Otley Road (highlighted in Figure 5), which 'only' triples under *godutch*.
+under Government Target and increases more than 10 fold under Go Dutch (from 71 to 966).
+This contrast with Otley Road (highlighted in Figure 5), which 'only' triples under Go Dutch.
 These results suggest that as cycling grows, policy interventions in Leeds should shift from
 the cycling heatland in the Northwest of the city to desire lines which have low current rates
 of cycling but high potential such as York Road to the East.
-Cycle paths built to help achieve ambitious targets, such as the *godutch* scenario, should
+Cycle paths built to help achieve ambitious targets, such as the Go Dutch scenario, should
 be of sufficient width to accomodate the estimated flows: around 1000 cycle *commuters* would
 use parts of York Road under this scenario and infrastructure design should adapt accordingly.
 
@@ -1139,7 +1139,7 @@ knitr::include_graphics("leeds-rnet-gov-go.png")
 Another potentially useful output of the PCT is the difference between
 'fastest' and 'quietest' routes.
 Figure 9 illustrates this by showing routes in Manchester with the highest cycling
-potential under the *govtarget* scenario.
+potential under the Government Target scenario.
 The 'quietest' route is substantially longer: 2.6 km
 (as shown by clicking on the line). The 'fastest'
 route is more direct (with a route distance of 2.3 km) but passes
@@ -1164,7 +1164,7 @@ preference for protected infrastructure, highlights the importance of
 providing direct and safe routes to encourage cycling amongst
 groups who currently cycle the least. 
 
-```{r, echo=FALSE, fig.cap="Close-up of the 'fastest' and 'quietest' routes from CycleStreets.net of the OD pair with highest cycling potential under the *govtarget* scenario in Manchester. This provides an indication of the local 'quietness diversion factor'"}
+```{r, echo=FALSE, fig.cap="Close-up of the 'fastest' and 'quietest' routes from CycleStreets.net of the OD pair with highest cycling potential under the Government Target scenario in Manchester. This provides an indication of the local 'quietness diversion factor'"}
 knitr::include_graphics("man-trinity-way.png")
 ```
 
@@ -1231,7 +1231,7 @@ The scenarios suggest the PCT could be used for 'visioning' transport futures fu
 <!-- *and* demographic shifts in cycling as it grows. -->
 
 An evaluation of the PCT *after* it has been launched (July 2016) and used by practitioners will be needed to assess the extent to which the approach assists transport-land use planners.
-This will test our hypotheses that the tool can help translate national targets into local aspirations (as illustrated by the *govtarget* scenario), set local targets (by indicating what the potential is relative to other regions),^[Targets have proliferated in recent years. For instance, an official
+This will test our hypotheses that the tool can help translate national targets into local aspirations (as illustrated by the Government Target scenario), set local targets (by indicating what the potential is relative to other regions),^[Targets have proliferated in recent years. For instance, an official
 target to reach 10% of trips made by bicycle has been
 made by authorities in Dublin, Leicester and across
 all of Scotland over various time-scales [@beatley_green_2012]. A mode share of
