@@ -75,11 +75,14 @@ The Propensity to Cycle Tool (PCT) is an online, interactive planning support sy
 been developed to to explore and map cycling potential across England
 (see [pct.bike](http://pct.bike/)).
 The PCT is based on origin-destination data, which it uses to model and visualise
-the rate of cycling use at area, desire line, route and route network levels,
-currently and under a range of 'cycling futures', which represent different levels of ambition.
-Scenarios including 'Go Dutch' and 'Ebikes' (which explored the impact of electric cycles on cycling uptake) were developed and visualised.
-The PCT's use of open source software enables others to create alternative scenarios, for example to represent the route network capacity implications of achieving local cycling targets and could facilitate its deployment in new cities and countries where origin-destination data is available.
-We conclude with a discussion of how new interactive and online tools such as the PCT could help make transport planning a more open and citizen led process.
+cycling levels at area, desire line, route and route network levels.
+This can be done both for current data on cycling and for a range of modelled  'cycling futures', representing different levels of ambition.
+Scenarios implemented so far include 'Go Dutch' and 'Ebikes'.
+These explore what would happen if English people cycled as much as the Dutch and the potential impact of electric cycles on cycling uptake.
+The PCT's use of open source software enables the creation of additional scenarios by others, for example to explore the implications of meeting specific local cycling targets on a city's transport network.
+The PCT's use of open source software enables others to modify the tool for their own purposes.
+This could include the creation of alternative scenarios, for example to explore the implications of meeting local cycling targets on a city's transport network, or its deployment in new cities and countries.
+We conclude that new interactive and online tools such as the PCT can provide an accessible evidence base for developing cycling plans help make transport planning a more open and citizen-led process.
 
 # Introduction
 
@@ -93,19 +96,21 @@ There is mounting evidence about the external costs of car-dominated
 transport systems [@newman_costs_1999;@han_assessment_2008;@mizutani_estimation_2011;@shergold_rural_2012],
 and the benefits of cycling [@oja_health_2011;@woodcock_health_2013;@de_nazelle_improving_2011],
 pushing cycling up the transport policy agenda.
-In this context there is growing interest, and in some cases investment,
+In this context there is growing interest, and in some cases substantial investment,
 in cycling infrastructure, including in countries
-with historically low rates of cycling.^[
-Several examples
-of multi-million Euro projects are provided by the
-[European Cyclist' Federation](http://www.ecf.com/advocary/eu-funding-2/examples-of-cycling-projects-co-funded-by-the-eu/), the
-[FIA Foundation](http://www.unep.org/transport/sharetheroad/PDF/SharetheRoadReportweb.pdf) and the
-[World Cycling Atlas](http://www.worldwidecyclingatlas.com/).
-Another illustration of increased interest in cycling investment is provided by
-the proliferation of publicly subsidized 'bike share'
-[@obrien_mining_2014], which can be viewed in an interactive map at
-[bikes.oobrien.com](http://bikes.oobrien.com).
-]
+with historically low rates of cycling.
+
+<!-- ^[ -->
+<!-- Several examples -->
+<!-- of multi-million Euro projects are provided by the -->
+<!-- [European Cyclist' Federation](http://www.ecf.com/advocary/eu-funding-2/examples-of-cycling-projects-co-funded-by-the-eu/), the -->
+<!-- [FIA Foundation](http://www.unep.org/transport/sharetheroad/PDF/SharetheRoadReportweb.pdf) and the -->
+<!-- [World Cycling Atlas](http://www.worldwidecyclingatlas.com/). -->
+<!-- Another illustration of increased interest in cycling investment is provided by -->
+<!-- the proliferation of publicly subsidized 'bike share' -->
+<!-- [@obrien_mining_2014], which can be viewed in an interactive map at -->
+<!-- [bikes.oobrien.com](http://bikes.oobrien.com). -->
+<!-- ] -->
 
 Providing high-quality infrastructure can play a key role in cycling uptake [@parkin_cycling_2012].
 Off-road cycle paths, for example, have been found to be associated with an increased
