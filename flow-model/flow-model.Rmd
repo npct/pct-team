@@ -492,19 +492,21 @@ knitr::include_graphics("dd-anna.jpg")
 # most single most valuable data sources for transport planners worldwide.
 ```
 
-## Four scenarios of cycling uptake in England
+## Senarios of cycling uptake modeled in PCT-England
 
 Four scenarios were developed to
 explore cycling futures in England.
 These can be framed in terms of the removal of different infrastructural, cultural and technological barriers that currently prevent cycling being the natural mode of choice for urban trips. 
-The scenarios are context-specific and based partly on
-political commitments to cycling (see *govtarget*).
-Use of the PCT in other contexts will likely benefit from new scenarios that
-relate to both the current policy context and long-term aspirations.
-The scenarios are not predictions of the future.
+They are not predictions of the future.
 They are snapshots indicating how the spatial distribution
 of cycling may shift as cycling grows based on current travel patterns.
 The first two are shorter-term and the second two longer-term.
+
+The choice of scenarios was informed by a government target to double the number of cycle trips
+[@department_for_transport_cycling_2014] and evidence from overseas
+about which trips *could* be made by cycling,
+especially in relation to gender equality in cycling rates and uptake of electric assist cycles (Ebikes).
+Summaries of the four scenarios are as follows, with full details (including equations) in the Appendix:
 
 - Government target (*govtarget*). This scenario represents a doubling of
 the number of cycling trips in England.
@@ -735,10 +737,7 @@ change in the rate of cycling is estimated per desire line, and subsequently agg
 and, via steps outlined above, down to the Route Network level.
 A wide range of models could be used to estimate cycling potential at this level and scenarios are constrained only by the imagination (as considered in the Discussion).
 This section outlines the scenarios produced for the English version of the PCT.
-These were informed by a government target to double the number of cycle trips
-[@department_for_transport_cycling_2014] and evidence from overseas
-about which trips *could* be made by cycling,
-especially in relation to gender equality in cycling rates and uptake of electric assist cycles (Ebikes).
+
 
 This section deliberately avoids technical detail about
 the functional form of the model and how model parameters
