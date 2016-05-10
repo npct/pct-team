@@ -405,7 +405,7 @@ The scenario-based 'cycling futures' were based on a baseline estimate of the pr
 This was generated using a logistic regression model operating at the individual level.
 This captured 'distance decay', the non-linear impact of distance on the likelihood of cycling [@iacono_access_2008]
 and the interaction between distance and hilliness (see Figure 2).
-This model of current cycling levels formed the basis of three scenarios (Government Target, Go Dutch and Ebikes) (see the Appendix for details).  
+This model of current cycling levels formed the basis of three scenarios (Government Target, Go Dutch and Ebikes) (see the Appendix).  
 
 ```{r, echo=FALSE, fig.cap="The relationship between distance (left) and hilliness (right) and cycling mode share in England based on the the National Travel Survey. The plots show actual (blue) vs predicted (red) prevalence of cycling to work among 17,896,135 English commuters travelling <30km to work."}
 knitr::include_graphics("dd-anna.png")
@@ -493,15 +493,19 @@ knitr::include_graphics("dd-anna.png")
 # most single most valuable data sources for transport planners worldwide.
 ```
 
-## Regions
+## Estimation of health impacts
 
-Instead of running the model for the entirety of England, a region-by-region approach
-to data generation and visualisation was developed.
-The regional focus was selected because transport decisions
-tend to be made at the local level [@gaffron_implementation_2003].
+The World Health Organisation’s Health Economic Assessment Tool ([HEAT](http://www.heatwalkingcycling.org/)) was used to estimate the number of premature deaths avoided due to increased physical activity [@kahlmeier_health_2014]. To allow for the fact that cycling can in some cases replace walking, HEAT estimates of the increase in premature deaths to the reduction in walking were also included (see the Appendix).  
+
+Trip duration was estimated as a function of the 'fastest' route distance and average speed. For walking and cycling we applied the standard HEAT approach. Ebikes are not specifically covered in HEAT Cycling but enable faster travel and require less energy from the rider than traditional bikes, which were translated new speeds and intensity values for this mode, giving a smaller benefit for every minute spent using Ebikes than conventional cycles.
+
+The net change in the number of deaths avoided for each OD pair was equal to the number deaths avoided due to cycle commuting minus the number of additional deaths due to reduced walking.  Note that this approach means that in some OD pairs where walking made up a high proportion of trips, additional deaths were incurred.  The monetary value of the mortality impact was calculated by drawing on the standard 'value of a statistical life' used by the Department for Transport.
+
+## Visualisation, route allocation and network generation
+
+The data analysis and preparation stages described in the previous sections were conducted using the national OD dataset for England as a whole.  By contrast, the stages described in this section (route allocation and visualization) were conducted using a region-by-region approach. The regional focus was selected because transport decisions tend to be made at the local level [@gaffron_implementation_2003].
 The regional approach also reduced the computational
-requirements of each regional 'build', by reducing the amount of RAM needed
-for key stages in the data generation process.
+requirements of each regional 'build'.
 This increased the scalability of the PCT, allowing nationwide data to be generated on
 desktop computers, albeit with large (16 GB+) amounts of RAM.
 
