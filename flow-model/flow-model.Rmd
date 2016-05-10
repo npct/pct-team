@@ -69,18 +69,17 @@ Yet for infrastructure and other cycling measures to be effective,
 it is important to intervene in the right places, such as along 'desire lines' of high latent demand,
 creating the need for tools to help answer the question 'where to build?'. 
 This paper describes the context, design and potential applications of such a tool.
-The Propensity to Cycle Tool (PCT) is an online, interactive planning support system which has
-been developed to explore and map cycling potential across England
+The Propensity to Cycle Tool (PCT) is an online, interactive planning support system which was
+initially developed to explore and map cycling potential across England
 (see [pct.bike](http://pct.bike/)).
-The PCT is based on origin-destination data, which it uses to model and visualise
-cycling levels at area, desire line, route and route network levels.
-This can be done both for current data on cycling and for a range of modelled  'cycling futures', representing different levels of ambition.
-Scenarios implemented so far include 'Go Dutch' and 'Ebikes'.
-These explore what would happen if English people cycled as much as the Dutch and the potential impact of electric cycles on cycling uptake.
-The PCT's use of open source software enables the creation of additional scenarios by others, for example to explore the implications of meeting specific local cycling targets on a city's transport network.
-The PCT's use of open source software enables others to modify the tool for their own purposes.
-This could include the creation of alternative scenarios, for example to explore the implications of meeting local cycling targets on a city's transport network, or its deployment in new cities and countries.
-We conclude that new interactive and online tools such as the PCT can provide an accessible evidence base for developing cycling plans help make transport planning a more open and citizen-led process.
+Based on origin-destination data, it models and visualises
+cycling levels at area, desire line, route and route network levels,
+currently, and for scenario-based 'cycling futures'.
+Scenarios implemented so far include 'Go Dutch' and 'Ebikes', which
+explore what would happen if English people cycled as much as the Dutch and the potential impact of electric cycles on cycling uptake, respectively.
+The PCT is open source, enabling the creation of additional scenarios by others
+and allowing its deployment in new contexts.
+We conclude that new interactive and online tools such as the PCT can provide an accessible and transparent evidence base for developing cycling plans.
 
 # Introduction
 
