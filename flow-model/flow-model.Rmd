@@ -52,7 +52,7 @@ if(to_install) install.packages(pkgs[to_install])
 
 # Bibliography dl
 # generated via https://github.com/ZotPlus/zotero-better-bibtex
-download.file("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
+# download.file("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
 # # This is from the group 'energy-and-transport': https://www.zotero.org/groups/energy-and-transport/
 
 # To do:
@@ -1166,8 +1166,8 @@ making it easy for others use the project as a basis for further work [@lima_cod
 <!-- has been demonstrated by the tool's ability to be deployed in any -->
 <!-- Local Authority (or other administrative area) -->
 <!-- in England. -->
-<!-- <!-- Extensibility has been demonstrated by the addition of --> -->
-<!-- <!-- new scenarios, and the addition of new features to the tool following user feedback.  --> -->
+<!-- <!-- Extensibility has been demonstrated by the addition of --> 
+<!-- <!-- new scenarios, and the addition of new features to the tool following user feedback.  --> 
 
 <!-- An indication of how the -->
 <!-- tool could be used was illustrated -->
