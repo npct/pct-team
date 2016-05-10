@@ -178,7 +178,7 @@ Motivated by the need for an evidence base to inform where to build new cycle pa
 @larsen_build_2013 created
 an area-based 'prioritization index'.
 This was based on four variables: the area's current level of cycling,
-its cycling potential (estimated based on the shortest path between the the origin and destination of short car trips from a travel survey), the number of injuries to cyclists,
+its cycling potential (estimated based on the shortest path between the origin and destination of short car trips from a travel survey), the number of injuries to cyclists,
 and locations prioritised by current cyclists for improvement  [@larsen_build_2013].
 The method used to combine these four sources was rasterisation, whereby
 the information was aggregated to the level of evenly spread cells covering the study area.
@@ -190,13 +190,12 @@ The PAT works by combining geographical data, including the location of popular 
 and existing transport infrastructure, with on-site audit data of areas that have
 been short-listed. Unlike the prioritization index of Larsen et al. (2013), which is primarily aimed at informing a strategic cycling network, the results of the PAT are designed to guide smaller, site specific interventions such as 'contraflow' paths and cyclist priority traffic signals.
 
-At the opposite end of the scale spectrum, @parkin_estimation_2008 created a regression model to estimate the proportion of commuter trips cycled across wards in England and Wales.
-Ethnic minorities, low income, road defects, rainfall and hills were all associated with low levels of cycling, leading to the conclusion that policy makers must engage with a mixture of social and physical barriers to effectively promote cycling, with the implication that some areas are more likely to respond to investment than others.
+At the opposite end of the scale spectrum, @parkin_estimation_2008 developed a regression model to estimate the proportion of commuter trips cycled across wards in England and Wales. Factors associated with lower levels of cycling included road defects, high rainfall, hills and a higher proportion of ethnic minority and low-income inhabitants.  Parkin et al. conclude that policy makers must engage with a mixture of physical and social barriers to promote cycling effectively, with the implication that some areas have lower barriers to cycling --- and hence higher propensity to cycle --- than others.
 
 <!-- ### Individiual-based measures of cycling potential -->
 
 @zhang_prioritizing_2014 created an individual-level model of cycling potential to prioritise where to build cycle paths to "achieve maximum impacts early on".
-The output of this model were aggregated to the level of 67 statistical zones in the study area of Belo Horizonte and used to generate a 'usage intensity index' for potential cycle paths.
+The outputs of this model were aggregated to the level of 67 statistical zones in the study area of Belo Horizonte and used to generate a 'usage intensity index' for potential cycle paths.
 This, combined with survey data on cyclists' preferences for where to construct new cycle paths and origin-destination data on travel to work, was used to rank key routes in the city in terms of their cycling potential.
 
 <!-- Another method that used individual-level to identify areas with high numbers of -->
@@ -206,9 +205,9 @@ This, combined with survey data on cyclists' preferences for where to construct 
 <!-- presented as a static heatmap and used to prioritise where to build new cycle -->
 <!-- paths and cycle hire points. -->
 
-The Analysis of Cycling Potential tool [@transport_for_london_analysis_2010] combined area and individual-level data to produce a heat map estimating cycling potential across London. The model examined which types of trips are most likely to be cycled, based on the types of trips that are currently cycled (e.g. time of day, characteristics of the traveller, distance).
-Unlike the other tools this was practitioner-led and the results have informed planning aspects of local cycling schemes (for example, where to build new cycle share points and improve off-road paths).
-The Analysis of Cycling Potential tool does not use origin-destination data or methods of route allocation.
+The Analysis of Cycling Potential (ACP) tool [@transport_for_london_analysis_2010] combined area and individual-level data to produce a heat map estimating cycling potential across London. The model examined which types of trips are most likely to be cycled, based on the types of trips that are currently cycled (e.g. time of day, characteristics of the traveller, distance).
+Unlike the other tools reviewed in this section, the ACP was practitioner-led. Its results have informed local cycling schemes, such aswhere to build new cycle share points.
+The ACP does not use origin-destination data or methods of route allocation.
 
 <!-- A key feature of this tool was its integration of data sources from many different sources. -->
 <!-- Unlike @larsen_build_2013, @zhang_prioritizing_2014  Using socio-demographic data, groups who were most likely to cycle were identified.  -->
@@ -293,8 +292,7 @@ The PCT was commissioned by the UK's Department for Transport to identify "parts
 Thus the aim of the tool was not to produce a full transport-land use model,
 but to provide an evidence base to prioritise where to create cycle-friendly infrastructure based on scenarios of the future.
 
-Ambitious local and national cycling targets are often based on mode
-share.^[The
+Local and national cycling targets are often based on a target mode share by a given date.^[The
 local target in Bristol, for example, is for [20% of commuter trips to be cycled by 2020](http://www.bristolpost.co.uk/Bristol-City-Council-s-pound-35million-plan/story-21341172-detail/story.html). [Manchester](http://cycling.tfgm.com/Documents/CCAG2-Executive-Summary.pdf) (10% by 2025),
 [Derbyshire](https://www.derbyshire.gov.uk/images/2015-07-07%20Item%207l%20Cycle%20Plan_tcm44-267216.pdf) (to double the number of people cycling by 2025) and [London](http://content.tfl.gov.uk/gla-mayors-cycle-vision-2013.pdf) (to 'double cycling' by 2025) provide further examples of local ambitious time-bound cycling
 targets.]
@@ -303,18 +301,17 @@ The PCT tackles this issue by estimating rate of cycling locally under different
 
 - Estimation of cycling potential at area, 'desire line' and route network levels. 
 
-- Route-allocation of the desire lines by an routing algorithm specifically developed for cycling.
+- Route-allocation of the desire lines by a routing algorithm specifically developed for cycling.
 This was done by CycleStreets.net, a routing service developed by cyclists, for cyclists.
 
 - Visualisation of outputs at multiple geographic levels. The interactive map enables users to examine cycling potential at a very local level (e.g. just a few streets) or at a more regional level (e.g. across a large metropolitan area). 
 
-- Its level of accessibility. The tool is publicly available on-line and developers are encourage to modify the PCT (e.g. to create alternative scenarios) by provision of the source code underlying the PCT under the open source AGP License.
+- Public accessibility of results and code. The tool is freely available on-line and developers are encourage to modify the PCT (e.g. to create alternative scenarios) by provision of the source code underlying the PCT under the open source AGP License.
 
-As with any tool, its utility depends on people knowing how to use it.
+As with any tool, the PCT's utility depends on people knowing how to use it.
 For that reason a Manual was added as a 'tab' that can be view while using the tool
 (the tab headings are displayed in Figure 3 and described in Section 5).
 This provides some further details on how to create custom scenarios.
-Further enhancements to the Manual are planned following user feedback.
 
 # Data and methods
 
