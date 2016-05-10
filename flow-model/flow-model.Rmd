@@ -1160,24 +1160,32 @@ PCT tackles the important yet largely unresolved issue
 of how to create a systematic evidence base to prioritise where to build new cycle paths.
 We have presented a couple of illustrative use cases of the PCT which show that the spatial distribution
 of cycling demand is likely to shift as cycling grows. 
-The underlying code is open source (see [github.com/npct](https://github.com/npct)),
-making it easy for others use the project as a basis for further work [@lima_coding_2014].
-This flexibility
-has been demonstrated by the tool's ability to be deployed in any
-Local Authority (or other administrative area)
-in England.
-<!-- Extensibility has been demonstrated by the addition of -->
-<!-- new scenarios, and the addition of new features to the tool following user feedback.  -->
 
-An indication of how the
-tool could be used was illustrated
-with maps showing the shifting distribution of cling
-under 'Government Target' and 'Go Dutch' 
-scenarios in Leeds and Manchester. These outputs suggested
-the 'centre of gravity' for gravity will shift, towards areas with high
-numbers of short distance trips (and therefore high latent demand) but
-low current rates of cycling.
-The scenarios suggest the PCT could be used for 'visioning' transport futures futures [@tight_visions_2011].
+The shifting distribution of cycling under 'Government Target' and 'Go Dutch' scenarios was illustrated for the city of Leeds. The output of the PCT suggests that the 'centre of gravity' for cycling will shift as cycling grows in the city, towards areas with high numbers of short distance trips but low current rates of cycling. In addition to planning specific routes, the long-term Go Dutch and Ebikes scenarios could be used for 'visioning' transport futures [@tight_visions_2011].
+The PCT could also be used to help translate national targets into local aspirations (as illustrated by the Government Target scenario); setting local targets (e.g. by indicating what the potential in one region is relative to neighbouring regions); supporting business cases (by showing that there is high cycling potential along proposed routes); and planning for capacity increases in cycling along the route network via the network analysis layer.
+Future work could explore the extent to which the PCT can assist with such planning issues, for current and future version of the tool.
+Such future developments will be facilitated by the fact that the underlying code of the PCT is open source (see [github.com/npct](https://github.com/npct)),
+making it easy for others use the project as a basis for further work [@lima_coding_2014].
+
+
+<!-- The underlying code is open source (see [github.com/npct](https://github.com/npct)), -->
+<!-- making it easy for others use the project as a basis for further work [@lima_coding_2014]. -->
+<!-- This flexibility -->
+<!-- has been demonstrated by the tool's ability to be deployed in any -->
+<!-- Local Authority (or other administrative area) -->
+<!-- in England. -->
+<!-- <!-- Extensibility has been demonstrated by the addition of --> -->
+<!-- <!-- new scenarios, and the addition of new features to the tool following user feedback.  --> -->
+
+<!-- An indication of how the -->
+<!-- tool could be used was illustrated -->
+<!-- with maps showing the shifting distribution of cling -->
+<!-- under 'Government Target' and 'Go Dutch'  -->
+<!-- scenarios in Leeds and Manchester. These outputs suggested -->
+<!-- the 'centre of gravity' for gravity will shift, towards areas with high -->
+<!-- numbers of short distance trips (and therefore high latent demand) but -->
+<!-- low current rates of cycling. -->
+<!-- The scenarios suggest the PCT could be used for 'visioning' transport futures futures [@tight_visions_2011]. -->
 
 <!-- Such developments could further enhance the PCT's ability to provide an evidence base to support local knowledge. -->
 <!-- Future (more sophisticated) versions of the PCT could provide a visual evidence base to help answer the following question [see @Sloman2014; @Aldred2014]:   -->
@@ -1197,12 +1205,12 @@ The scenarios suggest the PCT could be used for 'visioning' transport futures fu
 <!-- Based on this understanding, the PCT has the potential to represent spatial -->
 <!-- *and* demographic shifts in cycling as it grows. -->
 
-An evaluation of the PCT *after* it has been launched (July 2016) and used by practitioners will be needed to assess the extent to which the approach assists transport-land use planners.
-This will test our hypotheses that the tool can help translate national targets into local aspirations (as illustrated by the Government Target scenario), set local targets (by indicating what the potential is relative to other regions),
-support business cases (by showing that there is high cycling potential along proposed routes) and plan
-for capacity increases in cycling along the route network via the network analysis layer.
-Above all, post-launch evaluation will be able to assess the extent to which the approach can
-help design strategic cycling networks.
+<!-- An evaluation of the PCT *after* it has been launched (July 2016) and used by practitioners will be needed to assess the extent to which the approach assists transport-land use planners. -->
+<!-- This will test our hypotheses that the tool can help translate national targets into local aspirations (as illustrated by the Government Target scenario), set local targets (by indicating what the potential is relative to other regions), -->
+<!-- support business cases (by showing that there is high cycling potential along proposed routes) and plan -->
+<!-- for capacity increases in cycling along the route network via the network analysis layer. -->
+<!-- Above all, post-launch evaluation will be able to assess the extent to which the approach can -->
+<!-- help design strategic cycling networks. -->
 
 <!-- ^[Targets have proliferated in recent years. For instance, an official -->
 <!-- target to reach 10% of trips made by bicycle has been -->
@@ -1213,40 +1221,11 @@ help design strategic cycling networks.
 
 
 As with any modelling tool, the approach presented in this paper has
-limitations: the reliance on 2011 Census OD data means that the results are
-not up-to-date;
-there are no scenarios representing specific infrastructure
-interventions; and the user interface is constrained to a few discrete scenarios.
-These limitations open-up the potential for future work, including:
-using more up-to-date sources of OD data; creating a version of the model
-to represent the impact of specific improvements to the route network
-(e.g. by modifying the 'quietness diversion factor', described above);
-and the implementation of continuous variables to define future scenarios.
-Further extensions of the PCT 
-could include:
+limitations: the reliance on Census OD data from 2011 means that the results are not up-to-date; the user interface is constrained to a few, discrete, scenarios; and there are no scenarios representing specific infrastructure interventions. These limitations suggest directions for future work, including: use of more new sources of OD data; the implementation of continuous variables to define future scenarios; and versions of the model to represent the impact of specific improvements to the route network (e.g. by modifying the 'quietness diversion factor'). Beyond these changes, further extensions of the PCT could include:
 
 - Additional scenarios to illustrate a wider range of 'cycling futures', including medium-term and local targets such as 'Go York' (where 12% of commuters cycle to work).
 
-- Additional 'output tabs' in the PCT's user interface, to estimate the
-quantitative benefits of cycling uptake at the local (and potentially
-route-allocated) level. Benefits estimated could include
-health gains due to increased physical activity, as estimated using models such as
-the Health Economic Assessment Tool
-(HEAT), endorsed by the World Health Organisation [@fraser_cycling_2011].
-The tool could also be used as a basis for estimating and communicating the local energy and
-carbon savings of cycling uptake, previously estimated at city levels [e.g. @lovelace_assessing_2011].
-
-- Deployment of the PCT for entire countries.
-This would depend on having appropriate OD data and could
-build on emerging 'Big Data' sources for origin-destination
-flows [@alexander_validation_2015].
-
-- International comparisons of cycling potential.
-This could include an exploration of
-the relationship between places of high potential and investment.
-We have already begun this by using Dutch distance decay functions in an English
-context, but more could be done by fully implementing the model in different
-country contexts.
+- Additional purposes of trips in the model. An 'education layer' would enable prioritisation of 'safe routes to school', building on methods analysing 'school commute' data [@singleton_gis_2014].
 
 - The extension of the model to cover variation between different demographic
 groups. This could be done using the method of spatial microsimulation, which
@@ -1254,11 +1233,55 @@ enables the use of additional individual-level variables,
 such as access to a cycle,
 to inform more targeted interventions [@lovelace_spatial_2014].
 
-- Additional purposes of trips in the model.
-An 'education layer' would enable prioritisation of 'safe routes to school',
-building on methods analysing 'school commute' data [@singleton_gis_2014].
+- Use of additional input data when estimating propensity to cycle for specific OD pairs, for example the location of new developments and road traffic speed and volumes. This work could build on recently developed GIS for transport planning [@farrell_evaluating_2015].
 
-- Use of alternative input data data, such as the location of new developments and road traffic speed and volumes. This work could build on recently developed GIS-based methods for transport planning [@farrell_evaluating_2015].
+- Deployment of the PCT for in new cities, regions or countries. This would depend on having appropriate OD data, such as from mobile telephone providers [@alexander_validation_2015]. Such work would also facilitate international comparisons of cycling potential. 
+
+Transport planning is a complex and contested field [@banister_sustainable_2008].
+When it comes to sustainable urban mobility, policy, politics, leadership and vision are key ingredients that computer models alone cannot supply [@melia_urban_2015].
+The approach described here can, however, assist in this wider context by providing new tools for exploring the best available evidence.
+By providing transport authorities, campaign groups and the public with access to the same evidence base, we hypothesise that tools such as the PCT can encourage informed and rigorous debate, as advocated by @golub_making_2013. In conclusion, the PCT provides an accessible evidence base to inform the question of where to construct new cycling infrastructure and raises more fundamental questions about how models should be used in transport planning.
+
+<!-- limitations: the reliance on 2011 Census OD data means that the results are -->
+<!-- not up-to-date; -->
+<!-- there are no scenarios representing specific infrastructure -->
+<!-- interventions; and the user interface is constrained to a few discrete scenarios. -->
+<!-- These limitations open-up the potential for future work, including: -->
+<!-- using more up-to-date sources of OD data; creating a version of the model -->
+<!-- to represent the impact of specific improvements to the route network -->
+<!-- (e.g. by modifying the 'quietness diversion factor', described above); -->
+<!-- and the implementation of continuous variables to define future scenarios. -->
+<!-- Further extensions of the PCT  -->
+<!-- could include: -->
+
+<!-- - Additional scenarios to illustrate a wider range of 'cycling futures', including medium-term and local targets such as 'Go York' (where 12% of commuters cycle to work). -->
+
+<!-- - Additional 'output tabs' in the PCT's user interface, to estimate the -->
+<!-- quantitative benefits of cycling uptake at the local (and potentially -->
+<!-- route-allocated) level. Benefits estimated could include -->
+<!-- health gains due to increased physical activity, as estimated using models such as -->
+<!-- the Health Economic Assessment Tool -->
+<!-- (HEAT), endorsed by the World Health Organisation [@fraser_cycling_2011]. -->
+<!-- The tool could also be used as a basis for estimating and communicating the local energy and -->
+<!-- carbon savings of cycling uptake, previously estimated at city levels [e.g. @lovelace_assessing_2011]. -->
+
+<!-- - Deployment of the PCT for entire countries. -->
+<!-- This would depend on having appropriate OD data and could -->
+<!-- build on emerging 'Big Data' sources for origin-destination -->
+<!-- flows [@alexander_validation_2015]. -->
+
+<!-- - International comparisons of cycling potential. -->
+<!-- This could include an exploration of -->
+<!-- the relationship between places of high potential and investment. -->
+<!-- We have already begun this by using Dutch distance decay functions in an English -->
+<!-- context, but more could be done by fully implementing the model in different -->
+<!-- country contexts. -->
+
+<!-- - Additional purposes of trips in the model. -->
+<!-- An 'education layer' would enable prioritisation of 'safe routes to school', -->
+<!-- building on methods analysing 'school commute' data [@singleton_gis_2014]. -->
+
+<!-- - Use of alternative input data data, such as the location of new developments and road traffic speed and volumes. This work could build on recently developed GIS-based methods for transport planning [@farrell_evaluating_2015]. -->
 
 <!-- The PCT's open source license allows others to -->
 <!-- modify it for their own needs. , -->
