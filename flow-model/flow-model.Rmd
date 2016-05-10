@@ -112,7 +112,7 @@ with historically low rates of cycling.
 <!-- [bikes.oobrien.com](http://bikes.oobrien.com). -->
 <!-- ] -->
 
-Providing high-quality infrastructure can play a key role in cycling uptake [@parkin_cycling_2012].
+Providing high-quality infrastructure can play a key role in promoting cycling uptake [@parkin_cycling_2012].
 Off-road cycle paths, for example, have been found to be associated with an increased
 share of commute trips made by cycling locally [@heinen_changes_2015].
 Overall there is strong evidence from dozens of studies linking cycling infrastructure to an increased rate of cycling [@buehler_bikeway_2016].
@@ -132,19 +132,24 @@ to map cycling potential (Department for Transport, 2015).
 
 # The Propensity to Cycle Tool in context
 
+The PCT was developed in the context of increasing transport policy attention directed to cycling and, from an academic perspective, two branches of research:
+a) methodological developtments for estimating cycling potential and b) Planning Support Systems (PSS).
+The subsequent overview of this policy and academic landscape places the PCT in its wider context.
+
+## The policy context
+
 A number of factors influence
 the attractiveness of cycling for everyday trips [@pucher_infrastructure_2010].
-There is a wide range of interventions related to infrastructure which can be grouped the banner 'space for cycling' [@parkin_planning_2015].
+There is a wide range of interventions related to infrastructure that can be grouped the banner 'space for cycling' [@parkin_planning_2015].
 These include reducing speed limits, implementing car free zones and improving the urban realm.
 However, the intervention that has received the most attention has been the construction of new cycle paths. With devolved transport budgets, the design of cycling networks is one policy lever over which local authorities have some control.
-Design options include the width [@wegman_urban_1979;@pikora_developing_2002], quality [@heath_effectiveness_2006], directness  [@crow_design_2007] and geographic location of the paths.
-Much evidence and guidance has been produced about the design of cycle paths [e.g. @transport_for_london_london_2015;@welsh_government_guidance_2014].
-Yet little work has explicitly tackled the question of where this high quality infrastructure should be built
+Planning new cycle paths requires many decisions to be made, including the width [@wegman_urban_1979;@pikora_developing_2002], quality [@heath_effectiveness_2006], directness [@crow_design_2007] and geographic location of the paths.
+Yet while much evidence and guidance has been produced regarding the physical design of cycle paths [e.g. @transport_for_london_london_2015;@welsh_government_guidance_2014],
+little work has explicitly tackled the question of where this high quality infrastructure should be built
 [@aultman-hall_analysis_1997;@minikel_cyclist_2012].
-The PCT focusses explicitly on the question of *where* to build rather than *what* to build (although it does provide evidence on future capacity for different route segments, which is related to width).
+Within this policy context, the PCT focuses explicitly on the question of *where* to build rather than *what* to build (although it does provide evidence on future capacity for different route segments, which is related to width).
 
-A wider issue related to the broader sustainable urban mobility question is that the tools and concepts within the 'predict and provide' paradigm have limited capacity to inform 'sustainable mobility' policies [@naess_transport_2014].
-In this context, the other line of research linked to the PCT relates to Planning Support Systems (PSS), interactive tools to assist the planning process [@klosterman_what_1999]. The subsequent review of the associated literature puts the tool in the wider context of emerging tools for transport planning.
+<!-- A wider issue related to the broader sustainable urban mobility question is that the tools and concepts within the 'predict and provide' paradigm have limited capacity to inform 'sustainable mobility' policies [@naess_transport_2014]. -->
 
 ## Research into cycling potential 
 
@@ -344,7 +349,7 @@ Where many trips are long and/or hilly, interventions related to land-use planni
 Where many are short, by contrast, improvements to the infrastructure
 for cycling, in tandem with 'soft' interventions such as cycle training,
 may be sufficient for cycling levels to grow.
-The PCT focusses explicitly on the latter scenario as it is (currently)
+The PCT focuses explicitly on the latter scenario as it is (currently)
 based on current travel patterns.
 
 ```{r, echo=FALSE, fig.cap="The relationship between distance (left) and hilliness (right) and cycling mode share in England based on the the National Travel Survey. The plots show actual (blue) vs predicted (red) prevalence of cycling to work among 17,896,135 English commuters travelling <30km to work."}
