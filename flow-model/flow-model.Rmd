@@ -1027,40 +1027,23 @@ This section describes and illustrates some outputs from the PCT, alongside disc
 
 ## Model output tabs
 
-Although the main component of the PCT and focus of this paper is the interactive map,
-the PCT contains 6 'tabs' (see Figure 3).
-The first four provide region-specific information:
+The PCT contains 6 'tabs' (see Figure 3), the first four of which provide region-specific information:
 
-- **Map**: This is the interactive map which shows cycling potential at area, desire-line, route and route network levels under different scenarios of the future, as described throughout this paper.
+- **Map**: This is the interactive map that shows cycling potential at area, desire-line, route and route network levels under different scenarios of the future, as described throughout this paper. This interactive map is the main component of the PCT, and is the default tab presented to users.
 
-- **Lines**: When lines are displayed, this tab provides the raw data as a table at the desire line level. Variables shown include the origin and destination of the route, current number of commutes by rail, bus, car and bicycle, the increase in cyclists under different scenarios, and geographical data such as straight line distance, hilliness and circuity.
+- **Lines**: When lines are displayed on the interactive map, this tab provides the raw data as a table at the desire line level. Variables shown include the origin and destination of the route, current number of commutes by rail, bus, car and bicycle, the increase in cyclists under different scenarios, and geographical data such as straight line distance, hilliness and circuity.
 
-- **Areas**: This tab provides the same data as for the lines tab but at the area level.
+- **Areas**: This tab is the equivalent of the 'Lines' tab, but provides the same data at the area level.
 
-- **Model output**: This tab added in response to feedback from users who wanted more detail about the origin of the.
-It includes key statistics, diagnostic plots and model-results on a per-region
-basis. Since the contents of the this tab are created based on the data for each regional 'build',
+- **Model output**: This tab includes key statistics, diagnostic plots and model-results on a per-region
+basis. Since the contents of this tab are created based on the data for each regional 'build',
 it produces a different summary document depending on
-the region currently being viewed. By showing the different distance decay curves for each scenario (see Figure 6),
-it provides insight into local travel patterns and how they relate to cycling potential in the region overall. 
+the region currently being viewed.
+For each scenario it shows the distribution of cycling by trip distance (see Figure 6), and thereby provides insight into local travel patterns and how they relate to cycling potential in the region overall.
 
 ## Trip distance distributions
 
-Figure 6 shows how the proportion of trips made by cycling
-varies as a function of distance in two regions
-currently, and under the PCT's four scenarios of change.
-It is clear that each region has a different spatial structure:
-Oxfordshire, which has a high rate of cycling,
-has a tall and steep distance decay curve for all modes.
-The high proportion of short trips (e.g. under 4 km)
-helps explain the high rate of cycling there.
-West Yorkshire, by contrast, has a shallower rate of distance decay for all modes
-and a low and comparatively shallow curve for cycling currently.
-These results (presented in the Model Output tab in the PCT)
-suggest that there is high cycling potential in both regions
-but imply that West Yorkshire should prioritise the 'low hanging fruit'
-of short trips not currently cycled whereas in Oxfordshire extra cycling
-potential is more evenly distributed across all cyclable distances.
+Figure 6 shows how the proportion of trips made by cycling varies as a function of distance in two regions currently, and under the PCT's four scenarios of change. Examining the distribution of commute trips by all modes (the red lines), it is clear that each region has a different spatial structure.  In Oxfordshire a high proportion of all commute trips are short (under 5km), which helps explain the high rate of cycling there. West Yorkshire, by contrast, has a higher proportion of trips of medium or longer lengths.  West Yorkshire also shows a less marked difference in the number of cyclists according to distance than Oxford, as indicated by the comparatively shallow curve for current cycling. These results (presented in the Model Output tab in the PCT) suggest that there is high cycling potential in both regions but perhaps imply that West Yorkshire should prioritise the 'low hanging fruit' of short trips not currently cycled whereas in Oxfordshire extra cycling potential is more evenly distributed across all cyclable distances.
 
 ```{r, echo=FALSE, fig.cap="Trip frequency-distance distributions of observed and scenario-based levels of cycling from PCT model runs for the city of Manchester (left) and Norwich (right).", eval=FALSE}
 # commented out as it's been superceded
@@ -1071,19 +1054,16 @@ knitr::include_graphics("man-nor-output-2.png")
 knitr::include_graphics(c("../figures/dd-west-yorks.png", "../figures/dd-ox.png"))
 ```
 
-Although West Yorkshire and Oxfordshire have very
-different initial levels of cycling, the final level estimated from the
-Go Dutch and Ebikes scenarios there are similar. This is because
-trip distance distributions in the two cities are comparable and because long-term
-scenarios are not influenced by the current rate of cycling.
-In Manchester the Government Target scenario
-has a considerably higher rate of cycling than the Gender Equality
-scenario, whereas in Norwich these scenarios are very similar. This is because
-Manchester is starting from a lower baseline, so a doubling nationwide
-results in a relatively high absolute increase in cycling locally. In Norwich,
-by contrast, the current rate of cycling is considerably greater than the
-national average, so the Government Target scenario represents less than a doubling in
-cycling.
+Although West Yorkshire and Oxfordshire have very different initial levels of cycling, the final level estimated from the godutch and ebike scenarios there are similar. This is because long-term scenarios are not influenced by the current rate of cycling.
+
+<!-- In Manchester the Government Target scenario -->
+<!-- has a considerably higher rate of cycling than the Gender Equality -->
+<!-- scenario, whereas in Norwich these scenarios are very similar. This is because -->
+<!-- Manchester is starting from a lower baseline, so a doubling nationwide -->
+<!-- results in a relatively high absolute increase in cycling locally. In Norwich, -->
+<!-- by contrast, the current rate of cycling is considerably greater than the -->
+<!-- national average, so the Government Target scenario represents less than a doubling in -->
+<!-- cycling. -->
 
 ## The shifting spatial distribution of cycling demand
 
