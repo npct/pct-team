@@ -17,6 +17,12 @@ header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktab
 bibliography: references.bib
 ---
 
+```{r, echo=FALSE}
+library(knitr)
+opts_chunk$set(out.width = '100%')
+```
+
+
 ```{r, echo=FALSE, include=FALSE}
 # date: '`r format(Sys.time(), ''%d %B %Y'')`'
 # output:
@@ -47,7 +53,7 @@ if(to_install) install.packages(pkgs[to_install])
 # Bibliography dl
 # download.file("https://github.com/citation-style-language/styles/raw/master/elsevier-harvard.csl", "documents/elsevier-harvard.csl")
 # generated via https://github.com/ZotPlus/zotero-better-bibtex
-download.file("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
+# download.file("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
 # # This is from the group 'energy-and-transport': https://www.zotero.org/groups/energy-and-transport/items/collectionKey/TUEXXIV4
 # b1 <- readLines("references.bib")
 # b2 <- readLines("documents/Transport.bib")
@@ -401,7 +407,7 @@ and the interaction between distance and hilliness (see Figure 2).
 This model of current cycling levels formed the basis of three scenarios (Government Target, Go Dutch and Ebikes) (see the Appendix).  
 
 ```{r, echo=FALSE, fig.cap="The relationship between distance (left) and hilliness (right) and cycling mode share in England based on the the National Travel Survey. The plots show actual (blue) vs predicted (red) prevalence of cycling to work among 17,896,135 English commuters travelling <30km to work."}
-knitr::include_graphics("dd-anna.png")
+knitr::include_graphics("dd-anna.jpg")
 ```
 
 
