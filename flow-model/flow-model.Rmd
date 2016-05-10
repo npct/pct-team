@@ -492,6 +492,67 @@ knitr::include_graphics("dd-anna.jpg")
 # most single most valuable data sources for transport planners worldwide.
 ```
 
+## Four scenarios of cycling uptake in England
+
+Four scenarios were developed to
+explore cycling futures in England.
+These can be framed in terms of the removal of different infrastructural, cultural and technological barriers that currently prevent cycling being the natural mode of choice for urban trips. 
+The scenarios are context-specific and based partly on
+political commitments to cycling (see *govtarget*).
+Use of the PCT in other contexts will likely benefit from new scenarios that
+relate to both the current policy context and long-term aspirations.
+The scenarios are not predictions of the future.
+They are snapshots indicating how the spatial distribution
+of cycling may shift as cycling grows based on current travel patterns.
+The first two are shorter-term and the second two longer-term.
+
+- Government target (*govtarget*). This scenario represents a doubling of
+the number of cycling trips in England.
+Although substantial in relative terms (rising from 3% to 6% of commutes), the rate of cycling under this scenario
+remains low compared with countries such as the Netherlands.
+Growth in cycling is not uniform.
+Above-average percentage point increases are projected in areas
+with many short, flat trips and a low current rate of cycling.
+Conversely, areas with higher cycle use and many long-distance hilly commuter routes will have below-average growth.
+*govtarget* thus represents a slight reduction
+(but not elimination) of local
+constraints deterring cycle use more in some places than in others and
+is designed to indicate where investment might have the greatest short-term impact.
+
+- Gender Equality (*gendereq*). This scenario illustrates the increase in cycling
+that would result if women were as likely as men to cycle a given trip.
+Specifically, the scenario sets the proportion of female cycle commuters to be equal
+to the current proportion of males in each OD pair.
+The scenario is based on the observation that in places where cycling is the norm,
+women cycle at least as much as men [@pucher_infrastructure_2010;@aldred_does_2016].
+*gendereq* represents
+the elimination of one specific cultural constraint.
+This scenario has the greatest relative impact in areas where
+the rate of cycling is highly gender-unequal.
+<!-- In absolute terms, cycling increases most in this scenario where cycling -->
+<!-- is already a common mode of transport. -->
+
+- Go Dutch (*godutch*).
+While *govtarget* and *gendereq* build on current cycling behaviour,
+'Go Dutch' focuses on long-term potential.
+*godutch* represents what would happen if English people were as likely as Dutch people to cycle a trip of a given distance and level of hilliness.
+It works by assigning Dutch
+distance decay parameters to English travel patterns.
+The scenario represents the elimination of the
+infrastructural and cultural constraints which currently hold back cycle
+use in England, including all localised differences.
+As such, whereas the *govtarget* and *gendereq* scenarios take current levels as a starting point, the predicted levels of cycle use in  *godutch*
+are unrelated to current levels, and are constrained
+only by local trip distance distributions and hilliness.
+
+- Ebikes (*ebikes*). This scenario models the additional increase
+in cycle use that would be achieved through the widespread uptake of electric
+cycles.
+Electric assist cycles enable longer journeys and make cycling a more viable option for
+people with low fitness and impaired mobility.
+This scenario is currently implemented as an extension *godutch*
+but could be implemented as an add-on for other scenarios.
+
 ## Estimation of health impacts
 
 The World Health Organisation’s Health Economic Assessment Tool ([HEAT](http://www.heatwalkingcycling.org/)) was used to estimate the number of premature deaths avoided due to increased physical activity [@kahlmeier_health_2014]. To allow for the fact that cycling can in some cases replace walking, HEAT estimates of the increase in premature deaths to the reduction in walking were also included (see the Appendix).  
@@ -744,67 +805,6 @@ based on data from the National Travel Survey (see Appendix).
 <!-- zones whose population-weighted centroid lies inside the -->
 <!-- buffer, the width of which can also be set based on knowledge of -->
 <!-- the local area.i -->
-
-## Four scenarios of cycling uptake in England
-
-Four scenarios were developed to
-explore cycling futures in England.
-These can be framed in terms of the removal of different infrastructural, cultural and technological barriers that currently prevent cycling being the natural mode of choice for urban trips. 
-The scenarios are context-specific and based partly on
-political commitments to cycling (see *govtarget*).
-Use of the PCT in other contexts will likely benefit from new scenarios that
-relate to both the current policy context and long-term aspirations.
-The scenarios are not predictions of the future.
-They are snapshots indicating how the spatial distribution
-of cycling may shift as cycling grows based on current travel patterns.
-The first two are shorter-term and the second two longer-term.
-
-- Government target (*govtarget*). This scenario represents a doubling of
-the number of cycling trips in England.
-Although substantial in relative terms (rising from 3% to 6% of commutes), the rate of cycling under this scenario
-remains low compared with countries such as the Netherlands.
-Growth in cycling is not uniform.
-Above-average percentage point increases are projected in areas
-with many short, flat trips and a low current rate of cycling.
-Conversely, areas with higher cycle use and many long-distance hilly commuter routes will have below-average growth.
-*govtarget* thus represents a slight reduction
-(but not elimination) of local
-constraints deterring cycle use more in some places than in others and
-is designed to indicate where investment might have the greatest short-term impact.
-
-- Gender Equality (*gendereq*). This scenario illustrates the increase in cycling
-that would result if women were as likely as men to cycle a given trip.
-Specifically, the scenario sets the proportion of female cycle commuters to be equal
-to the current proportion of males in each OD pair.
-The scenario is based on the observation that in places where cycling is the norm,
-women cycle at least as much as men [@pucher_infrastructure_2010;@aldred_does_2016].
-*gendereq* represents
-the elimination of one specific cultural constraint.
-This scenario has the greatest relative impact in areas where
-the rate of cycling is highly gender-unequal.
-<!-- In absolute terms, cycling increases most in this scenario where cycling -->
-<!-- is already a common mode of transport. -->
-
-- Go Dutch (*godutch*).
-While *govtarget* and *gendereq* build on current cycling behaviour,
-'Go Dutch' focuses on long-term potential.
-*godutch* represents what would happen if English people were as likely as Dutch people to cycle a trip of a given distance and level of hilliness.
-It works by assigning Dutch
-distance decay parameters to English travel patterns.
-The scenario represents the elimination of the
-infrastructural and cultural constraints which currently hold back cycle
-use in England, including all localised differences.
-As such, whereas the *govtarget* and *gendereq* scenarios take current levels as a starting point, the predicted levels of cycle use in  *godutch*
-are unrelated to current levels, and are constrained
-only by local trip distance distributions and hilliness.
-
-- Ebikes (*ebikes*). This scenario models the additional increase
-in cycle use that would be achieved through the widespread uptake of electric
-cycles.
-Electric assist cycles enable longer journeys and make cycling a more viable option for
-people with low fitness and impaired mobility.
-This scenario is currently implemented as an extension *godutch*
-but could be implemented as an add-on for other scenarios.
 
 <!-- These scenarios are described more fully below. -->
 
