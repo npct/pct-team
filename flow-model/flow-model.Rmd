@@ -4,12 +4,12 @@ title: 'The Propensity to Cycle Tool: An open source online system for sustainab
 csl: ../documents/elsevier-harvard.csl
 fontsize: 12pt
 output:
+  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
-  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
   \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
   \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
@@ -51,17 +51,9 @@ to_install <- !vapply(pkgs, require, character.only = T, FUN.VALUE = logical(1))
 if(to_install) install.packages(pkgs[to_install])
 
 # Bibliography dl
-# download.file("https://github.com/citation-style-language/styles/raw/master/elsevier-harvard.csl", "documents/elsevier-harvard.csl")
 # generated via https://github.com/ZotPlus/zotero-better-bibtex
-# download.file("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
-# # This is from the group 'energy-and-transport': https://www.zotero.org/groups/energy-and-transport/items/collectionKey/TUEXXIV4
-# b1 <- readLines("references.bib")
-# b2 <- readLines("documents/Transport.bib")
-# all_refs = c(b1, b2)
-# all_refs = unique(all_refs)
-# writeLines(c(b1, b2), con = "documents/Transport.bib")
-
-# biblio <- ReadZotero(group = "energy-and-transport",  .params = list(qmode = "everything", collection = "TUEXXIV4"))
+download.file("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
+# # This is from the group 'energy-and-transport': https://www.zotero.org/groups/energy-and-transport/
 
 # To do:
 # Add speed-bumps/speed cameras/cycling priority or remove lanes for motorised traffic
@@ -1296,18 +1288,18 @@ By providing transport authorities, campaign groups and the public with access t
 <!-- enable public engagement in the strategic planning process around -->
 <!-- sustainable transport. -->
 
-Transport planning is a
-complex and contested field [@banister_sustainable_2008].
-Policy, politics, leadership and vision are key ingredients for sustainable
-urban mobility that computer models alone cannot supply [@melia_urban_2015].
-The approach described here can assist in this wider context by providing
-new tools for exploring the best available evidence.
-By providing transport authorities, campaign groups and the public with access to the same evidence base,
-we hypothesise that tools such as the PCT can encourage informed and rigorous debate,
-as advocated by @golub_making_2013.
-In conclusion, although the PCT aims to inform the specific issue of where to construct
-new infrastructure for cycling, it relates to the wider
-question of how to create an evidence-base for designing sustainable transport plans.
+<!-- Transport planning is a -->
+<!-- complex and contested field [@banister_sustainable_2008]. -->
+<!-- Policy, politics, leadership and vision are key ingredients for sustainable -->
+<!-- urban mobility that computer models alone cannot supply [@melia_urban_2015]. -->
+<!-- The approach described here can assist in this wider context by providing -->
+<!-- new tools for exploring the best available evidence. -->
+<!-- By providing transport authorities, campaign groups and the public with access to the same evidence base, -->
+<!-- we hypothesise that tools such as the PCT can encourage informed and rigorous debate, -->
+<!-- as advocated by @golub_making_2013. -->
+<!-- In conclusion, although the PCT aims to inform the specific issue of where to construct -->
+<!-- new infrastructure for cycling, it relates to the wider -->
+<!-- question of how to create an evidence-base for designing sustainable transport plans. -->
 
 <!-- Moreover, by highlighting the importance of 'arterial' routes to key destinations, -->
 <!-- the PCT can help rejuvenate long-standing debates -->
