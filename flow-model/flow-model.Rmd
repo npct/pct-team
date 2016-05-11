@@ -140,7 +140,9 @@ A number of factors influence
 the attractiveness of cycling for everyday trips [@pucher_infrastructure_2010].
 There is a wide range of interventions related to infrastructure that can be grouped the banner 'space for cycling' [@parkin_planning_2015].
 These include reducing speed limits, implementing car free zones and allowing cycles to move more freely than motorised traffic (e.g. with early-start traffic lights and barriers passable only by pedestrians and cycles).
-However, the intervention that has received the most attention has been the construction of new cycle paths. With devolved transport budgets, the design of cycling networks is one policy lever over which local authorities have some control.
+However, the intervention that has received the most attention has been the construction of new cycle paths.
+In many contexts devolved transport budgets mean that local authorities have some control over the design and implementation of cycling networks, a potentially powerful policy lever to get people cycling.
+
 Planning new cycle paths requires many decisions to be made, including the width [@wegman_urban_1979;@pikora_developing_2002], quality [@heath_effectiveness_2006], directness [@crow_design_2007] and geographic location of the paths.
 Yet while much evidence and guidance has been produced regarding the physical design of cycle paths [e.g. @transport_for_london_london_2015;@welsh_government_guidance_2014],
 little work has explicitly tackled the question of where this high quality infrastructure should be built
