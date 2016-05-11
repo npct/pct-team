@@ -147,13 +147,14 @@ Planning new cycle paths requires many decisions to be made, including the width
 Yet while much evidence and guidance has been produced regarding the physical design of cycle paths [e.g. @transport_for_london_london_2015;@welsh_government_guidance_2014],
 little work has explicitly tackled the question of where this high quality infrastructure should be built
 [@aultman-hall_analysis_1997;@minikel_cyclist_2012].
-Within this policy context, the PCT focuses explicitly on the question of *where* to build rather than *what* to build (although it does provide evidence on future capacity for different route segments, which is related to width).
+Within this policy context, the PCT focuses explicitly on the question of *where* to build rather than *what* to build (although it does provide evidence on potential capacity requirements across the route network).
 
 <!-- A wider issue related to the broader sustainable urban mobility question is that the tools and concepts within the 'predict and provide' paradigm have limited capacity to inform 'sustainable mobility' policies [@naess_transport_2014]. -->
 
 ## Research into cycling potential 
 
-Previous research has explored the impact of infrastructure on cycling, as outlined in the previous section. A major policy challenge is how to 'operationalise' this body of knowledge, to help planners prioritise where to invest.
+Growing evidence of the impact of infrastructure on cycling, has led to the policy challenge of how to
+'operationalise' this body of knowledge, to help planners prioritise where to invest.
 This research gap was described by
 @larsen_build_2013, who identified an "absence of research into how 
 to  systematically  prioritize  and  locate  facilities  that  are  to  be  built".
