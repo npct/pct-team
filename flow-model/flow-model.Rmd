@@ -63,7 +63,7 @@ if(to_install) install.packages(pkgs[to_install])
 # Abstract {-}
 
 Getting people cycling is an increasingly common objective in transport planning institutions worldwide. 
-Evidence shows that high-quality infrastructure 
+Evidence shows that high quality infrastructure 
 can boost local cycling rates.
 Yet for infrastructure and other cycling measures to be effective,
 it is important to intervene in the right places, such as along 'desire lines' of high latent demand,
@@ -85,13 +85,13 @@ We conclude that new interactive and online tools such as the PCT can provide an
 
 Cycling can play an important role in creating
 sustainable, healthy and equitable transport systems.
-Cycling provides fast, affordable,
-and convenient mobility to millions of people each day [@komanoff_bicycling_2004] and
-is one of the fastest growing modes of transport in large cities such as London,
+Cycling provides reliable, healthy, affordable,
+and convenient mobility to millions of people each day [@komanoff_bicycling_2004].
+It is one of the fastest growing modes of transport in large cities such as London,
 New York and Barcelona [@fishman_cycling_2016].
 There is mounting evidence about the external costs of car-dominated
 transport systems [@newman_costs_1999;@han_assessment_2008;@mizutani_estimation_2011;@shergold_rural_2012],
-and the benefits of cycling [@oja_health_2011;@woodcock_health_2013;@de_nazelle_improving_2011],
+and the benefits of cycling [@oja_health_2011;@de_nazelle_improving_2011;@tainio_can_2016],
 pushing cycling up the transport policy agenda.
 In this context there is growing interest, and in some cases substantial investment,
 in cycling infrastructure, including in countries
@@ -130,7 +130,7 @@ to map cycling potential (Department for Transport, 2015).
 # The Propensity to Cycle Tool in context
 
 The PCT was developed in the context of increasing transport policy attention directed to cycling and, from an academic perspective, two branches of research:
-a) methodological developtments for estimating cycling potential and b) Planning Support Systems (PSS).
+a) methodological developments for estimating cycling potential and b) Planning Support Systems (PSS).
 The subsequent overview of this policy and academic landscape places the PCT in its wider context.
 
 ## The policy context
@@ -206,7 +206,7 @@ This, combined with survey data on cyclists' preferences for where to construct 
 <!-- paths and cycle hire points. -->
 
 The Analysis of Cycling Potential (ACP) tool [@transport_for_london_analysis_2010] combined area and individual-level data to produce a heat map estimating cycling potential across London. The model examined which types of trips are most likely to be cycled, based on the types of trips that are currently cycled (e.g. time of day, characteristics of the traveller, distance).
-Unlike the other tools reviewed in this section, the ACP was practitioner-led. Its results have informed local cycling schemes, such aswhere to build new cycle share points.
+Unlike the other tools reviewed in this section, the ACP was practitioner-led. Its results have informed local cycling schemes, such as where to build new cycle share points.
 The ACP does not use origin-destination data or methods of route allocation.
 
 <!-- A key feature of this tool was its integration of data sources from many different sources. -->
@@ -501,7 +501,7 @@ about which trips *could* be made by cycling,
 especially in relation to gender equality in cycling rates and uptake of electric assist cycles (Ebikes).
 Summaries of the four scenarios are as follows (see the Appendix for full details):
 
-- Government Target. This scenario represents a doubling of the level of of cycling in England, informed by a government target to this effect [@department_for_transport_cycling_2014].Although substantial in relative terms (rising from 3% to 6% of commuters), the rate of cycling under this scenario remains low compared with countries such as the Netherlands. Growth in cycling is not uniform in this scenario, in either absolute or relatibe terms. Areas with many short, flat trips and a below-average current rate of cycling are projected to more than double. Conversely, areas with above-averge cycle use and many long-distance hilly commuter routes will experience less than a doubling. Government Target thus generates a slight reduction (but not elimination) of local variation in cycle use that reflects constraints other than distance and hilliness.  This scenario is designed to indicate where investment might have the greatest short-term impact.
+- Government Target. This scenario represents a doubling of the level of of cycling in England, informed by a government target to this effect [@department_for_transport_cycling_2014].Although substantial in relative terms (rising from 3% to 6% of commuters), the rate of cycling under this scenario remains low compared with countries such as the Netherlands. Growth in cycling is not uniform in this scenario, in either absolute or relative terms. Areas with many short, flat trips and a below-average current rate of cycling are projected to more than double. Conversely, areas with above-verge cycle use and many long-distance hilly commuter routes will experience less than a doubling. Government Target thus generates a slight reduction (but not elimination) of local variation in cycle use that reflects constraints other than distance and hilliness.  This scenario is designed to indicate where investment might have the greatest short-term impact.
 
 - Gender Equality. This scenario illustrates the increase in cycling
 that would result if women were as likely as men to cycle a given trip.
@@ -1047,7 +1047,7 @@ knitr::include_graphics("man-nor-output-2.png")
 knitr::include_graphics(c("../figures/dd-west-yorks.png", "../figures/dd-ox.png"))
 ```
 
-Although West Yorkshire and Oxfordshire have very different initial levels of cycling, the final level estimated from the godutch and ebike scenarios there are similar. This is because long-term scenarios are not influenced by the current rate of cycling.
+Although West Yorkshire and Oxfordshire have very different initial levels of cycling, the final level estimated from the Go Dutch and Ebikes scenarios there are similar. This is because long-term scenarios are not influenced by the current rate of cycling.
 
 <!-- In Manchester the Government Target scenario -->
 <!-- has a considerably higher rate of cycling than the Gender Equality -->
