@@ -84,10 +84,10 @@ We conclude that new interactive and online tools such as the PCT can provide an
 # Introduction
 
 Cycling can play an important role in creating
-sustainable, healthy and equitable transport systems.
-Cycling provides reliable, healthy, affordable,
-and convenient mobility to millions of people each day [@komanoff_bicycling_2004].
-It is one of the fastest growing modes of transport in large cities such as London,
+sustainable and equitable transport systems.
+Cycling already provides reliable, healthy, affordable,
+and convenient mobility to millions of people each day [@komanoff_bicycling_2004] and
+is one of the fastest growing modes of transport in some large, cosmopolitan cities such as London,
 New York and Barcelona [@fishman_cycling_2016].
 There is mounting evidence about the external costs of car-dominated
 transport systems [@newman_costs_1999;@han_assessment_2008;@mizutani_estimation_2011;@shergold_rural_2012],
@@ -1236,7 +1236,7 @@ These limitations suggest directions for future work, including: use of new sour
 
 <!-- ; and versions of the model to represent the impact of specific improvements to the route network (e.g. by modifying the 'quietness diversion factor'). Beyond these changes, further extensions of the PCT could include: -->
 
-There is often a tension between transparency and complexity in the design of tools for transport planning, and the latter can result in tools that are 'black boxes' [@saujot_2016].
+There is often a tension between transparency and complexity in the design of tools for transport planning, and the latter can result in tools that are 'black boxes' [@saujot_making_2016].
 In a context of limited time, expertise, and resources, Saujot et al. caution against investing
 in ever more complex models.
 Instead, they suggest models should be more 'bottom-up'.
