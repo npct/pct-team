@@ -1241,9 +1241,8 @@ In a context of limited time, expertise, and resources, Saujot et al. caution ag
 in ever more complex models.
 Instead, they suggest models should be more 'bottom-up'.
 The PCT’s open source, freely available nature will, we believe, facilitate the future development of the PCT in an organic way that meets the needs of its users.
-We envision stakeholders with the capacity will participate in the development of the tool, for example modifying scenarios for their own purposes, and that academics add new features and use the PCT in new ways.
-Led by academics, public authorities and practitioners,
-future enhancements could include:
+We envision stakeholders with the capacity participating in the development of the tool, for example modifying scenarios for their own purposes, and academics adding new features and developing new use cases of the PCT.
+Community-led enhancements could include:
 
 - Additional scenarios to illustrate a wider range of 'cycling futures', including medium-term and local targets such as 'Go York' (where 12% of commuters cycle to work).
 
