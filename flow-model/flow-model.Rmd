@@ -143,10 +143,10 @@ However, the intervention that has received the most attention has been the cons
 In many contexts devolved transport budgets mean that local authorities have some control over the design and implementation of cycling networks, a potentially powerful policy lever to get people cycling.
 
 Planning new cycle paths requires many decisions to be made, including the width [@wegman_urban_1979;@pikora_developing_2002], quality [@heath_effectiveness_2006], directness [@crow_design_2007] and geographic location of the paths.
-Yet while much evidence and guidance has been produced regarding the physical design of cycle paths [e.g. @transport_for_london_london_2015;@welsh_government_guidance_2014],
+Yet while much guidance has been produced regarding the physical design of cycle paths [e.g. @transport_for_london_london_2015;@welsh_government_guidance_2014],
 little work has explicitly tackled the question of where this high quality infrastructure should be built
 [@aultman-hall_analysis_1997;@minikel_cyclist_2012].
-Within this policy context, the PCT focuses explicitly on the question of *where* to build rather than *what* to build (although it does provide evidence on potential capacity requirements across the route network).
+Within this policy context, the PCT focuses explicitly on the question of *where* to build rather than *what* to build, although it does provide evidence on potential capacity requirements across the route network.
 
 <!-- A wider issue related to the broader sustainable urban mobility question is that the tools and concepts within the 'predict and provide' paradigm have limited capacity to inform 'sustainable mobility' policies [@naess_transport_2014]. -->
 
@@ -166,7 +166,7 @@ fit into three categories depending on the level of the input data used:
 
 - Area-based measures are based primarily on data at the level of administrative zones. Outputs from these measures can assist with the location of site-specific transport infrastructure such as cycle parking.
 
-- Individual-based measures are based on individual level survey data, typically a household travel survey. These measures can help target specific groups, e.g. through tailored cycle training schemes, but are not always geographically specific. These measures tend to identify specific demographic groups seen as ‘near-market’ due to, for instance, their professional role, age and gender.
+- Individual-based measures are based on individual level survey data, typically a household travel survey. These are not always geographically specific and tend to be used to identify and categorise demographic groups in relation to cycling, such as near-market or as warranting tailored interventions, such as targeted cycle training schemes.
 
 - Route-based measures use origin-destination data which can be used to create 'desire lines' and (using route allocation) estimates of existing and potential demand at each point on the road network.
 
@@ -174,30 +174,13 @@ This work is reviewed in relation to the PCT below and summarised in Table 1.
 
 <!-- ### Area-based measures of cycling potential -->
 
-Motivated by the need for an evidence base to inform where to build new cycle paths,
-@larsen_build_2013 created
-an area-based 'prioritization index'.
-This was based on four variables: the area's current level of cycling,
-its cycling potential (estimated based on the shortest path between the origin and destination of short car trips from a travel survey), the number of injuries to cyclists,
-and locations prioritised by current cyclists for improvement  [@larsen_build_2013].
-The method used to combine these four sources was rasterisation, whereby
-the information was aggregated to the level of evenly spread cells covering the study area.
-The resulting heat map was used to recommend the construction or upgrade of cycling paths on specific roads in Montreal.
+@parkin_estimation_2008 presented an area-based measure of cycling potential which used a regression model to estimate the proportion of commuter trips cycled across wards in England and Wales. Factors associated with lower levels of cycling included road defects, high rainfall, hills and a higher proportion of ethnic minority and low-income inhabitants.  Parkin et al. concluded that policy makers must engage with a mixture of physical and social barriers to promote cycling effectively, with the implication that some areas have lower barriers to cycling --- and hence higher propensity to cycle --- than others.
 
-@payne_removing_2014 used the concept of 'filtered permeability' --- providing a more direct route to cyclists than car drivers [@melia_urban_2015] --- to inform the commercially
-developed Permeability Assessment Tool (PAT).
-The PAT works by combining geographical data, including the location of popular destinations
-and existing transport infrastructure, with on-site audit data of areas that have
-been short-listed. Unlike the prioritization index of Larsen et al. (2013), which is primarily aimed at informing a strategic cycling network, the results of the PAT are designed to guide smaller, site specific interventions such as 'contraflow' paths and cyclist priority traffic signals.
-
-At the opposite end of the scale spectrum, @parkin_estimation_2008 developed a regression model to estimate the proportion of commuter trips cycled across wards in England and Wales. Factors associated with lower levels of cycling included road defects, high rainfall, hills and a higher proportion of ethnic minority and low-income inhabitants.  Parkin et al. conclude that policy makers must engage with a mixture of physical and social barriers to promote cycling effectively, with the implication that some areas have lower barriers to cycling --- and hence higher propensity to cycle --- than others.
+@zhang_prioritizing_2014 created an individual-based model of cycling potential to prioritise where to build cycle paths to "achieve maximum impacts early on".
+The outputs of this model were aggregated to the level of 67 statistical zones in the study area of Belo Horizonte and used to generate a 'usage intensity index' for potential cycle paths.
+This, combined with survey data on cyclists' stated preferences on whether people would cycle were infrastructure provided along particular routes and origin-destination data on travel to work, was used to rank key routes in the city in terms of their cycling potential.
 
 <!-- ### Individiual-based measures of cycling potential -->
-
-@zhang_prioritizing_2014 created an individual-level model of cycling potential to prioritise where to build cycle paths to "achieve maximum impacts early on".
-The outputs of this model were aggregated to the level of 67 statistical zones in the study area of Belo Horizonte and used to generate a 'usage intensity index' for potential cycle paths.
-This, combined with survey data on cyclists' preferences for where to construct new cycle paths and origin-destination data on travel to work, was used to rank key routes in the city in terms of their cycling potential.
-
 <!-- Another method that used individual-level to identify areas with high numbers of -->
 <!-- 'potentially cycleable trips' funded by London's transport authority [@transport_for_london_analysis_2010]. -->
 <!-- This method was based primarily on the London Travel Demand Survey and analysed -->
@@ -205,9 +188,27 @@ This, combined with survey data on cyclists' preferences for where to construct 
 <!-- presented as a static heatmap and used to prioritise where to build new cycle -->
 <!-- paths and cycle hire points. -->
 
-The Analysis of Cycling Potential (ACP) tool [@transport_for_london_analysis_2010] combined area and individual-level data to produce a heat map estimating cycling potential across London. The model examined which types of trips are most likely to be cycled, based on the types of trips that are currently cycled (e.g. time of day, characteristics of the traveller, distance).
-Unlike the other tools reviewed in this section, the ACP was practitioner-led. Its results have informed local cycling schemes, such as where to build new cycle share points.
-The ACP does not use origin-destination data or methods of route allocation.
+While the methods presented by Parkin et al. (2008) and Zhang et al. (2014) were developed in an academic context, albeit closely related to policy needs and interests, the
+Analysis of Cycling Potential (ACP) tool was developed by practitioners [@transport_for_london_analysis_2010]. The ACP combined area and individual-level data to produce a heat map estimating cycling potential across London, for all trip purposes. The underlying model examined which types of trips are most likely to be cycled, based on the characteristics of observed cycle trips (e.g. time of day, characteristics of the traveller, distance).
+The results of the ACP have informed local cycling schemes, such as where to build new cycle hire stations.
+The ACP does not use origin-destination data directly or route allocation.
+
+Again working within academia but also closely focused on local planning and policy issues,
+@larsen_build_2013 created
+an area-based 'prioritization index', for Montreal, Canada.
+This was based on four variables: the area's current level of cycling,
+its cycling potential (estimated based on the shortest path between the origin and destination of short car trips from a travel survey), the number of injuries to cyclists,
+and locations prioritised by current cyclists for improvement  [@larsen_build_2013].
+The method used to combine these four sources was rasterisation, whereby
+the information was aggregated to the level of evenly spread cells covering the study area.
+The resulting heat map was used to recommend the construction or upgrade of cycle paths on specific roads.
+
+A more localised and approach is the Permeability Assessment Tool (PAT), which was developed by a transport consultancy @payne_removing_2014.
+The PAT is based on the concept of 'filtered permeability', which means providing a more direct route to people cycling than driving [@melia_urban_2015].
+The PAT works by combining geographical data, including the location of popular destinations
+and existing transport infrastructure, with on-site audit data of areas that have
+been short-listed. Unlike the prioritization index of Larsen et al. (2013), which is primarily aimed at informing a city-wide strategic cycling network, the results of the PAT are designed to guide smaller, site specific interventions such as 'contraflow' paths and cyclist priority traffic signals.
+
 
 <!-- A key feature of this tool was its integration of data sources from many different sources. -->
 <!-- Unlike @larsen_build_2013, @zhang_prioritizing_2014  Using socio-demographic data, groups who were most likely to cycle were identified.  -->
@@ -234,7 +235,10 @@ print(xt, comment = FALSE, include.rownames = FALSE,  hline.after = 0:nrow(dft),
 
 ## Planning support systems
 
-As discussed above, in general tools to identify cycling potential have been created on an ad hoc basis, and are not freely available. The PCT instead draws on the tradition of Planning Support Systems (PSS) to create an interactive map that can be used both by planners and by interested members of the public.
+The methods and tools outlined above to estimate cycling potential were generally created for a single area at a time.
+The benefit of this that they can respond context-specific to practitioner and policy needs.
+However, the aim of the PCT was to provide a *systematic* and *scalable* tool.
+To do so we drew on the tradition of Planning Support Systems (PSS).
 
 PSS were initially developed to encourage evidence-based policy in land-use planning [e.g. @klosterman_what_1999].
 The application of PSS to transport planning has been more recent, with a goal of
@@ -256,8 +260,9 @@ Online PSS has been facilitated by the emergence of libraries for web mapping  [
 allowing public access to the planning process.
 Linked with the proliferation of open source software in transport planning
 [@tamminga_design_2012;@novosel_agent_2015;@borning_urbansim:_2008],
-PSS tackles the issue that transport models are often seen as
-'black boxes', closed to public scrutiny [@golub_making_2013].
+PSS can tackle the issue that transport models are often seen as
+'black boxes', closed to public scrutiny [@golub_making_2013], by making
+evidence for transport planning more widely available.
 
 <!--' Much has been written about the characteristics of an effective PSS -->
 <!--' of relavence to the PCT. -->
@@ -287,9 +292,9 @@ Making results available through a freely-accessible interface and open access m
 
 ## Policy context and features of the Propensity to Cycle Tool
 
-The national policy context of the PCT influenced its design and features.
+The national policy context of the PCT has influenced its design and features.
 The PCT was commissioned by the UK's Department for Transport to identify "parts of [England] with the greatest propensity to cycle"  [@department_for_transport_response_2015].
-Thus the aim of the tool was not to produce a full transport-land use model,
+Thus the aim was not to produce a full transport-land use model,
 but to provide an evidence base to prioritise where to create cycle-friendly infrastructure based on scenarios of the future.
 
 Local and national cycling targets are often based on a target mode share by a given date.^[The
@@ -308,10 +313,12 @@ This was done by CycleStreets.net, a routing service developed by cyclists, for 
 
 - Public accessibility of results and code. The tool is freely available on-line and developers are encourage to modify the PCT (e.g. to create alternative scenarios) by provision of the source code underlying the PCT under the open source AGP License.
 
-As with any tool, the PCT's utility depends on people knowing how to use it.
-For that reason a Manual was added as a 'tab' that can be view while using the tool
-(the tab headings are displayed in Figure 3 and described in Section 5).
-This provides some further details on how to create custom scenarios.
+- The presenteation of the estimated benefits of future scenarios, for example via impacts on public health and emissions, enabling interventions to be designed based on specific policy goals rather than numbers of potential cyclists alone.
+
+As with any tool, the PCT’s utility depends on people knowing how to use it.
+For that reason training materials and a user manual are being developed
+to show how the tool can be used, for example, the creation of new scenarios
+(see the 'Manual' tab in Figure 3).
 
 # Data and methods
 
@@ -489,19 +496,18 @@ knitr::include_graphics("dd-anna.jpg")
 
 Four scenarios were developed to
 explore cycling futures in England.
-These can be framed in terms of the removal of different infrastructural, cultural and technological barriers that currently prevent cycling being the natural mode of choice for urban trips. 
+These can be framed in terms of the removal of different infrastructural, cultural and technological barriers that currently prevent cycling being the natural mode of choice for trips of short to medium distances. 
 They are not predictions of the future.
 They are snapshots indicating how the spatial distribution
 of cycling may shift as cycling grows based on current travel patterns.
-The first two are shorter-term and the second two longer-term.
-
+At a national level the first two could be seen as shorter-term. The 
+second two are more ambitious.
 The choice of scenarios was informed by a government target to double the number of cycle trips
 and evidence from overseas
-about which trips *could* be made by cycling,
-especially in relation to gender equality in cycling rates and uptake of electric assist cycles (Ebikes).
+about which trips *could* be made by cycling.
 Summaries of the four scenarios are as follows (see the Appendix for full details):
 
-- Government Target. This scenario represents a doubling of the level of of cycling in England, informed by a government target to this effect [@department_for_transport_cycling_2014].Although substantial in relative terms (rising from 3% to 6% of commuters), the rate of cycling under this scenario remains low compared with countries such as the Netherlands. Growth in cycling is not uniform in this scenario, in either absolute or relative terms. Areas with many short, flat trips and a below-average current rate of cycling are projected to more than double. Conversely, areas with above-verge cycle use and many long-distance hilly commuter routes will experience less than a doubling. Government Target thus generates a slight reduction (but not elimination) of local variation in cycle use that reflects constraints other than distance and hilliness.  This scenario is designed to indicate where investment might have the greatest short-term impact.
+- Government Target. This scenario represents a doubling of the level of of cycling in England [@department_for_transport_cycling_2014].Although substantial in relative terms (rising from 3% to 6% of commuters), the rate of cycling under this scenario remains low compared with countries such as the Netherlands or Denmark. Growth in cycling is not uniform in this scenario, in either absolute or relative terms. Areas with many short, flat trips and a below-average current rate of cycling are projected to more than double. Conversely, areas with above-verge cycle use and many long-distance hilly commuter routes will experience less than a doubling. Government Target thus generates a slight reduction (but not elimination) of local variation in cycle use that reflects constraints other than distance and hilliness.  This scenario is designed to indicate where investment might have the greatest short-term impact.
 
 - Gender Equality. This scenario illustrates the increase in cycling
 that would result if women were as likely as men to cycle a given trip.
@@ -509,34 +515,31 @@ Specifically, the scenario sets the proportion of female cycle commuters to be e
 to the current proportion of males in each OD pair.
 The scenario is based on the observation that in places where cycling is the norm,
 women cycle at least as much as men [@pucher_infrastructure_2010;@aldred_does_2016].
-Gender Equality represents
-the elimination of one specific cultural constraint.
 This scenario has the greatest relative impact in areas where
 the rate of cycling is highly gender-unequal.
 <!-- In absolute terms, cycling increases most in this scenario where cycling -->
 <!-- is already a common mode of transport. -->
 
 - Go Dutch.
-While Government Target and Gender Equality model relatively modest increases in cycle commuting, 'Go Dutch' focuses on long-term potential. Go Dutch represents what would happen if English people were as likely as Dutch people to cycle a trip of a given distance and level of hilliness. This scenario captures the proportion of commuters that would be expected to cycle if all areas of England had the same infrastructure  and cycling culture as the Netherlands (but retained  their current hilliness levels  and profile of commuting trip distances) . As such, whereas the Government Target and Gender Equality scenarios take current levels as a starting point, the predicted levels of cycle use in Go Dutch are unrelated to current levels, and are constrained only by local trip distance distributions and hilliness.
+While Government Target and Gender Equality model relatively modest increases in cycle commuting, Go Dutch represents what would happen if English people were as likely as Dutch people to cycle a trip of a given distance and level of hilliness. This scenario captures the proportion of commuters that would be expected to cycle if all areas of England had the same infrastructure  and cycling culture as the Netherlands (but retained their hilliness and commute distance patterns). As such, whereas the Government Target and Gender Equality scenarios take current levels as a starting point, the predicted levels of cycle use in Go Dutch are unrelated to current levels, and are constrained only by local trip distance distributions and hilliness.
 
 
-While Government Target and Gender Equality build on current cycling behaviour,
-'Go Dutch' focuses on long-term potential.
-Go Dutch represents what would happen if English people were as likely as Dutch people to cycle a trip of a given distance and level of hilliness.
-It works by assigning Dutch
-distance decay parameters to English travel patterns.
-The scenario represents the elimination of the
-infrastructural and cultural constraints which currently hold back cycle
-use in England, including all localised differences.
-As such, whereas the Government Target and Gender Equality scenarios take current levels as a starting point, the predicted levels of cycle use in  Go Dutch
-are unrelated to current levels, and are constrained
-only by local trip distance distributions and hilliness.
+<!-- While Government Target and Gender Equality build on current cycling behaviour, -->
+<!-- 'Go Dutch' focuses on long-term potential. -->
+<!-- Go Dutch represents what would happen if English people were as likely as Dutch people to cycle a trip of a given distance and level of hilliness. -->
+<!-- It works by assigning Dutch -->
+<!-- distance decay parameters to English travel patterns. -->
+<!-- The scenario represents the elimination of the -->
+<!-- infrastructural and cultural constraints which currently hold back cycle -->
+<!-- use in England, including all localised differences. -->
+<!-- As such, whereas the Government Target and Gender Equality scenarios take current levels as a starting point, the predicted levels of cycle use in  Go Dutch -->
+<!-- are unrelated to current levels, and are constrained -->
+<!-- only by local trip distance distributions and hilliness. -->
 
 - Ebikes. This scenario models the additional increase
 in cycle use that would be achieved through the widespread uptake of electric
 cycles.
-Electric assist cycles enable longer journeys and make cycling a more viable option for
-people with low fitness and impaired mobility.
+Electric assist cycles enable longer journeys and reduce the barrier of hills.
 This scenario is currently implemented as an extension Go Dutch
 but could be implemented as an add-on for other scenarios.
 
