@@ -66,9 +66,10 @@ Getting people cycling is an increasingly common objective in transport planning
 Evidence shows that high quality infrastructure 
 can boost local cycling rates.
 Yet for infrastructure and other cycling measures to be effective,
-it is important to intervene in the right places, such as along 'desire lines' of high latent demand,
-creating the need for tools to help answer the question 'where to build?'. 
-This paper describes the context, design and potential applications of such a tool.
+it is important to intervene in the right places, such as along 'desire lines' of high latent demand.
+This creates the need for tools and methods to help answer the question 'where to build?'. 
+Following a brief review of the policy and research context related to this question,
+this paper describes design, features and potential applications of such a tool.
 The Propensity to Cycle Tool (PCT) is an online, interactive planning support system which was
 initially developed to explore and map cycling potential across England
 (see [pct.bike](http://pct.bike/)).
@@ -78,7 +79,7 @@ currently, and for scenario-based 'cycling futures'.
 Scenarios implemented so far include 'Go Dutch' and 'Ebikes', which
 explore what would happen if English people cycled as much as the Dutch and the potential impact of electric cycles on cycling uptake, respectively.
 The PCT is open source, enabling the creation of additional scenarios by others
-and allowing its deployment in new contexts.
+and its deployment in new contexts.
 We conclude that new interactive and online tools such as the PCT can provide an accessible and transparent evidence base for developing strategic cycling plans.
 
 # Introduction
