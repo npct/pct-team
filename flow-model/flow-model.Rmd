@@ -1375,7 +1375,7 @@ By providing transport authorities, campaign groups and the public with access t
 # Acknowledgements:
 
 We would like to thank the following people for comments on earlier versions of the report and the development of the PCT:
-Roger Geffen (CTC, the national cycling charity), Tom Gutowski (Sustrans),
+Roger Geffen (Cycling UK), Tom Gutowski (Sustrans),
 Helen Bowkett (Welsh Government),
 John Parkin (University of the West of England) and Phil Tate.
 Thanks to Simon Nutall and Martin Lucas-Smith for access to and instructions
