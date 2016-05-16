@@ -318,7 +318,7 @@ This was done by CycleStreets.net, a routing service developed by cyclists, for 
 
 As with any tool, the PCT’s utility depends on people knowing how to use it.
 For that reason training materials and a user manual are being developed
-to show how the tool can be used, for example, the creation of new scenarios
+to show how the tool can be used
 (see the 'Manual' tab in Figure 3).
 
 # Data and methods
@@ -328,12 +328,12 @@ This is summarised in Figure 1 and described in detail in the Appendix.
 Central to the PCT approach is origin-destination (OD) data recording the travel flow between administrative zones.
 Combined with geographical data on the coordinates of the population-weighted centroid of each zones,
 these can be represented as
-straight 'desire lines' or routes allocated to the transport network.
+straight 'desire lines' or as routes allocated to the transport network.
 
 <!-- The route-allocation stage (outlined below) provides -->
 <!-- hilliness and route network distance as additional variables at the OD level. -->
 
-```{r, echo=FALSE, fig.cap="Flow diagram illustrating the input data and processing steps used to create the input data used by the PCT."}
+```{r, echo=FALSE, fig.cap="Flow diagram illustrating the input data and processing steps used to create the input data used by the PCT. The abbreviations are as follows. HEAT = Health Economic Assessment Tool, OD pair = origin-destination pair, MSOA = Middle-Layer Super Output Area"}
 knitr::include_graphics("160516_Fig1.pdf")
 ```
 
