@@ -339,12 +339,11 @@ knitr::include_graphics("160516_Fig1.pdf")
 
 ## Processing OD data
 
-The central input dataset was a table origin-destination (OD) pairs from the 2011 Census, from the open access file `wu03ew_v2.csv`, provided by the [UK Data Service](http://wicid.ukdataservice.ac.uk/). This captures the number of commuters travelling between Medium Super Output Area zones (MSOAs, average population: 7,800), by mode of travel (see D1, short for Dataset 1, in Figure 1).
-D1 was derived from responses to questions 40 ("In your main job, what is the address of your workplace?") and 41 ("How do you usually travel to work?") in the [English 2011 Census](http://www.ons.gov.uk/census/).
-
-The R package **stplanr** was developed to assign additional variables to D1 [@lovelace_stplanr:_2016].
-This method used the population-weighted centroid of each MSOA to assign geographic coordinates to the OD data, allowing them to be plotted on a map. CycleStreets.net was used estimate of the distance and hilliness (the average gradient, in %) for each OD pair (see D3 in Figure 1).
-Other input datasets included mortality data per local authority (D2) and an estimate of the gender composition of cyclists in each OD pair (D4) (see the Appendix for further details).
+The central input dataset was a table of origin-destination (OD) pairs from the 2011 Census.
+This was loaded from open access file `wu03ew_v2.csv`, provided by the [UK Data Service](http://wicid.ukdataservice.ac.uk/). This captures the number of commuters travelling between Middle Super Output Area zones (MSOAs, average population: 3300), by mode of travel (see Table 2).
+ This dataset was derived from responses to the following questions in the [English 2011 Census](http://www.ons.gov.uk/census/): "In your main job, what is the address of your workplace?" (question 40) and "How do you usually travel to work? (Tick one box only, for the longest part, by distance, of your usual journey to work)" (Question 41).
+ This dataset was enhanced by merging in information on the gender composition of cyclists in each OD pair (Dataset 1 in Figure 1); data at the area level on the background mortality rate (Dataset 2); and data at the OD pair-level on route distance (km) and hilliness (average gradient, in %) (Dataset 3).
+ The latter data was assigned to OD pairs using the "fastest route" option on CycleStreets.net, using the R package stplanr (Lovelace et al., 2016). See the Appendix for further details.
 
 Table: Sample of the OD input dataset, representing the number of people who
 commute from locations within and between administrative zones (MSOAs)
@@ -401,13 +400,19 @@ kable(head(flow[c(1:3, 12)]), row.names = F)
 
 ## Modelling cycling potential
 
+The starting point for creating scenario-based 'cycling futures' was to model current cycle commuting in England,
+using OD data from the 2011 Census. The proportion of commutes by cycle was estimated as a function of route distance and hilliness using a logistic regression model applied to the individual level travel survey data data.
+Parameters estimated by the regression included square and square-root terms for distance, to capture 'distance decay' (Iacono et al 2008). Interaction terms were used to capture the relationship between distance and hilliness.
+Model fit is illustrated in Figure 2.  Equations were developed to estimate commuting mode share  among groups not represented in the between-zone OD data: those commuting within one MSOA and those with no fixed workplace.
+This model of current cycling levels formed the basis for three of our four subsequent scenarios (Government Target, Go Dutch and Ebikes). Model parameters were derived from English, Dutch and Swiss travel survey data (see the Appendix for details).   
+
 The scenario-based 'cycling futures' were based on a baseline estimate of the proportion of trips made per OD pair, as a function of route distance and route hilliness.
 This was generated using a logistic regression model operating at the individual level.
 This captured 'distance decay', the non-linear impact of distance on the likelihood of cycling [@iacono_access_2008]
 and the interaction between distance and hilliness (see Figure 2).
 This model of current cycling levels formed the basis of three scenarios (Government Target, Go Dutch and Ebikes) (see the Appendix).  
 
-```{r, echo=FALSE, fig.cap="The relationship between distance (left) and hilliness (right) and cycling mode share in England based on the the National Travel Survey. The plots show actual (blue) vs predicted (red) prevalence of cycling to work among 17,896,135 English commuters travelling <30km to work."}
+```{r, echo=FALSE, fig.cap="The relationship between distance (left) and hilliness (right) and cycling mode share in England based on the the 2011 Census. The plots show actual (blue) vs predicted (red) prevalence of cycling to work among 17,896,135 English commuters travelling <30km to work."}
 knitr::include_graphics("dist-curve2-ag.pdf")
 ```
 
@@ -437,7 +442,7 @@ knitr::include_graphics("dist-curve2-ag.pdf")
 <!-- workplace?") and 41 ("How do you usually travel to work?") in the English 2011 Census (see [ons.gov.uk/census](http://www.ons.gov.uk/census/2011census/howourcensusworks/howwetookthe2011census/howwecollectedtheinformation/questionnairesdeliverycompletionandreturn) for further information). -->
 
 <!-- - The population-weighted centroids of -->
-<!-- administrative zones (see Table 1). Medium Super -->
+<!-- administrative zones (see Table 1). Middle Super -->
 <!-- Output Areas (MSOAs) (average population: 7,800) -->
 <!-- were used for both origins and destinations.^[This -->
 <!-- data was provided under the UK's Open Government -->
@@ -493,7 +498,7 @@ knitr::include_graphics("dist-curve2-ag.pdf")
 # most single most valuable data sources for transport planners worldwide.
 ```
 
-## Senarios of cycling uptake modeled 
+## Scenarios of cycling uptake 
 
 Four scenarios were developed to
 explore cycling futures in England.
