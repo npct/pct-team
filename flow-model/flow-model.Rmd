@@ -10,12 +10,12 @@ author:
 - James Woodcock (University of Cambridge)
 csl: ../documents/elsevier-harvard.csl
 output:
-  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
+  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
   \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
   \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
@@ -105,7 +105,7 @@ with historically low rates of cycling.
 <!-- [FIA Foundation](http://www.unep.org/transport/sharetheroad/PDF/SharetheRoadReportweb.pdf) and the -->
 <!-- [World Cycling Atlas](http://www.worldwidecyclingatlas.com/). -->
 <!-- Another illustration of increased interest in cycling investment is provided by -->
-<!-- the proliferation of publicly subsidized 'bike share' -->
+<!-- the proliferation of publicly subsidised 'bike share' -->
 <!-- [@obrien_mining_2014], which can be viewed in an interactive map at -->
 <!-- [bikes.oobrien.com](http://bikes.oobrien.com). -->
 <!-- ] -->
@@ -138,7 +138,7 @@ The subsequent overview of this policy and academic landscape places the PCT in 
 
 A number of factors influence
 the attractiveness of cycling for everyday trips [@pucher_infrastructure_2010].
-There is a wide range of interventions related to infrastructure that can be grouped the banner 'space for cycling' [@parkin_planning_2015].
+There is a wide range of interventions related to infrastructure that can be grouped under the banner 'space for cycling' [@parkin_planning_2015].
 These include reducing speed limits, implementing car free zones and allowing cycles to move more freely than motorised traffic (e.g. with early-start traffic lights and barriers passable only by pedestrians and cycles).
 However, the intervention that has received the most attention has been the construction of new cycle paths.
 In many contexts devolved transport budgets mean that local authorities have some control over the design and implementation of cycling networks, a potentially powerful policy lever to get people cycling.
@@ -153,11 +153,11 @@ Within this policy context, the PCT focuses explicitly on the question of *where
 
 ## Research into cycling potential 
 
-Growing evidence of the impact of infrastructure on cycling, has led to the policy challenge of how to
+Growing evidence of the impact of infrastructure on cycling has led to the policy challenge of how to
 'operationalise' this body of knowledge, to help planners prioritise where to invest.
 This research gap was described by
 @larsen_build_2013, who identified an "absence of research into how 
-to  systematically  prioritize  and  locate  facilities  that  are  to  be  built".
+to  systematically  prioritise  and  locate  facilities  that  are  to  be  built".
 There is, however, an emerging literature exploring cycling potential.
 This links to the question of 'where to build' because 
 areas and routes with the highest potential are likely to be cost-effective places for investment.
@@ -208,7 +208,7 @@ A more localised and approach is the Permeability Assessment Tool (PAT), which w
 The PAT is based on the concept of 'filtered permeability', which means providing a more direct route to people cycling than driving [@melia_urban_2015].
 The PAT works by combining geographical data, including the location of popular destinations
 and existing transport infrastructure, with on-site audit data of areas that have
-been short-listed. Unlike the prioritization index of Larsen et al. (2013), which is primarily aimed at informing a city-wide strategic cycling network, the results of the PAT are designed to guide smaller, site specific interventions such as 'contraflow' paths and cyclist priority traffic signals.
+been short-listed. Unlike the prioritisation index of Larsen et al. (2013), which is primarily aimed at informing a city-wide strategic cycling network, the results of the PAT are designed to guide smaller, site specific interventions such as 'contraflow' paths and cyclist priority traffic signals.
 
 
 <!-- A key feature of this tool was its integration of data sources from many different sources. -->
@@ -250,7 +250,7 @@ The PCT is systematic in its use of national data for all parts of the study reg
 
 PSS typically work by presenting evidence about the characteristics and needs
 of study region in an interactive map.
-A central objective is to visualize
+A central objective is to visualise
 alternative scenarios of the future and explore their potential impacts.
 The results of traditional scenario-based models of the future 
 are typically not presented locally at area, let-alone route-specific, levels
@@ -334,12 +334,12 @@ straight 'desire lines' or routes allocated to the transport network.
 <!-- hilliness and route network distance as additional variables at the OD level. -->
 
 ```{r, echo=FALSE, fig.cap="Flow diagram illustrating the input data and processing steps used to create the input data used by the PCT."}
-knitr::include_graphics("160229x8_NatModel_MSOA.pdf")
+knitr::include_graphics("160516_Fig1.pdf")
 ```
 
 ## Processing OD data
 
-The central input dataset was a table origin-destination (OD) pairs from the 2011 Census, from the open access file `wu03ew_v2.csv`, provided by the [UK Data Service](http://wicid.ukdataservice.ac.uk/). This captures the number of commuters travelling between Medium Super Output Area zones (MSOAs, average population: 7,800), by mode of travel (D1 in Figure 1; see Table 2).
+The central input dataset was a table origin-destination (OD) pairs from the 2011 Census, from the open access file `wu03ew_v2.csv`, provided by the [UK Data Service](http://wicid.ukdataservice.ac.uk/). This captures the number of commuters travelling between Medium Super Output Area zones (MSOAs, average population: 7,800), by mode of travel (see D1, short for Dataset 1, in Figure 1).
 D1 was derived from responses to questions 40 ("In your main job, what is the address of your workplace?") and 41 ("How do you usually travel to work?") in the [English 2011 Census](http://www.ons.gov.uk/census/).
 
 The R package **stplanr** was developed to assign additional variables to D1 [@lovelace_stplanr:_2016].
@@ -522,7 +522,7 @@ the rate of cycling is highly gender-unequal.
 <!-- is already a common mode of transport. -->
 
 - Go Dutch.
-While Government Target and Gender Equality model relatively modest increases in cycle commuting, Go Dutch represents what would happen if English people were as likely as Dutch people to cycle a trip of a given distance and level of hilliness. This scenario captures the proportion of commuters that would be expected to cycle if all areas of England had the same infrastructure  and cycling culture as the Netherlands (but retained their hilliness and commute distance patterns). As such, whereas the Government Target and Gender Equality scenarios take current levels as a starting point, the predicted levels of cycle use in Go Dutch are unrelated to current levels, and are constrained only by local trip distance distributions and hilliness.
+While the Government Target and Gender equality scenarios model relatively modest increases in cycle commuting, Go Dutch represents what would happen if English people were as likely as Dutch people to cycle a trip of a given distance and level of hilliness. This scenario captures the proportion of commuters that would be expected to cycle if all areas of England had the same infrastructure  and cycling culture as the Netherlands (but retained their hilliness and commute distance patterns). As such, whereas the Government Target and Gender Equality scenarios take current levels as a starting point, the predicted levels of cycle use in Go Dutch are unrelated to current levels, and are constrained only by local trip distance distributions and hilliness.
 
 
 <!-- While Government Target and Gender Equality build on current cycling behaviour, -->
@@ -560,7 +560,7 @@ The net change in the number of deaths avoided for each OD pair was equal to the
 
 ## Visualisation, route allocation and network generation
 
-The data analysis and preparation stages described in the previous sections were conducted using the national OD dataset for England as a whole.  By contrast, the stages described in this section (route allocation and visualization) were conducted using a region-by-region approach. The regional focus was selected because transport decisions tend to be made at the local level [@gaffron_implementation_2003].
+The data analysis and preparation stages described in the previous sections were conducted using the national OD dataset for England as a whole.  By contrast, the stages described in this section (route allocation and visualisation) were conducted using a region-by-region approach. The regional focus was selected because transport decisions tend to be made at the local level [@gaffron_implementation_2003].
 The regional approach also reduced the computational
 requirements of the data generation process.
 
@@ -573,7 +573,7 @@ These represent cycling 'desire lines' [@tobler_experiments_1987;@chan_multi-cri
 The visualisation of the OD data builds
 on published work on cartographic visualisation [@rae_spatial_2009;@wood_visualisation_2010].
 
-```{r, echo=FALSE, fig.cap="Overview of the PCT map interface, showing area and OD-level data. The zone color represents the number of people who cycle to work in each administrative zone. The lines represent the top 6 most cycled commuter routes in Leeds (moving the slider 'N. Lines (most cycled)' increases the number of lines). Width is proportional to the total number of cycle trips. Note the use of population-weighted (as opposed to geographic) centroids for the point of departure and destination and the variable width of the centroids, which are proportional to intra-zonal (within zone) flow."}
+```{r, echo=FALSE, fig.cap="Overview of the PCT map interface, showing area and OD-level data. The zone colour represents the number of people who cycle to work in each administrative zone. The lines represent the top 6 most cycled commuter routes in Leeds (moving the slider 'N. Lines (most cycled)' increases the number of lines). Width is proportional to the total number of cycle trips. Note the use of population-weighted (as opposed to geographic) centroids for the point of departure and destination and the variable width of the centroids, which are proportional to intra-zonal (within zone) flow."}
 # data("flowlines")
 # plot(flowlines, lwd = flowlines$All / 10)
 knitr::include_graphics("od-data-leeds.png")
@@ -872,7 +872,7 @@ knitr::include_graphics(c("fastest-headingly.png", "fastest-net-headingly.png"))
 <!-- The next scenario to be discussed is Gender Equality. In this -->
 <!-- scenario cycling tends to grow more in areas that already have a high -->
 <!-- rate of cycling. The scenario -->
-<!-- recognizes that this disparity is reduced or absent in -->
+<!-- recognises that this disparity is reduced or absent in -->
 <!-- countries with a high rate of cycling [@Fishman2015]. -->
 <!-- The Gender Equality scenario builds on such insights -->
 <!-- and is based *observed level of cycling* (*OLC*) from the 2011 Census. -->
@@ -1089,7 +1089,7 @@ In both cases the desire lines are focused around Leeds city centre: the region
 has a mono-centric regional economy, making commute trips beyond around 5 km from the
 centre much less likely to be made by cycling.
 
-```{r, echo=FALSE, fig.cap="Model output illustrating the top 6 most cycled OD pairs in Leeds under Government Target and Go Dutch scenarios."}
+```{r, echo=FALSE, fig.cap="Model output illustrating the top 6 most cycled OD pairs in Leeds under the Government Target and Go Dutch scenarios."}
 knitr::include_graphics("od-scens-leeds.png")
 ```
 
@@ -1147,7 +1147,7 @@ knitr::include_graphics("man-trinity-way.png")
 Figure 9 demonstrates
 another feature of the PCT's interactive map: the ability to turn the transparency
 of the colours representing the area level of cycling on or off, allowing users to
-see more clearly the basemap.
+see the basemap more clearly.
 Three basemaps are available on PCT, and choosing the appropriate one can show how latent demand for cycling relates to current cycle infrastructure (with the OpenCycleMap basemap), small-area deprivation (with the Indices of Multiple Deprivation 'IMD' layer) and road width for space re-allocation for cycle and walking paths (with the satellite basemap).
 
 <!-- ## The Model Output tab -->
@@ -1173,7 +1173,7 @@ of cycling demand is likely to shift as cycling grows.
 For example, the output of the PCT suggests that the 'centre of gravity' for cycling in the city of Leeds will shift towards areas with high numbers of short distance trips but low current rates of cycling.
 
 In addition to creating an evidence base for planning specific routes and area-based interventions, the long-term Go Dutch and Ebikes scenarios could be used for 'visioning' transport futures [@tight_visions_2011;@hickman_transitions_2011].
-The PCT could also: help translate national targets into local aspirations (as illustrated by the Government Target scenario); set local targets (e.g. by indicating what the potential in one region is relative to neighbouring regions); support business cases (by showing that there is high cycling potential along proposed routes); and help plan for capacity increases in cycling along the route network via the network analysis layer.
+The PCT could also: help translate national targets into local aspirations (as illustrated by the Government Target scenario); inform local targets (e.g. by indicating what the potential in one region is relative to neighbouring regions); support business cases (by showing that there is high cycling potential along proposed routes); and help plan for capacity increases in cycling along the route network via the network analysis layer.
 Ongoing case study work with stakeholders will establish and develop these uses. 
 Future developments will be facilitated by the open source code underlying the PCT (see [github.com/npct](https://github.com/npct)),
 making it easy for others use the project as a basis for further work [@lima_coding_2014].
