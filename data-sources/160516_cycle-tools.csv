@@ -1,0 +1,7 @@
+Tool/method,Scale,Accessibility ,Levels of input data,Levels of output,Software licence
+Propensity to Cycle Tool,National: England,Online map-based  tool,"Area, OD data, route, individual","Area, OD data, route, route network",R: Open source (AGPL)
+Permeability Assessment Tool (Payne 2014),"Local: Dublin, Ireland",GIS-based,"Area, OD data, route","OD data, route",ArcGIS: Proprietary
+Usage intensity index (Zhang et al. 2014),"Local: Belo Horizonte, Brazil",GIS-based,"Area, OD data, route, individual","Area, individual, route",ArcGIS: Proprietary
+Prioritization Index (Larsen et al. 2013),"Local: Montreal, Canada",GIS-based,"Area, route, point",Area,ArcGIS: Proprietary
+Cycling Potential Tool (TfL 2010),"Local: London, UK",Static results,"Area, individual","Area, population segment",Unknown
+Bicycle share model (Parkin et al. 2008),"National: England, Wales",Static results,"Area, route",Area,Unknown
