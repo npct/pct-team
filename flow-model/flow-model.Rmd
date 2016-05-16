@@ -63,7 +63,7 @@ if(to_install) install.packages(pkgs[to_install])
 # Abstract {-}
 
 Getting people cycling is an increasingly common objective in transport planning institutions worldwide. 
-Evidence shows that high quality infrastructure 
+A growing evidence base indicates that high quality infrastructure 
 can boost local cycling rates.
 Yet for infrastructure and other cycling measures to be effective,
 it is important to intervene in the right places, such as along 'desire lines' of high latent demand.
@@ -75,9 +75,9 @@ initially developed to explore and map cycling potential across England
 (see [pct.bike](http://pct.bike/)).
 Based on origin-destination data, it models and visualises
 cycling levels at area, desire line, route and route network levels,
-currently, and for scenario-based 'cycling futures'.
+for current levels of cycling, and for scenario-based 'cycling futures'.
 Scenarios implemented so far include 'Go Dutch' and 'Ebikes', which
-explore what would happen if English people cycled as much as the Dutch and the potential impact of electric cycles on cycling uptake, respectively.
+explore what would happen if English people cycled as much as the Dutch and the potential impact of electric cycles on cycling uptake.
 The PCT is open source, enabling the creation of additional scenarios by others
 and its deployment in new contexts.
 We conclude that new interactive and online tools such as the PCT can provide an accessible and transparent evidence base for developing strategic cycling plans.
@@ -130,7 +130,7 @@ to map cycling potential (Department for Transport, 2015).
 
 # The Propensity to Cycle Tool in context
 
-The PCT was developed in the context of increasing transport policy attention directed to cycling and, from an academic perspective, two branches of research:
+The PCT was developed in the context of growing policy interest directed towards cycling, alongside two branches of academic research:
 a) methodological developments for estimating cycling potential and b) Planning Support Systems (PSS).
 The subsequent overview of this policy and academic landscape places the PCT in its wider context.
 
@@ -141,9 +141,9 @@ the attractiveness of cycling for everyday trips [@pucher_infrastructure_2010].
 There is a wide range of interventions related to infrastructure that can be grouped under the banner 'space for cycling' [@parkin_planning_2015].
 These include reducing speed limits, implementing car free zones and allowing cycles to move more freely than motorised traffic (e.g. with early-start traffic lights and barriers passable only by pedestrians and cycles).
 However, the intervention that has received the most attention has been the construction of new cycle paths.
-In many contexts devolved transport budgets mean that local authorities have some control over the design and implementation of cycling networks, a potentially powerful policy lever to get people cycling.
+In the UK context, devolved transport budgets mean that local authorities have some control over the design and implementation of cycling networks, a potentially powerful policy lever to get people cycling.
 
-Planning new cycle paths requires many decisions to be made, including the width [@wegman_urban_1979;@pikora_developing_2002], quality [@heath_effectiveness_2006], directness [@crow_design_2007] and geographic location of the paths.
+Planning new cycle paths requires many decisions to be made, including in relation to the width [@wegman_urban_1979;@pikora_developing_2002], quality [@heath_effectiveness_2006], directness [@crow_design_2007] and geographic location of the paths.
 Yet while much guidance has been produced regarding the physical design of cycle paths [e.g. @transport_for_london_london_2015;@welsh_government_guidance_2014],
 little work has explicitly tackled the question of where this high quality infrastructure should be built
 [@aultman-hall_analysis_1997;@minikel_cyclist_2012].
@@ -153,8 +153,7 @@ Within this policy context, the PCT focuses explicitly on the question of *where
 
 ## Research into cycling potential 
 
-Growing evidence of the impact of infrastructure on cycling has led to the policy challenge of how to
-'operationalise' this body of knowledge, to help planners prioritise where to invest.
+The growing evidence base regarding the impact of infrastructure on cycling raises the question of how to 'operationalise' this body knowledge, to help planners prioritise where to invest.
 This research gap was described by
 @larsen_build_2013, who identified an "absence of research into how 
 to  systematically  prioritise  and  locate  facilities  that  are  to  be  built".
@@ -175,10 +174,10 @@ This work is reviewed in relation to the PCT below and summarised in Table 1.
 
 <!-- ### Area-based measures of cycling potential -->
 
-@parkin_estimation_2008 presented an area-based measure of cycling potential which used a regression model to estimate the proportion of commuter trips cycled across wards in England and Wales. Factors associated with lower levels of cycling included road defects, high rainfall, hills and a higher proportion of ethnic minority and low-income inhabitants.  Parkin et al. concluded that policy makers must engage with a mixture of physical and social barriers to promote cycling effectively, with the implication that some areas have lower barriers to cycling --- and hence higher propensity to cycle --- than others.
+@parkin_estimation_2008 presented an area-based measure of cycling potential that used a regression model to estimate the proportion of commuter trips cycled across wards in England and Wales. Factors associated with lower levels of cycling included road defects, high rainfall, hills and a higher proportion of ethnic minority and low-income inhabitants.  Parkin et al. concluded that policy makers must engage with a mixture of physical and social barriers to promote cycling effectively, with the implication that some areas have lower barriers to cycling --- and hence higher propensity to cycle --- than others.
 
 @zhang_prioritizing_2014 created an individual-based model of cycling potential to prioritise where to build cycle paths to "achieve maximum impacts early on".
-The outputs of this model were aggregated to the level of 67 statistical zones in the study area of Belo Horizonte and used to generate a 'usage intensity index' for potential cycle paths.
+The outputs of this model were aggregated to the level of 67 statistical zones in the study area of Belo Horizonte, Brazil, and used to generate a 'usage intensity index' for potential cycle paths.
 This, combined with survey data on cyclists' stated preferences on whether people would cycle were infrastructure provided along particular routes and origin-destination data on travel to work, was used to rank key routes in the city in terms of their cycling potential.
 
 <!-- ### Individiual-based measures of cycling potential -->
@@ -190,7 +189,7 @@ This, combined with survey data on cyclists' stated preferences on whether peopl
 <!-- paths and cycle hire points. -->
 
 While the methods presented by Parkin et al. (2008) and Zhang et al. (2014) were developed in an academic context, albeit closely related to policy needs and interests, the
-Analysis of Cycling Potential (ACP) tool was developed by practitioners [@transport_for_london_analysis_2010]. The ACP combined area and individual-level data to produce a heat map estimating cycling potential across London, for all trip purposes. The underlying model examined which types of trips are most likely to be cycled, based on the characteristics of observed cycle trips (e.g. time of day, characteristics of the traveller, distance).
+Analysis of Cycling Potential (ACP) tool was developed by practitioners [@transport_for_london_analysis_2010]. The ACP combined area and individual-level data to produce a heat map estimating cycling potential across London, UK, for all trip purposes. The underlying model examined which types of trips are most likely to be cycled, based on the characteristics of observed cycle trips (e.g. time of day, characteristics of the traveller, distance).
 The results of the ACP have informed local cycling schemes, such as where to build new cycle hire stations.
 The ACP does not use origin-destination data directly or route allocation.
 
@@ -204,7 +203,7 @@ The method used to combine these four sources was rasterisation, whereby
 the information was aggregated to the level of evenly spread cells covering the study area.
 The resulting heat map was used to recommend the construction or upgrade of cycle paths on specific roads.
 
-A more localised and approach is the Permeability Assessment Tool (PAT), which was developed by a transport consultancy @payne_removing_2014.
+A more localised approach is the Permeability Assessment Tool (PAT), which was developed by a transport consultancy @payne_removing_2014.
 The PAT is based on the concept of 'filtered permeability', which means providing a more direct route to people cycling than driving [@melia_urban_2015].
 The PAT works by combining geographical data, including the location of popular destinations
 and existing transport infrastructure, with on-site audit data of areas that have
@@ -219,7 +218,7 @@ been short-listed. Unlike the prioritisation index of Larsen et al. (2013), whic
 <!-- \newpage -->
 
 ```{r, echo=FALSE, results='asis'}
-dft = readr::read_csv("../data-sources/cycle-tools.csv")
+dft = readr::read_csv("../data-sources/160516_cycle-tools.csv")
 # knitr::kable(dft)
 library(pander)
 # pander(dft, split.table = Inf)
@@ -236,9 +235,8 @@ print(xt, comment = FALSE, include.rownames = FALSE,  hline.after = 0:nrow(dft),
 
 ## Planning support systems
 
-The methods and tools outlined above to estimate cycling potential were generally created for a single area at a time.
-The benefit of this that they can respond context-specific to practitioner and policy needs.
-However, the aim of the PCT was to provide a *systematic* and *scalable* tool.
+The methods and tools for estimating cycling potential outlined in Table 1 were generally created with only a single study region in mind. The benefit of this that they can respond context-specific to practitioner and policy needs.
+However, the aim of the PCT was to provide a *generalisable* and *scalable* tool.
 To do so we drew on the tradition of Planning Support Systems (PSS).
 
 PSS were initially developed to encourage evidence-based policy in land-use planning [e.g. @klosterman_what_1999].
@@ -246,7 +244,7 @@ The application of PSS to transport planning has been more recent, with a goal o
 "systematically [introducing] relevant (spatial) information to a
 specific process of related planning actions" [@te_brommelstroet_developing_2008].
 The PCT is systematic in its use of national data for all parts of the study region
-(in this case England) and relates to a specific planning process --- strategic cycle networks.
+(in this case England) and relates to a specific planning process --- the creation of new and enhancement of existing cycle infrastructure.
 
 PSS typically work by presenting evidence about the characteristics and needs
 of study region in an interactive map.
@@ -257,13 +255,15 @@ are typically not presented locally at area, let-alone route-specific, levels
 [@mccollum_achieving_2009;@lovelace_assessing_2011;@woodcock_public_2009].
 Online PSS can overcome this issue by using interactive maps to show local manifestations
 of different scenarios [@pettit_online_2013].
-Online PSS has been facilitated by the emergence of libraries for web mapping  [@haklay_web_2008],
-allowing public access to the planning process.
-Linked with the proliferation of open source software in transport planning
-[@tamminga_design_2012;@novosel_agent_2015;@borning_urbansim:_2008],
-PSS can tackle the issue that transport models are often seen as
-'black boxes', closed to public scrutiny [@golub_making_2013], by making
-evidence for transport planning more widely available.
+The emergence of libraries for web mapping  [@haklay_web_2008] has facilitated online PSS, offering the potential for public access to the planning process. Transparency is further enhanced by making PSS open source, in-line with a growing trend in transport modelling [@tamminga_design_2012;@novosel_agent_2015;@borning_urbansim:_2008].  In these ways, PSS can make evidence for transport planning more widely available, and tackle the issue that transport models are sometimes seen as 'black boxes', closed to public scrutiny (Golub et al., 2013).
+
+
+<!-- allowing public access to the planning process. -->
+<!-- Linked with the proliferation of open source software in transport planning -->
+<!-- [@tamminga_design_2012;@novosel_agent_2015;@borning_urbansim:_2008], -->
+<!-- PSS can tackle the issue that transport models are often seen as -->
+<!-- 'black boxes', closed to public scrutiny [@golub_making_2013], by making -->
+<!-- evidence for transport planning more widely available. -->
 
 <!--' Much has been written about the characteristics of an effective PSS -->
 <!--' of relavence to the PCT. -->
@@ -312,9 +312,9 @@ This was done by CycleStreets.net, a routing service developed by cyclists, for 
 
 - Visualisation of outputs at multiple geographic levels. The interactive map enables users to examine cycling potential at a very local level (e.g. just a few streets) or at a more regional level (e.g. across a large metropolitan area). 
 
-- Public accessibility of results and code. The tool is freely available on-line and developers are encourage to modify the PCT (e.g. to create alternative scenarios) by provision of the source code underlying the PCT under the open source AGP License.
+- Public accessibility of results and code. The tool is freely available online and developers are encouraged to modify the PCT (e.g. to create alternative scenarios) by provision of the source code underlying the PCT under the open source AGP License.
 
-- The presenteation of the estimated benefits of future scenarios, for example via impacts on public health and emissions, enabling interventions to be designed based on specific policy goals rather than numbers of potential cyclists alone.
+- The presentation of estimated benefits under future scenarios, for example via impacts on public health and carbon emissions, enabling interventions to be designed based on specific health and environmental policy goals
 
 As with any tool, the PCT’s utility depends on people knowing how to use it.
 For that reason training materials and a user manual are being developed
@@ -408,7 +408,7 @@ and the interaction between distance and hilliness (see Figure 2).
 This model of current cycling levels formed the basis of three scenarios (Government Target, Go Dutch and Ebikes) (see the Appendix).  
 
 ```{r, echo=FALSE, fig.cap="The relationship between distance (left) and hilliness (right) and cycling mode share in England based on the the National Travel Survey. The plots show actual (blue) vs predicted (red) prevalence of cycling to work among 17,896,135 English commuters travelling <30km to work."}
-knitr::include_graphics("dd-anna.jpg")
+knitr::include_graphics("dist-curve2-ag.pdf")
 ```
 
 
@@ -1134,7 +1134,7 @@ take a path that is more than around 1.3 to 1.5 times the length of the
 The same research suggests that circuity values for
 "for cycle provision should be 1.2" [@crow_design_2007].
 This suggests that high quality cycle infrastructure along the 'fastest route' shown in Figure 9,
-or a more direct route that does not ahere to the current transport infrastructure,
+or a more direct route that does not adhere to the current transport infrastructure,
 would be more attractive than an
 alternative quiet route that diverges greatly from the shortest path.
 Previous work indicates that this is likely particularly true for women and older people, for whom distance is a greater deterrent to cycling than for young men [@woodcock_national_2016, see Appendix 8].
