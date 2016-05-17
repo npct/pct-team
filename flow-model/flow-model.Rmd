@@ -506,20 +506,20 @@ These can be framed in terms of the removal of different infrastructural, cultur
 They are not predictions of the future.
 They are snapshots indicating how the spatial distribution
 of cycling may shift as cycling grows based on current travel patterns.
-At a national level the first two could be seen as shorter-term. The 
-second two are more ambitious.
+At a national level, the first two could be seen as shorter-term and the 
+second two more ambitious.
 The choice of scenarios was informed by a government target to double the number of cycle trips
 and evidence from overseas
 about which trips *could* be made by cycling.
 Summaries of the four scenarios are as follows (see the Appendix for full details):
 
-- Government Target. This scenario represents a doubling of the level of of cycling in England [@department_for_transport_cycling_2014].Although substantial in relative terms (rising from 3% to 6% of commuters), the rate of cycling under this scenario remains low compared with countries such as the Netherlands or Denmark. Growth in cycling is not uniform in this scenario, in either absolute or relative terms. Areas with many short, flat trips and a below-average current rate of cycling are projected to more than double. Conversely, areas with above-verge cycle use and many long-distance hilly commuter routes will experience less than a doubling. Government Target thus generates a slight reduction (but not elimination) of local variation in cycle use that reflects constraints other than distance and hilliness.  This scenario is designed to indicate where investment might have the greatest short-term impact.
+- Government Target. This scenario represents a doubling of the level of of cycling in England [@department_for_transport_cycling_2014]. Although substantial in relative terms, the rate of cycling under this scenario (rising from 3% to 6% of commuters) remains low compared with countries such as the Netherlands and Denmark. Growth in cycling is not uniform in this scenario, in either absolute or relative terms. Areas with many short, flat trips and a below-average current rate of cycling are projected to more than double. Conversely, areas with above-average levels of cycling and many long-distance hilly commuter routes will experience less than a doubling. Government Target thus represents a slight reduction (but not elimination) of local barriers to cycling. This scenario may be useful for indicating where investment might have the greatest short-term impact.
 
 - Gender Equality. This scenario illustrates the increase in cycling
 that would result if women were as likely as men to cycle a given trip.
 Specifically, the scenario sets the proportion of female cycle commuters to be equal
 to the current proportion of males in each OD pair.
-The scenario is based on the observation that in places where cycling is the norm,
+The scenario is based on the observation that in places where cycling accounts for a high proportion of personal travel,
 women cycle at least as much as men [@pucher_infrastructure_2010;@aldred_does_2016].
 This scenario has the greatest relative impact in areas where
 the rate of cycling is highly gender-unequal.
@@ -549,8 +549,8 @@ Electric assist cycles enable longer journeys and reduce the barrier of hills.
 This scenario is currently implemented as an extension Go Dutch
 but could be implemented as an add-on for other scenarios.
 
-Additional scenarios could be developed (see Discussion). If deployed in other countries, the PCT will likely benefit from scenarios that relate to both the current policy context and long-term aspirations.
-OD data must be available for scenarios to be generated in new places, however, as the scenarios primarily operate at the OD level. The estimated changes in the number of cyclists are then aggregated up to the level of areas and allocated to the route network, allowing health and other impacts to be related to transport infrastructure.
+Additional scenarios could be developed (see Discussion). If deployed in other settings, the PCT will likely benefit from scenarios that relate to both the current policy context and long-term aspirations.
+OD data must be available for scenarios to be generated in new places, however, for health and other impacts to be related to transport infrastructure at high geographical resolution.
 
 ## Estimation of health impacts
 
