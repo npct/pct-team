@@ -1082,17 +1082,9 @@ long-term scenarios are not influenced by the current rate of cycling.
 <!-- national average, so the Government Target scenario represents less than a doubling in -->
 <!-- cycling. -->
 
-## The shifting spatial distribution of cycling demand
+## The shifting spatial distribution of cycling
 
-The difference between the spatial distribution in cycling potential between
-the Government Target and Go Dutch
-scenarios is illustrated in Figure 7 for the city of Leeds, West Yorkshire.
-The top 6 OD pairs (a low number was used to focus on the city centre)
-in Leeds under Government Target are strongly influenced by the current distribution of cycling.
-As such, cycle commuting is projected to continue to be most common in the
-North the city.
-Under Go Dutch assumptions, by contrast,
-the pattern of cycling shifts substantially to the south of the city.
+The spatial distribution of cycling potential differs markedly between scenarios, as illustrated in Figure 7 for the city of Leeds, West Yorkshire. The top 6 OD pairs (a low number was used to focus on the city centre) in Leeds under Government Target are strongly influenced by the current distribution of cycling, which is focussed in the relatively wealthy North of the city (see Figure 3 for top 6 flows currently). Cycle commuting is projected to continue to be most common in the North the city. Under the Go Dutch scenario, by contrast, the pattern of cycling shifts substantially to the South.
 The cycling patterns under the Go Dutch scenario
 are more representative of short-distance trips across the city overall.
 In both cases the desire lines are focused around Leeds city centre: the region
@@ -1115,7 +1107,7 @@ The same scenario is illustrated in Figure 8 with the Route Network layer.
 This shows how the shift in cycling to become more evenly spread across the city translates into estimates of cyclist flows on specific road segments.
 The number of commuter cyclists expected on York Road, highlighted with a popup, more than triples (from 71 to 236)
 under Government Target and increases more than 10 fold under Go Dutch (from 71 to 966).
-This contrast with Otley Road (highlighted in Figure 5), which 'only' triples under Go Dutch.
+This contrastswith Otley Road (highlighted in Figure 5), which 'only' triples under Go Dutch.
 These results suggest that as cycling grows, policy interventions in Leeds should shift from routes in the Northwest of the city, the area with the highest current level of cycling, to routes that have low current rates of cycling but high potential, such as York Road to the East. Cycle paths built to help achieve ambitious targets, as represented by the Go Dutch scenario, should be of sufficient width to accommodate the estimated flows: the number of cycle commuters would be expected to increase more than ten-fold on York Road under this scenario and infrastructure design should adapt accordingly.
 
 ```{r, echo=FALSE, fig.cap="The Route Network layer illustrating the shifting spatial distribution of cycling flows in Leeds under Government Target (top) and Go Dutch (bottom) scenarios."}
@@ -1170,17 +1162,18 @@ knitr::include_graphics("model-output.png")
 
 # Discussion
 
-We have outlined a method for estimating and visualising the spatial
+We have outlined a method for modelling and visualising the spatial
 distribution of cycling flows, currently and under various scenarios of 'cycling futures'.
 Inspired by previous approaches to estimating cycling potential [@larsen_build_2013;@zhang_prioritizing_2014]
-and online, interactive planning support systems (PSS) [@pettit_online_2013], the
+and by online, interactive planning support systems (PSS) [@pettit_online_2013], the
 PCT tackles the important yet largely unresolved issue
 of how to create a systematic evidence base to prioritise where to build new cycle paths
 and identify areas to prioritise for localised interventions.
-Illustrative use cases of the PCT demonstrated the potential utility of the tool
-by showing that the spatial distribution
+Illustrative uses of the PCT demonstrated the potential utility of the tool, for example
+by showing settings in which the spatial distribution
 of cycling demand is likely to shift as cycling grows. 
-For example, the output of the PCT suggests that the 'centre of gravity' for cycling in the city of Leeds will shift towards areas with high numbers of short distance trips but low current rates of cycling.
+
+<!-- For example, the output of the PCT suggests that the 'centre of gravity' for cycling in the city of Leeds will shift towards areas with high numbers of short distance trips but low current rates of cycling. -->
 
 In addition to creating an evidence base for planning specific routes and area-based interventions, the long-term Go Dutch and Ebikes scenarios could be used for 'visioning' transport futures [@tight_visions_2011;@hickman_transitions_2011].
 The PCT could also: help translate national targets into local aspirations (as illustrated by the Government Target scenario); inform local targets (e.g. by indicating what the potential in one region is relative to neighbouring regions); support business cases (by showing that there is high cycling potential along proposed routes); and help plan for capacity increases in cycling along the route network via the network analysis layer.
@@ -1242,18 +1235,17 @@ making it easy for others use the project as a basis for further work [@lima_cod
 
 
 As with any modelling tool, the approach presented in this paper has
-limitations: the reliance on Census OD data from 2011 means that the results are not up-to-date, and the user interface is constrained to a few, discrete, scenarios.
+limitations: the reliance on Census OD data from 2011 means that the results are limited to commuting and may not encapsulate recent shifts in travel behaviour, and the user interface is constrained to a few, discrete, scenarios.
 These limitations suggest directions for future work, including: use of new sources of OD data, and the implementation of continuous variables to define future scenarios.
 
 <!-- ; and versions of the model to represent the impact of specific improvements to the route network (e.g. by modifying the 'quietness diversion factor'). Beyond these changes, further extensions of the PCT could include: -->
 
-There is often a tension between transparency and complexity in the design of tools for transport planning, and the latter can result in tools that are 'black boxes' [@saujot_making_2016].
+There is often a tension between transparency and complexity in the design of tools for transport planning. Excessive complexity can result in tools that are 'black boxes' [@saujot_making_2016].
 In a context of limited time, expertise, and resources, Saujot et al. caution against investing
 in ever more complex models.
-Instead, they suggest models should be more 'bottom-up'.
-The PCT’s open source, freely available nature will, we believe, facilitate the future development of the PCT in an organic way that meets the needs of its users.
-We envision stakeholders with the capacity participating in the development of the tool, for example modifying scenarios for their own purposes, and academics adding new features and developing new use cases of the PCT.
-Community-led enhancements could include:
+Instead, they suggest models should be more user focussed.
+The PCT’s open source, freely available nature will, we believe, facilitate the future development of the PCT organically to meet the needs of its various users.
+For instance, we envision that stakeholders in local government modifying scenarios for their own purposes, and that academics in relevant fields may add new features and develop new use cases of the PCT. Such enhancements could include:
 
 - Additional scenarios to illustrate a wider range of 'cycling futures', including medium-term and local targets such as 'Go York' (where 12% of commuters cycle to work).
 
@@ -1263,9 +1255,9 @@ enables the use of additional individual-level variables,
 such as access to a cycle and physical fitness,
 to inform more targeted interventions [@lovelace_spatial_2014].
 
-- The incorporation of changes in land-use and transport since the Census 2011,
-to explore the dynamics of cycling potential, such as the impact of new residential and commercial developments.
-This work could build on recently developed GIS for transport planning [@farrell_evaluating_2015].
+<!-- - The incorporation of changes in land-use and transport since the Census 2011, -->
+<!-- to explore the dynamics of cycling potential, such as the impact of new residential and commercial developments. -->
+<!-- This work could build on recently developed GIS for transport planning [@farrell_evaluating_2015]. -->
 
 - Additional purposes of trips in the model. An 'education layer' would enable prioritisation of 'safe routes to school', building on methods analysing 'school commute' data [@singleton_gis_2014].
 Other data sources to include more trip types include mobile telephone providers [@alexander_validation_2015] and traditional transport models.
@@ -1401,9 +1393,8 @@ feedback on early versions of the tool.
 
 # Funding {-}
 
-The work presented was funded by the Department for Transport (contract no.
-RM5019SO7766: "Provision of Research Programme into Cycling: Propensity to
-Cycle"), with project management by Brook Lyndhurst. RL’s contribution was
+The work presented was funded by the Department for Transport (contract no. RM5019SO7766: "Provision of Research Programme into Cycling: Propensity to Cycle"), with contract facilitation and project management by Brook Lyndhurst in Phase 1, and by Atkins in Phase 2.
+RL’s contribution was
 supported by the Consumer Data Research Centre (ESRC grant number ES/L011891/1).
 JW's contribution was supported by an MRC
 Population Health Scientist Fellowship. JW’s and AA’s contribution was supported
