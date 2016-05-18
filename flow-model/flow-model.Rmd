@@ -726,9 +726,10 @@ Information about the *aggregate cycling potential* on the road network is shown
 Because the layer is the result of aggregating overlapping 'fast' routes, and summing the level of cycling for each scenario (see Figure 5), it relates to the *capacity* that infrastructure may need to handle.
 Cycling along Otley Road, under the Go Dutch scenario, rises from 73 to 296
 along a single route, but from 301 to 1133 in the Route Network.
-Note that more confidence can be placed in the relative rather than the absolute size of these numbers: the Route Network layer excludes within-zone commuters, commuters with no fixed workplace, and commuters working in a different PCT region, because these are not represented as 'fast' routes on the travel network.
-Route Network values also omit additional potential cycling associated with desire lines outside adjustable selection criteria based on distance and minimum total numbers of all-mode commuters per OD pair.
-At the time of writing these were set to 20 km Euclidean distance and 10 commuters respectively.
+Note that more confidence can be placed in the relative rather than the absolute size of these numbers: the Route Network layer excludes within-zone commuters, commuters with no fixed workplace, and commuters working in a different PCT region
+because because the PCT does not represent these on the travel network (see Figure 1). Route Network values also omit routes omited due to the adjustable selection criteria: maximum distance and minimum total numbers of all-mode commuters per OD pair. At the time of writing these were set to 20 km Euclidean distance and 10 commuters respectively.
+This means that routes longer than 20 km or with ten or fewer commuters were omited.
+Nationally, the Route Network layer under these settings accounts for around two thirds of cycle commuters.
 
 <!-- The Route Network was generated with the R function `overline` [@lovelace_stplanr:_2016]. -->
 
@@ -1035,11 +1036,11 @@ knitr::include_graphics(c("fastest-headingly.png", "fastest-net-headingly.png"))
 
 # Outputs of the Propensity to Cycle Tool
 
-This section describes and illustrates some outputs from the PCT, alongside discussion of how these outputs could be used in transport planning.
+This section describes and illustrates some outputs from the PCT, alongside discussion of how these outputs could be used in transport planning.  Note that some of the details of the graphics in the online version may evolve as the PCT develops.
 
 ## Model output tabs
 
-The PCT contains 6 'tabs' (see Figure 3), the first four of which provide region-specific information:
+Tabs are panels within the PCT, that reveal new information on the screen (see the top of Figure 3). Of these, the first four provide region-specific information:
 
 - **Map**: This is the interactive map that shows cycling potential at area, desire-line, route and route network levels under different scenarios of the future, as described throughout this paper. This interactive map is the main component of the PCT, and is the default tab presented to users.
 
