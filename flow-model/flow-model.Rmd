@@ -1040,11 +1040,11 @@ This section describes and illustrates some outputs from the PCT, alongside disc
 
 ## Model output tabs
 
-Tabs are panels within the PCT, that reveal new information on the screen (see the top of Figure 3). Of these, the first four provide region-specific information:
+Tabs are panels within the PCT that reveal new information when clicked (see the top of Figure 3). Of these, the first four provide region-specific information:
 
-- **Map**: This is the interactive map that shows cycling potential at area, desire-line, route and route network levels under different scenarios of the future, as described throughout this paper. This interactive map is the main component of the PCT, and is the default tab presented to users.
+- **Map**: This interactive map is the main component of the PCT, and is the default tab presented to users. It shows cycling potential at area, desire-line, route and route network levels under different scenarios of the future, as described throughout this paper. 'Popups' appear when zones, desire lines or segments on the Route Network are clicked, presenting quantitative information about the selected element.
 
-- **Lines**: When lines are displayed on the interactive map, this tab provides the raw data as a table at the OD pair level. Variables shown include the origin and destination of the route, current number of commutes by rail, bus, car and bicycle, the increase in cyclists under different scenarios, and geographical data such as straight line distance, hilliness and circuity.
+- **Lines**: When lines are displayed on the interactive map, this tab provides the raw data as a table at the OD pair level. Variables shown include the origin and destination zone of the route, current number of commutes by rail, bus, car and bicycle, the increase in cyclists under different scenarios, and geographical data such as straight line distance, hilliness and circuity.
 
 - **Areas**: This tab is the equivalent of the 'Lines' tab, but with data at the area level.
 
@@ -1056,7 +1056,7 @@ For each scenario it shows the distribution of cycling by trip distance (see Fig
 
 ## Trip distance distributions
 
-Figure 6 shows how the proportion of trips made by cycling varies as a function of distance in two regions currently, and under the PCT's four scenarios of change. Examining the distribution of commute trips by all modes (the red lines), it is clear that each region has a different spatial structure.  In Oxfordshire a high proportion of all commute trips are short (under 5km), which helps explain the high rate of cycling there. West Yorkshire, by contrast, has a higher proportion of trips of medium or longer lengths.  West Yorkshire also shows a less marked difference in the number of cyclists according to distance than Oxford, as indicated by the comparatively shallow curve for current cycling.
+Figure 6 shows how the proportion of trips made by cycling varies as a function of distance in two regions currently, and under the PCT's four scenarios of change. Examining the distribution of commute trips by all modes (the red lines), it is clear that the two regions have different spatial structures. In Oxfordshire a high proportion of all commute trips are short (under 5km), which helps explain the high rate of cycling there. West Yorkshire, by contrast, has a higher proportion of trips of medium or longer lengths.  West Yorkshire also shows a less marked difference in the number of cyclists according to distance than Oxford, as indicated by the comparatively shallow curve for current cycling.
 
 <!-- These results (presented in the Model Output tab in the PCT) suggest that there is high cycling potential in both regions but perhaps imply that West Yorkshire should prioritise the 'low hanging fruit' of short trips not currently cycled whereas in Oxfordshire extra cycling potential is more evenly distributed across all cyclable distances. -->
 
