@@ -343,7 +343,7 @@ The central input dataset was a table of origin-destination (OD) pairs from the 
 This was loaded from open access file `wu03ew_v2.csv`, provided by the [UK Data Service](http://wicid.ukdataservice.ac.uk/). This captures the number of commuters travelling between Middle Super Output Area zones (MSOAs, average population: 3300), by mode of travel (see Table 2).
  This dataset was derived from responses to the following questions in the [English 2011 Census](http://www.ons.gov.uk/census/): "In your main job, what is the address of your workplace?" (question 40) and "How do you usually travel to work? (Tick one box only, for the longest part, by distance, of your usual journey to work)" (Question 41).
  This dataset was enhanced by merging in information on the gender composition of cyclists in each OD pair (Dataset 1 in Figure 1); data at the area level on the background mortality rate (Dataset 2); and data at the OD pair-level on route distance (km) and hilliness (average gradient, in %) (Dataset 3).
- The latter data was assigned to OD pairs using the "fastest route" option on CycleStreets.net, using the R package stplanr (Lovelace et al., 2016). See the Appendix for further details.
+The latter data was assigned to OD pairs using the 'fastest' option on CycleStreets.net, using the R package stplanr (Lovelace et al., 2016). See the Appendix for further details.
 
 Table: Sample of the OD input dataset, representing the number of people who
 commute from locations within and between administrative zones (MSOAs)
@@ -552,16 +552,19 @@ but could be implemented as an add-on for other scenarios.
 Additional scenarios could be developed (see Discussion). If deployed in other settings, the PCT will likely benefit from scenarios that relate to both the current policy context and long-term aspirations.
 OD data must be available for scenarios to be generated in new places, however, for health and other impacts to be related to transport infrastructure at high geographical resolution.
 
-## Estimation of health impacts
+## Estimation of health and carbon impacts
 
-The World Health Organisation’s Health Economic Assessment Tool ([HEAT](http://www.heatwalkingcycling.org/)) was used to estimate the number of premature deaths avoided due to increased physical activity [@kahlmeier_health_2014]. To allow for the fact that cycling would in some cases replace walking, because the model assumes all modes are equally likely to be replaced by cycling, HEAT estimates of the increase in premature deaths to the reduction in walking were also included (see the Appendix).  
+The World Health Organisation’s Health Economic Assessment Tool ([HEAT](http://www.heatwalkingcycling.org/)) was used to estimate the number of premature deaths avoided due to increased physical activity [@kahlmeier_health_2014]. To allow for the fact that cycling would in some cases replace walking, HEAT estimates of the increase in premature deaths to the reduction in walking were also included (see the Appendix).
+To model the change in walking, we assumed that within a given OD pair all modes were equally likely to be replaced by cycling.  Thus all the non-cycling modes shown in Table 2 experienced the same relative decrease.
 
-Trip duration was estimated as a function of the 'fastest' route distance and average speed. For walking and cycling we applied the standard HEAT approach. Ebikes are not specifically covered in HEAT Cycling but enable faster travel and require less energy from the rider than traditional bikes. Thus we estimated new speeds and intensity values for this mode, giving a smaller benefit for every minute spent using Ebikes than conventional cycles. For more details see the Appendix.
+Trip duration was estimated as a function of the 'fast' route distance and average speed. For walking and cycling we applied the standard HEAT approach. Ebikes are not specifically covered in HEAT Cycling but enable faster travel and require less energy from the rider than traditional bikes. Thus we estimated new speeds and intensity values for this mode, giving a smaller benefit for every minute spent using Ebikes than conventional cycles. For more details see the Appendix.
 
 The risk of death varies by gender and increases rapidly with age.
 This was accounted for using age and sex-specific mortality rates for each local authority in England.
-The assumed age and sex profile of new cyclists also varied between scenarios.
+The assumed age and sex profile of new cyclists also varied between scenarios (see Appendix).
 The net change in the number of deaths avoided for each OD pair was equal to the number deaths avoided due to cycle commuting minus the number of additional deaths due to reduced walking.  Note that this approach means that in some OD pairs where walking made up a high proportion of trips, additional deaths were incurred.  The monetary value of the mortality impact was calculated by drawing on the standard 'value of a statistical life' used by the Department for Transport.
+
+We also estimated the reduction in transport carbon emissions resulting from decreased car driving in each scenario.  This again relied on the assumption that, within a given OD pair all modes, were equally likely to be replaced by cycling.  The average CO^2^-equivalent emission per kilometre of car driving was taken as 0.186 kg, the 2015 value of an 'average' car [@defra_defra_2015].
 
 ## Visualisation, route allocation and network generation
 
@@ -578,7 +581,7 @@ These represent cycling 'desire lines' [@tobler_experiments_1987;@chan_multi-cri
 The visualisation of the OD data builds
 on published work on cartographic visualisation [@rae_spatial_2009;@wood_visualisation_2010].
 
-```{r, echo=FALSE, fig.cap="Overview of the PCT map interface, showing area and OD-level data. The zone colour represents the number of people who cycle to work in each administrative zone. The lines represent the top 6 most cycled commuter routes in Leeds (moving the slider 'N. Lines (most cycled)' increases the number of lines). Width is proportional to the total number of cycle trips. Note the use of population-weighted (as opposed to geographic) centroids for the point of departure and destination and the variable width of the centroids, which are proportional to intra-zonal (within zone) flow."}
+```{r, echo=FALSE, fig.cap="Overview of the PCT map interface, showing area and OD-level data. The zone colour represents the number of residents who cycle to work. The lines represent the top 6 most cycled commuter routes in Leeds, with width proportional to the total number of cycle trips. Population-weighted centroids are represented by circles, the diameter of which is proportional to the rate of within-zone cycling."}
 # data("flowlines")
 # plot(flowlines, lwd = flowlines$All / 10)
 knitr::include_graphics("od-data-leeds.png")
@@ -658,16 +661,16 @@ knitr::include_graphics("pct-frontpage.png")
 <!-- ## Route allocation and network generation -->
 
 Desire lines allocated to the route network are illustrated in Figure 4.
-This shows two route options: the 'fastest' route,
+This shows two route options: the 'fast' route,
 which represents an estimate of the route taken by cyclists to minimise travel time
-and the 'quietest' route which preferentially selects smaller, quieter roads and
+and the 'quiet' route which preferentially selects smaller, quieter roads and
 off road paths.
 
 <!-- Overlapping fast routes were aggregated to create the 'Route Network' layer (see Figure 5). -->
 <!-- These stages were computationally intensive, leading to a number of steps -->
 <!-- being taken to make them fast and scalable: -->
 
-```{r, echo=FALSE, fig.cap="Illustration of desire lines shown in Figure 3 after they have been allocated to the road network by CycleStreets.net. Purple lines are the 'fastest' routes and turquoise routes were the 'quietest' routes."}
+```{r, echo=FALSE, fig.cap="Illustration of desire lines shown in Figure 3 after they have been allocated to the road network by CycleStreets.net. Purple lines are the 'fast' routes and turquoise routes were the 'quiet' routes."}
 knitr::include_graphics("od-data-fast-quiet.png")
 ```
 
@@ -1118,19 +1121,19 @@ knitr::include_graphics("leeds-rnet-gov-go.png")
 ```
 
 Another potentially useful output is the difference between
-'fastest' and 'quietest' routes.
+'fast' and 'quiet' routes.
 Figure 9 illustrates this by showing routes in Manchester with the highest cycling
 potential under the Government Target scenario.
-The 'quietest' route is substantially longer: 2.6 km
-(as shown by clicking on the line). The 'fastest'
+The 'quiet' route is substantially longer: 2.6 km
+(as shown by clicking on the line). The 'fast'
 route is more direct (with a route distance of 2.3 km) but passes
 along Trinity Way (the A6042), a busy dual carriage way.
 The Euclidean distance
 associated with this OD pair is 1.6 km
 (this can be seen by clicking on a line illustrated from the 'Straight Lines' layer inn the PCT's interface),
 resulting in circuity values of
-1.4 and 1.6 respectively. We refer to the difference between the 'fastest'
-and 'quietest' routes as the 'quietness diversion factor' ($qdf = 1.2$
+1.4 and 1.6 respectively. We refer to the difference between the 'fast'
+and 'quiet' routes as the 'quietness diversion factor' ($qdf = 1.2$
 in this case).
 
 Dutch evidence suggests that cyclists are generally unwilling to
@@ -1138,14 +1141,14 @@ take a path that is more than around 1.3 to 1.5 times the length of the
 'crow-flies' Euclidean distance (defined as $q$ above).
 The same research suggests that circuity values for
 "for cycle provision should be 1.2" [@crow_design_2007].
-This suggests that high quality cycle infrastructure along the 'fastest route' shown in Figure 9,
+This suggests that high quality cycle infrastructure along the 'fast' route shown in Figure 9,
 or a more direct route that does not adhere to the current transport infrastructure,
 would be more attractive than an
 alternative quiet route that diverges greatly from the shortest path.
 Previous work indicates that this is likely particularly true for women and older people, for whom distance is a greater deterrent to cycling than for young men [@woodcock_national_2016, see Appendix 8].
 Combined with their greater preference for segregated infrastructure reported by these groups, this highlights the importance of providing direct and safe routes to encourage cycling amongst groups who currently cycle the least.
 
-```{r, echo=FALSE, fig.cap="Close-up of the 'fastest' and 'quietest' routes from CycleStreets.net of the OD pair with highest cycling potential under the Government Target scenario in Manchester. This provides an indication of the local 'quietness diversion factor'"}
+```{r, echo=FALSE, fig.cap="Close-up of a 'fast' and 'quiet' route in the PCT under the Government Target scenario in Manchester. This provides an indication of the local 'quietness diversion factor'."}
 knitr::include_graphics("man-trinity-way.png")
 ```
 
