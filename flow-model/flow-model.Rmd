@@ -2,8 +2,8 @@
 title: 'The Propensity to Cycle Tool: An open source online system for sustainable
   transport planning'
 author:
-- Robin Lovelace (University of Leeds)
-- Anna Goodman (London School of Hygiene and Tropical Medicine)
+- Robin Lovelace (University of Leeds)^[Diverse authors.]
+- Anna Goodman (London School of Hygiene and Tropical Medicine)*
 - Rachel Aldred (University of Westminster)
 - Nikolai Berkoff (independent web developer)
 - Ali Abbas (University of Cambridge)
@@ -28,7 +28,6 @@ bibliography: references.bib
 library(knitr)
 opts_chunk$set(out.width = '100%')
 ```
-
 
 ```{r, echo=FALSE, include=FALSE}
 # date: '`r format(Sys.time(), ''%d %B %Y'')`'
@@ -1404,7 +1403,7 @@ Research UK, Economic and Social Research Council, Medical Research Council, the
 National Institute for Health Research (NIHR), and the Wellcome Trust. AG’s
 contribution was supported by an NIHR post-doctoral fellowship. The views
 reported in this paper are those of the authors and do not necessarily represent
-those of the DfT, Brook Lyndhurst, the NIHR, the NHS or the Department for
+those of the DfT, Brook Lyndhurst, Atkins the NIHR, the NHS or the Department for
 Health.
 
 ```{r, echo=FALSE}
