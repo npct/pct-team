@@ -1376,7 +1376,7 @@ By providing transport authorities, campaign groups and the public with access t
 
 # Author contribution statement {-}
 
-The PCT was built as a collaborative effort. The project as a whole was led by JW, and the initial concept for the project came from JW and RL. AG led the creation of the model underlying the PCT, and the generation of estimates of cycling levels, health gains and carbon impacts in each scenario. RL led the processing of these modelled estimates for spatial visualisation in the online tool, and also coordinated the technical team in developing the online tool.  All authors contributed to developing the appearance and functionality of the online interface, with particular inputs from RA in terms of getting user feedback, and from AA, RL and NB in terms of implementing new features.  RL led the drafting of this manuscript, with input from all authors.
+The PCT was built as a collaborative effort. The project as a whole was led by JW, and the initial concept for the project came from JW and RL. AG led the creation of the model underlying the PCT, and the generation of estimates of cycling levels, health gains and carbon impacts in each scenario. RL led the processing of these modelled estimates for spatial visualisation in the online tool and coordinated the technical team in developing the online tool.  RA led the coordination of policy implementation and collection of practitioner feedback. AA led on the user interface. NB led the deployment of the PCT on a public facing server. RL led the writing of this manuscript, with input from all authors.
 
 # Acknowledgements {-}
 
