@@ -10,12 +10,12 @@ author:
 - James Woodcock (University of Cambridge)
 csl: ../documents/elsevier-harvard.csl
 output:
+  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
-  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
   \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
   \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
@@ -400,17 +400,9 @@ kable(head(flow[c(1:3, 12)]), row.names = F)
 
 ## Modelling cycling potential
 
-The starting point for creating scenario-based 'cycling futures' was to model current cycle commuting in England,
-using OD data from the 2011 Census. The proportion of commutes by cycle was estimated as a function of route distance and hilliness using a logistic regression model operating at the individual level..
-Parameters estimated by the regression included square and square-root terms for distance, to capture 'distance decay' (Iacono et al 2008). Interaction terms were used to capture the relationship between distance and hilliness.
-Model fit is illustrated in Figure 2.  Equations were developed to estimate commuting mode share  among groups not represented in the between-zone OD data: those commuting within one MSOA and those with no fixed workplace.
-This model of current cycling levels formed the basis for three of our four subsequent scenarios (Government Target, Go Dutch and Ebikes). Model parameters were derived from English, Dutch and Swiss travel survey data (see the Appendix for details).   
-
-The scenario-based 'cycling futures' were based on a baseline estimate of the proportion of trips made per OD pair, as a function of route distance and route hilliness.
-This was generated using a logistic regression model operating at the individual level.
-This captured 'distance decay', the non-linear impact of distance on the likelihood of cycling [@iacono_access_2008]
-and the interaction between distance and hilliness (see Figure 2).
-This model of current cycling levels formed the basis of three scenarios (Government Target, Go Dutch and Ebikes) (see the Appendix).  
+The starting point for generating our scenario-based 'cycling futures' was to model current cycle commuting in England.  We did this using OD data from the 2011 Census, and modelling cycling commuting as a function of route distance and route hilliness.  We did so using logistic regression applied at the individual level, including squared and square-root terms to capture 'distance decay' --- the non-linear impact of distance on the likelihood of cycling [@iacono_access_2008] --- and including terms to capture the interaction between distance and hilliness. Model fit is illustrated in Figure 2; see Appendix for details and for the underlying equations.
+We also developed equations to estimate commuting mode share among groups not represented in the between-zone ('interzonal') OD data, e.g. those commuting within a specific MSOA (this is within-zone or 'intrazonal' travel), or those with no fixed workplace. 
+This model of current cycling levels formed the basis of three of the four scenarios (Government Target, Go Dutch and Ebikes; see below), with model parameterization drawing additionally on English, Dutch and Swiss travel survey data.
 
 ```{r, echo=FALSE, fig.cap="The relationship between distance (left) and hilliness (right) and cycling mode share in England based on the the 2011 Census. The plots show actual (blue) vs predicted (red) prevalence of cycling to work among 17,896,135 English commuters travelling <30km to work."}
 knitr::include_graphics("dist-curve2-ag.pdf")
