@@ -10,12 +10,12 @@ author:
 - James Woodcock (University of Cambridge)
 csl: ../documents/elsevier-harvard.csl
 output:
-  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
+  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
   \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
   \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
@@ -72,7 +72,7 @@ Following a brief review of the policy and research context related to this ques
 this paper describes design, features and potential applications of such a tool.
 The Propensity to Cycle Tool (PCT) is an online, interactive planning support system which was
 initially developed to explore and map cycling potential across England
-(see [pct.bike](http://pct.bike/)).
+(see [www.pct.bike](http://pct.bike/)).
 Based on origin-destination data, it models and visualises
 cycling levels at area, desire line, route and route network levels,
 for current levels of cycling, and for scenario-based 'cycling futures'.
@@ -218,8 +218,7 @@ been short-listed. Unlike the prioritisation index of Larsen et al. (2013), whic
 <!-- \newpage -->
 
 ```{r, echo=FALSE, results='asis'}
-# dft = readr::read_csv("../data-sources/160516_cycle-tools.csv")
-dft = read.csv("../data-sources/160516_cycle-tools.csv")
+dft = readr::read_csv("../data-sources/160516_cycle-tools.csv")
 # knitr::kable(dft)
 library(pander)
 # pander(dft, split.table = Inf)
@@ -341,7 +340,7 @@ knitr::include_graphics("160516_Fig1.pdf")
 ## Processing OD data
 
 The central input dataset was a table of origin-destination (OD) pairs from the 2011 Census.
-This was loaded from open access file `wu03ew_v2.csv`, provided by the [UK Data Service](http://wicid.ukdataservice.ac.uk/). This captures the number of commuters travelling between Middle Super Output Area zones (MSOAs, average population: 3300), by mode of travel (see Table 2).
+This was loaded from open access file `wu03ew_v2.csv`, provided by the [UK Data Service](http://wicid.ukdataservice.ac.uk/). This captures the number of commuters travelling between Middle Super Output Area zones (MSOAs, average commuter population: 3300), by mode of travel (see Table 2).
  This dataset was derived from responses to the following questions in the [English 2011 Census](http://www.ons.gov.uk/census/): "In your main job, what is the address of your workplace?" (question 40) and "How do you usually travel to work? (Tick one box only, for the longest part, by distance, of your usual journey to work)" (Question 41).
  This dataset was enhanced by merging in information on the gender composition of cyclists in each OD pair (Dataset 1 in Figure 1); data at the area level on the background mortality rate (Dataset 2); and data at the OD pair-level on route distance (km) and hilliness (average gradient, in %) (Dataset 3).
 The latter data was assigned to OD pairs using the 'fastest' option on CycleStreets.net, using the R package stplanr (Lovelace et al., 2016). See the Appendix for further details.
@@ -402,7 +401,7 @@ kable(head(flow[c(1:3, 12)]), row.names = F)
 ## Modelling cycling potential
 
 The starting point for creating scenario-based 'cycling futures' was to model current cycle commuting in England,
-using OD data from the 2011 Census. The proportion of commutes by cycle was estimated as a function of route distance and hilliness using a logistic regression model applied to the individual level travel survey data data.
+using OD data from the 2011 Census. The proportion of commutes by cycle was estimated as a function of route distance and hilliness using a logistic regression model operating at the individual level..
 Parameters estimated by the regression included square and square-root terms for distance, to capture 'distance decay' (Iacono et al 2008). Interaction terms were used to capture the relationship between distance and hilliness.
 Model fit is illustrated in Figure 2.  Equations were developed to estimate commuting mode share  among groups not represented in the between-zone OD data: those commuting within one MSOA and those with no fixed workplace.
 This model of current cycling levels formed the basis for three of our four subsequent scenarios (Government Target, Go Dutch and Ebikes). Model parameters were derived from English, Dutch and Swiss travel survey data (see the Appendix for details).   
