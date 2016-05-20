@@ -2,20 +2,20 @@
 title: 'The Propensity to Cycle Tool: An open source online system for sustainable
   transport planning'
 author:
-- Robin Lovelace (University of Leeds)^[Diverse authors.]
-- Anna Goodman (London School of Hygiene and Tropical Medicine)*
+- Robin Lovelace (University of Leeds)
+- Anna Goodman (London School of Hygiene and Tropical Medicine)
 - Rachel Aldred (University of Westminster)
 - Nikolai Berkoff (independent web developer)
 - Ali Abbas (University of Cambridge)
 - James Woodcock (University of Cambridge)
 csl: ../documents/elsevier-harvard.csl
 output:
+  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
-  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
   \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
   \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
@@ -51,7 +51,8 @@ if(to_install) install.packages(pkgs[to_install])
 
 # Bibliography dl
 # generated via https://github.com/ZotPlus/zotero-better-bibtex
-# download.file("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
+# downloader::download("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
+# RefManageR::ReadZotero()
 # # This is from the group 'energy-and-transport': https://www.zotero.org/groups/energy-and-transport/
 
 # To do:
@@ -1373,6 +1374,9 @@ By providing transport authorities, campaign groups and the public with access t
 # visions of the future.
 ```
 
+# Author contribution statement {-}
+
+The PCT was built as a collaborative effort. The project as a whole was led by JW, and the initial concept for the project came from JW and RL. AG led the creation of the model underlying the PCT, and the generation of estimates of cycling levels, health gains and carbon impacts in each scenario. RL led the processing of these modelled estimates for spatial visualisation in the online tool, and also coordinated the technical team in developing the online tool.  All authors contributed to developing the appearance and functionality of the online interface, with particular inputs from RA in terms of getting user feedback, and from AA, RL and NB in terms of implementing new features.  RL led the drafting of this manuscript, with input from all authors.
 
 # Acknowledgements {-}
 
