@@ -80,7 +80,9 @@ Scenarios implemented so far include 'Go Dutch' and 'Ebikes', which
 explore what would happen if English people cycled as much as the Dutch and the potential impact of electric cycles on cycling uptake.
 The PCT is open source, enabling the creation of additional scenarios by others
 and its deployment in new contexts.
-We conclude that new interactive and online tools such as the PCT can provide an accessible and transparent evidence base for developing strategic cycling plans.
+We conclude that the PCT illustrates the potential of online tools to
+inform transport decisions and relates to the wider issue
+of how models should be used in transport planning.
 
 # Introduction
 
@@ -1260,7 +1262,7 @@ Transport planning is a complex and contested field [@banister_sustainable_2008]
 When it comes to sustainable mobility, policy, politics, leadership and vision are key ingredients that computer models alone cannot supply [@melia_urban_2015].
 The approach described here can, however, assist in this wider context by providing new tools for exploring the evidence at high geographical resolution and envisioning transformational change in travel behaviours.
 
-By providing transport authorities, campaign groups and the public with access to the same evidence base, we hypothesise that tools such as the PCT can encourage informed and rigorous debate, as advocated by @golub_making_2013. In conclusion, the PCT provides an accessible evidence base to inform the question of where to construct new cycling infrastructure and raises more fundamental questions about how models should be used in transport planning.
+By providing transport authorities, campaign groups and the public with access to the same evidence base, we hypothesise that tools such as the PCT can encourage informed and rigorous debate, as advocated by @golub_making_2013. In conclusion, the PCT provides an accessible evidence base to inform the question of where to prioritise interventions for active travel and raises more fundamental questions about how models should be used in transport planning.
 
 <!-- limitations: the reliance on 2011 Census OD data means that the results are -->
 <!-- not up-to-date; -->
