@@ -10,12 +10,12 @@ author:
 - James Woodcock (University of Cambridge)
 csl: ../documents/elsevier-harvard.csl
 output:
-  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
+  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
   \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
   \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
@@ -69,7 +69,7 @@ Yet for infrastructure and other cycling measures to be effective,
 it is important to intervene in the right places, such as along 'desire lines' of high latent demand.
 This creates the need for tools and methods to help answer the question 'where to build?'. 
 Following a brief review of the policy and research context related to this question,
-this paper describes design, features and potential applications of such a tool.
+this paper describes the design, features and potential applications of such a tool.
 The Propensity to Cycle Tool (PCT) is an online, interactive planning support system which was
 initially developed to explore and map cycling potential across England
 (see [www.pct.bike](http://pct.bike/)).
@@ -235,7 +235,7 @@ print(xt, comment = FALSE, include.rownames = FALSE,  hline.after = 0:nrow(dft),
 
 ## Planning support systems
 
-The methods and tools for estimating cycling potential outlined in Table 1 were generally created with only a single study region in mind. The benefit of this that they can respond context-specific to practitioner and policy needs.
+The methods and tools for estimating cycling potential outlined in Table 1 were generally created with only a single study region in mind. The benefit of this is that they can respond context-specific to practitioner and policy needs.
 However, the aim of the PCT was to provide a *generalisable* and *scalable* tool.
 To do so we drew on the tradition of Planning Support Systems (PSS).
 
@@ -1027,7 +1027,7 @@ knitr::include_graphics(c("fastest-headingly.png", "fastest-net-headingly.png"))
 
 # Outputs of the Propensity to Cycle Tool
 
-This section describes and illustrates some outputs from the PCT, alongside discussion of how these outputs could be used in transport planning.  Note that some of the details of the graphics in the online version may evolve as the PCT develops.
+This section describes and illustrates some outputs from the PCT, alongside discussion of how these outputs could be used in transport planning.  Note that some details of the graphics in the online version may evolve as the PCT develops.
 
 ## Model output tabs
 
