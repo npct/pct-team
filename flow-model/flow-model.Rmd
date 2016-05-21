@@ -17,7 +17,7 @@ output:
   html_document: default
   word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
-  \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
+  \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx} \usepackage{tabu}
   \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
   \usepackage{caption} \captionsetup[table]{skip=10pt}
 fontsize: 12pt
@@ -347,8 +347,22 @@ This was loaded from open access file `wu03ew_v2.csv`, provided by the [UK Data 
  This dataset was enhanced by merging in information on the gender composition of cyclists in each OD pair (Dataset 1 in Figure 1); data at the area level on the background mortality rate (Dataset 2); and data at the OD pair-level on route distance (km) and hilliness (average gradient, in %) (Dataset 3).
 The latter data was assigned to OD pairs using the 'fastest' option on CycleStreets.net, using the R package stplanr (Lovelace et al., 2016). See the Appendix for further details.
 
-Table: Sample of the OD input dataset, representing the number of people who
-commute from locations within and between administrative zones (MSOAs)
+\begin{table}[]
+\centering
+\caption{Sample of the OD input dataset, representing the number of people who
+commute from locations within and between administrative zones (MSOAs). Note `Car' refers people who drive as their main mode of travel per OD pair, rather than people who travel to work as a passenger in a car.}
+\label{my-label}
+\begin{tabular}{@{}lllllll@{}}
+\toprule
+                                        &                                        & \multicolumn{5}{l}{Number of commuters by main mode}                                                                 \\ \midrule
+\multicolumn{1}{l}{Area of residence} & \multicolumn{1}{l}{Area of workplace} & \multicolumn{1}{l}{Total} & \multicolumn{1}{l}{Cycle} & \multicolumn{1}{l}{Walk} & \multicolumn{1}{l}{Car} & \multicolumn{1}{l}{Other} \\ \midrule
+\multicolumn{1}{l}{E02002361}         & \multicolumn{1}{l}{E02002361}         & \multicolumn{1}{l}{109}   & \multicolumn{1}{l}{2}     & \multicolumn{1}{l}{59}   & \multicolumn{1}{l}{39}  & \multicolumn{1}{l}{9}     \\ 
+\multicolumn{1}{l}{E02002361}         & \multicolumn{1}{l}{E02002362}         & \multicolumn{1}{l}{7}     & \multicolumn{1}{l}{1}     & \multicolumn{1}{l}{0}    & \multicolumn{1}{l}{4}   & \multicolumn{1}{l}{2}     \\ 
+\multicolumn{1}{l}{E02002361}         & \multicolumn{1}{l}{E02002363}         & \multicolumn{1}{l}{38}    & \multicolumn{1}{l}{0}     & \multicolumn{1}{l}{4}    & \multicolumn{1}{l}{24}  & \multicolumn{1}{l}{10}    \\ 
+\multicolumn{1}{l}{E02002361}         & \multicolumn{1}{l}{E02002364}         & \multicolumn{1}{l}{15}  & \multicolumn{1}{l}{1}     & \multicolumn{1}{l}{0}    & \multicolumn{1}{l}{10}  & \multicolumn{1}{l}{4}     \\ 
+\multicolumn{1}{l}{E02002361}         & \multicolumn{1}{l}{E02002366}   & 29                         & 1                          & 10                        & 11                       & 7                          \\ \bottomrule
+\end{tabular}
+\end{table}
 
 ```{r tflow, echo=FALSE, results='asis'}
 # For latex version: use xtable:
@@ -356,11 +370,11 @@ commute from locations within and between administrative zones (MSOAs)
 # print(t1, type = "latex", comment = FALSE, caption.placement = "top")
 
 # For docx and latex: use kable
-data("flow")
-names(flow) <- gsub("\\.", " ", names(flow))
-names(flow)[3] <- "Total no. commuters"
-names(flow)[12] <- "No. cycle commuters"
-kable(head(flow[c(1:3, 12)]), row.names = F)
+# data("flow")
+# names(flow) <- gsub("\\.", " ", names(flow))
+# names(flow)[3] <- "Total no. commuters"
+# names(flow)[12] <- "No. cycle commuters"
+# kable(head(flow[c(1:3, 12)]), row.names = F)
 ```
 
 <!-- Table: Sample of the zone level input dataset. The coordinates represent the population-weighted centroids of MSOA zones, whose codes are also presented in Table 1. -->
