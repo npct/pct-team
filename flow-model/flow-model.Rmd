@@ -17,8 +17,8 @@ output:
   html_document: default
   word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
-  \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx} \usepackage{tabu}
-  \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
+  \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
+  \usepackage{tabu} \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
   \usepackage{caption} \captionsetup[table]{skip=10pt}
 fontsize: 12pt
 bibliography: references.bib
@@ -737,8 +737,8 @@ Because the layer is the result of aggregating overlapping 'fast' routes, and su
 Cycling along Otley Road, under the Go Dutch scenario, rises from 73 to 296
 along a single route, but from 301 to 1133 in the Route Network.
 Note that more confidence can be placed in the relative rather than the absolute size of these numbers: the Route Network layer excludes within-zone commuters, commuters with no fixed workplace, and commuters working in a different PCT region
-because the PCT does not represent these on the travel network (see Figure 1). Route Network values also omit routes omited due to the adjustable selection criteria: maximum distance and minimum total numbers of all-mode commuters per OD pair. At the time of writing these were set to 20 km Euclidean distance and 10 commuters respectively.
-This means that routes longer than 20 km or with ten or fewer commuters were omited.
+because the PCT does not represent these on the travel network (see Figure 1). Route Network values also omit routes omitted due to the adjustable selection criteria: maximum distance and minimum total numbers of all-mode commuters per OD pair. At the time of writing these were set to 20 km Euclidean distance and 10 commuters respectively.
+This means that routes longer than 20 km or with ten or fewer commuters were omitted.
 Nationally, the Route Network layer under these settings accounts for around two thirds of cycle commuters.
 
 <!-- The Route Network was generated with the R function `overline` [@lovelace_stplanr:_2016]. -->
@@ -1117,7 +1117,7 @@ The same scenario is illustrated in Figure 8 with the Route Network layer.
 This shows how the shift in cycling to become more evenly spread across the city translates into estimates of cyclist flows on specific road segments.
 The number of commuter cyclists expected on York Road, highlighted with a popup, more than triples (from 71 to 236)
 under Government Target and increases more than 10 fold under Go Dutch (from 71 to 966).
-This contrastswith Otley Road (highlighted in Figure 5), which 'only' triples under Go Dutch.
+This contrasts with Otley Road (highlighted in Figure 5), which 'only' triples under Go Dutch.
 These results suggest that as cycling grows, policy interventions in Leeds should shift from routes in the Northwest of the city, the area with the highest current level of cycling, to routes that have low current rates of cycling but high potential, such as York Road to the East. Cycle paths built to help achieve ambitious targets, as represented by the Go Dutch scenario, should be of sufficient width to accommodate the estimated flows: the number of cycle commuters would be expected to increase more than ten-fold on York Road under this scenario and infrastructure design should adapt accordingly.
 
 ```{r, echo=FALSE, fig.cap="The Route Network layer illustrating the shifting spatial distribution of cycling flows in Leeds under Government Target (top) and Go Dutch (bottom) scenarios."}
@@ -1169,6 +1169,12 @@ Three basemaps are available on PCT, and choosing the appropriate one can show h
 # commented out for now as it's a weak figure
 knitr::include_graphics("model-output.png")
 ```
+
+### Visualising Health and Carbon Benefits
+
+The health benefits of cycling do not rise in proportion to the number of cyclists, or even the number trips cycled: longer trips lead to a greater health benefit than short ones and older people benefit more from increased physical activity. Further, health benefits along desire lines with a low pedestrian mode share can expected to be greater. 
+
+This is illustrated in the data presented by the PCT. The economic value of health benefits reported in Figure 5 (above) is estimated to be £70785, based on the HEAT methodology described in the previous section. Exploration of this variable for other areas shows that, when health savings are the main criteria, longer desire lines would be favoured, as opposed to focussing on the more immediately obvious metric of focussing on the number of additional trips cycled. Future versions of the PCT could allow users to select the 'top n' routes ranked by health and carbon benefits, in addition to the number modelled for who cycling is the main mode.
 
 # Discussion
 
