@@ -1256,18 +1256,17 @@ For instance, we envision that stakeholders in local government modifying scenar
 
 - Additional scenarios to illustrate a wider range of 'cycling futures', including medium-term and local targets such as 'Go York' (where 12% of commuters cycle to work).
 
-- The extension of the model to cover variation between different demographic
-groups. This could be done using spatial microsimulation, which
-enables the use of additional individual-level variables,
-such as access to a cycle and physical fitness,
-to inform more targeted interventions [@lovelace_spatial_2014].
+- Use of individual level data to estimate cycling potential and impacts.
+The use of synthetic 'spatial microdata', for example, could enable
+analysis of outcomes by a much wider range of predictors [@lovelace_spatial_2014].
+These could include the impacts of physical fitness and access to high quality pedal cycle on cycling potential.
 
 <!-- - The incorporation of changes in land-use and transport since the Census 2011, -->
 <!-- to explore the dynamics of cycling potential, such as the impact of new residential and commercial developments. -->
 <!-- This work could build on recently developed GIS for transport planning [@farrell_evaluating_2015]. -->
 
 - Additional purposes of trips in the model. An 'education layer' would enable prioritisation of 'safe routes to school', building on methods analysing 'school commute' data [@singleton_gis_2014].
-Other data sources to include more trip types include mobile telephone providers [@alexander_validation_2015] and traditional transport models.
+Other data sources to include more trip types include mobile telephone providers [@alexander_validation_2015] and outputs from traditional transport models.
 
 - Deployment of the PCT for in new cities, regions or countries. This depends on the availability of appropriate OD data, perhaps from sources mentioned in the previous point.
 Such work could also facilitate international comparisons of cycling potential.
@@ -1383,16 +1382,17 @@ By providing transport authorities, campaign groups and the public with access t
 
 # Author contribution statement {-}
 
-The PCT was built as a collaborative effort. The project as a whole was led by JW, and the initial concept for the project came from JW and RL. AG led the creation of the model underlying the PCT, and the generation of estimates of cycling levels, health gains and carbon impacts in each scenario. RL led the processing of these modelled estimates for spatial visualisation in the online tool and coordinated the technical team in developing the online tool.  RA led the coordination of policy implementation and collection of practitioner feedback. AA led on the user interface. NB led the deployment of the PCT on a public facing server. RL led the writing of this manuscript, with input from all authors.
+The PCT was built as a collaborative effort. The project as a whole is led by JW, and the initial concept for the project came from JW and RL in response to a call from the Department of Transport. AG led the creation of the model underlying the PCT, and the generation of estimates of cycling levels, health gains and carbon impacts in each scenario.  JW and AG led the development to of the methods for calculating health impacts.  JW, RL, AG, and RA contributed to the development of the cycling uptake rules. RL led the processing of these modelled estimates for spatial visualisation in the online tool and coordinated the development of the online tool.  RA led the coordination of policy implementation and collection of practitioner feedback. AA led on the user interface, with contributions from all authors. NB led the deployment of the PCT on a public facing server. AG led the writing of the appendix. RL led the writing of this manuscript, with input from all authors.
 
 # Acknowledgements {-}
 
-We would like to thank the following people for comments on earlier versions of the report and the development of the PCT:
+We would like to thank the following people for comments on earlier versions of the manuscript and the development of the PCT:
 Roger Geffen (Cycling UK), Tom Gutowski (Sustrans),
 Helen Bowkett (Welsh Government),
 John Parkin (University of the West of England) and Phil Tate.
 Thanks to Simon Nutall and Martin Lucas-Smith for access to and instructions
 on the use of the CycleStreets.net API.
+Thanks to Alvaro Ullrich for contributions to the code.
 Thanks to developers of open source software we have been able to make
 the PCT free and open to the world.
 We would also like to thank Brook Lyndhurst for assistance with the user testing,
