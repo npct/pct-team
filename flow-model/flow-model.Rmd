@@ -1172,9 +1172,9 @@ knitr::include_graphics("model-output.png")
 
 ## Visualising Health and Carbon Benefits
 
-The health benefits of cycling do not rise in proportion to the number of cyclists, or even the number trips cycled: longer trips lead to a greater health benefit than short ones and older people benefit more from increased physical activity. Further, health benefits along desire lines with a low pedestrian mode share can expected to be greater. 
+The health benefits of cycling do not necessarily rise in direct proportion to the number of people cycling: longer trips lead to a greater health benefit than short ones and older people benefit more from increased physical activity. Further, health benefits along desire lines with a low pedestrian mode share can expected to be greater. 
 
-This is illustrated in the data presented by the PCT. The economic value of health benefits reported in Figure 5 (above) is estimated to be £70785, based on the HEAT methodology described in the previous section. Exploration of this variable for other areas shows that, when health savings are the main criteria, longer desire lines would be favoured, as opposed to focussing on the more immediately obvious metric of focussing on the number of additional trips cycled. Future versions of the PCT could allow users to select the 'top n' routes ranked by health and carbon benefits, in addition to the number modelled for who cycling is the main mode.
+This is demonstrated in the data presented by the PCT. The economic value of health benefits reported for the 4.1 km route in Figure 5 (above) is estimated to be £70785, based on the HEAT methodology described in the previous section. Exploration of this variable for other areas shows that, when health savings are the main criteria, longer desire lines would be favoured, as opposed to focussing on the more immediately obvious metric of focussing on the number of additional trips cycled. Future versions of the PCT could allow users to select the 'top n' routes ranked by health and carbon benefits, in addition to the number modelled for who cycling is the main mode.
 
 # Discussion
 
@@ -1192,7 +1192,7 @@ of cycling demand is likely to shift as cycling grows.
 
 <!-- For example, the output of the PCT suggests that the 'centre of gravity' for cycling in the city of Leeds will shift towards areas with high numbers of short distance trips but low current rates of cycling. -->
 
-In addition to creating an evidence base for planning specific routes and area-based interventions, the long-term Go Dutch and Ebikes scenarios could be used for 'visioning' transport futures [@tight_visions_2011;@hickman_transitions_2011].
+In addition to creating an evidence base for planning specific routes and area-based interventions, the long-term Go Dutch and Ebikes scenarios could be used for 'visioning' transport futures [@hickman_transitions_2011].
 The PCT could also: help translate national targets into local aspirations (as illustrated by the Government Target scenario); inform local targets (e.g. by indicating what the potential in one region is relative to neighbouring regions); support business cases (by showing that there is high cycling potential along proposed routes); and help plan for capacity increases in cycling along the route network via the network analysis layer.
 Ongoing case study work with stakeholders will establish and develop these uses. 
 Future developments will be facilitated by the open source code underlying the PCT (see [github.com/npct](https://github.com/npct)),
