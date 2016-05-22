@@ -148,7 +148,7 @@ In the UK context, devolved transport budgets mean that local authorities have s
 
 Planning new cycle paths requires many decisions to be made, including in relation to the width [@wegman_urban_1979;@pikora_developing_2002], quality [@heath_effectiveness_2006], directness [@crow_design_2007] and geographic location of the paths.
 Yet while much guidance has been produced regarding the physical design of cycle paths [e.g. @transport_for_london_london_2015;@welsh_government_guidance_2014],
-little work has explicitly tackled the question of where this high quality infrastructure should be built
+little work has explicitly tackled the question of where high quality infrastructure should be built
 [@aultman-hall_analysis_1997;@minikel_cyclist_2012].
 Within this policy context, the PCT focuses explicitly on the question of *where* to build rather than *what* to build, although it does provide evidence on potential capacity requirements across the route network.
 
@@ -252,13 +252,13 @@ The PCT is systematic in its use of national data for all parts of the study reg
 PSS typically work by presenting evidence about the characteristics and needs
 of study region in an interactive map.
 A central objective is to visualise
-alternative scenarios of the future and explore their potential impacts.
-The results of traditional scenario-based models of the future 
+alternative scenarios of cycling uptake and explore their potential impacts.
+The results of traditional scenario-based models 
 are typically not presented locally at area, let-alone route-specific, levels
 [@mccollum_achieving_2009;@lovelace_assessing_2011;@woodcock_public_2009].
 Online PSS can overcome this issue by using interactive maps to show local manifestations
 of different scenarios [@pettit_online_2013].
-The emergence of libraries for web mapping  [@haklay_web_2008] has facilitated online PSS, offering the potential for public access to the planning process. Transparency is further enhanced by making PSS open source, in-line with a growing trend in transport modelling [@tamminga_design_2012;@novosel_agent_2015;@borning_urbansim:_2008].  In these ways, PSS can make evidence for transport planning more widely available, and tackle the issue that transport models are sometimes seen as 'black boxes', closed to public scrutiny (Golub et al., 2013).
+The emergence of libraries for web mapping  [@haklay_web_2008] has facilitated online PSS, offering the potential for public access to the planning process. Transparency is further enhanced by making PSS open source, in-line with a growing trend in transport modelling [@tamminga_design_2012;@novosel_agent_2015;@borning_urbansim:_2008].  In these ways, PSS can make evidence for transport planning more widely available, and tackle the issue that transport models are often seen as 'black boxes', closed to public scrutiny (Golub et al., 2013).
 
 
 <!-- allowing public access to the planning process. -->
@@ -563,7 +563,7 @@ OD data must be available for scenarios to be generated in new places, however, 
 
 ## Estimation of health and carbon impacts
 
-The World Health Organisation’s Health Economic Assessment Tool ([HEAT](http://www.heatwalkingcycling.org/)) was used to estimate the number of premature deaths avoided due to increased physical activity [@kahlmeier_health_2014]. To allow for the fact that cycling would in some cases replace walking, HEAT estimates of the increase in premature deaths to the reduction in walking were also included (see the Appendix).
+An approach based on the the World Health Organization’s Health Economic Assessment Tool ([HEAT](http://www.heatwalkingcycling.org/)) was used to estimate the number of premature deaths avoided due to increased physical activity [@kahlmeier_health_2014]. To allow for the fact that cycling would in some cases replace walking, HEAT estimates of the increase in premature deaths to the reduction in walking were also included (see the Appendix).
 To model the change in walking, we assumed that within a given OD pair all modes were equally likely to be replaced by cycling.  Thus all the non-cycling modes shown in Table 2 experienced the same relative decrease.
 
 Trip duration was estimated as a function of the 'fast' route distance and average speed. For walking and cycling we applied the standard HEAT approach. Ebikes are not specifically covered in HEAT Cycling but enable faster travel and require less energy from the rider than traditional bikes. Thus we estimated new speeds and intensity values for this mode, giving a smaller benefit for every minute spent using Ebikes than conventional cycles. For more details see the Appendix.
