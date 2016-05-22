@@ -1170,7 +1170,7 @@ Three basemaps are available on PCT, and choosing the appropriate one can show h
 knitr::include_graphics("model-output.png")
 ```
 
-### Visualising Health and Carbon Benefits
+## Visualising Health and Carbon Benefits
 
 The health benefits of cycling do not rise in proportion to the number of cyclists, or even the number trips cycled: longer trips lead to a greater health benefit than short ones and older people benefit more from increased physical activity. Further, health benefits along desire lines with a low pedestrian mode share can expected to be greater. 
 
