@@ -570,8 +570,10 @@ Trip duration was estimated as a function of the 'fast' route distance and avera
 
 The risk of death varies by gender and increases rapidly with age.
 This was accounted for using age and sex-specific mortality rates for each local authority in England.
-The assumed age and sex profile of new cyclists also varied between scenarios (see Appendix).
-The net change in the number of deaths avoided for each OD pair was equal to the number deaths avoided due to cycle commuting minus the number of additional deaths due to reduced walking.  Note that this approach means that in some OD pairs where walking made up a high proportion of trips, additional deaths were incurred.  The monetary value of the mortality impact was calculated by drawing on the standard 'value of a statistical life' used by the Department for Transport.
+The assumed age and sex profile of new cyclists also varied between scenarios.
+The inclusion of age specific parameters and the impacts of mode shift from walking the flexibility of the HEAT: modifying the method in this way allows publicly available data to provide detailed evidence for creating local and potentially route-specific business cases. 
+
+The net change in the number of deaths avoided for each OD pair was estimated as the number deaths avoided due to cycle commuting minus the number of additional deaths due to reduced walking.  Note that this approach means that for some OD pairs where walking made up a high proportion of trips, additional deaths were incurred. The monetary value of the mortality impact was calculated by drawing on the standard 'value of a statistical life' used by the Department for Transport.
 
 We also estimated the reduction in transport carbon emissions resulting from decreased car driving in each scenario.  This again relied on the assumption that, within a given OD pair all modes, were equally likely to be replaced by cycling.  The average CO^2^-equivalent emission per kilometre of car driving was taken as 0.186 kg, the 2015 value of an 'average' car [@defra_defra_2015].
 
