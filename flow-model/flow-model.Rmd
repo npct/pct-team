@@ -78,6 +78,7 @@ cycling levels at area, desire line, route and route network levels,
 for current levels of cycling, and for scenario-based 'cycling futures'.
 Scenarios implemented so far include 'Go Dutch' and 'Ebikes', which
 explore what would happen if English people cycled as much as the Dutch and the potential impact of electric cycles on cycling uptake.
+Health and carbon impacts from each scenario are reported at the local level for each scenario.
 The PCT is open source, enabling the creation of additional scenarios by others
 and its deployment in new contexts.
 We conclude that the PCT illustrates the potential of online tools to
@@ -141,7 +142,7 @@ The subsequent overview of this policy and academic landscape places the PCT in 
 A number of factors influence
 the attractiveness of cycling for everyday trips [@pucher_infrastructure_2010].
 There is a wide range of interventions related to infrastructure that can be grouped under the banner 'space for cycling' [@parkin_planning_2015].
-These include reducing speed limits, implementing car free zones and allowing cycles to move more freely than motorised traffic (e.g. with early-start traffic lights and barriers passable only by pedestrians and cycles).
+These include reducing speed limits, implementing car free zones, early-start traffic lights and barriers passable only by pedestrians and cycles.
 However, the intervention that has received the most attention has been the construction of new cycle paths.
 In the UK context, devolved transport budgets mean that local authorities have some control over the design and implementation of cycling networks, a potentially powerful policy lever to get people cycling.
 
@@ -1176,6 +1177,7 @@ and by online, interactive planning support systems (PSS) [@pettit_online_2013],
 PCT tackles the important yet largely unresolved issue
 of how to create a systematic evidence base to prioritise where to build new cycle paths
 and identify areas to prioritise for localised interventions.
+By showing not showing potential health-related benefits the tool provides various metrics for transport planners, going beyond the number of additional trips.
 Illustrative uses of the PCT demonstrated the potential utility of the tool, for example
 by showing settings in which the spatial distribution
 of cycling demand is likely to shift as cycling grows. 
