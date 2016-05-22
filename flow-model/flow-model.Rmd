@@ -156,7 +156,7 @@ Within this policy context, the PCT focuses explicitly on the question of *where
 
 ## Research into cycling potential 
 
-The growing evidence base regarding the impact of infrastructure on cycling raises the question of how to 'operationalise' this body knowledge, to help planners prioritise where to invest.
+The growing evidence base regarding the impact of infrastructure on cycling raises the question of how to 'operationalise' this body of knowledge, to help planners prioritise where to invest.
 This research gap was described by
 @larsen_build_2013, who identified an "absence of research into how 
 to  systematically  prioritise  and  locate  facilities  that  are  to  be  built".
@@ -737,7 +737,7 @@ Because the layer is the result of aggregating overlapping 'fast' routes, and su
 Cycling along Otley Road, under the Go Dutch scenario, rises from 73 to 296
 along a single route, but from 301 to 1133 in the Route Network.
 Note that more confidence can be placed in the relative rather than the absolute size of these numbers: the Route Network layer excludes within-zone commuters, commuters with no fixed workplace, and commuters working in a different PCT region
-because because the PCT does not represent these on the travel network (see Figure 1). Route Network values also omit routes omited due to the adjustable selection criteria: maximum distance and minimum total numbers of all-mode commuters per OD pair. At the time of writing these were set to 20 km Euclidean distance and 10 commuters respectively.
+because the PCT does not represent these on the travel network (see Figure 1). Route Network values also omit routes omited due to the adjustable selection criteria: maximum distance and minimum total numbers of all-mode commuters per OD pair. At the time of writing these were set to 20 km Euclidean distance and 10 commuters respectively.
 This means that routes longer than 20 km or with ten or fewer commuters were omited.
 Nationally, the Route Network layer under these settings accounts for around two thirds of cycle commuters.
 
