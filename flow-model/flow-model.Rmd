@@ -135,7 +135,7 @@ to map cycling potential (Department for Transport, 2015).
 
 The PCT was developed in the context of growing policy interest directed towards cycling, alongside two branches of academic research:
 a) methodological developments for estimating cycling potential and b) Planning Support Systems (PSS).
-The subsequent overview of this policy and academic landscape places the PCT in its wider context.
+The subsequent overview of this policy and academic landscape places the PCT in its wider context and explains the design of its key features.
 
 ## The policy context
 
@@ -294,12 +294,13 @@ Focus on wide ranging scenarios for cycling growth, including long-term, ambitio
 Making results available through a freely-accessible interface and open access model. In the past, transport planning has tended to be "closed to public over-sight", preventing public engagement with strategic transport plans (Golub et al. 2013). There is, however, now a trend in transport research towards greater transparency in software development and collaboration (Novosel et al., 2015; Tamminga et al., 2012).   The PCT is part of this trend, having been created with open access software, with the underlying code having been made publicly available under an open source AGPL licence (github.com/npct).
 ```
 
-## Key features of the Propensity to Cycle Tool
+## National context and features of the Propensity to Cycle Tool
 
-The national policy context of the PCT has influenced its design and features.
-The PCT was commissioned by the UK's Department for Transport to identify "parts of [England] with the greatest propensity to cycle"  [@department_for_transport_response_2015].
+In addition to the international policy and academic context,
+the PCT was influenced by the national context.
+It was commissioned by the UK's Department for Transport to identify "parts of [England] with the greatest propensity to cycle"  [@department_for_transport_response_2015].
 Thus the aim was not to produce a full transport-land use model,
-but to provide an evidence base to prioritise where to create cycle-friendly infrastructure based on scenarios of the future.
+but to provide an evidence base to prioritise where to create and improve cycling infrastructure based on scenarios of the future.
 
 Local and national cycling targets are often based on a target mode share by a given date.^[The
 local target in Bristol, for example, is for [20% of commuter trips to be cycled by 2020](http://www.bristolpost.co.uk/Bristol-City-Council-s-pound-35million-plan/story-21341172-detail/story.html). [Manchester](http://cycling.tfgm.com/Documents/CCAG2-Executive-Summary.pdf) (10% by 2025),
