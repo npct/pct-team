@@ -51,9 +51,8 @@ if(to_install) install.packages(pkgs[to_install])
 
 # Bibliography dl
 # generated via https://github.com/ZotPlus/zotero-better-bibtex
-# downloader::download("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", destfile = "references.bib")
-# RefManageR::ReadZotero()
 # # This is from the group 'energy-and-transport': https://www.zotero.org/groups/energy-and-transport/
+bib = httr::GET("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", httr::write_disk("references.bib", overwrite = T))
 
 # To do:
 # Add speed-bumps/speed cameras/cycling priority or remove lanes for motorised traffic
@@ -76,7 +75,7 @@ initially developed to explore and map cycling potential across England
 Based on origin-destination data, it models and visualises
 cycling levels at area, desire line, route and route network levels,
 for current levels of cycling, and for scenario-based 'cycling futures'.
-Four scenarios have been developed so far for England. These include 'Go Dutch' and 'Ebikes',
+Four scenarios are presented, including 'Go Dutch' and 'Ebikes',
 which
 explore what would happen if English people cycled as much as Dutch people and the potential impact of electric cycles on cycling uptake.
 Health and carbon impacts from each scenario are reported at the local level for each scenario.
@@ -1148,12 +1147,11 @@ take a path that is more than around 1.3 to 1.5 times the length of the
 'crow-flies' Euclidean distance.
 The same research suggests that circuity values for
 "for cycle provision should be 1.2" [@crow_design_2007].
-This suggests that high quality cycle infrastructure along the 'fast' route shown in Figure 9,
-or a more direct route that does not adhere to the current transport infrastructure,
+This suggests that high quality cycle infrastructure along the 'fast' route shown in Figure 9
 would be more attractive than an
 alternative quiet route that diverges greatly from the shortest path.
-Previous work indicates that this is likely particularly true for women and older people, for whom distance is a greater deterrent to cycling than for young men [@woodcock_national_2016, see Appendix 8].
-Combined with their greater preference for segregated infrastructure reported by these groups, this highlights the importance of providing direct and safe routes to encourage cycling amongst groups who currently cycle the least.
+Previous work indicates that women and older people have a greater preference for off-road routes and shorter routes [@garrard_promoting_2008;@woodcock_national_2016, see Appendix 8], suggesting the 'fast route' option could be favourable from an equity perspective.
+This example illustrates how the PCT could be used to provide evidence on how to encourage cycling amongst groups who currently cycle the least.
 
 ```{r, echo=FALSE, fig.cap="Close-up of a 'fast' and 'quiet' route in the PCT under the Government Target scenario in Manchester. This provides an indication of the local 'quietness diversion factor'."}
 knitr::include_graphics("man-trinity-way.png")
