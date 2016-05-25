@@ -10,12 +10,12 @@ author:
 - James Woodcock (University of Cambridge)
 csl: ../documents/elsevier-harvard.csl
 output:
-  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
+  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
   \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
   \usepackage{tabu} \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
@@ -94,7 +94,7 @@ and convenient mobility to millions of people each day [@komanoff_bicycling_2004
 is one of the fastest growing modes of transport in some large, cosmopolitan cities such as London,
 New York and Barcelona [@fishman_cycling_2016].
 There is mounting evidence about the external costs of car-dominated
-transport systems [@newman_costs_1999;@han_assessment_2008;@mizutani_estimation_2011;@shergold_rural_2012],
+transport systems [e.g. @han_assessment_2008;@shergold_rural_2012],
 and the benefits of cycling [@oja_health_2011;@de_nazelle_improving_2011;@tainio_can_2016],
 pushing cycling up the transport policy agenda.
 In this context there is growing interest, and in some cases substantial investment,
