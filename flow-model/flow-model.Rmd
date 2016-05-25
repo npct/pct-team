@@ -258,7 +258,7 @@ are typically not presented locally at area, let-alone route-specific, levels
 [@mccollum_achieving_2009;@lovelace_assessing_2011;@woodcock_public_2009].
 Online PSS can overcome this issue by using interactive maps to show local manifestations
 of different scenarios [@pettit_online_2013].
-The emergence of libraries for web mapping  [@haklay_web_2008] has facilitated online PSS, offering the potential for public access to the planning process. Transparency is further enhanced by making PSS open source, in-line with a growing trend in transport modelling [@tamminga_design_2012;@novosel_agent_2015;@borning_urbansim:_2008].  In these ways, PSS can make evidence for transport planning more widely available, and tackle the issue that transport models are often seen as 'black boxes', closed to public scrutiny (Golub et al., 2013).
+The emergence of libraries for web mapping  [@haklay_web_2008] has facilitated online PSS, offering the potential for public access to the planning process. Transparency is further enhanced by making PSS open source, in line with a growing trend in transport modelling [@tamminga_design_2012;@novosel_agent_2015;@borning_urbansim:_2008].  In these ways, PSS can make evidence for transport planning more widely available, and tackle the issue that transport models are often seen as 'black boxes', closed to public scrutiny (Golub et al., 2013).
 
 
 <!-- allowing public access to the planning process. -->
@@ -298,7 +298,7 @@ Making results available through a freely-accessible interface and open access m
 
 In addition to the international policy and academic context,
 the PCT was influenced by the national context.
-It was commissioned by the UK's Department for Transport to identify "parts of [England] with the greatest propensity to cycle"  [@department_for_transport_response_2015].
+It was commissioned by the UK's Department for Transport to identify "parts [of England] with the greatest propensity to cycle"  [@department_for_transport_response_2015].
 Thus the aim was not to produce a full transport-land use model,
 but to provide an evidence base to prioritise where to create and improve cycling infrastructure based on scenarios of the future.
 
@@ -306,24 +306,24 @@ Local and national cycling targets are often based on a target mode share by a g
 local target in Bristol, for example, is for [20% of commuter trips to be cycled by 2020](http://www.bristolpost.co.uk/Bristol-City-Council-s-pound-35million-plan/story-21341172-detail/story.html). [Manchester](http://cycling.tfgm.com/Documents/CCAG2-Executive-Summary.pdf) (10% by 2025),
 [Derbyshire](https://www.derbyshire.gov.uk/images/2015-07-07%20Item%207l%20Cycle%20Plan_tcm44-267216.pdf) (to double the number of people cycling by 2025) and [London](http://content.tfl.gov.uk/gla-mayors-cycle-vision-2013.pdf) (to 'double cycling' by 2025) provide further examples of local ambitious time-bound cycling
 targets.]
-However, there is little evidence about what this might mean in for cycling volumes along specific routes.
+However, there is little evidence about what this might mean for cycling volumes along specific routes.
 The PCT tackles this issue by estimating rate of cycling locally under different scenarios and presenting the results on an interactive map. Its key features include:
 
 - Estimation of cycling potential at area, 'desire line' and route network levels. 
 
-- Route-allocation of OD (origin-destination) pairs by a routing algorithm specifically developed for cycling.
+- Route-allocation of OD pairs by a routing algorithm specifically developed for cycling.
 This was done by CycleStreets.net, a routing service developed by cyclists, for cyclists.
 
 - Visualisation of outputs at multiple geographic levels. The interactive map enables users to examine cycling potential at a very local level (e.g. just a few streets) or at a more regional level (e.g. across a large metropolitan area). 
 
 - Public accessibility of results and code. The tool is freely available online and developers are encouraged to modify the PCT (e.g. to create alternative scenarios) by provision of the source code underlying the PCT under the open source AGP License.
 
-- The presentation of estimated benefits under future scenarios, for example via impacts on public health and carbon emissions, enabling interventions to be designed based on specific health and environmental policy goals
+- The presentation of estimated benefits under future scenarios, for example via impacts on public health and carbon emissions, enables interventions to be designed based on specific health and environmental policy goals
 
 As with any tool, the PCT’s utility depends on people knowing how to use it.
 For that reason training materials and a user manual are being developed
 to show how the tool can be used
-(see the 'Manual' tab in Figure 3 and [pct.bike/manual.html](http://pct.bike/manual.html)).
+(see the 'Manual' tab in Figure 3).
 
 # Data and methods
 
@@ -351,8 +351,8 @@ The latter data was assigned to OD pairs using the 'fastest' option on CycleStre
 
 \begin{table}[]
 \centering
-\caption{Sample of the OD (origin-destination) input dataset, representing the number of people who
-commute from locations within and between administrative zones (MSOAs). Note `Car' refers people who drive as their main mode of travel per OD pair, rather than people who travel to work as a passenger in a car.}
+\caption{Sample of the OD input dataset, representing the number of people who
+commute from locations within and between administrative zones (MSOAs). Note `Car' refers to people who drive as their main mode of travel per OD pair, rather than people who travel to work as a passenger in a car.}
 \label{my-label}
 \begin{tabular}{@{}lllllll@{}}
 \toprule
@@ -418,7 +418,7 @@ commute from locations within and between administrative zones (MSOAs). Note `Ca
 
 ## Modelling cycling potential
 
-The starting point for generating our scenario-based 'cycling futures' was to model current cycle commuting in England.  We did this using OD data from the 2011 Census, and modelling cycling commuting as a function of route distance and route hilliness.  We did so using logistic regression applied at the individual level, including squared and square-root terms to capture 'distance decay' --- the non-linear impact of distance on the likelihood of cycling [@iacono_access_2008] --- and including terms to capture the interaction between distance and hilliness. Model fit is illustrated in Figure 2; see Appendix for details and for the underlying equations.
+The starting point for generating our scenario-based 'cycling futures' was to model current cycle commuting in England.  We did this using OD data from the 2011 Census, and modelling cycling commuting as a function of route distance and route hilliness.  We did so using logistic regression applied at the individual level, including squared and square-root terms to capture 'distance decay' --- the non-linear impact of distance on the likelihood of cycling [@iacono_access_2008] --- and including terms to capture the interaction between distance and hilliness. Model fit is illustrated in Figure 2; see the Appendix for details and for the underlying equations.
 We also developed equations to estimate commuting mode share among groups not represented in the between-zone ('interzonal') OD data, e.g. those commuting within a specific MSOA (this is within-zone or 'intrazonal' travel), or those with no fixed workplace. 
 This model of current cycling levels formed the basis of three of the four scenarios (Government Target, Go Dutch and Ebikes; see below), with model parameterization drawing additionally on English, Dutch and Swiss travel survey data.
 
@@ -537,7 +537,8 @@ the rate of cycling is highly gender-unequal.
 <!-- is already a common mode of transport. -->
 
 - Go Dutch.
-While the Government Target and Gender equality scenarios model relatively modest increases in cycle commuting, Go Dutch represents what would happen if English people were as likely as Dutch people to cycle a trip of a given distance and level of hilliness. This scenario captures the proportion of commuters that would be expected to cycle if all areas of England had the same infrastructure  and cycling culture as the Netherlands (but retained their hilliness and commute distance patterns). The scenario level of cycling under Go Dutch is not affected by the current level of cycling.
+While the Government Target and Gender equality scenarios model relatively modest increases in cycle commuting, Go Dutch represents what would happen if English people were as likely as Dutch people to cycle a trip of a given distance and level of hilliness. This scenario captures the proportion of commuters that would be expected to cycle if all areas of England had the same infrastructure  and cycling culture as the Netherlands (but retained their hilliness and commute distance patterns). As such, whereas the Government Target and Gender Equality scenarios take current levels as a starting point, the predicted levels of cycle use in Go Dutch are unrelated to current levels, and are constrained only by local trip distance distributions and hilliness.
+
 
 <!-- While Government Target and Gender Equality build on current cycling behaviour, -->
 <!-- 'Go Dutch' focuses on long-term potential. -->
@@ -555,7 +556,7 @@ While the Government Target and Gender equality scenarios model relatively modes
 in cycle use that would be achieved through the widespread uptake of electric
 cycles.
 Electric assist cycles enable longer journeys and reduce the barrier of hills.
-This scenario is currently implemented as an extension Go Dutch
+This scenario is currently implemented as an extension of Go Dutch
 but could be implemented as an add-on for other scenarios.
 
 Additional scenarios could be developed (see Discussion). If deployed in other settings, the PCT will likely benefit from scenarios that relate to both the current policy context and long-term aspirations.
