@@ -1,26 +1,19 @@
 ---
 title: 'The Propensity to Cycle Tool: An open source online system for sustainable
   transport planning'
-author:
-- Robin Lovelace (University of Leeds)
-- Anna Goodman (London School of Hygiene and Tropical Medicine)
-- Rachel Aldred (University of Westminster)
-- Nikolai Berkoff (independent web developer)
-- Ali Abbas (University of Cambridge)
-- James Woodcock (University of Cambridge)
 csl: ../documents/elsevier-harvard.csl
+fontsize: 12pt
 output:
-  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
+  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
   \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
   \usepackage{tabu} \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
   \usepackage{caption} \captionsetup[table]{skip=10pt}
-fontsize: 12pt
 bibliography: references.bib
 ---
 
@@ -30,7 +23,14 @@ opts_chunk$set(out.width = '100%')
 ```
 
 ```{r, echo=FALSE, include=FALSE}
-# date: '`r format(Sys.time(), ''%d %B %Y'')`'
+# author:
+# - Robin Lovelace (University of Leeds)
+# - Anna Goodman (London School of Hygiene and Tropical Medicine)
+# - Rachel Aldred (University of Westminster)
+# - Nikolai Berkoff (independent web developer)
+# - Ali Abbas (University of Cambridge)
+# - James Woodcock (University of Cambridge)
+
 # output:
 #   pdf_document:
 #     fig_caption: yes
@@ -559,7 +559,6 @@ This scenario is currently implemented as an extension Go Dutch
 but could be implemented as an add-on for other scenarios.
 
 Additional scenarios could be developed (see Discussion). If deployed in other settings, the PCT will likely benefit from scenarios that relate to both the current policy context and long-term aspirations.
-OD data must be available for scenarios to be generated in new places, however, for health and other impacts to be related to transport infrastructure at high geographical resolution.
 
 ## Estimation of health and carbon impacts
 
