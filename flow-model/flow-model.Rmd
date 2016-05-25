@@ -294,7 +294,7 @@ Focus on wide ranging scenarios for cycling growth, including long-term, ambitio
 Making results available through a freely-accessible interface and open access model. In the past, transport planning has tended to be "closed to public over-sight", preventing public engagement with strategic transport plans (Golub et al. 2013). There is, however, now a trend in transport research towards greater transparency in software development and collaboration (Novosel et al., 2015; Tamminga et al., 2012).   The PCT is part of this trend, having been created with open access software, with the underlying code having been made publicly available under an open source AGPL licence (github.com/npct).
 ```
 
-## Policy context and features of the Propensity to Cycle Tool
+## Key features of the Propensity to Cycle Tool
 
 The national policy context of the PCT has influenced its design and features.
 The PCT was commissioned by the UK's Department for Transport to identify "parts of [England] with the greatest propensity to cycle"  [@department_for_transport_response_2015].
