@@ -10,12 +10,12 @@ author:
 - James Woodcock (University of Cambridge)
 csl: ../documents/elsevier-harvard.csl
 output:
+  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
-  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
   \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
   \usepackage{tabu} \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
@@ -114,7 +114,7 @@ with historically low rates of cycling.
 <!-- ] -->
 
 Providing high-quality infrastructure can play a key role in promoting cycling uptake [@parkin_cycling_2012].
-Off-road cycle paths, for example, have been found to be  associated with an increased share of commute trips made by cycling locally [@heinen_changes_2015].
+Off-road cycle paths, for example, have been found to be associated with an uptake of cycling for commuting [@heinen_changes_2015].
 Overall there is growing evidence linking cycling infrastructure to higher rates of cycling [@buehler_bikeway_2016].
 But where should this infrastructure be built? This paper seeks to demonstrate the potential of online, evidence-based tools to help answer this
 question, with reference to the Propensity to Cycle Tool (PCT).
@@ -736,7 +736,7 @@ and that cycling potential falls quickly with increasing distance.
 The spatial distribution of cycling potential can be explored interactively by selecting the 'top n' routes with the highest estimated cycling demand.
 Information about the *aggregate cycling potential* on the road network is shown in the Route Network layer.
 Because the layer is the result of aggregating overlapping 'fast' routes, and summing the level of cycling for each scenario (see Figure 5), it relates to the *capacity* that infrastructure may need to handle.
-Cycling along Otley Road, under the Go Dutch scenario, rises from 73 to 296
+Cycling along Otley Road (highlighted in Figure 5), under the Go Dutch scenario, rises from 73 to 296
 along a single route, but from 301 to 1133 in the Route Network.
 Note that more confidence can be placed in the relative rather than the absolute size of these numbers: the Route Network layer excludes within-zone commuters, commuters with no fixed workplace, and commuters working in a different PCT region
 because the PCT does not represent these on the travel network (see Figure 1). Route Network values also omit routes omitted due to the adjustable selection criteria: maximum distance and minimum total numbers of all-mode commuters per OD pair. At the time of writing these were set to 20 km Euclidean distance and 10 commuters respectively.
@@ -1144,7 +1144,7 @@ in this case).
 
 Dutch evidence suggests that cyclists are generally unwilling to
 take a path that is more than around 1.3 to 1.5 times the length of the
-'crow-flies' Euclidean distance (defined as $q$ above).
+'crow-flies' Euclidean distance.
 The same research suggests that circuity values for
 "for cycle provision should be 1.2" [@crow_design_2007].
 This suggests that high quality cycle infrastructure along the 'fast' route shown in Figure 9,
