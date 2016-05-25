@@ -323,7 +323,7 @@ This was done by CycleStreets.net, a routing service developed by cyclists, for 
 As with any tool, the PCT’s utility depends on people knowing how to use it.
 For that reason training materials and a user manual are being developed
 to show how the tool can be used
-(see the 'Manual' tab in Figure 3).
+(see the 'Manual' tab in Figure 3 and [pct.bike/manual.html](http://pct.bike/manual.html)).
 
 # Data and methods
 
@@ -537,8 +537,7 @@ the rate of cycling is highly gender-unequal.
 <!-- is already a common mode of transport. -->
 
 - Go Dutch.
-While the Government Target and Gender equality scenarios model relatively modest increases in cycle commuting, Go Dutch represents what would happen if English people were as likely as Dutch people to cycle a trip of a given distance and level of hilliness. This scenario captures the proportion of commuters that would be expected to cycle if all areas of England had the same infrastructure  and cycling culture as the Netherlands (but retained their hilliness and commute distance patterns). As such, whereas the Government Target and Gender Equality scenarios take current levels as a starting point, the predicted levels of cycle use in Go Dutch are unrelated to current levels, and are constrained only by local trip distance distributions and hilliness.
-
+While the Government Target and Gender equality scenarios model relatively modest increases in cycle commuting, Go Dutch represents what would happen if English people were as likely as Dutch people to cycle a trip of a given distance and level of hilliness. This scenario captures the proportion of commuters that would be expected to cycle if all areas of England had the same infrastructure  and cycling culture as the Netherlands (but retained their hilliness and commute distance patterns). The scenario level of cycling under Go Dutch is not affected by the current level of cycling.
 
 <!-- While Government Target and Gender Equality build on current cycling behaviour, -->
 <!-- 'Go Dutch' focuses on long-term potential. -->
