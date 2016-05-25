@@ -311,7 +311,7 @@ The PCT tackles this issue by estimating rate of cycling locally under different
 
 - Estimation of cycling potential at area, 'desire line' and route network levels. 
 
-- Route-allocation of OD pairs by a routing algorithm specifically developed for cycling.
+- Route-allocation of OD (origin-destination) pairs by a routing algorithm specifically developed for cycling.
 This was done by CycleStreets.net, a routing service developed by cyclists, for cyclists.
 
 - Visualisation of outputs at multiple geographic levels. The interactive map enables users to examine cycling potential at a very local level (e.g. just a few streets) or at a more regional level (e.g. across a large metropolitan area). 
@@ -351,7 +351,7 @@ The latter data was assigned to OD pairs using the 'fastest' option on CycleStre
 
 \begin{table}[]
 \centering
-\caption{Sample of the OD input dataset, representing the number of people who
+\caption{Sample of the OD (origin-destination) input dataset, representing the number of people who
 commute from locations within and between administrative zones (MSOAs). Note `Car' refers people who drive as their main mode of travel per OD pair, rather than people who travel to work as a passenger in a car.}
 \label{my-label}
 \begin{tabular}{@{}lllllll@{}}
