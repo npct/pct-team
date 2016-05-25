@@ -76,8 +76,9 @@ initially developed to explore and map cycling potential across England
 Based on origin-destination data, it models and visualises
 cycling levels at area, desire line, route and route network levels,
 for current levels of cycling, and for scenario-based 'cycling futures'.
-Scenarios implemented so far include 'Go Dutch' and 'Ebikes', which
-explore what would happen if English people cycled as much as the Dutch and the potential impact of electric cycles on cycling uptake.
+Four scenarios have been developed so far for England. These include 'Go Dutch' and 'Ebikes',
+which
+explore what would happen if English people cycled as much as Dutch people and the potential impact of electric cycles on cycling uptake.
 Health and carbon impacts from each scenario are reported at the local level for each scenario.
 The PCT is open source, enabling the creation of additional scenarios by others
 and its deployment in new contexts.
