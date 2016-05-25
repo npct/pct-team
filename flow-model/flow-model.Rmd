@@ -52,7 +52,7 @@ if(to_install) install.packages(pkgs[to_install])
 # Bibliography dl
 # generated via https://github.com/ZotPlus/zotero-better-bibtex
 # # This is from the group 'energy-and-transport': https://www.zotero.org/groups/energy-and-transport/
-bib = httr::GET("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", httr::write_disk("references.bib", overwrite = T))
+# bib = httr::GET("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", httr::write_disk("references.bib", overwrite = T))
 
 # To do:
 # Add speed-bumps/speed cameras/cycling priority or remove lanes for motorised traffic
@@ -575,9 +575,9 @@ The assumed age and sex profile of new cyclists also varied between scenarios.
 For the baseline and Government Target scenario the age-gender distribution of cyclists recorded in the 2011 Census was used. New cyclists under Gender Equality were assumed to be female, with the age profile of existing cyclists in the 2011 Census. New cyclists under Go Dutch and Ebikes were assumed to have the age-gender profile of commuter cyclists in the Netherlands.
 The inclusion of age specific parameters and mode shift from walking show how the HEAT approach can be applied in a nuanced manner using only routine, publicly available data and provides a valuable evidence source for the development of local business cases.
 
-The net change in the number of deaths avoided for each OD pair was estimated as the number deaths avoided due to cycle commuting minus the number of additional deaths due to reduced walking.  Note that this approach means that for some OD pairs where walking made up a high proportion of trips, additional deaths were incurred. The monetary value of the mortality impact was calculated by drawing on the standard 'value of a statistical life' used by the Department for Transport.
+The net change in the number of deaths avoided for each OD pair was estimated as the number of deaths avoided due to cycle commuting minus the number of additional deaths due to reduced walking.  Note that this approach means that for some OD pairs where walking made up a high proportion of trips, additional deaths were incurred. The monetary value of the mortality impact was calculated by drawing on the standard 'value of a statistical life' used by the Department for Transport.
 
-We also estimated the reduction in transport carbon emissions resulting from decreased car driving in each scenario.  This again relied on the assumption that, within a given OD pair all modes, were equally likely to be replaced by cycling.  The average CO^2^-equivalent emission per kilometre of car driving was taken as 0.186 kg, the 2015 value of an 'average' car [@defra_defra_2015].
+We also estimated the reduction in transport carbon emissions resulting from decreased car driving in each scenario.  This again relied on the assumption that all modes were equally likely to be replaced by cycling.  The average CO^2^-equivalent emission per kilometre of car driving was taken as 0.186 kg, the 2015 value of an 'average' car [@defra_defra_2015].
 
 ## Visualisation, route allocation and network generation
 
@@ -733,7 +733,7 @@ and that cycling potential falls quickly with increasing distance.
 <!-- a relatively small number of OD pairs along major travel corridors -->
 <!-- account for a disproportionately high proportion of travel. -->
 
-The spatial distribution of cycling potential can be explored interactively by selecting the 'top n' routes with the highest estimated cycling demand.
+The spatial distribution of cycling potential can be explored interactively by selecting the 'top n' routes with the highest estimated cycling demand (see the slider entitled "N. Lines (most cycled)" in Figures 3 and 4).
 Information about the *aggregate cycling potential* on the road network is shown in the Route Network layer.
 Because the layer is the result of aggregating overlapping 'fast' routes, and summing the level of cycling for each scenario (see Figure 5), it relates to the *capacity* that infrastructure may need to handle.
 Cycling along Otley Road (highlighted in Figure 5), under the Go Dutch scenario, rises from 73 to 296
@@ -1096,7 +1096,8 @@ long-term scenarios are not influenced by the current rate of cycling.
 
 ## The shifting spatial distribution of cycling
 
-The spatial distribution of cycling potential differs markedly between scenarios, as illustrated in Figure 7 for the city of Leeds, West Yorkshire. The top 6 OD pairs (a low number was used to focus on the city centre) in Leeds under Government Target are strongly influenced by the current distribution of cycling, which is focussed in the relatively wealthy North of the city (see Figure 3 for top 6 flows currently). Cycle commuting is projected to continue to be most common in the North the city. Under the Go Dutch scenario, by contrast, the pattern of cycling shifts substantially to the South.
+The spatial distribution of cycling potential differs markedly between scenarios, as illustrated in Figure 7 for the city of Leeds, West Yorkshire. The top 6 OD pairs (a low number was used to focus on the city centre) in Leeds under Government Target are strongly influenced by the current distribution of cycling, which is focussed in the relatively wealthy North of the city (see Figure 3 for top 6 flows currently).
+Under the Go Dutch scenario, by contrast, the pattern of cycling shifts substantially to the South.
 The cycling patterns under the Go Dutch scenario
 are more representative of short-distance trips across the city overall.
 In both cases the desire lines are focused around Leeds city centre: the region
@@ -1149,7 +1150,7 @@ The same research suggests that circuity values for
 "for cycle provision should be 1.2" [@crow_design_2007].
 This suggests that high quality cycle infrastructure along the 'fast' route shown in Figure 9
 would be more attractive than an
-alternative quiet route that diverges greatly from the shortest path.
+alternative quiet route that greatly diverges from the shortest path.
 Previous work indicates that women and older people have a greater preference for off-road routes and shorter routes [@garrard_promoting_2008;@woodcock_national_2016, see Appendix 8], suggesting the 'fast route' option could be favourable from an equity perspective.
 This example illustrates how the PCT could be used to provide evidence on how to encourage cycling amongst groups who currently cycle the least.
 
@@ -1175,7 +1176,7 @@ knitr::include_graphics("model-output.png")
 
 The health benefits of cycling do not necessarily rise in direct proportion to the number of people cycling: longer trips lead to a greater health benefit than short ones and older people benefit more from increased physical activity. Further, health benefits along desire lines with a low pedestrian mode share can expected to be greater. 
 
-This is demonstrated in the data presented by the PCT. The economic value of health benefits reported for the 4.1 km route in Figure 5 (above) is estimated to be £70785, based on the HEAT methodology described in the previous section. Exploration of this variable for other areas shows that, when health savings are the main criteria, longer desire lines would be favoured, as opposed to focussing on the more immediately obvious metric of focussing on the number of additional trips cycled. Future versions of the PCT could allow users to select the 'top n' routes ranked by health and carbon benefits, in addition to the number modelled for who cycling is the main mode.
+This is demonstrated in the data presented by the PCT. The economic value of health benefits reported for the 4.1 km route in Figure 5 (above) is estimated to be £70785, based on the HEAT methodology described in the previous section. Exploration of this variable for other areas shows that, when health savings are the main criteria, longer desire lines would be favoured, as opposed to focussing on the more immediately obvious metric of focussing on the number of additional trips cycled. Future versions of the PCT could allow users to select the top routes ranked by health and carbon benefits.
 
 # Discussion
 
@@ -1186,7 +1187,7 @@ and by online, interactive planning support systems (PSS) [@pettit_online_2013],
 PCT tackles the important yet largely unresolved issue
 of how to create a systematic evidence base to prioritise where to build new cycle paths
 and identify areas to prioritise for localised interventions.
-By showing not showing potential health-related benefits the tool provides various metrics for transport planners, going beyond the number of additional trips.
+By showing potential health-related benefits the tool provides various metrics for transport planners, going beyond the number of additional trips.
 Illustrative uses of the PCT demonstrated the potential utility of the tool, for example
 by showing settings in which the spatial distribution
 of cycling demand is likely to shift as cycling grows. 
@@ -1197,7 +1198,7 @@ In addition to creating an evidence base for planning specific routes and area-b
 The PCT could also: help translate national targets into local aspirations (as illustrated by the Government Target scenario); inform local targets (e.g. by indicating what the potential in one region is relative to neighbouring regions); support business cases (by showing that there is high cycling potential along proposed routes); and help plan for capacity increases in cycling along the route network via the network analysis layer.
 Ongoing case study work with stakeholders will establish and develop these uses. 
 Future developments will be facilitated by the open source code underlying the PCT (see [github.com/npct](https://github.com/npct)),
-making it easy for others use the project as a basis for further work [@lima_coding_2014].
+making it easy for others to use the project as a basis for further work [@lima_coding_2014].
 
 
 <!-- The underlying code is open source (see [github.com/npct](https://github.com/npct)), -->
@@ -1279,7 +1280,7 @@ These could include the impacts of physical fitness and access to high quality p
 - Additional purposes of trips in the model. An 'education layer' would enable prioritisation of 'safe routes to school', building on methods analysing 'school commute' data [@singleton_gis_2014].
 Other data sources to include more trip types include mobile telephone providers [@alexander_validation_2015] and outputs from traditional transport models.
 
-- Deployment of the PCT for in new cities, regions or countries. This depends on the availability of appropriate OD data, perhaps from sources mentioned in the previous point.
+- Deployment of the PCT for new cities, regions or countries. This depends on the availability of appropriate OD data, perhaps from sources mentioned in the previous point.
 Such work could also facilitate international comparisons of cycling potential.
 
 Transport planning is a complex and contested field [@banister_sustainable_2008].
