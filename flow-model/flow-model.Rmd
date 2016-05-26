@@ -140,7 +140,7 @@ The subsequent overview of this policy and academic landscape places the PCT in 
 ## The policy context
 
 A number of factors influence
-the attractiveness of cycling for everyday trips [@pucher_infrastructure_2010].
+the attractiveness of cycling for everyday trips [@pucher_infrastructure_2010;@parkin_planning_2015].
 However, the intervention that has received the most attention has been the construction of new cycle paths.
 In the UK context, devolved transport budgets mean that local authorities have some control over the design and implementation of cycling networks, a potentially powerful policy lever to get people cycling.
 
