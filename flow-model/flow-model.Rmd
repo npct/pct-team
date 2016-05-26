@@ -557,7 +557,7 @@ Additional scenarios could be developed (see Discussion). If deployed in other s
 
 ## Estimation of health and carbon impacts
 
-Because decisions about where to invest and motivated not just by the potential number of cyclists but also the social impacts we in the first instance modelled health economic and carbon impacts.
+Because decisions about where to invest are motivated not just by the potential number of cyclists but also the social impacts we in the first instance modelled health economic and carbon impacts.
 
 An approach based on the the World Health Organization’s Health Economic Assessment Tool ([HEAT](http://www.heatwalkingcycling.org/)) was used to estimate the number of premature deaths avoided due to increased physical activity [@kahlmeier_health_2014]. HEAT estimates of the increase in premature deaths due to a reduction in the number of people walking, in OD pairs where many people walk to work, were also included (see the Appendix).
 To model the change in walking, we assumed that within a given OD pair all modes were equally likely to be replaced by cycling.  Thus all the non-cycling modes shown in Table 2 experienced the same relative decrease.
