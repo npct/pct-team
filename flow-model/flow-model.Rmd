@@ -78,9 +78,9 @@ for current levels of cycling, and for scenario-based 'cycling futures'.
 Four scenarios are presented, including 'Go Dutch' and 'Ebikes',
 which
 explore what would happen if English people cycled as much as Dutch people and the potential impact of electric cycles on cycling uptake.
-As decisions about investment are not just made on cycling numbers but on wider benefifts
-health and carbon impacts are reported at area, desire line, and route level for each scenario.
-The PCT is open source, enabling the creation of additional scenarios 
+The cost effectiveness of investment depends not only on the number of additional trips cycled, but on wider impacts such as
+health and carbon benefits. The PCT reports these at area, desire line, and route level for each scenario.
+The PCT is open source, facilitating the creation of additional scenarios 
 and its deployment in new contexts.
 We conclude that the PCT illustrates the potential of online tools to
 inform transport decisions and raises the wider issue
