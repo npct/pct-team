@@ -142,10 +142,10 @@ The subsequent overview of this policy and academic landscape places the PCT in 
 A number of factors influence
 the attractiveness of cycling for everyday trips [@pucher_infrastructure_2010;@parkin_planning_2015].
 However, the intervention that has received the most attention has been the construction of new cycle paths.
-In the UK context, devolved transport budgets mean that local authorities have some control over the design and implementation of cycling networks, a potentially powerful policy lever to get people cycling.
+In the UK context, devolved transport budgets mean that local authorities have some control over the design and implementation of cycling networks.
 
 Planning new cycle paths requires many decisions to be made, including in relation to the width [@wegman_urban_1979;@pikora_developing_2002], quality [@heath_effectiveness_2006], directness [@crow_design_2007] and geographic location of the paths.
-Yet while much guidance has been produced regarding the physical design of cycle paths [e.g. @transport_for_london_london_2015;@welsh_government_guidance_2014],
+Yet while much guidance has been produced regarding physical design [e.g. @transport_for_london_london_2015;@welsh_government_guidance_2014],
 little work has explicitly tackled the question of where high quality infrastructure should be built
 [@aultman-hall_analysis_1997;@minikel_cyclist_2012;@larsen_build_2013].
 Within this policy context, the PCT focuses explicitly on the question of *where* to build rather than *what* to build, although it does provide evidence on potential capacity requirements across the route network.
@@ -154,20 +154,16 @@ Within this policy context, the PCT focuses explicitly on the question of *where
 
 ## Research into cycling potential 
 
-The growing evidence base regarding the impact of infrastructure on cycling raises the question of how to 'operationalise' this body of knowledge, to help planners prioritise where to invest.
-This research gap was described by
-@larsen_build_2013, who identified an "absence of research into how 
-to  systematically  prioritise  and  locate  facilities  that  are  to  be  built".
-There is, however, an emerging literature exploring cycling potential.
+There is an emerging literature exploring cycling potential.
 This links to the question of 'where to build' because 
-areas and routes with the highest potential are likely to be cost-effective places for investment.
+areas and routes with the highest potential are likely to be cost-effective places for investment from health and emissions perspectives.
 With the notable exceptions of @larsen_build_2013 and @zhang_prioritizing_2014, this body of research has not provided systematic or quantitative evidence for transport planners.
 The methods broadly
 fit into three categories depending on the level of the input data used:
 
 - Area-based measures are based primarily on data at the level of administrative zones. Outputs from these measures can assist with the location of site-specific transport infrastructure such as cycle parking.
 
-- Individual-based measures are based on individual level survey data, typically a household travel survey. These are not always geographically specific and tend to be used to identify and categorise demographic groups in relation to cycling, such as near-market or as warranting tailored interventions, such as targeted cycle training schemes.
+- Individual-based measures are based on survey data, typically a household travel survey. These are not always geographically specific and tend to be used to identify and categorise demographic groups in relation to cycling, such as near-market or as warranting tailored interventions, such as targeted cycle training schemes.
 
 - Route-based measures use origin-destination data which can be used to create 'desire lines' and (using route allocation) estimates of existing and potential demand at each point on the road network.
 
@@ -175,7 +171,7 @@ This work is reviewed in relation to the PCT below and summarised in Table 1.
 
 <!-- ### Area-based measures of cycling potential -->
 
-@parkin_estimation_2008 presented an area-based measure of cycling potential that used a regression model to estimate the proportion of commuter trips cycled across wards in England and Wales. Factors associated with lower levels of cycling included road defects, high rainfall, hills and a higher proportion of ethnic minority and low-income inhabitants.  Parkin et al. concluded that policy makers must engage with a mixture of physical and social barriers to promote cycling effectively, with the implication that some areas have lower barriers to cycling --- and hence higher propensity to cycle --- than others.
+@parkin_estimation_2008 presented an area-based measure of cycling potential using regression model to estimate the proportion of commuter trips cycled across wards in England and Wales. Factors associated with lower levels of cycling included road defects, high rainfall, hills and a higher proportion of ethnic minority and low-income inhabitants.  Parkin et al. concluded that policy makers must engage with a mixture of physical and social barriers to promote cycling effectively, with the implication that some areas have lower barriers to cycling --- and hence higher propensity to cycle --- than others.
 
 @zhang_prioritizing_2014 created an individual-based model of cycling potential to prioritise where to build cycle paths to "achieve maximum impacts early on".
 The outputs of this model were aggregated to the level of 67 statistical zones in the study area of Belo Horizonte, Brazil, and used to generate a 'usage intensity index' for potential cycle paths.
@@ -295,7 +291,7 @@ Making results available through a freely-accessible interface and open access m
 In addition to the international policy and academic context,
 the PCT was influenced by the national context.
 It was commissioned by the UK's Department for Transport to identify "parts of [England] with the greatest propensity to cycle"  [@department_for_transport_response_2015].
-Thus the aim was not to produce a full transport-land use model,
+Thus the aim was not to produce a full transport demand or land use model,
 but to provide an evidence base to prioritise where to create and improve cycling infrastructure based on scenarios of change.
 
 Local and national cycling targets are often based on a target mode share by a given date.^[The
@@ -314,7 +310,7 @@ This was done by CycleStreets.net, a routing service developed by cyclists, for 
 
 - Public accessibility of results and code. The tool is freely available online and developers are encouraged to modify the PCT (e.g. to create alternative scenarios) by provision of the source code underlying the PCT under the open source AGP License.
 
-- The presentation of estimated benefits under future scenarios, for example via impacts on public health and carbon emissions, enables interventions to be designed based on specific health and environmental policy goals.
+- The presentation of estimated health economic and carbon impacts under future scenarios, providing an evidence base that could be used in business cases for investment.
 
 As with any tool, the PCT’s utility depends on people knowing how to use it.
 For that reason training materials and a user manual are being developed
@@ -414,11 +410,11 @@ commute from locations within and between administrative zones (MSOAs). Note `Ca
 
 ## Modelling cycling potential
 
-The starting point for generating our scenario-based 'cycling futures' was to model current cycle commuting in England, for all ages from 16-74 years.  We did this using OD data from the 2011 Census, and modelling cycling commuting as a function of route distance and route hilliness.  We did so using logistic regression applied at the individual level, including squared and square-root terms to capture 'distance decay' --- the non-linear impact of distance on the likelihood of cycling [@iacono_access_2008] --- and including terms to capture the interaction between distance and hilliness. Model fit is illustrated in Figure 2; see the appendix for details and for the underlying equations.
+The starting point for generating our scenario-based 'cycling futures' was to model baseline data on cycle commuting in England.  We did this using OD data from the 2011 Census, and modelling cycling commuting as a function of route distance and route hilliness.  We did so using logistic regression applied at the individual level, including squared and square-root terms to capture 'distance decay' --- the non-linear impact of distance on the likelihood of cycling [@iacono_access_2008] --- and including terms to capture the interaction between distance and hilliness. Model fit is illustrated in Figure 2; see the appendix for details and for the underlying equations.
 We also developed equations to estimate commuting mode share among groups not represented in the between-zone ('interzonal') OD data, e.g. those commuting within a specific MSOA (this is within-zone or 'intrazonal' travel), or those with no fixed workplace. 
-This model of current cycling levels formed the basis of three of the four scenarios (Government Target, Go Dutch and Ebikes; see below), with model parameterization drawing additionally on English, Dutch and Swiss travel survey data.
+This model of baseline propensity to cycle formed the basis of three of the four scenarios (Government Target, Go Dutch and Ebikes), as described in more detail in the next section.
 
-```{r, echo=FALSE, fig.cap="The relationship between distance (left) and hilliness (right) and cycling mode share in England based on the the 2011 Census. The plots show actual (blue) vs predicted (red) prevalence of cycling to work among 17,896,135 English commuters travelling <30km to work."}
+```{r, echo=FALSE, fig.cap="The relationship between distance (left) and hilliness (right) and cycling mode share in England based on the the 2011 Census. The plots show actual (blue) vs predicted (red) prevalence of cycling to work among 17,896,135 commuters travelling <30km to work."}
 knitr::include_graphics("dist-curve2-ag.pdf")
 ```
 
