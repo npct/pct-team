@@ -3,7 +3,6 @@ library(dplyr)
 library(stplanr)
 
 ########PREDICTION of no. of cyclists
-
 gm.od3 <-cbind(gm.od,CycleGM=0)
 rm(gm.od)
 gm.od3 <-gm.od3[,c(1:6,30,7:29)]
@@ -71,37 +70,50 @@ colnames(l) <-namesl
 save.dta13(l, file.choose())    #save as l_scenariosGM.dta
 write.csv(l,file.choose(),row.names = F) #save as 'l_scenarios.csv'
 
+## FOR REFERENCE next section: Columns meaning
+#     home_msoa = v1
+#     work_msoa  = v2
+#     all = v3
+#     from_home  = v4
+#     light_rail  = v5
+#     train  = v6
+#     bus  = v7
+#     taxi  = v8
+#     motorbike  = v9
+#     car_driver  = v10
+#     car_passenger  = v11
+#     bicycle  = v12
+#     foot  = v13
+#     other = v14
 
-########## add msoa male/female %perc to msoa_t2w_sex.dta
 
-td <-read.dta13(file.choose())    # <msoa_t2w_sex.dta>
-#td <-left_join(td,l, by=c('home_msoa'='v1','work_msoa'='v2'))
-#td1 <- left_join(l,td, by=c('v1'='home_msoa','v2'='work_msoa'))
-#create paste ID column: compare cols that don not appear in td1 & td
+########## add msoa male/female %perc to msoa_t2w_sex.dta (m/f ratios & m/f cyclist ratios)
+td1 <-read.dta13(file.choose())    # <msoa_t2w_sex.dta>  [2.314 M x 9]
 
-td <- inner_join(td,l, by=c('home_msoa'='v1','work_msoa'='v2')) #1238 flows not there
-td <-cbind(td,maleperc=0, femaleperc=0, malecyc=0.06, femalecyc=0.02)
+td <- inner_join(td1,l, by=c('home_msoa'='v1','work_msoa'='v2')) #1238 flows not there (prob. inflows)
+rm(td1)
+td <-cbind(td,maleperc=0, femaleperc=0, malecyc=0.05, femalecyc=0.02) 
+#global pop. cycling ratios (0.05 males, 0.02 females)
 
-#target <-which(!is.na(td$v3) )   #rows to change
-
-#add m/f ratios
+#add m/f ratios of total population
 td$maleperc <-td$allcom_male/(td$allcom_male+td$allcom_female)
 td$femaleperc <-td$allcom_female/(td$allcom_male+td$allcom_female)
 
-# #ALTERNATIVE
-# td$maleperc[target] <-td$allcom_male[target]/(td$allcom_male[target]+td$allcom_female[target])
-# td$femaleperc[target] <-td$allcom_female[target]/(td$allcom_male[target]+td$allcom_female[target])
 
-#add m/f cycling ratios
-target <- which(td$bicycle_male!=0 | td$bicycle_female!=0)
+#add m/f cycling ratios to FLOWS WITH enough cyclists
+target <- which((td$bicycle_male!=0 | td$bicycle_female!=0)& (td$bicycle_male + td$bicycle_female>5))
 td$malecyc[target] <- td$bicycle_male[target]/(td$bicycle_male[target]+ td$bicycle_female[target])
 td$femalecyc[target] <- td$bicycle_female[target]/(td$bicycle_male[target]+ td$bicycle_female[target])
 
-td$allcom_male <-round(td$v3 *td$maleperc,0)
-td$allcom_female <-round(td$v3*td$femaleperc,0)
+td$allcom_male <-round(td$v3 *td$maleperc,0)  #N_males=N.totalpop (td$v3) * %perc_male in pop.
+td$allcom_female <-td$v3 - td$allcom_male  #N_females
 
-td$bicycle_male[target] <- round(td$v12[target] * td$malecyc[target], 0)
-td$bicycle_female[target] <- round(td$v12[target] * td$femalecyc[target], 0)
+#Male cyclists = Estimated N_cyclists * %male cyclists
+td$bicycle_male <- round(td$v12 * td$malecyc/(td$malecyc+td$femalecyc), 0)
+td$bicycle_female <- td$v12 - td$bicycle_male
+
+# td$bicycle_male <- round(td$v12 * td$malecyc, 0)  #male cyclists=Nmales.cyclists * % male cyclists
+# td$bicycle_female <- round(td$v12 * td$femalecyc, 0) #female cyclists=N.females * % female cyclists
 
 #delete NaN's
 # td[!is.finite(td[target,24]),24]<-0
@@ -110,7 +122,7 @@ td$bicycle_female[target] <- round(td$v12[target] * td$femalecyc[target], 0)
 #sex ratio for GM MSOAs
 td <-td[,1:9]
 save.dta13(td, file.choose())        #save as <msoa_t2w_sex_GM.dta>
-#write.csv(td,file.choose(),col.names = T,row.names = F)   #save as <msoa_t2w_sex_v1.csv>, then convert to .dta
+#write.csv(td,file.choose(),col.names = T,row.names = F)   #OR save <msoa_t2w_sex_v1.csv>, then convert .dta
 
 
 #### ----------------> run Anna's scenarios
@@ -164,7 +176,7 @@ l <- od2line(pct,c)
 
 #cols. 4-14 if you have col. "id", 3:13 otherwise
 l <- onewayid(l, attrib = c(3:13), id1 ='Area.of.residence', id2 = 'Area.of.workplace' )
-#l <- onewayid(l, attrib = c(3:13), id1 ='Area.of.residence', id2 = 'Area.of.workplace' )
+#l <- onewayid(l, attrib = c(4:14), id1 ='Area.of.residence', id2 = 'Area.of.workplace' )
 
 saveRDS(l,file.choose())    #save as l.rDS in pathGM
 write.csv(l, file.choose(),row.names = F) #NEEDED!!: csv does NOT contain garbage, dta DOES

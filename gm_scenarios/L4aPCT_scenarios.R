@@ -76,7 +76,7 @@ l <- l[!duplicated(l),]
 msoa_sex <- read.dta13("./Input/msoa_t2w_sex_GM.dta")
 l <- inner_join(l,msoa_sex,by=c('home_msoa', 'work_msoa'))
 
-sum((l$allcom_male+  l$allcom_female)!= l$all)  #check
+sum((l$allcom_male+  l$allcom_female)!= l$all)  #check 
 
 #order by home_msoa_names & work_msoa_name
 l <- sort(l,f=~ home_msoa_name + home_la_name)   #library(taRifx)
@@ -94,6 +94,7 @@ l <- l[l$hometemp=='E',]   #subset only to people in England (not needed for GM 
 
 l$work_msoa[l$flowtype==4] <-    'other'
 
+#these lines probably not needed for G.M layer
 l$all <- aggregate(l$all, by=list(l$home_msoa, l$work_msoa), FUN=sum, na.rm=T)
 l$all <- l$all$x
 l$other <- aggregate(l$other, by=list(l$home_msoa, l$work_msoa), FUN=sum, na.rm=T)
@@ -234,20 +235,20 @@ for (x in c('base','dutch','ebike')) {
 
 ## MODEL FITTING FOR TRIPS WITH NO FIXED PLACE
 # INPUT PARAMETERS
-l$pred_base [flowtype!=1 & flowtype!=2] <- l$bdutch[flowtype!=1 & flowtype!=2] <- l$bebike[flowtype!=1 & flowtype!=2] <- NA
+l$pred_base [l$flowtype!=1 & l$flowtype!=2] <- l$bdutch[l$flowtype!=1 & l$flowtype!=2] <- l$bebike[l$flowtype!=1 & l$flowtype!=2] <- NA
 
 ############
 # all temp thing
 ############
 
-l$nummeanpred_base  <- aggregate(l$pred_base*l$all, by=l$home_msoa, FUN=sum, na.rm=T)
-l$nummeanbdutch     <- aggregate(l$bdutch * l$all, by=l$home_msoa, FUN=sum, na.rm=T)
-l$nummeanbebike     <- aggregate(l$bebike * l$all, by=l$home_msoa, FUN=sum, na.rm=T)
+l$nummeanpred_base  <- aggregate(l$pred_base*l$all, by=list(l$home_msoa), FUN=sum, na.rm=T)
+l$nummeanbdutch     <- aggregate(l$bdutch * l$all, by=list(l$home_msoa), FUN=sum, na.rm=T)
+l$nummeanbebike     <- aggregate(l$bebike * l$all, by=list(l$home_msoa), FUN=sum, na.rm=T)
 
 
-l$denmeanpred_base  <- aggregate(l$all, by=l$home_msoa, FUN=sum, na.rm=T)
-l$denmeanbdutch     <- aggregate( l$all, by=l$home_msoa, FUN=sum, na.rm=T)
-l$denmeanbebike     <- aggregate( l$all, by=l$home_msoa, FUN=sum, na.rm=T)
+l$denmeanpred_base  <- aggregate(l$all, by=list(l$home_msoa), FUN=sum, na.rm=T)
+l$denmeanbdutch     <- aggregate( l$all, by=list(l$home_msoa), FUN=sum, na.rm=T)
+l$denmeanbebike     <- aggregate( l$all, by=list(l$home_msoa), FUN=sum, na.rm=T)
 
 l$meanpred_base  <- l$nummeanpred_base / l$denmeanpred_base
 l$meanbdutch     <- l$nummeanbdutch  / l$denmeanbdutch

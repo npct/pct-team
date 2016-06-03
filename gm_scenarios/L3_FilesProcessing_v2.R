@@ -138,8 +138,8 @@ gm.od[,3:5] <- round(gm.od[,3:5],0)
 gm.od[is.na(gm.od)] <-0
 
 #eliminate flows where ALL are 0
-t1 <- which(gm.od$CarGM==0 & gm.od$BusGM==0 & gm.od$FootGM==0)
-gm.od <- gm.od[-t1,]     #keep only results!=0
+allnull <- which(gm.od$CarGM==0 & gm.od$BusGM==0 & gm.od$FootGM==0)
+gm.od <- gm.od[-allnull,]     #keep only results!=0
 gm.od$AllGM <- gm.od$CarGM + gm.od$BusGM + gm.od$FootGM
 
 #### gm.od: all trips (from Greater Manchester -> any UK point + from any UK point->Greater Manchester)
