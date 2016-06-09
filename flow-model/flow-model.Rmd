@@ -1,8 +1,14 @@
 ---
 title: 'The Propensity to Cycle Tool: An open source online system for sustainable
   transport planning'
+author:
+- Robin Lovelace (University of Leeds)
+- Anna Goodman (London School of Hygiene and Tropical Medicine)
+- Rachel Aldred (University of Westminster)
+- Nikolai Berkoff (independent web developer)
+- Ali Abbas (University of Cambridge)
+- James Woodcock (University of Cambridge)
 csl: ../documents/elsevier-harvard.csl
-fontsize: 12pt
 output:
   word_document: default
   pdf_document:
@@ -14,6 +20,7 @@ header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktab
   \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
   \usepackage{tabu} \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
   \usepackage{caption} \captionsetup[table]{skip=10pt}
+fontsize: 12pt
 bibliography: references.bib
 ---
 
@@ -23,13 +30,7 @@ opts_chunk$set(out.width = '100%')
 ```
 
 ```{r, echo=FALSE, include=FALSE}
-# author:
-# - Robin Lovelace (University of Leeds)
-# - Anna Goodman (London School of Hygiene and Tropical Medicine)
-# - Rachel Aldred (University of Westminster)
-# - Nikolai Berkoff (independent web developer)
-# - Ali Abbas (University of Cambridge)
-# - James Woodcock (University of Cambridge)
+
 
 # output:
 #   pdf_document:
@@ -1063,7 +1064,7 @@ knitr::include_graphics("man-nor-output-2.png")
 ```
 
 ```{r, echo=FALSE, out.width = '50%', fig.cap="Modal share of trips made by cycling in West Yorkshire (left) and Oxfordshire (right) by distance, currently and under 4 scenarios of change.", fig.show='hold'}
-knitr::include_graphics(c("../figures/dd-west-yorks.png", "../figures/dd-ox.png"))
+knitr::include_graphics(c("figures/dd-west-yorks.png", "figures/dd-ox.png"))
 ```
 
 <!-- In Manchester the Government Target scenario -->
@@ -1149,8 +1150,9 @@ knitr::include_graphics("model-output.png")
 
 The health benefits of cycling do not necessarily rise in direct proportion to the number of people cycling. Longer trips lead to a greater health benefit than short ones and older people benefit more from increased physical activity. Further, health benefits along desire lines with a low pedestrian mode share can be expected to be greater. 
 
-This is demonstrated in the data presented by the PCT. The economic value of health benefits reported for the 4.1 km route in Figure 5 is estimated to be £70785. Exploration of estimated benefits for other areas shows that, when health or carbon benefits are the main criteria, longer desire lines and associated routes would be favoured.
-This is facilitated in the PCT by allowing users to select the top routes ranked by health and carbon benefits.
+This is demonstrated in the data presented by the PCT. The economic value of health benefits reported for the 4.1 km route in Figure 5 is estimated to be £70785. When health benefits are the main criteria for policy evaluation, OD pairs with low current rates of walking would be favoured for intervention.
+When emissions are the main criteria, OD pairs with a high baseline level of car use are also favoured.
+The exploration of these considerations is facilitated in the PCT by allowing users to select the top routes ranked by health and carbon benefits.
 
 # Discussion
 
@@ -1376,7 +1378,7 @@ John Parkin (University of the West of England), Nikée Groot and Phil Tate.
 Thanks to Simon Nutall and Martin Lucas-Smith for access to and instructions
 on the use of the CycleStreets.net API.
 Thanks to Barry Rowlingson from the University of Lancaster for developing functionality in the **stplanr** package that enabled the creation of the Route Network layer.
-We are grateful to Matthew Tranter at DfT for merging additional geographic data into the UK National Travel Survey, and to Eva Heinen, Rick Prins and Thomas Götschi for their help in analysing Dutch and Swiss Travel Survey data. 
+We are grateful to Matthew Tranter at DfT for merging additional geographic data into the UK National Travel Survey, and to Eva Heinen, Rick Prins and Thomas Götschi for their help in analysing Dutch and Swiss Travel Survey data.
 Thanks to Alvaro Ullrich for contributions to the code.
 Thanks to developers of open source software we have been able to make
 the PCT free and open to the world.

@@ -1,0 +1,55 @@
+---
+title: 'Cycling and transport planning: embedding active travel in every stage of the
+  planning process'
+author: "Robin Lovelace"
+date: "`r Sys.Date()`"
+output: pdf_document
+bibliography: references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# This is from the group 'energy-and-transport': https://www.zotero.org/groups/energy-and-transport/
+bib = httr::GET("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", httr::write_disk("references.bib", overwrite = T))
+```
+
+## Abstract
+
+The humble bicycle, alongside its family friendly siblings tricycles, quadricycles and cargo bikes, is an effective means of transport for millions of people worldwide. Further, recent studies suggest that this most efficient of modes has the potential to transform urban transport systems worldwide, to make them healthier, cleaner and more socially equitable. With growing evidence about the external costs of car-dominated cities, political attention and funding has focussed in recent years on how increase the proportion of trips that are cycled. Despite this, cycling has been marginalised from the discipline and practice of transport planning. After a brief historical survey of the field in relation to its treatment of cycling, the paper investigates the opportunities created by recent developments for integrating cycling, and active modes more widely, into the practice of transport planning. These opportunities include new infrastructure options, the emergence of open source, on-line and participatory tools for transport planning, and new technologies for monitoring and evaluation of pro-cycling policies and exist at every stage in the transport planning process. We conclude that taking these opportunities would help lead to a paradigm shift in transport planning that enables it to create transport systems that are safe and healthy for people and the planet.
+
+## Introduction
+
+```{r get-citations, eval=FALSE}
+# Find number of papers referencing cycling in top transport journals over time
+devtools::install_github("ropensci/rcrossref")
+library(rcrossref)
+library(dplyr)
+f = c(type = "journal-article", `container-title` = "Risk Analysis")
+cyrefs = cr_works(query = "Bicycle", limit = 20, filter = f)
+cdf = cyrefs$data
+```
+
+
+## The marginalisation of cycling in transport policy
+
+In their *tour de force* of the history of transport modelling, @boyce_forecasting_2015 demonstrate that the field emerged in a very specific, and one could say unusual, context: the explosive growth of suburbia and car dependency in the USA. Despite the fact that the transport needs of society, perceived and real, have progressed substantially beyond the accomodation of endless growth in car use, this historical legacy still exerts an enormous influence over transport models and the practice of transport planning. Although the question it is clear that the intentions of these early modellers were admirable, it is clear that the outcomes --- a predict and provide paradigm leading to decades of grid-lock, pollution and road traffic casualties --- were sub-optimal. It is revealing to note that cycling is barely mentioned in @boyce_forecasting_2015. If history is written by the winners, the car is undoubtedly the winning mode of transport in the history of transport planning.
+
+
+The previous has been more recent 
+
+## The evolution of a new transport paradigm
+
+## Opportunities for embedding active travel
+
+A number of opportunities to include cycling within the wider transport planning process are outlined by @gallagher_planning_2014.
+
+Transport planning and the transport sector overall has traditionally been seen as an objective realm, where numbers speak louder than words. However, there are many ways to take human factors into account in transport planning, as described by @deegan_planning_2011.
+
+@melia_urban_2015 used the term 'filtered permeability' to refer to small interventions that can make cycling more attractive than driving in urban areas.
+
+@lovelace_propensity_2016
+
+## Conclusion
+
+
+## References

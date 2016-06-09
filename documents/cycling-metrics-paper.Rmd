@@ -1,0 +1,39 @@
+---
+title: Metrics to assess the cost effectiveness of interventions to create 'space
+  for cycling': a review
+author: "Robin Lovelace"
+date: "May 19, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# todo
+# reference NACTO on growth of cycle infrastructure in the US
+```
+
+## Introduction
+
+Cost effectiveness is one of the major factors that determine which transport plans are implemented and which are shelved in cities, regions and countries across the world. With the austerity agenda, the importance of getting 'value for money' in transport schemes has only been enhanced.
+
+Cost-effectiveness has a long history in transport planning. Arguably, it was one of the first public services to adopt cost-effectiveness as the primary measure for policymaking.
+
+But these methods are not generally applicable to cycling, for the following reasons:
+
+...
+
+
+## Metrics for evaluating 
+
+
+## Case studies of the utility of different metrics
+
+### Old, well-documented intervention
+
+### Tavistock Place
+
+### Leeds-Bradford cycle superhighway
+
+## Discussion
+
+
