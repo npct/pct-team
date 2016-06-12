@@ -28,11 +28,25 @@ lapply(pkgs, library, character.only = T)
 
 ## Presentation structure
 
--  Demo of the tool and software for sustainable transport
+-  Intoduction and demo of the tool 
 -  Design and development
 -  Uses of the PCT
 
 # Demo of the tool and software for sustainable transport
+
+## A definition of Propensity to Cycle and its uses
+
+> Propensity to cycle refers to the modelled
+uptake of cycling at area, desire line and
+route network levels under different
+scenarios of the future. Policy relevant
+scenarios include meeting national or local
+targets, the potential uptake if people in the
+study area cycled as much as the Dutch do
+or the impact of electric bikes on people's
+willingness to cycle longer distances. ([see Get Britain Cycling article](http://getbritaincycling.net/wp-content/uploads/2016/05/Get-Britain-Cycling_2016.pdf), 2016)
+
+The tool aims to help prioritise **where** interventions are most needed based on where cyclable trips are most common
 
 ## Live demo of the PCT
 
@@ -57,25 +71,30 @@ Disjointed networks
 knitr::include_graphics("../figures/prop20-top.png")
 ```
 
-Source: @lovelace_energy_2014.
+Source: PhD Thesis "The Energy Costs of Commuting" (Lovelace, 2014).
 
 ## The PCT team
 
-A diverse bunch
-
-- James Woodcock (Cambridge University, Health Modelling)
-- Anna Goodman (LSHTM, Statistics)
-- Rachel Aldred (Westminster, Sociology, Transport Inequalities)
-- Robin Lovelace (University of Leeds, Geography, Environmental Science)
-- Ali Abbas (University of Cambridge, Computer Science)
-- Alvaro Ullrich (University of Cambridge, Data Management)
-- Nikolai Berkoff (Independent Developer)
+- James Woodcock (Principal Investigator, Cambridge University)
+- Anna Goodman (Lead Data Analyst, LSHTM)
+- Rachel Aldred (Implementation Lead, Westminster University)
+- Robin Lovelace (Lead Developer, University of Leeds)
+- Ali Abbas (User Interface, University of Cambridge)
+- Alvaro Ullrich (Data Management, University of Cambridge)
+- Nikolai Berkoff (System Architecture, Independent Developer)
 
 ## How it works
 
 See @lovelace_propensity_2015 for details
 
 ![](../figures/coventry-centroids-4pres.png)
+
+## How it works II | It depends on trip distances
+
+```{r, echo=FALSE, out.width = '50%', fig.cap="Modal share of trips made by cycling for English commutes in West Yorkshire (left) and Oxfordshire (right) currently and under 4 scenarios of change.", fig.show='hold'}
+knitr::include_graphics(c("../figures/dd-west-yorks.png", "../figures/dd-ox.png"))
+```
+
 
 ## Route allocation
 
@@ -139,15 +158,17 @@ knitr::include_graphics("../figures/rivers.png")
 
 > - Strategic network planning
 > - Public engagement
-> - 'Visioning' [@tight_visions_2011]
-> - Estimating health benefits of uptake
+> - 'Visioning' 
+> - Estimating health and carbon benefits of uptake
+> - Overlay demand for cycling with supply of safe infrastructure, e.g. to inform Local Cycling and Walking Infrastructure Plans (LCWIP) (credit: Adrian Lord)
+> - Providing ready made mappable data (via data download)
 
 ## With further work
 
 > - Creating local builds and informing local targets and 
 > - Modelling impacts of new developments
-> - Crowd-sourced transport planning
-> - A global PCT
+> - Crowd-sourced transport planning (e.g. by integrating data from 'citizens as sensors' and Cycling Environment Assessment Tool)
+> - A global PCT?
 
 ## Another example use: are 'fast' routes 'quiet'?
 
@@ -157,6 +178,13 @@ Which cities are these? What's the difference?
 knitr::include_graphics(c("../figures/rf-lei.png", "../figures/fq-cam.png"))
 ```
 
+## What about validation? 
+
+```{r, echo=FALSE, out.width="60%"}
+knitr::include_graphics("../figures/pct-vs-strava-for-leeds.png")
+```
+
+Source: Lovelace and Whittle (in press)
 
 ## In summary...
 
@@ -176,7 +204,19 @@ knitr::include_graphics("../figures/leicester.png")
 
 ## Thanks for listening!
 
-See `@robinlovelace` online for more
+- Thanks to the institutions behind the PCT team: Universities of Cambridge, Leeds and Westminster.
+
+- The PCT was delivered in partnership with Brook Lyndhurst (Phase I) and Atkins (Phase II).
+
+- Thanks to CycleStreets.net and everyone who has contributed
+
+- Thanks to the Department for Transport for funding and especially to Shane Snow for commissioning the tool, and for support and feedback.
+
+- See `@robinlovelace` for updates from me!
+
+## References
+
+Lovelace, Robin. 2016. "Mapping out the future of cycling." Get Britain Cycling, 2016. P. 22 - 24. Available from [getbritaincycling.net](http://getbritaincycling.net/)
 
 <!-- [arxiv.org/abs/1509.04425](http://arxiv.org/abs/1509.04425) -->
 
