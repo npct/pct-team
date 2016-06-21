@@ -11,10 +11,10 @@ car0 <-read.csv('C:/temp/Manchester_Traffic_data/0-L0_level/0_CarOD.csv',header=
 colnames(car0)
 head(car0)
 
-
+#total sum(car0$DemandN) for G.M. region: 3.8M (people)
 #check commuter demand before processing: subset for commuters (UserClass==1)
 car0comm <- subset(x = car0,UserClass==1)
-sum(car0comm$DemandN)   #real commuters demand (rates have been adjusted)~ 600K
+sum(car0comm$DemandN)   #real commuters demand (rates have been adjusted)~ 600 K (people)
 head(car0comm)
 tail(car0comm)
 rm(car0,car0comm)
@@ -25,8 +25,8 @@ rm(car0,car0comm)
 car1 <-read.csv('C:/temp/Manchester_Traffic_data/1-Filter95/L1_Car_95.csv',header=T,as.is = T)
 colnames(car1)
 head(car1)
-sum(car1$SumOfDemandN)       #demand 0.95 ~ 3.64 M
-
+sum(car1$SumOfDemandN)       #demand 0.95 ~ 3.64 M (95%)
+rm(car1)                     #just checking 95% demand before DB processing
 
 ############# CAR TRAFFIC: L3 GENERATION FROM L2 (Car traffic processing)
 carfile <- 'C:/temp/Manchester_Traffic_data/2-L2_L3_level/L2_Car_MSOA.csv'

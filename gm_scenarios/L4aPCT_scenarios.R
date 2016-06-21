@@ -1,14 +1,34 @@
-
 #setup 
 rm(list=ls())
 
 library("readstata13")
 library(dplyr)
 library(data.table)
-library(taRifx)
+#library(taRifx)
+
+pass_aggregate <- function  (var1, byconcept, oper) {
+   
+#byconcept <- as.character(byconcept)
+if (length(byconcept)==1) {  
+   agg <- aggregate(var1, by=list(l[[byconcept ]]),FUN=oper, na.rm=T )
+   colnames(agg) <- c(byconcept, 'x')   
+   l <- inner_join(l, agg, by=byconcept)
+   }
+
+if (length(byconcept)==2) {  
+   agg <- aggregate(var1, by=list(l[,byconcept[1]], l[,byconcept[2]]),FUN=oper, na.rm=T )
+   colnames(agg) <- c(byconcept[1], byconcept[2], 'x')
+   l <- inner_join(l, agg, by=c(byconcept[1], byconcept[2]))
+      }
+
+
+#assign result
+return(l$x)
+   }
+
 
 #read flow file (from private data)
-l <- read.csv('./Input/l_scenariosGM.csv', as.is=T, header=T)
+l <- read.csv('./Input/l_scenariosGM.csv', as.is=T, header=T)   #read from  ../3-Rds
 
 #RENAMES v1..v14 to FINAL NAMES
 l <- dplyr::rename(.data = l,   home_msoa = v1,
@@ -27,14 +47,18 @@ l <- dplyr::rename(.data = l,   home_msoa = v1,
                                     other = v14     )
 
 
+## SECTION 2
+
 #read mortality + add 3 cols. (from private data)
 mortality <- read.dta13('./Input/mortrate_msoa.dta')    #test w. .CSV if .dta not 100% OK
 colnames(mortality)[1] <- 'home_msoa'
-l <-inner_join(l,mortality, by='home_msoa')
+mortality <-mortality[, c(1:4)]
+l <-inner_join(l,mortality, by=c('home_msoa'))
 rm(mortality)
 
 #add cyclestreet variables: dist, dist_fast, av_slope (from private data)
 cyclestreet <- read.dta13('./Input/cyclestreets_speedhilliness.dta')
+cyclestreet <- cyclestreet[,1:7]
 l <- left_join(l, cyclestreet[, -c(3, 4)], by=c('home_msoa', 'work_msoa'))  
 l[is.na(l)] <- 0         #replace NA from missing cyclestreet routes
 rm(cyclestreet)
@@ -58,51 +82,52 @@ l$flowtype[ l$worktemp=="E" & l$dist_fast>=30 ] <- 4    #long distance commuters
 
 summary(l$flowtype[which(l$hometemp=="E" & l$work_msoa!="OD0000001")] )    #compare w. Stata
 
+#start of various aggregations
 #REPLACE 'all' & 'other' by their sum by OD
-l$all <- aggregate(l$all, by=list(l$home_msoa, l$work_msoa), FUN=sum)
-l$other <- aggregate(l$other, by=list(l$home_msoa, l$work_msoa), FUN=sum, na.rm=T)
-l$all <- l$all$x
-l$other <- l$other$x
+l$all <- pass_aggregate(l$all, c('home_msoa', 'work_msoa'), sum)
+l$other <- pass_aggregate(l$other, c('home_msoa', 'work_msoa'), sum)
+
 
 #del temp cols.
 drops <- c('hometemp','worktemp')
 l <- l[, !names(l) %in% drops]
 
-#duplicates drop : all entries with same cols. (probably none in GM)
+#duplicates drop : all entries with same cols. (none in GM !!)
 l <- l[!duplicated(l),]
 
 
 #read sex ratio file
 msoa_sex <- read.dta13("./Input/msoa_t2w_sex_GM.dta")
+msoa_sex <- msoa_sex[, 1:9]
 l <- inner_join(l,msoa_sex,by=c('home_msoa', 'work_msoa'))
 
 sum((l$allcom_male+  l$allcom_female)!= l$all)  #check 
 
 #order by home_msoa_names & work_msoa_name
-l <- sort(l,f=~ home_msoa_name + home_la_name)   #library(taRifx)
-# l <- l[with(l,order=c(home_msoa_name,home_la_name)), ]  #A.G. uses also work_msoa
+l <- arrange(l, home_msoa_name, home_la_name)
 
 l <-l[ l$work_msoa!="OD0000001",]
-l$hometemp <- substr(l$home_msoa,start = 1, stop = 1)     #picks first letter
-l <- l[l$hometemp=='E',]   #subset only to people in England (not needed for GM layer)
+l$hometemp <- substr(l$home_msoa, start = 1, stop = 1)     #picks first letter
+l <- l[l$hometemp=='E',]   #subset only to people in England (all for GM layer)
 
 
 #################
 ## STEP 1: COLLAPSE TYPE 4 FLOWS TO 'OTHER'
 #################	
 # COLLAPSE ALL OUT-OF-SCOPE FLOWS TO 'OTHER' (2 of 2)
-
 l$work_msoa[l$flowtype==4] <-    'other'
 
-#these lines probably not needed for G.M layer
-l$all <- aggregate(l$all, by=list(l$home_msoa, l$work_msoa), FUN=sum, na.rm=T)
-l$all <- l$all$x
-l$other <- aggregate(l$other, by=list(l$home_msoa, l$work_msoa), FUN=sum, na.rm=T)
-l$other <- l$other$x
-l$allcom_male  <-  aggregate(l$allcom_male, by=list(l$home_msoa, l$work_msoa), FUN=sum, na.rm=T)
-l$allcom_male  <-  l$allcom_male$x
-l$bicycle_female <- aggregate(l$allcom_male, by=list(l$home_msoa, l$work_msoa), FUN=sum, na.rm=T)
-l$bicycle_female <- l$bicycle_female$x
+#these lines not needed for G.M layer
+l$all <- pass_aggregate(l$all, c('home_msoa', 'work_msoa'), sum)
+l$other <- pass_aggregate(l$other, c('home_msoa', 'work_msoa'), sum)
+
+
+l$allcom_male <- pass_aggregate(l$allcom_male, c('home_msoa', 'work_msoa'), sum)
+l$bicycle_female <- pass_aggregate(l$bicycle_female, c('home_msoa', 'work_msoa'), sum)
+
+#remove operational cols.
+# drops <- grep(pattern ='agg_',x = names(l),fixed = T)
+# l <- l[, -drops]
 
 l$dist[l$work_msoa=='other'] <- NA     
 l$dist_fast[l$work_msoa=='other'] <- NA
@@ -117,27 +142,23 @@ l <- l[!duplicated(l),]
 ## ASSIGN HILLINESS + DISTANCE VALUES IF START AND END IN SAME PLACE
 #by home_msoa (dist_fast), sort: gen littlen=_n
 
-# l <- l[with(l, order(home_msoa, dist_fast)),  ]
-#l <- sort(l, by=~home_msoa+dist_fast )
 #l <- transform(l, Sequence=ave(seq_along(littlen), home_msoa,dist_fast, FUN=seq_along))
 
 l <- arrange(l, home_msoa, dist_fast)
-l$littlen <- with(l, ave(rep(1, nrow(l)), l$home_msoa, l$dist_fast,  FUN = seq_along))
+l$littlen <- with(l, ave(rep(1, nrow(l)), l$home_msoa, l$dist_fast,  FUN = seq_along))  #for GM: mostly 1's
 
-#check this & following lines
+#check following lines
 l$dist_fasttemp <-l$dist_fast
 l$avslope_perctemp <- l$avslope_perc
 l$dist_fasttemp[l$littlegen > 3] <- NA
 l$avslope_perctemp [l$littlegen > 3] <- NA
 l$dist_fasttemp[is.na(l$dist_fasttemp)] <- 0 #??
 
-l$dist_fasttemp2 <-NA
-l$dist_fasttemp2 <- aggregate(l$dist_fasttemp, by=list(l$home_msoa),FUN=mean,na.rm=T)
-l$dist_fasttemp2 <-l$dist_fasttemp2$x
+l$dist_fasttemp2 <- NA  #check if NEEDED
+l$dist_fasttemp2 <- pass_aggregate(l$dist_fasttemp, 'home_msoa', mean)
 
-l$avslope_perctemp2 <-NA
-l$avslope_perctemp2 <- aggregate(l$avslope_perctemp, by=list(l$home_msoa),FUN=mean,na.rm=T)
-l$avslope_perctemp2 <-l$avslope_perctemp2$x
+l$avslope_perctemp2 <- NA
+l$avslope_perctemp2 <- pass_aggregate(l$avslope_perctemp, 'home_msoa', mean)
 
 l$dist_fasttemp[l$flowtype==2 & is.na(l$dist_fast)]        <-  l$dist_fasttemp2
 l$avslope_perctemp [ l$flowtype==2 & is.na(l$avslope_perctemp) ]   <- l$avslope_perctemp2
@@ -152,7 +173,10 @@ l$avslope_perc[l$home_msoa=='E02006781' &l$work_msoa=='E02006781'] = 0.2
 
 ###get rid of temp columns
 #altern: regex
-l <- l[,-c('littlen', 'dist_fasttemp', 'dist_fasttemp2', 'avslope_perctemp', 'avslope_perctemp2')]
+drops <- grep(pattern ='temp',x =names(l)  )    ##WATCH OUT !!!!! hometemp col. ALSO deleted
+n <- which(names(l)=='littlen')
+drops <- c(n, drops)
+l <- l[,-drops]
 
        
 ## ASSIGN DISTANCE AMONG CYCLISTS VALUES IF NO FIXED PLACE : MEAN DIST AMONG CYCLISTS TRAVELLING <15KM
@@ -160,48 +184,54 @@ l$cycdist_fast <- l$dist_fast
 l$dist_fast15  <- l$dist_fast30 <- l$dist_fast
 l$bicycle15 <- l$bicycle30 <- l$bicycle
 
-if (l$dist_fast>15 | l$flowtype>2) {l$dist_fast15 <- NA}
-if (l$dist_fast>30 | l$flowtype>2) {l$dist_fast30 <- NA}
+l$dist_fast15[l$dist_fast>15 | l$flowtype>2] <- NA
+l$dist_fast30 [l$dist_fast>30 | l$flowtype>2] <- NA
+
 
 l$bicycle15 [is.na(l$dist_fast15)] <- NA
 l$bicycle30 [is.na(l$dist_fast30)] <- NA
 
 
-l$numndist_fast15   <- aggregate(x = (l$dist_fast15 * l$bicycle15), by=list(l$home_msoa),FUN=sum,na.rm=T)
-l$numndist_fast15   <- l$numndist_fast15$x
-l$dendist_fast15   <- aggregate(x = l$bicycle15, by=list(l$home_msoa),FUN=sum(),na.rm=T)
-l$dendist_fast15   <- l$dendist_fast15$x
+l$numndist_fast15 <- pass_aggregate(l$dist_fast15 * l$bicycle15, 'home_msoa', sum)
 
-l$meandist_fast15 <-       l$numndist_fast15  /   l$dendist_fast15
+
+l$dendist_fast15  <- pass_aggregate(l$bicycle15, 'home_msoa', sum)
+
+
+l$meandist_fast15 <- l$numndist_fast15  /   l$dendist_fast15
 l$cycdist_fast[l$flowtype==3 ]    <-  l$meandist_fast15 
 #OK
 
 ## ASSIGN DISTANCE VALUES IF OVERSEAS OR >30KM: MEAN DIST AMONG CYCLISTS TRAVELLING <30KM
-l$numndist_fast30   <-  sum(l$dist_fast30 * l$bicycle30)
-l$dendist_fast30    <-  sum(l$bicycle30)
+
+# watch out l$dist_fast30, l$bicycle30 *have* NAs
+l$numndist_fast30   <-  sum(l$dist_fast30[!is.na(l$dist_fast30)] * l$bicycle30[!is.na(l$bicycle30)] )
+l$dendist_fast30    <-  sum(l$bicycle30[!is.na(l$bicycle30)] )
 l$meandist_fast30   <-   l$numndist_fast30/ l$dendist_fast30
 
 l$cycdist_fast[l$flowtype==4]    <-  l$meandist_fast30
 #OK
 
-#add new columns
-l <-cbind.data.frame(l, dist_fastmissing=NA, cycdist_fastmissing= NA)
+#add new columns -- clarify w. Anna
+l$dist_fastmissing <- l$dist_fast
+l$cycdist_fastmissing <- l$cycdist_fast
 
 l$dist_fastmissing[is.na(l$dist_fast)] <- NA
-l$cycdist_fastmissing [is.na(cycdist_fast) ] <- NA
+l$cycdist_fastmissing [is.na(l$cycdist_fast) ] <- NA
 
-summary(l$dist_fastmissing)
-summary(l$cycdist_fastmissing)
+# table(l$flowtype)
+# table(l$cycdist_fastmissing)
 
+#this needs to be ommited in R, otherwise you lose key cols like allcom_female ?
 #KEEP RELEVANT VARIABLES --TO FIT INDIVIDUAL MODEL
-l <-l[,c('home_msoa', 'work_msoa', 'home_msoa_name', 'all-other', 'flowtype',
-         'allcom_male', 'bicycle_female', 'mortrate_govtarget', 'mortrate_gendereq',
-         'mortrate_dutch', 'dist', 'dist_fast', 'avslope_perc', 'cycdist_fast')]
+# l <-l[,c('home_msoa', 'work_msoa', 'home_msoa_name', 'all', 'other', 'flowtype',
+#          'allcom_male', 'bicycle_female', 'mortrate_govtarget', 'mortrate_gendereq',
+#          'mortrate_dutch', 'dist', 'dist_fast', 'avslope_perc', 'cycdist_fast')]
 
-saveRDS(object =l[, c('home_msoa','cycdist_fastmissing')],file="./Output/MSOA_ODpairs_process2.1.Rds")
+saveRDS(object =l[, c('home_msoa','cycdist_fast')],file="./Output/MSOA_ODpairs_process2.1.Rds")
 
-#OK
 
+#########
 
 ####### STEP 3A:    CALCULATE PROPENSITY to CYCLE
 
@@ -240,22 +270,24 @@ l$pred_base [l$flowtype!=1 & l$flowtype!=2] <- l$bdutch[l$flowtype!=1 & l$flowty
 ############
 # all temp thing
 ############
+l$nummeanpred_base <-  l$nummeanbdutch     <- l$nummeanbebike <- 0
+cond <- l$flowtype!=1 & l$flowtype!=2
+l$nummeanpred_base[cond] <-  l$nummeanbdutch[cond] <- l$nummeanbebike [cond] <- NA
 
-l$nummeanpred_base  <- aggregate(l$pred_base*l$all, by=list(l$home_msoa), FUN=sum, na.rm=T)
-l$nummeanbdutch     <- aggregate(l$bdutch * l$all, by=list(l$home_msoa), FUN=sum, na.rm=T)
-l$nummeanbebike     <- aggregate(l$bebike * l$all, by=list(l$home_msoa), FUN=sum, na.rm=T)
+l$nummeanpred_base <-  pass_aggregate(l$pred_base*l$all, 'home_msoa', sum)
+l$nummeanbdutch     <- pass_aggregate(l$bdutch * l$all, 'home_msoa', sum)
+l$nummeanbebike     <- pass_aggregate(l$bebike * l$all, 'home_msoa', sum )
 
 
-l$denmeanpred_base  <- aggregate(l$all, by=list(l$home_msoa), FUN=sum, na.rm=T)
-l$denmeanbdutch     <- aggregate( l$all, by=list(l$home_msoa), FUN=sum, na.rm=T)
-l$denmeanbebike     <- aggregate( l$all, by=list(l$home_msoa), FUN=sum, na.rm=T)
+x <-  pass_aggregate(l$all, 'home_msoa', sum)
+l$denmeanpred_base  <- l$denmeanbdutch     <- l$denmeanbebike     <- x
+
 
 l$meanpred_base  <- l$nummeanpred_base / l$denmeanpred_base
 l$meanbdutch     <- l$nummeanbdutch  / l$denmeanbdutch
 l$meanbebike     <- l$nummeanbebike  / l$denmeanbebike
 
-l <- l[, -c(nummeanpred_base,nummeanbdutch,nummeanbebike,denmeanpred_base, denmeanbdutch,denmeanbebike)]
-#l <-l[, -grep(pattern =(nummean|denmean),x =names(l) )]   #alternative 
+l <-l[, -grep(pattern =('nummean|denmean'),x =names(l) )]   #alternative 
 
 l$meanpred_basesq   <-     l$meanpred_base^2
 l$meanpred_basesqrt <-     l$meanpred_base^0.5
@@ -277,8 +309,10 @@ l$pred_ebike [l$flowtype==3] <- l$pred2_ebike[which(l$flowtype==3)]
 
 #delete pred2 cols.
 l <- l[,-grep(pattern='pred2',x = names(l))]   #check
-
-
+drops <- c('dist_fastsq' ,'dist_fastsqrt' ,'ned_avslope_perc' ,'interact' ,
+           'interactsqrt' ,'meanpred_base' ,'bdutch' ,'bebike' ,'meanbdutch',
+           'meanbebike' ,'meanpred_basesq' ,'meanpred_basesqrt')
+l <- l[, !(names(l) %in% drops)]
 
 ########################################
 ## PART 3B: APPLY SCENARIOS TO MSOA DATA
@@ -310,6 +344,7 @@ l$ebike_slc  <- l$pred_ebike * l$all
 l$dutch_slc[l$dutch_slc >  l$all  & !is.na(l$dutch_slc) ]  <-    l$all  #max. is 100%
 l$ebike_slc[l$ebike_slc >  l$all  & !is.na(l$ebike_slc) ]    <-  l$all 
 
+#check NAS in this line
 l$dutch_slc[l$dutch_slc <  l$bicycle ]  <-    l$bicycle  #min  IS BASELINE
 l$ebike_slc[l$ebike_slc <  l$bicycle ]    <-  l$bicycle
 
@@ -347,21 +382,24 @@ l$nocyclists_sid = l$nocyclists_sld -  l$car_driver
 
 
 for (x in c('govtarget','gendereq', 'dutch','ebike') ) {
-    
+   
+    l[[paste0('pchange_',x)]] <- NA
     l[[paste0('pchange_',x)]] = l$all - l[[paste0(x,'_slc')]] / (l$all - l$bicycle)
     
-    if (l$all==l$bicycle)  { l[[paste0('pchange_',x)]] = 1 }
+    l[l$all==l$bicycle, paste0('pchange_',x)] = 1 
     
     l[[paste0(x,'_slw')]] = l$foot * l[[paste0('pchange_',x)]]
     l[[paste0(x,'_siw')]] = l[[paste0(x,'_slw')]] - l$foot
     l[[paste0(x,'_sld')]] = l$car_driver  * l[[paste0('pchange_',x)]]
     l[[paste0(x,'_sid')]] = l[[paste0(x,'_sld')]] - l$car_driver
-                                    }
+
+                                        }
 
 # order `x'_slw `x'_siw `x'_sld `x'_sid, after(`x'_sic)
 
 ## DROP INTERMEDIARY VARIABLES
-l <- l[, -c('pred_base', 'pred_dutch', 'pred_ebike', 'pchange_nocyclists', 'pchange_govtarget', 'pchange_gendereq', 'pchange_dutch', 'pchange_ebike')]
+drops <- c('pred_base', 'pred_dutch', 'pred_ebike', 'pchange_nocyclists', 'pchange_govtarget', 'pchange_gendereq', 'pchange_dutch', 'pchange_ebike')
+l <- l[, !names(l) %in% drops]
 
 #################
 ## STEP 4: DO HEAT
@@ -374,13 +412,19 @@ wspeed  <-  4.8
 ebikespeed  <-  15.8
 ebikemetreduction  <-  0.648
 
-percentebike_dutch <- switch(min(l$cycdist_fast)<=l$cycdist_fast<=4.9999999,0.06, 5<=l$cycdist_fast<=9.9999999,0.11,
-                               10<=l$cycdist_fast <=19.999999, 0.17,20<= l$cycdist_fast< max(l$cycdist_fast),0.23)
+l$percentebike_dutch <- l$percentebike_ebike <- NA
+l$percentebike_dutch [min(l$cycdist_fast)<=l$cycdist_fast & l$cycdist_fast<4.9999999] <- 0.06
+l$percentebike_dutch [5<=l$cycdist_fast & l$cycdist_fast < 9.9999999] <-                  0.11
+l$percentebike_dutch [10<=l$cycdist_fast  & l$cycdist_fast <=19.999999 ] <-               0.17
+l$percentebike_dutch [20<= l$cycdist_fast    & l$cycdist_fast< max(l$cycdist_fast) ] <-   0.23
 
-percentebike_ebike <- switch(min(l$cycdist_fast)<=l$cycdist_fast<=4.9999999, 0.71, 5<=l$cycdist_fast<= 19.9999999,0.92,
-                               20<= l$cycdist_fast<=max(l$cycdist_fast), 1)
 
-#check ALL are constants??
+l$percentebike_ebike [min(l$cycdist_fast)<=l$cycdist_fast & l$cycdist_fast <4.9999999] <- 0.71
+l$percentebike_ebike [5 <=l$cycdist_fast & l$cycdist_fast< 19.9999999]       <-           0.92
+l$percentebike_ebike [20<= l$cycdist_fast  & l$cycdist_fast< max(l$cycdist_fast) ]   <-   1
+
+
+#check ALL constants??
 crr_webtag <- 0.72
 crr_heat <- 0.9 
 cdur_ref_webtag <- 180
@@ -395,7 +439,9 @@ vsl <- 1855315		# VALUE IN POUNDS
 
 # DURATION OF CYCLING/WALKING
 
-# TIME CYCLING PER DAY min. AMONG NEW CYCLISTS
+# TIME CYCLING PER DAY min. AMONG NEW CYCLISTS  -- CHECK WHY l$cycdist_fast is missing
+l$cdur_obs  <- l$cdur_obs_dutch <- l$cdur_obs_ebike <- l$wdur_obs  <-  NA
+
 l$cdur_obs  <-  60 * ((l$cycdist_fast * cyclecommute_tripspertypicalweek)/ l$cspeed)
 l$cdur_obs_dutch <- ((1-l$percentebike_dutch) * l$cdur_obs)+(l$percentebike_dutch * l$cdur_obs * ebikemetreduction * (cspeed/ ebikespeed))
 l$cdur_obs_ebike <- ((1-l$percentebike_ebike) * l$cdur_obs)+(l$percentebike_ebike * l$cdur_obs * ebikemetreduction * (cspeed / ebikespeed))
@@ -407,25 +453,27 @@ l$wdur_obs  <-  60 * ((l$cycdist_fast  * cyclecommute_tripspertypicalweek) / wsp
 
 
 # MORTALITY PROTECTION
-## this needs a loop and df[[paste0(,)]]
+## alternative: loop 
 
 #var <-paste0(cprotection_govtarget,z)    # SCALE RR DEPENDING ON HOW DURATION IN THIS POP COMPARES TO REF
-cprotection_govtarget_webtag= (1-crr_webtag) * (cdur_obs/cdur_ref_webtag)	
-cprotection_nocyclists_webtag=cprotection_govtarget_webtag
-cprotection_gendereq_webtag=cprotection_govtarget_webtag
-cprotection_dutch_webtag= (1-crr_webtag) * (cdur_obs_dutch/cdur_ref_webtag)
-cprotection_ebike_webtag= (1-crr_webtag) * (cdur_obs_ebike/cdur_ref_webtag)
+l$cprotection_govtarget_webtag <- (1-crr_webtag) * (l$cdur_obs/cdur_ref_webtag)	
+l$cprotection_nocyclists_webtag <- l$cprotection_govtarget_webtag
 
-cprotection_govtarget_heat= (1-crr_heat) * (cdur_obs/cdur_ref_heat)	
-cprotection_nocyclists_heat=cprotection_govtarget_heat
-cprotection_gendereq_heat=cprotection_govtarget_heat
-cprotection_dutch_heat= (1-crr_heat) * (cdur_obs_dutch/cdur_ref_heat)
-cprotection_ebike_heat= (1-crr_heat) * (cdur_obs_ebike/cdur_ref_heat)
+l$cprotection_gendereq_webtag <- l$cprotection_govtarget_webtag
+l$cprotection_dutch_webtag <-  (1-crr_webtag) * (l$cdur_obs_dutch / cdur_ref_webtag)
+l$cprotection_ebike_webtag <- (1-crr_webtag) * (l$cdur_obs_ebike / cdur_ref_webtag)
 
+l$cprotection_govtarget_heat <- (1-crr_heat) * (l$cdur_obs / cdur_ref_heat)	
+l$cprotection_nocyclists_heat <- l$cprotection_govtarget_heat
+l$cprotection_gendereq_heat <- l$cprotection_govtarget_heat
+l$cprotection_dutch_heat= (1-crr_heat) * (l$cdur_obs_dutch / cdur_ref_heat)
+l$cprotection_ebike_heat= (1-crr_heat) * (l$cdur_obs_ebike /cdur_ref_heat)
 
-
+##ERROR  !!
 cols <- grep(pattern ='nocyclists|govtarget |gendereq |dutch| ebike',x = names(l))
-if (l[,cols] >0.45)  {l[, cols] <- 0.45}
+sel <- l[ , cols]>0.45
+l [sel, cols ]  <- 0.45
+
 
 l$wprotection_webtag <-  (1- wrr_webtag) * (l$wdur_obs/  wdur_ref_webtag)
 l$wprotection_heat <-  (1- wrr_heat) * (l$wdur_obs/ wdur_ref_heat) 
@@ -443,20 +491,19 @@ target3 <- c('govtarget','gendereq','dutch','ebike')
 for (z in target1) {
 
     for (x in target2) {
-    
-    l[[paste0(x,'_sic_death_',z)]]  = -1 * l[[paste0(x,'_sic')]]  * l[[paste0('mortrate_',x) ]] 
-        * l[[paste0('cprotection_',x,'_',z)]] 
-    
-    l[[paste0(x,'_siw_death_',z)]]  = -1 * l[[paste0(x,'_siw')]] * l[[paste0('mortrate_',x) ]] 
-    * l[[paste0('cprotection_', x,'_',z)]] 
-    
-    l[[paste0(x,'_sideath_',z)]]  =  l[[paste0(x,'_sic_death_')]] + l[[paste0(x,'_siw_death_',z) ]] 
- 
-    l[[paste0(x,'_sivalue_',z)]]  = -1 * l[[paste0(x,'_sideath_',z)]] * vsl   #long ommited!
-    
-    
- #drop `x'_sic_death_`z' `x'_siw_death_`z'
-    }
+          
+          l[[paste0(x,'_sic_death_',z)]]  <- -1 * l[[paste0(x,'_sic')]]  * l[[paste0('mortrate_',x) ]]* l[[paste0('cprotection_',x,'_',z)]] 
+          
+          l[[paste0(x,'_siw_death_',z)]]  <- -1 * l[[paste0(x,'_siw')]] * l[[paste0('mortrate_',x) ]] * l[[paste0('cprotection_', x,'_',z)]] 
+          
+         # sideath MISSING !!
+          l[[paste0(x,'_sideath_',z)]]  <-  l[[paste0(x,'_sic_death_')]] + l[[paste0(x,'_siw_death_',z) ]] 
+       
+          l[[paste0(x,'_sivalue_',z)]]  <- -1 * l[[paste0(x,'_sideath_',z)]] * vsl   #long ommited!
+          
+          
+       #drop `x'_sic_death_`z' `x'_siw_death_`z'
+                           } #for x
     
 l[[paste0('base_sldeath_',z)]]  <- -1 * l[[paste0(nocyclists,'_sideath_',z )]]	
 # BASELINE LEVEL IS INVERSE OF 'NO CYCLISTS' SCENARIO
@@ -464,19 +511,20 @@ l[[paste0('base_sldeath_',z)]]  <- -1 * l[[paste0(nocyclists,'_sideath_',z )]]
 l[[paste0(base,'_slvalue_', z) ]] <- -1 * l[[paste0(nocyclists,'_sivalue_l', z)  ]]			
 
 
-for (x in target3)  {
-    l[[x,'_sldeath_' , z]]  = l[[x,'_sideath_' , z]] + l[['base_sldeath_' , z]]  
-    l[[x,'_slvalue_' , z]] = l[[x,'_sivalue_' , z]] + l[['base_slvalue_', z]]
- 
-#order `x'_sideath_`z' `x'_sivalue_`z', after(`x'_slvalue_`z')
-                    }
+         for (x in target3)  {
+         l[[x,'_sldeath_' , z]]  = l[[x,'_sideath_' , z]] + l[['base_sldeath_' , z]]  
+         l[[x,'_slvalue_' , z]] = l[[x,'_sivalue_' , z]] + l[['base_slvalue_', z]]
+         
+         #order `x'_sideath_`z' `x'_sivalue_`z', after(`x'_slvalue_`z')
+                       }#for x
 
-}  #for z
+               }  #for z
 
 # DROP INTERMEDIARY VARIABLES
+drops <- c('mortrate_govtarget', 'mortrate_gendereq', 'mortrate_dutch', 'cyclecommute_tripspertypicalweek', 'wprotection_heat',
+           'nocyclists_sideath_webtag', 'nocyclists_sivalue_webtag', 'nocyclists_sideath_heat', 'nocyclists_sivalue_heat')
 
-l <- l[ , -c('mortrate_govtarget', 'mortrate_gendereq', 'mortrate_dutch', 'cyclecommute_tripspertypicalweek', 'wprotection_heat',
-'nocyclists_sideath_webtag', 'nocyclists_sivalue_webtag', 'nocyclists_sideath_heat', 'nocyclists_sivalue_heat')]
+l <- l[ , !names(l) %in% drops]
 
 
 #################
@@ -488,26 +536,25 @@ co2kg_km  <- 0.186
 
 target <- c('nocyclists','govtarget', 'gendereq', 'dutch', 'ebike')
 
-for (x in target) { 
-l[[paste0(x,'_sico2')]] <- l[[x,'_sid']] * l$cycdist_fast * 
-cyclecommute_tripsperweek * 52.2 * co2kg_km 	# NO CYCLISTS *DIST * COMMUTE PER DAY * CO2 EMISSIONS FACToR
-                    }
+for (x in target)    { 
+      l[[paste0(x,'_sico2')]] <- l[[x,'_sid']] * l$cycdist_fast * 
+      cyclecommute_tripsperweek * 52.2 * co2kg_km 	# NO CYCLISTS *DIST * COMMUTE PER DAY * CO2 EMISSIONS FACToR
+                     }
 
-l$base_slco2 <- -1 * l$nocyclists_sico2	## BASELINE LEVEL IS INVERSE OF 'NO CYCLISTS' SCENARIO INCREASE
+      l$base_slco2 <- -1 * l$nocyclists_sico2	## BASELINE LEVEL IS INVERSE OF 'NO CYCLISTS' SCENARIO INCREASE
 
 
-target <-target[-1]  #amend list
+   target <-target[-1]  #amend list
 
 for (x in target) {
     l[[x,'_slco2']]<- l[[x, '_sico2']] + l$base_slco2
 
-#order `x'_sico2 , after(`x'_slco2)
-}
+   #order `x'_sico2 , after(`x'_slco2)
+                  }
 
 #drop columns
-l <- l[,  -c('nocyclists', 'cyclecommute_tripsperweek', 'co2kg_km', 'cycdist_fast')]
-
-
+drops <- c('nocyclists', 'cyclecommute_tripsperweek', 'co2kg_km', 'cycdist_fast')
+l <- l[ , !names %in% drops]
 
 #################
 ## FINISH: SAVE TEMPORARY DATASET, PRE-AGGREGATION
@@ -523,6 +570,8 @@ saveRDS(l,file='./Output/MSOA_ODpairs_process2.5.Rds')
 # AGGREGATE UP AREA FIGURES
 
 target <-c('all', ' other', ' govtarget_slc', 'ebike_sico2')
+
+###########  ADAPT TO pass_aggregate function
 
 for (x in target)  {
                 l[[paste0('a_', x)]] <- aggregate(l[[x]], by=home_msoa,FUN=sum, na.rm=T) 
@@ -582,7 +631,7 @@ if (l$work_msoa=="OD0000003" | l$work_msoa=="other")  {
     l$msoa1=l$home_msoa
     l$msoa2=l$work_msoa             } 
     
-
+########## CHECK FUNCTION !!!!!!!!!
 # AGGREGATE UP FLOW FIGURES                       =======>  LOOOOOOONGEST OF ALL !!!
 for  (x in  c(all, other, govtarget_slc, ebike_sico2)  )  {
 
@@ -613,9 +662,9 @@ target2 <- expand.grid(x,z)
 target3 <- expand.grid(x,'co2')
 
 #set appropriate rounding per var
-l[[target1]] <- round(l[target1],digits =5)
-l[[target2]] <- round(l[target1],digits =1)
-l[[target3]] <- round(l[target1],digits = 2)
+l[[target1]] <- round(l[target1], digits =5)
+l[[target2]] <- round(l[target1], digits =1)
+l[[target3]] <- round(l[target1], digits = 2)
 
 saveRDS(l,"./Output/pct_lines_v1.Rds")
 #it seems library("readstata13") does not always reads .dta files correctly, getting extra 'attr' rows 

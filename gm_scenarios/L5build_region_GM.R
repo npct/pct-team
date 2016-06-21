@@ -1,10 +1,17 @@
+setwd('V:/Group/GitHub/pct-load')
 source("set-up.R") # load packages needed
+
+# ms_simplify gives Error: RangeError: Maximum call stack size exceeded
+# for large objects.  Turning the repair off fixed it...
+too_large <- function(to_save, max_size = 5.6){ format(object.size(to_save), units = 'Mb') > max_size }
 
 # Create default LA name if none exists
 start_time <- Sys.time() # for timing the script
 
 region <-'greater-manchester-NC'
 #aud: if(!exists("region")) region <- "cambridgeshire"
+
+
 
 #main folders/scenarios
 pct_data <- file.path("..", "pct-data")
@@ -40,8 +47,8 @@ centsa <- readOGR(file.path(pct_bigdata, "cents-scenarios_GM.geojson"), "OGRGeoJ
 #   centsa <- readOGR(file.path(pct_bigdata, "cents-scenarios.geojson"), "OGRGeoJSON")
 centsa$geo_code <- as.character(centsa$geo_code)
 
-#aud: 
-source('shared_build_GM.R')
+#aud: run this script --->
+source('L5shared_build_GM.R')
 
 # select msoas of interest
 if(proj4string(region_shape) != proj4string(centsa))
@@ -50,7 +57,7 @@ cents <- centsa[region_shape,]
 zones <- ukmsoas[ukmsoas@data$geo_code %in% cents$geo_code, ]
 
 # load flow dataset, depending on availability
-flow_nat <- readRDS(file = '//me-filer1/home$/au232/My Documents/1.CEDAR/3_Studies !!/28-DfT2.0/4-Manchester/1-Model OD data DFT2.0/modelODdata~/3-Rds/l1.Rds')
+flow_nat <- readRDS(file = '//me-filer1/home$/au232/My Documents/1.CEDAR/3_Studies !!/28-DfT2.0/4-Manchester/1-Model OD data DFT2.0/modelODdata~/3-Rds/l.Rds')
 
 ##aud:  if(!exists("flow_nat"))
 #   flow_nat <- readRDS(file.path(pct_bigdata, "pct_lines_oneway_shapes.Rds"))
@@ -58,26 +65,34 @@ flow_nat <- readRDS(file = '//me-filer1/home$/au232/My Documents/1.CEDAR/3_Studi
 
 ##aud:  if(!exists("rf_nat"))
 #   rf_nat <- readRDS(file.path(pct_bigdata, "rf.Rds"))
-rf_nat <- readRDS(file = 'V:/Group/GitHub/pct-data/greater-manchester-NC/rf.Rds')
-rq_nat <- readRDS(file = 'V:/Group/GitHub/pct-data/greater-manchester-NC/rq.Rds')
+
+if(!exists("rf_nat"))
+   rf_nat <- readRDS(file.path(pct_bigdata, "rf.Rds"))
+if(!exists("rq_nat"))
+   rq_nat <- readRDS(file.path(pct_bigdata, "rq.Rds"))
 
 ##aud:  if(!exists("rq_nat"))
 #   rq_nat <- readRDS(file.path(pct_bigdata, "rq.Rds"))
 # Subset by zones in the study area
 o <- flow_nat$Area.of.residence %in% cents$geo_code
 d <- flow_nat$Area.of.workplace %in% cents$geo_code
-flow <- flow_nat[o & d, ] # subset OD pairs with o and d in study area
+flow <- flow_nat[o & d, ] # only OD pairs with o and d in study area
 params$n_flow_region <- nrow(flow)
 params$n_commutes_region <- sum(flow$All)
 
 # Subset lines
 # subset OD pairs by n. people using it
-params$sel_long <- flow$All > params$mflow & flow$dist < params$mdist
-params$sel_short <- flow$dist < params$max_all_dist & flow$All > params$mflow_short
+#AUD:
+# params$sel_long <- flow$All > params$mflow & flow$dist < params$mdist
+# params$sel_short <- flow$dist < params$max_all_dist & flow$All > params$mflow_short
+
+ params$sel_long <- flow$All > params$mflow 
+ params$sel_short <- flow$All > params$mflow_short
+
 sel <- params$sel_long | params$sel_short
 flow <- flow[sel, ]
 # summary(flow$dist)
-# l <- od2line(flow = flow, zones = cents)
+#l <- od2line(flow = flow, zones = cents)
 l <- flow
 
 # add geo_label of the lines
@@ -119,27 +134,39 @@ if(length(rft) == length(rf)){
 } else print("Error: toptailed lines do not match lines")
 rft$Bicycle <- l$Bicycle
 
+
 # Simplify line geometries (if mapshaper is available)
 # this greatly speeds up the build (due to calls to overline)
 # needs mapshaper installed and available to system():
 # see https://github.com/mbloch/mapshaper/wiki/
-rft <- ms_simplify(rft, keep = 0.06)
+rft_too_large <-  too_large(rft)
+
+# Simplify line geometries (if mapshaper is available)
+# this greatly speeds up the build (due to calls to overline)
+# needs mapshaper installed and available to system():
+# see https://github.com/mbloch/mapshaper/wiki/
+
+rft <- ms_simplify(rft, keep = 0.06, no_repair = rft_too_large)
+if (rft_too_large){
+  file.create(file.path(pct_data, region, "rft_too_large"))
+}
+
 rnet <- overline(rft, "Bicycle")
 
 if(require(foreach) & require(doParallel)){
   cl <- makeCluster(parallel:::detectCores())
   registerDoParallel(cl)
   # foreach::getDoParWorkers()
-    # create list in parallel
-    rft_data_list <- foreach(i = scens) %dopar% {
-      rft@data[i] <- l@data[i]
-      rnet_tmp <- stplanr::overline(rft, i)
-      rnet_tmp@data[i]
-    }
-    # save the results back into rnet with normal for loop
-    for(j in seq_along(scens)){
-      rnet@data <- cbind(rnet@data, rft_data_list[[j]])
-    }
+  # create list in parallel
+  rft_data_list <- foreach(i = scens) %dopar% {
+    rft@data[i] <- l@data[i]
+    rnet_tmp <- stplanr::overline(rft, i)
+    rnet_tmp@data[i]
+  }
+  # save the results back into rnet with normal for loop
+  for(j in seq_along(scens)){
+    rnet@data <- cbind(rnet@data, rft_data_list[[j]])
+  }
 } else {
   for(i in scens){
     rft@data[i] <- l@data[i]
@@ -148,6 +175,7 @@ if(require(foreach) & require(doParallel)){
     rft@data[i] <- NULL
   }
 }
+rm(rft)
 
 # # Add maximum amount of interzone flow to rnet
 # create line midpoints (sp::over does not work with lines it seems)
@@ -162,10 +190,10 @@ for(i in c("Bicycle", scens)){
   rnet@data = cbind(rnet@data, over(rnet_cents, zones[nm]))
   zones@data[nm] = NULL
 }
+rm(rnet_osgb, rnet_cents)
 
 # Are the lines contained by a single zone?
-gtest = gContains(zones, rnet, byid = TRUE)
-rnet$Singlezone = rowSums(gtest)
+rnet$Singlezone = rowSums(gContains(zones, rnet, byid = TRUE))
 rnet@data[rnet$Singlezone == 0, grep(pattern = "upto", names(rnet))] = NA
 
 if(!"gendereq_slc" %in% scens)
@@ -194,22 +222,48 @@ cents@data <- left_join(cents@data, zones@data)
 
 # Remove NAN numbers (cause issues with geojson_write)
 na_cols  <- which(names(zones) %in%
-  c("av_distance", "cirquity", "distq_f", "base_olcarusers", "gendereq_slc", "gendereq_sic"))
+                    c("av_distance", "cirquity", "distq_f", "base_olcarusers", "gendereq_slc", "gendereq_sic"))
 for(ii in na_cols){
   zones@data[[ii]][is.nan(zones@data[[ii]])] <- NA
 }
 
 # # Save objects
 # Save objects # uncomment these lines to save model output
-saveRDS(zones, file.path(pct_data, region, "z.Rds"))
-geojson_write( ms_simplify(zones, keep = 0.1), file = file.path(pct_data, region, "z"))
+save_formats <- function(to_save, name = F){
+  if (name == F){
+    name <- substitute(to_save)
+  }
+  saveRDS(to_save, file.path(pct_data, region, paste0(name, ".Rds")))
+  
+  # Simplify data checked with before and after using:
+  # plot(l$gendereq_sideath_webtag)
+  to_save@data <- round_df(to_save@data, 5)
+  
+  # Simplify geom
+  geojson_write( ms_simplify(to_save, keep = 0.1, no_repair = too_large(to_save)), file = file.path(pct_data, region, name))
+  write.csv(to_save@data, file.path(pct_data, region, paste0(name, ".csv")))
+}
+
+round_df <- function(df, digits) {
+  nums <- vapply(df, is.numeric, FUN.VALUE = logical(1))
+  
+  df[,nums] <- round(df[,nums], digits = digits)
+  
+  (df)
+}
+
+save_formats(zones, 'z')
+rm(zones)
+save_formats(l)
+rm(l)
+save_formats(rf)
+rm(rf)
+save_formats(rq)
+rm(rq)
+save_formats(rnet)
+rm(rnet)
+
 saveRDS(cents, file.path(pct_data, region, "c.Rds"))
-saveRDS(l, file.path(pct_data, region, "l.Rds"))
-saveRDS(rf, file.path(pct_data, region, "rf.Rds"))
-saveRDS(rq, file.path(pct_data, region, "rq.Rds"))
-saveRDS(rnet, file.path(pct_data, region, "rnet.Rds"))
-write.csv(x = l@data, file.path(pct_data, region, "line-data.csv"))
-write.csv(zones@data, file.path(pct_data, region, "area-data.csv"))
 
 # gather params
 params$nrow_flow = nrow(flow)
@@ -224,12 +278,14 @@ saveRDS(params, file.path(pct_data, region, "params.Rds"))
 file.copy("build_region.R", file.path(pct_data, region, "build_region.R"))
 
 # Create folder in shiny app folder
-region_dir <- file.path(file.path(pct_shiny_regions, region))
-dir.create(region_dir)
-ui_text <- 'source("../../ui-base.R", local = T, chdir = T)'
-server_text <- paste0('startingCity <- "', region, '"/n',
-                      'shinyRoot <- file.path("..", "..")/n',
-                      'source(file.path(shinyRoot, "server-base.R"), local = T)')
-write(ui_text, file = file.path(region_dir, "ui.R"))
-write(server_text, file = file.path(region_dir, "server.R"))
-if(!file.exists( file.path(region_dir, "www"))){ file.symlink(file.path("..", "..","www"), region_dir) }
+#aud: CHECK, not sure all this crashes Ali's code
+# region_dir <- file.path(file.path(pct_shiny_regions, region))
+# dir.create(region_dir)
+# ui_text <- 'source("../../ui-base.R", local = T, chdir = T)'
+# server_text <- paste0('starting_city <- "', region, '"\n',
+#                       'shiny_root <- file.path("..", "..")\n',
+#                       'source(file.path(shiny_root, "server-base.R"), local = T)')
+# write(ui_text, file = file.path(region_dir, "ui.R"))
+# write(server_text, file = file.path(region_dir, "server.R"))
+# if(!file.exists( file.path(region_dir, "www"))){ file.symlink(file.path("..", "..","www"), region_dir) }
+

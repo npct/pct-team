@@ -47,7 +47,7 @@ gm.od3$FootGM <- gm.od3$FootGM - gm.od3$CycleGM  #adjusts
 ########### PREPARE for SCENARIOS GENERATION
 l <- gm.od3[,1:7]
 
-#gm.od3.Rds contains the no. of cyclists per each GM flow (intraflows included)
+#gm.od3.Rds contains the no. of cyclists per each GM flow (intraflows included?)
 saveRDS(gm.od3,file.choose())     #gm.od3.Rds
 rm(gm.od3)
 
@@ -68,7 +68,7 @@ l <- l[,c(1:3,13,4,14,5:12)]
 namesl <-paste0('v',c(1:14))
 colnames(l) <-namesl
 save.dta13(l, file.choose())    #save as l_scenariosGM.dta
-write.csv(l,file.choose(),row.names = F) #save as 'l_scenarios.csv'
+write.csv(l,file.choose(),row.names = F) #save as 'l_scenariosGM.csv'
 
 ## FOR REFERENCE next section: Columns meaning
 #     home_msoa = v1
@@ -87,6 +87,7 @@ write.csv(l,file.choose(),row.names = F) #save as 'l_scenarios.csv'
 #     other = v14
 
 
+#this is needed to run scenarios (and is not in GM layer)
 ########## add msoa male/female %perc to msoa_t2w_sex.dta (m/f ratios & m/f cyclist ratios)
 td1 <-read.dta13(file.choose())    # <msoa_t2w_sex.dta>  [2.314 M x 9]
 
@@ -100,7 +101,7 @@ td$maleperc <-td$allcom_male/(td$allcom_male+td$allcom_female)
 td$femaleperc <-td$allcom_female/(td$allcom_male+td$allcom_female)
 
 
-#add m/f cycling ratios to FLOWS WITH enough cyclists
+#add m/f cycling ratios to FLOWS WITH enough cyclists (>5 people cycling)
 target <- which((td$bicycle_male!=0 | td$bicycle_female!=0)& (td$bicycle_male + td$bicycle_female>5))
 td$malecyc[target] <- td$bicycle_male[target]/(td$bicycle_male[target]+ td$bicycle_female[target])
 td$femalecyc[target] <- td$bicycle_female[target]/(td$bicycle_male[target]+ td$bicycle_female[target])
@@ -121,11 +122,11 @@ td$bicycle_female <- td$v12 - td$bicycle_male
 
 #sex ratio for GM MSOAs
 td <-td[,1:9]
-save.dta13(td, file.choose())        #save as <msoa_t2w_sex_GM.dta>
-#write.csv(td,file.choose(),col.names = T,row.names = F)   #OR save <msoa_t2w_sex_v1.csv>, then convert .dta
+save.dta13(td, file.choose())        #save as <msoa_t2w_sex_GM.dta> in ./GM folder
+#write.csv(td,file.choose(),row.names = F)   #OR save <msoa_t2w_sex_GM.csv>, then convert .dta
 
 
-#### ----------------> run Anna's scenarios
+#### ----------------> run ANNA's SCENARIOS  !!!
 #
 #produces 1: pct_lines_GM.dta
 #         2: pct_areas_GM.dta ..........  (layer for Greater Manchester)
@@ -142,13 +143,16 @@ save.dta13(td, file.choose())        #save as <msoa_t2w_sex_GM.dta>
 pct <-read.csv(file.choose(),header = T,as.is = T)      #read <pct_lines_GM.dta>
 pct <-pct[pct$msoa2!='other', ]
 colnames(pct)[1:2] <-c('Area.of.residence','Area.of.workplace')
-pct <- pct[pct$all!=0, ]
+pct <- pct[pct$all!=0, ]  #most lines are null
 pct <-cbind.data.frame(id=(paste(pct$Area.of.residence,pct$Area.of.workplace, sep=' ')),pct)
+pct$id <- as.character( pct$id)
+
 
 #keeping only same flows as PCT (optional)
 path <-'V:/Group/GitHub/pct-bigdata/'
 flow_nat <- readRDS(file.path(path,'pct_lines_oneway_shapes.Rds'))  
-pct <-inner_join(pct,flow_nat@data[,c(2,3,83,84)])    #6531
+pct <-inner_join(pct,flow_nat@data[,c(2,3,83,84)])    # adds cols.: Rail, dist
+
 
 #match PCT colnames (as most are uppercase)
 pct <- dplyr::rename(.data = pct, All=all,
@@ -165,7 +169,7 @@ pct <- dplyr::rename(.data = pct, All=all,
 #colnames(pct)[4:14] <- c( "All","light_rail","Train","Bus","Taxi","Motorbike","Car_driver","Car_passenger","Bicycle","Foot","Other")
 #read c.Rds
 pathGM <- 'V:/Group/GitHub/pct-data/greater-manchester/all-trips/'  #before w/o: -NC
-c <-readRDS(file.path(pathGM,'c.Rds'))   #c.Rds generated from build_region.R
+c <-readRDS(file.path(pathGM,'c.Rds'))   #c.Rds generated from L5_build_region_GM.R
 
 
 ###ADD DISTANCE FROM flow_nat
@@ -175,8 +179,8 @@ c <-readRDS(file.path(pathGM,'c.Rds'))   #c.Rds generated from build_region.R
 l <- od2line(pct,c)
 
 #cols. 4-14 if you have col. "id", 3:13 otherwise
-l <- onewayid(l, attrib = c(3:13), id1 ='Area.of.residence', id2 = 'Area.of.workplace' )
-#l <- onewayid(l, attrib = c(4:14), id1 ='Area.of.residence', id2 = 'Area.of.workplace' )
+#l <- onewayid(l, attrib = c(3:13), id1 ='Area.of.residence', id2 = 'Area.of.workplace' )
+l <- onewayid(l, attrib = c(4:14), id1 ='Area.of.residence', id2 = 'Area.of.workplace' )
 
 saveRDS(l,file.choose())    #save as l.rDS in pathGM
 write.csv(l, file.choose(),row.names = F) #NEEDED!!: csv does NOT contain garbage, dta DOES
@@ -185,7 +189,7 @@ write.csv(l, file.choose(),row.names = F) #NEEDED!!: csv does NOT contain garbag
 
 #NORM. STEP 3:   read pct_areas file -> produce z.Rds
 #pct <-read.dta13(file.choose())        #pct_lines_GM.dta, the flows file
-pctzones <-read.csv(file.choose(),header = T, as.is = T)
+pctzones <-read.csv(file.choose(),header = T, as.is = T)   
 pctzones <- pctzones[pctzones$all!=0, ]
 
 pctzones <- dplyr::rename(.data = pctzones,
