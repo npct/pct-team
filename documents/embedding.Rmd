@@ -10,12 +10,12 @@ bibliography: references.bib
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 # This is from the group 'energy-and-transport': https://www.zotero.org/groups/energy-and-transport/
-bib = httr::GET("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", httr::write_disk("references.bib", overwrite = T))
+# bib = httr::GET("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", httr::write_disk("references.bib", overwrite = T))
 ```
 
 # Abstract {-}
 
-The humble bicycle, alongside its family-friendly siblings such the tricycle, tandem and cargo bike, is an effective means of transport for millions of people worldwide. Recent studies suggest that this most efficient of modes has the potential to transform urban transport systems worldwide, to make them healthier, cleaner and more socially equitable. Building on this evidence, political attention and funding has been allocated towards increasing the proportion of trips that are cycled in an increasing number cities and countries. However, cycling is still marginalised from the mainstream discipline and practice of transport planning, preventing it from being taken seriously in the majority of transport planning institutions. This paper explores this issue, with the aim of identifying opportunities for embedding cycling in the discipline and practice of transport planning. A brief review of the history helps understand this marginalisation and suggests organisational restructuring could be an effective way to ensure that active travel receives the attention and resources it deserves. Recent developments create less politically disruptive opportunities for embedding walking and cycling in transport planning, including innovative 'soft infrastructure' products, open source digital tools, and new technologies for monitoring and evaluation. Taking these opportunities at every stage of the transport planning process will help make active travel central to the discipline and practice of transport planning.
+Cycling is already an effective means of transport for millions of people worldwide. In the future, evidence suggests that a shift to cycling as the main mode for short trips could transform urban transport systems, making them healthier, cleaner and more socially equitable. Building on academic evidence, political attention and funding has been allocated to encourage cycling many cities and countries. However, cycling is still marginalised in many transport planning institutions. This paper explores this issue, with the aim of identifying opportunities for embedding cycling at every stage of the planning process. A brief review of the history of transport planning illuminates this marginalisation, and suggests institutional restructuring may be needed to ensure active travel is taken seriously. Less politically disruptive opportunities for embedding cycling are also explored. These include innovative 'soft infrastructure' products, open source digital tools, and new technologies for monitoring and evaluation. We conclude that these opportunities must be taken at every stage of the transport planning process for active travel to become central to the discipline.
 
 # Introduction
 
@@ -29,6 +29,17 @@ cyrefs = cr_works(query = "Bicycle", limit = 20, filter = f)
 cdf = cyrefs$data
 ```
 
+It is well-known that the transport systems currently in operation in the majority of settlements across the world are not conducive to environmental sustainability or human health. Much has been written about this problem [e.g. @rouse_energy:_1975;@peake_transport_1994;@han_assessment_2008]. Many remedies have been proposed in the academic literature [e.g. @wang_strategic_2013;@raux_transport_2010;@cuenot_prospect_2012]. Yet such high-level evidence-based recommendations have seldom been implemented in practice. Perhaps part of the reason for this research-policy mismatch is that the research is not directed towards transport planning professionals, who can influence local decisions but not national or regional policies. There has been little work on how transport planning can contribute to the solution, at a more local level.
+
+The focus of this paper is on potential solutions related to one change that can improve the environmental and health outcomes of transport, active travel, from the perspective of transport planning. Sustainability has become a prominent concern in transport studies overall [@schwanen_scientific_2011] and transport planning specifically [@banister_sustainable_2008], but rarely is this discussed in relation to active transport modes specifically. Moreover, the valuable insights that *have* been written-up in the literature been slow to translate into actual policy changes, it they are taken into account at all.
+
+UK transport policy provides an example of the disconnect between the *discipline* of transport planning and its *practice*: despite decades of evidence [e.g. @goodwin_transport_1991] and a letter signed by 32 leading transport academics urging him not to [@millward_professors_2013], George Osborne announced a large increase in the budget allocated to roads (£15 billion over the next 5 years, amounting to over £50 per person per year) while cutting central government funding for cycling (to £0.3 billion or less than £2 per person per year) [@upfold_cycling_2016].
+This example illustrates the wider point that transport research often fails to filter into policy *at all*, let alone at the rapid pace needed to mitigate the worst impacts of systems currently in place. This paper's dual focus on transport planning as an academic discipline *and* a vocational practice is designed to the address the dissonance between research and practice.
+
+But why focus on active modes? In the transport planning literature there has been much written about sustainability but less focus on active modes specifically, despite strong evidence on the ability of these modes to deliver health and environmental benefits *simultaneously* at low cost. This unique mix of 'co-benefits' from of active travel is something that 'techno fixes' are unable to provide, especially in an age of austerity and finite resources. Electric cars, for example, are in fact coal-fired cars when driven in the majority of countries where this most polluting of energy sources has yet to be phased out and cannot deliver the health benefits of walking and cycling. Bus rapid transit schemes, to provide another example, encourage walking (at least to the bus stops) but have been found to be costly financially and in terms of local air pollution when powered by internal combustion engines, as most are.
+
+ 
+
 The marginalisation of walking and cycling in transport planning has led to work seeking to tackle this imbalance, between the importance of the modes for a sustainable future and the amount of attention they receive. One of the most cogent and widely cited papers in this area is @pucher_making_2008, who use evidence from three countries where a high (10% or more) proportion of trips are made by cycling to illustrate the kinds of policies that make cycling 'irresistable', with a focus on policies in these nations rather than the transport planning *process* which is emphasised in the present paper. Beyond cycling being acknowledged as an important mode in central government (a factor over which most planners have limited control), @pucher_making_2008 found that subtle factors (beyond simply building segregregated cycle paths everywhere) played an important role in making cycling an attractive option. These include investment in and management of cycle parking facilities; good integration with public transport; cycle training for all children and extensive training of car drivers; *strict liability* (a legal device which uses a hierarchy of assumed responsibility whereby the larger and more dangerous vehicle is assumed to be responsible for road traffic casualties until proven otherwise); and a range of measures to discourage car dependency in urban areas.
 
 
@@ -38,10 +49,11 @@ Recognising that mode choice is personal decision, and sometimes underestimating
 
 In their *tour de force* of the history of transport modelling, @boyce_forecasting_2015 demonstrate that the field emerged in a very specific, and one could say unusual, context: the explosive growth of suburbia and car dependency in the USA. Despite the fact that the transport needs of society, perceived and real, have progressed substantially beyond the accomodation of endless growth in car use, this historical legacy still exerts an enormous influence over transport models and the practice of transport planning. Although the question it is clear that the intentions of these early modellers were admirable, it is clear that the outcomes --- a predict and provide paradigm leading to decades of grid-lock, pollution and road traffic casualties --- were sub-optimal. It is revealing to note that cycling is barely mentioned in @boyce_forecasting_2015. If history is written by the winners, the car is undoubtedly the winning mode of transport in the history of transport planning.
 
+The informal acronym SLOPE (space left over after planning ends) has been used to describe the reasons underlying the physical marginalisation of cycling infrastructure on the transport network.
 
 The previous has been more recent 
 
-# The beginnings of a new transport paradigm?
+## The beginnings of a new paradigm?
 
 @banister_sustainable_2008 suggested that the current transport planning paradigm was not conducive to delivering sustainable policies. To remedy this situation a series of reforms were suggested...
 
@@ -53,15 +65,48 @@ Transport planning is not a linear process. It is iterative. The insights gleane
 knitr::include_graphics(c("../figures/stages.png"))
 ```
 
-It should be noted that the structure of this section was also influenced by @gallagher_planning_2014, who provide guidlines on planning for cycling. The report begins with the observation that cycling was a major mode of transport in the UK but has been 'neglected' by practitioners since the proliferation of cars in the 1950s and progresses to outline opportunities for embedding cycling in the following areas of transport planning practice: the regulatory context in which transport planning operates; strategic transport plans; the design of new transport networks and routes and the promotion of behavioural change. These suggestions are freely accessible to practitioners and the public, thanks to the Chartered Institution of Highways & Transportation, who commissioned the report and upladed the it on their website [ciht.org.uk](http://www.ciht.org.uk/en/media-centre/news/index.cfm/ciht-launches-new-planning-for-cycling-guidelines).
+It should be noted that the structure of this section was also influenced by @gallagher_planning_2014, who provide guidlines on planning for cycling. The report begins with the observation that cycling was a major mode of transport in the UK but has been 'neglected' by practitioners since the proliferation of cars in the 1950s and progresses to outline opportunities for embedding cycling in the following areas of transport planning practice: the regulatory context in which transport planning operates; strategic transport plans; the design of new transport networks and routes and the promotion of behavioural change. These suggestions are freely accessible to practitioners and the public, thanks to the Chartered Institution of Highways & Transportation, who commissioned the report and upladed the it on their website [ciht.org.uk](http://www.ciht.org.uk/en/media-centre/news/index.cfm/ciht-launches-new-planning-for-cycling-guidelines). The guidelines in @gallagher_planning_2014 are not repeated here. Instead, the section extends and generalises their recommendations that relate to the wider planning process, rather than those related to cycling interventions only.
 
-The guidelines in @gallagher_planning_2014 are not repeated here. Instead, the section extends and generalises their recommendations that relate to the wider planning process, rather than those related to cycling interventions only.
+Transport planning does not take place inside a vacuum but within a dynamic and often highly politicised institutional context. This is tacitly acknowledged by @ortuzar_modelling_2001, who put "formulation of the problem" at the beginning of their 8 stages. But how does the formulation occur? Often the 'framing' of the problem is a result of the institutional structures. For this reason this aspect of transport planning is discussed before the the other stages.
 
-Transport planning and the transport sector overall has traditionally been seen as an objective realm, where numbers speak louder than words. However, there are many ways to take human factors into account in transport planning, as described by @deegan_planning_2011.
+## Institutional structures
+
+## Data collection and analysis
+
+<!-- 'If you measure something it has value'. Or simlar quote. -->
+
+Transport planning and the transport sector overall has traditionally been seen as an objective realm, where numbers speak louder than words. However, there are many ways to take human factors into account in transport planning, as described by @deegan_planning_2011. The authors developed a systematic approach for incorporating local knowledge into cycle network plans, to assist practitioners deal with the complexity of options available. Although modelling tools have advanced since the method was implemented (as described in the next section), there is no doubt that allowing space for community input can greatly enhance the design of pro-cycling interventions. During the course of the project, over 200 studies were conducted resulting in more than 2000 specific recommendations.
+
+Undertaken between 2005 and 2007, before the term Big Data became widely used, @deegan_planning_2011 represents a form of crowd-sourced data, from some of the best informed residents of the local area. Additional advantages of this 'stakeholder led' approach include the engagement and 'buy-in' of the local community into new schemes before they are constructed, and the assurance that planners will visit the site in question, cycling. Incorporating human factors into the data collection process, as demonstrated in practice by @deegan_planning_2011, thus represents a major opportunity for embedding cycling at an early stage in the planning process.
+
+## Modelling
+
+Transport modelling was developed in largely in response to the policy question of how to accomodate for future increases car use [@boyce_forecasting_2015]. Due largely to this historical context, cycling has "generally been ignored in ... traffic management modelling and scheme implementation" [@deegan_planning_2011]. However, with the increased interest in cycling over the past few years, there have been efforts to better account for cycling in transport models. This provides a powerful opportunity for embedding cycling more firmly in transport planning. Models can have a large impact on real world outcomes, as the decision making process is heavily reliant on model results [@hollander_who_2015]. Making models that are better suited to the needs of cycling infrastructure and policy design therefore represents a major opportunity for embedding the mode at one of the earliest stages in the transport planning process. Before outlining these opportunities, it's worth mentioning four specific problems with current transport models. 
+
+First, many transport models simply do not represent cycling as a distinct mode. There are models that group cycling and walking together into a single mode, greatly reducing their ability to generate realistic results for either mode. This is partly because cycles are difficult to represent on the road network: they are not constrained by the same rules that define where cars can and cannot go. (Cycles can be carried up stairs for example, something that is impossible for cars.)
+
+Second, 
+
+
+
+A recent development in the UK context, but which has the potential to scale internationally is the Propensity to Cycle Tool (PCT), funded by the UK's Department for Transport @lovelace_propensity_2016.
+
+@payne_removing_2014
+
+@transport_for_london_analysis_2010
+
+@larsen_build_2013
+
+A recurring cricism of transport models is that they are 'black boxes' [@saujot_making_2016]. 
+
+
+## Implementation
 
 @melia_urban_2015 used the term 'filtered permeability' to refer to small interventions that can make cycling more attractive than driving in urban areas.
 
-@lovelace_propensity_2016
+## Monitoring and evaluation
+
+## Public engagement
 
 # Conclusion
 
