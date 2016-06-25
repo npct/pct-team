@@ -1,6 +1,21 @@
+library(DiagrammeR)
+
+n = c("Data collection and analysis", "Modelling", "Implementation", "Monitoring and evaluation", "Public engagement")
+n = create_nodes(1:5, label = n)
+e = create_edges(from = c(1:4, 4), to = c(2:4, 1, 2))
+g = create_graph(nodes_df = n, edges_df = e)
+png(filename = "figures/transport-planning-stages-5.png", width = 600, height = 500)
+render_graph(g)
+dev.off()
+e = create_edges(from = c(1:4, 4, rep(5, 3)), to = c(2:4, 1, 2, 2:4))
+g = create_graph(nodes_df = n, edges_df = e)
+png(filename = "figures/transport-planning-stages.png", width = 600, height = 500)
+pdf(file = "figures/transport-planning-stages.pdf")
+render_graph(g)
+dev.off()
+
 # Aim: create a schematic diagram of how the PCT can be used
 
-library(DiagrammeR)
 
 
 n = create_nodes(nodes = 1:4,

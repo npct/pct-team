@@ -1,0 +1,191 @@
+---
+title: "The case for open source software in transport modelling"
+author: "Robin Lovelace, University of Leeds. Slides: [rpubs](http://rpubs.com/RobinLovelace)."
+date: "UCL, `r Sys.Date()`, London, UK." 
+output:
+  # beamer_presentation: 
+  #   fonttheme: professionalfonts
+  #   highlight: pygments
+  #   theme: Madrid
+    # toc: yes
+  ioslides_presentation:
+    transition: slower
+    widescreen: true
+    toc: yes
+logo: ../figures/pct-logo.png
+bibliography: ../documents/references.bib
+---
+
+```{r, echo=FALSE, include=FALSE}
+# runtime: shiny
+pkgs <- c("grid", "png", "knitr")
+lapply(pkgs, library, character.only = T)
+opts_chunk$set(echo = FALSE)
+```
+
+## Structure of the talk
+
+> - The origins of transport modelling
+
+> - Comments on transport models and transport modelling
+
+> - An open source approach
+
+## A few comments about the word 'radical'
+
+- Derived from the Latin work *radix*, meaning 'root' (source: [Oxford Dictionary](http://www.oxforddictionaries.com/definition/english/radical)) 
+
+> - Implies solving the *cause* of the problem rather than its symptoms
+
+> - What's at the root of the 'transport problem'?
+
+> - Of course it defines how to define problem: 
+   > - Inequality?
+   > - Economics?
+   > - Health?
+   > - Sustainability?
+   > - Climate change?
+
+## Institutional structures | A root cause of the 'problem'
+
+```{r, echo=FALSE, out.width="80%"}
+knitr::include_graphics("../figures/dft-organogram-all.png")
+```
+
+<!-- Even though my talk is about modelling, it is of course takes place in a political context -->
+
+# The origins of transport modelling
+
+## Inspiration for this section | Forecasting urban travel
+
+- Book by @boyce_forecasting_2015
+
+```{r}
+include_graphics("http://www.e-elgar.com/shop/media/catalog/product/cache/1/image/225x/040ec09b1e35df139433887a97daa66f/9/7/9781848449602_4_1.jpg")
+```
+
+## Origins of Transport planning | Credit: Crispin Cooper
+
+```{r, echo=FALSE, out.width="70%"}
+knitr::include_graphics("../figures/sdna-san-fran.png")
+```
+
+## The origins of modelling
+
+> - "urban travel forecasting was definitely 'where the action was' for young transportation engineers and planners entering the field in the 1960s" [@boyce_forecasting_2015, p. 67].
+
+> - heavily restricted by computing power
+
+> - no consideration of walking or cycling
+
+# What's wrong with transport models
+
+## Transport planning tools: expensive...
+
+```{r, echo=FALSE}
+grid.raster(readPNG("../figures/software-costs.png"))
+```
+
+## And potentially dangerous!
+
+![](../figures/holander.png)
+
+Source: [Who will save us from transport models](http://www.ctthink.com/publications.html) (Hollander 2015)
+
+See also work by [Robert Bain](http://ibtta.org/sites/default/files/The%20Reasonableness%20of%20Traffic%20Forecasts.pdf)
+
+## Tools for transport planning I | Source: [Pixton.com](https://www.pixton.com/comic/xya3s212)
+
+```{r, echo=FALSE, out.width="60%"}
+# download.file("https://en.wikipedia.org/wiki/Black_box#/media/File:Blackbox3D-withGraphs.png",
+#               "figures/Blackbox.png", mode = "wb")
+knitr::include_graphics("../figures/Blackbox.png")
+```
+
+> - Are black boxes
+
+<!-- I had quite rant about this last - won't dwell on it too much and will focus on solutions rather than problems -->
+
+## Tools for transport planning II | Source: [openclipart](https://openclipart.org/download/188748/manwithbighammer.svg)
+
+```{r, echo=FALSE, out.width="30%"}
+knitr::include_graphics("https://openclipart.org/download/188748/manwithbighammer.svg")
+```
+
+> - Tools are blunt
+
+## Tools for transport planning III | Source: By James Albert Bonsack (1859 – 1924), [Wikimedia](https://commons.wikimedia.org/w/index.php?curid=1267158)
+
+```{r, echo=FALSE, out.width="50%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Bonsack_machine.png/800px-Bonsack_machine.png")
+```
+
+> - Are sometimes too complex!
+
+> - Implications for others
+
+# An open source approach
+
+## Open source in other sectors
+
+```{r, echo=FALSE, out.height="85%"}
+include_graphics("http://thewindowsclub.thewindowsclubco.netdna-cdn.com/wp-content/uploads/2015/01/How-to-Make-Money-Using-Open-Source-Software.png")
+```
+
+> - We can learn from 'early adopter' sectors
+
+## Community buy-in
+
+```{r, echo=FALSE, out.width="80%"}
+include_graphics("../figures/discussion.png")
+```
+
+
+## Testing many tools | Source: [Camcycle.org](https://www.camcycle.org.uk/blog/2015/10/23/milton-road-elizabeth-way-junction-proposals/)
+
+<iframe allowfullscreen="" frameborder="0" height="375" mozallowfullscreen="" src="https://player.vimeo.com/video/143309697" webkitallowfullscreen="" width="500"></iframe>
+
+## Participatory planning
+
+```{r, echo=FALSE}
+knitr::include_graphics("http://robinlovelace.net/figure/cconnect.png")
+```
+
+## Envisioning shifting travel patterns | Source: Leeds Cycling Campaign
+
+```{r, echo=FALSE}
+knitr::include_graphics("http://leedscyclingcampaign.co.uk/sites/default/files/Residential%20Street%20small_0.jpg")
+```
+
+## Incorporation of new digital technologies
+
+```{r, echo=FALSE}
+knitr::include_graphics("http://images.cdn.stuff.tv/sites/stuff.tv/files/styles/big-image/public/news/see-sense-light.jpg")
+```
+
+## Transport planning is somthing you *do* | Source: @lovelace_propensity_2016
+
+See http://pct.bike/london
+
+[![](https://github.com/npct/pct/raw/master/figures/rnet-leeds-base-to-godutch.png)](https://github.com/npct/pct/raw/master/figures/rnet-leeds-base-to-godutch.png)
+
+
+## Summary
+
+- Transport problems are multi-faceted so 'techno-fixes' are not enough
+- Transport models are close to the root of the problem
+- They were not developed to solve current transport problems
+- Open source software has flourished in other sectors
+- Open source software offers many benefits for transport planners, including:
+    - Encourages community particupation
+    - Reduces costs
+    - Increases collaboration
+    
+> - How do we get there?
+
+## References
+
+Lovelace, Robin. 2016. "Mapping out the future of cycling." Get Britain Cycling, 2016. P. 22 - 24. Available from [getbritaincycling.net](http://getbritaincycling.net/)
+
+<!-- [arxiv.org/abs/1509.04425](http://arxiv.org/abs/1509.04425) -->
+
