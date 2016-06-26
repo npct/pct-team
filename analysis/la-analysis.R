@@ -6,22 +6,22 @@ source("set-up.R")
 # downloader::download("http://census.edina.ac.uk/ukborders/easy_download/prebuilt/shape/England_lad_2011_gen_clipped.tar.gz", destfile = "private-data/")
 # unzip("private-data/Eng")
 
-las <- geojson_read("pct-bigdata/national/las-pcycle.geojson", what = "sp")
-#
-gMapshape("pct-bigdata/national/inf", percent = 5)
-las <- shapefile("private-data/England_lad_2011_gen_clipped.dbf")
+las <- geojson_read("../pct-bigdata/las-pcycle.geojson", what = "sp")
+# #
+# gMapshape("pct-bigdata/national/inf", percent = 5)
+# las <- shapefile("private-data/England_lad_2011_gen_clipped.dbf")
 
-cuas <- shapefile("pct-bigdata/national/cuas.shp")
+cuas <- shapefile("../pct-bigdata/cuas.shp")
 qtm(cuas)
 plot(las)
 qtm(las)
 nrow(las)
 names(las)
 
-ldf <- read_csv("pct-bigdata/national/lattw.csv")
+ldf <- read_csv("../pct-bigdata/lattw.csv")
 
 # link for joining old/new codes
-linkla <- read_csv("pct-bigdata/national/la-old-new.csv", col_types = "icccc")
+linkla <- read_csv("../pct-bigdata/la-old-new.csv", col_types = "icccc")
 head(linkla)
 ldf$geography
 names(ldf)[3] <- "ONS"
