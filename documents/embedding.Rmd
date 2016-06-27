@@ -2,7 +2,7 @@
 title: 'Cycling and transport planning: embedding active travel at every stage of the process'
 author: "Robin Lovelace"
 date: "`r Sys.Date()`"
-output: bookdown::html_document2
+output: bookdown::pdf_document2
 bibliography: references.bib
 ---
 
@@ -88,6 +88,16 @@ It should be noted that the structure of this section was also influenced by @ga
 Transport planning does not take place inside a vacuum but within a dynamic and often highly politicised institutional context. This is tacitly acknowledged by @ortuzar_modelling_2001, who put "formulation of the problem" at the beginning of their 8 stages. But how does the formulation occur? Often the 'framing' of the problem is a result of the institutional structures. For this reason this aspect of transport planning is discussed before the the other stages.
 
 ## Institutional structures
+
+A common problem faced by planners designing for active modes is that transport planning institutions were generally set-up at a time when 'transport planning' was virtually synomymous with 'highway planning'. As outlined in the previous section, cycling and walking were barely considered to be legitimate transport modes at all. Although this is changing, the structure of transport planning organisations has generally not, as government institutions are subject to a high degree of inertia. Figure \@ref(fig:organo) illustrates the point, with a case study of the UK's Department for Transport (DfT). The DfT staff member responsible for cycling is the 'Deputy Director Sustainable Travel and Equalities'. It is interesting to note that their brief also includes oversight of the multi-modal Local Sustainable Transport Fund (LSTF) and its successors, disabilities and equalities agendas, hence the lack of the words 'walking' or 'cycling' in their job description. Despite the breadth of this brief, the 'organogram' depicted in Figure \@ref(fig:organo) shows that the post is a long way down the DfT's managerial hierarchy and must report to 3 other people (the Director of Local Transport, Director General: Roads Traffic and Local, and Director General, Roads, Local and Traffic). Contrasting the lack of mention of 'walk' or 'cycle' against the car-orientated term 'roads' (which is mentioned 5 times in Figure \@ref(fig:organo) and at every level of the DfT's structure) demonstrates the extent to which motorised modes are embedded in the DfT's institutional structure. This suggests there is a huge opportunity for an organisational restructuring to embed walking and cycling into the DfT so that it has an equal or superior status to cars within the institutional hierarchy, mirroring the social importance of active modes.
+
+```{r organo, echo=FALSE, out.width="100%", fig.cap="The organisational structure of the UK's Department for Transport. See http://reference.data.gov.uk/gov-structure/organogram/ for further information."}
+knitr::include_graphics("../figures/dft-organo-web.png")
+```
+
+The DfT provides a clear example of opportunities for embedding active travel in transport planning via institutional restructuring, but the issue is by no means isolated to the national level in the UK. The same issues can be found at the local authority level across the UK, where the Traffic Engineering branches of local and regional councils tend to be higher up institutional hierarchies, and receive more funding, than branches responsible for active modes. Moreover, the same problem is international. The 11 Directors of the US Department of Transport, for example, contain no one responsible for active travel, while security, crisis management and business feature prominently (see
+[www.transportation.gov](https://www.transportation.gov/mission/administrations/intelligence-security-emergency-response/operations-division)).
+Similarly, motorised transport infrastructure such as highways and high-speed rail feature prominently in China's Ministry of Transport, while walking and cycling are absent from the ministry's website (see [www.mot.gov.cn/](http://www.mot.gov.cn/))
 
 ## Data collection
 
