@@ -77,7 +77,7 @@ One could argue that even in the Netherlands, cycling is still marginalised by t
 
 # Opportunities for embedding active travel in the planning process
 
-Transport planning is not a linear process. It is iterative. The insights gleaned from plans that have been implemented should feed back into subsequent plans in a cyclicle process [@ortuzar_modelling_2001]. The transport planning cycle does have an order, however, as illustrated in figure \@ref(fig:stages). These five stages build on the 8 stages described by @ortuzar_modelling_2001, with the four stages they use use to describe modelling (contruction, generation, forecasting and testing) merged into one, and with the addition of public engagement. This addition reflects the shift to more participatory methods in transport planning @banister_sustainable_2008. These stages are useful for thinking about how opportunities to embed active travel travel in transport planning exist at every stage in the process. Note that public engagement is discussed last not because it is the final stage (there is no final stage as the process is cyclicle) but because it relates to all the other stages.
+Transport planning is not a linear process. It is iterative. The insights gleaned from plans that have been implemented should feed back into subsequent plans in a cyclicle process [@ortuzar_modelling_2001]. The transport planning cycle does have an order, however, as illustrated in figure \@ref(fig:stages). These five stages build on the 8 stages described by @ortuzar_modelling_2001, with the four stages they use use to describe modelling (contruction, generation, forecasting and testing) merged into one, and with the addition of public engagement. This addition reflects the shift to more participatory methods in transport planning @banister_sustainable_2008. These stages are useful for thinking about where opportunities to embed active travel travel in transport planning exist within the process. Note that public engagement is discussed last not because it is the final stage (there is no final stage as the process is cyclicle) but because it relates to all the other stages.
 
 ```{r stages, echo=FALSE, out.width="70%", fig.show='hold', fig.align='center', fig.cap="Stages of the transport planning process."}
 knitr::include_graphics(c("../figures/stages.png"))
@@ -101,7 +101,7 @@ Similarly, motorised transport infrastructure such as highways and high-speed ra
 
 ## Data collection
 
-Applied to transport, the saying "measure what you value" suggests that the modes of transport of greatest interest should be monitored most closely. By this measure, cycling is marginalised in most transport contexts: the majority of automated transport data collection devices installed around the world measure motorised traffic. The scale of this problem from a US perspective was outlined by @lindsey_minnesota_2013:
+Applied to transport, the saying "measure what you value" suggests that the modes of transport of greatest interest should be monitored most closely. By this measure, cycling is marginalised in most transport contexts: the majority of automated transport data collection devices installed around the world measure motorised traffic. The scale of this problem from a US perspective was outlined as follows [@lindsey_minnesota_2013]:
 
 "[Transport authorities] have established sophisticated, comprehensive monitoring systems to produce estimates of vehicular traffic on federal, state, and local roads. However, comparable systems for monitoring non-motorized traffic ---
 bicyclists and pedestrians ---
@@ -146,11 +146,14 @@ Transport modelling was developed in largely in response to the policy question 
 
 First, many transport models simply do not represent cycling as a distinct mode. There are models that group cycling and walking together into a single mode, greatly reducing their ability to generate realistic results for either mode. This is partly because cycles are difficult to represent on the road network: they are not constrained by the same rules that define where cars can and cannot go. (Cycles can be carried up stairs for example, something that is impossible for cars.)
 
-<!--' Second,  -->
+Second, many transport models are black boxes. This is not just a problem for active travel: it prevents the transparent and democratic assessment of all options because it prevents the interested citizen or informed academic or politician from reproducing the results. Now that open source software projects are widespread and increasingly used in industry, there is a strong argument to make all publicly funded transport models open source.
+<!-- Add link to your slides here??? -->
+
+Third, many transport models are built on questionable assumptions yet purport to be objective. The UK's National Transport Model (NTM) is an example of this.
 
 
 
-<!--' A recent development in the UK context, but which has the potential to scale internationally is the Propensity to Cycle Tool (PCT), funded by the UK's Department for Transport @lovelace_propensity_2016. -->
+A recent development in the UK context, but which has the potential to scale internationally is the Propensity to Cycle Tool (PCT), funded by the UK's Department for Transport @lovelace_propensity_2016.
 
 <!--' @payne_removing_2014 -->
 
