@@ -149,11 +149,9 @@ First, many transport models simply do not represent cycling as a distinct mode.
 Second, many transport models are black boxes. This is not just a problem for active travel: it prevents the transparent and democratic assessment of all options because it prevents the interested citizen or informed academic or politician from reproducing the results. Now that open source software projects are widespread and increasingly used in industry, there is a strong argument to make all publicly funded transport models open source.
 <!-- Add link to your slides here??? -->
 
-Third, many transport models are built on questionable assumptions yet purport to be objective. The UK's National Transport Model (NTM) is an example of this.
+Third, many transport models are built on questionable assumptions yet purport to be objective. The UK's National Transport Model (NTM), for example, presents a narrow range of scenarios, all of which assume that car dependency will continue and is heavily reliant on the (often unstated) assumption that car use will continue to be closely coupled with economic growth [@chatterjee_planning_2006]. The NTM also has two additional problems with established transport models: it does not represent cycling as a separate mode and it is not open source (making it impossible for interested citizens to check the results).
 
-
-
-A recent development in the UK context, but which has the potential to scale internationally is the Propensity to Cycle Tool (PCT), funded by the UK's Department for Transport @lovelace_propensity_2016.
+To help tackle some of these issue with the lack of national modelling capability for cycling, the DfT commissioned the Propensity to Cycle Tool (PCT) @lovelace_propensity_2016. This at present only works in the UK context, but which has the potential to scale internationally, and represents an opportunity to embed cycling within national transport models. Furthermore, the PCT is completely open source and can be used by the public using an internet browser. The accessibility of the PCT enables transport planners, politicians and campaigners to see the same scenarios and evidence, offering a further opportunity for cycling growth to be embedded in the consciousness of these stakeholders, encouraging informed (rather than ideologically driven) debate. 
 
 <!--' @payne_removing_2014 -->
 
