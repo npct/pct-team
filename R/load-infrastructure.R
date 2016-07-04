@@ -25,3 +25,12 @@ hs22 = readOGR("/tmp/all2.kml", layer = "HS2 phase 2: consultation route")
 mapview(hs22)
 saveRDS(hs22, "input-data/hs22.Rds")
 geojsonio::geojson_write(hs22, file = "input-data/hs22.geojson")
+
+library(tmap)
+names(hs21)
+names(hs22)
+hs22@data = hs22@data[names(hs22) %in% names(hs21)]
+hs2 = sbind(hs21, hs22)
+plot(hs2)
+
+saveRDS(hs2, "input-data/hs2.Rds")
