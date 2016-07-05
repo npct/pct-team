@@ -7,7 +7,7 @@ bibliography: documents/references.bib
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, warning = F)
 pkgs = c("sp", "tmap")
 lapply(pkgs, library, character.only = T)
 ```
@@ -30,9 +30,20 @@ Major transport infrastructure projects are
 
 # Application: the impacts of high speed rail on cycling in the UK
 
-```{r}
+```{r, fig.cap="Overview of the proposed HS2 route, overlaid with a sample of commute desire lines (grey) and all desire lines that cross the proposed route."}
 hs2 = readRDS("input-data/hs2.Rds")
-plot(hs2)
+l = readRDS("../pct-bigdata/pct_lines_oneway_shapes.Rds")
+proj4string(hs2) = proj4string(l)
+l_sev = l[hs2,]
+l_sam = l[sample(nrow(l), 1000),] # work with sample (comment for all)
+# osm_tiles = read_osm(bb(hs2, ext = 1.2))
+# saveRDS(osm_tiles, "input-data/osm_tiles_hs2.Rds")
+osm_tiles = readRDS("input-data/osm_tiles_hs2.Rds")
+qtm(osm_tiles) +
+  qtm(hs2, line.col = "black", line.lwd = 3) +
+  qtm(l_sam, line.col = "grey") +
+  qtm(l_sev)
+# select lines that cross the route
 ```
 
 
