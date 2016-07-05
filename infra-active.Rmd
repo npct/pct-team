@@ -3,12 +3,13 @@ title: 'Assessing the risks and opportunities of major transport infrastructure 
 author: "Robin Lovelace"
 date: "`r Sys.Date()`"
 output: bookdown::html_document2
-bibliography: references.bib
+bibliography: documents/references.bib
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-library(citr)
+pkgs = c("sp", "tmap")
+lapply(pkgs, library, character.only = T)
 ```
 
 # Abstract {-}
@@ -16,16 +17,6 @@ library(citr)
 The impacts of major infrastrucuture pojects on many aspects of life are well established. However, the impacts on other modes of travel, particularly walking and cycling, have been under-explored. The paper sets out to fill this research gap, using Geographic Information Systems (GIS). The method is developed in theoretical terms, focussing on risks of 'severance' and opportunities associated with active travel 'desire lines' that run parallel to proposed routes. Then it is applied to a large scale case study: the planned construction of a high-speed rail network on the UK (HS2). This empirical case study demonstrates that the method is scalable yet able to identify risks and opportunites at local levels, down to road segments, which could guide pro-cycling interventions associated with construction or provide a source of evidence to re-assess the overall impacts of major infrastructure projects.
 
 # Introduction
-
-```{r get-citations, eval=FALSE}
-# Find number of papers referencing cycling in top transport journals over time
-devtools::install_github("ropensci/rcrossref")
-library(rcrossref)
-library(dplyr)
-f = c(type = "journal-article", `container-title` = "Risk Analysis")
-cyrefs = cr_works(query = "Bicycle", limit = 20, filter = f)
-cdf = cyrefs$data
-```
 
 Major transport infrastructure projects are 
 
@@ -38,6 +29,12 @@ Major transport infrastructure projects are
 # Method
 
 # Application: the impacts of high speed rail on cycling in the UK
+
+```{r}
+hs2 = readRDS("input-data/hs2.Rds")
+plot(hs2)
+```
+
 
 # Discussion
 
