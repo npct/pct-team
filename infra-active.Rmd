@@ -30,21 +30,47 @@ Major transport infrastructure projects are
 
 # Application: the impacts of high speed rail on cycling in the UK
 
-```{r, fig.cap="Overview of the proposed HS2 route, overlaid with a sample of commute desire lines (grey) and all desire lines that cross the proposed route."}
+To assess the potential benefits of new crossings for cycling uptake during and after construction of HS2, the method was applied to geographical data about the route and current travel patterns surrounding it. The first stage was to identify all commutes that could potentially be directly affected by the HS2 infrastructure, by selecting all commuter desire lines that pass anywhere within a 20 km buffer. This is illustrated in Figure xx.
+
+```{r}
 hs2 = readRDS("input-data/hs2.Rds")
-l = readRDS("../pct-bigdata/pct_lines_oneway_shapes.Rds")
+l = readRDS("input-data/l_mini.Rds")
 proj4string(hs2) = proj4string(l)
+hs2_buf20 = stplanr::buff_geo(hs2, 20000)
+# l = readRDS("../pct-bigdata/pct_lines_oneway_shapes.Rds")
 l_sev = l[hs2,]
 l_sam = l[sample(nrow(l), 1000),] # work with sample (comment for all)
 # osm_tiles = read_osm(bb(hs2, ext = 1.2))
 # saveRDS(osm_tiles, "input-data/osm_tiles_hs2.Rds")
+l_buf = l[hs2_buf20,]
+osm_tiles = readRDS("input-data/osm_tiles_hs2.Rds")
+qtm(osm_tiles) +
+  qtm(l_buf, line.col = "blue") +
+  qtm(hs2, line.col = "black", line.lwd = 3) +
+  tm_shape(hs2_buf20) +
+  tm_borders(lwd = 4)
+# select lines that cross the route
+
+```
+
+## Cycling potential across the the HS2 route
+
+### Opportunities to reduce severance
+
+
+```{r, fig.cap="Overview of the proposed HS2 route, overlaid with a sample of commute desire lines (grey) and all desire lines that cross the proposed route."}
+
 osm_tiles = readRDS("input-data/osm_tiles_hs2.Rds")
 qtm(osm_tiles) +
   qtm(hs2, line.col = "black", line.lwd = 3) +
-  qtm(l_sam, line.col = "grey") +
+  qtm(l_sam, line.col = "blue") +
   qtm(l_sev)
 # select lines that cross the route
 ```
+
+## Cycling potential parallel to the HS2 route
+
+### Opportunities for cycle paths along the HS2 route
 
 
 # Discussion
