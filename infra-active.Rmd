@@ -76,3 +76,6 @@ qtm(osm_tiles) +
 # Discussion
 
 # References
+
+Ideas:
+<!-- Use a regression mode of distance to transport infrastructure to estimate deterrant of motorways - and therefore how it could be mitigated. Outliers with high cycling relative to road proximity could show how to mitigat negative impact. -->
