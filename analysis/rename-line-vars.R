@@ -25,26 +25,8 @@ names(l_new)[!names(l_new) %in% names(l)]
 nrow(l)
 nrow(l_new)
 
-
 summary(l_new$all) # all lines
 summary(l$All) # much higher average
-
-# rename lines
-l_new <- dplyr::rename(l_new,
-                       Area.of.residence = msoa1,
-                       Area.of.workplace = msoa2,
-                       All = all,
-                       Bicycle = bicycle,
-                       Train = train,
-                       Bus = bus,
-                       Car_driver = car_driver,
-                       Car_passenger = car_passenger,
-                       Foot = foot,
-                       Other = other,
-                       Taxi = taxi,
-                       Motorbike = motorbike,
-                       Other = other
-)
 
 # remove excess columns
 l_new$Rail <- l_new$Train + l_new$light_rail
