@@ -1,8 +1,8 @@
 library(DiagrammeR)
 
-n = c("Data collection and analysis", "Modelling", "Implementation", "Monitoring and evaluation", "Public engagement")
-n = create_nodes(1:5, label = n)
-e = create_edges(from = c(1:4, 4), to = c(2:4, 1, 2))
+n = c("Formulation of the problem", "Data collection and analysis", "Modelling", "Implementation", "Monitoring and evaluation", "Public engagement")
+n = create_nodes(1:6, label = n)
+e = create_edges(from = c(1:5, 5), to = c(2:5, 2, 3))
 g = create_graph(nodes_df = n, edges_df = e)
 png(filename = "figures/transport-planning-stages-5.png", width = 600, height = 500)
 render_graph(g)
