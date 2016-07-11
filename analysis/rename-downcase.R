@@ -1,4 +1,4 @@
-pct_bigdata <- file.path("..", "..", "pct-bigdata")
+pct_bigdata <- file.path("..", "pct-bigdata")
 
 l <- readRDS(file.path(pct_bigdata, "pct_lines_oneway_shapes.Rds"))
 
@@ -29,3 +29,16 @@ z@data <- dplyr::rename(z@data,
 )
 
 saveRDS(z, file.path(pct_bigdata, "ukmsoas-scenarios.Rds"))
+
+# updates from anna
+
+# from anna
+l@data <- dplyr::rename(l@data,
+                        train = rail
+)
+
+old_names = names(l)[!names(l) == "train"]
+new_names = append(x = old_names, values = "train", after = 5)
+l@data = l@data[new_names]
+saveRDS(l, file.path(pct_bigdata, "pct_lines_oneway_shapes.Rds"))
+
