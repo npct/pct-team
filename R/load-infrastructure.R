@@ -45,7 +45,7 @@ hs2net = readRDS("input-data/hs2net.Rds")
 # bbox(lewes_uckfield)
 # proj4string(lewes_uckfield) = CRS("+init=epsg:27700")
 # lewes_uckfield = spTransform(lewes_uckfield, CRS("+init=epsg:4326"))
-saveRDS(lewes_uckfield, "input-data/lewes_uckfield.Rds")
+# saveRDS(lewes_uckfield, "input-data/lewes_uckfield.Rds")
 lewes_uckfield = readRDS("input-data/lewes_uckfield.Rds")
 
 tmap_mode("view")
