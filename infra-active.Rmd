@@ -30,53 +30,6 @@ Major transport infrastructure projects are
 
 # Case studies
 
-## Cycling potential surrounding the Lewes-Uckfield trainline
-
-```{r, echo=FALSE, warning=FALSE}
-# Basic stats on Lewes-Uckfield route
-lewes_uckfield = readRDS("input-data/lewes_uckfield.Rds")
-lewes_uckfield_osgb = spTransform(lewes_uckfield, CRS("+init=epsg:27700"))
-# gLength(lewes_uckfield_osgb) / 1000
-z = readRDS("../pct-bigdata/ukmsoas-scenarios.Rds")
-l = readRDS("../pct-bigdata/pct_lines_oneway_shapes.Rds")
-l$`Percent cycling` = l$bicycle / l$all * 100
-cents = geojsonio::geojson_read("../pct-bigdata/cents-scenarios.geojson", what = "sp")
-
-# names(cents)
-buff = buff_geo(lewes_uckfield, width = 10000)
-proj4string(cents) = proj4string(lewes_uckfield)
-cents_lc = cents[buff,]
-z_lc = z[cents_lc,]
-l_lc = l[buff,]
-# plot(cents_lc)
-# sum(cents_lc$all)
-```
-
-The Lewes-Uckfield trainline is a proposed project to restore a rail link between Uckfield and Lewes. This is part of wider plans to increase rail capacity in the area. The section of the route analysed in this section is 16 km in length. There are `r nrow(cents_lc)` MSOAs whose population weighted centroids lie within a 10 km buffer of the line, representing `r sum(cents_lc$all)` commuters. This area is illustrated in Figure \@ref(fig:lc).
-
-```{r lc, fig.cap="Overview of the Lewes-Uckfiled line"}
-# osm_tiles = read_osm(bb(z_lc, 1.05))
-# saveRDS(osm_tiles, "data-sources/osm_tiles_ukfield.Rds")
-osm_tiles = readRDS("data-sources/osm_tiles_ukfield.Rds")
-m = qtm(osm_tiles) +
-  tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
-  tm_shape(l_lc) + tm_lines(lwd = "all", scale = 20, col = "Percent cycling", alpha = 0.5, n = 5, breaks = 2^(-1:4),
-                              palette = "Spectral", auto.palette.mapping = F, ) +
-  tm_shape(lewes_uckfield) + tm_lines(lwd = 5, col = "black") 
-knitr::include_graphics("figures/lewes-uckfield-overview.png")
-```
-
-The total number of single-stage commutes that pass through the buffer is higher: `sum(l_lc$all)` commuters. As Figure \@ref(fig:lc) illustrates, many of these commuters would not interact with the rail line, as they are focused on commutes between Brighton and surrounding settlements in the far southeast of the 20 km buffer. Only a few hundred commutes pass directly parallel to the route, mostly due to 10 to 20 km (route distance) commutes between MSOAs in Lewes, Ringmer and Uckfield. Thus cycle paths running parallel to the rail line itself seem to have quite low commuter cycling potential.
-
-Under the ambitious Ebike scenario, the PCT shows that cycling potential along routes running parallel to the line is uneven geographically. Unsurprisingly, cycling potential is clustered at either end of the proposed route, with relatively high increases modelled along segments of the network between Lewes and Ringmer (an increase from 35 to 336 commuters is modelled along a section of the B2192 running west from Lewes) and routes running north-south through Uckfield. This is shown in Figure \@ref(fig:pct-uck).
-
-```{r pct-uck, fig.cap="Cycling potential along the transport network between Lewes and Uckfield, under the Ebike scenario of the Propensity to Cycle Tool (see [pct.bike/east-sussex/](http://pct.bike/east-sussex/))."}
-knitr::include_graphics("figures/lewes-uckfield-pct-ebike.png")
-
-```
-
-
-
 <!-- ## The impacts of high speed rail on cycling in the UK -->
 
 <!-- To assess the potential benefits of new crossings for cycling uptake during and after construction of HS2, the method was applied to geographical data about the route and current travel patterns surrounding it. The first stage was to identify all commutes that could potentially be directly affected by the HS2 infrastructure, by selecting all commuter desire lines that pass anywhere within a 20 km buffer. This is illustrated in Figure xx. -->
