@@ -386,7 +386,7 @@ l$nocyclists_sld[ l$bicycle==l$all]= (l$all- l$nocyclists_slc) * 0.35
 l$nocyclists_sid = l$nocyclists_sld -  l$car_driver
 #order `x'_slw `x'_siw `x'_sld `x'_sid, after(`x'_sic)
 
-
+# Create new variables - slw, siw, sld, sid for walking and driving
 for (x in c('govtarget','gendereq', 'dutch','ebike') ) {
 
     l[[paste0('pchange_',x)]] <- NA
@@ -430,7 +430,7 @@ l$percentebike_ebike [5 <=l$cycdist_fast & l$cycdist_fast< 19.9999999]       <- 
 l$percentebike_ebike [20<= l$cycdist_fast  & l$cycdist_fast< max(l$cycdist_fast) ]   <-   1
 
 
-#check ALL constants??
+# all constants
 crr_webtag <- 0.72
 crr_heat <- 0.9
 cdur_ref_webtag <- 180
@@ -448,7 +448,7 @@ vsl <- 1855315		# VALUE IN POUNDS
 # TIME CYCLING PER DAY min. AMONG NEW CYCLISTS  -- CHECK WHY l$cycdist_fast is missing
 l$cdur_obs  <- l$cdur_obs_dutch <- l$cdur_obs_ebike <- l$wdur_obs  <-  NA
 
-l$cdur_obs  <-  60 * ((l$cycdist_fast * cyclecommute_tripspertypicalweek)/ l$cspeed)
+l$cdur_obs  <-  60 * ((l$cycdist_fast * cyclecommute_tripspertypicalweek) / cspeed)
 l$cdur_obs_dutch <- ((1-l$percentebike_dutch) * l$cdur_obs)+(l$percentebike_dutch * l$cdur_obs * ebikemetreduction * (cspeed/ ebikespeed))
 l$cdur_obs_ebike <- ((1-l$percentebike_ebike) * l$cdur_obs)+(l$percentebike_ebike * l$cdur_obs * ebikemetreduction * (cspeed / ebikespeed))
 
@@ -475,10 +475,10 @@ l$cprotection_gendereq_heat <- l$cprotection_govtarget_heat
 l$cprotection_dutch_heat= (1-crr_heat) * (l$cdur_obs_dutch / cdur_ref_heat)
 l$cprotection_ebike_heat= (1-crr_heat) * (l$cdur_obs_ebike /cdur_ref_heat)
 
-##ERROR  !!
-cols <- grep(pattern ='nocyclists|govtarget |gendereq |dutch| ebike',x = names(l))
-sel <- l[ , cols]>0.45
-l [sel, cols ]  <- 0.45
+# ##ERROR  !! Unsure what's going on here
+# cols <- grep(pattern ='nocyclists|govtarget |gendereq |dutch| ebike',x = names(l))
+# sel <- l[ , cols] > 0.45
+# l [sel, cols ]  <- 0.45
 
 
 l$wprotection_webtag <-  (1- wrr_webtag) * (l$wdur_obs/  wdur_ref_webtag)
@@ -493,38 +493,38 @@ target1 <- c('webtag', 'heat')
 target2 <- c('nocyclists', 'govtarget','gendereq','dutch','ebike')
 target3 <- c('govtarget','gendereq','dutch','ebike')
 
-
-for (z in target1) {
-
-    for (x in target2) {
-
-          l[[paste0(x,'_sic_death_',z)]]  <- -1 * l[[paste0(x,'_sic')]]  * l[[paste0('mortrate_',x) ]]* l[[paste0('cprotection_',x,'_',z)]]
-
-          l[[paste0(x,'_siw_death_',z)]]  <- -1 * l[[paste0(x,'_siw')]] * l[[paste0('mortrate_',x) ]] * l[[paste0('cprotection_', x,'_',z)]]
-
-         # sideath MISSING !!
-          l[[paste0(x,'_sideath_',z)]]  <-  l[[paste0(x,'_sic_death_')]] + l[[paste0(x,'_siw_death_',z) ]]
-
-          l[[paste0(x,'_sivalue_',z)]]  <- -1 * l[[paste0(x,'_sideath_',z)]] * vsl   #long ommited!
-
-
-       #drop `x'_sic_death_`z' `x'_siw_death_`z'
-                           } #for x
-
-l[[paste0('base_sldeath_',z)]]  <- -1 * l[[paste0(nocyclists,'_sideath_',z )]]
-# BASELINE LEVEL IS INVERSE OF 'NO CYCLISTS' SCENARIO
-
-l[[paste0(base,'_slvalue_', z) ]] <- -1 * l[[paste0(nocyclists,'_sivalue_l', z)  ]]
-
-
-         for (x in target3)  {
-         l[[x,'_sldeath_' , z]]  = l[[x,'_sideath_' , z]] + l[['base_sldeath_' , z]]
-         l[[x,'_slvalue_' , z]] = l[[x,'_sivalue_' , z]] + l[['base_slvalue_', z]]
-
-         #order `x'_sideath_`z' `x'_sivalue_`z', after(`x'_slvalue_`z')
-                       }#for x
-
-               }  #for z
+# # Error in this code
+# for (z in target1) {
+#
+#     for (x in target2) {
+#
+#           l[[paste0(x,'_sic_death_',z)]]  <- -1 * l[[paste0(x,'_sic')]]  * l[[paste0('mortrate_',x) ]]* l[[paste0('cprotection_',x,'_',z)]]
+#
+#           l[[paste0(x,'_siw_death_',z)]]  <- -1 * l[[paste0(x,'_siw')]] * l[[paste0('mortrate_',x) ]] * l[[paste0('cprotection_', x,'_',z)]]
+#
+#          # sideath MISSING !!
+#           l[[paste0(x,'_sideath_',z)]]  <-  l[[paste0(x,'_sic_death_')]] + l[[paste0(x,'_siw_death_',z) ]]
+#
+#           l[[paste0(x,'_sivalue_',z)]]  <- -1 * l[[paste0(x,'_sideath_',z)]] * vsl   #long ommited!
+#
+#
+#        #drop `x'_sic_death_`z' `x'_siw_death_`z'
+#                            } #for x
+#
+# l[[paste0('base_sldeath_',z)]]  <- -1 * l[[paste0(nocyclists,'_sideath_',z )]]
+# # BASELINE LEVEL IS INVERSE OF 'NO CYCLISTS' SCENARIO
+#
+# l[[paste0(base,'_slvalue_', z) ]] <- -1 * l[[paste0(nocyclists,'_sivalue_l', z)  ]]
+#
+#
+#          for (x in target3)  {
+#          l[[x,'_sldeath_' , z]]  = l[[x,'_sideath_' , z]] + l[['base_sldeath_' , z]]
+#          l[[x,'_slvalue_' , z]] = l[[x,'_sivalue_' , z]] + l[['base_slvalue_', z]]
+#
+#          #order `x'_sideath_`z' `x'_sivalue_`z', after(`x'_slvalue_`z')
+#                        }#for x
+#
+#                }  #for z
 
 # DROP INTERMEDIARY VARIABLES
 drops <- c('mortrate_govtarget', 'mortrate_gendereq', 'mortrate_dutch', 'cyclecommute_tripspertypicalweek', 'wprotection_heat',
@@ -612,7 +612,8 @@ for (y in c('value_webtag', 'value_heat') ){
     l[[paste0(x,'co2')]] =  round(l[[paste0(x,'co2')]], 4)
 }
 
-saveRDS(l,file='./Output/pct_area.Rds')
+# save lines
+saveRDS(l,file='./Output/l_processed.Rds')
 
 
 #################
