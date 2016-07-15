@@ -164,7 +164,7 @@ l$avslope_perctemp [ l$flowtype==2 & is.na(l$avslope_perctemp) ]   <- l$avslope_
 
 # DISTANCE = A THIRD OF THE MEAN DISTANCE OF SHORTEST 3 FLOWS
 # HILLINESS = MEAN HILLINESS OF SHORTEST 3 FLOWS
-l$dist_fast[l$flowtype==2 ]  l$dist_fast[l$flowtype==2 ] / 3
+l$dist_fast[l$flowtype==2 ] = l$dist_fast[l$flowtype==2 ] / 3
 
 #special case:  isles of Scilly
 l$dist_fast[l$home_msoa=='E02006781' &l$work_msoa=='E02006781'] = 0.79
