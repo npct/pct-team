@@ -332,8 +332,10 @@ l$gendereq_slc <- (l$bicycle_male  * (1 + (l$allcom_female/l$allcom_male)))
 l$gendereq_slc[which(l$gendereq_slc > l$all & !is.na(l$gendereq_slc)) ] <-
   l$all[which(l$gendereq_slc > l$all & !is.na(l$gendereq_slc)) ]
 
+
 #tab all if female==0 | male==0
-l$gendereq_slc[l$allcom_female==0 | l$allcom_male==0 | (l$gendereq_slc< l$bicycle)] <-  l$bicycle
+l$gendereq_slc[l$allcom_female==0 | l$allcom_male==0 | (l$gendereq_slc< l$bicycle)] <-
+  l$bicycle[l$allcom_female==0 | l$allcom_male==0 | (l$gendereq_slc< l$bicycle)]
 
 # [not needed] NO CHANGE IF NO FEMALES IN FLOW-NO MALES IN FLOW- SLC < BASELINE
 l$gendereq_sic      <-     l$gendereq_slc - l$bicycle     #ajuste final
