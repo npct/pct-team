@@ -51,7 +51,7 @@ points(cents)
 # Flow data #
 # # # # # # #
 
-flow <- readRDS("pct-data/national/flow.Rds")
+flow <- readRDS("../pct-bigdata/flow.Rds")
 o <- flow$Area.of.residence %in% cents$geo_code
 d <- flow$Area.of.workplace %in% cents$geo_code
 flow <- flow[o & d, ] # subset flows with o and d in study area
