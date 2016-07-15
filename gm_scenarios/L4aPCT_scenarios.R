@@ -347,8 +347,10 @@ l$dutch_slc[l$dutch_slc >  l$all  & !is.na(l$dutch_slc) ]  <-    l$all  #max. is
 l$ebike_slc[l$ebike_slc >  l$all  & !is.na(l$ebike_slc) ]    <-  l$all
 
 #check NAS in this line
-l$dutch_slc[l$dutch_slc <  l$bicycle ]  <-    l$bicycle  #min  IS BASELINE
-l$ebike_slc[l$ebike_slc <  l$bicycle ]    <-  l$bicycle
+sel = l$dutch_slc <  l$bicycle
+sel[is.na(sel)] = 0
+l$dutch_slc[sel]  <-    l$bicycle  #min  IS BASELINE
+l$ebike_slc[sel]    <-  l$bicycle
 
 #increase in no. cyclists
 l$dutch_sic  <- l$dutch_slc  - l$bicycle
