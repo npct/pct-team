@@ -192,8 +192,6 @@ l$bicycle30 [is.na(l$dist_fast30)] <- NA
 
 
 l$numndist_fast15 <- pass_aggregate(l$dist_fast15 * l$bicycle15, 'home_msoa', sum)
-
-
 l$dendist_fast15  <- pass_aggregate(l$bicycle15, 'home_msoa', sum)
 
 
@@ -208,7 +206,7 @@ l$numndist_fast30   <-  sum(l$dist_fast30[!is.na(l$dist_fast30)] * l$bicycle30[!
 l$dendist_fast30    <-  sum(l$bicycle30[!is.na(l$bicycle30)] )
 l$meandist_fast30   <-   l$numndist_fast30/ l$dendist_fast30
 
-l$cycdist_fast[l$flowtype==4]    <-  l$meandist_fast30
+l$cycdist_fast[l$flowtype==4]    <-  l$meandist_fast30[l$flowtype==4]
 #OK
 
 #add new columns -- clarify w. Anna
