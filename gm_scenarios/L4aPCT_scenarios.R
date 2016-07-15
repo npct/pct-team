@@ -260,7 +260,7 @@ for (x in c('base','dutch','ebike')) {
 }
 
 
-## MODEL FITTING FOR TRIPS WITH NO FIXED PLACE
+## MODEL FITTING FOR TRIPS WITH NO FIXED PLACE= NA
 # INPUT PARAMETERS
 l$pred_base [l$flowtype!=1 & l$flowtype!=2] <- l$bdutch[l$flowtype!=1 & l$flowtype!=2] <- l$bebike[l$flowtype!=1 & l$flowtype!=2] <- NA
 
@@ -274,7 +274,6 @@ l$nummeanpred_base[cond] <-  l$nummeanbdutch[cond] <- l$nummeanbebike [cond] <- 
 l$nummeanpred_base <-  pass_aggregate(l$pred_base*l$all, 'home_msoa', sum)
 l$nummeanbdutch     <- pass_aggregate(l$bdutch * l$all, 'home_msoa', sum)
 l$nummeanbebike     <- pass_aggregate(l$bebike * l$all, 'home_msoa', sum )
-
 
 x <-  pass_aggregate(l$all, 'home_msoa', sum)
 l$denmeanpred_base  <- l$denmeanbdutch     <- l$denmeanbebike     <- x
@@ -347,8 +346,10 @@ l$ebike_slc[l$ebike_slc >  l$all  & !is.na(l$ebike_slc) ]    <-  l$all
 #check NAS in this line
 sel_dutch = l$dutch_slc <  l$bicycle
 sel_ebike = l$ebike_slc <  l$bicycle
+
 sel_dutch[is.na(sel_dutch)] = 0
 sel_ebike[is.na(sel_ebike)] = 0
+
 l$dutch_slc[sel_dutch]  <-    l$bicycle[sel_dutch]  #min  IS BASELINE
 l$ebike_slc[sel_ebike]    <-  l$bicycle[sel_ebike]
 
@@ -357,10 +358,10 @@ l$dutch_sic  <- l$dutch_slc  - l$bicycle
 l$ebike_sic  <- l$ebike_slc - l$bicycle
 
 
-l$govtarget_slc[l$work_msoa=="other"]  <-    l$bicycle
-l$gendereq_slc [l$work_msoa=="other"]  <-    l$bicycle
-l$dutch_slc [l$work_msoa=="other"]  <-    l$bicycle
-l$ebike_slc [l$work_msoa=="other"]  <-    l$bicycle
+l$govtarget_slc[l$work_msoa=="other"]  <-    l$bicycle[l$work_msoa=="other"]
+l$gendereq_slc [l$work_msoa=="other"]  <-    l$bicycle[l$work_msoa=="other"]
+l$dutch_slc [l$work_msoa=="other"]  <-    l$bicycle[l$work_msoa=="other"]
+l$ebike_slc [l$work_msoa=="other"]  <-    l$bicycle[l$work_msoa=="other"]
 
 l$govtarget_sic[l$work_msoa=="other"]  <-    0
 l$gendereq_sic [l$work_msoa=="other"]  <-    0
@@ -370,15 +371,14 @@ l$ebike_sic [l$work_msoa=="other"]  <-    0
 
 ## CALCULATE % NON-CYCLISTS MADE CYCLISTS IN EACH SCENARIO: TURN THAT % AWAY FROM WALKING
 
-# foreach x in nocyclists {
 l$pchange_nocyclists=(l$all- l$nocyclists_slc)/(l$all - l$bicycle)
 l$nocyclists_slw = l$foot * l$pchange_nocyclists					# most flows - scale walking according to %change
 
-l$nocyclists_slw[l$bicycle==l$all] =((l$all-l$nocyclists_slc) * 0.31) 	# Flows with pure bicycles at baseline - make walking 31% of new flows
+l$nocyclists_slw[l$bicycle==l$all] =((l$all[l$bicycle==l$all]-l$nocyclists_slc[l$bicycle==l$all]) * 0.31) 	# Flows with pure bicycles at baseline - make walking 31% of new flows
 l$nocyclists_siw=l$nocyclists_slw - l$foot
 l$nocyclists_sld= l$car_driver * l$pchange_nocyclists
 
-l$nocyclists_sld[ l$bicycle==l$all]= (l$all- l$nocyclists_slc) * 0.35
+l$nocyclists_sld[ l$bicycle==l$all]= (l$all[ l$bicycle==l$all]- l$nocyclists_slc[ l$bicycle==l$all]) * 0.35
 # Flows with pure bicycles at baseline - make driving 35% of new flows
 
 l$nocyclists_sid = l$nocyclists_sld -  l$car_driver
@@ -473,17 +473,28 @@ l$cprotection_gendereq_heat <- l$cprotection_govtarget_heat
 l$cprotection_dutch_heat= (1-crr_heat) * (l$cdur_obs_dutch / cdur_ref_heat)
 l$cprotection_ebike_heat= (1-crr_heat) * (l$cdur_obs_ebike /cdur_ref_heat)
 
-# ##ERROR  !! Unsure what's going on here
-# cols <- grep(pattern ='nocyclists|govtarget |gendereq |dutch| ebike',x = names(l))
-# sel <- l[ , cols] > 0.45
-# l [sel, cols ]  <- 0.45
+
+cols1 <- paste0('cprotection_',c('nocyclists','govtarget','gendereq','dutch','ebike'),'_webtag')
+cols2 <- paste0('cprotection_',c('nocyclists','govtarget','gendereq','dutch','ebike'),'_heat')
+
+for (i in cols1)   {
+  sel = which(l[,i]> 0.5)
+  l[sel, i] <- 0.5   }
+
+for (i in cols2)   {
+  sel = which(l[,i]> 0.45)
+  l[sel, i] <- 0.45   }
+
 
 
 l$wprotection_webtag <-  (1- wrr_webtag) * (l$wdur_obs/  wdur_ref_webtag)
 l$wprotection_heat <-  (1- wrr_heat) * (l$wdur_obs/ wdur_ref_heat)
 
-#recode wprotection_webtag 0.50/max=0.5
-l$wprotection_heat[l$wprotection_heat> 0.30] = 0.30
+sel = l$wprotection_webtag> 0.50
+l$wprotection_webtag[sel]= 0.5
+
+sel = l$wprotection_heat> 0.30
+l$wprotection_heat[sel] = 0.30
 
 
 # DEATHS AND VALUES
