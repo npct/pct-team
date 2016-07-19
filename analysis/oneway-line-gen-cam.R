@@ -27,7 +27,11 @@ flow_cam <- flow_cens[o & d, ] # subset OD pairs with o and d in study area
 # Remove flows with all < 10
 # flow_cam = flow_cam[flow_cam$`All categories: Method of travel to work` > 10,]
 # Convert to SpatialLines
-flow_cam_sp = od2line(flow = flow_cam, zones = cents)
+system.time({flow_cam_sp = od2line(flow = flow_cam, zones = cents)})
+system.time({
+  flow_cam_sp2 = od2line2(flow = flow_cam, zones = cents)
+  flow_cam_sp2 = SpatialLinesDataFrame(flow_cam_sp2, flow_cam)
+})
 flow_cam_sp$dist = gprojected(flow_cam_sp, byid = T) / 1000
 plot(flow_cam_sp)
 summary(flow_cam_sp$dist)
