@@ -100,7 +100,7 @@ msoa_sex <- read.dta13("./Input/msoa_t2w_sex_GM.dta")
 msoa_sex <- msoa_sex[, 1:9]
 l <- inner_join(l,msoa_sex,by=c('home_msoa', 'work_msoa'))
 
-sum((l$allcom_male+  l$allcom_female)!= l$all)  #check
+sum((l$allcom_male+  l$allcom_female)!= l$all)  #check is 0
 
 #order by home_msoa_names & work_msoa_name
 l <- arrange(l, home_msoa_name, home_la_name)
@@ -319,7 +319,8 @@ l$nocyclists_slc<- 0
 l$nocyclists_sic <-    l$nocyclists_slc - l$bicycle
 
 l$govtarget_slc <-  l$bicycle+ (l$pred_base * l$all)
-l$govtarget_slc [which(l$govtarget_slc > l$all & ! is.na(l$govtarget_slc))]  <- l$all
+sel = which(l$govtarget_slc > l$all & ! is.na(l$govtarget_slc))
+l$govtarget_slc [sel]  <- l$all[sel]
 l$govtarget_sic  <-  l$govtarget_slc   -  l$bicycle
 
 #??????? order govtarget_slc, before(govtarget_sic)
@@ -374,11 +375,12 @@ l$ebike_sic [l$work_msoa=="other"]  <-    0
 l$pchange_nocyclists=(l$all- l$nocyclists_slc)/(l$all - l$bicycle)
 l$nocyclists_slw = l$foot * l$pchange_nocyclists					# most flows - scale walking according to %change
 
-l$nocyclists_slw[l$bicycle==l$all] =((l$all[l$bicycle==l$all]-l$nocyclists_slc[l$bicycle==l$all]) * 0.31) 	# Flows with pure bicycles at baseline - make walking 31% of new flows
+sel=(l$bicycle==l$all)
+l$nocyclists_slw[sel] =((l$all[sel]-l$nocyclists_slc[sel]) * 0.31) 	# Flows with pure bicycles at baseline - make walking 31% of new flows
 l$nocyclists_siw=l$nocyclists_slw - l$foot
 l$nocyclists_sld= l$car_driver * l$pchange_nocyclists
 
-l$nocyclists_sld[ l$bicycle==l$all]= (l$all[ l$bicycle==l$all]- l$nocyclists_slc[ l$bicycle==l$all]) * 0.35
+l$nocyclists_sld[ sel ]= (l$all[ sel ]- l$nocyclists_slc[ sel ]) * 0.35
 # Flows with pure bicycles at baseline - make driving 35% of new flows
 
 l$nocyclists_sid = l$nocyclists_sld -  l$car_driver
@@ -511,9 +513,9 @@ target3 <- c('govtarget','gendereq','dutch','ebike')
 #
 #           l[[paste0(x,'_siw_death_',z)]]  <- -1 * l[[paste0(x,'_siw')]] * l[[paste0('mortrate_',x) ]] * l[[paste0('cprotection_', x,'_',z)]]
 #
-#          # sideath MISSING !!
-#           l[[paste0(x,'_sideath_',z)]]  <-  l[[paste0(x,'_sic_death_')]] + l[[paste0(x,'_siw_death_',z) ]]
+#           l[[paste0(x,'_sic_death_',z)]]  <-  l[[paste0(x,'_sic_death_',z)]] + l[[paste0(x,'_siw_death_',z) ]]
 #
+#           # one var MISSING !!
 #           l[[paste0(x,'_sivalue_',z)]]  <- -1 * l[[paste0(x,'_sideath_',z)]] * vsl   #long ommited!
 #
 #
