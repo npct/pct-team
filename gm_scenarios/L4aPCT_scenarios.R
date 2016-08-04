@@ -554,8 +554,9 @@ co2kg_km  <- 0.186
 target <- c('nocyclists','govtarget', 'gendereq', 'dutch', 'ebike')
 
 for (x in target)    {
-      l[[paste0(x,'_sico2')]] <- l[[x,'_sid']] * l$cycdist_fast *
-      cyclecommute_tripsperweek * 52.2 * co2kg_km 	# NO CYCLISTS *DIST * COMMUTE PER DAY * CO2 EMISSIONS FACToR
+      
+     l[[paste0(x,'_sico2')]] <- l[[paste0(x,'_sid')]] * l$cycdist_fast * cyclecommute_tripsperweek * 52.2 * co2kg_km
+      # NO CYCLISTS *DIST * COMMUTE PER DAY * CO2 EMISSIONS FACToR
                      }
 
       l$base_slco2 <- -1 * l$nocyclists_sico2	## BASELINE LEVEL IS INVERSE OF 'NO CYCLISTS' SCENARIO INCREASE
@@ -564,20 +565,23 @@ for (x in target)    {
    target <-target[-1]  #amend list
 
 for (x in target) {
-    l[[x,'_slco2']]<- l[[x, '_sico2']] + l$base_slco2
+    l[[paste0(x,'_slco2')]]<- l[[paste0(x, '_sico2')]] + l$base_slco2
 
    #order `x'_sico2 , after(`x'_slco2)
                   }
 
 #drop columns
-drops <- c('nocyclists', 'cyclecommute_tripsperweek', 'co2kg_km', 'cycdist_fast')
-l <- l[ , !names %in% drops]
+#add any var nocyclists*   
+drops <- c( "nocyclists_slc", "nocyclists_sic", "nocyclists_slw",               
+            "nocyclists_siw", "nocyclists_sld", "nocyclists_sid" ,
+            'cyclecommute_tripsperweek', 'cycdist_fast')
+l <- l[ , !names(l) %in% drops]
 
 #################
 ## FINISH: SAVE TEMPORARY DATASET, PRE-AGGREGATION
 #################
 
-saveRDS(l,file='./Output/MSOA_ODpairs_process2.5.Rds')
+saveRDS(l,file='./Output/MSOA_ODpairs_process2.5.rds')
 
 
 #################
@@ -588,21 +592,24 @@ saveRDS(l,file='./Output/MSOA_ODpairs_process2.5.Rds')
 
 target <-c('all', ' other', ' govtarget_slc', 'ebike_sico2')
 
-###########  ADAPT TO pass_aggregate function
 
+#test vs. Anna's (not needed in GM)
 for (x in target)  {
-                l[[paste0('a_', x)]] <- aggregate(l[[x]], by=home_msoa,FUN=sum, na.rm=T)
+                l[[x]] <- pass_aggregate(l[[x]], 'home_msoa', sum)
 
-                l[[paste0('a_', x)]] <- l[[paste0('a_', x,'$','x')]]
+                #l[[paste0('a_', x)]] <- l[[paste0('a_', x,'$','x')]]
                 }
 
+l = arrange(l, home_msoa, home_msoa_name, all, light_rail, other)
+
 # AREA FILE KEEP+RENAME+ORDER
-tcols <- grep(pattern ='home_',names(l) )
-tcols1 <- grep(pattern = 'a_', names(l) )
-l  <- l[, c(tcols, tcols1)]
+# tcols <- grep(pattern ='home_',names(l) )
+# tcols1 <- grep(pattern = 'a_', names(l) )
+# l  <- l[, c(tcols, tcols1)]
 #   rename a_* *
 
-l <- l[,-c('from_home')]
+col=which(names(l)=='from_home')
+l <- l[,-col]
 
 #order home_msoa home_msoa_name all light_rail- other
 l <- l[!duplicated(l),]
@@ -611,20 +618,18 @@ l <- l[!duplicated(l),]
 for (x in  c('govtarget_slc','ebike_sid')) {
     l[[x]]  = round(l[[x]], 3)  }
 
-for (x in c('base_sl', 'govtarget_sl', 'govtarget_si', 'gendereq_sl', 'gendereq_si', 'dutch_sl', 'dutch_si', 'ebike_sl', 'ebike_si')) {
-for (y in c('death_webtag', 'death_heat') ) {
-    l[[paste0(x, y)]] =round(l[[paste0(x, y)]], 5)
-                                    }
+#check all vars exist
+for (x in c('base_sl', 'govtarget_sl', 'govtarget_si', 'gendereq_sl',
+            'gendereq_si', 'dutch_sl', 'dutch_si', 'ebike_sl', 'ebike_si')) {
+   
+   for (y in c('death_webtag', 'death_heat') ) {l[[paste0(x, y)]] =round(l[[paste0(x, y)]], 5)  }
 
-for (y in c('value_webtag', 'value_heat') ){
-    l[[paste0(x, y)]]= round(l[[paste0(x, y)]],1)
-                                        }
-
-    l[[paste0(x,'co2')]] =  round(l[[paste0(x,'co2')]], 4)
-}
+   for (y in c('value_webtag', 'value_heat') ){
+      l[[paste0(x, y)]]= round(l[[paste0(x, y)]],1)  }
+      l[[paste0(x,'co2')]] =  round(l[[paste0(x,'co2')]], 4)   }
 
 # save lines
-saveRDS(l,file='./Output/l_processed.Rds')
+saveRDS(l,file='./Output/l_area.rds')   #equivalent to Anna's pct_area.dta
 
 
 #################
