@@ -28,7 +28,7 @@ return(l$x)
 
 
 #read flow file (from private data)
-old_dir = setwd("gm_scenarios/")
+old_dir = setwd("../gm_scenarios/")
 l <- read.csv('./Input/l_scenariosGM.csv', as.is=T, header=T)   #read from  ../3-Rds
 
 #RENAMES v1..v14 to FINAL NAMES
@@ -225,7 +225,7 @@ l$cycdist_fastmissing [is.na(l$cycdist_fast) ] <- NA
 #          'allcom_male', 'bicycle_female', 'mortrate_govtarget', 'mortrate_gendereq',
 #          'mortrate_dutch', 'dist', 'dist_fast', 'avslope_perc', 'cycdist_fast')]
 
-saveRDS(object =l[, c('home_msoa','cycdist_fast')],file="./Output/MSOA_ODpairs_process2.1.Rds")
+saveRDS(object =l[, c('home_msoa','cycdist_fast')],file="./Output/MSOA_ODpairs_process2.1.rds")
 
 
 #########
@@ -242,9 +242,9 @@ l$interactsqrt      <-  l$dist_fastsqrt * l$ned_avslope_perc
 
 # FIT REGRESSION EQUATION
 
-l$pred_base <- -3.894 + (-0.5872 * l$dist_fast) + (1.832 * l$dist_fastsqrt) + (0.007956 * l$dist_fastsq)
-+ (-0.2872 * l$ned_avslope_perc) + (0.01784 * l$dist_fast* l$ned_avslope_perc)
-+ (-0.09770 * l$dist_fastsqrt * l$ned_avslope_perc)
+l$pred_base <- -3.894 + (-0.5872 * l$dist_fast) + (1.832 * l$dist_fastsqrt) + 
+   (0.007956 * l$dist_fastsq)+ (-0.2872 * l$ned_avslope_perc) + 
+   (0.01784 * l$dist_fast* l$ned_avslope_perc)+ (-0.09770 * l$dist_fastsqrt * l$ned_avslope_perc)
 
 l$bdutch <-  2.499+(-0.07384 * l$dist_fast)                 #Dutch travel survey
 
