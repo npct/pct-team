@@ -647,22 +647,21 @@ l$msoa1= as.character (min(l$homesub, l$worksub))
 l$msoa2= as.character (max(l$homesub, l$worksub))    #check this
 
 
-l$msoa1="E0"+msoa1
-l$msoa2="E0"+msoa2
+l$msoa1=paste0("E0",l$msoa1)
+l$msoa2=paste0("E0",l$msoa2)
 
-if (l$work_msoa=="OD0000003" | l$work_msoa=="other")  {
-    l$msoa1=l$home_msoa
-    l$msoa2=l$work_msoa             }
+sel= l$work_msoa=="OD0000003" | l$work_msoa=="other"
+
+l$msoa1[sel] = l$home_msoa[sel] 
+l$msoa2[sel] =l$work_msoa[sel]             
 
 ########## CHECK FUNCTION !!!!!!!!!
 # AGGREGATE UP FLOW FIGURES                       =======>  LOOOOOOONGEST OF ALL !!!
-for  (x in  c(all, other, govtarget_slc, ebike_sico2)  )  {
-
-    l[[ paste0('f_',x)]]= aggregate(l[[x]], by=c('msoa1','msoa2'), na.rm=T)
-
+for  (x in  c('all', 'other', 'govtarget_slc', 'ebike_sico2')  )  {
+    l[[x]]= pass_aggregate(l[[x]], by=c('msoa1','msoa2'), sum)
                                                         }
 # FLOW FILE KEEP + RENAME + ORDER + no duplicates
-colstokeep <- grep(pattern=('msoa1'|'msoa2'|'f_') ,x=names(l))
+colstokeep <- grep(pattern=('msoa1'|'msoa2') ,x=names(l))
 
 #keep msoa1 msoa2 f_*
 
