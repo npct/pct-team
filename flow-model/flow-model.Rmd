@@ -10,18 +10,18 @@ author:
 - James Woodcock (University of Cambridge)
 csl: ../documents/elsevier-harvard.csl
 output:
-  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
+  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
   \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
   \usepackage{tabu} \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
   \usepackage{caption} \captionsetup[table]{skip=10pt}
 fontsize: 12pt
-bibliography: references.bib
+bibliography: ../documents/references.bib
 ---
 
 ```{r, echo=FALSE}
@@ -117,10 +117,11 @@ with historically low rates of cycling.
 Providing high-quality infrastructure can play a key role in promoting cycling uptake [@parkin_cycling_2012].
 Off-road cycle paths, for example, have been found to be associated with an uptake of cycling for commuting [@heinen_changes_2015].
 Overall there is growing evidence linking cycling infrastructure to higher rates of cycling [@buehler_bikeway_2016].
-But where should this infrastructure be built? This paper seeks to demonstrate the potential of online, evidence-based tools to help answer this
-question, with reference to the Propensity to Cycle Tool (PCT).
-The PCT is an online planning support system funded by the UK's Department for Transport
-to map cycling potential (Department for Transport, 2015).
+But where should this infrastructure be built?
+The central purpose of this paper is highlight the potential of online, interactive and publicly accessible tools to improve the provision of locally specific evidence for transport planning.
+It does so with reference to the Propensity to Cycle Tool (PCT), an online planning support system funded by the UK's Department for Transport to map cycling potential (Department for Transport, 2015).
+The PCT is open source. This differs from other tools for assessing cycling potential (see the next section) and has wider implications for how models can and should be used in the transport decision making process (see the Discussion).
+
 
 <!-- The version described in the paper was deployed for England (PCT-England) but we envision additional versions being developed for other countries and cities. -->
 
@@ -1064,7 +1065,7 @@ knitr::include_graphics("man-nor-output-2.png")
 ```
 
 ```{r, echo=FALSE, out.width = '50%', fig.cap="Modal share of trips made by cycling in West Yorkshire (left) and Oxfordshire (right) by distance, currently and under 4 scenarios of change.", fig.show='hold'}
-knitr::include_graphics(c("figures/dd-west-yorks.png", "figures/dd-ox.png"))
+knitr::include_graphics(c("dd-west-yorks.png", "dd-ox.png"))
 ```
 
 <!-- In Manchester the Government Target scenario -->
