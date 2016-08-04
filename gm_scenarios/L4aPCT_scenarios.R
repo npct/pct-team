@@ -7,8 +7,8 @@ library(data.table)
 #library(taRifx)
 
 pass_aggregate <- function  (var1, byconcept, oper) {
+#aggregates entries by one/two linking fields
 
-#byconcept <- as.character(byconcept)
 if (length(byconcept)==1) {
    agg <- aggregate(var1, by=list(l[[byconcept ]]),FUN=oper, na.rm=T )
    colnames(agg) <- c(byconcept, 'x')
