@@ -332,8 +332,8 @@ l$gendereq_slc[which(l$gendereq_slc > l$all & !is.na(l$gendereq_slc)) ] <-
 
 
 #tab all if female==0 | male==0
-l$gendereq_slc[l$allcom_female==0 | l$allcom_male==0 | (l$gendereq_slc< l$bicycle)] <-
-  l$bicycle[l$allcom_female==0 | l$allcom_male==0 | (l$gendereq_slc< l$bicycle)]
+sel = l$allcom_female==0 | l$allcom_male==0 | (l$gendereq_slc< l$bicycle)
+l$gendereq_slc[ sel ] <-   l$bicycle[ sel ]
 
 # [not needed] NO CHANGE IF NO FEMALES IN FLOW-NO MALES IN FLOW- SLC < BASELINE
 l$gendereq_sic      <-     l$gendereq_slc - l$bicycle     #ajuste final
@@ -445,7 +445,7 @@ vsl <- 1855315		# VALUE IN POUNDS
 
 # DURATION OF CYCLING/WALKING
 
-# TIME CYCLING PER DAY min. AMONG NEW CYCLISTS  -- CHECK WHY l$cycdist_fast is missing
+# TIME CYCLING PER DAY min. AMONG NEW CYCLISTS
 l$cdur_obs  <- l$cdur_obs_dutch <- l$cdur_obs_ebike <- l$wdur_obs  <-  NA
 
 l$cdur_obs  <-  60 * ((l$cycdist_fast * cyclecommute_tripspertypicalweek) / cspeed)
