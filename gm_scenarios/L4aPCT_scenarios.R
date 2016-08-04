@@ -675,20 +675,26 @@ target<- c('govtarget_slc', 'ebike_sid')
 l[target] <- round(l[target],digits =2)
 
 #vars to round to 5D
-x<- c('base_sl', 'govtarget_sl', 'govtarget_si', 'gendereq_sl', 'gendereq_si', 'dutch_sl', 'dutch_si', 'ebike_sl', 'ebike_si')
-y = c('death_webtag', 'death_heat')
-z = c('value_webtag', 'value_heat')
-
-target1 <- expand.grid(x,y)
-target2 <- expand.grid(x,z)
-target3 <- expand.grid(x,'co2')
+target1 <- c('base_sl', 'govtarget_sl', 'govtarget_si', 'gendereq_sl', 'gendereq_si', 'dutch_sl', 'dutch_si', 'ebike_sl', 'ebike_si')
+target2 = c('death_webtag', 'death_heat')
+target3 = c('value_webtag', 'value_heat')
 
 #set appropriate rounding per var
-l[[target1]] <- round(l[target1], digits =5)
-l[[target2]] <- round(l[target1], digits =1)
-l[[target3]] <- round(l[target1], digits = 2)
+for (x in target1)  {
+   for (y in target2) {
+   l[[paste0(x,y)  ]]   = round(l[[paste0(x,y)  ]], digits = 5)
+   }
 
-saveRDS(l,"./Output/pct_lines_v1.Rds")
+   for (y in target3) { l[[ paste0(x,y) ]]   = round( l[[ paste0(x,y) ]], digits = 1) }
+ 
+   l[ paste0(x, 'co2')] = round( l[ paste0(x, 'co2')], digits = 2)
+   
+   } 
+
+#rename all vars to preferred format
+   
+saveRDS(l,"./Output/pct_lines_v1.rds")      #equivalent to Anna's:   < pct_lines.csv >
+
 #it seems library("readstata13") does not always reads .dta files correctly, getting extra 'attr' rows
 #so the source might need to be .CSV / .RDS
 
