@@ -68,7 +68,7 @@ l <- l[,c(1:3,13,4,14,5:12)]
 namesl <-paste0('v',c(1:14))
 colnames(l) <-namesl
 save.dta13(l, file.choose())    #save as l_scenariosGM.dta
-write.csv(l,file.choose(),row.names = F) #save as 'l_scenariosGM.csv'
+write.csv(l,file.choose(),row.names = F) #save as './Input/l_scenariosGM.csv'
 
 ## FOR REFERENCE next section: Columns meaning
 #     home_msoa = v1
