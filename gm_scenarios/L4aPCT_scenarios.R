@@ -505,37 +505,37 @@ target2 <- c('nocyclists', 'govtarget','gendereq','dutch','ebike')
 target3 <- c('govtarget','gendereq','dutch','ebike')
 
 # # Error in this code
-# for (z in target1) {
-#
-#     for (x in target2) {
-#
-#           l[[paste0(x,'_sic_death_',z)]]  <- -1 * l[[paste0(x,'_sic')]]  * l[[paste0('mortrate_',x) ]]* l[[paste0('cprotection_',x,'_',z)]]
-#
-#           l[[paste0(x,'_siw_death_',z)]]  <- -1 * l[[paste0(x,'_siw')]] * l[[paste0('mortrate_',x) ]] * l[[paste0('cprotection_', x,'_',z)]]
-#
-#           l[[paste0(x,'_sic_death_',z)]]  <-  l[[paste0(x,'_sic_death_',z)]] + l[[paste0(x,'_siw_death_',z) ]]
-#
-#           # one var MISSING !!
-#           l[[paste0(x,'_sivalue_',z)]]  <- -1 * l[[paste0(x,'_sideath_',z)]] * vsl   #long ommited!
-#
-#
-#        #drop `x'_sic_death_`z' `x'_siw_death_`z'
-#                            } #for x
-#
-# l[[paste0('base_sldeath_',z)]]  <- -1 * l[[paste0(nocyclists,'_sideath_',z )]]
-# # BASELINE LEVEL IS INVERSE OF 'NO CYCLISTS' SCENARIO
-#
-# l[[paste0(base,'_slvalue_', z) ]] <- -1 * l[[paste0(nocyclists,'_sivalue_l', z)  ]]
-#
-#
-#          for (x in target3)  {
-#          l[[x,'_sldeath_' , z]]  = l[[x,'_sideath_' , z]] + l[['base_sldeath_' , z]]
-#          l[[x,'_slvalue_' , z]] = l[[x,'_sivalue_' , z]] + l[['base_slvalue_', z]]
-#
-#          #order `x'_sideath_`z' `x'_sivalue_`z', after(`x'_slvalue_`z')
-#                        }#for x
-#
-#                }  #for z
+for (z in target1) {
+
+    for (x in target2) {
+
+          l[[paste0(x,'_sic_death_',z)]]  <- -1 * l[[paste0(x,'_sic')]]  * l[[paste0('mortrate_',x) ]]* l[[paste0('cprotection_',x,'_',z)]]
+
+          l[[paste0(x,'_siw_death_',z)]]  <- -1 * l[[paste0(x,'_siw')]] * l[[paste0('mortrate_',x) ]] * l[[paste0('wprotection_', z)]]
+
+          l[[paste0(x,'_sideath_',z)]]  <-  l[[paste0(x,'_sic_death_',z)]] + l[[paste0(x,'_siw_death_',z) ]]
+
+           
+          l[[paste0(x,'_sivalue_',z)]]  <- -1 * l[[paste0(x,'_sideath_',z)]] * vsl   #long ommited!
+
+          #delete intermediate vars *sic_death* &  *siw_death*
+          l[[paste0(x,'_sic_death_',z)]]= l[[paste0(x,'_siw_death_',z)]]=NULL  #drop `x'_sic_death_`z' `x'_siw_death_`z'
+                           } #for x
+
+l[[paste0('base_sldeath_',z)]]  <- -1 * l[[paste0('nocyclists', '_sideath_',z )]]
+# BASELINE LEVEL IS INVERSE OF 'NO CYCLISTS' SCENARIO
+
+l[[paste0('base_slvalue_', z) ]] <- -1 * l[[paste0('nocyclists','_sivalue_', z) ]]
+
+
+         for (x in target3)  {
+         l[[paste0(x,'_sldeath_' , z)]]  = l[[paste0(x,'_sideath_' , z)]] + l[[paste0('base_sldeath_' , z)]]
+         l[[paste0(x,'_slvalue_' , z)]] = l[[paste0(x,'_sivalue_' , z)]] + l[[paste0('base_slvalue_', z)]]
+
+         #order `x'_sideath_`z' `x'_sivalue_`z', after(`x'_slvalue_`z')
+                       }#for x
+
+               }  #for z
 
 # DROP INTERMEDIARY VARIABLES
 drops <- c('mortrate_govtarget', 'mortrate_gendereq', 'mortrate_dutch', 'cyclecommute_tripspertypicalweek', 'wprotection_heat',
