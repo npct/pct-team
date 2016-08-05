@@ -117,11 +117,10 @@ with historically low rates of cycling.
 Providing high-quality infrastructure can play a key role in promoting cycling uptake [@parkin_cycling_2012].
 Off-road cycle paths, for example, have been found to be associated with an uptake of cycling for commuting [@heinen_changes_2015].
 Overall there is growing evidence linking cycling infrastructure to higher rates of cycling [@buehler_bikeway_2016].
-But where should this infrastructure be built?
-The central purpose of this paper is highlight the potential of online, interactive and publicly accessible tools to improve the provision of locally specific evidence for transport planning.
-It does so with reference to the Propensity to Cycle Tool (PCT), an online planning support system funded by the UK's Department for Transport to map cycling potential (Department for Transport, 2015).
-The PCT is open source. This differs from other tools for assessing cycling potential (see the next section) and has wider implications for how models can and should be used in the transport decision making process (see the Discussion).
-
+But where should this infrastructure be built? This paper seeks to demonstrate the potential of online, evidence-based tools to help answer this
+question, with reference to the Propensity to Cycle Tool (PCT).
+The PCT is an online planning support system funded by the UK's Department for Transport
+to map cycling potential (Department for Transport, 2015).
 
 <!-- The version described in the paper was deployed for England (PCT-England) but we envision additional versions being developed for other countries and cities. -->
 
@@ -163,9 +162,7 @@ With the notable exceptions of @larsen_build_2013 and @zhang_prioritizing_2014, 
 The methods broadly
 fit into three categories depending on the level of the input data used:
 
-- Area-based measures are based primarily on data at the level of administrative
-zones, which will vary depending on context.
-Outputs from these measures can assist with the location of site-specific transport infrastructure such as cycle parking.
+- Area-based measures are based primarily on data at the level of administrative zones. Outputs from these measures can assist with the location of site-specific transport infrastructure such as cycle parking.
 
 - Individual-based measures are based on survey data, typically a household travel survey. These are not always geographically specific and tend to be used to identify and categorise demographic groups in relation to cycling, such as near-market or as warranting tailored interventions, such as targeted cycle training schemes.
 
@@ -218,19 +215,16 @@ been short-listed. Unlike the prioritisation index of Larsen et al. (2013), whic
 <!-- \newpage -->
 
 ```{r, echo=FALSE, results='asis'}
-dft = readr::read_csv("../data-sources/cycle-tools-wide.csv")
+dft = readr::read_csv("../data-sources/160516_cycle-tools.csv")
 # knitr::kable(dft)
-# library(pander)
+library(pander)
 # pander(dft, split.table = Inf)
 # stargazer::stargazer(dft, summary = FALSE)
 library(xtable)
-xt = xtable(dft, caption = "Summary of tools and methods to explore the geographical distribution of cycling potential. Levels of analysis refer to whether data is analysed at point (P), area (A), origin-destination (OD), route (R), route network (RN) or individual (I) levels.")
-align(xt) = "Xp{2.5cm}|p{2cm}p{2cm}XXXp{1.8cm}"
-print(xt
-      , comment = FALSE, include.rownames = FALSE,  hline.after = 0:nrow(dft),
-  tabular.environment = "tabularx", width = "\\textwidth", booktabs = T, caption.placement = "top"
-  # , floating.environment = "sidewaystable"
-  )
+xt = xtable(dft, caption = "Summary of tools and methods to prioritise where to invest in cycling.")
+align(xt) = "Xp{3cm}|p{2cm}p{2cm}XXp{1.8cm}"
+print(xt, comment = FALSE, include.rownames = FALSE,  hline.after = 0:nrow(dft),
+  tabular.environment = "tabularx", width = "\\textwidth", booktabs = T, caption.placement = "top")
 ```
 
 <!-- \newpage -->
@@ -328,9 +322,7 @@ to show how the tool can be used
 
 This section describes the data and methods that generate the input data for the PCT.
 This is summarised in Figure 1 and described in detail in the Appendix.
-Central to the PCT approach is origin-destination (OD) data recording the travel flow between administrative zones.^[The
-size and uniformity of these depend on the country in question. In England the primary areal units for statistical data are output areas (OA), lower layer super output areas (LSOA) and middle layer super output areas (MSOA) (see [webarchive.nationalarchives.gov.uk](http://webarchive.nationalarchives.gov.uk/20160105160709/http://www.ons.gov.uk/ons/guide-method/geography/beginner-s-guide/census/super-output-areas--soas-/index.html)). The version of the PCT presented in this paper operates at the MSOA level.
-]
+Central to the PCT approach is origin-destination (OD) data recording the travel flow between administrative zones.
 Combined with geographical data on the coordinates of the population-weighted centroid of each zones,
 these can be represented as
 straight 'desire lines' or as routes allocated to the transport network.
@@ -1261,7 +1253,7 @@ analysis of outcomes by a much wider range of predictors [@lovelace_spatial_2014
 - Additional purposes of trips in the model. An 'education layer' would enable prioritisation of 'safe routes to school', building on methods analysing 'school commute' data [@singleton_gis_2014].
 Other data sources to include more trip types include mobile telephone providers [@alexander_validation_2015] and outputs from transport models.
 
-- Deployment of the PCT for new cities, regions or countries. This will depend on the availability of appropriate OD data, perhaps from sources mentioned in the previous point, and routing services that can estimate cyclable routes based on globally available data, e.g. using the function `route_graphhopper` from **stplanr** package.
+- Deployment of the PCT for new cities, regions or countries. This depends on the availability of appropriate OD data, perhaps from sources mentioned in the previous point.
 Such work could also facilitate international comparisons of cycling potential.
 
 Transport planning is a complex and contested field [@banister_sustainable_2008].

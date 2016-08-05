@@ -1,0 +1,7 @@
+Tool,Scale,Coverage,Public access,Format of output,Levels of analysis,Software licence
+Propensity to Cycle Tool,National,England,Yes,Online map,"A, OD, R, RN",Open source
+Prioritization Index,City,Montreal,No,GIS-based,"P, A, R",Proprietary
+Permeability Assessment Tool ,Local,Parts of Dublin,No,GIS-based,"A, OD, R",Proprietary
+Usage intensity index,City,Belo Horizonte,No,GIS-based,"A, OD, R, I",Proprietary
+Bicycle share model ,National,"England, Wales",No,Static ,"A, R",Unknown
+Cycling Potential Tool,City,London,No,Static ,"A, I",Unknown
