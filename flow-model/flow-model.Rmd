@@ -156,11 +156,12 @@ Within this policy context, the PCT focuses explicitly on the question of *where
 
 ## Research into cycling potential 
 
-There is an emerging literature exploring cycling potential.
-This links to the question of 'where to build' because 
-areas and routes with the highest potential are likely to be cost-effective places to invest.
-With the notable exceptions of @larsen_build_2013 and @zhang_prioritizing_2014, this literature provides little in way of *systematic*, *quantitative* or *scalable* evidence for transport planners.
-The work can be classified in a number of ways, including by the main method of the tool (e.g. route choice, facility demand or mode choice), the format of its outputs (e.g. spreadsheet results, GIS-based map or on-line, interactive map) or by the main level of the input data used.
+There is an emerging literature exploring cycling rates and potential rates of growth.
+Much of this work is practitioner-led, as detailed in an excellent overview of developments in the USA [@kuzmyak_estimating_2014].
+<!-- This links to the question of 'where to build' because  -->
+<!-- areas and routes with the highest potential are likely to be cost-effective places to invest. -->
+With the notable exceptions of @larsen_build_2013 and @zhang_prioritizing_2014, the methods reviewed in this section are not simultaneously *route-based*, *systematic*, *quantitative* and *scalable*, some of the key features of the PCT.
+The work can be classified in a number of ways, including by the main mechanism of the tool (e.g. facility demand or mode choice models), the format of its outputs (e.g. spreadsheet results, GIS-based map or on-line, interactive map) or by the main level of the input data used.
 In these terms, the PCT is based on a mode choice model (representing the shift to cycling from other modes) operating primarily at the origin-destination level, which provides outputs in an online, interactive map.
 For research into cycling potential (and the resulting models) to be useful for local transport planners, their spatial scale must coincide with those over which the planning process has some control. For this reason we focus on scale as the primary way of categorising research into cycling potential, highlighing the following prominent levels (the PCT best fits into the third). 
 
@@ -180,7 +181,15 @@ This work is reviewed in relation to the PCT below and summarised in Table 1.
 
 @zhang_prioritizing_2014 created an individual-based model of cycling potential to prioritise where to build cycle paths to "achieve maximum impacts early on".
 The outputs of this model were aggregated to the level of 67 statistical zones in the study area of Belo Horizonte, Brazil, and used to generate a 'usage intensity index' for potential cycle paths.
-This, combined with survey data on cyclists' stated preferences on whether people would cycle were infrastructure provided along particular routes and origin-destination data on travel to work, was used to rank key routes in the city in terms of their cycling potential.
+This, combined with survey data on cyclists' stated preferences on whether people would cycle were infrastructure provided along particular routes and origin-destination data on travel to work, was used to rank key routes in the city in terms of their cycling potential. 
+
+@larsen_build_2013 created
+an area-based 'prioritization index', for Montreal, Canada.
+This was based on four variables: the area's current level of cycling,
+its cycling potential (estimated based on the shortest path between the origin and destination of short car trips from a travel survey), the number of injuries to cyclists,
+and locations prioritised by current cyclists for improvement  [@larsen_build_2013].
+These four were aggregated to the level of evenly spread cells covering the study area.
+The resulting heat map was used to recommend the construction or upgrade of cycle paths on specific roads.
 
 <!-- ### Individiual-based measures of cycling potential -->
 <!-- Another method that used individual-level to identify areas with high numbers of -->
@@ -190,19 +199,13 @@ This, combined with survey data on cyclists' stated preferences on whether peopl
 <!-- presented as a static heatmap and used to prioritise where to build new cycle -->
 <!-- paths and cycle hire points. -->
 
-While the methods presented by Parkin et al. (2008) and Zhang et al. (2014) were developed in an academic context, albeit closely related to policy needs and interests, the
-Analysis of Cycling Potential (ACP) tool was developed by practitioners [@transport_for_london_analysis_2010]. The ACP combined area and individual-level data to produce a heat map estimating cycling potential across London, UK, for all trip purposes. The underlying model examined which types of trips are most likely to be cycled, based on the characteristics of observed cycle trips (e.g. time of day, characteristics of the traveller, distance).
-The results of the ACP have informed local cycling schemes, such as where to build new cycle hire stations.
-The ACP does not use origin-destination data directly or route allocation.
+Although the methods presented in preceding three paragraphs were developed in an academic context,
+most of the useable *tools* for estimating cycling potential is practitioners-led.
+Many of these may never have been documented in the academic literature, so the subsequent overview should not be regarded as comprehensive
+[see @kuzmyak_estimating_2014 and subsequent documents that cite this report].
 
-Again working within academia but also closely focussed on local planning and policy issues,
-@larsen_build_2013 created
-an area-based 'prioritization index', for Montreal, Canada.
-This was based on four variables: the area's current level of cycling,
-its cycling potential (estimated based on the shortest path between the origin and destination of short car trips from a travel survey), the number of injuries to cyclists,
-and locations prioritised by current cyclists for improvement  [@larsen_build_2013].
-These four were aggregated to the level of evenly spread cells covering the study area.
-The resulting heat map was used to recommend the construction or upgrade of cycle paths on specific roads.
+The Analysis of Cycling Potential (ACP) tool was developed by @transport_for_london_analysis_2010 to produce heat maps of cycling potential across London, for all trip purposes. It is based a mode choice model of likelihood of trips being cycled and uses the characteristics of observed trips (e.g. time of day, characteristics of the traveller, distance) as the main input dataset.
+The results of the ACP have informed local cycling schemes, such as where to build new cycle hire stations but does not use origin-destination data so is less relevant for route-based interventions.
 
 A more localised approach is the Permeability Assessment Tool (PAT), which was developed by a transport consultancy @payne_removing_2014.
 The PAT is based on the concept of 'filtered permeability', which means providing a more direct route to people cycling than driving [@melia_urban_2015].
