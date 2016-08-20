@@ -26,7 +26,7 @@ bibliography: ../documents/references.bib
 
 ```{r, echo=FALSE}
 library(knitr)
-opts_chunk$set(out.width = '100%')
+opts_chunk$set(out.width = '100%', message = FALSE)
 ```
 
 ```{r, echo=FALSE, include=FALSE}
@@ -158,7 +158,7 @@ Within this policy context, the PCT focuses explicitly on the question of *where
 
 There is an emerging literature exploring cycling potential.
 This links to the question of 'where to build' because 
-areas and routes with the highest potential are likely to be cost-effective places for investment from health and emissions perspectives.
+areas and routes with the highest potential are likely to be cost-effective places to invest.
 With the notable exceptions of @larsen_build_2013 and @zhang_prioritizing_2014, this body of research has not provided systematic or quantitative evidence for transport planners.
 The methods broadly
 fit into three categories depending on the level of the input data used:
