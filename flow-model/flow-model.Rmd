@@ -10,12 +10,12 @@ author:
 - James Woodcock (University of Cambridge)
 csl: ../documents/elsevier-harvard.csl
 output:
-  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
+  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
   \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
   \usepackage{tabu} \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
@@ -429,7 +429,7 @@ commute from locations within and between administrative zones (MSOAs). Note `Ca
 
 ## Modelling baseline propensity to cycle
 
-The starting point for generating our scenario-based 'cycling futures' was to model baseline data on cycle commuting in England.  We did this using OD data from the 2011 Census, and modelling cycling commuting as a function of route distance and route hilliness.  We did so using logistic regression applied at the individual level, including squared and square-root terms to capture 'distance decay' --- the non-linear impact of distance on the likelihood of cycling [@iacono_access_2008] --- and including terms to capture the interaction between distance and hilliness. Model fit is illustrated in Figure 2; see the appendix for details and for the underlying equations.
+The starting point for generating our scenario-based 'cycling futures' was to model baseline data on cycle commuting in England.  We did this using OD data from the 2011 Census, and modelling cycling commuting as a function of route distance and route hilliness.  We did so using logistic regression applied at the individual level, including squared and square-root terms to capture 'distance decay' --- the non-linear impact of distance on the likelihood of cycling [@iacono_access_2008] --- and including terms to capture the interaction between distance and hilliness. Model fit is illustrated in Figure 2; see the Appendix for details and for the underlying equations.
 We also developed equations to estimate commuting mode share among groups not represented in the between-zone ('interzonal') OD data, e.g. those commuting within a specific MSOA (this is within-zone or 'intrazonal' travel), or those with no fixed workplace. 
 This model of baseline propensity to cycle formed the basis of three of the four scenarios (Government Target, Go Dutch and Ebikes), as described in more detail in the next section.
 
@@ -1094,7 +1094,7 @@ knitr::include_graphics(c("dd-west-yorks.png", "dd-ox.png"))
 <!-- national average, so the Government Target scenario represents less than a doubling in -->
 <!-- cycling. -->
 
-## The shifting spatial distribution of cycling
+## The shifting spatial distribution of cycling and associated impacts
 
 The spatial distribution of cycling potential differs markedly between scenarios, as illustrated in Figure 7 for the city of Leeds, West Yorkshire. The top 6 OD pairs (a low number was used to focus on the city centre) in Leeds under Government Target are strongly influenced by the current distribution of cycling trips, concentrated in the North of the city (see Figure 3 for comparison with the baseline).
 Under the Go Dutch scenario, by contrast, the pattern of cycling shifts substantially to the South.
@@ -1164,11 +1164,13 @@ These were selected to provide insight into how the geographical distribution of
 knitr::include_graphics("model-output.png")
 ```
 
-## Visualising Health and Carbon Benefits
+<!-- ## Visualising Health and Carbon Benefits -->
 
-The health benefits of cycling do not necessarily rise in direct proportion to the number of people cycling. Longer trips lead to a greater health benefit than short ones and older people benefit more from increased physical activity. Further, health benefits along desire lines with a low pedestrian mode share can be expected to be greater. 
+Another feature of the user interface worth highlighting is addition of a dropdown menu to enable the 'top n' routes to be selected not only based on the level of cycling, but also based on estimated health and carbon impacts, under each scenario.
+The reason for this addition was the finding that health benefits do not always rise in simply in proportion to the number of people cycling:
+longer trips lead to a greater health benefit than short ones do, and this is now represented by shifting distribution of lines when the "HEAT Value" option is selected from the "Order lines/flows by" dropdown menu (this menu only appears when lines are shown *and* a scenario other than the Census 2011 is selected).
 
-This is demonstrated in the data presented by the PCT. The economic value of health benefits reported for the 4.1 km route in Figure 5 is estimated to be £70785. When health benefits are the main criteria for policy evaluation, OD pairs with low current rates of walking would be favoured for intervention.
+This feature is illustrated in Figure 5, economic value of health benefits reported for the 4.1 km route in Figure 5 is estimated to be £70785. When health benefits are the main criteria for policy evaluation, OD pairs with low current rates of walking would be favoured for intervention.
 When emissions are the main criteria, OD pairs with a high baseline level of car use are also favoured.
 The exploration of these considerations is facilitated in the PCT by allowing users to select the top routes ranked by health and carbon benefits.
 
@@ -1385,7 +1387,7 @@ By providing transport authorities, campaign groups and the public with access t
 
 # Author contribution statement {-}
 
-The PCT was built as a collaborative effort. The Principal Investigator of the project was JW, and the initial concept for the project came from JW and RL in response to a call from the Department of Transport. AG led the creation of the model underlying the PCT, and the generation of estimates of cycling levels, health gains and carbon impacts in each scenario.  JW and AG led the development of the methods for calculating health impacts.  JW, RL, AG, and RA contributed to the development of the cycling uptake rules. RL led the processing of these modelled estimates for spatial visualisation in the online tool and coordinated the development of the online tool.  RA led the coordination of policy implementation and collection of practitioner feedback. AA and NB led on the user interface, with contributions from all authors. NB led the deployment of the PCT on a public facing server. AG led the writing of the appendix. RL led the writing of this manuscript, with input from all authors.
+The PCT was built as a collaborative effort. The Principal Investigator of the project was JW, and the initial concept for the project came from JW and RL in response to a call from the Department of Transport. AG led the creation of the model underlying the PCT, and the generation of estimates of cycling levels, health gains and carbon impacts in each scenario.  JW and AG led the development of the methods for calculating health impacts.  JW, RL, AG, and RA contributed to the development of the cycling uptake rules. RL led the processing of these modelled estimates for spatial visualisation in the online tool and coordinated the development of the online tool.  RA led the coordination of policy implementation and collection of practitioner feedback. AA and NB led on the user interface, with contributions from all authors. NB led the deployment of the PCT on a public facing server. AG led the writing of the Appendix. RL led the writing of this manuscript, with input from all authors.
 
 # Acknowledgements {-}
 
