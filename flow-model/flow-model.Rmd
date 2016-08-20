@@ -145,6 +145,9 @@ A number of factors influence
 the attractiveness of cycling for everyday trips [@pucher_infrastructure_2010;@parkin_planning_2015].
 However, the intervention that has received the most attention has been the construction of new cycle paths.
 In the UK context, devolved transport budgets mean that local authorities have some control over the design and implementation of cycling networks.
+While much of the road network budget allocated centrally, through Highways England, cycle paths tend to be commissioned and designed locally due to funding streams such as the Local Sustainable Transport Fund, described in the context of modal shift to cycling by @chatterjee_triggers_2013.
+This, and the shorter distances and more flexible routes (e.g. through parks and along disused railways) that cycle paths can take increases the importance of high resolution map-based tools for cycling compared with motorised modes.
+Local transport budgets also increase demand for local cycling targets that open source tools such as the PCT could enable, as described in the Discussion.
 
 Planning new cycle paths requires many decisions to be made, including in relation to the width [@wegman_urban_1979;@pikora_developing_2002], quality [@heath_effectiveness_2006], directness [@crow_design_2007] and geographic location of the paths.
 Yet while much guidance has been produced regarding physical design [e.g. @transport_for_london_london_2015;@welsh_government_guidance_2014],
@@ -336,8 +339,10 @@ to show how the tool can be used
 
 # Data and methods
 
-This section describes the data and methods that generate the input data for the PCT.
-This is summarised in Figure 1 and described in detail in the Appendix.
+This section describes the data and methods that generate the scenario data for the PCT,
+as summarised in Figure 1.
+The details of the model, which models the proportion of trips made by cycling per OD pair as a function of hilliness and distance, are described the Appendix.
+The scenario-generation method is not included in the main text of the paper because it is the most context-specific aspect of the PCT: as outlined in the Discussion, we envision future uses of the PCT using different model parameters and even different functional forms relating distance, hilliness and other variables to the level of cycling, to generate scenarios of use for new contexts beyond the English case study described here.
 Central to the PCT approach is origin-destination (OD) data recording the travel flow between administrative zones.^[The
 size and uniformity of these depend on the country in question. In England the primary areal units for statistical data are output areas (OA), lower layer super output areas (LSOA) and middle layer super output areas (MSOA) (see [webarchive.nationalarchives.gov.uk](http://webarchive.nationalarchives.gov.uk/20160105160709/http://www.ons.gov.uk/ons/guide-method/geography/beginner-s-guide/census/super-output-areas--soas-/index.html)). The version of the PCT presented in this paper operates at the MSOA level.
 ]
