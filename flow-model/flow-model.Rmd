@@ -10,12 +10,12 @@ author:
 - James Woodcock (University of Cambridge)
 csl: ../documents/elsevier-harvard.csl
 output:
+  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
-  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
   \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
   \usepackage{tabu} \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
@@ -260,12 +260,14 @@ The PCT is systematic in its use of national data for all parts of the study reg
 PSS typically work by presenting evidence about the characteristics and needs
 of the study region in an interactive map.
 A central objective is to visualise
-alternative scenarios of cycling uptake and explore their potential impacts.
+alternative scenarios of change, and explore their potential impacts.
 The results of traditional scenario-based models 
 are usually not locally specific
 [@mccollum_achieving_2009;@lovelace_assessing_2011;@woodcock_public_2009].
 Online PSS can overcome this issue by using interactive maps [@pettit_online_2013].
 The emergence of libraries for web mapping  [@haklay_web_2008] has facilitated online PSS, offering the potential for public access to the planning process. Transparency is further enhanced by making PSS open source, in-line with a growing trend in transport modelling [@tamminga_design_2012;@novosel_agent_2015;@borning_urbansim:_2008].  In these ways, PSS can make evidence for transport planning more widely available, and tackle the issue that transport models are often seen as 'black boxes', closed to public scrutiny (Golub et al., 2013).
+
+With reference to a publicly accessible online map-based PSS for strategic land use (and to a lesser extent transport) planning, @kahila-tani_let_2016 provide guidance on the wider public participation process: it should be *transparent*, *influence* real world decisions, be *representative* of citizens and allow *independent participation*. Although these criteria depend primarily on *how* the tool is deployed in practice (for example with regards to training resources and workshops facilitated by planning authorities to ensure that the tool the tool is used effectively), which are outside the scope of the current paper, the PCT certainly encourages transparency through its use of open data and open source software and allows independent participation through its publicly accessible online interface.
 
 
 <!-- allowing public access to the planning process. -->
