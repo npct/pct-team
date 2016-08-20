@@ -159,9 +159,10 @@ Within this policy context, the PCT focuses explicitly on the question of *where
 There is an emerging literature exploring cycling potential.
 This links to the question of 'where to build' because 
 areas and routes with the highest potential are likely to be cost-effective places to invest.
-With the notable exceptions of @larsen_build_2013 and @zhang_prioritizing_2014, this body of research has not provided systematic or quantitative evidence for transport planners.
-The methods broadly
-fit into three categories depending on the level of the input data used:
+With the notable exceptions of @larsen_build_2013 and @zhang_prioritizing_2014, this literature provides little in way of *systematic*, *quantitative* or *scalable* evidence for transport planners.
+The work can be classified in a number of ways, including by the main method of the tool (e.g. route choice, facility demand or mode choice), the format of its outputs (e.g. spreadsheet results, GIS-based map or on-line, interactive map) or by the main level of the input data used.
+In these terms, the PCT is based on a mode choice model (representing the shift to cycling from other modes) operating primarily at the origin-destination level, which provides outputs in an online, interactive map.
+For research into cycling potential (and the resulting models) to be useful for local transport planners, their spatial scale must coincide with those over which the planning process has some control. For this reason we focus on scale as the primary way of categorising research into cycling potential, highlighing the following prominent levels (the PCT best fits into the third). 
 
 - Area-based measures are based primarily on data at the level of administrative
 zones, which will vary depending on context.
