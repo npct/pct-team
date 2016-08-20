@@ -118,7 +118,7 @@ Providing high-quality infrastructure can play a key role in promoting cycling u
 Off-road cycle paths, for example, have been found to be associated with an uptake of cycling for commuting [@heinen_changes_2015].
 Overall there is growing evidence linking cycling infrastructure to higher rates of cycling [@buehler_bikeway_2016].
 But where should this infrastructure be built?
-The central purpose of this paper is highlight the potential of online, interactive and publicly accessible tools to improve the provision of locally specific evidence for transport planning.
+The central purpose of this paper is highlight the potential of online, interactive and publicly accessible tools to improve the provision of locally specific evidence about where cycling has the greatest potential to grow for transport planning.
 It does so with reference to the Propensity to Cycle Tool (PCT), an online planning support system funded by the UK's Department for Transport to map cycling potential (Department for Transport, 2015).
 The PCT is open source. This differs from other tools for assessing cycling potential (see the next section) and has wider implications for how models can and should be used in the transport decision making process (see the Discussion).
 
