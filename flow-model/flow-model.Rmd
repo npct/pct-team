@@ -166,7 +166,7 @@ Much of this work is practitioner-led, as detailed in an excellent overview of d
 With the notable exceptions of @larsen_build_2013 and @zhang_prioritizing_2014, the methods reviewed in this section are not simultaneously *route-based*, *systematic*, *quantitative* and *scalable*, some of the key features of the PCT.
 The work can be classified in a number of ways, including by the main mechanism of the tool (e.g. facility demand or mode choice models), the format of its outputs (e.g. spreadsheet results, GIS-based map or on-line, interactive map) or by the main level of the input data used.
 In these terms, the PCT is based on a mode choice model (representing the shift to cycling from other modes) operating primarily at the origin-destination level, which provides outputs in an online, interactive map.
-For research into cycling potential (and the resulting models) to be useful for local transport planners, their spatial scale must coincide with those over which the planning process has some control. For this reason we focus on scale as the primary way of categorising research into cycling potential, highlighing the following prominent levels (the PCT best fits into the third). 
+For research into cycling potential (and the resulting models) to be useful for local transport planners, their spatial scale must coincide with those over which the planning process has some control. For this reason we focus on scale as the primary way of categorising research into cycling potential, highlighting the following prominent levels (the PCT best fits into the third). 
 
 - Area-based measures are based primarily on data at the level of administrative
 zones, which will vary depending on context.
@@ -203,7 +203,7 @@ The resulting heat map was used to recommend the construction or upgrade of cycl
 <!-- paths and cycle hire points. -->
 
 Although the methods presented in preceding three paragraphs were developed in an academic context,
-most of the useable *tools* for estimating cycling potential is practitioners-led.
+most of the usable *tools* for estimating cycling potential is practitioners-led.
 Many of these may never have been documented in the academic literature, so the subsequent overview should not be regarded as comprehensive
 [see @kuzmyak_estimating_2014 and subsequent documents that cite this report].
 
@@ -706,7 +706,7 @@ route choice models based on GPS data
 have been developed for this purpose [@broach_where_2012;@ehrgott_bi-objective_2012].
 Of the available routes (see [cyclestreets.net/journey/help](https://www.cyclestreets.net/journey/help/howtouse/) for more information), the 'fastest' option was used.
 This decision was informed by recommendations from @crow_design_2007, building on evidence of
-cyclists' preferance direct routes.
+cyclists' preference direct routes.
 
 <!-- To generate the Route Network layer, overlapping fast routes were aggregated (see Figure 5). These stages were computationally intensive, leading to a number of steps being taken to make them fast and scalable: -->
 
@@ -1197,7 +1197,7 @@ of cycling demand is likely to shift as cycling grows.
 In addition to creating an evidence base for planning specific routes and area-based interventions, the long-term Go Dutch and Ebikes scenarios could be used for envisioning different transport futures [@hickman_transitions_2011].
 The PCT could also: help translate national targets into local aspirations (as illustrated by the Government Target scenario); inform local targets (e.g. by indicating what the potential in one region is relative to neighbouring regions); support business cases (by showing that there is high cycling potential along proposed routes); and help plan for cycle capacity along the route network via the network analysis layer.
 Ongoing case study work with stakeholders will be needed to establish and develop these uses. 
-Future developments will be facilitated by the open source codebase underlying the PCT (see [github.com/npct](https://github.com/npct)) [@lima_coding_2014].
+Future developments will be facilitated by the open source code-base underlying the PCT (see [github.com/npct](https://github.com/npct)) [@lima_coding_2014].
 
 
 <!-- The underlying code is open source (see [github.com/npct](https://github.com/npct)), -->
