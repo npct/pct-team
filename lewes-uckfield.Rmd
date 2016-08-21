@@ -12,7 +12,20 @@ pkgs = c("sp", "tmap", "rgeos", "stplanr")
 lapply(pkgs, library, character.only = T)
 ```
 
-## Introduction
+# Introduction
+
+## Rail-related deliverables in the PCT project
+
+Deliverables 5.1, 5.2 and 5.3 in Phase II of the Propensity to Cycle Tool (PCT) project are related to the interaction between cycling and rail.
+They are as follows:
+
+- Task 5.1 Modify the PCT methodology to identify ‘parallels’ and ‘severance points’: 30 September 2016
+- Task 5.2 Roll-out of a version of the PCT to highlight cycling opportunities raised by HS2: 30thNovember 2016
+- Task 5.3 Case study of new railway line in Sussex: 30 September 2016
+
+This document represents the delivery of Tasks 5.1 and 5.3 from the above list and will be used as a foundation to deliver Task 5.3 by 2016-11-30.
+
+## Local context
 
 The Lewes-Uckfield trainline is a proposed project to restore a rail link between Uckfield and Lewes. This is part of wider plans to increase rail capacity in the area. As stated in the project brief, "Such infrastructure has the potential to support cycling if high quality infrastructure is built alongside." This appendix analyses cycling potential along the proposed route, which is 16 km in length (see Figure \@ref(fig:lc)).
 
@@ -41,6 +54,30 @@ load("input-data/lewes_uckfield_objects.Rdata")
 # sum(cents_lc$all)
 ```
 
+# Methodology
+
+## Identifying 'parallels' to linear features
+
+To identify parallels to linear features, a 4 stage methodology was developed:
+
+- Subset cycling desire lines to include only those which pass in close proximity to the linear feature
+- Break the linear feature of interest into segments of even distance
+- Calculate the angle of the segments of the linear feature and desire lines
+- Subset the desire lines again, to include only those that are 'parallel' or within a threshold angle of their closest segment
+- Aggregate the cycling potential of all parallel lines per segment
+
+## Identifying potential 'severance points'
+
+Severance occurs when active travel along cyclable desire lines with high cycling potential is prevented or made more difficult by obstacles such as rivers, fast roads or railway tracks. A degree of severance can be expected along the full length of linear features, as most desire lines have at least some cycling potential. However, the degree of severance will be greatest in certain *severance pinch points* (henceforth referred to as severance points), for example points along a rail track which intersect desire lines connecting residential areas with employment zones on the other side.
+
+The methodology used to identfy these severance points consists of 3 stages:
+
+- Identify the desire lines which intersect with the impassable linear feature.
+- Quantify the number of potential cyclists blocked along segments of the linear feature of even length
+- Subset the segments which block the highest number of potential cyclists and identify potential crossing points
+
+Note that based on the three-stage methodology outlined above severance points are in fact more precisely described as 'severance segments', along which a range of points could be chosen for crossing points. However, the term 'severance point' is more intuitive so we use this term throughout.
+
 # Current travel patterns
 
 There are `r nrow(cents_lc)` MSOAs whose population weighted centroids lie within a 10 km buffer of the line, representing `r sum(cents_lc$all)` commuters. This area is illustrated in Figure \@ref(fig:lc).
@@ -61,11 +98,8 @@ The total number of single-stage commutes that pass through the buffer is higher
 
 # Cycling potential around the proposed route
 
-
-
 Under the ambitious Ebike scenario, the PCT shows that cycling potential along routes running parallel to the line is uneven geographically. Unsurprisingly, cycling potential is clustered at either end of the proposed route, with relatively high increases modelled along segments of the network between Lewes and Ringmer (an increase from 35 to 336 commuters is modelled along a section of the B2192 running west from Lewes) and routes running north-south through Uckfield. This is shown in Figure \@ref(fig:pct-uck).
 
 ```{r pct-uck, fig.cap="Cycling potential along the transport network between Lewes and Uckfield, under the Ebike scenario of the Propensity to Cycle Tool (see [pct.bike/east-sussex/](http://pct.bike/east-sussex/))."}
 knitr::include_graphics("figures/lewes-uckfield-pct-ebike.png")
-
 ```
