@@ -19,15 +19,19 @@ lapply(pkgs, library, character.only = T)
 Deliverables 5.1, 5.2 and 5.3 in Phase II of the Propensity to Cycle Tool (PCT) project are related to the interaction between cycling and rail.
 They are as follows:
 
-- Task 5.1 Modify the PCT methodology to identify ‘parallels’ and ‘severance points’: 30 September 2016
-- Task 5.2 Roll-out of a version of the PCT to highlight cycling opportunities raised by HS2: 30thNovember 2016
-- Task 5.3 Case study of new railway line in Sussex: 30 September 2016
+- Task 5.1 Modify the PCT methodology to identify ‘parallels’ and ‘severance points’.  Deliverable is a short report, by 30 September 2016.
+- Task 5.2 Roll-out of a version of the PCT to highlight cycling opportunities raised by HS2.  Deliverable is a short report, by 30 November 2016.
+- Task 5.3 Case study of new railway line in Sussex: 30 September 2016.  Deliverable is a short report, by 30 September 2016.
 
-This document represents the delivery of Tasks 5.1 and 5.3 from the above list and will be used as a foundation to deliver Task 5.3 by 2016-11-30.
+This document represents the delivery of Tasks 5.1 and 5.3 from the above list and will be used as a foundation to deliver Task 5.2.
+
+In the contract deliverable 5.2 is described as looking at cycling opportunities along the *route* of the HS2 train line. However subsequent discussions with DfT staff (Shane Snow) have indicated that the cycling potential around the *proposed cycle path* surrounding HS2 that is of most interest. It has therefore been agreed that 5.3 will analyse the cycling potential in the wider area covered by the proposed path, rather than just the route of HS2. Because this new piece of work is more challenging, it has further been agreed that, rather than a full quantitative analysis of the cycling potential along every segment of the entire cycle path, the analysis associated with 5.2 will focus on overlaying the proposed route with estimates of cycling potential from the PCT, with the aim of providing an evidence base for investing in and potentially modifying the proposed cycle path surrounding the HS2.
+
+This report, however, focusses exclusively on the much smaller area surrounded by the proposed Lewes-Uckfield rail route.
 
 ## Local context
 
-The Lewes-Uckfield trainline is a proposed project to restore a rail link between Uckfield and Lewes. This is part of wider plans to increase rail capacity in the area. As stated in the project brief, "Such infrastructure has the potential to support cycling if high quality infrastructure is built alongside." This appendix analyses cycling potential along the proposed route, which is 16 km in length (see Figure \@ref(fig:lc)).
+The Lewes-Uckfield train line is a proposed project to restore a rail link between Uckfield and Lewes. This is part of wider plans to increase rail capacity in the area. As stated in the project brief, "Such infrastructure has the potential to support cycling if high quality infrastructure is built alongside." This appendix analyses cycling potential along the proposed route, which is 16 km in length (see Figure \@ref(fig:lc)).
 
 <!-- # Cycling potential surrounding the Lewes-Uckfield trainline -->
 
