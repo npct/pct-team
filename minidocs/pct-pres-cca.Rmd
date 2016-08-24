@@ -1,7 +1,7 @@
 ---
 title: "The propensity to cycle tool: from conception to national deployment"
-author: "Robin Lovelace, University of Leeds. See rpubs.com/robinlovelace for slides."
-date: "Cycle City Active Conference, `r Sys.Date()`, Leicester."
+author: "Robin Lovelace, University of Leeds. "
+date: "Leeds Institute for Data Analytics, 2016-09-02, University of Leeds"
 output:
   # beamer_presentation: 
   #   fonttheme: professionalfonts
