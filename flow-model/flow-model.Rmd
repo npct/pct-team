@@ -10,12 +10,12 @@ author:
 - James Woodcock (University of Cambridge)
 csl: ../documents/elsevier-harvard.csl
 output:
-  word_document: default
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
   html_document: default
+  word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
   \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
   \usepackage{tabu} \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
@@ -344,7 +344,7 @@ as summarised in Figure 1.
 The details of the model, which models the proportion of trips made by cycling per OD pair as a function of hilliness and distance, are described the Appendix.
 The scenario-generation method is not included in the main text of the paper because it is the most context-specific aspect of the PCT: as outlined in the Discussion, we envision future uses of the PCT using different model parameters and even different functional forms relating distance, hilliness and other variables to the level of cycling, to generate scenarios of use for new contexts beyond the English case study described here.
 Central to the PCT approach is origin-destination (OD) data recording the travel flow between administrative zones.^[The
-size and uniformity of these depend on the country in question. In England the primary areal units for statistical data are output areas (OA), lower layer super output areas (LSOA) and middle layer super output areas (MSOA) (see [webarchive.nationalarchives.gov.uk](http://webarchive.nationalarchives.gov.uk/20160105160709/http://www.ons.gov.uk/ons/guide-method/geography/beginner-s-guide/census/super-output-areas--soas-/index.html)). The version of the PCT presented in this paper operates at the MSOA level.
+size and uniformity of these depend on the country in question. In the UK the primary areal units for statistical data are output areas (OA), lower layer super output areas (LSOA) and middle layer super output areas (MSOA) (see [webarchive.nationalarchives.gov.uk](http://webarchive.nationalarchives.gov.uk/20160105160709/http://www.ons.gov.uk/ons/guide-method/geography/beginner-s-guide/census/super-output-areas--soas-/index.html)). The version of the PCT presented in this paper operates at the MSOA level.
 ]
 Combined with geographical data on the coordinates of the population-weighted centroid of each zones,
 these can be represented as
@@ -361,7 +361,7 @@ knitr::include_graphics("160516_Fig1.pdf")
 
 The central input dataset was a table of origin-destination (OD) pairs from the 2011 Census.
 This was loaded from open access file `wu03ew_v2.csv`, provided by the [UK Data Service](http://wicid.ukdataservice.ac.uk/). This captures the number of commuters travelling between Middle Super Output Area zones (MSOAs, average commuter population: 3300), by mode of travel (see Table 2).
- This dataset was derived from responses to the following questions in the [English 2011 Census](http://www.ons.gov.uk/census/): "In your main job, what is the address of your workplace?" (question 40) and "How do you usually travel to work? (Tick one box only, for the longest part, by distance, of your usual journey to work)" (Question 41).
+ This dataset was derived from responses to the following questions in the [2011 Census for England and Wales](http://www.ons.gov.uk/census/): "In your main job, what is the address of your workplace?" (question 40) and "How do you usually travel to work? (Tick one box only, for the longest part, by distance, of your usual journey to work)" (Question 41).
  This dataset was enhanced by merging in information on the gender composition of cyclists in each OD pair (Dataset 1 in Figure 1); data at the area level on the background mortality rate (Dataset 2); and data at the OD pair-level on route distance (km) and hilliness (average gradient, as a percentage) (Dataset 3).
 OD data was assigned to the transport network using the R package stplanr (Lovelace et al., 2016). See the Appendix for further details.
 
@@ -434,11 +434,11 @@ commute from locations within and between administrative zones (MSOAs). Note `Ca
 
 ## Modelling baseline propensity to cycle
 
-The starting point for generating our scenario-based 'cycling futures' was to model baseline data on cycle commuting in England.  We did this using OD data from the 2011 Census, and modelling cycling commuting as a function of route distance and route hilliness.  We did so using logistic regression applied at the individual level, including squared and square-root terms to capture 'distance decay' --- the non-linear impact of distance on the likelihood of cycling [@iacono_access_2008] --- and including terms to capture the interaction between distance and hilliness. Model fit is illustrated in Figure 2; see the Appendix for details and for the underlying equations.
+The starting point for generating our scenario-based 'cycling futures' was to model baseline data on cycle commuting in England and Wales.  We did this using OD data from the 2011 Census, and modelling cycling commuting as a function of route distance and route hilliness.  We did so using logistic regression applied at the individual level, including squared and square-root terms to capture 'distance decay' --- the non-linear impact of distance on the likelihood of cycling [@iacono_access_2008] --- and including terms to capture the interaction between distance and hilliness. Model fit is illustrated in Figure 2; see the Appendix for details and for the underlying equations.
 We also developed equations to estimate commuting mode share among groups not represented in the between-zone ('interzonal') OD data, e.g. those commuting within a specific MSOA (this is within-zone or 'intrazonal' travel), or those with no fixed workplace. 
 This model of baseline propensity to cycle formed the basis of three of the four scenarios (Government Target, Go Dutch and Ebikes), as described in more detail in the next section.
 
-```{r, echo=FALSE, fig.cap="The relationship between distance (left) and hilliness (right) and cycling mode share in England based on the 2011 Census. The plots show actual (blue) vs predicted (red) prevalence of cycling to work among 17,896,135 commuters travelling <30km to work."}
+```{r, echo=FALSE, fig.cap="The relationship between distance (left) and hilliness (right) and cycling mode share based on data from the 2011 Census for England and Wales. The plots show actual (blue) vs predicted (red) prevalence of cycling to work among commuters travelling <30km to work."}
 knitr::include_graphics("dist-curve2-ag.pdf")
 ```
 
@@ -465,7 +465,7 @@ knitr::include_graphics("dist-curve2-ag.pdf")
 <!-- disaggregated by mode of travel. -->
 <!-- We used the file `wu03ew_v2.csv`, obtained from the UK Data Service -->
 <!-- (see Table 2 for a sample of this dataset)^[See [wicid.ukdataservice.ac.uk/cider/wicid/downloads.php](https://wicid.ukdataservice.ac.uk/cider/wicid/downloads.php).]  This dataset was derived by the Office for National Statistics from responses to questions 40 ("In your main job, what is the address of your -->
-<!-- workplace?") and 41 ("How do you usually travel to work?") in the English 2011 Census (see [ons.gov.uk/census](http://www.ons.gov.uk/census/2011census/howourcensusworks/howwetookthe2011census/howwecollectedtheinformation/questionnairesdeliverycompletionandreturn) for further information). -->
+<!-- workplace?") and 41 ("How do you usually travel to work?") in the 2011 Census for England and Wales (see [ons.gov.uk/census](http://www.ons.gov.uk/census/2011census/howourcensusworks/howwetookthe2011census/howwecollectedtheinformation/questionnairesdeliverycompletionandreturn) for further information). -->
 
 <!-- - The population-weighted centroids of -->
 <!-- administrative zones (see Table 1). Middle Super -->
@@ -526,8 +526,8 @@ knitr::include_graphics("dist-curve2-ag.pdf")
 
 ## Scenarios of cycling uptake 
 
-Four scenarios were developed to
-explore cycling futures in England.
+Four scenarios were developed to a range of
+explore cycling futures.
 These can be framed in terms of the removal of different infrastructural, cultural and technological barriers that currently prevent cycling being the natural mode of choice for trips of short to medium distances. 
 They are not predictions of the future.
 They are snapshots indicating how the spatial distribution
@@ -535,11 +535,11 @@ of cycling may shift as cycling grows based on current travel patterns.
 At a national level, the first two could be seen as shorter-term and the 
 second two more ambitious.
 The choice of scenarios was informed by a government target to double the number of cycle trips
-and evidence from England overseas
+and evidence from overseas
 about which trips *could* be made by cycling.
 Summaries of the four scenarios are as follows (see the Appendix for full details):
 
-- Government Target. This scenario represents a doubling of the level of cycling in England [@department_for_transport_cycling_2014]. Although substantial in relative terms, the rate of cycling under this scenario (rising from 3% to 6% of commuters) remains low compared with countries such as the Netherlands and Denmark. This scenario was generated by adding together a) the observed number of cyclists in each OD pair in the 2011 Census, and b) the modelled number of cyclists, as estimated using the baseline propensity to cycle equations described in the previous section. The result is that cycling overall doubles at the national level, but at the local level this growth is not uniform, in absolute or relative terms. Areas with many short, flat trips and a below-average current rate of cycling are projected to more than double. Conversely, areas with above-average levels of cycling and many long-distance hilly commuter routes will experience less than a doubling.
+- Government Target. This scenario represents a doubling of the level of cycling, in line with the government's target to double the number of 'stages' (trips of a single mode) cycled by 2025 [@department_for_transport_cycling_2014]. Although substantial in relative terms, the rate of cycling under this scenario (rising from 3% to 6% of English commuters) remains low compared with countries such as the Netherlands and Denmark. This scenario was generated by adding together a) the observed number of cyclists in each OD pair in the 2011 Census, and b) the modelled number of cyclists, as estimated using the baseline propensity to cycle equations described in the previous section. The result is that cycling overall doubles at the national level, but at the local level this growth is not uniform, in absolute or relative terms. Areas with many short, flat trips and a below-average current rate of cycling are projected to more than double. Conversely, areas with above-average levels of cycling and many long-distance hilly commuter routes will experience less than a doubling.
 
 - Gender Equality. This scenario illustrates the increase in cycling
 that would result if women were as likely as men to cycle a given trip.
@@ -554,8 +554,7 @@ the rate of cycling is highly gender-unequal.
 
 - Go Dutch.
 While the Government Target and Gender equality scenarios model relatively modest increases in cycle commuting, Go Dutch represents what would happen if English people were as likely as Dutch people to cycle a trip of a given distance and level of hilliness. This scenario thereby captures the proportion of commuters that would be expected to cycle if all areas of England had the same infrastructure  and cycling culture as the Netherlands (but retained their hilliness and commute distance patterns).
-This scenario was generated by taking baseline propensity to cycle (see previous section), and applying Dutch scaling factors calculated through analysis of the English and Dutch National Travel Surveys. The Go Dutch scaling factors comprised two parameters which boost the rate of cycling for each OD pair above the baseline model, with static and distant dependent terms to take into account the fact that the "Dutch multiplier" is greater for shorter trips compared to longer trips.
-Note that the level of cycling under the Go Dutch scenario is unaffected by the current level of cycling.
+This scenario was generated by taking baseline propensity to cycle (see previous section), and applying Dutch scaling factors (parameters which increase the proportion of trips cycled above the baseline level of cycling per OD pair) calculated through analysis of the British and Dutch National Travel Surveys. We parameterised the scaling factors as one fixed parameter (the main effect) plus one distance-dependent parameter (parameterized as an interaction between Dutch status and trip distance), to take into account the fact that the "Dutch multiplier" is greater for shorter trips compared to longer trips.  Note that the scenario level of cycling under Go Dutch is not affected by the current level of cycling, but is instead purely a function of the distance and hilliness of each OD pair – i.e. the two characteristics that determine baseline propensity to cycle.
 
 <!-- While Government Target and Gender Equality build on current cycling behaviour, -->
 <!-- 'Go Dutch' focuses on long-term potential. -->
@@ -572,7 +571,7 @@ Note that the level of cycling under the Go Dutch scenario is unaffected by the 
 - Ebikes. This scenario models the additional increase
 in cycling that would be achieved through the widespread uptake of electric
 cycles ('ebikes').
-This scenario built on the Go Dutch scenario (described above) by applying three additional Ebike scaling factors to account for the increased willingness of Ebike users to cycle long distance, hilly and simultaneously long distance and hilly routes (see the Appendix, Equation 1B). These scaling factors were generated by analysing the impact of Ebike ownership based on the Swiss National Household Travel Survey and the Dutch National Travel Survey, weighted to be representative of English commuters.
+This scenario is generated by taking baseline propensity to cycle, applying the Dutch scaling factors described above, and then additionally applying Ebike scaling factors.  The Ebikes scenario is thus currently implemented as an extension of Go Dutch but could in future be implemented as an extension of other scenarios.  The Ebike scaling factors were generated through analysis of the UK, Dutch and Swiss National Travel Surveys, in which we estimated how much more likely it was that a given commute trip would be cycled by Ebike owners versus cyclists in general.  We parameterised the scaling factors as varying according to trip distance and according to hilliness, by fitting interaction terms between these two characteristics and ebike ownership (Appendix Equation 1B).  We did this to take account of the fact that electric cycles enable longer journeys and reduce the barrier of hills
 
 The Ebikes scenario is thus currently implemented as an extension of Go Dutch
 but could be implemented as an extension of other scenarios.
