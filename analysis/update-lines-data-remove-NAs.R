@@ -15,7 +15,7 @@ summary("E02002485 E02002517" %in% missing_lines$id) # in missing lines? yes
 l_clev = readRDS("../pct-data/cleveland/l.Rds")
 summary("E02002485 E02002517" %in% l_clev$id) # in cleveland new? no
 l_clev = read.csv("https://cdn.rawgit.com/npct/pct-data/46946ee/cleveland/l.csv")
-summary("E02002485 E02002517" %in% l_clev$id) # in cleveland data download? NO.
+summary("E02002485 E02002517" %in% l_clev$id) # in cleveland data download? YES
 
 # solution - update the data sha in pct-shiny :)
 
@@ -23,7 +23,7 @@ summary("E02002485 E02002517" %in% l_clev$id) # in cleveland data download? NO.
 readLines("../pct-shiny/data_sha")
 # aha - not the latest sha has been downloaded...
 l_clev = read.csv("https://cdn.rawgit.com/npct/pct-data/cf727e4/cleveland/l.csv") # with latest sha
-summary("E02002485 E02002517" %in% l_clev$id) # in cleveland updated data download? yes!
+summary("E02002485 E02002517" %in% l_clev$id) # in cleveland updated data download? finally no!
 
 
 nrow(l) # 233478 lines, including with 0 length

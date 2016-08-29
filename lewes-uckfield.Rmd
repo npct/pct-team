@@ -7,7 +7,7 @@ bibliography: documents/references.bib
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = F)
+knitr::opts_chunk$set(echo = FALSE, warning = F, message = FALSE)
 pkgs = c("sp", "tmap", "rgeos", "stplanr")
 lapply(pkgs, library, character.only = T)
 ```
@@ -35,11 +35,11 @@ This report, however, focusses exclusively on the much smaller area surrounded b
 
 To identify parallels to linear features, a 4 stage methodology was developed. Although this is described below in relation to the Lewes-Uckfield train line, it could be applied to any linear feature of interest:
 
-- Subset cycling desire lines to include only those which pass in close proximity to the train line. For thise analysis, this was defined as 10 km.
+- Subset cycling desire lines to include only those *whose centrepoint* pass in close proximity to the train line. This was set as 10 km for this report.
 - Break the train line of interest into segments of even distance
-- Calculate the angle of the segments of the train line and desire lines
-- Subset the desire lines again, to include only those that are 'parallel' or within a threshold angle of their closest segment
-- Aggregate the cycling potential of all parallel lines per segment. The minimum threshold angle using this project was X degrees.
+- Calculate the angle of the segments of the train line segments and desire lines
+- Subset the desire lines again, to include only those that are within a threshold angle (set at 30 degrees) their closes segment
+- Aggregate the cycling potential of all parallel lines within the threshold distance of each segment and assign the values to the route segments.
 
 ## Identifying potential 'severance points'
 
@@ -98,43 +98,115 @@ qtm(osm_tiles) +
 # knitr::include_graphics("figures/lewes-uckfield-overview.png")
 ```
 
-The total number of single-stage commutes that pass through the buffer is higher: `r sum(l_lc$all)` commuters. As Figure \@ref(fig:lc) illustrates, many of these commuters would not interact with the train line, as they are focused on commutes between Brighton and surrounding settlements in the far southeast of the 20 km buffer. Only a few hundred commutes pass directly parallel to the route, mostly due to 10 to 20 km (route distance) commutes between MSOAs in Lewes, Ringmer and Uckfield. This implies that cycle paths running parallel to the train line itself have quite low commuter cycling potential. The next section analyses this potential in more detail.
+The total number of single-stage commutes that pass through the buffer is higher: `r sum(l_lc$all) / 1000` thousand commuters. As Figure \@ref(fig:lc) illustrates, many of these commuters would not interact with the train line, as they are focused on commutes between Brighton and surrounding settlements in the far southeast of the 20 km buffer. Only a few hundred commutes pass directly parallel to the route, mostly due to 10 to 20 km (route distance) commutes between MSOAs in Lewes, Ringmer and Uckfield. This implies that cycle paths running parallel to the train line itself have quite low commuter cycling potential. The next section analyses this potential in more detail.
 
 ## Cycling potential parallel to the route
 
-```{r}
-# get angle of desire lines
-l_lc$angle = line_bearing(l_lc, bidirectional = T)
+### Subsetting desire lines by centrepoint proximity
 
-# split rail route into segments
-source("R/points_to_line.R")
-pseg = spsample(lewes_uckfield_osgb, n = 5, type = "regular")
-plot(pseg)
-# try to create 1st line segment
-ldf = ggplot2::fortify(lewes_uckfield_osgb)
-ldfp = SpatialPointsDataFrame(coords = cbind(ldf$long, ldf$lat), data = ldf)
-# find closest point
-# install.packages("nabor")
-library(nabor)
-knn_res = knn(data = coordinates(ldfp), query = coordinates(pseg), k = 1)
-sel_nearest = c(knn_res$nn.idx)
-points(ldfp[sel_nearest,]) # check they are close by
-for(i in 1:(length(sel_nearest) + 1)){
-  ids = c(1, sel_nearest, nrow(ldfp))
-  if(i == 1){
-    l = points_to_line(ldf[ids[i]:ids[(i + 1)],], "long", "lat")
-    spChFIDs(l) = i
-  } else {
-    l_temp = points_to_line(ldf[ids[i]:ids[(i + 1)],], "long", "lat")
-    spChFIDs(l_temp) = i
-    l = maptools::spRbind(l, l_temp)
-  }
-}
+The centrepoints of the desire lines intersecting with the Lewes-Uckfield route buffer are presented in figure \@ref(fig:centrepoints).
+
+```{r centrepoints, fig.cap="Illustration of the 'line centrepoint' subsetting phase"}
+l_cp = gprojected(l_lc, fun = maptools::SpatialLinesMidPoints)
+sel_centrepoint = rgeos::gContains(buff, l_cp, byid = T)[,1]
+
+  tm_shape(l_lc) + tm_lines(col = "grey", lwd = 3) +
+tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
+  tm_shape(lewes_uckfield) + tm_lines(lwd = 5, col = "black") +
+  tm_shape(l_cp) + tm_dots() +
+  tm_shape(l_lc[sel_centrepoint,]) + tm_lines()
+```
+
+These represent `r round(sum(sel_centrepoint)/length(sel_centrepoint) * 100, 1)` of the desire lines selected by the cruder 'touches buffer' method.
+
+### Break the train line into segments
+
+Because the Lewes-Uckfield line is short, we used the entire line as a single segment.
+However, if the line were to be broken into segements, the results would resemble figure \@ref(fig:segments).
+
+```{r segments, fig.cap="Demonstration of the method for splitting the route into segments."}
+knitr::include_graphics("figures/lewes-uckfield-segments.png")
+```
+
+This demonstration of method could be applied to larger and more complex routes, e.g. that of the proposed HS2 or HS2 cycle network route.
+
+### Calculate the angle of the train routes
+
+The angle of the train track was calculated by a function `line_bearing()` which was developed for the **stplanr** R package specifically to solve this problem.
+
+Using this function, the angle of the route was calculated as follows:
+
+```{r, echo=TRUE}
+line_bearing(lewes_uckfield)
+```
+
+### Subsetting desire lines parallel with the train line
+
+To find the lines that were close to parallel with the train line, the function `angle_diff()` was developed. All lines within 30 degrees, clockwise or anti-clockwise, to the train line are illustrated in figure \@ref(fig:para).
+
+```{r para, fig.cap="Illustration of the 'line centrepoint' subsetting phase"}
+l_a = line_bearing(lewes_uckfield)
+a = angle_diff(l = l_lc, angle = l_a, bidirectional = TRUE)
+sel_para = a < 30
+
+tm_shape(l_lc) + tm_lines(col = "grey", lwd = 3) +
+tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
+  tm_shape(lewes_uckfield) + tm_lines(lwd = 5, col = "black") +
+  tm_shape(l_cp) + tm_dots() +
+  tm_shape(l_lc[sel_para & sel_centrepoint,]) + tm_lines()
+```
+
+The desire lines that meet the criteria for inclusion in the analysis of parallels are illustrated in the figure below.
+
+```{r, echo=FALSE}
+# # angle of route
+# start_end = line2points(lewes_uckfield)
+# plot(lewes_uckfield)
+# plot(start_end, add = T)
+# angle_route = line_bearing(lewes_uckfield)
+# # get angle of desire lines
+# l_lc$angle = line_bearing(l_lc, bidirectional = T)
+# l_lc$angle_dif = angle_diff(l = l_lc, angle = angle_route, bidirectional = FALSE)
+# l_lc$Parallel_status = "Neither parallel nor proximate"
+# l_lc$Parallel_status[l_lc$angle_dif < 30] = "Parallel" 
+# 
+# tm_shape(l_lc) +
+#   tm_lines(col = "Parallel_status")
+# plot(lewes_uckfield)
+# plot(l_lc[l_lc$Parallel_status == "Parallel",], add = T)
 
 
-
-
-ldfl = points_to_line(ldfp, "long", "lat")
+# # l_midpoints = maptools::SpatialLinesMidPoints(l_lc)
+# # split rail route into segments
+# source("R/points_to_line.R")
+# pseg = spsample(lewes_uckfield_osgb, n = 5, type = "regular")
+# plot(pseg)
+# # try to create 1st line segment
+# ldf = ggplot2::fortify(lewes_uckfield_osgb)
+# ldfp = SpatialPointsDataFrame(coords = cbind(ldf$long, ldf$lat), data = ldf)
+# # find closest point
+# # install.packages("nabor")
+# library(nabor)
+# knn_res = knn(data = coordinates(ldfp), query = coordinates(pseg), k = 1)
+# sel_nearest = c(knn_res$nn.idx)
+# points(ldfp[sel_nearest,]) # check they are close by
+# for(i in 1:(length(sel_nearest) + 1)){
+#   ids = c(1, sel_nearest, nrow(ldfp))
+#   if(i == 1){
+#     l = points_to_line(ldf[ids[i]:ids[(i + 1)],], "long", "lat")
+#     spChFIDs(l) = i
+#   } else {
+#     l_temp = points_to_line(ldf[ids[i]:ids[(i + 1)],], "long", "lat")
+#     spChFIDs(l_temp) = i
+#     l = maptools::spRbind(l, l_temp)
+#   }
+# }
+# l = SpatialLinesDataFrame(l, data.frame(group = 1:i))
+# 
+# 
+# 
+# 
+# ldfl = points_to_line(ldfp, "long", "lat")
 
 
 ```
