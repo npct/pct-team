@@ -33,7 +33,7 @@ This report, however, focusses exclusively on the much smaller area surrounded b
 
 ## Identifying 'parallels' to linear features
 
-To identify parallels to linear features, a 4 stage methodology was developed. Although this is described below in relation to the Lewes-Uckfield train line, it could be applied to any linear feature of interest:
+To identify parallels to linear features, a 5 stage methodology was developed. Although this is described below in relation to the Lewes-Uckfield train line, it could be applied to any linear feature of interest:
 
 - Subset cycling desire lines to include only those *whose centrepoint* pass in close proximity to the train line. This was set as 10 km for this report.
 - Break the train line of interest into segments of even distance
