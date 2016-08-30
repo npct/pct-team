@@ -1,5 +1,5 @@
 ---
-title: 'Cycling potential around a proposed railway line in Sussex: deliverable 5.3'
+title: 'Methods for assessing cycling potential around a proposed railway: a case study of the Lewes-Uckfield route'
 author: "Robin Lovelace"
 date: "`r Sys.Date()`"
 output: bookdown::html_document2
@@ -8,7 +8,7 @@ bibliography: documents/references.bib
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = F, message = FALSE)
-pkgs = c("sp", "tmap", "rgeos", "stplanr")
+pkgs = c("sp", "tmap", "rgeos", "stplanr", "dplyr")
 lapply(pkgs, library, character.only = T)
 ```
 
@@ -142,7 +142,7 @@ line_bearing(lewes_uckfield)
 
 ### Subsetting desire lines parallel with the train line
 
-To find the lines that were close to parallel with the train line, the function `angle_diff()` was developed. All lines within 30 degrees, clockwise or anti-clockwise, to the train line are illustrated in figure \@ref(fig:para).
+To find the lines that were close to parallel with the train line, the function `angle_diff()` was developed. All lines within 30 degrees, clockwise or anti-clockwise, to the train line, *and* have their midpoint within the route buffer, are illustrated in figure \@ref(fig:para). It is clear from this figure that a high number of lines were selected which are very unlikely benefit from cycling provision along the route, especially in the southwest segment of the plot. 
 
 ```{r para, fig.cap="Illustration of the 'line centrepoint' subsetting phase"}
 l_a = line_bearing(lewes_uckfield)
@@ -156,7 +156,36 @@ tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
   tm_shape(l_lc[sel_para & sel_centrepoint,]) + tm_lines()
 ```
 
-The desire lines that meet the criteria for inclusion in the analysis of parallels are illustrated in the figure below.
+To resolve this issue a smaller, 5 km buffer was used. The results are presented in figure \@ref(fig:paranew).
+
+```{r paranew, fig.cap="Updated 'parallel' desire lines, whose centre-points lie within 7 km of the proposed route"}
+buff7 = buff_geo(lewes_uckfield, width = 5000)
+sel_centrepoint5 = rgeos::gContains(buff7, l_cp, byid = T)[,1]
+l_lc$`Parallel selection` = sel_centrepoint5
+tm_shape(l_lc) + tm_lines(col = "grey", lwd = 3) +
+tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
+tm_shape(buff7) + tm_borders(col = "blue", lwd = 3) +
+  tm_shape(lewes_uckfield) + tm_lines(lwd = 5, col = "black") +
+  tm_shape(l_cp) + tm_dots() +
+  tm_shape(l_lc[sel_para & sel_centrepoint5,]) + tm_lines()
+```
+
+From the subset of the lines highlighted in red in \@ref(fig:paranew) we can now report summary statistics on the cycling potential of commuter desire lines which run parallel to the Lewes-Uckfield route. These results are presented alongside the equivalent statistics for *all* desire lines which intersect the 10 km buffer surrounding the proposed route.
+
+```{r}
+res_p = data_frame(l_lc@data)
+res_p = summarise(l_lc@data, `Commuters (all)` = sum(all),
+          `Cycling (2011 Census)` = sum(bicycle),
+          `Cycling (percent, 2011)` = 100 * sum(bicycle) / sum(all),
+          `Government Target (n. cycling)` = sum(govtarget_slc),
+          `Government Target (% cycling)` = 100 * sum(govtarget_slc) / sum(all),
+          `Average distance (km Euclidean)` = mean(l_lc$dist)
+          
+          )
+res = t(round(res_p))
+```
+
+
 
 ```{r, echo=FALSE}
 # # angle of route
@@ -207,9 +236,9 @@ The desire lines that meet the criteria for inclusion in the analysis of paralle
 # 
 # 
 # ldfl = points_to_line(ldfp, "long", "lat")
-
-
 ```
+
+Based on the results presented in figure 
 
 
 ## The potential for severance along the proposed route
