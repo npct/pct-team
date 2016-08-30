@@ -162,6 +162,7 @@ To resolve this issue a smaller, 5 km buffer was used. The results are presented
 buff7 = buff_geo(lewes_uckfield, width = 5000)
 sel_centrepoint5 = rgeos::gContains(buff7, l_cp, byid = T)[,1]
 l_lc$`Parallel selection` = sel_centrepoint5
+l_lc$`Touching buffer` = TRUE
 tm_shape(l_lc) + tm_lines(col = "grey", lwd = 3) +
 tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
 tm_shape(buff7) + tm_borders(col = "blue", lwd = 3) +
@@ -171,21 +172,6 @@ tm_shape(buff7) + tm_borders(col = "blue", lwd = 3) +
 ```
 
 From the subset of the lines highlighted in red in \@ref(fig:paranew) we can now report summary statistics on the cycling potential of commuter desire lines which run parallel to the Lewes-Uckfield route. These results are presented alongside the equivalent statistics for *all* desire lines which intersect the 10 km buffer surrounding the proposed route.
-
-```{r}
-res_p = data_frame(l_lc@data)
-res_p = summarise(l_lc@data, `Commuters (all)` = sum(all),
-          `Cycling (2011 Census)` = sum(bicycle),
-          `Cycling (percent, 2011)` = 100 * sum(bicycle) / sum(all),
-          `Government Target (n. cycling)` = sum(govtarget_slc),
-          `Government Target (% cycling)` = 100 * sum(govtarget_slc) / sum(all),
-          `Average distance (km Euclidean)` = mean(l_lc$dist)
-          
-          )
-res = t(round(res_p))
-```
-
-
 
 ```{r, echo=FALSE}
 # # angle of route
@@ -238,10 +224,34 @@ res = t(round(res_p))
 # ldfl = points_to_line(ldfp, "long", "lat")
 ```
 
-Based on the results presented in figure 
+
 
 
 ## The potential for severance along the proposed route
+
+
+## Results
+
+Based on the methods presented in the previous sections summary statistics for each of the desire line subsets, based on parallels and severed routes, can be compared with all desire lines in the study area. These are presented in the table below.
+
+```{r}
+scens = c("Parallel selection", "Touching buffer")
+res_p = data.frame()
+for(i in scens){
+  df_tmp = l_lc@data[l_lc@data[[i]],]
+  res_p = rbind(res_p, summarise(df_tmp, `Commuters (all)` = sum(all),
+          `Cycling (2011 Census)` = sum(bicycle),
+          `Cycling (percent, 2011)` = 100 * sum(bicycle) / sum(all),
+          `Government Target (n. cycling)` = sum(govtarget_slc),
+          `Government Target (% cycling)` = 100 * sum(govtarget_slc) / sum(all),
+          `Average distance (km Euclidean)` = mean(l_lc$dist)
+          ))
+}
+res = t(res_p)
+knitr::kable(res, digits = 0)
+```
+
+
 
 ## Cycling potential around the proposed route
 
