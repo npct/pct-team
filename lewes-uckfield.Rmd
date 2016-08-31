@@ -173,60 +173,6 @@ tm_shape(buff7) + tm_borders(col = "blue", lwd = 3) +
 
 From the subset of the lines highlighted in red in \@ref(fig:paranew) we can now report summary statistics on the cycling potential of commuter desire lines which run parallel to the Lewes-Uckfield route. These results are presented alongside the equivalent statistics for *all* desire lines which intersect the 10 km buffer surrounding the proposed route.
 
-```{r, echo=FALSE}
-# # angle of route
-# start_end = line2points(lewes_uckfield)
-# plot(lewes_uckfield)
-# plot(start_end, add = T)
-# angle_route = line_bearing(lewes_uckfield)
-# # get angle of desire lines
-# l_lc$angle = line_bearing(l_lc, bidirectional = T)
-# l_lc$angle_dif = angle_diff(l = l_lc, angle = angle_route, bidirectional = FALSE)
-# l_lc$Parallel_status = "Neither parallel nor proximate"
-# l_lc$Parallel_status[l_lc$angle_dif < 30] = "Parallel" 
-# 
-# tm_shape(l_lc) +
-#   tm_lines(col = "Parallel_status")
-# plot(lewes_uckfield)
-# plot(l_lc[l_lc$Parallel_status == "Parallel",], add = T)
-
-
-# # l_midpoints = maptools::SpatialLinesMidPoints(l_lc)
-# # split rail route into segments
-# source("R/points_to_line.R")
-# pseg = spsample(lewes_uckfield_osgb, n = 5, type = "regular")
-# plot(pseg)
-# # try to create 1st line segment
-# ldf = ggplot2::fortify(lewes_uckfield_osgb)
-# ldfp = SpatialPointsDataFrame(coords = cbind(ldf$long, ldf$lat), data = ldf)
-# # find closest point
-# # install.packages("nabor")
-# library(nabor)
-# knn_res = knn(data = coordinates(ldfp), query = coordinates(pseg), k = 1)
-# sel_nearest = c(knn_res$nn.idx)
-# points(ldfp[sel_nearest,]) # check they are close by
-# for(i in 1:(length(sel_nearest) + 1)){
-#   ids = c(1, sel_nearest, nrow(ldfp))
-#   if(i == 1){
-#     l = points_to_line(ldf[ids[i]:ids[(i + 1)],], "long", "lat")
-#     spChFIDs(l) = i
-#   } else {
-#     l_temp = points_to_line(ldf[ids[i]:ids[(i + 1)],], "long", "lat")
-#     spChFIDs(l_temp) = i
-#     l = maptools::spRbind(l, l_temp)
-#   }
-# }
-# l = SpatialLinesDataFrame(l, data.frame(group = 1:i))
-# 
-# 
-# 
-# 
-# ldfl = points_to_line(ldfp, "long", "lat")
-```
-
-
-
-
 ## The potential for severance along the proposed route
 
 
