@@ -253,7 +253,7 @@ tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
   tm_shape(lewes_uckfield) + tm_lines(lwd = 2, col = "black") 
 ```
 
-## Discussion
+# Discussion
 
 In terms of the local case study, it seems there is greater potential parallel to the proposed route than perpendicular to it, indicating the risks of community severence for cycling uptake are likely to be lower than the potential for cycling uptake along lines parallel to the route. However, the analysis shows that there are relatively low numbers of commutes affected by the line overall, compared with the wider study area.
 
