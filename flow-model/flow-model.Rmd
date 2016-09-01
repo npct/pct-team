@@ -1266,7 +1266,8 @@ In a context of limited time, expertise, and resources, Saujot et al. caution ag
 in ever more complex models.
 Instead, they suggest models should be more user focussed.
 The PCT’s open source, freely available nature will, we believe, facilitate the future development of the PCT organically to meet the needs of its various users.
-For instance, we envision stakeholders in local government modifying scenarios for their own purposes, and that academics in relevant fields may add new features and develop new use cases of the PCT. Such enhancements could include:
+To encourage others to use the outputs of the PCT project, we make the data underlying the online map available to download (via the Zones and Lines tabs in the tool's online interface).
+We envision stakeholders in local government modifying scenarios for their own purposes, and that academics in relevant fields may add new features and develop new use cases of the PCT. Such enhancements could include:
 
 - Additional scenarios to illustrate a wider range of 'cycling futures', including medium-term and local targets.
 
