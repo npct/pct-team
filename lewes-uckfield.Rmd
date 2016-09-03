@@ -38,7 +38,7 @@ To identify parallels to linear features, a 5 stage methodology was developed. A
 
 - Subset cycling desire lines^[
 A 'desire line' refers to a straight line connecting an origin-destination pair. In the context of this report, which uses the outputs of the PCT version 1 as its input dataset, this means straight lines with a distance of 20 km or less connecting Middle Super Output Area population weighted centroids, with data on the number of people commuting in both directions. See @lovelace_propensity_2016 for further details.
-] to include only those *whose centrepoint* pass in close proximity to the train line. This was set as 10 km for this report.
+] to include only those in which the *centrepoint  of the line* passes in close proximity to the train line. This was set as 10 km for this report.
 - Break the train line of interest into segments of even distance
 - Calculate the angle of the segments of the train line segments and desire lines
 - Subset the desire lines again, to include only those that are within a threshold angle (set at 30 degrees) their closes segment
