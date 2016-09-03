@@ -36,7 +36,9 @@ This report, however, focusses exclusively on the much smaller area surrounded b
 
 To identify parallels to linear features, a 5 stage methodology was developed. Although this is described below in relation to the Lewes-Uckfield train line, it could be applied to any linear feature of interest:
 
-- Subset cycling desire lines to include only those *whose centrepoint* pass in close proximity to the train line. This was set as 10 km for this report.
+- Subset cycling desire lines^[
+A 'desire line' refers to a straight line connecting an origin-destination pair. In the context of this report, which uses the outputs of the PCT version 1 as its input dataset, this means straight lines with a distance of 20 km or less connecting Middle Super Output Area population weighted centroids, with data on the number of people commuting in both directions. See @lovelace_propensity_2016 for further details.
+] to include only those *whose centrepoint* pass in close proximity to the train line. This was set as 10 km for this report.
 - Break the train line of interest into segments of even distance
 - Calculate the angle of the segments of the train line segments and desire lines
 - Subset the desire lines again, to include only those that are within a threshold angle (set at 30 degrees) their closes segment
@@ -263,3 +265,5 @@ It is in terms of the methods for quanitifying the potential for desire lines pa
 - The estimation of angles on a *per segment* basis, rather than simply for the whole route.
 - The automation of the analysis of 'parallels' and 'severence points' by creating functions which take desire lines and a proposed route as inputs and output the results with a single command. This could potentially be implemented in the R package **stplanr**.
 - The extension of the method to quantify the level of overlap between proposed cycle networks and a series of desire lines or a route network.
+
+# References
