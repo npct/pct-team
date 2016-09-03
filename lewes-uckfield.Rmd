@@ -41,7 +41,7 @@ A 'desire line' refers to a straight line connecting an origin-destination pair.
 ] to include only those in which the *centrepoint  of the line* passes in close proximity to the train line. This was set as 10 km for this report.
 - Break the train line of interest into segments of even distance
 - Calculate the angle of the segments of the train line segments and desire lines
-- Subset the desire lines again, to include only those that are within a threshold angle (set at 30 degrees) their closes segment
+- Subset the desire lines again, to include only those that are within a threshold angle (set at 30 degrees) of the mean bearing of their closes rail line segment
 - Aggregate the cycling potential of all parallel lines within the threshold distance of each segment and assign the values to the route segments.
 
 ## Identifying potential 'severance points'
