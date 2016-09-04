@@ -126,7 +126,7 @@ tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
 Because the Lewes-Uckfield line is short and relatively straight, we used the entire line as a single segment.
 However, if the line were to be broken into segements, the results would resemble Figure \@ref(fig:segments).
 
-```{r segments, fig.cap="Demonstration of the method for splitting the route into segments."}
+```{r segments, fig.cap="Demonstration of the method for splitting the route into segments.", fig.height="2cm"}
 knitr::include_graphics("figures/lewes-uckfield-segments.png")
 ```
 
@@ -158,19 +158,29 @@ tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
   tm_shape(l_lc[sel_para & sel_centrepoint,]) + tm_lines()
 ```
 
-To resolve this issue a smaller, 5 km buffer was used. The results are presented in Figure \@ref(fig:paranew).
+To resolve this issue a smaller buffer was used to select line centrepoints. This was set at 5 km.
+To remove desire lines that were still far from the train line a further subsetting method was developed.
+This involves selecting desire lines that pass within an even shorter distance of the train line, 2 km in this case.
+The results are presented in Figure \@ref(fig:paranew).
+The red lines represent the lines selected through these selection criteria;
+the green lines were included through the centrepoint selection method but omitted by 'buffer intersection' method.
 
-```{r paranew, fig.cap="Updated 'parallel' desire lines, whose centre-points lie within 5 km of the proposed route"}
+```{r paranew, fig.cap="Updated 'parallel' desire lines, whose centre-points lie within 5 km of the proposed route (green) and passes within 2 km of the train line (red). The red lines represent the lines selected through this method."}
 buff7 = buff_geo(lewes_uckfield, width = 5000)
+buff_small = buff_geo(lewes_uckfield, width = 2000)
 sel_centrepoint5 = rgeos::gContains(buff7, l_cp, byid = T)[,1]
-l_lc$`Parallel selection` = sel_centrepoint5
+sel_smallbuff = !is.na(over(l_lc, buff_small))
+sel_finalpar = sel_para & sel_centrepoint5 & sel_smallbuff
+l_lc$`Parallel selection` = sel_finalpar
 l_lc$`Touching buffer` = TRUE
 tm_shape(l_lc) + tm_lines(col = "grey", lwd = 3) +
 tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
 tm_shape(buff7) + tm_borders(col = "blue", lwd = 3) +
+tm_shape(buff_small) + tm_borders(col = "blue", lwd = 3) +
   tm_shape(lewes_uckfield) + tm_lines(lwd = 5, col = "black") +
   tm_shape(l_cp) + tm_dots() +
-  tm_shape(l_lc[sel_para & sel_centrepoint5,]) + tm_lines()
+  tm_shape(l_lc[sel_para & sel_centrepoint5 & !sel_smallbuff,]) + tm_lines(col = "green", lwd = 5) +
+  tm_shape(l_lc[sel_finalpar,]) + tm_lines()
 ```
 
 From the subset of the lines highlighted in red in \@ref(fig:paranew) we can now report summary statistics on the cycling potential of commuter desire lines which run parallel to the Lewes-Uckfield route. These results are presented alongside the equivalent statistics for *all* desire lines which intersect the 10 km buffer surrounding the proposed route.
