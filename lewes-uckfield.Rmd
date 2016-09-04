@@ -108,6 +108,7 @@ The total number of single-stage commutes that pass through the buffer is higher
 ### Subsetting desire lines by centrepoint proximity
 
 The centrepoints of the desire lines intersecting with the Lewes-Uckfield route buffer are presented in figure \@ref(fig:centrepoints).
+These represent `r round(sum(sel_centrepoint)/length(sel_centrepoint) * 100, 1)`% of the desire lines in the study area, defined by the 10 km buffer.
 
 ```{r centrepoints, fig.cap="Illustration of the 'line centrepoint' subsetting phase"}
 l_cp = gprojected(l_lc, fun = maptools::SpatialLinesMidPoints)
@@ -119,8 +120,6 @@ tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
   tm_shape(l_cp) + tm_dots() +
   tm_shape(l_lc[sel_centrepoint,]) + tm_lines()
 ```
-
-These represent `r round(sum(sel_centrepoint)/length(sel_centrepoint) * 100, 1)` of the desire lines selected by the cruder 'touches buffer' method.
 
 ### Break the train line into segments
 
