@@ -267,12 +267,15 @@ tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
 
 # Discussion
 
-In terms of the local case study, it seems there is greater potential parallel to the proposed route than perpendicular to it, indicating the risks of community severence for cycling uptake are likely to be lower than the potential for cycling uptake along lines parallel to the route. However, the analysis shows that there are relatively low numbers of commutes affected by the line overall, compared with the wider study area.
+In terms of the local case study, it seems there is greater potential parallel to the proposed route than perpendicular to it, indicating the risks of community severence for cycling uptake are likely to be lower than the potential for cycling uptake along lines parallel to the route. 
+In total, we estimate that around 10,000 commuters make trips that are parallel to the line, of whom 2.3% currently cycle. We further estimate that under a Go Dutch scenario the proportion of these commuter cycling would be X%, while under the Ebike scenario it would be X%.  The Go Dutch and Ebike scenarios assume that English commuters acquire a Dutch cycling culture and Dutch levels of infrastructure: a high quality, traffic-free cycle route along the Lewes-Uckfield train line could be a useful step towards achieving Dutch infrastructure, although it should be remembered that the impact of the cycle path might also depend on the quality of the surrounding cycle network.  It should also be remembered that this analysis only examines commuter cycling; adding in cycling potential for other cycling types, e.g. leisure cycling, might generate considerably higher estimates as to the number of users.
 
 It is in terms of the methods for quanitifying the potential for desire lines parallel and perpendicular to proposed routes that this report will probably be of most use, as the basis for further work. The Lewes-Uckfield line has served a useful purpose in this regard, as the case study is small enough to identify specific desire lines of interest, and explore the methodology on local datasets that are not overwhelmingly large. The work provides many interesting avenues for further development and research, including:
 
 - The estimation of angles on a *per segment* basis, rather than simply for the whole route.
 - The automation of the analysis of 'parallels' and 'severence points' by creating functions which take desire lines and a proposed route as inputs and output the results with a single command. This could potentially be implemented in the R package **stplanr**.
 - The extension of the method to quantify the level of overlap between proposed cycle networks and a series of desire lines or a route network.
+
+Looking ahead, to the analysis underlying deliverable 5.3, we plan to use the buffer and angle settings used in this report.
 
 # References
