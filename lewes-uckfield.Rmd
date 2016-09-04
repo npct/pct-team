@@ -107,7 +107,7 @@ The total number of single-stage commutes that pass through the buffer is higher
 
 ### Subsetting desire lines by centrepoint proximity
 
-The centrepoints of the desire lines intersecting with the Lewes-Uckfield route buffer are presented in figure \@ref(fig:centrepoints).
+The centrepoints of the desire lines intersecting with the Lewes-Uckfield route buffer are presented in Figure \@ref(fig:centrepoints).
 These represent `r round(sum(sel_centrepoint)/length(sel_centrepoint) * 100, 1)`% of the desire lines in the study area, defined by the 10 km buffer.
 
 ```{r centrepoints, fig.cap="Illustration of the 'line centrepoint' subsetting phase"}
@@ -124,7 +124,7 @@ tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
 ### Break the train line into segments
 
 Because the Lewes-Uckfield line is short and relatively straight, we used the entire line as a single segment.
-However, if the line were to be broken into segements, the results would resemble figure \@ref(fig:segments).
+However, if the line were to be broken into segements, the results would resemble Figure \@ref(fig:segments).
 
 ```{r segments, fig.cap="Demonstration of the method for splitting the route into segments."}
 knitr::include_graphics("figures/lewes-uckfield-segments.png")
@@ -144,7 +144,7 @@ line_bearing(lewes_uckfield)
 
 ### Subsetting desire lines parallel with the train line
 
-To find the lines that were close to parallel with the train line, the function `angle_diff()` was developed. All lines within 30 degrees, clockwise or anti-clockwise, to the train line, *and* have their midpoint within the route buffer, are illustrated in figure \@ref(fig:para). It is clear from this figure that a high number of lines were selected which are very unlikely benefit from cycling provision along the route, especially in the southwest segment of the plot. 
+To find the lines that were close to parallel with the train line, the function `angle_diff()` was developed. All lines within 30 degrees, clockwise or anti-clockwise, to the train line, *and* have their midpoint within the route buffer, are illustrated in Figure \@ref(fig:para). It is clear from this Figure that a high number of lines were selected which are very unlikely benefit from cycling provision along the route, especially in the southwest segment of the plot. 
 
 ```{r para, fig.cap="Illustration of the 'line centrepoint' subsetting phase"}
 l_a = line_bearing(lewes_uckfield)
@@ -158,7 +158,7 @@ tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
   tm_shape(l_lc[sel_para & sel_centrepoint,]) + tm_lines()
 ```
 
-To resolve this issue a smaller, 5 km buffer was used. The results are presented in figure \@ref(fig:paranew).
+To resolve this issue a smaller, 5 km buffer was used. The results are presented in Figure \@ref(fig:paranew).
 
 ```{r paranew, fig.cap="Updated 'parallel' desire lines, whose centre-points lie within 5 km of the proposed route"}
 buff7 = buff_geo(lewes_uckfield, width = 5000)
@@ -179,7 +179,7 @@ From the subset of the lines highlighted in red in \@ref(fig:paranew) we can now
 
 ### Subsetting 'perpendicular' desire lines
 
-The subsetting process involved finding which lines ran perpendicular to the proposed rail line and then selecting only those intersecting with it, as illustrated in figure \@ref(fig:perpsel).
+The subsetting process involved finding which lines ran perpendicular to the proposed rail line and then selecting only those intersecting with it, as illustrated in Figure \@ref(fig:perpsel).
 
 ```{r perpsel, fig.cap="'Perpendicular' desire lines intersecting with the proposed rail line. Orange lines are within 30 degrees from perpendicular to the proposed train line, red lines are both close to perpendicular to the line and intersect with the rail line."}
 # l_seg = line_segment(lewes_uckfield, segment_length = 1000)
@@ -206,7 +206,7 @@ plot(l_agg, lwd = sqrt(l_agg$govtarget_slc) * 2)
 
 ### Identifying potential crossing points
 
-From figure \@ref(fig:perpagg) it is clear that the points of highest potential severence lie at either end of the line. Overall, because the proposed line does not separate any large settlements or workplaces, the potential for severence is low. However, to demonstrate the method of identifying places to intervene to minimise severence, \@ref(fig:perpmost) illustrates the 1 km segment of the proposed line with the highest potential for severence in context. This is clearly in a populated part of Lewes, where travel between both sides of the new line could be affected by the route. 
+From Figure \@ref(fig:perpagg) it is clear that the points of highest potential severence lie at either end of the line. Overall, because the proposed line does not separate any large settlements or workplaces, the potential for severence is low. However, to demonstrate the method of identifying places to intervene to minimise severence, Figure \@ref(fig:perpmost) illustrates the 1 km segment of the proposed line with the highest potential for severence in context. This is clearly in a populated part of Lewes, where travel between both sides of the new line could be affected by the route. 
 
 ```{r perpmost, fig.cap="The 1 km segment on the proposed rail line with the highest level of severence in cycling potential, under the Government Target scenario."}
 l_most = l_agg[which.max(l_agg$govtarget_slc),]
