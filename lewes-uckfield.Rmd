@@ -160,7 +160,7 @@ tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
 
 To resolve this issue a smaller, 5 km buffer was used. The results are presented in figure \@ref(fig:paranew).
 
-```{r paranew, fig.cap="Updated 'parallel' desire lines, whose centre-points lie within 7 km of the proposed route"}
+```{r paranew, fig.cap="Updated 'parallel' desire lines, whose centre-points lie within 5 km of the proposed route"}
 buff7 = buff_geo(lewes_uckfield, width = 5000)
 sel_centrepoint5 = rgeos::gContains(buff7, l_cp, byid = T)[,1]
 l_lc$`Parallel selection` = sel_centrepoint5
