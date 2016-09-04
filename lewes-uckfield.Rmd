@@ -220,8 +220,8 @@ From Figure \@ref(fig:perpagg) it is clear that the points of highest potential 
 
 ```{r perpmost, fig.cap="The 1 km segment on the proposed rail line with the highest level of severence in cycling potential, under the Government Target scenario."}
 l_most = l_agg[which.max(l_agg$govtarget_slc),]
-osm_tiles_most = read_osm(bb(l_most, 4))
-tm_shape(osm_tiles_most) + tm_raster() +
+# osm_tiles_most = read_osm(bb(l_most, 4))
+# tm_shape(osm_tiles_most) + tm_raster() +
   tm_shape(l_most) + tm_lines(lwd = 10) +
   tm_shape(lewes_uckfield) + tm_lines(lwd = 2, col = "black") 
 ```
