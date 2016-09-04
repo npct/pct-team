@@ -245,7 +245,7 @@ for(i in scens){
 }
 res = as.data.frame(t(res_p))
 names(res) = scens
-knitr::kable(res, digits = 0)
+knitr::kable(res, digits = 0, caption = "Cycling potential in the study area surrounding the proposed rail line. The Touching buffer column refers to the cycling potential of desire lines which pass within the 10 km buffer. The  Parallel selection criteria described in Section 3.2. The Perpendicular selection criteria are described in Section 3.3.")
 ```
 
 Overall the potentail for cycling along routes parallel to the track appears to be greater than the cycling potential of 'severed' routes. This is likely due to the limited east-west commuter travel that crosses the proposed line.
