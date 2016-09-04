@@ -123,7 +123,7 @@ tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
 
 ### Break the train line into segments
 
-Because the Lewes-Uckfield line is short, we used the entire line as a single segment.
+Because the Lewes-Uckfield line is short and relatively straight, we used the entire line as a single segment.
 However, if the line were to be broken into segements, the results would resemble figure \@ref(fig:segments).
 
 ```{r segments, fig.cap="Demonstration of the method for splitting the route into segments."}
