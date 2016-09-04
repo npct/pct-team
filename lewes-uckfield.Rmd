@@ -179,7 +179,7 @@ From the subset of the lines highlighted in red in \@ref(fig:paranew) we can now
 
 ### Subsetting 'perpendicular' desire lines
 
-The subsetting process involved finding which lines ran perpendicular to the proposed rail line and then selecting only those touching the it, as illustrated in figure \@ref(fig:perpsel).
+The subsetting process involved finding which lines ran perpendicular to the proposed rail line and then selecting only those intersecting with it, as illustrated in figure \@ref(fig:perpsel).
 
 ```{r perpsel, fig.cap="'Perpendicular' desire lines intersecting with the proposed rail line. Orange lines are within 30 degrees from perpendicular to the proposed train line, red lines are both close to perpendicular to the line and intersect with the rail line."}
 # l_seg = line_segment(lewes_uckfield, segment_length = 1000)
