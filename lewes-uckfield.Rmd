@@ -7,10 +7,11 @@ bibliography: documents/references.bib
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = F, message = FALSE)
+knitr::opts_chunk$set(echo = FALSE, warning = F, message = FALSE, fig.align = "center", fig.height = 4)
 pkgs = c("sp", "tmap", "rgeos", "stplanr", "dplyr")
 lapply(pkgs, library, character.only = T)
 ```
+\newpage
 
 # Introduction
 
@@ -29,6 +30,8 @@ In the contract deliverable 5.2 is described as looking at cycling opportunities
 The aim of this modified deliverable 5.2 is to provide an evidence base for investing in and potentially modifying the proposed cycle path surrounding the HS2.
 
 This report, however, focusses exclusively on the much smaller area surrounded by the proposed Lewes-Uckfield rail route.
+
+\newpage
 
 # Methodology
 
@@ -55,6 +58,8 @@ The methodology used to identify these severance points consists of 3 stages:
 - Subset the segments which block the highest number of potential cyclists and identify potential crossing points
 
 Note that based on the three-stage methodology outlined above severance points are in fact more precisely described as 'severance segments', along which a range of points could be chosen for crossing points. However, the term 'severance point' is more intuitive so we use this term throughout.
+
+\newpage
 
 # A case study of Lewes-Uckfield
 
@@ -89,7 +94,7 @@ load("input-data/lewes_uckfield_objects.Rdata")
 
 There are `r nrow(cents_lc)` MSOAs whose population weighted centroids lie within a 10 km buffer of the train line, representing `r sum(cents_lc$all)` commuters. This area is illustrated in Figure \@ref(fig:lc).
 
-```{r lc, fig.cap="Overview of the Lewes-Uckfiled line with a 10 km buffer (blue). Width is proportional to the number of commutes, colour represents the proportion of people who cycle. Thanks to Matthew Whittle who digitised a scanned image of the proposed route."}
+```{r lc, fig.cap="Overview of the Lewes-Uckfiled line with a 10 km buffer (blue). Width is proportional to the number of commutes, colour represents the proportion of people who cycle. Thanks to Matthew Whittle who digitised a scanned image of the proposed route.", fig.height=8}
 # osm_tiles = read_osm(bb(z_lc, 1.05), type = "stamen-toner")
 # saveRDS(osm_tiles, "data-sources/osm_tiles_ukfield.Rds")
 osm_tiles = readRDS("data-sources/osm_tiles_ukfield.Rds")
@@ -107,10 +112,7 @@ The total number of single-stage commutes that pass through the buffer is higher
 
 ### Subsetting desire lines by centrepoint proximity
 
-The centrepoints of the desire lines intersecting with the Lewes-Uckfield route buffer are presented in Figure \@ref(fig:centrepoints).
-These represent `r round(sum(sel_centrepoint)/length(sel_centrepoint) * 100, 1)`% of the desire lines in the study area, defined by the 10 km buffer.
-
-```{r centrepoints, fig.cap="Illustration of the 'line centrepoint' subsetting phase"}
+```{r centrepoints, fig.cap="Illustration of the 'line centrepoint' subsetting method."}
 l_cp = gprojected(l_lc, fun = maptools::SpatialLinesMidPoints)
 sel_centrepoint = rgeos::gContains(buff, l_cp, byid = T)[,1]
 
@@ -121,12 +123,15 @@ tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
   tm_shape(l_lc[sel_centrepoint,]) + tm_lines()
 ```
 
+The centrepoints of the desire lines intersecting with the Lewes-Uckfield route buffer are presented in Figure \@ref(fig:centrepoints).
+These represent `r round(sum(sel_centrepoint)/length(sel_centrepoint) * 100, 1)`% of the desire lines in the study area, defined by the 10 km buffer.
+
 ### Break the train line into segments
 
 Because the Lewes-Uckfield line is short and relatively straight, we used the entire line as a single segment.
 However, if the line were to be broken into segements, the results would resemble Figure \@ref(fig:segments).
 
-```{r segments, fig.cap="Demonstration of the method for splitting the route into segments.", fig.height="2cm"}
+```{r segments, fig.cap="Demonstration of the method for splitting the route into segments.", out.height="7cm"}
 knitr::include_graphics("figures/lewes-uckfield-segments.png")
 ```
 
@@ -146,7 +151,7 @@ line_bearing(lewes_uckfield)
 
 To find the lines that were close to parallel with the train line, the function `angle_diff()` was developed. All lines within 30 degrees, clockwise or anti-clockwise, to the train line, *and* have their midpoint within the route buffer, are illustrated in Figure \@ref(fig:para). It is clear from this Figure that a high number of lines were selected which are very unlikely benefit from cycling provision along the route, especially in the southwest segment of the plot. 
 
-```{r para, fig.cap="Illustration of the 'line centrepoint' subsetting phase"}
+```{r para, fig.cap="Illustration of the paralell lines subsettting method"}
 l_a = line_bearing(lewes_uckfield)
 a = angle_diff(l = l_lc, angle = l_a, bidirectional = TRUE)
 sel_para = a < 30
@@ -163,9 +168,9 @@ To remove desire lines that were still far from the train line a further subsett
 This involves selecting desire lines that pass within an even shorter distance of the train line, 2 km in this case.
 The results are presented in Figure \@ref(fig:paranew).
 The red lines represent the lines selected through these selection criteria;
-the green lines were included through the centrepoint selection method but omitted by 'buffer intersection' method.
+the orange lines were included through the centrepoint selection method but omitted by 'buffer intersection' method.
 
-```{r paranew, fig.cap="Updated 'parallel' desire lines, whose centre-points lie within 5 km of the proposed route (green) and passes within 2 km of the train line (red). The red lines represent the lines selected through this method."}
+```{r paranew, fig.cap="Updated 'parallel' desire lines, whose centre-points lie within 5 km of the proposed route (orange) and passes within 2 km of the train line (red). The red lines represent the lines selected through this method."}
 buff7 = buff_geo(lewes_uckfield, width = 5000)
 buff_small = buff_geo(lewes_uckfield, width = 2000)
 sel_centrepoint5 = rgeos::gContains(buff7, l_cp, byid = T)[,1]
@@ -179,7 +184,7 @@ tm_shape(buff7) + tm_borders(col = "blue", lwd = 3) +
 tm_shape(buff_small) + tm_borders(col = "blue", lwd = 3) +
   tm_shape(lewes_uckfield) + tm_lines(lwd = 5, col = "black") +
   tm_shape(l_cp) + tm_dots() +
-  tm_shape(l_lc[sel_para & sel_centrepoint5 & !sel_smallbuff,]) + tm_lines(col = "green", lwd = 5) +
+  tm_shape(l_lc[sel_para & sel_centrepoint5 & !sel_smallbuff,]) + tm_lines(col = "orange", lwd = 5) +
   tm_shape(l_lc[sel_finalpar,]) + tm_lines()
 ```
 
@@ -209,7 +214,7 @@ tm_shape(l_lc) + tm_lines(col = "grey", lwd = 3) +
 
 The cycling potential of the intersecting 'perpendicular' lines were then summed *per 1 km segment* of the rail line. The results, for the Government Target scenario, are presented in \@ref(fig:perpsel).
 
-```{r perpagg, fig.cap="Total cycling potential (under the Government Target scenario) 'severed' by the proposed rail line. Line width is proportional to the square root of the total cycling potential for each segment."}
+```{r perpagg, fig.cap="Total cycling potential (under the Government Target scenario) 'severed' by the proposed rail line. Line width is proportional to the square root of the total cycling potential for each segment.", fig.height=5}
 l_agg = aggregate(l_lc["govtarget_slc"], l_seg, FUN = sum)
 plot(l_agg, lwd = sqrt(l_agg$govtarget_slc) * 2)
 ```
@@ -228,42 +233,56 @@ l_most = l_agg[which.max(l_agg$govtarget_slc),]
 
 ## Results
 
-Based on the methods presented in the previous sections summary statistics for each of the desire line subsets, based on parallels and severed routes, can be compared with all desire lines in the study area. These are presented in the table below.
+Based on the methods presented in the previous sections summary statistics for each of the desire line subsets, based on parallels and severed routes, can be compared with all desire lines in the study area. These are presented in the tables below.
+Table 1 contains summary statistics on the total number, car dominance and level and cycling for each subset.
+Table 2 contains scenario-specific estimates of cycling potential for each of the desire line subsets.
 
 ```{r}
-scens = c("Touching buffer", "Parallel selection", "Perpendicular selection")
-res_p = data.frame()
-for(i in scens){
-  df_tmp = l_lc@data[l_lc@data[[i]],]
-  res_p = rbind(res_p, summarise(df_tmp, `Commuters (all)` = sum(all),
-          `Cycling (2011 Census)` = sum(bicycle),
-          `Cycling (percent, 2011)` = 100 * sum(bicycle) / sum(all),
-          `Government Target (n. cycling)` = sum(govtarget_slc),
-          `Government Target (% cycling)` = 100 * sum(govtarget_slc) / sum(all),
-          `Average distance (km Euclidean)` = mean(l_lc$dist)
-          ))
+lines_subset = c("Touching buffer", "Parallel selection", "Perpendicular selection")
+sc_name_df <- data_frame(
+  sc_f_name = c("Census 2011 Cycling", "Government Target", "Gender equality", "Go Dutch", "Ebikes"),
+  sc_s_name = c("olc","govtarget","gendereq","dutch", "ebike")
+)
+l_lc$olc_slc = l_lc$bicycle 
+scens = paste0(sc_name_df[[2]], "_slc")
+res = NULL
+for(j in 1:length(scens)){
+  res_p = data.frame()
+  for(i in lines_subset){
+    l_lc$slc = l_lc[[scens[j]]]
+    df_tmp = l_lc@data[l_lc@data[[i]],]
+    res_p = rbind(res_p, summarise(df_tmp,
+                      `N. commuters` = sum(all),
+                      `N. cycling` = round(sum(slc)),
+                      `% cycling` = sum(slc) / sum(all) * 100,
+                      `Distance (km, Euclidean)` = mean(dist)
+    ))
+  }
+  row.names(res_p) = paste(sc_name_df$sc_f_name[j], lines_subset)
+  res = rbind(res, res_p)
 }
-res = as.data.frame(t(res_p))
-names(res) = scens
-knitr::kable(res, digits = 0, caption = "Cycling potential in the study area surrounding the proposed rail line. The Touching buffer column refers to the cycling potential of desire lines which pass within the 10 km buffer. The  Parallel selection criteria described in Section 3.2. The Perpendicular selection criteria are described in Section 3.3.")
+knitr::kable(res, digits = 1, caption = "Cycling potential in the study area surrounding the proposed rail line. The Touching buffer column refers to the cycling potential of desire lines which pass within the 10 km buffer. The  Parallel selection criteria described in Section 3.2. The Perpendicular selection criteria are described in Section 3.3.")
 ```
 
 Overall the potentail for cycling along routes parallel to the track appears to be greater than the cycling potential of 'severed' routes. This is likely due to the limited east-west commuter travel that crosses the proposed line.
+
+\newpage
 
 ## Cycling potential around the proposed route
 
 Under the ambitious Ebike scenario, the PCT shows that cycling potential along routes running parallel to the line is uneven geographically. Unsurprisingly, cycling potential is clustered at either end of the proposed route, with relatively high increases modelled along segments of the network between Lewes and Ringmer, along the A26 and along routes running north-south through Uckfield. This is shown in Figure \@ref(fig:pct-uck).
 
-```{r pct-uck, fig.cap="Cycling potential (red lines) along the transport network between Lewes and Uckfield, under the Ebike scenario of the Propensity to Cycle Tool (see [pct.bike/east-sussex/](http://pct.bike/east-sussex/))."}
+```{r pct-uck, fig.cap="Cycling potential (red lines) along the transport network between Lewes and Uckfield, under the Ebike scenario of the Propensity to Cycle Tool (see [pct.bike/east-sussex/](http://pct.bike/east-sussex/)).", fig.height=7}
 # knitr::include_graphics("figures/lewes-uckfield-pct-ebike.png")
-osm_tiles_local = read_osm(bb(buff))
+# osm_tiles_local = read_osm(bb(buff))
 rnet = readRDS("../pct-data/east-sussex/rnet.Rds")
 rnet = rnet[buff,]
-tm_shape(osm_tiles_local) + tm_raster() +
+# tm_shape(osm_tiles_local) + tm_raster() +
 tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
   tm_shape(rnet) + tm_lines(col = "red", lwd = "ebike_slc", scale = 20) +
   tm_shape(lewes_uckfield) + tm_lines(lwd = 2, col = "black") 
 ```
+\newpage
 
 # Discussion
 
