@@ -225,8 +225,8 @@ From Figure \@ref(fig:perpagg) it is clear that the points of highest potential 
 
 ```{r perpmost, fig.cap="The 1 km segment on the proposed rail line with the highest level of severence in cycling potential, under the Government Target scenario."}
 l_most = l_agg[which.max(l_agg$govtarget_slc),]
-# osm_tiles_most = read_osm(bb(l_most, 4))
-# tm_shape(osm_tiles_most) + tm_raster() +
+osm_tiles_most = read_osm(bb(l_most, 4))
+tm_shape(osm_tiles_most) + tm_raster() +
   tm_shape(l_most) + tm_lines(lwd = 10) +
   tm_shape(lewes_uckfield) + tm_lines(lwd = 2, col = "black") 
 ```
@@ -274,10 +274,10 @@ Under the ambitious Ebike scenario, the PCT shows that cycling potential along r
 
 ```{r pct-uck, fig.cap="Cycling potential (red lines) along the transport network between Lewes and Uckfield, under the Ebike scenario of the Propensity to Cycle Tool (see [pct.bike/east-sussex/](http://pct.bike/east-sussex/)).", fig.height=7}
 # knitr::include_graphics("figures/lewes-uckfield-pct-ebike.png")
-# osm_tiles_local = read_osm(bb(buff))
+osm_tiles_local = read_osm(bb(buff))
 rnet = readRDS("../pct-data/east-sussex/rnet.Rds")
 rnet = rnet[buff,]
-# tm_shape(osm_tiles_local) + tm_raster() +
+tm_shape(osm_tiles_local) + tm_raster() +
 tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
   tm_shape(rnet) + tm_lines(col = "red", lwd = "ebike_slc", scale = 20) +
   tm_shape(lewes_uckfield) + tm_lines(lwd = 2, col = "black") 
