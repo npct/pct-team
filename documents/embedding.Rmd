@@ -9,7 +9,7 @@ bibliography: references.bib
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-library(citr)
+# library(citr)
 # References are from the cycling-potential library
 # in the group 'energy-and-transport' on zotero:
 # https://www.zotero.org/groups/energy-and-transport/
@@ -18,7 +18,7 @@ library(citr)
 
 # Abstract {-}
 
-Cycling is an effective means of transport for millions of people worldwide. If cities worldwide follow examples such as Copenhagen and Groningen to make cycling the main mode for short trips, this would transform urban transport, making it a healthier, cleaner and more socially equitable activity. In recognition of these benefits, political attention and funding has been allocated to encourage cycling in many places. However, cycling is still marginal in many transport plans. This paper explores this issue, with the aim of identifying opportunities for embedding cycling in the planning process. A brief review of the history of transport planning illuminates this marginalisation, and suggests institutional restructuring may be needed to ensure active travel is taken seriously. Less politically disruptive opportunities for embedding cycling are also explored, including 'soft infrastructure' interventions, open source digital tools, and new technologies and methods for monitoring and evaluation. We conclude that these opportunities must be taken at every stage of the transport planning process for active travel to become central to the discipline.
+Cycling is an effective means of transport for millions of people and has great potential to grow in most countries. Evidence from cities such as Groningen and Seville suggests that investing in cycling can transform urban transport systems, making them healthier, cleaner and more socially equitable. These benefits have led to cycling strategies in many places. Despite a recent flurry of interest and funding, cycling is still marginal most planning institution. This paper explores this issue, with the aim of identify opportunities for making cycling central to the planning process. A brief review of the history of transport planning illustrates this marginalisation, suggesting departmental restructuring as a remedy. The literature on planning for cycling shows that many lower-level opportunities, less reliant on political decisions, to embed cycling exist, including: widening the scope of transport plans to include health and wellbeing; 'filtered permeability' interventions; participatory planning tools; and recent innovations for monitoring and evaluation cycling uptake. We conclude that taking these opportunities at every stage of the transport planning process will help active travel to become central to the discipline of Transport Planning.
 
 # Introduction
 
