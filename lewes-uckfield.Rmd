@@ -106,7 +106,7 @@ qtm(osm_tiles) +
 # knitr::include_graphics("figures/lewes-uckfield-overview.png")
 ```
 
-The total number of single-stage commutes that pass through the buffer is higher: `r sum(l_lc$all)` thousand commuters. As Figure \@ref(fig:lc) illustrates, many of these commuters would not interact with the train line, as they are focused on commutes between Brighton and surrounding settlements in the far southeast of the 20 km buffer. Only a few hundred commutes pass directly parallel to the route, mostly due to 10 to 20 km (route distance) commutes between MSOAs in Lewes, Ringmer and Uckfield. This implies that cycle paths running parallel to the train line itself have quite low commuter cycling potential. The next section analyses this potential in more detail.
+The total number of single-stage commutes that pass through the buffer is higher: `r sum(l_lc$all)` commuters. As Figure \@ref(fig:lc) illustrates, many of these commuters would not interact with the train line, as they are focused on commutes between Brighton and surrounding settlements in the far southeast of the 20 km buffer. Only a few hundred commutes pass directly parallel to the route, mostly due to 10 to 20 km (route distance) commutes between MSOAs in Lewes, Ringmer and Uckfield. This implies that cycle paths running parallel to the train line itself have quite low commuter cycling potential. The next section analyses this potential in more detail.
 
 
 ## Cycling potential parallel to the route
