@@ -26,7 +26,7 @@ They are as follows:
 
 This document represents the delivery of Tasks 5.1 and 5.3 from the above list and will be used as a foundation to deliver Task 5.2.
 
-In the contract deliverable 5.2 is described as looking at cycling opportunities along the *route of the HS2 train line*. However subsequent discussions with DfT staff (Shane Snow) have indicated that it is the cycling potential around the *proposed cycle path* surrounding HS2 that is of most interest. It has therefore been agreed that 5.3 will analyse the cycling potential in the wider area covered by the proposed path, rather than just the route of the HS2 train line. Because this new piece of work is more challenging, it has further been agreed that, rather than a full quantitative analysis of the cycling potential along every segment of the entire cycle path, the analysis associated with 5.2 will focus on overlaying the proposed cycling network surrounding HS2 with estimates of cycling potential from the PCT.
+In the contract deliverable 5.2 is described as looking at cycling opportunities along the *route of the HS2 train line*. However subsequent discussions with DfT staff (Shane Snow) have indicated that it is the cycling potential around the *proposed cycle path* surrounding HS2 that is of most interest. It has therefore been agreed that 5.2 will analyse the cycling potential in the wider area covered by the proposed path, rather than just the route of the HS2 train line. Because this new piece of work is more challenging, it has further been agreed that, rather than a full quantitative analysis of the cycling potential along every segment of the entire cycle path, the analysis associated with 5.2 will focus on overlaying the proposed cycling network surrounding HS2 with estimates of cycling potential from the PCT.
 The aim of this modified deliverable 5.2 is to provide an evidence base for investing in and potentially modifying the proposed cycle path surrounding the HS2.
 
 This report, however, focusses exclusively on the much smaller area surrounded by the proposed Lewes-Uckfield rail route.
@@ -57,7 +57,7 @@ The methodology used to identify these severance points consists of 3 stages:
 - Quantify the number of potential cyclists blocked along segments of the train line of even length
 - Subset the segments which block the highest number of potential cyclists and identify potential crossing points
 
-Note that based on the three-stage methodology outlined above severance points are in fact more precisely described as 'severance segments', along which a range of points could be chosen for crossing points. However, the term 'severance point' is more intuitive so we use this term throughout.
+Note that based on the three-stage methodology outlined above, severance points are in fact more precisely described as 'severance segments', along which a range of points could be chosen for crossing points. However, the term 'severance point' is more intuitive so we use this term throughout.
 
 \newpage
 
@@ -106,7 +106,7 @@ qtm(osm_tiles) +
 # knitr::include_graphics("figures/lewes-uckfield-overview.png")
 ```
 
-The total number of single-stage commutes that pass through the buffer is higher: `r sum(l_lc$all) / 1000` thousand commuters. As Figure \@ref(fig:lc) illustrates, many of these commuters would not interact with the train line, as they are focused on commutes between Brighton and surrounding settlements in the far southeast of the 20 km buffer. Only a few hundred commutes pass directly parallel to the route, mostly due to 10 to 20 km (route distance) commutes between MSOAs in Lewes, Ringmer and Uckfield. This implies that cycle paths running parallel to the train line itself have quite low commuter cycling potential. The next section analyses this potential in more detail.
+The total number of single-stage commutes that pass through the buffer is higher: `r sum(l_lc$all)` commuters. As Figure \@ref(fig:lc) illustrates, many of these commuters would not interact with the train line, as they are focused on commutes between Brighton and surrounding settlements in the far southeast of the 20 km buffer. Only a few hundred commutes pass directly parallel to the route, mostly due to 10 to 20 km (route distance) commutes between MSOAs in Lewes, Ringmer and Uckfield. This implies that cycle paths running parallel to the train line itself have quite low commuter cycling potential. The next section analyses this potential in more detail.
 
 ## Cycling potential parallel to the route
 
@@ -188,7 +188,7 @@ tm_shape(buff_small) + tm_borders(col = "blue", lwd = 3) +
   tm_shape(l_lc[sel_finalpar,]) + tm_lines()
 ```
 
-From the subset of the lines highlighted in red in \@ref(fig:paranew) we can now report summary statistics on the cycling potential of commuter desire lines which run parallel to the Lewes-Uckfield route. These results are presented alongside the equivalent statistics for *all* desire lines which intersect the 10 km buffer surrounding the proposed route.
+From the subset of the lines highlighted in red in Figure \@ref(fig:paranew) we can now report summary statistics on the cycling potential of commuter desire lines which run parallel to the Lewes-Uckfield route. These results are presented alongside the equivalent statistics for *all* desire lines which intersect the 10 km buffer surrounding the proposed route.
 
 ## The potential for severance along the proposed route
 
@@ -240,7 +240,7 @@ Table 2 contains scenario-specific estimates of cycling potential for each of th
 ```{r}
 lines_subset = c("Touching buffer", "Parallel selection", "Perpendicular selection")
 sc_name_df <- data_frame(
-  sc_f_name = c("Census 2011 Cycling", "Government Target", "Gender equality", "Go Dutch", "Ebikes"),
+  sc_f_name = c("Census 2011:", "Government Target:", "Gender equality:", "Go Dutch:", "Ebikes:"),
   sc_s_name = c("olc","govtarget","gendereq","dutch", "ebike")
 )
 l_lc$olc_slc = l_lc$bicycle 
@@ -264,7 +264,7 @@ for(j in 1:length(scens)){
 knitr::kable(res, digits = 1, caption = "Cycling potential in the study area surrounding the proposed rail line. The Touching buffer column refers to the cycling potential of desire lines which pass within the 10 km buffer. The  Parallel selection criteria described in Section 3.2. The Perpendicular selection criteria are described in Section 3.3.")
 ```
 
-Overall the potentail for cycling along routes parallel to the track appears to be greater than the cycling potential of 'severed' routes. This is likely due to the limited east-west commuter travel that crosses the proposed line.
+Overall the potential for cycling along routes parallel to the track appears to be somewhat greater than the cycling potential of 'severed' routes.
 
 \newpage
 
@@ -287,7 +287,8 @@ tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
 # Discussion
 
 In terms of the local case study, it seems there is greater potential parallel to the proposed route than perpendicular to it, indicating the risks of community severence for cycling uptake are likely to be lower than the potential for cycling uptake along lines parallel to the route. 
-In total, we estimate that around 10,000 commuters make trips that are parallel to the line, of whom 2.3% currently cycle. We further estimate that under a Go Dutch scenario the proportion of these commuter cycling would be X%, while under the Ebike scenario it would be X%.  The Go Dutch and Ebike scenarios assume that English commuters acquire a Dutch cycling culture and Dutch levels of infrastructure: a high quality, traffic-free cycle route along the Lewes-Uckfield train line could be a useful step towards achieving Dutch infrastructure, although it should be remembered that the impact of the cycle path might also depend on the quality of the surrounding cycle network.  It should also be remembered that this analysis only examines commuter cycling; adding in cycling potential for other cycling types, e.g. leisure cycling, might generate considerably higher estimates as to the number of users.
+
+In total, we estimate that around 2500 commuters make trips that are parallel to the line, of whom 1.1% currently cycle (N=28). We further estimate that under a Go Dutch scenario the proportion of these commuter cycling would be 6.1% (N=158), while under the Ebike scenario it would be 15.4% (N=397).  The Go Dutch and Ebike scenarios assume that English commuters acquire a Dutch cycling culture and Dutch levels of infrastructure: a high quality, traffic-free cycle route along the Lewes-Uckfield train line could be a useful step towards achieving Dutch infrastructure, although it should be remembered that the impact of the cycle path might also depend on the quality of the surrounding cycle network.  It should also be remembered that this analysis only examines commuter cycling; adding in cycling potential for other cycling types, e.g. leisure cycling, might generate considerably higher estimates as to the number of users.
 
 It is in terms of the methods for quanitifying the potential for desire lines parallel and perpendicular to proposed routes that this report will probably be of most use, as the basis for further work. The Lewes-Uckfield line has served a useful purpose in this regard, as the case study is small enough to identify specific desire lines of interest, and explore the methodology on local datasets that are not overwhelmingly large. The work provides many interesting avenues for further development and research, including:
 
