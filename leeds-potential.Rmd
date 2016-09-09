@@ -1,0 +1,79 @@
+---
+title: "Cycling Potential in Leeds"
+author: "Robin Lovelace"
+date: '`r Sys.Date()`'
+output: word_document
+bibliography: documents/references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = F, message = FALSE, fig.align = "center", fig.height = 4, options(scipen=999))
+pkgs = c("sp", "tmap", "rgeos", "stplanr", "dplyr", "rgdal")
+lapply(pkgs, library, character.only = T)
+regions = geojsonio::geojson_read("../pct-bigdata/regions.geojson", what = "sp")
+lads = readRDS("../pct-bigdata/lads-scenarios.Rds")
+leeds = lads[lads$Region == "Leeds",]
+zones = readRDS("../pct-bigdata/ukmsoas-scenarios.Rds")
+zones$`Percent cycling (2001)` = zones$bicycle / zones$all * 100
+zones$`Percent cycling (Go Dutch)` = zones$dutch_slc / zones$all * 100
+centsa <- readOGR("../pct-bigdata/cents-scenarios.geojson", layer = "OGRGeoJSON")
+proj4string(centsa) = proj4string(zones)
+cents <- centsa[leeds,]
+zones <- zones[zones@data$geo_code %in% cents$geo_code, ]
+```
+
+Leeds is located in West Yorkshire, which has the lowest current level of cycling to work of all 45 regions used in the PCT England (1.3%, followed by Northumberland and South Yorkshire, with 1.6 and 1.7% cycling to work respectively) (Table 1).
+
+```{r}
+df = regions@data %>% dplyr::select(Region = Region_cap, pcycle, govtarget_slc, dutch_slc) %>%
+  # mutate(Rank = rank(pcycle)) %>% 
+  arrange(pcycle) %>% top_n(-5, pcycle)
+names(df) = c("Region", "2011 Census", "Government Target", "Go Dutch")
+knitr::kable(x = df, row.names = F)
+```
+
+Leeds has a slightly higher level of cycling to work than the regional average (1.9%) but this is still far below the national average of 3.2%,
+and places it behind other northern cities (Table 2).
+
+```{r}
+df = lads@data %>% dplyr::select(Region = Region_cap, pcycle, govtarget_slc, dutch_slc) %>%
+  filter(grepl(pattern = "Leeds|Manch|Liverp|York$|Bradford", Region)) %>% 
+  # mutate(Rank = rank(pcycle)) %>%
+  arrange(pcycle) %>% top_n(-5, pcycle)
+names(df) = c("Region", "2011 Census", "Government Target", "Go Dutch")
+knitr::kable(x = df, row.names = F, digits = 1)
+```
+
+The most distinctive feature of the geographical distribution of cycling in Leeds is its concentration in the north and northwest of the city:
+
+```{r}
+qtm(zones, fill = "Percent cycling (2001)")
+```
+
+A policy relevant question is: is this a structural feature due to travel patterns, or is it due to barriers preventing high levels of cycling, e.g. infrastructure? The results form the Go Dutch scenario clearly show that distances of travel to work are not a major limiting factor in the region: in fact, there appear to be *more* cyclable trips in the less wealthy south of the city, despite current low levels of cycling there.
+
+```{r}
+qtm(zones, fill = "Percent cycling (Go Dutch)")
+```
+
+Leeds is a highly monocentric city with arterial routes feeding the Central Business Districts in the centre from all sides of the city.
+This is reflected in the Route Network layer, which shows great cycling potential along all main arterial routes into central Leeds. Because of the low current rates of cycling in the south and east of the city, arterial routes there (e.g. along York Road, highlighted in figure x) have the greatest potential for growth. Note that these results do not account for leisure and educational trips, which would show higher levels of radial trips.
+
+```{r}
+rnet = readRDS("../pct-data/west-yorkshire/rnet.Rds")
+rnet$`Cycle commuters (2011)` = rnet$bicycle
+rnet$`Cycle commuters (Go Dutch)` = rnet$dutch_slc
+# tmap_mode("view")
+qtm(leeds) +
+  tm_shape(rnet) + tm_lines(lwd = "Cycle commuters (Go Dutch)", lwd.legend = c(100, 200, 500, 1000), scale = 20, col = "blue", ) +
+  tm_shape(rnet) + tm_lines(lwd = "Cycle commuters (2011)", lwd.legend = c(100, 200, 500, 1000), scale = 5) 
+```
+
+```{r, out.width="100%"}
+knitr::include_graphics("flow-model/leeds-rnet-gov-go.png")
+```
+
+
+
+
+
