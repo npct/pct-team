@@ -1,3 +1,8 @@
+###########   THIS SCRIPTS CREATES PCT scenarios in R
+###########   replicating Anna's Stata code    
+###########   As input it uses file l_scenariosGM.csv (.dta also available)
+###########   As output it generates 2 files: pct_lines   & pct_lines (.csv, .rds)
+
 #setup
 rm(list=ls())
 
