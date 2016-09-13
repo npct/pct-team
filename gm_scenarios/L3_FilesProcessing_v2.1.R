@@ -1,4 +1,4 @@
-#v2.1 uses a,b coefficients (most complex case of all)
+#v2.1 uses a,b coefficients (most generic case)
 rm(list=ls())
 
 library("readstata13")
@@ -202,24 +202,4 @@ gm.od[is.na(gm.od)] <-0      #clean NAs
 saveRDS(gm.od,file.choose())    #as gm.od.Rds=GM OD TRAFFIC+G.M. Census OD + GM T.Survey
 rm(car,pt,wc,l,l.df,c,c.df,ctw)
 
-
-#make flows single - dated: this is done now with stplanr
-######### MANUAL METHOD (NOT NEEDED):   combine gm.od flows OD-DO into one single flow
-# gm.od0 <- gm.od[gm.od$MSOAOrig==gm.od$MSOADest,]
-# gm.od1 <- inner_join(gm.od,gm.od, by=c('MSOAOrig'='MSOADest', 'MSOADest'='MSOAOrig'))
-# gm.od1[,3:6] <-gm.od[,3:6]  + gm.od[,7:10]
-# gm.od1[,c(3:6)] <-gm.od[,c(3:6)]  + gm.od[,c(7:10)]
-# gm.od1[,c(3:6)] <-gm.od1[,c(3:6)]  + gm.od1[,c(7:10)]
-# gm.od1 <-gm.od1[,c(3:6)]
-# gm.od1 <- inner_join(gm.od,gm.od, by=c('MSOAOrig'='MSOADest', 'MSOADest'='MSOAOrig'))
-# gm.od1[,c(3:6)] <-gm.od1[,c(3:6)]  + gm.od1[,c(7:10)]
-# gm.od1 <-gm.od1[,c(1:6)]
-# gm.od <- rbind(gm.od1,gm.od0)
-
-
-# gm.od <- inner_join(gm.od, l, by=c('MSOAOrig'='Area.of.residence', 'MSOADest'='Area.of.workplace')) 
-# gm.od <- gm.od[,1:18]
-# saveRDS(gm.od,file.choose())                   #saved as:   gmODcompared.Rds
-
-#########################
 
