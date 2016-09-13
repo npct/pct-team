@@ -21,7 +21,7 @@ tail(car0comm)
 rm(car0,car0comm)
 
 #set the AreaOrig/AreaDest importance factors on final demand
-a=0.8
+a=0.5
 b= 1-a
 
 ################################################
@@ -52,13 +52,13 @@ car <- inner_join(car, caragg, by=c('Origin','Destination'))
 rm(caragg) 
 
 car$DemandT <- car$xyDemand / car$xySum
-sum(car$DemandT)  #checking nos. are right
+sum(car$DemandT)  #checking nos. are right  3.64 M
 
 car <-aggregate(car$DemandT,by=list(car$MSOAOrig,car$MSOADest), FUN=sum,na.rm=T)
 colnames(car) <- c('MSOAOrig','MSOADest','DemandT')
 sum(car$DemandT)  #checking demand is ~unchanged (the same as at start)
-car <- cbind(car,mode=3)
 car$DemandT <- round(car$DemandT, 0)
+car <- cbind(car,mode=3)
 car <- car[car$DemandT!=0,]
 
 saveRDS(car,file.choose())                   #saved as:   L3_Car.Rds
@@ -134,9 +134,9 @@ rm(list=ls())   #clean previous vars
 library(stplanr)
 
 path <- 'C:/Users/au232/Dropbox/PCT/2_WorkInProgress/Alvaro/Manchester_data/'
-wc <- readRDS(paste0(path,'L3_WC.Rds'))
-pt <- readRDS(paste0(path,'L3_PT.Rds'))
-car <- readRDS(paste0(path,'L3_Car.Rds'))
+wc <- readRDS(paste0(path,'L3_WC_Aud0.5.Rds'))
+pt <- readRDS(paste0(path,'L3_PT_Aud0.5.Rds'))
+car <- readRDS(paste0(path,'L3_Car_Aud0.5.Rds'))
 
 #reshape for rbind
 colnames(wc) <- c("MSOAOrig","MSOADest","FootGM", "mode")
