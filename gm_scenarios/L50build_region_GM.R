@@ -48,7 +48,7 @@ centsa <- readOGR(file.path(pct_bigdata, "cents-scenarios_GM.geojson"), "OGRGeoJ
 centsa$geo_code <- as.character(centsa$geo_code)
 
 #aud: run this script --->
-source('L5shared_build_GM.R')
+source('L51shared_build_GM.R')
 
 # select msoas of interest
 if(proj4string(region_shape) != proj4string(centsa))
