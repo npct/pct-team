@@ -21,17 +21,17 @@ header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktab
   \usepackage{tabu} \newcommand{\blandscape}{\begin{landscape}} \newcommand{\elandscape}{\end{landscape}}
   \usepackage{caption} \captionsetup[table]{skip=10pt}
 fontsize: 12pt
-bibliography: ../documents/references.bib
+bibliography: references.bib
 ---
 
 ```{r, echo=FALSE}
 library(knitr)
-opts_chunk$set(out.width = '100%')
+opts_chunk$set(out.width = '100%', message = FALSE)
 ```
 
 ```{r, echo=FALSE, include=FALSE}
 
-
+dir.create("/tmp/flow-model") # create temporary folder for files etc
 # output:
 #   pdf_document:
 #     fig_caption: yes
@@ -52,8 +52,8 @@ if(to_install) install.packages(pkgs[to_install])
 
 # Bibliography dl
 # generated via https://github.com/ZotPlus/zotero-better-bibtex
-# # This is from the group 'energy-and-transport': https://www.zotero.org/groups/energy-and-transport/
-# bib = httr::GET("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", httr::write_disk("references.bib", overwrite = T))
+# # This is from the group 'energy-and-transport': https://www.zotero.org/groups/energy-and-transport/ in the collection cycling-potential
+# # # bib = httr::GET("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", httr::write_disk("references.bib", overwrite = T)) # old download method - no longer works
 
 # To do:
 # Add speed-bumps/speed cameras/cycling priority or remove lanes for motorised traffic
@@ -118,7 +118,7 @@ Providing high-quality infrastructure can play a key role in promoting cycling u
 Off-road cycle paths, for example, have been found to be associated with an uptake of cycling for commuting [@heinen_changes_2015].
 Overall there is growing evidence linking cycling infrastructure to higher rates of cycling [@buehler_bikeway_2016].
 But where should this infrastructure be built?
-The central purpose of this paper is highlight the potential of online, interactive and publicly accessible tools to improve the provision of locally specific evidence for transport planning.
+The central purpose of this paper is highlight the potential of online, interactive and publicly accessible tools to improve the provision of locally specific evidence about where cycling has the greatest potential to grow for transport planning.
 It does so with reference to the Propensity to Cycle Tool (PCT), an online planning support system funded by the UK's Department for Transport to map cycling potential (Department for Transport, 2015).
 The PCT is open source. This differs from other tools for assessing cycling potential (see the next section) and has wider implications for how models can and should be used in the transport decision making process (see the Discussion).
 
@@ -145,6 +145,9 @@ A number of factors influence
 the attractiveness of cycling for everyday trips [@pucher_infrastructure_2010;@parkin_planning_2015].
 However, the intervention that has received the most attention has been the construction of new cycle paths.
 In the UK context, devolved transport budgets mean that local authorities have some control over the design and implementation of cycling networks.
+While much of the road network budget allocated centrally, through Highways England, cycle paths tend to be commissioned and designed locally due to funding streams such as the Local Sustainable Transport Fund, described in the context of modal shift to cycling by @chatterjee_triggers_2013.
+This, and the shorter distances and more flexible routes (e.g. through parks and along disused railways) that cycle paths can take increases the importance of high resolution map-based tools for cycling compared with motorised modes.
+Local transport budgets also increase demand for local cycling targets that open source tools such as the PCT could enable, as described in the Discussion.
 
 Planning new cycle paths requires many decisions to be made, including in relation to the width [@wegman_urban_1979;@pikora_developing_2002], quality [@heath_effectiveness_2006], directness [@crow_design_2007] and geographic location of the paths.
 Yet while much guidance has been produced regarding physical design [e.g. @transport_for_london_london_2015;@welsh_government_guidance_2014],
@@ -156,12 +159,14 @@ Within this policy context, the PCT focuses explicitly on the question of *where
 
 ## Research into cycling potential 
 
-There is an emerging literature exploring cycling potential.
-This links to the question of 'where to build' because 
-areas and routes with the highest potential are likely to be cost-effective places for investment from health and emissions perspectives.
-With the notable exceptions of @larsen_build_2013 and @zhang_prioritizing_2014, this body of research has not provided systematic or quantitative evidence for transport planners.
-The methods broadly
-fit into three categories depending on the level of the input data used:
+There is an emerging literature exploring cycling rates and potential rates of growth.
+Much of this work is practitioner-led, as detailed in an excellent overview of developments in the USA [@kuzmyak_estimating_2014].
+<!-- This links to the question of 'where to build' because  -->
+<!-- areas and routes with the highest potential are likely to be cost-effective places to invest. -->
+With the notable exceptions of @larsen_build_2013 and @zhang_prioritizing_2014, the methods reviewed in this section are not simultaneously *route-based*, *systematic*, *quantitative* and *scalable*, some of the key features of the PCT.
+The work can be classified in a number of ways, including by the main mechanism of the tool (e.g. facility demand or mode choice models), the format of its outputs (e.g. spreadsheet results, GIS-based map or on-line, interactive map) or by the main level of the input data used.
+In these terms, the PCT is based on a mode choice model (representing the shift to cycling from other modes) operating primarily at the origin-destination level, which provides outputs in an online, interactive map.
+For research into cycling potential (and the resulting models) to be useful for local transport planners, their spatial scale must coincide with those over which the planning process has some control. For this reason we focus on scale as the primary way of categorising research into cycling potential, highlighting the following prominent levels (the PCT best fits into the third). 
 
 - Area-based measures are based primarily on data at the level of administrative
 zones, which will vary depending on context.
@@ -179,7 +184,15 @@ This work is reviewed in relation to the PCT below and summarised in Table 1.
 
 @zhang_prioritizing_2014 created an individual-based model of cycling potential to prioritise where to build cycle paths to "achieve maximum impacts early on".
 The outputs of this model were aggregated to the level of 67 statistical zones in the study area of Belo Horizonte, Brazil, and used to generate a 'usage intensity index' for potential cycle paths.
-This, combined with survey data on cyclists' stated preferences on whether people would cycle were infrastructure provided along particular routes and origin-destination data on travel to work, was used to rank key routes in the city in terms of their cycling potential.
+This, combined with survey data on cyclists' stated preferences on whether people would cycle were infrastructure provided along particular routes and origin-destination data on travel to work, was used to rank key routes in the city in terms of their cycling potential. 
+
+@larsen_build_2013 created
+an area-based 'prioritization index', for Montreal, Canada.
+This was based on four variables: the area's current level of cycling,
+its cycling potential (estimated based on the shortest path between the origin and destination of short car trips from a travel survey), the number of injuries to cyclists,
+and locations prioritised by current cyclists for improvement  [@larsen_build_2013].
+These four were aggregated to the level of evenly spread cells covering the study area.
+The resulting heat map was used to recommend the construction or upgrade of cycle paths on specific roads.
 
 <!-- ### Individiual-based measures of cycling potential -->
 <!-- Another method that used individual-level to identify areas with high numbers of -->
@@ -189,19 +202,13 @@ This, combined with survey data on cyclists' stated preferences on whether peopl
 <!-- presented as a static heatmap and used to prioritise where to build new cycle -->
 <!-- paths and cycle hire points. -->
 
-While the methods presented by Parkin et al. (2008) and Zhang et al. (2014) were developed in an academic context, albeit closely related to policy needs and interests, the
-Analysis of Cycling Potential (ACP) tool was developed by practitioners [@transport_for_london_analysis_2010]. The ACP combined area and individual-level data to produce a heat map estimating cycling potential across London, UK, for all trip purposes. The underlying model examined which types of trips are most likely to be cycled, based on the characteristics of observed cycle trips (e.g. time of day, characteristics of the traveller, distance).
-The results of the ACP have informed local cycling schemes, such as where to build new cycle hire stations.
-The ACP does not use origin-destination data directly or route allocation.
+Although the methods presented in preceding three paragraphs were developed in an academic context,
+most of the usable *tools* for estimating cycling potential are practitioner-led.
+Many of these may never have been documented in the academic literature, so the subsequent overview should not be regarded as comprehensive
+[see @kuzmyak_estimating_2014 and subsequent documents that cite this report].
 
-Again working within academia but also closely focussed on local planning and policy issues,
-@larsen_build_2013 created
-an area-based 'prioritization index', for Montreal, Canada.
-This was based on four variables: the area's current level of cycling,
-its cycling potential (estimated based on the shortest path between the origin and destination of short car trips from a travel survey), the number of injuries to cyclists,
-and locations prioritised by current cyclists for improvement  [@larsen_build_2013].
-These four were aggregated to the level of evenly spread cells covering the study area.
-The resulting heat map was used to recommend the construction or upgrade of cycle paths on specific roads.
+The Analysis of Cycling Potential (ACP) tool was developed by @transport_for_london_analysis_2010 to produce heat maps of cycling potential across London, for all trip purposes. It is based a mode choice model of likelihood of trips being cycled and uses the characteristics of observed trips (e.g. time of day, characteristics of the traveller, distance) as the main input dataset.
+The results of the ACP have informed local cycling schemes, such as where to build new cycle hire stations but does not use origin-destination data so is less relevant for route-based interventions.
 
 A more localised approach is the Permeability Assessment Tool (PAT), which was developed by a transport consultancy @payne_removing_2014.
 The PAT is based on the concept of 'filtered permeability', which means providing a more direct route to people cycling than driving [@melia_urban_2015].
@@ -209,6 +216,10 @@ The PAT works by combining geographical data, including the location of popular 
 and existing transport infrastructure, with on-site audit data of areas that have
 been short-listed. Unlike the prioritisation index of Larsen et al. (2013), which is primarily aimed at informing a city-wide strategic cycling network, the results of the PAT are designed to guide smaller, site specific interventions such as 'contraflow' paths and cyclist priority traffic signals.
 
+The Santa Monica model is an example of a direct *facility demand* model, which are based on "observed counts and context-driven regression models" [@kuzmyak_estimating_2014].
+The model uses environmental explanatory variables such as employment density and speed limits of surrounding roads to estimate the dependent variable: walking and cycling activity (e.g. as recorded by screenline count devices).
+By adjusting regression parameters (e.g. based on areas that have experienced growth in cycling), such models can be used to "forecast demand levels for walk or 
+bike at a point or intersection level" and "evaluate and prioritize projects" (ibid., p. 75).
 
 <!-- A key feature of this tool was its integration of data sources from many different sources. -->
 <!-- Unlike @larsen_build_2013, @zhang_prioritizing_2014  Using socio-demographic data, groups who were most likely to cycle were identified.  -->
@@ -252,12 +263,14 @@ The PCT is systematic in its use of national data for all parts of the study reg
 PSS typically work by presenting evidence about the characteristics and needs
 of the study region in an interactive map.
 A central objective is to visualise
-alternative scenarios of cycling uptake and explore their potential impacts.
+alternative scenarios of change, and explore their potential impacts.
 The results of traditional scenario-based models 
 are usually not locally specific
 [@mccollum_achieving_2009;@lovelace_assessing_2011;@woodcock_public_2009].
 Online PSS can overcome this issue by using interactive maps [@pettit_online_2013].
 The emergence of libraries for web mapping  [@haklay_web_2008] has facilitated online PSS, offering the potential for public access to the planning process. Transparency is further enhanced by making PSS open source, in-line with a growing trend in transport modelling [@tamminga_design_2012;@novosel_agent_2015;@borning_urbansim:_2008].  In these ways, PSS can make evidence for transport planning more widely available, and tackle the issue that transport models are often seen as 'black boxes', closed to public scrutiny (Golub et al., 2013).
+
+With reference to a publicly accessible online map-based PSS for strategic land use (and to a lesser extent transport) planning, @kahila-tani_let_2016 provide guidance on the wider public participation process: it should be *transparent*, *influence* real world decisions, be *representative* of citizens and allow *independent participation*. Although these criteria depend primarily on *how* the tool is deployed in practice (for example with regards to training resources and workshops facilitated by planning authorities to ensure that the tool the tool is used effectively), which are outside the scope of the current paper, the PCT certainly encourages transparency through its use of open data and open source software and allows independent participation through its publicly accessible online interface.
 
 
 <!-- allowing public access to the planning process. -->
@@ -326,10 +339,12 @@ to show how the tool can be used
 
 # Data and methods
 
-This section describes the data and methods that generate the input data for the PCT.
-This is summarised in Figure 1 and described in detail in the Appendix.
+This section describes the data and methods that generate the scenario data for the PCT,
+as summarised in Figure 1.
+The details of the model, which models the proportion of trips made by cycling per OD pair as a function of hilliness and distance, are described the Appendix.
+The scenario-generation method is not included in the main text of the paper because it is the most context-specific aspect of the PCT: as outlined in the Discussion, we envision future uses of the PCT using different model parameters and even different functional forms relating distance, hilliness and other variables to the level of cycling, to generate scenarios of use for new contexts beyond the English case study described here.
 Central to the PCT approach is origin-destination (OD) data recording the travel flow between administrative zones.^[The
-size and uniformity of these depend on the country in question. In England the primary areal units for statistical data are output areas (OA), lower layer super output areas (LSOA) and middle layer super output areas (MSOA) (see [webarchive.nationalarchives.gov.uk](http://webarchive.nationalarchives.gov.uk/20160105160709/http://www.ons.gov.uk/ons/guide-method/geography/beginner-s-guide/census/super-output-areas--soas-/index.html)). The version of the PCT presented in this paper operates at the MSOA level.
+size and uniformity of these depend on the country in question. In the UK the primary areal units for statistical data are output areas (OA), lower layer super output areas (LSOA) and middle layer super output areas (MSOA) (see [webarchive.nationalarchives.gov.uk](http://webarchive.nationalarchives.gov.uk/20160105160709/http://www.ons.gov.uk/ons/guide-method/geography/beginner-s-guide/census/super-output-areas--soas-/index.html)). The version of the PCT presented in this paper operates at the MSOA level.
 ]
 Combined with geographical data on the coordinates of the population-weighted centroid of each zones,
 these can be represented as
@@ -340,13 +355,14 @@ straight 'desire lines' or as routes allocated to the transport network.
 
 ```{r, echo=FALSE, fig.cap="Flow diagram illustrating the input data and processing steps used to create the input data used by the PCT. The abbreviations are as follows: HEAT = Health Economic Assessment Tool, OD pair = origin-destination pair, MSOA = Middle-Layer Super Output Area"}
 knitr::include_graphics("160516_Fig1.pdf")
+file.copy("160516_Fig1.pdf", "/tmp/flow-model/")
 ```
 
 ## Processing OD data
 
 The central input dataset was a table of origin-destination (OD) pairs from the 2011 Census.
 This was loaded from open access file `wu03ew_v2.csv`, provided by the [UK Data Service](http://wicid.ukdataservice.ac.uk/). This captures the number of commuters travelling between Middle Super Output Area zones (MSOAs, average commuter population: 3300), by mode of travel (see Table 2).
- This dataset was derived from responses to the following questions in the [English 2011 Census](http://www.ons.gov.uk/census/): "In your main job, what is the address of your workplace?" (question 40) and "How do you usually travel to work? (Tick one box only, for the longest part, by distance, of your usual journey to work)" (Question 41).
+ This dataset was derived from responses to the following questions in the [2011 Census for England and Wales](http://www.ons.gov.uk/census/): "In your main job, what is the address of your workplace?" (question 40) and "How do you usually travel to work? (Tick one box only, for the longest part, by distance, of your usual journey to work)" (Question 41).
  This dataset was enhanced by merging in information on the gender composition of cyclists in each OD pair (Dataset 1 in Figure 1); data at the area level on the background mortality rate (Dataset 2); and data at the OD pair-level on route distance (km) and hilliness (average gradient, as a percentage) (Dataset 3).
 OD data was assigned to the transport network using the R package stplanr (Lovelace et al., 2016). See the Appendix for further details.
 
@@ -419,12 +435,13 @@ commute from locations within and between administrative zones (MSOAs). Note `Ca
 
 ## Modelling baseline propensity to cycle
 
-The starting point for generating our scenario-based 'cycling futures' was to model baseline data on cycle commuting in England.  We did this using OD data from the 2011 Census, and modelling cycling commuting as a function of route distance and route hilliness.  We did so using logistic regression applied at the individual level, including squared and square-root terms to capture 'distance decay' --- the non-linear impact of distance on the likelihood of cycling [@iacono_access_2008] --- and including terms to capture the interaction between distance and hilliness. Model fit is illustrated in Figure 2; see the appendix for details and for the underlying equations.
+The starting point for generating our scenario-based 'cycling futures' was to model baseline data on cycle commuting in England and Wales.  We did this using OD data from the 2011 Census, and modelling cycling commuting as a function of route distance and route hilliness.  We did so using logistic regression applied at the individual level, including squared and square-root terms to capture 'distance decay' --- the non-linear impact of distance on the likelihood of cycling [@iacono_access_2008] --- and including terms to capture the interaction between distance and hilliness. Model fit is illustrated in Figure 2; see the Appendix for details and for the underlying equations.
 We also developed equations to estimate commuting mode share among groups not represented in the between-zone ('interzonal') OD data, e.g. those commuting within a specific MSOA (this is within-zone or 'intrazonal' travel), or those with no fixed workplace. 
 This model of baseline propensity to cycle formed the basis of three of the four scenarios (Government Target, Go Dutch and Ebikes), as described in more detail in the next section.
 
-```{r, echo=FALSE, fig.cap="The relationship between distance (left) and hilliness (right) and cycling mode share in England based on the 2011 Census. The plots show actual (blue) vs predicted (red) prevalence of cycling to work among 17,896,135 commuters travelling <30km to work."}
+```{r, echo=FALSE, fig.cap="The relationship between distance (left) and hilliness (right) and cycling mode share based on data from the 2011 Census for England and Wales. The plots show actual (blue) vs predicted (red) prevalence of cycling to work among commuters travelling <30km to work."}
 knitr::include_graphics("dist-curve2-ag.pdf")
+file.copy("dist-curve2-ag.pdf", "/tmp/flow-model/")
 ```
 
 
@@ -450,7 +467,7 @@ knitr::include_graphics("dist-curve2-ag.pdf")
 <!-- disaggregated by mode of travel. -->
 <!-- We used the file `wu03ew_v2.csv`, obtained from the UK Data Service -->
 <!-- (see Table 2 for a sample of this dataset)^[See [wicid.ukdataservice.ac.uk/cider/wicid/downloads.php](https://wicid.ukdataservice.ac.uk/cider/wicid/downloads.php).]  This dataset was derived by the Office for National Statistics from responses to questions 40 ("In your main job, what is the address of your -->
-<!-- workplace?") and 41 ("How do you usually travel to work?") in the English 2011 Census (see [ons.gov.uk/census](http://www.ons.gov.uk/census/2011census/howourcensusworks/howwetookthe2011census/howwecollectedtheinformation/questionnairesdeliverycompletionandreturn) for further information). -->
+<!-- workplace?") and 41 ("How do you usually travel to work?") in the 2011 Census for England and Wales (see [ons.gov.uk/census](http://www.ons.gov.uk/census/2011census/howourcensusworks/howwetookthe2011census/howwecollectedtheinformation/questionnairesdeliverycompletionandreturn) for further information). -->
 
 <!-- - The population-weighted centroids of -->
 <!-- administrative zones (see Table 1). Middle Super -->
@@ -511,8 +528,8 @@ knitr::include_graphics("dist-curve2-ag.pdf")
 
 ## Scenarios of cycling uptake 
 
-Four scenarios were developed to
-explore cycling futures in England.
+Four scenarios were developed to a range of
+explore cycling futures.
 These can be framed in terms of the removal of different infrastructural, cultural and technological barriers that currently prevent cycling being the natural mode of choice for trips of short to medium distances. 
 They are not predictions of the future.
 They are snapshots indicating how the spatial distribution
@@ -520,11 +537,11 @@ of cycling may shift as cycling grows based on current travel patterns.
 At a national level, the first two could be seen as shorter-term and the 
 second two more ambitious.
 The choice of scenarios was informed by a government target to double the number of cycle trips
-and evidence from England overseas
+and evidence from overseas
 about which trips *could* be made by cycling.
 Summaries of the four scenarios are as follows (see the Appendix for full details):
 
-- Government Target. This scenario represents a doubling of the level of cycling in England [@department_for_transport_cycling_2014]. Although substantial in relative terms, the rate of cycling under this scenario (rising from 3% to 6% of commuters) remains low compared with countries such as the Netherlands and Denmark. This scenario was generated by adding together a) the observed number of cyclists in each OD pair in the 2011 Census, and b) the modelled number of cyclists, as estimated using the baseline propensity to cycle equations described in the previous section. The result is that cycling overall doubles at the national level, but at the local level this growth is not uniform, in absolute or relative terms. Areas with many short, flat trips and a below-average current rate of cycling are projected to more than double. Conversely, areas with above-average levels of cycling and many long-distance hilly commuter routes will experience less than a doubling.
+- Government Target. This scenario represents a doubling of the level of cycling, in line with the government's target to double the number of 'stages' (trips of a single mode) cycled by 2025 [@department_for_transport_cycling_2014]. Although substantial in relative terms, the rate of cycling under this scenario (rising from 3% to 6% of English commuters) remains low compared with countries such as the Netherlands and Denmark. This scenario was generated by adding together a) the observed number of cyclists in each OD pair in the 2011 Census, and b) the modelled number of cyclists, as estimated using the baseline propensity to cycle equations described in the previous section. The result is that cycling overall doubles at the national level, but at the local level this growth is not uniform, in absolute or relative terms. Areas with many short, flat trips and a below-average current rate of cycling are projected to more than double. Conversely, areas with above-average levels of cycling and many long-distance hilly commuter routes will experience less than a doubling.
 
 - Gender Equality. This scenario illustrates the increase in cycling
 that would result if women were as likely as men to cycle a given trip.
@@ -539,8 +556,7 @@ the rate of cycling is highly gender-unequal.
 
 - Go Dutch.
 While the Government Target and Gender equality scenarios model relatively modest increases in cycle commuting, Go Dutch represents what would happen if English people were as likely as Dutch people to cycle a trip of a given distance and level of hilliness. This scenario thereby captures the proportion of commuters that would be expected to cycle if all areas of England had the same infrastructure  and cycling culture as the Netherlands (but retained their hilliness and commute distance patterns).
-This scenario was generated by taking baseline propensity to cycle (see previous section), and applying Dutch scaling factors, generated through analysis of the English and Dutch National Travel Surveys, in which we estimated how much more likely it was that a given trip would be cycled in The Netherlands than in England. We parameterised the Dutch scaling factors as a main effect plus an interaction with trip distance, to take into account the fact that the "Dutch multiplier" is greater for shorter trips compared to longer trips.
-The scenario level of cycling under Go Dutch is not affected by the current level of cycling.
+This scenario was generated by taking baseline propensity to cycle (see previous section), and applying Dutch scaling factors --- parameters which increase the proportion of trips cycled above the baseline level of cycling per OD pair. These scaling factors were calculated through analysis of the British and Dutch National Travel Surveys. We parameterised the scaling factors as one fixed parameter (the main effect) plus one distance-dependent parameter (parametrised as an interaction between Dutch status and trip distance), to take into account the fact that the "Dutch multiplier" is greater for shorter trips compared to longer trips.  Note that the scenario level of cycling under Go Dutch is not affected by the current level of cycling, but is instead purely a function of the distance and hilliness of each OD pair --- i.e. the two characteristics that determine baseline propensity to cycle.
 
 <!-- While Government Target and Gender Equality build on current cycling behaviour, -->
 <!-- 'Go Dutch' focuses on long-term potential. -->
@@ -557,7 +573,8 @@ The scenario level of cycling under Go Dutch is not affected by the current leve
 - Ebikes. This scenario models the additional increase
 in cycling that would be achieved through the widespread uptake of electric
 cycles ('ebikes').
-This scenario was generated by taking baseline propensity to cycle, applying the Dutch scaling factors described above, and then additionally applying Ebike scaling factors. 
+This scenario is generated by taking baseline propensity to cycle, applying the Dutch scaling factors described above, and then additionally applying Ebike scaling factors.  The Ebikes scenario is thus currently implemented as an extension of Go Dutch but could in future be implemented as an extension of other scenarios.  The Ebike scaling factors were generated through analysis of the UK, Dutch and Swiss National Travel Surveys, in which we estimated how much more likely it was that a given commute trip would be cycled by Ebike owners versus cyclists in general.  We parameterised the scaling factors as varying according to trip distance and according to hilliness, by fitting interaction terms between these two characteristics and ebike ownership (Appendix Equation 1B).  We did this to take account of the fact that electric cycles enable longer journeys and reduce the barrier of hills
+
 The Ebikes scenario is thus currently implemented as an extension of Go Dutch
 but could be implemented as an extension of other scenarios.
 The Ebike scaling factors were generated through analysis of the English, Dutch and Swiss National Travel Surveys, in which we estimated how much more likely it was that a given commute trip would be cycled by Ebike owners versus cyclists in general.  We parameterised the Ebike scaling factors as interactions with trip distance and with hilliness, to take account of the fact that electric cycles enable longer journeys and reduce the barrier of hills.
@@ -596,6 +613,7 @@ and visualised as centroid to centroid 'flows' [@rae_spatial_2009;@wood_visualis
 # data("flowlines")
 # plot(flowlines, lwd = flowlines$All / 10)
 knitr::include_graphics("od-data-leeds.png")
+file.copy("od-data-leeds.png", "/tmp/flow-model/")
 ```
 
 <!-- A potential limitation of this single regional geographic level is -->
@@ -681,8 +699,9 @@ off road paths.
 <!-- These stages were computationally intensive, leading to a number of steps -->
 <!-- being taken to make them fast and scalable: -->
 
-```{r, echo=FALSE, fig.cap="Illustration of desire lines shown in Figure 3 after they have been allocated to the road network by CycleStreets.net. Purple and turquoise lines represent the 'quiet' and 'fast' routes, respectively."}
+```{r, echo=FALSE, fig.cap="Illustration of desire lines shown in Figure 3 after they have been allocated to the road network by CycleStreets.net. Purple and green lines represent `fastest' and `quietest' routes generated by CycleStreets.net, respectively."}
 knitr::include_graphics("od-data-fast-quiet.png")
+file.copy("od-data-fast-quiet.png", "/tmp/flow-model/")
 ```
 
 Routes generated by CycleStreets.net
@@ -691,7 +710,7 @@ route choice models based on GPS data
 have been developed for this purpose [@broach_where_2012;@ehrgott_bi-objective_2012].
 Of the available routes (see [cyclestreets.net/journey/help](https://www.cyclestreets.net/journey/help/howtouse/) for more information), the 'fastest' option was used.
 This decision was informed by recommendations from @crow_design_2007, building on evidence of
-cyclists' preferance direct routes.
+cyclists' preference direct routes.
 
 <!-- To generate the Route Network layer, overlapping fast routes were aggregated (see Figure 5). These stages were computationally intensive, leading to a number of steps being taken to make them fast and scalable: -->
 
@@ -733,7 +752,7 @@ The spatial distribution of cycling potential can be explored interactively by s
 Information about the *aggregate cycling potential* on the road network is shown in the Route Network layer.
 Because the layer is the result of aggregating overlapping 'fast' routes, and summing the level of cycling for each scenario (see Figure 5), it relates to the *capacity* that infrastructure may need to handle.
 Cycling along Otley Road (highlighted in Figure 5), under the Go Dutch scenario, rises from 73 to 296 commuters
-along a single route, but from 301 to 1133 in the Route Network.
+along a single route, but from 546 to 1780 in the Route Network.
 Note that more confidence can be placed in the relative rather than the absolute size of these numbers: the Route Network layer excludes within-zone commuters, commuters with no fixed workplace, and commuters working in a different region
 (see Figure 1). Route Network values also omit routes due to the adjustable selection criteria: maximum distance and minimum total numbers of all-mode commuters per OD pair. At the time of writing these were set to 20 km Euclidean distance and 10 commuters respectively.
 Nationally, the Route Network layer under these settings accounts for around two thirds of cycle commuters.
@@ -742,8 +761,10 @@ Nationally, the Route Network layer under these settings accounts for around two
 
 <!-- ^[Thanks to Barry Rowlingson from the University of Lancaster for assistance developing this function.] -->
 
-```{r, echo=FALSE, out.width = '50%', fig.cap="Illustration of route-allocated OD data (left) compared with route network data (right) which was produced by aggregating all overlapping route-aggregated OD pairs, using the 'overline' function from the stplanr R package.", fig.show='hold'}
+```{r, echo=FALSE, out.width = '50%', fig.cap="Illustration of Fast Routes map layer (left) compared with Route Network layer (right). The Route Network was was produced by aggregating all overlapping lines in the Fast Routes layer using the stplanr R package.", fig.show='hold'}
 knitr::include_graphics(c("fastest-headingly.png", "fastest-net-headingly.png"))
+file.copy("fastest-headingly.png", "/tmp/flow-model/")
+file.copy("fastest-net-headingly.png", "/tmp/flow-model/")
 ```
 
 <!-- # Scenarios -->
@@ -1073,6 +1094,8 @@ knitr::include_graphics("man-nor-output-2.png")
 
 ```{r, echo=FALSE, out.width = '50%', fig.cap="Modal share of trips made by cycling in West Yorkshire (left) and Oxfordshire (right) by distance, currently and under 4 scenarios of change.", fig.show='hold'}
 knitr::include_graphics(c("dd-west-yorks.png", "dd-ox.png"))
+file.copy("dd-west-yorks.png", "/tmp/flow-model/")
+file.copy("dd-ox.png", "/tmp/flow-model/")
 ```
 
 <!-- In Manchester the Government Target scenario -->
@@ -1084,9 +1107,9 @@ knitr::include_graphics(c("dd-west-yorks.png", "dd-ox.png"))
 <!-- national average, so the Government Target scenario represents less than a doubling in -->
 <!-- cycling. -->
 
-## The shifting spatial distribution of cycling
+## The shifting spatial distribution of cycling and associated impacts
 
-The spatial distribution of cycling potential differs markedly between scenarios, as illustrated in Figure 7 for the city of Leeds, West Yorkshire. The top 6 OD pairs (a low number was used to focus on the city centre) in Leeds under Government Target are strongly influenced by the current distribution of cycling trips, concentrated in the North of the city (see Figure 3 for comparison with the baseline).
+The spatial distribution of cycling potential differs markedly between scenarios, as illustrated in Figure 7 for the city of Leeds, West Yorkshire. The top 50 OD pairs in Leeds under Government Target are strongly influenced by the current distribution of cycling trips, concentrated in the North of the city (see Figure 3 for comparison with the baseline).
 Under the Go Dutch scenario, by contrast, the pattern of cycling shifts substantially to the South.
 The cycling patterns under the Go Dutch scenario
 are more representative of short-distance trips across the city overall.
@@ -1094,8 +1117,9 @@ In both cases the desire lines are focussed on Leeds city centre: the region
 has a mono-centric regional economy, making commute trips beyond around 5 km from the
 centre much less likely to be made by cycling.
 
-```{r, echo=FALSE, fig.cap="Model output illustrating the top 6 most cycled OD pairs in Leeds under the Government Target and Go Dutch scenarios."}
+```{r, echo=FALSE, fig.cap="Model output illustrating the top 50 most cycled OD pairs in Leeds under the Government Target and Go Dutch scenarios."}
 knitr::include_graphics("od-scens-leeds.png")
+file.copy("od-scens-leeds.png", "/tmp/flow-model/")
 ```
 
 <!-- The equivalent results are shown for the city of Manchester in Figure 8. This shows that -->
@@ -1109,9 +1133,9 @@ knitr::include_graphics("od-scens-leeds.png")
 The same scenario is illustrated in Figure 8 with the Route Network layer.
 This shows how the number of commuter cyclist using different road segments
 could be expected to change.
-The number using York Road, highlighted in Figure 8, for example more than triples (from 71 to 236)
-under Government Target and increases more than 10 fold under Go Dutch (from 71 to 966).
-This contrasts with Otley Road (highlighted in Figure 5), which 'only' triples under Go Dutch.
+The number using York Road, highlighted in Figure 8, for example more than triples (from 88 to 318)
+under Government Target and increases more than 10 fold under Go Dutch (from 88 to 1426).
+This contrasts with Otley Road (highlighted in Figure 5), which 'only' triples under the Go Dutch scenario.
 These outputs suggest that the geographical distribution of cycling may shift if the proportion of trips cycled increases in the city.
 The results also suggest that cycle paths built to help achieve ambitious targets, as represented by the Go Dutch scenario, should be of sufficient width to accommodate the estimated flows.
 
@@ -1119,18 +1143,18 @@ The results also suggest that cycle paths built to help achieve ambitious target
 
 ```{r, echo=FALSE, fig.cap="The Route Network layer illustrating the shifting spatial distribution of cycling flows in Leeds under Government Target (top) and Go Dutch (bottom) scenarios."}
 knitr::include_graphics("leeds-rnet-gov-go.png")
+file.copy("leeds-rnet-gov-go.png", "/tmp/flow-model/")
 ```
 
-Another potentially useful output is the difference between
+Another output that can be highly policy relevant is the difference between
 'fast' and 'quiet' routes.
-Figure 9 illustrates this by showing routes in Manchester with the highest cycling
+Figure 9 illustrates this by showing the Fast & Quiet Routes layer in Manchester with the highest cycling
 potential under the Government Target scenario.
-The 'quiet' route is longer: 2.6 km
-(as shown by clicking on the line). The 'fast'
-route is more direct (with a route distance of 2.3 km) but passes
+The 'quiet' route is longer: 2.8 km
+(as shown by clicking on the line) compared with the more direct
+fast route which is 2.3 km. However, the 'fast' route may not currently be attractive for cycling as it passes
 along a busy dual carriage way.
-The Euclidean distance
-associated with this OD pair is 1.6 km
+The Euclidean distance associated with this OD pair is 1.6 km
 (this can be seen by clicking on a line illustrated from the 'Straight Lines' layer in the PCT's interface),
 resulting in 'circuity' [see @iacono_access_2008], values of
 1.6 and 1.4 for 'quiet' and 'fast' routes respectively.
@@ -1141,11 +1165,17 @@ Evidence indicates that women and older people have a greater preference for off
 
 ```{r, echo=FALSE, fig.cap="Close-up of a 'fast' and 'quiet' route in the PCT under the Government Target scenario in Manchester. This provides an indication of the local 'quietness diversion factor'."}
 knitr::include_graphics("man-trinity-way.png")
+file.copy("man-trinity-way.png", "/tmp/flow-model/")
 ```
 
 Three basemap options are worth highlighting in addition to the grey default basemap.
 These were selected to provide insight into how the geographical distribution of latent demand for cycling relates to current cycle infrastructure and socio-demographics:
-'OpenCycleMap' indicates where cycle provision is (and is not) currently; 'Index of Deprivation' illustrates the spatial distribution of social inequalities; and the 'Satellite' basemap can help identify opportunities for re-allocating space away from roads and other land uses for cycle and walking paths by providing visual information on road widths and land uses along desire lines.
+'OpenCycleMap' indicates where cycle provision is (and is not) currently; 'Index of Deprivation' illustrates the spatial distribution of social inequalities; and the 'Satellite' basemap can help identify opportunities for re-allocating space away from roads and other land uses for cycle and walking paths by providing visual information on road widths and land uses along desire lines. The 'Satellite' basemap option is illustrated in Figure 10, which shows a section of Trinity Way (as it crosses the River Irwell). This shows there are 4 lanes of traffic, a central paved area and wide pavements on both sides of the road, suggesting there may be space for a cycle path, especially if road space were re-allocated away from motorised traffic.
+
+```{r, echo=FALSE, fig.cap="Zoomed-in section of Trinity way (see Figure 9) using the Satellite basemap to show road width and the number of lanes allocated to motorised traffic."}
+knitr::include_graphics("man-trinity-way-satellite.png")
+file.copy("man-trinity-way-satellite.png", "/tmp/flow-model/")
+```
 
 <!-- ## The Model Output tab -->
 
@@ -1154,11 +1184,13 @@ These were selected to provide insight into how the geographical distribution of
 knitr::include_graphics("model-output.png")
 ```
 
-## Visualising Health and Carbon Benefits
+<!-- ## Visualising Health and Carbon Benefits -->
 
-The health benefits of cycling do not necessarily rise in direct proportion to the number of people cycling. Longer trips lead to a greater health benefit than short ones and older people benefit more from increased physical activity. Further, health benefits along desire lines with a low pedestrian mode share can be expected to be greater. 
+Another feature of the user interface worth highlighting is addition of a dropdown menu to enable the 'top n' routes to be selected not only based on the level of cycling, but also based on estimated health and carbon impacts, under each scenario.
+The reason for this addition was the finding that health benefits do not always rise in simply in proportion to the number of people cycling:
+longer trips lead to a greater health benefit than short ones do, and this is now represented by shifting distribution of lines when the "HEAT Value" option is selected from the "Order lines/flows by" dropdown menu (this menu only appears when lines are shown *and* a scenario other than the Census 2011 is selected).
 
-This is demonstrated in the data presented by the PCT. The economic value of health benefits reported for the 4.1 km route in Figure 5 is estimated to be £70785. When health benefits are the main criteria for policy evaluation, OD pairs with low current rates of walking would be favoured for intervention.
+This feature is illustrated in Figure 5, economic value of health benefits reported for the 4.1 km route in Figure 5 is estimated to be £70785. When health benefits are the main criteria for policy evaluation, OD pairs with low current rates of walking would be favoured for intervention.
 When emissions are the main criteria, OD pairs with a high baseline level of car use are also favoured.
 The exploration of these considerations is facilitated in the PCT by allowing users to select the top routes ranked by health and carbon benefits.
 
@@ -1180,7 +1212,7 @@ of cycling demand is likely to shift as cycling grows.
 In addition to creating an evidence base for planning specific routes and area-based interventions, the long-term Go Dutch and Ebikes scenarios could be used for envisioning different transport futures [@hickman_transitions_2011].
 The PCT could also: help translate national targets into local aspirations (as illustrated by the Government Target scenario); inform local targets (e.g. by indicating what the potential in one region is relative to neighbouring regions); support business cases (by showing that there is high cycling potential along proposed routes); and help plan for cycle capacity along the route network via the network analysis layer.
 Ongoing case study work with stakeholders will be needed to establish and develop these uses. 
-Future developments will be facilitated by the open source codebase underlying the PCT (see [github.com/npct](https://github.com/npct)) [@lima_coding_2014].
+Future developments will be facilitated by the open source code-base underlying the PCT (see [github.com/npct](https://github.com/npct)) [@lima_coding_2014].
 
 
 <!-- The underlying code is open source (see [github.com/npct](https://github.com/npct)), -->
@@ -1246,7 +1278,8 @@ In a context of limited time, expertise, and resources, Saujot et al. caution ag
 in ever more complex models.
 Instead, they suggest models should be more user focussed.
 The PCT’s open source, freely available nature will, we believe, facilitate the future development of the PCT organically to meet the needs of its various users.
-For instance, we envision stakeholders in local government modifying scenarios for their own purposes, and that academics in relevant fields may add new features and develop new use cases of the PCT. Such enhancements could include:
+To encourage others to use the outputs of the PCT project, we make the data underlying the online map available to download (via the Zones and Lines tabs in the tool's online interface).
+We envision stakeholders in local government modifying scenarios for their own purposes, and that academics in relevant fields may add new features and develop new use cases of the PCT. Such enhancements could include:
 
 - Additional scenarios to illustrate a wider range of 'cycling futures', including medium-term and local targets.
 
@@ -1375,7 +1408,7 @@ By providing transport authorities, campaign groups and the public with access t
 
 # Author contribution statement {-}
 
-The PCT was built as a collaborative effort. The Principal Investigator of the project was JW, and the initial concept for the project came from JW and RL in response to a call from the Department of Transport. AG led the creation of the model underlying the PCT, and the generation of estimates of cycling levels, health gains and carbon impacts in each scenario.  JW and AG led the development of the methods for calculating health impacts.  JW, RL, AG, and RA contributed to the development of the cycling uptake rules. RL led the processing of these modelled estimates for spatial visualisation in the online tool and coordinated the development of the online tool.  RA led the coordination of policy implementation and collection of practitioner feedback. AA and NB led on the user interface, with contributions from all authors. NB led the deployment of the PCT on a public facing server. AG led the writing of the appendix. RL led the writing of this manuscript, with input from all authors.
+The PCT was built as a collaborative effort. The Principal Investigator of the project was JW, and the initial concept for the project came from JW and RL in response to a call from the Department of Transport. AG led the creation of the model underlying the PCT, and the generation of estimates of cycling levels, health gains and carbon impacts in each scenario.  JW and AG led the development of the methods for calculating health impacts.  JW, RL, AG, and RA contributed to the development of the cycling uptake rules. RL led the processing of these modelled estimates for spatial visualisation in the online tool and coordinated the development of the online tool.  RA led the coordination of policy implementation and collection of practitioner feedback. AA and NB led on the user interface, with contributions from all authors. NB led the deployment of the PCT on a public facing server. AG led the writing of the Appendix. RL led the writing of this manuscript, with input from all authors.
 
 # Acknowledgements {-}
 
@@ -1434,5 +1467,7 @@ setwd(old)
 # zip("flow-model.zip", files = "flow-model")
 file.copy("flow-model/flow-model.pdf", "~/Dropbox/PCT/2_WorkInProgress/Robin/flow-model-resubmission/", overwrite = T)
 file.copy("flow-model/flow-model.docx", "~/Dropbox/PCT/2_WorkInProgress/Robin/flow-model-resubmission/", overwrite = T)
+file.copy("flow-model/flow-model.tex", "/tmp/flow-model/")
+zip(zipfile = "/tmp/pct-paper.zip", files = "/tmp/flow-model/")
 ```
 

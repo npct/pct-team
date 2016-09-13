@@ -1,17 +1,12 @@
 ---
-title: "The propensity to cycle tool: from conception to national deployment"
-author: "Robin Lovelace, University of Leeds. See rpubs.com/robinlovelace for slides."
-date: "Cycle City Active Conference, `r Sys.Date()`, Leicester."
+title: 'The propensity to cycle tool: from conception to national deployment'
+author: 'Robin Lovelace, University of Leeds. '
+date: "Leeds Institute for Data Analytics, 2016-09-02, University of Leeds"
 output:
-  # beamer_presentation: 
-  #   fonttheme: professionalfonts
-  #   highlight: pygments
-  #   theme: Madrid
-  #   toc: yes
   ioslides_presentation:
-    transition: slower
     widescreen: true
-logo: ../figures/pct-logo.png
+    # smaller: true
+logo: ../figures/cdrc-square.png
 bibliography: ../flow-model/references.bib
 ---
 
@@ -48,12 +43,6 @@ willingness to cycle longer distances. ([see Get Britain Cycling article](http:/
 
 The tool aims to help prioritise **where** interventions are most needed based on where cyclable trips are most common
 
-## Live demo of the PCT
-
-See http://pct.bike/
-
-[![](https://github.com/npct/pct/raw/master/figures/rnet-leeds-base-to-godutch.png)](https://github.com/npct/pct/raw/master/figures/rnet-leeds-base-to-godutch.png)
-
 # Design and development
 
 ## Motivations
@@ -85,7 +74,7 @@ Source: PhD Thesis "The Energy Costs of Commuting" (Lovelace, 2014).
 
 ## How it works
 
-See @lovelace_propensity_2015 for details
+See Lovelace, Goodman et al. (2016) for details
 
 ![](../figures/coventry-centroids-4pres.png)
 
@@ -152,6 +141,26 @@ knitr::include_graphics("../figures/rivers.png")
 
 </div>
 
+## The stplanr R package
+
+- We wanted to ensure that our work was reproducible
+- So we created an R package, **stplanr**, that enables others to reproduce the results
+- This has been downloaded over **3,000** time by researchers around the world
+
+<!-- ## stplanr in action | Credit: Dr Richard Ellison -->
+
+<!-- ```{r, echo=FALSE, fig.height=0.2} -->
+<!-- knitr::include_graphics("https://cloud.githubusercontent.com/assets/10625733/17854093/9e0011ec-68b3-11e6-90dc-267a19dc2fdd.png") -->
+<!-- ``` -->
+
+
+## Live demo of the PCT
+
+See http://pct.bike/
+
+[![](https://github.com/npct/pct/raw/master/figures/rnet-leeds-base-to-godutch.png)](https://github.com/npct/pct/raw/master/figures/rnet-leeds-base-to-godutch.png)
+
+
 # Uses of the PCT
 
 ## Currently
@@ -216,7 +225,12 @@ knitr::include_graphics("../figures/leicester.png")
 
 ## References
 
+Lovelace, Robin, Richard Ellison, Barry Rowlingson, and Nick Bearman. Stplanr: Sustainable Transport Planning, 2016. https://github.com/ropensci/stplanr.
+
 Lovelace, Robin. 2016. "Mapping out the future of cycling." Get Britain Cycling, 2016. P. 22 - 24. Available from [getbritaincycling.net](http://getbritaincycling.net/)
+
+Lovelace, Robin, Anna Goodman, Rachel Aldred, Nikolai Berkoff, Ali Abbas, and James Woodcock. “The Propensity to Cycle Tool: An Open Source Online System for Sustainable Transport Planning.” arXiv:1509.04425 [Cs], 2016. http://arxiv.org/abs/1509.04425.
+
 
 <!-- [arxiv.org/abs/1509.04425](http://arxiv.org/abs/1509.04425) -->
 

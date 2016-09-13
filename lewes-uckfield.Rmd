@@ -1,20 +1,69 @@
 ---
-title: 'Cycling potential around a proposed railway line in Sussex: deliverable 5.3'
+title: 'Methods for assessing cycling potential around a proposed railway: a case study of the Lewes-Uckfield route'
 author: "Robin Lovelace"
 date: "`r Sys.Date()`"
-output: bookdown::html_document2
+output: bookdown::pdf_document2
 bibliography: documents/references.bib
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = F)
-pkgs = c("sp", "tmap", "rgeos", "stplanr")
+knitr::opts_chunk$set(echo = FALSE, warning = F, message = FALSE, fig.align = "center", fig.height = 4, options(scipen=999))
+pkgs = c("sp", "tmap", "rgeos", "stplanr", "dplyr")
 lapply(pkgs, library, character.only = T)
 ```
+\newpage
 
-## Introduction
+# Introduction
 
-The Lewes-Uckfield trainline is a proposed project to restore a rail link between Uckfield and Lewes. This is part of wider plans to increase rail capacity in the area. As stated in the project brief, "Such infrastructure has the potential to support cycling if high quality infrastructure is built alongside." This appendix analyses cycling potential along the proposed route, which is 16 km in length (see Figure \@ref(fig:lc)).
+## Rail-related deliverables in the PCT project
+
+Deliverables 5.1, 5.2 and 5.3 in Phase II of the Propensity to Cycle Tool (PCT) project are related to the interaction between cycling and rail.
+They are as follows:
+
+- Task 5.1 Modify the PCT methodology to identify ‘parallels’ and ‘severance points’.  Deliverable is a short report, by 30 September 2016.
+- Task 5.2 Roll-out of a version of the PCT to highlight cycling opportunities raised by the planned 'High Speed II' (HS2) railway construction project.  Deliverable is a short report, by 30 November 2016.
+- Task 5.3 Case study of new railway line in Sussex: 30 September 2016.  Deliverable is a short report, by 30 September 2016.
+
+This document represents the delivery of Tasks 5.1 and 5.3 from the above list and will be used as a foundation to deliver Task 5.2.
+
+In the contract deliverable 5.2 is described as looking at cycling opportunities along the *route of the HS2 train line*. However subsequent discussions with DfT staff (Shane Snow) have indicated that it is the cycling potential around the *proposed cycle path* surrounding HS2 that is of most interest. It has therefore been agreed that 5.2 will analyse the cycling potential in the wider area covered by the proposed path, rather than just the route of the HS2 train line. Because this new piece of work is more challenging, it has further been agreed that, rather than a full quantitative analysis of the cycling potential along every segment of the entire cycle path, the analysis associated with 5.2 will focus on overlaying the proposed cycling network surrounding HS2 with estimates of cycling potential from the PCT.
+The aim of this modified deliverable 5.2 is to provide an evidence base for investing in and potentially modifying the proposed cycle path surrounding the HS2.
+
+This report, however, focusses exclusively on the much smaller area surrounded by the proposed Lewes-Uckfield rail route.
+
+\newpage
+
+# Methodology
+
+## Identifying 'parallels' to linear features
+
+To identify parallels to linear features, a 5 stage methodology was developed. Although this is described below in relation to the Lewes-Uckfield train line, it could be applied to any linear feature of interest:
+
+- Subset cycling desire lines^[
+A 'desire line' refers to a straight line connecting an origin-destination pair. In the context of this report, which uses the outputs of the PCT version 1 as its input dataset, this means straight lines with a distance of 20 km or less connecting Middle Super Output Area population weighted centroids, with data on the number of people commuting in both directions. See @lovelace_propensity_2016 for further details.
+] to include only those in which the *centrepoint  of the line* passes in close proximity to the train line. This was set as 10 km for this report.
+- Break the train line of interest into segments of even distance
+- Calculate the angle of the segments of the train line segments and desire lines
+- Subset the desire lines again, to include only those that are within a threshold angle (set at 30 degrees) of the mean bearing of their closes rail line segment
+- Aggregate the cycling potential of all parallel lines within the threshold distance of each segment and assign the values to the route segments.
+
+## Identifying potential 'severance points'
+
+Severance occurs when active travel along cyclable desire lines with high cycling potential is prevented or made more difficult by obstacles such as rivers, fast roads or railway tracks. A degree of severance can be expected along the full length of linear features, as most desire lines have at least some cycling potential. However, the degree of severance will be greatest in certain *severance pinch points* (henceforth referred to as severance points), for example points along a rail track which intersect desire lines connecting residential areas with employment zones on the other side.
+
+The methodology used to identify these severance points consists of 3 stages:
+
+- Identify the desire lines which intersect with the train line
+- Quantify the number of potential cyclists blocked along segments of the train line of even length
+- Subset the segments which block the highest number of potential cyclists and identify potential crossing points
+
+Note that based on the three-stage methodology outlined above, severance points are in fact more precisely described as 'severance segments', along which a range of points could be chosen for crossing points. However, the term 'severance point' is more intuitive so we use this term throughout.
+
+\newpage
+
+# A case study of Lewes-Uckfield
+
+The Lewes-Uckfield train line is a proposed project to restore a rail link between Uckfield and Lewes. This is part of wider plans to increase rail capacity in the area. As stated in the project brief, "Such infrastructure has the potential to support cycling if high quality infrastructure is built alongside." This appendix analyses cycling potential along the proposed route, which is 16 km in length (see Figure \@ref(fig:lc)).
 
 <!-- # Cycling potential surrounding the Lewes-Uckfield trainline -->
 
@@ -41,12 +90,12 @@ load("input-data/lewes_uckfield_objects.Rdata")
 # sum(cents_lc$all)
 ```
 
-# Current travel patterns
+## Current travel patterns
 
-There are `r nrow(cents_lc)` MSOAs whose population weighted centroids lie within a 10 km buffer of the line, representing `r sum(cents_lc$all)` commuters. This area is illustrated in Figure \@ref(fig:lc).
+There are `r nrow(cents_lc)` MSOAs whose population weighted centroids lie within a 10 km buffer of the train line, representing `r sum(cents_lc$all)` commuters. This area is illustrated in Figure \@ref(fig:lc).
 
-```{r lc, fig.cap="Overview of the Lewes-Uckfiled line"}
-# osm_tiles = read_osm(bb(z_lc, 1.05))
+```{r lc, fig.cap="Overview of the Lewes-Uckfiled line with a 10 km buffer (blue). Width is proportional to the number of commutes, colour represents the proportion of people who cycle. Thanks to Matthew Whittle who digitised a scanned image of the proposed route.", fig.height=8}
+# osm_tiles = read_osm(bb(z_lc, 1.05), type = "stamen-toner")
 # saveRDS(osm_tiles, "data-sources/osm_tiles_ukfield.Rds")
 osm_tiles = readRDS("data-sources/osm_tiles_ukfield.Rds")
 qtm(osm_tiles) +
@@ -57,15 +106,197 @@ qtm(osm_tiles) +
 # knitr::include_graphics("figures/lewes-uckfield-overview.png")
 ```
 
-The total number of single-stage commutes that pass through the buffer is higher: `r sum(l_lc$all)` commuters. As Figure \@ref(fig:lc) illustrates, many of these commuters would not interact with the rail line, as they are focused on commutes between Brighton and surrounding settlements in the far southeast of the 20 km buffer. Only a few hundred commutes pass directly parallel to the route, mostly due to 10 to 20 km (route distance) commutes between MSOAs in Lewes, Ringmer and Uckfield. This implies that cycle paths running parallel to the rail line itself have quite low commuter cycling potential. The next section analyses this potential in more detail.
-
-# Cycling potential around the proposed route
+The total number of single-stage commutes that pass through the buffer is higher: `r sum(l_lc$all)` commuters. As Figure \@ref(fig:lc) illustrates, many of these commuters would not interact with the train line, as they are focused on commutes between Brighton and surrounding settlements in the far southeast of the 20 km buffer. Only a few hundred commutes pass directly parallel to the route, mostly due to 10 to 20 km (route distance) commutes between MSOAs in Lewes, Ringmer and Uckfield. This implies that cycle paths running parallel to the train line itself have quite low commuter cycling potential. The next section analyses this potential in more detail.
 
 
+## Cycling potential parallel to the route
 
-Under the ambitious Ebike scenario, the PCT shows that cycling potential along routes running parallel to the line is uneven geographically. Unsurprisingly, cycling potential is clustered at either end of the proposed route, with relatively high increases modelled along segments of the network between Lewes and Ringmer (an increase from 35 to 336 commuters is modelled along a section of the B2192 running west from Lewes) and routes running north-south through Uckfield. This is shown in Figure \@ref(fig:pct-uck).
+### Subsetting desire lines by centrepoint proximity
 
-```{r pct-uck, fig.cap="Cycling potential along the transport network between Lewes and Uckfield, under the Ebike scenario of the Propensity to Cycle Tool (see [pct.bike/east-sussex/](http://pct.bike/east-sussex/))."}
-knitr::include_graphics("figures/lewes-uckfield-pct-ebike.png")
+```{r centrepoints, fig.cap="Illustration of the 'line centrepoint' subsetting method."}
+l_cp = gprojected(l_lc, fun = maptools::SpatialLinesMidPoints)
+sel_centrepoint = rgeos::gContains(buff, l_cp, byid = T)[,1]
 
+  tm_shape(l_lc) + tm_lines(col = "grey", lwd = 3) +
+tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
+  tm_shape(lewes_uckfield) + tm_lines(lwd = 5, col = "black") +
+  tm_shape(l_cp) + tm_dots() +
+  tm_shape(l_lc[sel_centrepoint,]) + tm_lines()
 ```
+
+The centrepoints of the desire lines intersecting with the Lewes-Uckfield route buffer are presented in Figure \@ref(fig:centrepoints).
+These represent `r round(sum(sel_centrepoint)/length(sel_centrepoint) * 100, 1)`% of the desire lines in the study area, defined by the 10 km buffer.
+
+### Break the train line into segments
+
+Because the Lewes-Uckfield line is short and relatively straight, we used the entire line as a single segment.
+However, if the line were to be broken into segements, the results would resemble Figure \@ref(fig:segments).
+
+```{r segments, fig.cap="Demonstration of the method for splitting the route into segments.", out.height="7cm"}
+knitr::include_graphics("figures/lewes-uckfield-segments.png")
+```
+
+This demonstration of method could be applied to larger and more complex routes, e.g. that of the proposed HS2 or HS2 cycle network route.
+
+### Calculate the angle of the train routes
+
+The angle of the train track was calculated by a function `line_bearing()` which was developed for the **stplanr** R package specifically to solve this problem.
+
+Using this function, the angle of the route was calculated as follows:
+
+```{r, echo=TRUE}
+line_bearing(lewes_uckfield)
+```
+
+### Subsetting desire lines parallel with the train line
+
+To find the lines that were close to parallel with the train line, the function `angle_diff()` was developed. All lines within 30 degrees, clockwise or anti-clockwise, to the train line, *and* have their midpoint within the route buffer, are illustrated in Figure \@ref(fig:para). It is clear from this Figure that a high number of lines were selected which are very unlikely benefit from cycling provision along the route, especially in the southwest segment of the plot. 
+
+```{r para, fig.cap="Illustration of the paralell lines subsettting method"}
+l_a = line_bearing(lewes_uckfield)
+a = angle_diff(l = l_lc, angle = l_a, bidirectional = TRUE)
+sel_para = a < 30
+
+tm_shape(l_lc) + tm_lines(col = "grey", lwd = 3) +
+tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
+  tm_shape(lewes_uckfield) + tm_lines(lwd = 5, col = "black") +
+  tm_shape(l_cp) + tm_dots() +
+  tm_shape(l_lc[sel_para & sel_centrepoint,]) + tm_lines()
+```
+
+To resolve this issue a smaller buffer was used to select line centrepoints. This was set at 5 km.
+To remove desire lines that were still far from the train line a further subsetting method was developed.
+This involves selecting desire lines that pass within an even shorter distance of the train line, 2 km in this case.
+The results are presented in Figure \@ref(fig:paranew).
+The red lines represent the lines selected through these selection criteria;
+the orange lines were included through the centrepoint selection method but omitted by 'buffer intersection' method.
+
+```{r paranew, fig.cap="Updated 'parallel' desire lines, whose centre-points lie within 5 km of the proposed route (orange) and passes within 2 km of the train line (red). The red lines represent the lines selected through this method."}
+buff7 = buff_geo(lewes_uckfield, width = 5000)
+buff_small = buff_geo(lewes_uckfield, width = 2000)
+sel_centrepoint5 = rgeos::gContains(buff7, l_cp, byid = T)[,1]
+sel_smallbuff = !is.na(over(l_lc, buff_small))
+sel_finalpar = sel_para & sel_centrepoint5 & sel_smallbuff
+l_lc$`Parallel selection` = sel_finalpar
+l_lc$`Touching buffer` = TRUE
+tm_shape(l_lc) + tm_lines(col = "grey", lwd = 3) +
+tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
+tm_shape(buff7) + tm_borders(col = "blue", lwd = 3) +
+tm_shape(buff_small) + tm_borders(col = "blue", lwd = 3) +
+  tm_shape(lewes_uckfield) + tm_lines(lwd = 5, col = "black") +
+  tm_shape(l_cp) + tm_dots() +
+  tm_shape(l_lc[sel_para & sel_centrepoint5 & !sel_smallbuff,]) + tm_lines(col = "orange", lwd = 5) +
+  tm_shape(l_lc[sel_finalpar,]) + tm_lines()
+```
+
+From the subset of the lines highlighted in red in Figure \@ref(fig:paranew) we can now report summary statistics on the cycling potential of commuter desire lines which run parallel to the Lewes-Uckfield route. These results are presented alongside the equivalent statistics for *all* desire lines which intersect the 10 km buffer surrounding the proposed route.
+
+## The potential for severance along the proposed route
+
+### Subsetting 'perpendicular' desire lines
+
+The subsetting process involved finding which lines ran perpendicular to the proposed rail line and then selecting only those intersecting with it, as illustrated in Figure \@ref(fig:perpsel).
+
+```{r perpsel, fig.cap="'Perpendicular' desire lines intersecting with the proposed rail line. Orange lines are within 30 degrees from perpendicular to the proposed train line, red lines are both close to perpendicular to the line and intersect with the rail line."}
+# l_seg = line_segment(lewes_uckfield, segment_length = 1000)
+# saveRDS(l_seg, "data-sources/l_seg.Rds")
+l_seg = readRDS("data-sources/l_seg.Rds")
+l_lc$Perpendicular = a > 60
+sel_intersects = over(l_lc, l_seg)
+l_lc$`Perpendicular selection` = !is.na(sel_intersects[,1]) & a > 60
+# plot(l_lc[l_lc$Perpendicular,])
+tm_shape(l_lc) + tm_lines(col = "grey", lwd = 3) +
+  tm_shape(lewes_uckfield) + tm_lines(lwd = 5, col = "black") +
+  tm_shape(l_lc[a > 60,]) + tm_lines(col = "orange") +
+  tm_shape(l_lc[l_lc$`Perpendicular selection`,]) + tm_lines()
+```
+
+### Quantifying severence per segments of the train line
+
+The cycling potential of the intersecting 'perpendicular' lines were then summed *per 1 km segment* of the rail line. The results, for the Government Target scenario, are presented in \@ref(fig:perpsel).
+
+```{r perpagg, fig.cap="Total cycling potential (under the Government Target scenario) 'severed' by the proposed rail line. Line width is proportional to the square root of the total cycling potential for each segment.", fig.height=5}
+l_agg = aggregate(l_lc["govtarget_slc"], l_seg, FUN = sum)
+plot(l_agg, lwd = sqrt(l_agg$govtarget_slc) * 2)
+```
+
+### Identifying potential crossing points
+
+From Figure \@ref(fig:perpagg) it is clear that the points of highest potential severence lie at either end of the line. Overall, because the proposed line does not separate any large settlements or workplaces, the potential for severence is low. However, to demonstrate the method of identifying places to intervene to minimise severence, Figure \@ref(fig:perpmost) illustrates the 1 km segment of the proposed line with the highest potential for severence in context. This is clearly in a populated part of Lewes, where travel between both sides of the new line could be affected by the route. 
+
+```{r perpmost, fig.cap="The 1 km segment on the proposed rail line with the highest level of severence in cycling potential, under the Government Target scenario."}
+l_most = l_agg[which.max(l_agg$govtarget_slc),]
+osm_tiles_most = read_osm(bb(l_most, 4))
+tm_shape(osm_tiles_most) + tm_raster() +
+  tm_shape(l_most) + tm_lines(lwd = 10) +
+  tm_shape(lewes_uckfield) + tm_lines(lwd = 2, col = "black") 
+```
+
+## Results
+
+Based on the methods presented in the previous sections summary statistics for each of the desire line subsets, based on parallels and severed routes, can be compared with all desire lines in the study area. These are presented in the tables below.
+Table 1 contains summary statistics on the total number, car dominance and level and cycling for each subset.
+Table 2 contains scenario-specific estimates of cycling potential for each of the desire line subsets.
+
+```{r}
+lines_subset = c("Touching buffer", "Parallel selection", "Perpendicular selection")
+sc_name_df <- data_frame(
+  sc_f_name = c("Census 2011:", "Government Target:", "Gender equality:", "Go Dutch:", "Ebikes:"),
+  sc_s_name = c("olc","govtarget","gendereq","dutch", "ebike")
+)
+l_lc$olc_slc = l_lc$bicycle 
+scens = paste0(sc_name_df[[2]], "_slc")
+res = NULL
+for(j in 1:length(scens)){
+  res_p = data.frame()
+  for(i in lines_subset){
+    l_lc$slc = l_lc[[scens[j]]]
+    df_tmp = l_lc@data[l_lc@data[[i]],]
+    res_p = rbind(res_p, summarise(df_tmp,
+                      `N. commuters` = sum(all),
+                      `N. cycling` = round(sum(slc)),
+                      `% cycling` = sum(slc) / sum(all) * 100,
+                      `Distance (km, Euclidean)` = mean(dist)
+    ))
+  }
+  row.names(res_p) = paste(sc_name_df$sc_f_name[j], lines_subset)
+  res = rbind(res, res_p)
+}
+knitr::kable(res, digits = 1, caption = "Cycling potential in the study area surrounding the proposed rail line. The Touching buffer column refers to the cycling potential of desire lines which pass within the 10 km buffer. The  Parallel selection criteria described in Section 3.2. The Perpendicular selection criteria are described in Section 3.3.")
+```
+
+Overall the potential for cycling along routes parallel to the track appears to be somewhat greater than the cycling potential of 'severed' routes.
+
+\newpage
+
+## Cycling potential around the proposed route
+
+Under the ambitious Ebike scenario, the PCT shows that cycling potential along routes running parallel to the line is uneven geographically. Unsurprisingly, cycling potential is clustered at either end of the proposed route, with relatively high increases modelled along segments of the network between Lewes and Ringmer, along the A26 and along routes running north-south through Uckfield. This is shown in Figure \@ref(fig:pct-uck).
+
+```{r pct-uck, fig.cap="Cycling potential (red lines) along the transport network between Lewes and Uckfield, under the Ebike scenario of the Propensity to Cycle Tool (see [pct.bike/east-sussex/](http://pct.bike/east-sussex/)).", fig.height=7}
+# knitr::include_graphics("figures/lewes-uckfield-pct-ebike.png")
+osm_tiles_local = read_osm(bb(buff))
+rnet = readRDS("../pct-data/east-sussex/rnet.Rds")
+rnet = rnet[buff,]
+tm_shape(osm_tiles_local) + tm_raster() +
+tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
+  tm_shape(rnet) + tm_lines(col = "red", lwd = "ebike_slc", scale = 20) +
+  tm_shape(lewes_uckfield) + tm_lines(lwd = 2, col = "black") 
+```
+\newpage
+
+# Discussion
+
+In terms of the local case study, it seems there is greater potential parallel to the proposed route than perpendicular to it, indicating the risks of community severence for cycling uptake are likely to be lower than the potential for cycling uptake along lines parallel to the route. 
+
+In total, we estimate that around 2500 commuters make trips that are parallel to the line, of whom 1.1% currently cycle (N=28). We further estimate that under a Go Dutch scenario the proportion of these commuter cycling would be 6.1% (N=158), while under the Ebike scenario it would be 15.4% (N=397).  The Go Dutch and Ebike scenarios assume that English commuters acquire a Dutch cycling culture and Dutch levels of infrastructure: a high quality, traffic-free cycle route along the Lewes-Uckfield train line could be a useful step towards achieving Dutch infrastructure, although it should be remembered that the impact of the cycle path might also depend on the quality of the surrounding cycle network.  It should also be remembered that this analysis only examines commuter cycling; adding in cycling potential for other cycling types, e.g. leisure cycling, might generate considerably higher estimates as to the number of users.
+
+It is in terms of the methods for quanitifying the potential for desire lines parallel and perpendicular to proposed routes that this report will probably be of most use, as the basis for further work. The Lewes-Uckfield line has served a useful purpose in this regard, as the case study is small enough to identify specific desire lines of interest, and explore the methodology on local datasets that are not overwhelmingly large. The work provides many interesting avenues for further development and research, including:
+
+- The estimation of angles on a *per segment* basis, rather than simply for the whole route.
+- The automation of the analysis of 'parallels' and 'severence points' by creating functions which take desire lines and a proposed route as inputs and output the results with a single command. This could potentially be implemented in the R package **stplanr**.
+- The extension of the method to quantify the level of overlap between proposed cycle networks and a series of desire lines or a route network.
+
+Looking ahead, to the analysis underlying deliverable 5.3, we plan to use the buffer and angle settings used in this report.
+
+# References
