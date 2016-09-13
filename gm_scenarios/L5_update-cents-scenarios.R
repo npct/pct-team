@@ -16,8 +16,8 @@ l_new <- l_new[, 1:82]
 l_new <- l_new[l_new$all!=0, ]
 
 l_new <- dplyr::rename(l_new,
-                       Area.of.residence = msoa1,
-                       Area.of.workplace = msoa2,
+                       home_msoa = msoa1,
+                       work_msoa = msoa2,
                        All = all,
                        Bicycle = bicycle,
                        Train = train,
