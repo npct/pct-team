@@ -6,8 +6,6 @@ library(dplyr)
 lkp_highways_gmsm <- read.csv('C:/temp/Manchester_Traffic_data/2-L2_L3_level/lkp_highways_GMSM.csv',header=T, as.is=T)
 lkp_gmsm_msoa <- read.csv('C:/temp/Manchester_Traffic_data/2-L2_L3_level/lkp_GMSM_MSOA.csv',header=T, as.is=T)
 
-setwd('//me-filer1/home$/au232/My Documents/1.CEDAR/3_Studies !!/28-DfT2.0/4-Manchester/1-Model OD data DFT2.0/modelODdata~')
-
 
 #### PRE-CHECK: read unprocessed car OD traffic (morning/off-peak/afternoon rates already adjusted)
 car0 <-read.csv('C:/temp/Manchester_Traffic_data/0-L0_level/0_CarOD.csv',header=T,as.is = T)
@@ -174,7 +172,7 @@ colnames(c.df)
 #filtering for MSOAOrig & MSOADest ONLY in G.M.
 gm.od <-inner_join(gm.od, c.df[,1:2], by=c('MSOAOrig'='geo_code'))
 gm.od <-inner_join(gm.od, c.df[,1:2], by=c('MSOADest'='geo_code'))
-sum(gm.od$AllGM)   #inner G.M. demand=6.011M
+sum(gm.od$AllGM)   #inner G.M. demand=6.0121 M
 
 #keeping flows >20
 gm.od <-gm.od[gm.od$AllGM>20,]
@@ -193,16 +191,16 @@ l <- readRDS('V:/Group/GitHub/pct-data/greater-manchester/l.Rds')
 l.df <- l@data
 
 
-#link to l.df + link to ctw (Census+GM Travel survey added). NOT STRICTLY NEEDED.
+#join w l.df & ctw (Census+GM Travel survey added). NOT STRICTLY NEEDED.
 # Good alternative: to KEEP the differences from GM model
 gm.od <-left_join(gm.od, l.df[,1:13],  
-         by=c('Area.of.residence'='Area.of.residence','Area.of.workplace'='Area.of.workplace'))
+         by=c('Area.of.residence'='msoa1','Area.of.workplace'='msoa2'))
 gm.od <-left_join(gm.od, ctw, 
          by=c('Area.of.residence'='StartMSOA','Area.of.workplace'='EndMSOA'))
 gm.od[is.na(gm.od)] <-0      #clean NAs
 
 saveRDS(gm.od,file.choose())    #as gm.od.Rds=GM OD TRAFFIC+G.M. Census OD + GM T.Survey
-rm(car,pt,wc,l,l.df,c,c.df,ctw, t1)
+rm(car,pt,wc,l,l.df,c,c.df,ctw)
 
 
 #make flows single - dated: this is done now with stplanr
