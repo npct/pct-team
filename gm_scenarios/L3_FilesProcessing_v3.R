@@ -1,13 +1,13 @@
 
-#v2.1 uses pro-rata method of OD traffic calculation (suggested by Anna)
-# this method seems to alter total demand and not be reliable
+#v3 uses pro-rata method of OD traffic calculation (suggested by Anna)
+rm(list=ls())
 
 library("readstata13")
 library(dplyr)
 lkp_highways_gmsm <- read.csv('C:/temp/Manchester_Traffic_data/2-L2_L3_level/lkp_highways_GMSM.csv',header=T, as.is=T)
 lkp_gmsm_msoa <- read.csv('C:/temp/Manchester_Traffic_data/2-L2_L3_level/lkp_GMSM_MSOA.csv',header=T, as.is=T)
 
-# No areas per highway zones & per pt zone
+# No areas per GMSM zones & per PT zone
 hw_gm_nos <- read.csv('C:/temp/Manchester_Traffic_data/2-L2_L3_level/lkp_highways_GMSM_Nos.csv',header=T, as.is=T)
 pt_gm_nos <- read.csv('C:/temp/Manchester_Traffic_data/2-L2_L3_level/lkp_pt_gmsm_Nos.csv',header=T, as.is=T)
 
@@ -38,52 +38,40 @@ rm(car1)                     #just checking 95% demand before DB processing
 
 ############# CAR TRAFFIC: L3 GENERATION FROM L2 (Car traffic processing)
 carfile <- 'C:/temp/Manchester_Traffic_data/2-L2_L3_level/L2_Car_MSOA.csv'
-car <- read.csv(carfile,header=T, as.is=T)
+car <- read.csv(carfile,header=T, as.is=T, row.names = F)
 
 nrow(car)
-colnames(car)
-
+colnames(car) #  "Origin"      "Destination" "DemandOD"    "MSOAOrig"    "MSOADest"    
+             #   "AreaOrig"    "AreaDest"    "xy"  (product Ax * Ay)
 
 ############# GLOBAL METHOD (*x *y, then divide by sum(x)* sum (y) )
 car$xyDemand <- car$DemandOD * car$AreaOrig * car$AreaDest
-car$xy <-  car$AreaOrig * car$AreaDest
 
 #adding N.zones & sum of area for Orig-Dest
-car <- inner_join(car, hw_gm_nos, by=c(car$Origin, hw_gm_nos$X2013HighwayZone))
+car <- inner_join(x=car, y=hw_gm_nos, by=c("Origin" = "X2013HighwayZone"))
 car <- dplyr::rename(.data = car, 
-                     Nmsoa=Nmsoax,
-                     SumAreas = SumAreasx)
+                     Nmsoax=Nmsoa,
+                     SumAreasx = SumAreas )
 
-car <- inner_join(car, hw_gm_nos, by=c(car$Destination, hw_gm_nos$X2013HighwayZone))
+car <- inner_join(x=car, y=hw_gm_nos, by=c("Destination"= "X2013HighwayZone"))
 car <- dplyr::rename(.data = car, 
                      Nmsoay=Nmsoa,
                      SumAreasy=SumAreas)
 
-caragg <- aggregate(car$xy, by=list(car$Origin,car$Destination),FUN=sum,na.rm=T)
-colnames(caragg) <- c('Origin','Destination','xySum')
-car <- inner_join(car,caragg,by=c('Origin','Destination'))
+#demand before aggregation by MSOA Orig -> Dest pairs
+car$Demand = car$xyDemand / (car$SumAreasx * car$SumAreasy )
 
-
-# caraggx <- aggregate(car$AreaOrig, by=list(car$Origin,car$Destination),FUN=sum,na.rm=T)
-# colnames(caraggx) <- c('Origin','Destination','xSum')
-# car <- inner_join(car,caraggx,by=c('Origin','Destination'))
-# 
-# caraggy <- aggregate(car$AreaDest, by=list(car$Origin,car$Destination),FUN=sum,na.rm=T)
-# colnames(caraggy) <- c('Origin','Destination','ySum')
-# car <- inner_join(car,caraggy,by=c('Origin','Destination'))
-# rm(caraggx, caraggy)
-
-#ponderated demand by orig->dest
-car$DemandT <- car$xyDemand / (car$xySum)
-sum(car$DemandT)  #checking nos. are right
-
-car <-aggregate(car$DemandT,by=list(car$MSOAOrig,car$MSOADest), FUN=sum,na.rm=T)
+#demand after aggregation by MSOA Orig -> Dest pairs
+car <- aggregate(car$Demand, by=list(car$MSOAOrig,car$MSOADest), FUN=sum,na.rm=T)
 colnames(car) <- c('MSOAOrig','MSOADest','DemandT')
-sum(car$DemandT)  #checking demand is ~unchanged (the same as at start)
-car <- cbind(car,mode=3)
 
-saveRDS(car,file.choose())                   #saved as:   L3_Car.Rds
-write.csv(car,file.choose(),row.names = F)   #saved as: L3_Car_MSOA.csv
+#checking demand is ~unchanged (the same as at start)
+sum(car$DemandT)   ##checking demand is ~unchanged: 3.604 M
+car <- cbind(car,mode=3)
+car$DemandT <- round(car$DemandT, 0)
+car <- car[car$DemandT!=0,]
+
+saveRDS(car,file.choose())                   #saved as:   L3_Car_Anna.Rds
 
 
 ############# WALKING:  L3 GENERATION FROM L2 (CAR & CYCLING TRAFFIC)
@@ -94,7 +82,6 @@ head(wc)
 
 #wc[which(wc$Origin==1 & wc$Destination==17),]     line for test
 wc$xyDemand <- wc$DemandOD * wc$AreaOrig * wc$AreaDest  #steps 1-2: flow per dest MSOA (50*0.5*0.2)
-wc$xy <-  wc$AreaOrig * wc$AreaDest
 
 wcaggx <- aggregate(wc$AreaOrig, by=list(wc$Origin,wc$Destination),FUN=sum,na.rm=T)
 colnames(wcaggx) <- c('Origin','Destination','xSum')
