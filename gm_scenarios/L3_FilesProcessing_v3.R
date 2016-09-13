@@ -7,11 +7,13 @@ library(dplyr)
 lkp_highways_gmsm <- read.csv('C:/temp/Manchester_Traffic_data/2-L2_L3_level/lkp_highways_GMSM.csv',header=T, as.is=T)
 lkp_gmsm_msoa <- read.csv('C:/temp/Manchester_Traffic_data/2-L2_L3_level/lkp_GMSM_MSOA.csv',header=T, as.is=T)
 
+
 # No areas per GMSM zones & per PT zone
 hw_gm_nos <- read.csv('C:/temp/Manchester_Traffic_data/2-L2_L3_level/lkp_highways_GMSM_Nos.csv',header=T, as.is=T)
 pt_gm_nos <- read.csv('C:/temp/Manchester_Traffic_data/2-L2_L3_level/lkp_pt_gmsm_Nos.csv',header=T, as.is=T)
+wc_gm_nos  <- read.csv('C:/temp/Manchester_Traffic_data/2-L2_L3_level/lkp_vdm_gmsm_Nos.csv',header=T, as.is=T)
 
-setwd('//me-filer1/home$/au232/My Documents/1.CEDAR/3_Studies !!/28-DfT2.0/4-Manchester/1-Model OD data DFT2.0/modelODdata~')
+#setwd('//me-filer1/home$/au232/My Documents/1.CEDAR/3_Studies !!/28-DfT2.0/4-Manchester/1-Model OD data DFT2.0/modelODdata~')
 
 
 #### PRE-CHECK: read unprocessed car OD traffic (morning/off-peak/afternoon rates already adjusted)
@@ -83,24 +85,32 @@ head(wc)
 #wc[which(wc$Origin==1 & wc$Destination==17),]     line for test
 wc$xyDemand <- wc$DemandOD * wc$AreaOrig * wc$AreaDest  #steps 1-2: flow per dest MSOA (50*0.5*0.2)
 
-wcaggx <- aggregate(wc$AreaOrig, by=list(wc$Origin,wc$Destination),FUN=sum,na.rm=T)
-colnames(wcaggx) <- c('Origin','Destination','xSum')
-wc <- inner_join(wc,wcaggx,by=c('Origin','Destination'))
 
-wcaggy <- aggregate(wc$AreaDest, by=list(wc$Origin,wc$Destination),FUN=sum,na.rm=T)
-colnames(wcaggy) <- c('Origin','Destination','ySum')
-wc <- inner_join(wc,wcaggy,by=c('Origin','Destination'))
-rm(wcaggx, wcaggy)
+#adding N.zones & sum of area for Orig-Dest
+wc <- inner_join(x=wc, y=wc_gm_nos, by=c("Origin" = "VDMZone"))
+wc <- dplyr::rename(.data = wc, 
+                     Nmsoax=Nmsoa,
+                     SumAreasx = SumAreas )
 
-wc$DemandT <- wc$xyDemand / (wc$xSum * wc$ySum)
-sum(wc$DemandT)  #checking nos. are stable
+wc <- inner_join(x=wc, y= wc_gm_nos, by=c("Destination"= "VDMZone"))
+wc <- dplyr::rename(.data = wc, 
+                     Nmsoay=Nmsoa,
+                     SumAreasy=SumAreas)
 
-wc <-aggregate(wc$DemandT,by=list(wc$MSOAOrig,wc$MSOADest), FUN=sum,na.rm=T)
+#demand BEFORE aggregation by MSOA Orig -> Dest pairs
+wc$Demand = wc$xyDemand / (wc$SumAreasx * wc$SumAreasy )
+
+#demand AFTER aggregation by MSOA Orig -> Dest pairs
+wc <- aggregate(wc$Demand, by=list(wc$MSOAOrig, wc$MSOADest), FUN=sum,na.rm=T)
 colnames(wc) <- c('MSOAOrig','MSOADest','DemandT')
 
-wc <- cbind(wc,mode=0)
-saveRDS(wc,file.choose())      #L3_wc.Rds
-write.csv(wc,file.choose(),row.names = F)    #saved as L3_WC_MSOA.csv
+#checking demand is ~unchanged (the same as at start)
+sum(wc$DemandT)   ##checking demand is unchanged: 2.65 M
+wc$DemandT <- round(wc$DemandT, 0)
+wc <- cbind(wc,mode=1)
+wc <- wc[wc$DemandT!=0,]
+
+saveRDS(wc,file.choose())                   #saved as:   L3_wc_Anna.Rds
 
 
 ############# L3 GENERATION FROM L2 (PUBLIC TRANSPORT TRAFFIC)
@@ -110,30 +120,34 @@ colnames(pt)
 
 ##################GLOBAL method: allocate AreaOrig first, then AreaDest
 pt$xyDemand <- pt$DemandOD * pt$AreaOrig * pt$AreaDest
-pt$xy <-  pt$AreaOrig * pt$AreaDest
 
-ptaggx <- aggregate(pt$AreaOrig, by=list(pt$Origin,pt$Destination),FUN=sum,na.rm=T)
-colnames(ptaggx) <- c('Origin','Destination','xSum')
-pt <- inner_join(pt,ptaggx,by=c('Origin','Destination'))
 
-ptaggy <- aggregate(pt$AreaDest, by=list(pt$Origin,pt$Destination),FUN=sum,na.rm=T)
-colnames(ptaggy) <- c('Origin','Destination','ySum')
-pt <- inner_join(pt, ptaggy,by=c('Origin','Destination'))
+#adding N.zones & sum of area for Orig-Dest
+pt <- inner_join(x=pt, y=pt_gm_nos, by=c("Origin" = "X2013PTZone"))
+pt <- dplyr::rename(.data = pt, 
+                     Nmsoax=Nmsoa,
+                     SumAreasx = SumAreas )
 
-rm(ptaggx, ptaggy)
+pt <- inner_join(x=pt, y=pt_gm_nos, by=c("Destination"= "X2013PTZone"))
+pt <- dplyr::rename(.data = pt, 
+                     Nmsoay=Nmsoa,
+                     SumAreasy=SumAreas)
 
-#demand per original O-D pair
-pt$DemandT <- pt$xyDemand / (pt$xSum * pt$ySum)
-sum(pt$DemandT)  #checking demand is stable
+#demand before aggregation by MSOA Orig -> Dest pairs
+pt$Demand = pt$xyDemand / (pt$SumAreasx * pt$SumAreasy )
 
-#express demand per MSOA
-pt <-aggregate(pt$DemandT,by=list(pt$MSOAOrig,pt$MSOADest), FUN=sum,na.rm=T)
+
+#demand after aggregation by MSOA Orig -> Dest pairs
+pt <- aggregate(pt$Demand, by=list(pt$MSOAOrig,pt$MSOADest), FUN=sum,na.rm=T)
 colnames(pt) <- c('MSOAOrig','MSOADest','DemandT')
-pt <- cbind(pt,mode=2)   #mode=2: 'Public transport
-sum(pt$DemandT)  #should be same as before and the initial demand transformed
 
-saveRDS(pt,file.choose())
-write.csv(pt,file.choose(),row.names = F)  #saved as L3_PT_MSOA.csv
+#checking demand is ~unchanged (the same as at start)
+sum(pt$DemandT)   ##checking demand is unchanged:  ~535 K
+pt$DemandT <- round(pt$DemandT, 0)
+pt <- cbind(pt,mode=2)
+pt <- pt[pt$DemandT!=0,]     #a bit of demand lost here: CHECK
+
+saveRDS(pt,file.choose())                   #saved as:   L3_pt_Anna.Rds
 
 
 #######################  AGGREGATING TOTAL DEMAND  for Gr. MANCHESTER 
@@ -144,10 +158,10 @@ write.csv(pt,file.choose(),row.names = F)  #saved as L3_PT_MSOA.csv
 rm(list=ls())   #clean previous vars
 library(stplanr)
 
-path <- '//me-filer1/home$/au232/My Documents/1.CEDAR/3_Studies !!/28-DfT2.0/4-Manchester/1-Model OD data DFT2.0/modelODdata~/7-Anna_CHECKS/'
-wc <- readRDS(paste0(path,'L3_wc_prorrata.Rds'))
-pt <- readRDS(paste0(path,'L3_pt_prorrata.Rds'))
-car <- readRDS(paste0(path,'L3_car_prorrata.Rds'))
+path <- '//me-filer1/home$/au232/My Documents/1.CEDAR/3_Studies !!/28-DfT2.0/4-Manchester/1-Model OD data DFT2.0/modelODdata~/7-CHECKS_Anna&ME/Anna_method_L3files/'
+wc <- readRDS(paste0(path,'L3_WC_Anna.Rds'))
+pt <- readRDS(paste0(path,'L3_PT_Anna.Rds'))
+car <- readRDS(paste0(path,'L3_Car_Anna.Rds'))
 
 #reshape for rbind
 colnames(wc) <- c("MSOAOrig","MSOADest","FootGM", "mode")
@@ -167,11 +181,11 @@ gm.od[is.na(gm.od)] <-0
 
 #eliminate flows where ALL are 0
 allnull <- which(gm.od$CarGM==0 & gm.od$BusGM==0 & gm.od$FootGM==0)
-gm.od <- gm.od[-allnull,]     #keep only results!=0
+if (length(allnull!=0))  {gm.od <- gm.od[-allnull,] }     #keep only results!=0
 gm.od$AllGM <- gm.od$CarGM + gm.od$BusGM + gm.od$FootGM
 
 #### gm.od: all trips (from Greater Manchester -> any UK point + from any UK point->Greater Manchester)
-#### this means ~180K  flows (way more than Robin's file)
+#### this means ~170K  flows (way more than Robin's file)
 
 
 #centroids file for filtering G.M. MSOAs
@@ -183,7 +197,7 @@ colnames(c.df)
 #filtering for MSOAOrig & MSOADest ONLY in G.M. &  >20
 gm.od <-inner_join(gm.od, c.df[,1:2], by=c('MSOAOrig'='geo_code'))
 gm.od <-inner_join(gm.od, c.df[,1:2], by=c('MSOADest'='geo_code'))
-sum(gm.od$AllGM)   #inner G.M. demand=6.11M
+sum(gm.od$AllGM)   #inner G.M. demand=6.02 M
 
 gm.od <-gm.od[gm.od$AllGM>20,]
 gm.od <-gm.od[, 1:6]
@@ -211,24 +225,4 @@ gm.od[is.na(gm.od)] <-0      #clean NAs
 saveRDS(gm.od,file.choose())    #as gm.od.Rds=GM OD TRAFFIC+G.M. Census OD + GM T.Survey
 rm(car,pt,wc,l,l.df,c,c.df,ctw, t1)
 
-
-#make flows single - dated: this is done now with stplanr
-######### MANUAL METHOD (NOT NEEDED):   combine gm.od flows OD-DO into one single flow
-# gm.od0 <- gm.od[gm.od$MSOAOrig==gm.od$MSOADest,]
-# gm.od1 <- inner_join(gm.od,gm.od, by=c('MSOAOrig'='MSOADest', 'MSOADest'='MSOAOrig'))
-# gm.od1[,3:6] <-gm.od[,3:6]  + gm.od[,7:10]
-# gm.od1[,c(3:6)] <-gm.od[,c(3:6)]  + gm.od[,c(7:10)]
-# gm.od1[,c(3:6)] <-gm.od1[,c(3:6)]  + gm.od1[,c(7:10)]
-# gm.od1 <-gm.od1[,c(3:6)]
-# gm.od1 <- inner_join(gm.od,gm.od, by=c('MSOAOrig'='MSOADest', 'MSOADest'='MSOAOrig'))
-# gm.od1[,c(3:6)] <-gm.od1[,c(3:6)]  + gm.od1[,c(7:10)]
-# gm.od1 <-gm.od1[,c(1:6)]
-# gm.od <- rbind(gm.od1,gm.od0)
-
-
-# gm.od <- inner_join(gm.od, l, by=c('MSOAOrig'='Area.of.residence', 'MSOADest'='Area.of.workplace')) 
-# gm.od <- gm.od[,1:18]
-# saveRDS(gm.od,file.choose())                   #saved as:   gmODcompared.Rds
-
-#########################
 
