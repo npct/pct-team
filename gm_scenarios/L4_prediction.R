@@ -15,13 +15,13 @@ for (i in (1:nrow(gm.od3)) ) {
       if (gm.od3$ctw[i]!=0) {gm.od3$CycleGM[i] = gm.od3$ctw[i] * gm.od3$FootGM[i] }
 
       #use Census
-      else if (gm.od3$Bicycle.x[i]!=0)   {gm.od3$CycleGM[i] = (gm.od3$AllGM[i]/gm.od3$All[i]) * gm.od3$Bicycle.x[i]}
+      else if (gm.od3$bicycle[i]!=0)   {gm.od3$CycleGM[i] = (gm.od3$AllGM[i]/gm.od3$all[i]) * gm.od3$bicycle[i]}
 
       #use Census popul. ratio
-      else if (gm.od3$All[i]!=0) {gm.od3$CycleGM[i] = 0.032639 * gm.od3$All[i] - 0.083 * gm.od3$Car_driver[i]-0.01*gm.od3$Foot[i]}
+      else if (gm.od3$all[i]!=0) {gm.od3$CycleGM[i] = 0.032639 * gm.od3$all[i] - 0.083 * gm.od3$car_driver[i]-0.01*gm.od3$foot[i]}
 
       #use GM. travel survey ratio
-      else if (gm.od3$Bicycle.y[i]!=0)   {gm.od3$CycleGM[i] = (gm.od3$AllGM[i]/gm.od3$AllTS[i]) * gm.od3$Bicycle.y[i]}
+      else if (gm.od3$Bicycle[i]!=0)   {gm.od3$CycleGM[i] = (gm.od3$AllGM[i]/gm.od3$AllTS[i]) * gm.od3$Bicycle[i]}
 
       #use global perc.
       else {gm.od3$CycleGM[i] = round(0.03 * gm.od3$FootGM[i],0)}
@@ -34,7 +34,7 @@ if (gm.od3$CycleGM[i] > gm.od3$FootGM[i]) {gm.od3$CycleGM[i] <- gm.od3$FootGM[i]
 
 #checks
 gm.od3$CycleGM[which(gm.od3$CycleGM<0)] <- 0  #cancels those wrongly predicted as negative
-gm.od3$CycleGM[gm.od3$Cycle==gm.od3$FootGM] <- round(gm.od3$CycleGM[gm.od3$Cycle==gm.od3$FootGM]* 0.5,0)
+gm.od3$CycleGM[gm.od3$CycleGM==gm.od3$FootGM] <- round(gm.od3$CycleGM[gm.od3$Cycle==gm.od3$FootGM]* 0.5,0)
 
 #round 0 dec
 gm.od3$CycleGM <- round(gm.od3$CycleGM, 0)
@@ -57,7 +57,7 @@ rm(gm.od3)
 
 
 #rename-sort-add cols to match l.Rds
-colnames(l)[3:7] <-c('All','Car_driver','Bus','Foot','Bicycle')
+colnames(l)[3:7] <-c('all','Car_driver','Bus','Foot','Bicycle')
 l <- cbind(l,light_rail=0,Taxi=0,Motorbike=0,Car_passenger=0,Other=0)
 l <-l[,c(1:3,8,5,9,10,4,11,7,6,12)]
 
@@ -68,7 +68,7 @@ l <- l[,c(1:3,13,4,14,5:12)]
 namesl <-paste0('v',c(1:14))
 colnames(l) <-namesl
 save.dta13(l, file.choose())    #save as l_scenariosGM.dta
-write.csv(l,file.choose(),row.names = F) #save as './Input/l_scenariosGM.csv'
+write.csv(l,file.choose(),row.names = F) #save as './Output/l_scenariosGM.csv'
 
 ## FOR REFERENCE next section: Columns meaning
 #     home_msoa = v1
@@ -89,7 +89,7 @@ write.csv(l,file.choose(),row.names = F) #save as './Input/l_scenariosGM.csv'
 
 #this is needed to run scenarios (and is not in GM layer)
 ########## add msoa male/female %perc to msoa_t2w_sex.dta (m/f ratios & m/f cyclist ratios)
-td1 <-read.dta13(file.choose())    # <msoa_t2w_sex.dta>  [2.314 M x 9]
+td1 <-read.dta13(file.choose())    # from ./Input/msoa_t2w_sex.dta  [2.314 M x 9]
 
 td <- inner_join(td1,l, by=c('home_msoa'='v1','work_msoa'='v2')) #1238 flows not there (prob. inflows)
 rm(td1)
