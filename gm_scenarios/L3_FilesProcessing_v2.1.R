@@ -21,7 +21,7 @@ tail(car0comm)
 rm(car0,car0comm)
 
 #set the AreaOrig/AreaDest importance factors on final demand
-a=0.5
+a=0.85
 b= 1-a
 
 ################################################
@@ -88,9 +88,9 @@ sum(wc$DemandT)  #checking nos. are right
 wc <-aggregate(wc$DemandT,by=list(wc$MSOAOrig,wc$MSOADest), FUN=sum,na.rm=T)
 colnames(wc) <- c('MSOAOrig','MSOADest','DemandT')
 sum(wc$DemandT)  #checking demand is ~unchanged (the same as at start)
-wc <- cbind(wc,mode=1)
 wc$DemandT <- round(wc$DemandT, 0)
 wc <- wc[wc$DemandT!=0, ]
+wc <- cbind(wc,mode=1)
 
 saveRDS(wc,file.choose())                   #saved as:   L3_wc.Rds
 
