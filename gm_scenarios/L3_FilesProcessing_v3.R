@@ -30,7 +30,7 @@ tail(car0comm)
 rm(car0,car0comm)
 
 ################################################
-#         NORMAL PROCESS: start with L1 car file, previous to geogr. conversion
+#         OPTIONAL CHECK : start with L1 car file, previous to geogr. conversion
 ################################################
 car1 <-read.csv('C:/temp/Manchester_Traffic_data/1-Filter95/L1_Car_95.csv',header=T,as.is = T)
 colnames(car1)
@@ -38,9 +38,11 @@ head(car1)
 sum(car1$SumOfDemandN)       #demand ~ 3.64 M (95%)
 rm(car1)                     #just checking 95% demand before DB processing
 
+##################### NORMAL PROCESS #########################
+#
 ############# CAR TRAFFIC: L3 GENERATION FROM L2 (Car traffic processing)
 carfile <- 'C:/temp/Manchester_Traffic_data/2-L2_L3_level/L2_Car_MSOA.csv'
-car <- read.csv(carfile,header=T, as.is=T, row.names = F)
+car <- read.csv(carfile,header=T, as.is=T)
 
 nrow(car)
 colnames(car) #  "Origin"      "Destination" "DemandOD"    "MSOAOrig"    "MSOADest"    
@@ -158,7 +160,7 @@ saveRDS(pt,file.choose())                   #saved as:   L3_pt_Anna.Rds
 rm(list=ls())   #clean previous vars
 library(stplanr)
 
-path <- '//me-filer1/home$/au232/My Documents/1.CEDAR/3_Studies !!/28-DfT2.0/4-Manchester/1-Model OD data DFT2.0/modelODdata~/7-CHECKS_Anna&ME/Anna_method_L3files/'
+path <- './Intermediate/'
 wc <- readRDS(paste0(path,'L3_WC_Anna.Rds'))
 pt <- readRDS(paste0(path,'L3_PT_Anna.Rds'))
 car <- readRDS(paste0(path,'L3_Car_Anna.Rds'))
@@ -216,8 +218,8 @@ l.df <- l@data
 
 
 #link to l.df + link to ctw (Census+GM Travel survey added)
-gm.od <-left_join(gm.od, l.df[,1:13],  
-         by=c('Area.of.residence'='Area.of.residence','Area.of.workplace'='Area.of.workplace'))
+gm.od <-left_join(gm.od, l.df[,1:16],  
+         by=c('Area.of.residence'='msoa1','Area.of.workplace'='msoa2'))
 gm.od <-left_join(gm.od, ctw, 
          by=c('Area.of.residence'='StartMSOA','Area.of.workplace'='EndMSOA'))
 gm.od[is.na(gm.od)] <-0      #clean NAs
