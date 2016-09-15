@@ -1,6 +1,5 @@
 ---
-title: 'Cycling and transport planning: embedding active travel at every stage of
-  the process'
+title: 'Embedding cycling in the transport planning process'
 author: "Robin Lovelace, John Parkin and Tom Cohen"
 date: '`r Sys.Date()`'
 output: word_document
@@ -18,7 +17,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Abstract {-}
 
-Cycling is an effective means of transport for millions of people and has great potential to grow in most countries. Evidence from cities such as Groningen and Seville suggests that investing in cycling can transform urban transport systems, making them healthier, cleaner and more socially equitable. These benefits have led to cycling strategies in many places but, despite a recent flurry of interest and funding, cycling is still marginal most planning institutions. This paper explores this issue, with the aim of identify opportunities for making cycling central to the planning process. A brief review of the history of transport planning illustrates this marginalisation, suggesting departmental restructuring as a remedy. The literature on planning for cycling shows that many lower-level opportunities, less reliant on political decisions, to embed cycling exist, including: widening the scope of transport plans to include health and wellbeing; 'filtered permeability' interventions; participatory planning tools; and recent innovations for monitoring and evaluation cycling uptake. We conclude that taking these opportunities at every stage of the transport planning process will help active travel to become central to the discipline of Transport Planning.
+Cycling is an effective means of transport for millions of people and has great potential to be much more extensively used in most countries. Despite strategies to promote cycling, funding has generally remained limited and planning for cycling remains a marginal activity for most transport planning authorities. An historical review of transport planning is presented which explores cycling’s marginalisation. In order to properly formulate the transport planning problem which includes cycling as a solution, we argue that structural change is required within transport planning authorities. We also argue that enhanced data collection for cycling as a mode is required. A set of well formulated objectives which are measurable with available data may then be used in open source modelling, which provides a powerful tool for objective decision making. We conclude that these developments will help cycling become central to the discipline of transport planning.
 
 # Introduction
 
