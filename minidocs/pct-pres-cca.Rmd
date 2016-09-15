@@ -27,7 +27,7 @@ lapply(pkgs, library, character.only = T)
 -  Design and development
 -  Uses of the PCT
 
-# Demo of the tool and software for sustainable transport
+# Introduction and demo
 
 ## A definition of Propensity to Cycle and its uses
 
@@ -42,6 +42,26 @@ or the impact of electric bikes on people's
 willingness to cycle longer distances. ([see Get Britain Cycling article](http://getbritaincycling.net/wp-content/uploads/2016/05/Get-Britain-Cycling_2016.pdf), 2016)
 
 The tool aims to help prioritise **where** interventions are most needed based on where cyclable trips are most common
+
+## Policy impact
+
+“The PCT shows the country’s great potential to get on their bikes, highlights the areas of highest possible growth and will be a useful innovation for local authorities to get the greatest bang for their buck from cycling investments  and realise cycling potential.” Andrew Jones, Parliamentary Under Secretary of State for Transport
+
+“A world first from a brilliant academic team. As a Department we should be celebrating this example of innovation in promoting the UK’s capability to deliver innovation in transport planning.” Pauline Reeves, DfT Deputy Director Sustainable Accessible Transport
+
+## Policy impact II
+
+ “The PCT provides evidence that is required in justifying the merits of policy and project decisions. The identification of unmet demand for cycling will support future funding bids and negotiations to deliver key cycle projects. Tunbridge Wells Borough Council is very pleased to have been part of the development of the tool.” Bartholomew Wren, Royal Tunbridge Wells
+ 
+“Initial outputs from the PCT for Cornwall have already been useful in evidencing that our relatively hilly area has good cycling potential, concentrated in specific  areas. The areas we are focusing capital investment e.g. Bodmin are indicated as having high potential, despite low current cycling. Given the greater potential under the E-bike scenario, we will be exploring ways to make this option more affordable.” Victoria Fraser, Team Leader, Cornwall Council
+ "ECF is pleased to support the PCT and its international potential to use data for the development of bicycle policies" Randy Rzewnicki, European Cycling Federation
+
+## Live demo of the PCT
+
+See http://pct.bike/
+
+[![](https://github.com/npct/pct/raw/master/figures/rnet-leeds-base-to-godutch.png)](https://github.com/npct/pct/raw/master/figures/rnet-leeds-base-to-godutch.png)
+
 
 # Design and development
 
@@ -152,14 +172,6 @@ knitr::include_graphics("../figures/rivers.png")
 <!-- ```{r, echo=FALSE, fig.height=0.2} -->
 <!-- knitr::include_graphics("https://cloud.githubusercontent.com/assets/10625733/17854093/9e0011ec-68b3-11e6-90dc-267a19dc2fdd.png") -->
 <!-- ``` -->
-
-
-## Live demo of the PCT
-
-See http://pct.bike/
-
-[![](https://github.com/npct/pct/raw/master/figures/rnet-leeds-base-to-godutch.png)](https://github.com/npct/pct/raw/master/figures/rnet-leeds-base-to-godutch.png)
-
 
 # Uses of the PCT
 

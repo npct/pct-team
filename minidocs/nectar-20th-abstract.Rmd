@@ -1,0 +1,15 @@
+---
+title: 'The Propensity to Cycle Tool: An internationally scalable method for sustainable
+  transport planning'
+author: "Robin Lovelace"
+date: "15 September 2016"
+output: html_document
+---
+
+Robin Lovelace, University of Leeds, Leeds Institute for Data Analytics and Leeds Institute for Transport Studies
+
+Increasing the proportion of trips made by cycling is a common aim in transport planning institutions. A growing evidence base indicates that high quality infrastructure can boost local cycling rates, implying that building cycle paths could be an effective way of achieving this aim. However, for infrastructure and other cycling measures to be effective, interventions should be made in appropriate places. This creates demand for new methods to identify priority routes and areas for investment. In this context, the paper will describe the design, features and potential for international application of Propensity to Cycle Tool (PCT). The PCT is an online, interactive planning support system, which has already been built for England (see www.pct.bike). Four scenarios have been developed so far, including 'Go Dutch' and 'Ebikes', which explore what would happen if English people cycled as much as Dutch people and the potential impact of electric cycles on cycling uptake. The main focus of this paper is the extent to which the PCT could be useful in countries outside England, based on stated policy objectives, the current cycling level, and available datasets. We find a large degree of variability of applicability of the tool, with data limitations in particular being a barrier to the uptake of methodologies such as the PCT. Discussion of these results suggests that new datasets and modelling methods create great opportunities for the evidence-based assessment of cycling potential at high geographical resolution. These include the use of OpenStreetMap data for estimating travel demand between transport nodes, and the emergence of ‘Big Data’ resources such as those provided by mobile telephone providers and fitness apps. We conclude that these opportunities, in combination with investment and funding for cycling, could help other European settlements achieve the high mode share of cycling already witnessed in cities such as Copenhagen and Amsterdam.
+
+Keywords: cycling, cycling potential, modal shift, infrastructure evaluation
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

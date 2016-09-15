@@ -1,0 +1,11 @@
+---
+title: "A global Propensity to Cycle Tool?"
+author: "Robin Lovelace"
+output: word_document
+---
+
+Robin Lovelace, University of Leeds, Leeds Institute for Data Analytics and Leeds Institute for Transport Studies
+
+For investment in cycling infrastructure to be effective, it must be built where it is needed. A dual direction 1.5 m shared use path is not appropriate in along a route that has the potential to be used by over 5000 cycles per hour at its peak, for example. Likewise, a dedicated one way cycle path 3 m wide built along a desire line with a maximum potential of less than 500 cycles per hour at its peak may not represent the most cost effective expenditure of money and natural resources for cycling uptake. This problem has been tackled with the Propensity to Cycle Tool (go to www.pct.bike to test it out). The PCT has been created using by an academic team funded by the UK's Department for Transport (DfT), and has received praise from transport planning professionals, academics, and industry alike. But what is the potential for the method and interactive toolkit to scale internationally? It is the purpose of this Panel Session to discuss the opportunities, barriers and ways forward to allow the PCT to be deployed in other countries. As indicated in the session title, it would ultimately be possible for online tools for assessing the geographical distribution of cycling potential to scale worldwide. After an appraisal of national experience of tools for assessing cycling potential, is envisioned that discussion will shift towards how such system, based on open source code, open data from OpenStreetMap (OSM) and 'open government' initiatives and an international research community, could help provide a toolkit for evidence based planning for cycling worldwide.
+
+Keywords: cycling potential, modal shift, infrastructure evaluation

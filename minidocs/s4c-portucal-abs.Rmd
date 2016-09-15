@@ -1,0 +1,11 @@
+---
+title: "Methods for assessing the geographical distribution of cycling potential"
+author: "Robin Lovelace"
+output: html_document
+---
+
+Robin Lovelace, University of Leeds, Leeds Institute for Data Analytics and Leeds Institute for Transport Studies
+
+Evidence shows that high quality infrastructure can boost local cycling rates, but only if interventions are made in appropriate places. This creates demand for new methods prioritise where to invest. The paper will describe methods for assessing the geographical distribution of cycling potential using case study data from England and Andalucia. An online tool that uses some of these methods has already been built for England (see www.pct.bike for a live demonstration) and suggests that the methods have great potential to scale internationally. Four scenarios have been developed so far, including 'Go Dutch' and 'Ebikes'. We would like to explore the creation of more scenarios to envision a world where cycling is the natural choice for short trips, and to plan effectively to make this happen. The main focus of this paper is how new methods in computing and Geographic Information Systems (GIS) could be useful internationally. This is clearly dependent on available datasets, so substantial energy is devoted to discussion of data opportunities and limitations, including from OpenStreetMap (OSM) and official open data. We discuss the opportunities associated with new methods and datasets and conclude that open source software, supported by a community of researchers, cycling advocates and public sector employees, may be the best way to make the methods for assessing the geographical distribution of cycling potential and strategic planning for cycling accessible and useful worldwide.
+
+Keywords: cycling, cycling potential, modal shift, infrastructure evaluation
