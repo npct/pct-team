@@ -1,8 +1,8 @@
 ---
-title: 'Embedding cycling in the transport planning process'
+title: "Embedding cycling in the transport planning process"
 author: "Robin Lovelace, John Parkin and Tom Cohen"
 date: '`r Sys.Date()`'
-output: word_document
+output: bookdown::pdf_document2
 bibliography: references.bib
 ---
 
