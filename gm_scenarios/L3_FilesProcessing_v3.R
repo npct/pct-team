@@ -41,14 +41,14 @@ rm(car1)                     #just checking 95% demand before DB processing
 ##################### NORMAL PROCESS #########################
 #
 ############# CAR TRAFFIC: L3 GENERATION FROM L2 (Car traffic processing)
-carfile <- 'C:/temp/Manchester_Traffic_data/2-L2_L3_level/L2_Car_MSOA.csv'
-car <- read.csv(carfile,header=T, as.is=T)
+carfile <- 'C:/temp/Manchester_Traffic_data/2-L2_L3_level/L2_Car_MSOA.rds'
+car <- readRDS(carfile)
 
 nrow(car)
 colnames(car) #  "Origin"      "Destination" "DemandOD"    "MSOAOrig"    "MSOADest"    
              #   "AreaOrig"    "AreaDest"    "xy"  (product Ax * Ay)
 
-############# GLOBAL METHOD (*x *y, then divide by sum(x)* sum (y) )
+############# PRO-RRATA METHOD (*x *y, then divide by sum(x)* sum (y) )
 car$xyDemand <- car$DemandOD * car$AreaOrig * car$AreaDest
 
 #adding N.zones & sum of area for Orig-Dest
@@ -71,16 +71,16 @@ colnames(car) <- c('MSOAOrig','MSOADest','DemandT')
 
 #checking demand is ~unchanged (the same as at start)
 sum(car$DemandT)   ##checking demand is ~unchanged: 3.604 M
-car <- cbind(car,mode=3)
 car$DemandT <- round(car$DemandT, 0)
+car <- cbind(car,mode=3)
 car <- car[car$DemandT!=0,]
 
 saveRDS(car,file.choose())                   #saved as:   L3_Car_Anna.Rds
 
 
 ############# WALKING:  L3 GENERATION FROM L2 (CAR & CYCLING TRAFFIC)
-walkfile <- 'C:/temp/Manchester_Traffic_data/2-L2_L3_level/L2_WC_MSOA.csv'
-wc <- read.csv(walkfile,header=T, as.is=T)  #reads L2_WC_MSOA.csv 
+walkfile <- 'C:/temp/Manchester_Traffic_data/2-L2_L3_level/L2_WC_MSOA.rds'
+wc <- readRDS(walkfile)  
 colnames(wc)
 head(wc)
 
@@ -116,8 +116,8 @@ saveRDS(wc,file.choose())                   #saved as:   L3_wc_Anna.Rds
 
 
 ############# L3 GENERATION FROM L2 (PUBLIC TRANSPORT TRAFFIC)
-ptfile <- 'C:/temp/Manchester_Traffic_data/2-L2_L3_level/L2_PT_MSOA.csv'
-pt <- read.csv(ptfile,header=T, as.is=T)    #reads L2_PT_MSOA.csv 
+ptfile <- 'C:/temp/Manchester_Traffic_data/2-L2_L3_level/L2_PT_MSOA.rds'
+pt <- readRDS(ptfile)
 colnames(pt)
 
 ##################GLOBAL method: allocate AreaOrig first, then AreaDest
@@ -207,24 +207,24 @@ colnames(gm.od)<-c('Area.of.residence','Area.of.workplace','CarGM','BusGM','Foot
 gm.od <- gm.od[,c(1:2,6,3:5)]
 
 #get ctw (derived from GM. travel survey) 
-ctwfile <- '//me-filer1/home$/au232/My Documents/1.CEDAR/3_Studies !!/28-DfT2.0/4-Manchester/1-Model OD data DFT2.0/modelODdata~/3-Rds/gm.tsurvey.csv'
+ctwfile <- './Input/gm.tsurvey.csv'
 ctw <- read.csv(ctwfile,header=T, as.is =T)
 ctw[is.na(ctw)] <- 0
 ctw$AllTS <-rowSums(ctw[3:12])
 
 #get l.RDs (Census flow file for G.Manchester) --alternative: full Census original file
-l <- readRDS('V:/Group/GitHub/pct-data/greater-manchester/l.Rds')
-l.df <- l@data
+l <- readRDS('./Intermediate/pct_lines.rds')
+#alternative: l <- readRDS('V:/Group/GitHub/pct-data/greater-manchester/l.Rds')
+#alternative: l.df <- l@data
 
 
-#link to l.df + link to ctw (Census+GM Travel survey added)
-gm.od <-left_join(gm.od, l.df[,1:16],  
-         by=c('Area.of.residence'='msoa1','Area.of.workplace'='msoa2'))
+gm.od <-left_join(gm.od, l[,1:13],  
+                  by=c('Area.of.residence'='msoa1','Area.of.workplace'='msoa2'))
 gm.od <-left_join(gm.od, ctw, 
-         by=c('Area.of.residence'='StartMSOA','Area.of.workplace'='EndMSOA'))
+                  by=c('Area.of.residence'='StartMSOA','Area.of.workplace'='EndMSOA'))
 gm.od[is.na(gm.od)] <-0      #clean NAs
 
-saveRDS(gm.od,file.choose())    #as gm.od.Rds=GM OD TRAFFIC+G.M. Census OD + GM T.Survey
-rm(car,pt,wc,l,l.df,c,c.df,ctw, t1)
+saveRDS(gm.od, './Output/gm.od.rds')    #as gm.od.Rds=GM OD TRAFFIC+G.M. Census OD + GM T.Survey
+rm(car,pt,wc,l,c,ctw)
 
 
