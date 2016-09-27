@@ -125,18 +125,18 @@ pt <-pt[pt$DemandT !=0,]
 
 saveRDS(pt,file.choose())                   #saved as:   L3_pt.Rds
 
-#######################  AGGREGATING TOTAL DEMAND  for Gr. MANCHESTER 
+#######################  AGGREGATING TOTAL DEMAND  for Gr. MANCHESTER in file gm.od
 #
-#
+#  
 #######################  NEXT PHASE
 
 rm(list=ls())   #clean previous vars
-library(stplanr)
+#library(stplanr)
 
-path <- 'C:/Users/au232/Dropbox/PCT/2_WorkInProgress/Alvaro/Manchester_data/'
-wc <- readRDS(paste0(path,'L3_WC_Aud0.5.Rds'))
-pt <- readRDS(paste0(path,'L3_PT_Aud0.5.Rds'))
-car <- readRDS(paste0(path,'L3_Car_Aud0.5.Rds'))
+path <- './Intermediate/'
+wc <- readRDS(paste0(path,'L3_WC.Rds'))
+pt <- readRDS(paste0(path,'L3_PT.Rds'))
+car <- readRDS(paste0(path,'L3_Car.Rds'))
 
 #reshape for rbind
 colnames(wc) <- c("MSOAOrig","MSOADest","FootGM", "mode")
@@ -173,6 +173,7 @@ colnames(c.df)
 gm.od <-inner_join(gm.od, c.df[,1:2], by=c('MSOAOrig'='geo_code'))
 gm.od <-inner_join(gm.od, c.df[,1:2], by=c('MSOADest'='geo_code'))
 sum(gm.od$AllGM)   #inner G.M. demand=6.0121 M
+rm(c.df)
 
 #keeping flows >20
 gm.od <-gm.od[gm.od$AllGM>20,]
@@ -181,25 +182,27 @@ colnames(gm.od)<-c('Area.of.residence','Area.of.workplace','CarGM','BusGM','Foot
 gm.od <- gm.od[,c(1:2,6,3:5)]
 
 #get ctw (derived from GM. travel survey) 
-ctwfile <- '//me-filer1/home$/au232/My Documents/1.CEDAR/3_Studies !!/28-DfT2.0/4-Manchester/1-Model OD data DFT2.0/modelODdata~/3-Rds/gm.tsurvey.csv'
+ctwfile <- './Input/gm.tsurvey.csv'
 ctw <- read.csv(ctwfile,header=T, as.is =T)
 ctw[is.na(ctw)] <- 0
 ctw$AllTS <-rowSums(ctw[3:12])
 
-#get l.RDs (Census flow file for G.Manchester) --alternative: full Census original file
-l <- readRDS('V:/Group/GitHub/pct-data/greater-manchester/l.Rds')
-l.df <- l@data
+#get l.RDs (Census flow file for G.Manchester) 
+#full Census original file from Anna 15-Sept-2016
+l <- readRDS('./Intermediate/pct_lines.rds')
+#alternative: l <- readRDS('V:/Group/GitHub/pct-data/greater-manchester/l.Rds')
+#alternative: l.df <- l@data
 
 
 #join w l.df & ctw (Census+GM Travel survey added). NOT STRICTLY NEEDED.
 # Good alternative: to KEEP the differences from GM model
-gm.od <-left_join(gm.od, l.df[,1:13],  
+gm.od <-left_join(gm.od, l[,1:13],  
          by=c('Area.of.residence'='msoa1','Area.of.workplace'='msoa2'))
 gm.od <-left_join(gm.od, ctw, 
          by=c('Area.of.residence'='StartMSOA','Area.of.workplace'='EndMSOA'))
 gm.od[is.na(gm.od)] <-0      #clean NAs
 
-saveRDS(gm.od,file.choose())    #as gm.od.Rds=GM OD TRAFFIC+G.M. Census OD + GM T.Survey
-rm(car,pt,wc,l,l.df,c,c.df,ctw)
+saveRDS(gm.od, './Output/gm.od.rds')    #as gm.od.Rds=GM OD TRAFFIC+G.M. Census OD + GM T.Survey
+rm(car,pt,wc,l,c,ctw)
 
 

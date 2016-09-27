@@ -1,8 +1,12 @@
 library("readstata13")
 library(dplyr)
 library(stplanr)
+library(rgdal)
+
 
 ########PREDICTION of no. of cyclists
+rm(list=ls())
+gm.od <- readRDS('./Output/gm.od.rds')  #gm.od <- readRDS('./Output/gm.od_Anna.rds')
 gm.od3 <-cbind(gm.od,CycleGM=0)
 rm(gm.od)
 gm.od3 <-gm.od3[,c(1:6,30,7:29)]
@@ -10,14 +14,13 @@ gm.od3 <-gm.od3[,c(1:6,30,7:29)]
 
 for (i in (1:nrow(gm.od3)) ) {
 
+      #use Census      
+      if (gm.od3$bicycle[i]!=0)   {gm.od3$CycleGM[i] = (gm.od3$AllGM[i]/gm.od3$all[i]) * gm.od3$bicycle[i]}
+   
+      #ratio from T.S. (only includes flows with >5 cyclists)
+      else if (gm.od3$ctw[i]!=0) {gm.od3$CycleGM[i] = gm.od3$ctw[i] * gm.od3$FootGM[i] }
 
-      #ratio from T.S.
-      if (gm.od3$ctw[i]!=0) {gm.od3$CycleGM[i] = gm.od3$ctw[i] * gm.od3$FootGM[i] }
-
-      #use Census
-      else if (gm.od3$bicycle[i]!=0)   {gm.od3$CycleGM[i] = (gm.od3$AllGM[i]/gm.od3$all[i]) * gm.od3$bicycle[i]}
-
-      #use Census popul. ratio
+      #use Census popul. + correlation model
       else if (gm.od3$all[i]!=0) {gm.od3$CycleGM[i] = 0.032639 * gm.od3$all[i] - 0.083 * gm.od3$car_driver[i]-0.01*gm.od3$foot[i]}
 
       #use GM. travel survey ratio
@@ -34,21 +37,18 @@ if (gm.od3$CycleGM[i] > gm.od3$FootGM[i]) {gm.od3$CycleGM[i] <- gm.od3$FootGM[i]
 
 #checks
 gm.od3$CycleGM[which(gm.od3$CycleGM<0)] <- 0  #cancels those wrongly predicted as negative
-gm.od3$CycleGM[gm.od3$CycleGM==gm.od3$FootGM] <- round(gm.od3$CycleGM[gm.od3$Cycle==gm.od3$FootGM]* 0.5,0)
+gm.od3$CycleGM[gm.od3$CycleGM==gm.od3$FootGM & gm.od3$FootGM>10] <- round(gm.od3$CycleGM[gm.od3$Cycle==gm.od3$FootGM]* 0.5,0)
 
 #round 0 dec
 gm.od3$CycleGM <- round(gm.od3$CycleGM, 0)
 gm.od3$FootGM <- gm.od3$FootGM - gm.od3$CycleGM  #adjusts
 
 
-#checks: bicycle never <0 + bicycle always<foot, change if not
-
-
 ########### PREPARE for SCENARIOS GENERATION
 l <- gm.od3[,1:7]
 
 #gm.od3.Rds contains the no. of cyclists per each GM flow (intraflows included?)
-saveRDS(gm.od3,file.choose())     #gm.od3.Rds
+saveRDS(gm.od3, './Output/gm.od3.rds')     #gm.od3.Rds
 rm(gm.od3)
 
 #NO NEED: scenarios use them!! ----- eliminate intraflows (+put them in c.Rds)
@@ -57,18 +57,20 @@ rm(gm.od3)
 
 
 #rename-sort-add cols to match l.Rds
-colnames(l)[3:7] <-c('all','Car_driver','Bus','Foot','Bicycle')
-l <- cbind(l,light_rail=0,Taxi=0,Motorbike=0,Car_passenger=0,Other=0)
+colnames(l)[3:7] <-c('all','car_driver','bus','foot','bicycle')
+l <- cbind(l,light_rail=0,taxi=0,motorbike=0,car_passenger=0, other=0)
 l <-l[,c(1:3,8,5,9,10,4,11,7,6,12)]
 
 
-#add & reorder to match Anna's flows source file (for scenarioS generation)
+#add & reorder to match Anna's flows source file (for scenarios generation)
 l <- cbind(l,from_home=0, train=0 )  #add train + from_home
 l <- l[,c(1:3,13,4,14,5:12)]
 namesl <-paste0('v',c(1:14))
 colnames(l) <-namesl
-save.dta13(l, file.choose())    #save as l_scenariosGM.dta
-write.csv(l,file.choose(),row.names = F) #save as './Output/l_scenariosGM.csv'
+save.dta13(l, './Output/l_scenariosGM_Anna.dta')    #save as l_scenariosGM.dta
+write.csv(l,'./Output/l_scenariosGM_Anna.csv',row.names = F) 
+#save.dta13(l, './Output/l_scenariosGM.dta')    #save as l_scenariosGM.dta
+#write.csv(l,'./Output/l_scenariosGM.csv',row.names = F) 
 
 ## FOR REFERENCE next section: Columns meaning
 #     home_msoa = v1
@@ -89,12 +91,13 @@ write.csv(l,file.choose(),row.names = F) #save as './Output/l_scenariosGM.csv'
 
 #this is needed to run scenarios (and is not in GM layer)
 ########## add msoa male/female %perc to msoa_t2w_sex.dta (m/f ratios & m/f cyclist ratios)
-td1 <-read.dta13(file.choose())    # from ./Input/msoa_t2w_sex.dta  [2.314 M x 9]
+td1 <-read.dta13('./Input/msoa_t2w_sex.dta')    # from ./Input/msoa_t2w_sex.dta  [2.314 M x 9]
 
 td <- inner_join(td1,l, by=c('home_msoa'='v1','work_msoa'='v2')) #1238 flows not there (prob. inflows)
 rm(td1)
-td <-cbind(td,maleperc=0, femaleperc=0, malecyc=0.05, femalecyc=0.02) 
 #global pop. cycling ratios (0.05 males, 0.02 females)
+td <-cbind(td,maleperc=0, femaleperc=0, malecyc=0.05, femalecyc=0.02) 
+
 
 #add m/f ratios of total population
 td$maleperc <-td$allcom_male/(td$allcom_male+td$allcom_female)
@@ -122,14 +125,20 @@ td$bicycle_female <- td$v12 - td$bicycle_male
 
 #sex ratio for GM MSOAs
 td <-td[,1:9]
-save.dta13(td, file.choose())        #save as <msoa_t2w_sex_GM.dta> in ./GM folder
+save.dta13(td, './Input/msoa_t2w_sex_GM_Anna.dta')
+#save.dta13(td, './Input/msoa_t2w_sex_GM.dta')        #save as <msoa_t2w_sex_GM.dta> in ./GM folder
 #write.csv(td,file.choose(),row.names = F)   #OR save <msoa_t2w_sex_GM.csv>, then convert .dta
 
 
-#### ----------------> run ANNA's SCENARIOS  !!!
+#### ----------------> run ANNA's SCENARIOS  (R, or Stata ) !!!
 #
-#produces 1: pct_lines_GM.dta
+# produces 1: pct_lines_GM.dta
 #         2: pct_areas_GM.dta ..........  (layer for Greater Manchester)
+########################################################################
+
+
+
+
 
 ##############################################
 #  AD-HOC procedure:
@@ -140,39 +149,44 @@ save.dta13(td, file.choose())        #save as <msoa_t2w_sex_GM.dta> in ./GM fold
 
 #NORM. STEP 1:   read pct_lines file + get ready for next stage
 #pct <-read.dta13(file.choose())        #pct_lines_GM.dta, the flows file, read from GM folder
-pct <-read.csv(file.choose(),header = T,as.is = T)      #read <pct_lines_GM.dta>
+pct <-read.csv('./Output/pct_lines_GM_Anna.csv',header = T,as.is = T)      #read <pct_lines_GM.csv>
 pct <-pct[pct$msoa2!='other', ]
-colnames(pct)[1:2] <-c('Area.of.residence','Area.of.workplace')
+#colnames(pct)[1:2] <-c('Area.of.residence','Area.of.workplace')
 pct <- pct[pct$all!=0, ]  #most lines are null
-pct <-cbind.data.frame(id=(paste(pct$Area.of.residence,pct$Area.of.workplace, sep=' ')),pct)
+
+pct <-cbind.data.frame(id=(paste(pct$msoa1,pct$msoa2, sep=' ')),pct)
 pct$id <- as.character( pct$id)
 
-
+###ADD DISTANCE FROM flow_nat
 #keeping only same flows as PCT (optional)
 path <-'V:/Group/GitHub/pct-bigdata/'
 flow_nat <- readRDS(file.path(path,'pct_lines_oneway_shapes.Rds'))  
-pct <-inner_join(pct,flow_nat@data[,c(2,3,83,84)])    # adds cols.: Rail, dist
+pct <-inner_join(pct,flow_nat@data[,c(1,2,3,84)])    
 
 
 #match PCT colnames (as most are uppercase)
-pct <- dplyr::rename(.data = pct, All=all,
-                                 Train=train,
-                                 Bus=bus,
-                                 Taxi=taxi,
-                                  Motorbike=motorbike,
-                                  Car_driver=car_driver,
-                                  Car_passenger=car_passenger,
-                                  Bicycle = bicycle,
-                                  Foot = foot,
-                                  Other = other)
+# pct <- dplyr::rename(.data = pct, All=all,
+#                                  Train=train,
+#                                  Bus=bus,
+#                                  Taxi=taxi,
+#                                   Motorbike=motorbike,
+#                                   Car_driver=car_driver,
+#                                   Car_passenger=car_passenger,
+#                                   Bicycle = bicycle,
+#                                   Foot = foot,
+#                                   Other = other)
+
+pct$clc = 100 * (pct$bicycle / pct$all)
+
+
+#pct = pct[, -c(2,3) ] #delete Area.of.residence & Area.of.workplace
+
 
 #colnames(pct)[4:14] <- c( "All","light_rail","Train","Bus","Taxi","Motorbike","Car_driver","Car_passenger","Bicycle","Foot","Other")
 #read c.Rds
-pathGM <- 'V:/Group/GitHub/pct-data/greater-manchester/all-trips/'  #before w/o: -NC
+pathGM <- '../../pct-data/greater-manchester/'  #before w/o: -NC
 c <-readRDS(file.path(pathGM,'c.Rds'))   #c.Rds generated from L5_build_region_GM.R
 
-
-###ADD DISTANCE FROM flow_nat
 
 ###### TRANSFORMATION required for PCT
 #create Spatial Lines object (l1=DF, c=Spatial Polygons/Points DF).
