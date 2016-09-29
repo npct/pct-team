@@ -46,4 +46,4 @@ head(centsa@data)
 plot(centsa)
 
 geojson_write(centsa)
-file.copy("myfile.geojson", "../pct-bigdata/cents-scenarios_GM.geojson", overwrite = T)
+file.copy("myfile.geojson", "../../pct-bigdata/cents-scenarios_GM.geojson", overwrite = T)
