@@ -1,7 +1,7 @@
 ---
-title: "The case for open source software in transport modelling"
-author: "Robin Lovelace, University of Leeds. Slides: [rpubs](http://rpubs.com/RobinLovelace)."
-date: "UCL, `r Sys.Date()`, London, UK." 
+title: "Tools of the trade: adapting 20^th^ Century transport models for 21^st^ Century challenges"
+author: "Robin Lovelace, University of Leeds, [ITS](http://www.its.leeds.ac.uk/)/[LIDA](http://www.lida.leeds.ac.uk/) . Source code: [github](https://github.com/npct/pct/blob/master/minidocs/open-source-slides.Rmd). Audio: [robinlovelace.net](http://robinlovelace.net/audio/open-source-slides.mp3). "
+date: "Cycling and Society Conference, `r Sys.Date()`, Lancaster, UK." 
 output:
   # beamer_presentation: 
   #   fonttheme: professionalfonts
@@ -12,7 +12,7 @@ output:
     transition: slower
     widescreen: true
     toc: yes
-logo: ../figures/pct-logo.png
+logo: ../figures/its-logo-square.png
 bibliography: ../documents/references.bib
 ---
 
@@ -23,36 +23,73 @@ lapply(pkgs, library, character.only = T)
 opts_chunk$set(echo = FALSE)
 ```
 
+<!-- Transport models have an enormous influence on transport plans, with major impacts on the attractiveness of active travel. Yet these models were developed in a different era, when the aims of transport policy were very different from what they are today. This paper provides a brief review of what transport models are, demystifying the methods and software underlying their operation. The review finds that transport models provide useful and relatively objective information to public and private sector researchers but that their public utility is hindered by proprietary licenses, inaccessibility to the public and emphasis on unsustainable modes. Overall it seems that transport models are not fit for solving 21^st^ Century issues: they reduce the 'option space' visible to policy makers and perpetuate the 1950s view of a car dominated future, rather than illustrating what is possible. Opportunities for the future are demonstrated with reference to a new breed of open source, citizen contributed and publicly accessible transport planning tools. Rather than start from scratch, the paper explores how methods and concepts from traditional transport models, such as 'predict and provide' can be repurposed for active travel planning. The paper concludes with insight into how the transport planning tools of the 20^th^ Century can be upgraded, and in some cases replaced, so they can tackle the challenges of the 21^st^.  -->
+
 ## Structure of the talk
 
 > - The origins of transport modelling
 
-> - Comments on transport models and transport modelling
+> - Transport models vs cycling
 
 > - An open source approach
 
-## A few comments about the word 'radical'
+<!-- ## A few comments about the word 'radical' -->
 
-- Derived from the Latin work *radix*, meaning 'root' (source: [Oxford Dictionary](http://www.oxforddictionaries.com/definition/english/radical)) 
+<!-- - Derived from the Latin work *radix*, meaning 'root' (source: [Oxford Dictionary](http://www.oxforddictionaries.com/definition/english/radical))  -->
 
-> - Implies solving the *cause* of the problem rather than its symptoms
+<!-- > - Implies solving the *cause* of the problem rather than its symptoms -->
 
-> - What's at the root of the 'transport problem'?
+<!-- > - What's at the root of the 'transport problem'? -->
 
-> - Of course it defines how to define problem: 
-   > - Inequality?
-   > - Economics?
-   > - Health?
-   > - Sustainability?
-   > - Climate change?
+<!-- > - Of course it defines how to define problem:  -->
+<!--    > - Inequality? -->
+<!--    > - Economics? -->
+<!--    > - Health? -->
+<!--    > - Sustainability? -->
+<!--    > - Climate change? -->
+
+## Tools for the trade
+
+```{r, echo=FALSE, out.width="50%"}
+knitr::include_graphics(c("../figures/746px-Pistol-grip_drill.svg.png", "../figures/sdna-san-fran.png"))
+```
+
+## Premises
+
+> - We live in a car dominated system
+> - Transport models are leverage points in the transport system
+<!-- largely responsible for embedding and perpetuating this domination -->
+> - 'Systemic' change is a long process and involves institutional change [@beddoe_overcoming_2009]
+> - Leverage points such as models can speed-up the transition
+> - Software for transport models is more accessible than ever
+
+## Institutional structures I: Board | Source: [Department for Transport](https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/500776/dft-organisation-chart.pdf)
+
+```{r, echo=FALSE, out.width="60%"}
+knitr::include_graphics("../figures/dft-organogram-board.png")
+```
+
+<!-- Over half of trips are < 5 miles -->
+
+## Institutional structures II: Roads Traffic and Local Group
+
+```{r, echo=FALSE, out.width="60%"}
+knitr::include_graphics("../figures/dft-local.png")
+```
+
+## Institutional structures III: Local Transport
+
+```{r, echo=FALSE, out.width="40%"}
+knitr::include_graphics("../figures/dft-local1-2.png")
+```
+
+<!-- Even though my talk is about modelling, it is of course takes place in a political context -->
 
 ## Institutional structures | A root cause of the 'problem'
 
 ```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("../figures/dft-organogram-all.png")
 ```
-
-<!-- Even though my talk is about modelling, it is of course takes place in a political context -->
 
 # The origins of transport modelling
 
@@ -64,7 +101,7 @@ knitr::include_graphics("../figures/dft-organogram-all.png")
 include_graphics("http://www.e-elgar.com/shop/media/catalog/product/cache/1/image/225x/040ec09b1e35df139433887a97daa66f/9/7/9781848449602_4_1.jpg")
 ```
 
-## Origins of Transport planning | Credit: Crispin Cooper
+## Origins of Transport planning | Credit: Crispin Cooper. See [cardiff.ac.uk/sdna/](http://www.cardiff.ac.uk/sdna/)
 
 ```{r, echo=FALSE, out.width="70%"}
 knitr::include_graphics("../figures/sdna-san-fran.png")
@@ -78,7 +115,7 @@ knitr::include_graphics("../figures/sdna-san-fran.png")
 
 > - no consideration of walking or cycling
 
-# What's wrong with transport models
+# Transport models vs cycling
 
 ## Transport planning tools: expensive...
 
@@ -169,19 +206,41 @@ See http://pct.bike/london
 
 [![](https://github.com/npct/pct/raw/master/figures/rnet-leeds-base-to-godutch.png)](https://github.com/npct/pct/raw/master/figures/rnet-leeds-base-to-godutch.png)
 
+## Summary table
 
-## Summary
+```{r, echo=FALSE}
+difftable = read.csv(text = 
+"Keep, Replace, How
+Terminology, Inaccessible, Online tools
+Equations, Proprietary ownership, Open source licences
+Use of scenarios, Ageing software, New software
+, Narrow scenarios of future, Flexible models
+, Black boxes, Simple and open method"
+  )
+knitr::kable(difftable)
+```
 
-- Transport problems are multi-faceted so 'techno-fixes' are not enough
-- Transport models are close to the root of the problem
-- They were not developed to solve current transport problems
-- Open source software has flourished in other sectors
-- Open source software offers many benefits for transport planners, including:
-    - Encourages community particupation
-    - Reduces costs
-    - Increases collaboration
-    
-> - How do we get there?
+
+## Get tooled up
+
+> - Learn to speak 'their' language 
+<!-- (cycling beats other modes on *their* terms) -->
+> - Make use of web technologies: Google Maps, CycleStreets.net, CycleScape etc.
+> - The Propensity to Cycle Tool is an open source, online and accessible model
+> - Engage with transport models 
+
+<!-- ## Summary -->
+
+<!-- - Transport problems are multi-faceted so 'techno-fixes' are not enough -->
+<!-- - Transport models are close to the root of the problem -->
+<!-- - They were not developed to solve current transport problems -->
+<!-- - Open source software has flourished in other sectors -->
+<!-- - Open source software offers many benefits for transport planners, including: -->
+<!--     - Encourages community particupation -->
+<!--     - Reduces costs -->
+<!--     - Increases collaboration -->
+
+<!-- > - How do we get there? -->
 
 ## References
 
