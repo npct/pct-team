@@ -1,0 +1,19 @@
+---
+title: 'The Propensity to Cycle Tool: an internationally scalable method for designing
+  regional transport networks'
+author: "Robin Lovelace"
+output: pdf_document
+bibliography: ../documents/references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 
+
+Recent research suggests that cycling investments and policies are most effective when implemented at the network levels @buehler_bikeway_2016. Yet the majority of planning tools aimed at cycling operate either at a lower level of geographical resolution, or focus on geographic areas rather than the transport network. Moreover, many transport models are 'black boxes' for the majority of the population: it is unclear how they work and their results are inaccessible to the public.
+
+The Propensity to Cycle Tool (PCT) was funded by the UK's Department for Transport to tackle each of these issues @lovelace_propensity_2016. It uses a transparent methodology based on commonly available origin-destination (OD) data and presents the results as an interactive web-map with multiple scenarios and visualisation layers, allowing users to explore cycling futures in the area of interest. This paper will explore the international scalability of the method, with a focus on data availability, geographical processing with Geographical Information Systems (GIS), and visualisation. Specific bottlenecks in the process are identified, including the tricky stage of allocating cycling 'desire lines' to the road network, and placing the results on a public facing server. Taking these factors into account, the paper concludes that by making the approach flexible and open source, it should be adaptable enough to be used in many different contexts, provided planning institutions implementing the PCT have in-house programming expertise.
+
+### References
