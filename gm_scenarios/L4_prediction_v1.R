@@ -200,7 +200,7 @@ pathGM <- '../../pct-data/greater-manchester/'  #before w/o: -NC
 c <-readRDS(file.path(pathGM,'c.Rds'))   #c.Rds generated from L5_build_region_GM.R
 
 #add cols:  geo_code | geo_label | avslope
-c@data = inner_join(c@data[,c(1:3,84)], cents[,c(2,4:83)], by=c('geo_code'='msoa1') )
+c@data = inner_join(c@data[,c(1:3,84)], cents[,c(1,3:82)], by=c('geo_code'='msoa1') )
 saveRDS(c, '../../pct-bigdata/cents-scenarios_GM.rds')
 
 ###### TRANSFORMATION required for PCT
