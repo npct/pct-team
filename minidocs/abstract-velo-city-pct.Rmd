@@ -1,8 +1,8 @@
 ---
 title: 'The Propensity to Cycle Tool: an internationally scalable method for designing
   regional transport networks'
-author: "Robin Lovelace"
-output: pdf_document
+author: "Robin Lovelace, Anna Goodman, James Woodcock, Rachel Aldred"
+output: word_document
 bibliography: ../documents/references.bib
 ---
 

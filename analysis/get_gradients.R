@@ -10,7 +10,7 @@ library(sf)
 source("set-up.R")
 download.file("http://download.cbs.nl/regionale-kaarten/2011-buurtkaart-shape-versie-3.zip", "2011-buurtkaart-shape-versie-3.zip")
 unzip("2011-buurtkaart-shape-versie-3.zip")
-file.copy("shape 2011 versie 3.0/buurt_2011_v3.prj", "/tmp/oppervlakte cbs buurten.prj", overwrite = T)
+# file.copy("shape 2011 versie 3.0/buurt_2011_v3.prj", "/tmp/oppervlakte cbs buurten.prj", overwrite = T)
 zones = shapefile("shape 2011 versie 3.0/buurt_2011_v3.shp")
 # zones = shapefile("/tmp/oppervlakte cbs buurten.shp") # 11574
 proj4string(zones)
@@ -39,3 +39,18 @@ plot(r, add = T)
 
 rsample_points = spsample(x = r, n = 10000, type = "random")
 points(rsample_points, col = "blue")
+
+# get hilliness data
+library(raster)
+alt90_nl = getData(name = "alt", country = "NLD", download = TRUE)
+plot(alt90_nl)
+grad90_nl = raster::terrain(x = alt90_nl, opt = "slope", unit = "tangent", neighbors = 4)
+summary(grad90_nl)
+zones_p = gCentroid(zones, byid = T)
+zones_nl_slope = raster::extract(x = grad90_nl, y = zones_p)
+zones@data = cbind(zones@data, slope_percentage = zones_nl_slope * 100)
+zones$slope_percentage[is.na(zones$slope_percentage)] = 0
+summary(zones@data)
+write.csv(zones@data[c("BU_CODE", "slope_percentage")], file = "nl-height-data.csv")
+mapview::mapview(zones[zones$slope_percentage > 1,])
+geoj
