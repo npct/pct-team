@@ -176,7 +176,7 @@ sum(gm.od$AllGM)   #inner G.M. demand=6.0121 M
 rm(c.df)
 
 #keeping flows >20
-#gm.od <-gm.od[gm.od$AllGM>20,]
+#gm.od <-gm.od[gm.od$AllGM>20,]          --DEPRECATED
 gm.od <-gm.od[, -c(7,8)]
 colnames(gm.od)<-c('Area.of.residence','Area.of.workplace','CarGM','BusGM','FootGM','AllGM')
 gm.od <- gm.od[,c(1:2,6,3:5)]
