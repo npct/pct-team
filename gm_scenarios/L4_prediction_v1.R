@@ -7,23 +7,23 @@ library(rgeos)
 
 ########PREDICTION of no. of cyclists using 1) Census cyclist/pedestrian ratio + distance 
 rm(list=ls())
-gm.od <- readRDS('./Output/gm.od.rds')  #gm.od <- readRDS('./Output/gm.od_Anna.rds')
-gm.od3 <-cbind(gm.od,CycleGM=0)
+gm.od <- readRDS('./Output/gm.od1.rds')     #flows file w. distances   
+gm.od3 =gm.od 
 rm(gm.od)
-gm.od3 <-gm.od3[,c(1:6,33,7:32)]
+gm.od3 <-gm.od3[,c(1:6,33,7:32)]   # [48,219 x 32]
 
-#read cyclestreets to get OD distances
-cs = read.dta13('./Input/cyclestreets_speedhilliness.dta')
-cs=cs[, c(1:6)]
-
-
-# add column distance 
-gm.od3 = left_join ( gm.od3, cs[, c(1,2,5)], 
-                     by=c('Area.of.residence'='home_msoa' , 'Area.of.workplace'='work_msoa' )    )
+# #read cyclestreets to get OD distances
+# cs = read.dta13('./Input/cyclestreets_speedhilliness.dta')
+# cs=cs[, c(1:6)]
+# 
+# 
+# # add column distance 
+# gm.od3 = left_join ( gm.od3, cs[, c(1,2,5)], 
+#                      by=c('Area.of.residence'='home_msoa' , 'Area.of.workplace'='work_msoa' )    )
 
 sel = gm.od3$Area.of.residence== gm.od3$Area.of.workplace
 gm.od3$dist[sel]  = 0
-rm(cs)
+#rm(cs)
 
 #delete OD flows w/o a distance
 gm.od3= gm.od3[! is.na(gm.od3$dist),]
@@ -45,22 +45,23 @@ gm.od3$CycleGM[sel4] = gm.od3$FootGM[sel4] *   (11.937/12.937)    # 92% of total
 gm.od3$CycleGM[sel5] = gm.od3$FootGM[sel5] *   1
 gm.od3$CycleGM[sel6] =  0
 
-gm.od3$CycleGM[!sel] = 0.032639 * gm.od3$all[!sel] - 0.083 * gm.od3$car_driver[!sel]-0.01*gm.od3$foot[!sel]
+#deprecated: not correlation model used anymore
+#gm.od3$CycleGM[!sel] = 0.032639 * gm.od3$all[!sel] - 0.083 * gm.od3$car_driver[!sel]-0.01*gm.od3$foot[!sel]
 gm.od3$CycleGM[is.na(gm.od3$CycleGM)] = 0
 
-#checks no negative / unreasonable values
-gm.od3$CycleGM[which(gm.od3$CycleGM<0)] <- 0  #cancels those wrongly predicted as negative
+# #checks no negative / unreasonable values
+# gm.od3$CycleGM[which(gm.od3$CycleGM<0)] <- 0  #cancels those wrongly predicted as negative
 
 sel = gm.od3$CycleGM > gm.od3$FootGM
 gm.od3$CycleGM[sel] <- gm.od3$FootGM[sel] 
 
-sel =(gm.od3$CycleGM>= 0.5*gm.od3$FootGM & gm.od3$FootGM>20)
-gm.od3$CycleGM[sel] <- round(gm.od3$CycleGM[sel]* 0.7,0)
+# sel =(gm.od3$CycleGM>= 0.5*gm.od3$FootGM & gm.od3$FootGM>20)
+# gm.od3$CycleGM[sel] <- round(gm.od3$CycleGM[sel]* 0.7,0)
 
 #round 0 dec
 gm.od3$CycleGM <- round(gm.od3$CycleGM, 0)
 gm.od3$FootGM <- gm.od3$FootGM - gm.od3$CycleGM  #adjusts
-
+sum(gm.od3$CycleGM)     #predicted total cyclists
 
 ########### PREPARE for SCENARIOS GENERATION
 l <- gm.od3[,1:7]
@@ -73,16 +74,24 @@ rm(gm.od3)
 # intraflows <- which(l$Area.of.residence==l$Area.of.workplace)
 # l <- l[-intraflows,]
 
-
 #rename-sort-add cols to match l.Rds in PCT
 colnames(l)[3:7] <-c('all','car_driver','bus','foot','bicycle')
-l <- cbind(l,light_rail=0,taxi=0,motorbike=0,car_passenger=0, other=0)
-l <-l[,c(1:3,8,5,9,10,4,11,7,6,12)]
+
+l <- cbind(l[,c(1:3)],  from_home=0, 
+                        light_rail=0,
+                        train=0,
+                        bus=l$bus, 
+                        taxi=0,  
+                        motorbike=0,
+                        car_driver=l$car_driver, 
+                        car_passenger=0, 
+                        bicycle=l$bicycle, 
+                        foot=l$foot, 
+                        other=0 )
+
 
 
 #add & reorder to match Anna's flows source file (for scenarios generation)
-l <- cbind(l,from_home=0, train=0 )  #add train + from_home
-l <- l[,c(1:3,13,4,14,5:12)]
 namesl <-paste0('v',c(1:14))
 colnames(l) <-namesl
 save.dta13(l, './Output/l_scenariosGM.dta')   
@@ -159,8 +168,9 @@ save.dta13(td, './Input/msoa_t2w_sex_GM.dta')
 
 
 #NORM. STEP 1:   read pct_lines file + get ready for next stage
-#pct <-read.dta13(file.choose())        #pct_lines_GM.dta, the flows file, read from GM folder
-pct <-read.csv('./Output/pct_lines_GM.csv',header = T, as.is = T)      #read <pct_lines_GM.csv>
+pct <-read.dta13('./Output/pct_lines_GM.dta')   #pct_lines_GM.dta (generated from scenarios code)
+pct = pct[, c(1:length(names(pct)))]
+#pct <-read.csv('./Output/pct_lines_GM.csv',header = T, as.is = T)      #read <pct_lines_GM.csv>
 pct <-pct[pct$msoa2!='other', ]
 #colnames(pct)[1:2] <-c('Area.of.residence','Area.of.workplace')
 pct <- pct[pct$all!=0, ] 
@@ -171,11 +181,20 @@ cents = pct[pct$msoa1 == pct$msoa2, ]         #used to generate zones & centroid
 pct = pct[pct$msoa1!=pct$msoa2, ]
 
 
-###ADD missing col. DISTANCE FROM flow_nat
-#keeping only same flows as PCT (optional)
-path <-'V:/Group/GitHub/pct-bigdata/'
-flow_nat <- readRDS(file.path(path,'pct_lines_oneway_shapes.Rds'))  
-pct <-inner_join(pct,flow_nat@data[,c(1,84)], by='id')    
+## RECOVER DISTANCE FROM gm.od1
+gm.od = readRDS('./Output/gm.od1.Rds')
+gm.od <-cbind.data.frame(id=(paste(gm.od$Area.of.residence, 
+                                   gm.od$Area.of.workplace, sep=' ')), gm.od )
+gm.od$id = as.character(gm.od$id)
+pct = inner_join(pct,gm.od[,c(1,10)], by='id')    
+sel = (names(pct)== 'dist1.25' )
+names(pct)[sel] = 'dist'
+
+# ###ADD missing col. DISTANCE FROM flow_nat
+# #keeping only same flows as PCT (optional)
+# path <-'V:/Group/GitHub/pct-bigdata/'
+# flow_nat <- readRDS(file.path(path,'pct_lines_oneway_shapes.Rds'))  
+# pct <-inner_join(pct,flow_nat@data[,c(1,84)], by='id')    
 
 
 #match PCT colnames (as most are uppercase)
@@ -199,14 +218,14 @@ pct <-inner_join(pct,flow_nat@data[,c(1,84)], by='id')
 pathGM <- '../../pct-data/greater-manchester/'  #before w/o: -NC
 c <-readRDS(file.path(pathGM,'c.Rds'))   #c.Rds generated from L5_build_region_GM.R
 
-#add cols:  geo_code | geo_label | avslope
-c@data = inner_join(c@data[,c(1:3,84)], cents[,c(1,3:82)], by=c('geo_code'='msoa1') )
+#add cols from c:  geo_code | geo_label | avslope
+c@data = inner_join(c@data[,c(1:3,84)], cents[,c(2,4:83)], by=c('geo_code'='msoa1') )
 saveRDS(c, '../../pct-bigdata/cents-scenarios_GM.rds')
 
 ###### TRANSFORMATION required for PCT
 #create Spatial Lines object (pct=DF, c=Spatial Polygons/Points DF).
 l <- od2line(pct,c)
-l@data=l@data[,c(2,3,1,4:84)]
+l@data=l@data[,c(2,3,1,4:83)]
 
 
 ##### CAUTION:    No need to aggregate both directions: now l comes already grouped
@@ -221,6 +240,7 @@ write.csv(l, './Output/l.csv',row.names = F)
 
 #NORM. STEP 3:   read pct_areas file -> produce z.Rds
 #pct <-read.dta13(file.choose())        #pct_lines_GM.dta, the flows file
+z = readRDS(file.path(pathGM,'z.Rds'))   
 pctzones <-read.csv('./Output/pct_area_GM.csv',header = T, as.is = T)   
 pctzones <- pctzones[pctzones$all!=0, ]
 
@@ -228,11 +248,12 @@ pctzones <- dplyr::rename(.data = pctzones,
                           geo_code = home_msoa,
                           geo_label=home_msoa_name)
 
-pctzones = inner_join(pctzones, c@data[,c(1,4)], by='geo_code')
+pctzones = inner_join(pctzones, c@data[,c(1,2)], by='geo_code')
 
 
 #only col. missing is avslope
-z <- od2line(pctzones, c)
+z@data = inner_join(pctzones, z@data[,c(1,58)], by='geo_code')
+#z <- od2line(pctzones, c)
 saveRDS(z, './Output/z.rds')    #copy z.rDS to pathGM -------->
 saveRDS(z, '../../pct-bigdata/ukmsoas-scenarios_GM.rds')    #copy z.rDS to pathGM -------->
 
