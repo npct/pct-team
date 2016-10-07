@@ -8,6 +8,7 @@ library(overpass)
 # devtools::install_github("edzer/sfr")
 library(sf)
 library(tmap)
+library(raster)
 
 # load administrative data
 source("set-up.R")
@@ -40,7 +41,6 @@ rsample_points = spsample(x = r, n = 10000, type = "random")
 points(rsample_points, col = "blue")
 
 # get hilliness data
-library(raster)
 alt90 = getData(name = "alt", country = "NLD", download = TRUE)
 # alt90 = getData(name = "alt", country = "GBR", download = TRUE)
 plot(alt90)
@@ -48,10 +48,13 @@ plot(alt90)
 grad90 = raster::terrain(x = alt90, opt = "slope", unit = "tangent", neighbors = 4)
 summary(grad90)
 zones_p = gCentroid(zones, byid = T)
-zones_nl_slope = raster::extract(x = grad90, y = zones_p)
+zones_nl_slope = raster::extract(x = grad90, y = z, fun = mean)
 zones@data = cbind(zones@data, slope_percentage = zones_nl_slope * 100)
 zones$slope_percentage[is.na(zones$slope_percentage)] = 0
+tmap_mode()
+tm_shape(zones) +
+  tm_fill("slope_percentage")
+
 summary(zones@data)
-write.csv(zones@data[c("BU_CODE", "slope_percentage")], file = "nl-height-data.csv")
+write.csv(zones@data[c("BU_CODE", "slope_percentage")], file = "../pct-bigdata/nl-gradients-average.csv")
 mapview::mapview(zones[zones$slope_percentage > 1,])
-geoj
