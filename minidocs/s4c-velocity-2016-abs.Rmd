@@ -4,8 +4,88 @@ author: "Robin Lovelace"
 output: word_document
 ---
 
-Robin Lovelace, University of Leeds, Leeds Institute for Data Analytics and Leeds Institute for Transport Studies
+**Organizer: Robin Lovelace.**
+Robin is the Lead Developer of the Propensity to Cycle Tool, an open source, online
+system for cycle-orientated planning. He will bring a technical perspective to the
+debate, with a focus on the practicalities of how to create open source software
+underlying online tools.
 
-For investment in cycling infrastructure to be effective, it must be built where it is needed. A dual direction 1.5 m shared use path is not appropriate in along a route that has the potential to be used by over 5000 cycles per hour at its peak, for example. Likewise, a dedicated one way cycle path 3 m wide built along a desire line with a maximum potential of less than 500 cycles per hour at its peak may not represent the most cost effective expenditure of money and natural resources for cycling uptake. This problem has been tackled with the Propensity to Cycle Tool (go to www.pct.bike to test it out). The PCT has been created using by an academic team funded by the UK's Department for Transport (DfT), and has received praise from transport planning professionals, academics, and industry alike. But what is the potential for the method and interactive toolkit to scale internationally? It is the purpose of this Panel Session to discuss the opportunities, barriers and ways forward to allow the PCT to be deployed in other countries. As indicated in the session title, it would ultimately be possible for online tools for assessing the geographical distribution of cycling potential to scale worldwide. After an appraisal of national experience of tools for assessing cycling potential, is envisioned that discussion will shift towards how such system, based on open source code, open data from OpenStreetMap (OSM) and 'open government' initiatives and an international research community, could help provide a toolkit for evidence based planning for cycling worldwide.
+**Chair: John Parkin**
+John has a long career as a transport planner and cycling researcher. He has
+pioneered methods for assessing cycling potential and has written influential
+guidance on cycling, and will bring transport engineering expertise to the table.
+Panel participants:
+
+**Randy Rzewnicki.**
+Randy works for the European Cycling Federation and has years of experience of
+seeing the implementation of national cycling plans. Randy will bring an
+international perspective to the talks and insight into how the tools can be used in
+practice.
+
+**Ricardo Marques.**
+Ricardo is an experienced cycling advocate and academic, with an engineering
+background. As such, he will help bridge the gap between academic research and
+cycling advocacy. Ricardo will help answer the question: how can such tools be used
+by local campaign groups?
+
+**Susan Handy.**
+Susan has expertise researching the relationships between transportation and land use. Her input will help explore the how the PCT approach can be used to model shifting travel behaviors, an input into wider strategies for a transition to a post carbon transport system.
+
+**James Woodcock**
+...
+
+## Topic of interest
+
+For investment in cycling infrastructure to be effective, it must be built where it is
+needed. A dual direction 1.5 m shared use path is inappropriate along a route that
+has the potential to be used by over 5000 cycles per hour at its peak, for example.
+Likewise, a dedicated one way cycle path 3 m wide built along a desire line with a
+maximum potential of less than 500 cycles per hour at its peak may not represent
+the most cost effective expenditure of money and natural resources per unit of
+cycling uptake (e.g. measured in $/pkm cycled). This problem has been tackled to
+some extent by the Propensity to Cycle Tool (go to www.pct.bike to test it out). ThePCT has been created using by an academic team funded by the UK's Department for
+Transport (DfT), and has received praise from transport planning professionals,
+academics, and industry alike. But what is the potential for the method and
+interactive toolkit to scale internationally? How can the tool be improved? It is the
+purpose of this Panel Session to discuss the opportunities, barriers and ways
+forward to allow the PCT to be deployed in other countries. As indicated in the
+session title, it would ultimately be possible for online tools for assessing the
+geographical distribution of cycling potential to scale worldwide. After an appraisal
+of national experience of tools for assessing cycling potential, is envisioned that
+discussion will shift towards how such system, based on open source code, open
+data from OpenStreetMap (OSM) and 'open government' initiatives and an
+international research community, could help provide a toolkit for evidence based
+planning for cycling worldwide.
 
 Keywords: cycling potential, modal shift, infrastructure evaluation
+
+## How the panel session will be organised
+
+The panel session will be organized in 3 parts, each lasting 25 minutes.
+In each there will be 10 minutes for panel presentations and 15 minutes for audience interaction. This will
+ensure that the most important aspects of the question are covered:
+
+1. What is the Propensity to Cycle Tool and how could it scale globally? This will focus on clarifying what the tool is, how it can be used and its potential to help plan for cycling in settlements and countries worldwide. It will touch on how the PCT differs existing tools for strategic cycle planning and its strengths, limitations and future potential. 
+
+2. What is needed? This section will identify is missing from the current suite of tools for strategic cycle planning, and set out a ‘wishlist’ of tool features that participants and attendees most want to see.
+
+3. How to move forward? This final section will address the question of how to
+implement new, internationally scalable and open source tools for transport
+planning. In it we will address the follow issues:
+
+- Data opportunities and limitations
+- Skill requirements and where to find them
+- Funding
+- Training
+- Public engagement
+
+Each session will be time limited and will provide an opportunity for the audience to input points of information, suggested actions or questions.Outcomes
+The expected outcomes from the panel session will be:
+
+- Better understanding among session attendees and, via online dissemination, the international cycling community, of the strengths and weaknesses of existing tools and how they can be used, currently, to improve transport planning from a cycling perspective. (There will be recordings and a write-up for the international cycling community.)
+
+- Clarity about the needs of different places with respect to tools for strategic planning for cycling.
+
+- A roadmap outlining how to proceed to create and improve internationally
+scalable open source, online tools for sustainable transport planning.
+
