@@ -45,11 +45,11 @@ alt90 = getData(name = "alt", country = "NLD", download = TRUE)
 # alt90 = getData(name = "alt", country = "GBR", download = TRUE)
 plot(alt90)
 
-grad90 = raster::terrain(x = alt90, opt = "slope", unit = "tangent", neighbors = 4)
+grad90 = raster::terrain(x = alt90, opt = "slope", unit = "degrees", neighbors = 8)
 summary(grad90)
 zones_p = gCentroid(zones, byid = T)
 zones_nl_slope = raster::extract(x = grad90, y = z, fun = mean)
-zones@data = cbind(zones@data, slope_percentage = zones_nl_slope * 100)
+zones@data = cbind(zones@data, slope_angle = zones_nl_slope)
 zones$slope_percentage[is.na(zones$slope_percentage)] = 0
 tmap_mode()
 tm_shape(zones) +
