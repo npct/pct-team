@@ -5,7 +5,7 @@ sum(gm.od$Area.of.residence== gm.od$Area.of.workplace)
 gm.od3 <-cbind(gm.od,CycleGM=0)
 rm(gm.od)
 
-gm.od3 = gm.od3[, c(1:6,33) ]
+gm.od3 = gm.od3[, c(1:7,33) ]
 
 
 ###########
@@ -31,15 +31,10 @@ geodist = geosphere::distHaversine(p1 = cents_o, p2 = cents_d) / 1000 # assign e
 summary(is.na(geodist))
 
 hist(geodist, breaks = 0:50)
-flow$dist = geodist
-flow = flow[!is.na(flow$dist),] # there are 36k destinations with no matching cents - remove
+flow$dist = geodist     #this needs to be replaced by proper fast route distance
+flow = flow[!is.na(flow$dist),] 
 flow$dist1.25 = flow$dist * 1.25
 
 saveRDS(flow, './Output/gm.od1.Rds')  # flows w. euclidean distances 
-
-
-
-
-
 
 

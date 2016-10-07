@@ -33,14 +33,14 @@ rm(car0,car0comm)
 ################################################
 #         NORMAL PROCESS: start with L1 car file
 ################################################
-car1 <-read.csv('C:/temp/Manchester_Traffic_data/1-Filter95/L1_Car_95.csv',header=T,as.is = T)
+car1 <-read.csv('C:/temp/Manchester_Traffic_data/1-Filter95/L1_Car_95_v1.csv',header=T,as.is = T)
 colnames(car1)
 head(car1)
-sum(car1$SumOfDemandN)       #demand 0.95 ~ 3.64 M (95%)
+sum(car1$DemandN)       #demand 0.95 ~ 1.435 M (95%)
 rm(car1)                     #just checking 95% demand before DB processing
 
 ############# CAR TRAFFIC: L3 GENERATION FROM L2 (Car traffic processing)
-carfile <- 'C:/temp/Manchester_Traffic_data/2-L2_L3_level/L2_Car_MSOA.rds'
+carfile <- 'C:/temp/Manchester_Traffic_data/2-L2_L3_level/L2_Car_MSOA_v1.rds'
 #car <- read.csv(carfile,header=T, as.is=T)
 car <- readRDS(carfile)
 nrow(car)
@@ -54,16 +54,32 @@ colnames(car)
 colnames(car)[c(9,10)]= c('AreaHighwayOrig','AreaHighwayDest')
 
 ############# GLOBAL METHOD (split demand proportional to area MSOA/area zone)
-car$xDemand <- car$DemandOD *  car$AreaOrig / car$AreaHighwayOrig  
+
+#method for driver figures
+car$xDemand <- car$DDriv *  car$AreaOrig / car$AreaHighwayOrig  
 car$yDemand <-  car$AreaDest  / car$AreaHighwayDest
 car$xyDemand <- car$xDemand * car$yDemand
 
-car <-aggregate(car$xyDemand,by=list(car$MSOAOrig,car$MSOADest), FUN=sum,na.rm=T)
-colnames(car) <- c('MSOAOrig','MSOADest','DemandT')
-sum(car$DemandT)  #checking demand is ~unchanged (the same as at start)
-car$DemandT <- round(car$DemandT, 0)
-car <- cbind(car,mode=3)
-car <- car[car$DemandT!=0,]
+carDriver <-aggregate(car$xyDemand,by=list(car$MSOAOrig,car$MSOADest), FUN=sum,na.rm=T)
+colnames(carDriver) <- c('MSOAOrig','MSOADest','DemandDriver')
+sum(carDriver$DemandDriver)  #checking demand is ~unchanged (the same as at start)
+carDriver$DemandDriver <- round(carDriver$DemandDriver, 0)
+
+
+#same for passenger
+car$xDemand <- car$DPass *  car$AreaOrig / car$AreaHighwayOrig  
+car$xyDemand <- car$xDemand * car$yDemand
+
+carPass <-aggregate(car$xyDemand,by=list(car$MSOAOrig,car$MSOADest), FUN=sum,na.rm=T)
+colnames(carPass) <- c('MSOAOrig','MSOADest','DemandPassenger')
+sum(carPass$DemandPassenger)  #checking demand is ~unchanged (the same as at start)
+carPass$DemandPassenger <- round(carPass$DemandPassenger, 0)
+
+# car global demand
+car <- cbind(carDriver,DemandPassenger=carPass$DemandPassenger, mode=3)
+
+
+car <- car[car$DemandDriver+ car$DemandPassenger!=0,]
 
 saveRDS(car,'./Intermediate/L3_car.rds')
 rm(car)
@@ -141,23 +157,23 @@ car <- readRDS(paste0(path,'L3_car.Rds'))
 #reshape for rbind
 colnames(wc) <- c("MSOAOrig","MSOADest","FootGM", "mode")
 colnames(pt) <- c("MSOAOrig","MSOADest","BusGM", "mode")
-colnames(car) <- c("MSOAOrig","MSOADest","CarGM", "mode")
+colnames(car) <- c("MSOAOrig","MSOADest","CarDriver","CarPassenger", "mode")
 
 #eliminates mode column
 wc <-wc[,-4]
 pt <-pt[,-4]
-car <-car[,-4]
+car <-car[,-5]
 
 #create gm.od by joining car->pt->wc, then rounds flows  
 gm.od <-left_join(car, pt, by=c('MSOAOrig', 'MSOADest'))
 gm.od <-left_join(gm.od, wc, by=c('MSOAOrig', 'MSOADest'))
-gm.od[,3:5] <- round(gm.od[,3:5],0)
+gm.od[,3:6] <- round(gm.od[,3:6],0)
 gm.od[is.na(gm.od)] <-0
 
 #eliminate flows where ALL are 0
 # allnull <- which(gm.od$CarGM==0 & gm.od$BusGM==0 & gm.od$FootGM==0)
 # gm.od <- gm.od[-allnull,]     #keep only results!=0
-gm.od$AllGM <- gm.od$CarGM + gm.od$BusGM + gm.od$FootGM
+gm.od$AllGM <- gm.od$CarDriver + gm.od$CarPassenger + gm.od$BusGM + gm.od$FootGM
 
 #### gm.od: all trips (from Greater Manchester -> any UK point + from any UK point->Greater Manchester)
 #### this means ~180K  flows (way more than Robin's file)
@@ -177,9 +193,9 @@ rm(c.df)
 
 #keeping flows >20
 #gm.od <-gm.od[gm.od$AllGM>20,]          --DEPRECATED
-gm.od <-gm.od[, -c(7,8)]
-colnames(gm.od)<-c('Area.of.residence','Area.of.workplace','CarGM','BusGM','FootGM','AllGM')
-gm.od <- gm.od[,c(1:2,6,3:5)]
+gm.od <-gm.od[, -c(8, 9)]
+colnames(gm.od)<-c('Area.of.residence','Area.of.workplace','CarDriver','CarPassenger','BusGM','FootGM','AllGM')
+gm.od <- gm.od[,c(1:2,7,3:6)]
 
 #get ctw (derived from GM. travel survey) 
 ctwfile <- './Input/gm.tsurvey.csv'

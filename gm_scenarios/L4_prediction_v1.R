@@ -4,13 +4,12 @@ library(stplanr)
 library(rgdal)
 library(rgeos)
 
-
 ########PREDICTION of no. of cyclists using 1) Census cyclist/pedestrian ratio + distance 
 rm(list=ls())
 gm.od <- readRDS('./Output/gm.od1.rds')     #flows file w. distances   
 gm.od3 =gm.od 
+gm.od3 =cbind(gm.od3[, c(1:7)], CycleGM=0, gm.od3[, c(8:10)]) 
 rm(gm.od)
-gm.od3 <-gm.od3[,c(1:6,33,7:32)]   # [48,219 x 32]
 
 # #read cyclestreets to get OD distances
 # cs = read.dta13('./Input/cyclestreets_speedhilliness.dta')
@@ -49,22 +48,38 @@ gm.od3$CycleGM[sel6] =  0
 #gm.od3$CycleGM[!sel] = 0.032639 * gm.od3$all[!sel] - 0.083 * gm.od3$car_driver[!sel]-0.01*gm.od3$foot[!sel]
 gm.od3$CycleGM[is.na(gm.od3$CycleGM)] = 0
 
-# #checks no negative / unreasonable values
-# gm.od3$CycleGM[which(gm.od3$CycleGM<0)] <- 0  #cancels those wrongly predicted as negative
-
-sel = gm.od3$CycleGM > gm.od3$FootGM
-gm.od3$CycleGM[sel] <- gm.od3$FootGM[sel] 
-
-# sel =(gm.od3$CycleGM>= 0.5*gm.od3$FootGM & gm.od3$FootGM>20)
-# gm.od3$CycleGM[sel] <- round(gm.od3$CycleGM[sel]* 0.7,0)
-
 #round 0 dec
 gm.od3$CycleGM <- round(gm.od3$CycleGM, 0)
 gm.od3$FootGM <- gm.od3$FootGM - gm.od3$CycleGM  #adjusts
 sum(gm.od3$CycleGM)     #predicted total cyclists
 
+# #checks no negative / unreasonable values
+# gm.od3$CycleGM[which(gm.od3$CycleGM<0)] <- 0  #cancels those wrongly predicted as negative
+
+# sel = gm.od3$CycleGM > gm.od3$FootGM
+# gm.od3$CycleGM[sel] <- gm.od3$FootGM[sel] 
+
+# sel =(gm.od3$CycleGM>= 0.5*gm.od3$FootGM & gm.od3$FootGM>20)
+# gm.od3$CycleGM[sel] <- round(gm.od3$CycleGM[sel]* 0.7,0)
+
+#weekly factors per mode
+weekly_carDriver = 6.57
+weekly_carPassenger = 7.83
+weekly_walking = 6.77
+weekly_cycling = 7.53
+weekly_pt      = 6.35
+
+gm.od3$CarDriver =    weekly_carDriver * gm.od3$CarDriver 
+gm.od3$CarPassenger =     weekly_carPassenger * gm.od3$CarPassenger
+gm.od3$BusGM   =  weekly_pt      * gm.od3$BusGM   
+gm.od3$FootGM   = weekly_walking * gm.od3$FootGM
+gm.od3$CycleGM  =   weekly_cycling * gm.od3$CycleGM
+
+gm.od3[ , c(4:8)] = round(gm.od3[ , c(4:8)], 0)
+gm.od3$AllGM = gm.od3$CarDriver + gm.od3$CarPassenger + gm.od3$BusGM + gm.od3$FootGM + gm.od3$CycleGM
+
 ########### PREPARE for SCENARIOS GENERATION
-l <- gm.od3[,1:7]
+l <- gm.od3[,1:8]
 
 #gm.od3.Rds contains the no. of cyclists per each GM flow (intraflows included?)
 saveRDS(gm.od3, './Output/gm.od3.rds')     #gm.od3.Rds
@@ -75,7 +90,7 @@ rm(gm.od3)
 # l <- l[-intraflows,]
 
 #rename-sort-add cols to match l.Rds in PCT
-colnames(l)[3:7] <-c('all','car_driver','bus','foot','bicycle')
+colnames(l)[3:8] <-c('all','car_driver','car_passenger', 'bus','foot','bicycle')
 
 l <- cbind(l[,c(1:3)],  from_home=0, 
                         light_rail=0,
@@ -84,7 +99,7 @@ l <- cbind(l[,c(1:3)],  from_home=0,
                         taxi=0,  
                         motorbike=0,
                         car_driver=l$car_driver, 
-                        car_passenger=0, 
+                        car_passenger=l$car_passenger, 
                         bicycle=l$bicycle, 
                         foot=l$foot, 
                         other=0 )
@@ -113,6 +128,10 @@ write.csv(l,'./Output/l_scenariosGM.csv',row.names = F)
 #     foot  = v13
 #     other = v14
 
+dropcols = grep(pattern = 'sel',x = ls())
+
+dropcols = grep(pattern = 'weekly_',x = ls())
+
 
 #this is needed to run scenarios (and is not in GM layer)
 ########## add msoa m/f ratios to msoa_t2w_sex_GM.dta (m/f ratios & m/f cyclist ratios)
@@ -129,11 +148,12 @@ td <-cbind(td,maleperc=0, femaleperc=0, malecyc=0.05, femalecyc=0.02)
 td$femaleperc <-0.99 * td$allcom_female/(td$allcom_male+td$allcom_female)
 td$maleperc <- 1 - td$femaleperc
 
-#add m/f cycling ratios to FLOWS WITH enough cyclists (>5 people cycling)
+#add m/f cycling ratios to FLOWS 
 # 0.93 = f/m cyclist ratio all trips vs Census for GM
-target <- which((td$bicycle_male!=0 | td$bicycle_female!=0)& (td$bicycle_male + td$bicycle_female>5))
-td$femalecyc[target] <- 0.93 * td$bicycle_female[target]/(td$bicycle_male[target]+ td$bicycle_female[target])
-td$malecyc[target] <- 1- td$femalecyc[target]
+#target <- which((td$bicycle_male!=0 | td$bicycle_female!=0)& (td$bicycle_male + td$bicycle_female>5))
+
+td$femalecyc <- 0.93 * td$v12 * td$allcom_female  / ( td$allcom_female + td$allcom_female )
+td$malecyc <- td$v12 - td$femalecyc
 
 td$allcom_male <-round(td$v3 *td$maleperc,0)  #N_males=N.totalpop (td$v3) * %perc_male in pop.
 td$allcom_female <-td$v3 - td$allcom_male  #N_females = N.totalpop - N_males
@@ -209,8 +229,6 @@ names(pct)[sel] = 'dist'
 #                                   Foot = foot,
 #                                   Other = other)
 
-#pct$clc = 100 * (pct$bicycle / pct$all)   -now in buildregion.R
-
 
 #pct = pct[, -c(2,3) ] #delete Area.of.residence & Area.of.workplace
 
@@ -218,14 +236,19 @@ names(pct)[sel] = 'dist'
 pathGM <- '../../pct-data/greater-manchester/'  #before w/o: -NC
 c <-readRDS(file.path(pathGM,'c.Rds'))   #c.Rds generated from L5_build_region_GM.R
 
-#add cols from c:  geo_code | geo_label | avslope
+#replace DF + add cols from c:  geo_code | geo_label | avslope
 c@data = inner_join(c@data[,c(1:3,84)], cents[,c(2,4:83)], by=c('geo_code'='msoa1') )
 saveRDS(c, '../../pct-bigdata/cents-scenarios_GM.rds')
 
 ###### TRANSFORMATION required for PCT
 #create Spatial Lines object (pct=DF, c=Spatial Polygons/Points DF).
+pct = pct[,c(2,3,1,4:84)]
+pct= stplanr::onewayid(pct, attrib= c(4:83))
 l <- od2line(pct,c)
-l@data=l@data[,c(2,3,1,4:83)]
+l$id = paste(l$msoa1, l$msoa2, sep=' ')
+
+#l@data=l@data[,c(2,3,1,4:83)]
+saveRDS(l, '../../pct-bigdata/lines_oneway_shapes_updated_GM.Rds')
 
 
 ##### CAUTION:    No need to aggregate both directions: now l comes already grouped
@@ -248,7 +271,7 @@ pctzones <- dplyr::rename(.data = pctzones,
                           geo_code = home_msoa,
                           geo_label=home_msoa_name)
 
-pctzones = inner_join(pctzones, c@data[,c(1,2)], by='geo_code')
+pctzones = inner_join(pctzones, c@data[,c(1,3)], by='geo_code')
 
 
 #only col. missing is avslope
