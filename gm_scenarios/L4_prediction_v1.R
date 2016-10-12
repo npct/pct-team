@@ -8,7 +8,6 @@ library(rgeos)
 rm(list=ls())
 gm.od <- readRDS('./Output/gm.od1.rds')     #flows file w. distances   
 gm.od3 =gm.od 
-gm.od3 =cbind(gm.od3[, c(1:7)], CycleGM=0, gm.od3[, c(8:10)]) 
 rm(gm.od)
 
 # #read cyclestreets to get OD distances
@@ -29,12 +28,12 @@ gm.od3= gm.od3[! is.na(gm.od3$dist),]
 
 # distance ranges for prediction
 sel = gm.od3$FootGM !=0   
-sel1 = sel & (gm.od3$dist< 2.99) & (gm.od3$dist>= 0) ; sel1factor = 0.025
-sel2 = sel  & (gm.od3$dist>= 3) & ( gm.od3$dist <  5.99)     ; sel2factor = 0.339
-sel3 = sel & (gm.od3$dist>= 6) &  (gm.od3$dist <  9.99)    ; sel3factor = 1.30
-sel4 = sel & (gm.od3$dist>= 10) & (gm.od3$dist <  14.99)  
+sel1 = sel & (gm.od3$dist< 3) & (gm.od3$dist>= 0) ; sel1factor = 0.025
+sel2 = sel  & (gm.od3$dist>= 3) & ( gm.od3$dist <  6)     ; sel2factor = 0.339
+sel3 = sel & (gm.od3$dist>= 6) &  (gm.od3$dist <  10)    ; sel3factor = 1.30
+sel4 = sel & (gm.od3$dist>= 10) & (gm.od3$dist <  15)  
 sel5 = sel & (gm.od3$dist>= 15) & (gm.od3$dist <  30)
-sel6 = sel &  (gm.od3$dist >  30)
+sel6 = sel &  (gm.od3$dist >=  30)
 
 
 gm.od3$CycleGM[sel1] = gm.od3$FootGM[sel1] *   0.02439024     # 0.025/(1+0.025)
@@ -44,7 +43,7 @@ gm.od3$CycleGM[sel4] = gm.od3$FootGM[sel4] *   (11.937/12.937)    # 92% of total
 gm.od3$CycleGM[sel5] = gm.od3$FootGM[sel5] *   1
 gm.od3$CycleGM[sel6] =  0
 
-#deprecated: not correlation model used anymore
+#deprecated: correlation model not used anymore
 #gm.od3$CycleGM[!sel] = 0.032639 * gm.od3$all[!sel] - 0.083 * gm.od3$car_driver[!sel]-0.01*gm.od3$foot[!sel]
 gm.od3$CycleGM[is.na(gm.od3$CycleGM)] = 0
 
@@ -137,7 +136,7 @@ dropcols = grep(pattern = 'weekly_',x = ls())
 ########## add msoa m/f ratios to msoa_t2w_sex_GM.dta (m/f ratios & m/f cyclist ratios)
 td1 <-read.dta13('./Input/msoa_t2w_sex.dta')    # from ./Input/msoa_t2w_sex.dta  [2.31 M x 9]
 td1 = td1[, c(1:9)]
-td <- inner_join(td1,l, by=c('home_msoa'='v1','work_msoa'='v2')) #1238 flows not there (prob. inflows)
+td <- inner_join(td1,l, by=c('home_msoa'='v1','work_msoa'='v2')) #8476 flows not there 
 rm(td1)
 #global pop. cycling ratios (0.05 males, 0.02 females)
 td <-cbind(td,maleperc=0, femaleperc=0, malecyc=0.05, femalecyc=0.02) 
@@ -145,14 +144,14 @@ td <-cbind(td,maleperc=0, femaleperc=0, malecyc=0.05, femalecyc=0.02)
 
 #add m/f ratios of total population
 # 0.99 = f/m ratio all trips vs Census for GM
-td$femaleperc <-0.99 * td$allcom_female/(td$allcom_male+td$allcom_female)
+td$femaleperc <- td$allcom_female/(td$allcom_male+td$allcom_female)
 td$maleperc <- 1 - td$femaleperc
 
 #add m/f cycling ratios to FLOWS 
 # 0.93 = f/m cyclist ratio all trips vs Census for GM
 #target <- which((td$bicycle_male!=0 | td$bicycle_female!=0)& (td$bicycle_male + td$bicycle_female>5))
 
-td$femalecyc <- 0.93 * td$v12 * td$allcom_female  / ( td$allcom_female + td$allcom_female )
+td$femalecyc <- 0.99 * 0.93 * td$v12 * td$allcom_female  / ( td$allcom_female + td$allcom_female )
 td$malecyc <- td$v12 - td$femalecyc
 
 td$allcom_male <-round(td$v3 *td$maleperc,0)  #N_males=N.totalpop (td$v3) * %perc_male in pop.
@@ -206,7 +205,7 @@ gm.od = readRDS('./Output/gm.od1.Rds')
 gm.od <-cbind.data.frame(id=(paste(gm.od$Area.of.residence, 
                                    gm.od$Area.of.workplace, sep=' ')), gm.od )
 gm.od$id = as.character(gm.od$id)
-pct = inner_join(pct,gm.od[,c(1,10)], by='id')    
+pct = inner_join(pct,gm.od[,c(1,11)], by='id')    
 sel = (names(pct)== 'dist1.25' )
 names(pct)[sel] = 'dist'
 
@@ -244,8 +243,10 @@ saveRDS(c, '../../pct-bigdata/cents-scenarios_GM.rds')
 #create Spatial Lines object (pct=DF, c=Spatial Polygons/Points DF).
 pct = pct[,c(2,3,1,4:84)]
 pct= stplanr::onewayid(pct, attrib= c(4:83))
+pct = inner_join(pct,gm.od[, c(1:3,11)], by=c('msoa1'='Area.of.residence', 'msoa2'='Area.of.workplace') )
+sel = (names(pct)== 'dist1.25' )
+names(pct)[sel] = 'dist'
 l <- od2line(pct,c)
-l$id = paste(l$msoa1, l$msoa2, sep=' ')
 
 #l@data=l@data[,c(2,3,1,4:83)]
 saveRDS(l, '../../pct-bigdata/lines_oneway_shapes_updated_GM.Rds')

@@ -13,8 +13,6 @@ hw_gm_nos <- read.csv('C:/temp/Manchester_Traffic_data/2-L2_L3_level/lkp_highway
 pt_gm_nos <- read.csv('C:/temp/Manchester_Traffic_data/2-L2_L3_level/lkp_pt_gmsm_Nos.csv',header=T, as.is=T)
 wc_gm_nos  <- read.csv('C:/temp/Manchester_Traffic_data/2-L2_L3_level/lkp_vdm_gmsm_Nos.csv',header=T, as.is=T)
 
-#setwd('//me-filer1/home$/au232/My Documents/1.CEDAR/3_Studies !!/28-DfT2.0/4-Manchester/1-Model OD data DFT2.0/modelODdata~')
-
 
 #### PRE-CHECK: read unprocessed car OD traffic (morning/off-peak/afternoon rates already adjusted)
 car0 <-read.csv('C:/temp/Manchester_Traffic_data/0-L0_level/0_CarOD.csv',header=T,as.is = T)
@@ -24,7 +22,11 @@ head(car0)
 #total sum(car0$DemandN) for G.M. region: 3.8M (people)
 #check commuter demand before processing: subset for commuters (UserClass==1)
 car0comm <- subset(x = car0,UserClass==1)
-sum(car0comm$DemandN)   #real commuters demand (rates have been adjusted)~ 600 K (people)
+sel= (car0comm$TimeID==2)
+sel1 = (car0comm$TimeID !=2)
+sum(car0comm$DemandN[sel]) * 6 + sum(car0comm$DemandN[sel1])   
+#commuters demand for whole day~ 1.82 M (people)
+
 head(car0comm)
 tail(car0comm)
 rm(car0,car0comm)
@@ -32,21 +34,22 @@ rm(car0,car0comm)
 ################################################
 #         OPTIONAL CHECK : start with L1 car file, previous to geogr. conversion
 ################################################
-car1 <-read.csv('C:/temp/Manchester_Traffic_data/1-Filter95/L1_Car_95.csv',header=T,as.is = T)
+car1 <-read.csv('C:/temp/Manchester_Traffic_data/1-Filter95/L1_Car_95_v1.csv',header=T,as.is = T)
 colnames(car1)
 head(car1)
-sum(car1$SumOfDemandN)       #demand ~ 3.64 M (95%)
+car1[ is.na(car1) ] = 0
+sum(car1$DemandN)       #demand ~ 3.64 M (95%)
 rm(car1)                     #just checking 95% demand before DB processing
 
 ##################### NORMAL PROCESS #########################
 #
 ############# CAR TRAFFIC: L3 GENERATION FROM L2 (Car traffic processing)
-carfile <- 'C:/temp/Manchester_Traffic_data/2-L2_L3_level/L2_Car_MSOA.rds'
+carfile <- 'C:/temp/Manchester_Traffic_data/2-L2_L3_level/L2_Car_MSOA_v1.rds'
 car <- readRDS(carfile)
 
 nrow(car)
-colnames(car) #  "Origin"      "Destination" "DemandOD"    "MSOAOrig"    "MSOADest"    
-             #   "AreaOrig"    "AreaDest"    "xy"  (product Ax * Ay)
+colnames(car)  # [1] "Origin"      "Destination" "MSOAOrig"    "AreaOrig"    "DDriv"       "DPass"       "MSOADest"   
+               # [8] "AreaDest"
 
 ############# PRO-RRATA METHOD (*x *y, then divide by sum(x)* sum (y) )
 car$xyDemand <- car$DemandOD * car$AreaOrig * car$AreaDest
@@ -207,10 +210,10 @@ colnames(gm.od)<-c('Area.of.residence','Area.of.workplace','CarGM','BusGM','Foot
 gm.od <- gm.od[,c(1:2,6,3:5)]
 
 #get ctw (derived from GM. travel survey) 
-ctwfile <- './Input/gm.tsurvey.csv'
-ctw <- read.csv(ctwfile,header=T, as.is =T)
-ctw[is.na(ctw)] <- 0
-ctw$AllTS <-rowSums(ctw[3:12])
+# ctwfile <- './Input/gm.tsurvey.csv'
+# ctw <- read.csv(ctwfile,header=T, as.is =T)
+# ctw[is.na(ctw)] <- 0
+# ctw$AllTS <-rowSums(ctw[3:12])
 
 #get l.RDs (Census flow file for G.Manchester) --alternative: full Census original file
 l <- readRDS('./Intermediate/pct_lines.rds')

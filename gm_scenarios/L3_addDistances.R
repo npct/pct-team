@@ -5,10 +5,10 @@ sum(gm.od$Area.of.residence== gm.od$Area.of.workplace)
 gm.od3 <-cbind(gm.od,CycleGM=0)
 rm(gm.od)
 
-gm.od3 = gm.od3[, c(1:7,33) ]
+gm.od3 = gm.od3[, c(1:8) ]
 
 
-###########
+########### read NATIONAL CENTROIDS file, subset to G.M.
 cents = geojsonio::geojson_read("../../pct-bigdata/cents-scenarios.geojson", what = "sp")
 gmc = readRDS(file.path('../../pct-data/greater-manchester', 'c.rds'))    #c.rds
 cents = cents[cents$geo_code %in% gmc$geo_code, ]
