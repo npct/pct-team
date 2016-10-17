@@ -1,6 +1,6 @@
 library("readstata13")
 library(dplyr)
-library(stplanr)
+# library(stplanr)   --install from github
 library(rgdal)
 library(rgeos)
 
@@ -233,7 +233,7 @@ names(pct)[sel] = 'dist'
 
 #read c.Rds
 pathGM <- '../../pct-data/greater-manchester/'  #before w/o: -NC
-c <-readRDS(file.path(pathGM,'c.Rds'))   #c.Rds generated from L5_build_region_GM.R
+c <-readRDS(file.path(pathGM,'c.Rds'))   
 
 #replace DF + add cols from c:  geo_code | geo_label | avslope
 c@data = inner_join(c@data[,c(1:3,84)], cents[,c(2,4:83)], by=c('geo_code'='msoa1') )
@@ -241,9 +241,9 @@ saveRDS(c, '../../pct-bigdata/cents-scenarios_GM.rds')
 
 ###### TRANSFORMATION required for PCT
 #create Spatial Lines object (pct=DF, c=Spatial Polygons/Points DF).
-pct = pct[,c(2,3,1,4:84)]
+pct = pct[,c(2,3,1,4:83)]
 pct= stplanr::onewayid(pct, attrib= c(4:83))
-pct = inner_join(pct,gm.od[, c(1:3,11)], by=c('msoa1'='Area.of.residence', 'msoa2'='Area.of.workplace') )
+pct = inner_join(pct,gm.od[, c(1:3)], by=c('msoa1'='Area.of.residence', 'msoa2'='Area.of.workplace') )
 sel = (names(pct)== 'dist1.25' )
 names(pct)[sel] = 'dist'
 l <- od2line(pct,c)
@@ -272,11 +272,11 @@ pctzones <- dplyr::rename(.data = pctzones,
                           geo_code = home_msoa,
                           geo_label=home_msoa_name)
 
-pctzones = inner_join(pctzones, c@data[,c(1,3)], by='geo_code')
+#pctzones = inner_join(pctzones, c@data[,c(1,3)], by='geo_code')
 
 
 #only col. missing is avslope
-z@data = inner_join(pctzones, z@data[,c(1,58)], by='geo_code')
+z@data = inner_join(z@data[,c(1,58)], pctzones, by='geo_code') # z file FIRST: otherwise labelling issue!!
 #z <- od2line(pctzones, c)
 saveRDS(z, './Output/z.rds')    #copy z.rDS to pathGM -------->
 saveRDS(z, '../../pct-bigdata/ukmsoas-scenarios_GM.rds')    #copy z.rDS to pathGM -------->

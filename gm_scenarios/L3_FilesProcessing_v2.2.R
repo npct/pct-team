@@ -183,7 +183,7 @@ gm.od[is.na(gm.od)] <-0
 gm.od$AllGM <- gm.od$CarDriver + gm.od$CarPassenger + gm.od$BusGM + gm.od$FootGM
 
 #### gm.od: all trips (from Greater Manchester -> any UK point + from any UK point->Greater Manchester)
-#### this means ~180K  flows (way more than Robin's file)
+#### this means >100K  flows (way more than Robin's file)
 
 
 #centroids file for filtering G.M. MSOAs
@@ -211,18 +211,20 @@ gm.od <- gm.od[,c(1:2,7,3:6)]
 # ctw$AllTS <-rowSums(ctw[3:12])
 
 #get l.RDs (Census flow file for G.Manchester) 
-#full Census original file from Anna 15-Sept-2016
-# l <- readRDS('V:/Group/GitHub/pct-data/greater-manchester/l.Rds')
-# l <- l@data
-##alternative: l <- readRDS('./Intermediate/l.rds')
+#full Census original file from Anna 15-Sept-2016: 
+# Good alternative: to KEEP the differences from GM model: l <- readRDS('../../pct-bigdata/l.Rds')
 
-#join w l.df & ctw (Census+GM Travel survey added). NOT STRICTLY NEEDED.
-# Good alternative: to KEEP the differences from GM model
-# gm.od <-left_join(gm.od, l[,1:16],  
-#          by=c('Area.of.residence'='msoa1','Area.of.workplace'='msoa2'))
-# gm.od <-left_join(gm.od, ctw, 
+l <- readRDS('../../pct-data/greater-manchester/l.Rds')
+l <- l@data
+
+#join w l.df & ctw (Census+GM Travel survey added)
+gm.od <-inner_join(gm.od, l[,1:16],
+         by=c('Area.of.residence'='msoa1','Area.of.workplace'='msoa2'))
+
+#Travel survey not used
+# gm.od <-left_join(gm.od, ctw,
 #          by=c('Area.of.residence'='StartMSOA','Area.of.workplace'='EndMSOA'))
-# gm.od[is.na(gm.od)] <-0      #clean NAs
+gm.od[is.na(gm.od)] <-0      #clean NAs
 
 saveRDS(gm.od, './Output/gm.od.rds')    #as gm.od.Rds=GM OD TRAFFIC+G.M. Census OD + GM T.Survey
 rm(car,pt,wc, c)
