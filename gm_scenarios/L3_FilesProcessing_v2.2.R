@@ -213,20 +213,21 @@ gm.od <- gm.od[,c(1:2,7,3:6)]
 #get l.RDs (Census flow file for G.Manchester) 
 #full Census original file from Anna 15-Sept-2016: 
 # Good alternative: to KEEP the differences from GM model: l <- readRDS('../../pct-bigdata/l.Rds')
+gm.od = readRDS('./Output/gm.od2.Rds')
 
-l <- readRDS('../../pct-data/greater-manchester/l.Rds')
-l <- l@data
+# l <- readRDS('../../pct-data/greater-manchester/l.Rds')
+# l <- l@data
+l = readRDS('./Output/wu03.gm.rds')
 
-#join w l.df & ctw (Census+GM Travel survey added)
-gm.od <-inner_join(gm.od, l[,1:16],
-         by=c('Area.of.residence'='msoa1','Area.of.workplace'='msoa2'))
+#join gm.od (gm layer) <> l (Census flows) to prepare prediction
+gm.od <-left_join(gm.od, l[,c(1:14)], by=c('msoa1'='msoa1','msoa2'='msoa2'))
 
 #Travel survey not used
 # gm.od <-left_join(gm.od, ctw,
 #          by=c('Area.of.residence'='StartMSOA','Area.of.workplace'='EndMSOA'))
 gm.od[is.na(gm.od)] <-0      #clean NAs
 
-saveRDS(gm.od, './Output/gm.od.rds')    #as gm.od.Rds=GM OD TRAFFIC+G.M. Census OD + GM T.Survey
+saveRDS(gm.od, './Output/gm.od3.rds')    #as gm.od.Rds=GM OD TRAFFIC+G.M. Census OD
 rm(car,pt,wc, c)
 #rm(car,pt,wc,l,c,ctw)
 

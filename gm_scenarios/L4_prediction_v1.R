@@ -6,18 +6,13 @@ library(rgeos)
 
 ########PREDICTION of no. of cyclists using 1) Census cyclist/pedestrian ratio + distance 
 rm(list=ls())
-gm.od <- readRDS('./Output/gm.od1.rds')     #flows file w. distances   
-gm.od3 =gm.od 
-rm(gm.od)
+gm.od3 <- readRDS('./Output/gm.od3.rds')     #flows file w. fast route distances   
+colnames(gm.od3)[which(names(gm.od3)=='length')] = 'dist'
+gm.od3$dist = gm.od3$dist/1000    #convert to meters
 
-# #read cyclestreets to get OD distances
-# cs = read.dta13('./Input/cyclestreets_speedhilliness.dta')
-# cs=cs[, c(1:6)]
-# 
-# 
-# # add column distance 
-# gm.od3 = left_join ( gm.od3, cs[, c(1,2,5)], 
-#                      by=c('Area.of.residence'='home_msoa' , 'Area.of.workplace'='work_msoa' )    )
+sel10minus=  (gm.od3$All.categories..Method.of.travel.to.work<=10) |(gm.od3$Bicycle== 0)  | (gm.od3$On.foot== 0)
+sel10plus=  !sel10minus
+
 
 sel = gm.od3$Area.of.residence== gm.od3$Area.of.workplace
 gm.od3$dist[sel]  = 0
@@ -27,21 +22,38 @@ gm.od3$dist[sel]  = 0
 gm.od3= gm.od3[! is.na(gm.od3$dist),]
 
 # distance ranges for prediction
-sel = gm.od3$FootGM !=0   
-sel1 = sel & (gm.od3$dist< 3) & (gm.od3$dist>= 0) ; sel1factor = 0.025
+
+for (i in c(sel10minus, sel10plus))   {
+
+sel = gm.od3$FootGM !=0 & i  
+sel1 = sel & (gm.od3$dist>= 0) & (gm.od3$dist< 3)   ; sel1factor = 0.025
 sel2 = sel  & (gm.od3$dist>= 3) & ( gm.od3$dist <  6)     ; sel2factor = 0.339
 sel3 = sel & (gm.od3$dist>= 6) &  (gm.od3$dist <  10)    ; sel3factor = 1.30
 sel4 = sel & (gm.od3$dist>= 10) & (gm.od3$dist <  15)  
 sel5 = sel & (gm.od3$dist>= 15) & (gm.od3$dist <  30)
 sel6 = sel &  (gm.od3$dist >=  30)
 
+if (i==sel10minus)   {
 
-gm.od3$CycleGM[sel1] = gm.od3$FootGM[sel1] *   0.02439024     # 0.025/(1+0.025)
-gm.od3$CycleGM[sel2] = gm.od3$FootGM[sel2] *   0.253174       # 0.339/ (1+ 0.339)   
-gm.od3$CycleGM[sel3] = gm.od3$FootGM[sel3] *   (1.295/2.295) 
-gm.od3$CycleGM[sel4] = gm.od3$FootGM[sel4] *   (11.937/12.937)    # 92% of total
+gm.od3$CycleGM[sel1] = gm.od3$FootGM[sel1] *   0.10 * 0.25     # 0.025/(1+0.025)
+gm.od3$CycleGM[sel2] = gm.od3$FootGM[sel2] *   0.423 * 0.80    # 0.339/ (1+ 0.339)   
+gm.od3$CycleGM[sel3] = gm.od3$FootGM[sel3] *   0.998 * 1.295
+gm.od3$CycleGM[sel4] = gm.od3$FootGM[sel4] *   0.92             # 92% of total
 gm.od3$CycleGM[sel5] = gm.od3$FootGM[sel5] *   1
-gm.od3$CycleGM[sel6] =  0
+gm.od3$CycleGM[sel6] =  0   }
+
+else  {
+
+   gm.od3$CycleGM[sel1] = gm.od3$FootGM[sel1] * (gm.od3$Bicycle[sel1]/gm.od3$On.foot[sel1]) *  0.2439      # 0.025/(1+0.025)
+   gm.od3$CycleGM[sel2] = gm.od3$FootGM[sel2] * (gm.od3$Bicycle[sel2]/gm.od3$On.foot[sel2]) * 0.80       # 0.339/ (1+ 0.339)   
+   gm.od3$CycleGM[sel3] = gm.od3$FootGM[sel3] *  (gm.od3$Bicycle[sel3]/gm.od3$On.foot[sel3]) *(1.3) 
+   gm.od3$CycleGM[sel4] = gm.od3$FootGM[sel4] *  (gm.od3$Bicycle[sel4]/gm.od3$On.foot[sel4])* 0.92      # 92% of total
+   gm.od3$CycleGM[sel5] = gm.od3$FootGM[sel5] *   1
+   gm.od3$CycleGM[sel6] =  0   }
+
+
+         }
+
 
 #deprecated: correlation model not used anymore
 #gm.od3$CycleGM[!sel] = 0.032639 * gm.od3$all[!sel] - 0.083 * gm.od3$car_driver[!sel]-0.01*gm.od3$foot[!sel]
