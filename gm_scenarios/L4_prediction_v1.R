@@ -4,14 +4,14 @@ library(dplyr)
 library(rgdal)
 library(rgeos)
 
-########PREDICTION of no. of cyclists using 1) Census cyclist/pedestrian ratio + distance 
+########PREDICTION of no. of cyclists using 1) Census cyclist/pedestrian ratio + 2) distance 
 rm(list=ls())
 gm.od3 <- readRDS('./Output/gm.od2.rds')     #flows file w. fast route distances   
 colnames(gm.od3)[which(names(gm.od3)=='length')] = 'dist'
 gm.od3$dist = gm.od3$dist/1000    #convert to Km
 
 sel10minus= (gm.od3$Bicycle + gm.od3$On.foot<=10) |(gm.od3$Bicycle== 0)  | (gm.od3$On.foot== 0)
-sel10plus=  (gm.od3$Bicycle + gm.od3$On.foot>10) & (gm.od3$Bicycle!= 0)  & (gm.od3$On.foot!= 0)
+sel10plus=  ! sel10minus
 
 sel = gm.od3$Area.of.residence== gm.od3$Area.of.workplace
 gm.od3$dist[sel]  = 0
@@ -27,7 +27,7 @@ if (i==1) {sel = gm.od3$FootGM !=0 & sel10minus
   }   else { sel = gm.od3$FootGM !=0 & sel10plus }        #apply only to flows with 'potential' cyclists
    
 sel1 = sel & (gm.od3$dist>= 0) & (gm.od3$dist< 3)   ; sel1factor = 0.025
-sel2 = sel  & (gm.od3$dist>= 3) & ( gm.od3$dist <  6)     ; sel2factor = 0.339
+sel2 = sel & (gm.od3$dist>= 3) & ( gm.od3$dist <  6)     ; sel2factor = 0.339
 sel3 = sel & (gm.od3$dist>= 6) &  (gm.od3$dist <  10)    ; sel3factor = 1.30
 sel4 = sel & (gm.od3$dist>= 10) & (gm.od3$dist <  15)  
 sel5 = sel & (gm.od3$dist>= 15) & (gm.od3$dist <  30)
@@ -55,6 +55,9 @@ gm.od3$CycleGM[sel6] =  0
          }
 
 
+sel = gm.od3$CycleGM > gm.od3$FootGM     #no. cyclist can't exceed cyclists+ pedestrians
+gm.od3$CycleGM[sel] = gm.od3$FootGM[sel]
+
 #deprecated: correlation model not used anymore
 #gm.od3$CycleGM[!sel] = 0.032639 * gm.od3$all[!sel] - 0.083 * gm.od3$car_driver[!sel]-0.01*gm.od3$foot[!sel]
 gm.od3$CycleGM[is.na(gm.od3$CycleGM)] = 0
@@ -62,7 +65,7 @@ gm.od3$CycleGM[is.na(gm.od3$CycleGM)] = 0
 #round 0 dec
 gm.od3$CycleGM <- round(gm.od3$CycleGM, 0)
 gm.od3$FootGM <- gm.od3$FootGM - gm.od3$CycleGM  #adjusts
-sum(gm.od3$CycleGM)     #predicted total cyclists
+sum(gm.od3$CycleGM)     #predicted total cyclists 400+ K
 
 #weekly factors per mode
 weekly_carDriver = 6.57
@@ -188,11 +191,12 @@ save.dta13(td, './Input/msoa_t2w_sex_GM.dta')
 # 'NORMALISATION' TAKES PLACE: the file is made as similar as
 # possible to the existing PCT files (l.Rds, c.Rds, .......)
 
+rm(list=ls())
 
 #NORM. STEP 1:   read pct_lines file + get ready for next stage
 pct <-read.dta13('./Output/pct_lines_GM.dta')   #pct_lines_GM.dta (generated from scenarios code)
 pct = pct[, c(1:length(names(pct)))]
-#pct <-read.csv('./Output/pct_lines_GM.csv',header = T, as.is = T)      #read <pct_lines_GM.csv>
+
 pct <-pct[pct$msoa2!='other', ]
 #colnames(pct)[1:2] <-c('Area.of.residence','Area.of.workplace')
 pct <- pct[pct$all!=0, ] 
@@ -203,14 +207,12 @@ cents = pct[pct$msoa1 == pct$msoa2, ]         #used to generate zones & centroid
 pct = pct[pct$msoa1!=pct$msoa2, ]
 
 
-## RECOVER DISTANCE FROM gm.od1
+## RECOVER DISTANCE **for all FLOWS** FROM gm.od1 (probably not needed)
 gm.od = readRDS('./Output/gm.od1.Rds')
-gm.od <-cbind.data.frame(id=(paste(gm.od$Area.of.residence, 
-                                   gm.od$Area.of.workplace, sep=' ')), gm.od )
+gm.od <-cbind.data.frame(id=(paste(gm.od$msoa1, 
+                                   gm.od$msoa2, sep=' ')), gm.od )
 gm.od$id = as.character(gm.od$id)
-pct = inner_join(pct,gm.od[,c(1,11)], by='id')    
-sel = (names(pct)== 'dist1.25' )
-names(pct)[sel] = 'dist'
+pct = inner_join(pct, gm.od[,c(2,3,14)], by=c('msoa1'='msoa1', 'msoa2'='msoa2') )    
 
 # ###ADD missing col. DISTANCE FROM flow_nat
 # #keeping only same flows as PCT (optional)
@@ -238,7 +240,7 @@ names(pct)[sel] = 'dist'
 pathGM <- '../../pct-data/greater-manchester/'  #before w/o: -NC
 c <-readRDS(file.path(pathGM,'c.Rds'))   
 
-#replace DF + add cols from c:  geo_code | geo_label | avslope
+#replace DF + add cols from c:  geo_code | geo_label | percent_fem | avslope
 c@data = inner_join(c@data[,c(1:3,84)], cents[,c(2,4:83)], by=c('geo_code'='msoa1') )
 saveRDS(c, '../../pct-bigdata/cents-scenarios_GM.rds')
 
@@ -246,9 +248,10 @@ saveRDS(c, '../../pct-bigdata/cents-scenarios_GM.rds')
 #create Spatial Lines object (pct=DF, c=Spatial Polygons/Points DF).
 pct = pct[,c(2,3,1,4:83)]
 pct= stplanr::onewayid(pct, attrib= c(4:83))
-pct = inner_join(pct,gm.od[, c(1:3)], by=c('msoa1'='Area.of.residence', 'msoa2'='Area.of.workplace') )
-sel = (names(pct)== 'dist1.25' )
-names(pct)[sel] = 'dist'
+pct = inner_join(pct,gm.od[, c(2:3, 14)], by=c('msoa1'='msoa1', 'msoa2'='msoa2') )
+
+
+
 l <- od2line(pct,c)
 
 #l@data=l@data[,c(2,3,1,4:83)]
@@ -278,9 +281,9 @@ pctzones <- dplyr::rename(.data = pctzones,
 #pctzones = inner_join(pctzones, c@data[,c(1,3)], by='geo_code')
 
 
-#only col. missing is avslope
+#replace DF in z  + add  missing col. avslope (58)
 z@data = inner_join(z@data[,c(1,58)], pctzones, by='geo_code') # z file FIRST: otherwise labelling issue!!
-#z <- od2line(pctzones, c)
+
 saveRDS(z, './Output/z.rds')    #copy z.rDS to pathGM -------->
 saveRDS(z, '../../pct-bigdata/ukmsoas-scenarios_GM.rds')    #copy z.rDS to pathGM -------->
 

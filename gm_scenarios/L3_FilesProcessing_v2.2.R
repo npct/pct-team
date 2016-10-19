@@ -204,7 +204,9 @@ colnames(gm.od)<-c('Area.of.residence','Area.of.workplace','CarDriver','CarPasse
 gm.od <- gm.od[,c(1:2,7,3:6)]
 saveRDS(gm.od, './Output/gm.od.rds')
 
+#only execute if not run before
 source('L3_addDistances.R')   #add distances to flows using stplanr (latest, from github)
+rm(list=ls())
 
 #get ctw (derived from GM. travel survey) 
 # ctwfile <- './Input/gm.tsurvey.csv'
@@ -213,24 +215,22 @@ source('L3_addDistances.R')   #add distances to flows using stplanr (latest, fro
 # ctw$AllTS <-rowSums(ctw[3:12])
 
 #get l.RDs (Census flow file for G.Manchester) 
-#full Census original file from Anna 15-Sept-2016: 
+#full Census original file from Anna 15-Oct-2016: 
 # Good alternative: to KEEP the differences from GM model: l <- readRDS('../../pct-bigdata/l.Rds')
 gm.od = readRDS('./Output/gm.od1.Rds')     #GM flows w. distances + Census values
 
 # l <- readRDS('../../pct-data/greater-manchester/l.Rds')
 # l <- l@data
-#l = readRDS('./Output/wu03.gm.rds')   
+l = readRDS('./Output/wu03.gm.rds')      # Census flows GM   
 
 #join gm.od (gm layer) <> l (Census flows) to prepare prediction
-#gm.od <-left_join(gm.od, l[,c(1:14)], by=c('msoa1'='msoa1','msoa2'='msoa2'))
+gm.od <-left_join(gm.od, l[,c(1:14)], by=c('msoa1'='msoa1','msoa2'='msoa2'))
 
 #Travel survey not used
 # gm.od <-left_join(gm.od, ctw,
 #          by=c('Area.of.residence'='StartMSOA','Area.of.workplace'='EndMSOA'))
 gm.od[is.na(gm.od)] <-0      #clean NAs
 
-saveRDS(gm.od, './Output/gm.od3.rds')    #as gm.od.Rds=GM OD TRAFFIC+G.M. Census OD
-rm(car,pt,wc, c)
-#rm(car,pt,wc,l,c,ctw)
+saveRDS(gm.od, './Output/gm.od2.rds')    #as gm.od.Rds=GM OD TRAFFIC+G.M. Census OD
 
 

@@ -10,11 +10,6 @@ rm(gm.od)
 gm.od1 = gm.od1[, c(1:8) ]
 names(gm.od1)[c(1,2)]= c('msoa1', 'msoa2')
 
-# gm.od1 <-cbind.data.frame(id=(paste(gm.od1$Area.of.residence,
-#                                     gm.od1$Area.of.workplace, sep=' ')), gm.od1 )
-# gm.od1$id = as.character(gm.od1$id)
-
-
 #  NO NEED to ELIMINATE CENTROIDS before onewayid
 gm.od1= stplanr::onewayid(gm.od1, attrib= c(3:8))
 
@@ -33,7 +28,7 @@ rq = line2route(l=l, route_fun = route_cyclestreet, base_url = "http://pct.cycle
 saveRDS(rq, '../../pct-bigdata/rq_gm.rds')
 
 ldist= cbind(l@data, rf@data[, c(1:11)])
-ldist$length[is.na(ldist$length)]  = 0
+ldist$length[is.na(ldist$length)]  = 0  #inner flows distances=0
 saveRDS(ldist, './Output/gm.od1.Rds')  # flows w. fast route distances 
 
 
