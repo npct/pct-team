@@ -154,7 +154,6 @@ saveRDS(pt,'./Intermediate/L3_pt.rds')
 #######################  NEXT PHASE: combine  traffic modes & join to Census flows/centroids
 
 rm(list=ls())   #clean previous vars
-#library(stplanr)
 
 path <- './Intermediate/'
 wc <- readRDS(paste0(path,'L3_wc.Rds'))
@@ -187,7 +186,7 @@ gm.od$AllGM <- gm.od$CarDriver + gm.od$CarPassenger + gm.od$BusGM + gm.od$FootGM
 
 
 #centroids file for filtering G.M. MSOAs
-pathGM <- 'V:/Group/GitHub/pct-data/greater-manchester/'
+pathGM <- '../../pct-data/greater-manchester/'
 c <-readRDS(file.path(pathGM,'c.Rds'))
 c.df <-c@data
 colnames(c.df)
@@ -203,6 +202,9 @@ rm(c.df)
 gm.od <-gm.od[, -c(8, 9)]
 colnames(gm.od)<-c('Area.of.residence','Area.of.workplace','CarDriver','CarPassenger','BusGM','FootGM','AllGM')
 gm.od <- gm.od[,c(1:2,7,3:6)]
+saveRDS(gm.od, './Output/gm.od.rds')
+
+source('L3_addDistances.R')   #add distances to flows using stplanr (latest, from github)
 
 #get ctw (derived from GM. travel survey) 
 # ctwfile <- './Input/gm.tsurvey.csv'
@@ -213,14 +215,14 @@ gm.od <- gm.od[,c(1:2,7,3:6)]
 #get l.RDs (Census flow file for G.Manchester) 
 #full Census original file from Anna 15-Sept-2016: 
 # Good alternative: to KEEP the differences from GM model: l <- readRDS('../../pct-bigdata/l.Rds')
-gm.od = readRDS('./Output/gm.od2.Rds')
+gm.od = readRDS('./Output/gm.od1.Rds')     #GM flows w. distances + Census values
 
 # l <- readRDS('../../pct-data/greater-manchester/l.Rds')
 # l <- l@data
-l = readRDS('./Output/wu03.gm.rds')
+#l = readRDS('./Output/wu03.gm.rds')   
 
 #join gm.od (gm layer) <> l (Census flows) to prepare prediction
-gm.od <-left_join(gm.od, l[,c(1:14)], by=c('msoa1'='msoa1','msoa2'='msoa2'))
+#gm.od <-left_join(gm.od, l[,c(1:14)], by=c('msoa1'='msoa1','msoa2'='msoa2'))
 
 #Travel survey not used
 # gm.od <-left_join(gm.od, ctw,
@@ -230,7 +232,5 @@ gm.od[is.na(gm.od)] <-0      #clean NAs
 saveRDS(gm.od, './Output/gm.od3.rds')    #as gm.od.Rds=GM OD TRAFFIC+G.M. Census OD
 rm(car,pt,wc, c)
 #rm(car,pt,wc,l,c,ctw)
-
-#NOW read L3_addDistances to get a realistic measure of distance
 
 

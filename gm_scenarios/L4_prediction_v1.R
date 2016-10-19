@@ -6,26 +6,26 @@ library(rgeos)
 
 ########PREDICTION of no. of cyclists using 1) Census cyclist/pedestrian ratio + distance 
 rm(list=ls())
-gm.od3 <- readRDS('./Output/gm.od3.rds')     #flows file w. fast route distances   
+gm.od3 <- readRDS('./Output/gm.od2.rds')     #flows file w. fast route distances   
 colnames(gm.od3)[which(names(gm.od3)=='length')] = 'dist'
-gm.od3$dist = gm.od3$dist/1000    #convert to meters
+gm.od3$dist = gm.od3$dist/1000    #convert to Km
 
-sel10minus=  (gm.od3$All.categories..Method.of.travel.to.work<=10) |(gm.od3$Bicycle== 0)  | (gm.od3$On.foot== 0)
-sel10plus=  !sel10minus
-
+sel10minus= (gm.od3$Bicycle + gm.od3$On.foot<=10) |(gm.od3$Bicycle== 0)  | (gm.od3$On.foot== 0)
+sel10plus=  (gm.od3$Bicycle + gm.od3$On.foot>10) & (gm.od3$Bicycle!= 0)  & (gm.od3$On.foot!= 0)
 
 sel = gm.od3$Area.of.residence== gm.od3$Area.of.workplace
 gm.od3$dist[sel]  = 0
-#rm(cs)
 
 #delete OD flows w/o a distance
 gm.od3= gm.od3[! is.na(gm.od3$dist),]
 
+
+for (i in c(1, 2))   {
+
 # distance ranges for prediction
-
-for (i in c(sel10minus, sel10plus))   {
-
-sel = gm.od3$FootGM !=0 & i  
+if (i==1) {sel = gm.od3$FootGM !=0 & sel10minus
+  }   else { sel = gm.od3$FootGM !=0 & sel10plus }        #apply only to flows with 'potential' cyclists
+   
 sel1 = sel & (gm.od3$dist>= 0) & (gm.od3$dist< 3)   ; sel1factor = 0.025
 sel2 = sel  & (gm.od3$dist>= 3) & ( gm.od3$dist <  6)     ; sel2factor = 0.339
 sel3 = sel & (gm.od3$dist>= 6) &  (gm.od3$dist <  10)    ; sel3factor = 1.30
@@ -33,22 +33,22 @@ sel4 = sel & (gm.od3$dist>= 10) & (gm.od3$dist <  15)
 sel5 = sel & (gm.od3$dist>= 15) & (gm.od3$dist <  30)
 sel6 = sel &  (gm.od3$dist >=  30)
 
-if (i==sel10minus)   {
+if (i==1)   {
 
 gm.od3$CycleGM[sel1] = gm.od3$FootGM[sel1] *   0.10 * 0.25     # 0.025/(1+0.025)
 gm.od3$CycleGM[sel2] = gm.od3$FootGM[sel2] *   0.423 * 0.80    # 0.339/ (1+ 0.339)   
 gm.od3$CycleGM[sel3] = gm.od3$FootGM[sel3] *   0.998 * 1.295
 gm.od3$CycleGM[sel4] = gm.od3$FootGM[sel4] *   0.92             # 92% of total
 gm.od3$CycleGM[sel5] = gm.od3$FootGM[sel5] *   1
-gm.od3$CycleGM[sel6] =  0   }
+gm.od3$CycleGM[sel6] =  0   
 
-else  {
+} else  {
 
-   gm.od3$CycleGM[sel1] = gm.od3$FootGM[sel1] * (gm.od3$Bicycle[sel1]/gm.od3$On.foot[sel1]) *  0.2439      # 0.025/(1+0.025)
-   gm.od3$CycleGM[sel2] = gm.od3$FootGM[sel2] * (gm.od3$Bicycle[sel2]/gm.od3$On.foot[sel2]) * 0.80       # 0.339/ (1+ 0.339)   
-   gm.od3$CycleGM[sel3] = gm.od3$FootGM[sel3] *  (gm.od3$Bicycle[sel3]/gm.od3$On.foot[sel3]) *(1.3) 
-   gm.od3$CycleGM[sel4] = gm.od3$FootGM[sel4] *  (gm.od3$Bicycle[sel4]/gm.od3$On.foot[sel4])* 0.92      # 92% of total
-   gm.od3$CycleGM[sel5] = gm.od3$FootGM[sel5] *   1
+   gm.od3$CycleGM[sel1] = 0.25 * gm.od3$FootGM[sel1] * gm.od3$Bicycle[sel1]/(gm.od3$Bicycle[sel1]+gm.od3$On.foot[sel1])      # 0.025/(1+0.025)
+   gm.od3$CycleGM[sel2] = 0.339 * gm.od3$FootGM[sel2] * gm.od3$Bicycle[sel2]/(gm.od3$Bicycle[sel2]+ gm.od3$On.foot[sel2])        # 0.339/ (1+ 0.339)   
+   gm.od3$CycleGM[sel3] = (1.3)  * gm.od3$FootGM[sel3] * gm.od3$Bicycle[sel3]/(gm.od3$Bicycle[sel3] + gm.od3$On.foot[sel3]) 
+   gm.od3$CycleGM[sel4] = 0.92  * gm.od3$FootGM[sel4] *  gm.od3$Bicycle[sel4]/(gm.od3$Bicycle[sel4] + gm.od3$On.foot[sel4])       # 92% of total
+   gm.od3$CycleGM[sel5] = 1* gm.od3$FootGM[sel5] *   gm.od3$Bicycle[sel6]/(gm.od3$Bicycle[sel6] + gm.od3$On.foot[sel6]  )                 # =1 => all people cycling
    gm.od3$CycleGM[sel6] =  0   }
 
 
@@ -63,15 +63,6 @@ gm.od3$CycleGM[is.na(gm.od3$CycleGM)] = 0
 gm.od3$CycleGM <- round(gm.od3$CycleGM, 0)
 gm.od3$FootGM <- gm.od3$FootGM - gm.od3$CycleGM  #adjusts
 sum(gm.od3$CycleGM)     #predicted total cyclists
-
-# #checks no negative / unreasonable values
-# gm.od3$CycleGM[which(gm.od3$CycleGM<0)] <- 0  #cancels those wrongly predicted as negative
-
-# sel = gm.od3$CycleGM > gm.od3$FootGM
-# gm.od3$CycleGM[sel] <- gm.od3$FootGM[sel] 
-
-# sel =(gm.od3$CycleGM>= 0.5*gm.od3$FootGM & gm.od3$FootGM>20)
-# gm.od3$CycleGM[sel] <- round(gm.od3$CycleGM[sel]* 0.7,0)
 
 #weekly factors per mode
 weekly_carDriver = 6.57
