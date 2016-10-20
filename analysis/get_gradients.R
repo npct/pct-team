@@ -46,15 +46,16 @@ alt90 = getData(name = "alt", country = "NLD", download = TRUE)
 plot(alt90)
 
 grad90 = raster::terrain(x = alt90, opt = "slope", unit = "degrees", neighbors = 8)
-summary(grad90)
-zones_p = gCentroid(zones, byid = T)
-zones_nl_slope = raster::extract(x = grad90, y = z, fun = mean)
-zones@data = cbind(zones@data, slope_angle = zones_nl_slope)
+zones_slope = raster::extract(x = grad90, y = z, fun = mean)
+
+old_slope
+plot()
+
+zones@data = cbind(zones@data, slope_angle = zones_slope)
 zones$slope_percentage[is.na(zones$slope_percentage)] = 0
-tmap_mode()
 tm_shape(zones) +
   tm_fill("slope_percentage")
 
 summary(zones@data)
-write.csv(zones@data[c("BU_CODE", "slope_percentage")], file = "../pct-bigdata/nl-gradients-average.csv")
+write.csv(zones@data[c("BU_CODE", "slope_angle")], file = "../pct-bigdata/nl-gradients-average.csv")
 mapview::mapview(zones[zones$slope_percentage > 1,])
