@@ -1,7 +1,6 @@
-
 rm(list=ls())
 library(stplanr)
-
+setwd('./gm_scenarios/')
 gm.od <- readRDS('./Output/gm.od.rds')
 sum(gm.od$Area.of.residence== gm.od$Area.of.workplace)
 gm.od1 <-cbind(gm.od,CycleGM=0)
@@ -18,6 +17,7 @@ c <-readRDS(file.path(pathGM,'c.Rds'))
 
 gm.od1 = data.frame(gm.od1)
 l <- stplanr::od2line(gm.od1,c)
+l$id <- paste(l$msoa1, l$msoa2)
 
 #rf = line2route(l = l, route_fun = "route_cyclestreet", plan = "fastest")
 rf = line2route(l=l, route_fun = route_cyclestreet, base_url = "http://pct.cyclestreets.net", plan = "fastest")
