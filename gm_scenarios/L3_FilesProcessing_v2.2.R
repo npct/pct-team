@@ -214,17 +214,16 @@ rm(list=ls())
 # ctw[is.na(ctw)] <- 0
 # ctw$AllTS <-rowSums(ctw[3:12])
 
-#get l.RDs (Census flow file for G.Manchester) 
-#full Census original file from Anna 15-Oct-2016: 
-# Good alternative: to KEEP the differences from GM model: l <- readRDS('../../pct-bigdata/l.Rds')
-gm.od = readRDS('./Output/gm.od1.Rds')     #GM flows w. distances + Census values
+#GM flows w. distances + Census values
+gm.od = readRDS('./Output/gm.od1.Rds')     
 
 # l <- readRDS('../../pct-data/greater-manchester/l.Rds')
 # l <- l@data
-l = readRDS('./Output/wu03.gm.rds')      # Census flows GM   
+#full Census original file from Anna 15-Oct-2016: 
+wu03.gm = readRDS('./Output/wu03.gm.rds')      # Census flows GM   
 
 #join gm.od (gm layer) <> l (Census flows) to prepare prediction
-gm.od <-left_join(gm.od, l[,c(1:14)], by=c('msoa1'='msoa1','msoa2'='msoa2'))
+gm.od <-left_join(gm.od, wu03.gm[,c(1:14)], by=c('msoa1'='msoa1','msoa2'='msoa2'))
 
 #Travel survey not used
 # gm.od <-left_join(gm.od, ctw,
