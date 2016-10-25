@@ -1,7 +1,6 @@
 
 rm(list=ls())
 library(stplanr)
-Sys.setenv(CYCLESTREET = "e149b266f9ec77c2")   #old key:db6ab7dcd748408c
 
 gm.od <- readRDS('./Output/gm.od.rds')
 names(gm.od)[c(1,2)]= c('msoa1', 'msoa2')
