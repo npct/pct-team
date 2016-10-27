@@ -55,6 +55,10 @@ gm.od3$CycleGM[sel6] =  0
 #deprecated: correlation model not used anymore
 #gm.od3$CycleGM[!sel] = 0.032639 * gm.od3$all[!sel] - 0.083 * gm.od3$car_driver[!sel]-0.01*gm.od3$foot[!sel]
 
+#fix abnormally high flows
+sel30 = (gm.od3$CycleGM/gm.od3$AllGM)>0.3
+x = rnorm(n=sum(sel30),mean = 0.3, sd =0.02 )
+gm.od3$CycleGM[sel30] = x[sel30] *gm.od3$AllGM[sel30]
 
 #round 0 dec
 gm.od3$CycleGM <- round(gm.od3$CycleGM, 0)
@@ -105,7 +109,6 @@ l <- cbind(l[,c(1:3)],  from_home=0,
 namesl <-paste0('v',c(1:14))
 colnames(l) <-namesl
 save.dta13(l, './Output/l_scenariosGM.dta')   
-write.csv(l,'./Output/l_scenariosGM.csv',row.names = F) 
 
 ## FOR REFERENCE next section: Columns meaning
 #     home_msoa = v1
@@ -194,7 +197,7 @@ pct <- pct[pct$all!=0, ]
 
 pct <-cbind.data.frame(id=(paste(pct$msoa1,pct$msoa2, sep=' ')),pct)
 pct$id <- as.character( pct$id)
-cents = pct[pct$msoa1 == pct$msoa2, ]         #used to generate zones & centroids below
+cents = pct[pct$msoa1 == pct$msoa2, ] #used to generate zones (zones=all flows)
 pct = pct[pct$msoa1!=pct$msoa2, ]
 
 
@@ -244,16 +247,15 @@ pct$dist= pct$dist/1000
 
 l <- od2line(pct,c)
 saveRDS(l, '../../pct-bigdata/lines_oneway_shapes_updated_GM.Rds')
-
 saveRDS(l,'./Output/l.rds')    #save as l.rds in pathGM
-write.csv(l, './Output/l.csv',row.names = F) 
+
 
 #######  ========================
 
 #NORM. STEP 3:   read pct_areas file -> produce z.Rds
 #pct <-read.dta13(file.choose())        #pct_lines_GM.dta, the flows file
 z = readRDS(file.path(pathGM,'z.Rds'))   
-pctzones <-read.csv('./Output/pct_area_GM.csv',header = T, as.is = T)   
+pctzones <-read.dta13('./Output/pct_area_GM.dta')   
 pctzones <- pctzones[pctzones$all!=0, ]
 
 pctzones <- dplyr::rename(.data = pctzones,
