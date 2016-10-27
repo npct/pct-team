@@ -255,7 +255,9 @@ saveRDS(l,'./Output/l.rds')    #save as l.rds in pathGM
 #NORM. STEP 3:   read pct_areas file -> produce z.Rds
 #pct <-read.dta13(file.choose())        #pct_lines_GM.dta, the flows file
 z = readRDS(file.path(pathGM,'z.Rds'))   
-pctzones <-read.dta13('./Output/pct_area_GM.dta')   
+pctzones <-read.dta13('./Output/pct_area_GM.dta')
+pctzones = pctzones[, c(1:length(names(pctzones)))]
+
 pctzones <- pctzones[pctzones$all!=0, ]
 
 pctzones <- dplyr::rename(.data = pctzones,
