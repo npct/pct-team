@@ -26,10 +26,10 @@ sel1 = sel & (gm.od3$dist>= 0) & (gm.od3$dist< 3)   ; sel1factor = 0.025
 sel2 = sel & (gm.od3$dist>= 3) & ( gm.od3$dist <  6)     ; sel2factor = 0.339
 sel3 = sel & (gm.od3$dist>= 6) &  (gm.od3$dist <  10)    ; sel3factor = 1.30
 sel4 = sel & (gm.od3$dist>= 10) & (gm.od3$dist <  15)  
-sel5 = sel & (gm.od3$dist>= 15) & (gm.od3$dist <  30)
-sel6 = sel &  (gm.od3$dist >=  30)
+sel5 = sel & (gm.od3$dist>= 15)
 
-if (i==1)   {
+
+if (i==1)   {  #flow w. insufficient Census data
 
 #values as per Anna's table 20-Oct-2015
 gm.od3$CycleGM[sel1] = gm.od3$FootGM[sel1] *   0.0703 * 0.32   
@@ -37,17 +37,16 @@ gm.od3$CycleGM[sel2] = gm.od3$FootGM[sel2] *   0.298 * 0.85
 gm.od3$CycleGM[sel3] = gm.od3$FootGM[sel3] *   0.495 * 1.05
 gm.od3$CycleGM[sel4] = gm.od3$FootGM[sel4] *   0.92            
 gm.od3$CycleGM[sel5] = gm.od3$FootGM[sel5] *   1
-gm.od3$CycleGM[sel6] =  0   
 
-} else  {
+
+} else  {   #flow w. enough Census data
 
    gm.od3$CycleGM[sel1] = 0.25 * gm.od3$FootGM[sel1] * gm.od3$Bicycle[sel1]/(gm.od3$Bicycle[sel1]+gm.od3$On.foot[sel1])      # 0.025/(1+0.025)
    gm.od3$CycleGM[sel2] = 0.339 * gm.od3$FootGM[sel2] * gm.od3$Bicycle[sel2]/(gm.od3$Bicycle[sel2]+ gm.od3$On.foot[sel2])        # 0.339/ (1+ 0.339)   
-   gm.od3$CycleGM[sel3] = (1.3)  * gm.od3$FootGM[sel3] * gm.od3$Bicycle[sel3]/(gm.od3$Bicycle[sel3] + gm.od3$On.foot[sel3]) 
+   gm.od3$CycleGM[sel3] = 1.3  * gm.od3$FootGM[sel3] * gm.od3$Bicycle[sel3]/(gm.od3$Bicycle[sel3] + gm.od3$On.foot[sel3]) 
    gm.od3$CycleGM[sel4] = 0.92  * gm.od3$FootGM[sel4] *  gm.od3$Bicycle[sel4]/(gm.od3$Bicycle[sel4] + gm.od3$On.foot[sel4])       # 92% of total
    gm.od3$CycleGM[sel5] = 1* gm.od3$FootGM[sel5] *   gm.od3$Bicycle[sel6]/(gm.od3$Bicycle[sel6] + gm.od3$On.foot[sel6]  )                 # =1 => all people cycling
-   gm.od3$CycleGM[sel6] =  0   }
-
+               }
 
          }
 
@@ -57,12 +56,13 @@ gm.od3$CycleGM[sel6] =  0
 
 #fix abnormally high flows
 sel30 = (gm.od3$CycleGM/gm.od3$AllGM)>0.3
-x = rnorm(n=sum(sel30),mean = 0.3, sd =0.02 )
+x = rnorm(n=sum(sel30),mean = 0.27, sd =0.05 )
 gm.od3$CycleGM[sel30] = x[sel30] *gm.od3$AllGM[sel30]
 
 #round 0 dec
 gm.od3$CycleGM <- round(gm.od3$CycleGM, 0)
 gm.od3$FootGM <- gm.od3$FootGM - gm.od3$CycleGM  #adjusts
+gm.od3[is.na(gm.od3)] =  0
 sum(gm.od3$CycleGM)     #predicted total cyclists ~300 K
 
 #weekly factors per mode
