@@ -354,7 +354,7 @@ straight 'desire lines' or as routes allocated to the transport network.
 <!-- hilliness and route network distance as additional variables at the OD level. -->
 
 ```{r, echo=FALSE, fig.cap="Flow diagram illustrating the input data and processing steps used to create the input data used by the PCT. The abbreviations are as follows: HEAT = Health Economic Assessment Tool, OD pair = origin-destination pair, MSOA = Middle-Layer Super Output Area"}
-knitr::include_graphics("160516_Fig1.pdf")
+knitr::include_graphics("161103_NatModel2_MainPaper_Fig1Fig2.pdf")
 file.copy("160516_Fig1.pdf", "/tmp/flow-model/")
 ```
 
