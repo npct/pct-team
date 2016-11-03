@@ -17,39 +17,38 @@ gm.od3= gm.od3[! is.na(gm.od3$dist),]
 
 
 for (i in c(1, 2))   {
-
-# distance ranges for prediction
-if (i==1) {sel = gm.od3$FootGM !=0 & sel10minus
-  }   else { sel = gm.od3$FootGM !=0 & sel10plus }        #apply only to flows with 'potential' cyclists
    
-sel1 = sel & (gm.od3$dist>= 0) & (gm.od3$dist< 3)   ; sel1factor = 0.025
-sel2 = sel & (gm.od3$dist>= 3) & ( gm.od3$dist <  6)     ; sel2factor = 0.339
-sel3 = sel & (gm.od3$dist>= 6) &  (gm.od3$dist <  10)    ; sel3factor = 1.30
-sel4 = sel & (gm.od3$dist>= 10) & (gm.od3$dist <  15)  
-sel5 = sel & (gm.od3$dist>= 15) & (gm.od3$dist <  30)
-sel6 = sel &  (gm.od3$dist >=  30)
-
-if (i==1)   {
-
-#values as per Anna's table 20-Oct-2015
-gm.od3$CycleGM[sel1] = gm.od3$FootGM[sel1] *   0.0703 * 0.32   
-gm.od3$CycleGM[sel2] = gm.od3$FootGM[sel2] *   0.298 * 0.85    
-gm.od3$CycleGM[sel3] = gm.od3$FootGM[sel3] *   0.495 * 1.05
-gm.od3$CycleGM[sel4] = gm.od3$FootGM[sel4] *   0.92            
-gm.od3$CycleGM[sel5] = gm.od3$FootGM[sel5] *   1
-gm.od3$CycleGM[sel6] =  0   
-
-} else  {
-
-   gm.od3$CycleGM[sel1] = 0.25 * gm.od3$FootGM[sel1] * gm.od3$Bicycle[sel1]/(gm.od3$Bicycle[sel1]+gm.od3$On.foot[sel1])      # 0.025/(1+0.025)
-   gm.od3$CycleGM[sel2] = 0.339 * gm.od3$FootGM[sel2] * gm.od3$Bicycle[sel2]/(gm.od3$Bicycle[sel2]+ gm.od3$On.foot[sel2])        # 0.339/ (1+ 0.339)   
-   gm.od3$CycleGM[sel3] = (1.3)  * gm.od3$FootGM[sel3] * gm.od3$Bicycle[sel3]/(gm.od3$Bicycle[sel3] + gm.od3$On.foot[sel3]) 
-   gm.od3$CycleGM[sel4] = 0.92  * gm.od3$FootGM[sel4] *  gm.od3$Bicycle[sel4]/(gm.od3$Bicycle[sel4] + gm.od3$On.foot[sel4])       # 92% of total
-   gm.od3$CycleGM[sel5] = 1* gm.od3$FootGM[sel5] *   gm.od3$Bicycle[sel6]/(gm.od3$Bicycle[sel6] + gm.od3$On.foot[sel6]  )                 # =1 => all people cycling
-   gm.od3$CycleGM[sel6] =  0   }
-
-
-         }
+   # distance ranges for prediction
+   if (i==1) {sel = gm.od3$FootGM !=0 & sel10minus
+   }   else { sel = gm.od3$FootGM !=0 & sel10plus }        #apply only to flows with 'potential' cyclists
+   
+   sel1 = sel & (gm.od3$dist>= 0) & (gm.od3$dist< 3)   ; sel1factor = 0.025
+   sel2 = sel & (gm.od3$dist>= 3) & ( gm.od3$dist <  6)     ; sel2factor = 0.339
+   sel3 = sel & (gm.od3$dist>= 6) &  (gm.od3$dist <  10)    ; sel3factor = 1.30
+   sel4 = sel & (gm.od3$dist>= 10) & (gm.od3$dist <  15)  
+   sel5 = sel & (gm.od3$dist>= 15)
+   
+   
+   if (i==1)   {  #flows w. insufficient Census data
+      
+      #values as per Anna's table 20-Oct-2015 (replace w. Census MSOA-level cycling%)
+      gm.od3$CycleGM[sel1] = gm.od3$FootGM[sel1] *   0.0703 * 0.32   
+      gm.od3$CycleGM[sel2] = gm.od3$FootGM[sel2] *   0.298 * 0.85    
+      gm.od3$CycleGM[sel3] = gm.od3$FootGM[sel3] *   0.495 * 1.05
+      gm.od3$CycleGM[sel4] = gm.od3$FootGM[sel4] *   0.92            
+      gm.od3$CycleGM[sel5] = gm.od3$FootGM[sel5] *   1
+      
+      
+   } else  {   #flows w. enough Census data
+      
+      gm.od3$CycleGM[sel1] = 0.25 * gm.od3$FootGM[sel1] * gm.od3$Bicycle[sel1]/(gm.od3$Bicycle[sel1]+gm.od3$On.foot[sel1])      # 0.025/(1+0.025)
+      gm.od3$CycleGM[sel2] = 0.339 * gm.od3$FootGM[sel2] * gm.od3$Bicycle[sel2]/(gm.od3$Bicycle[sel2]+ gm.od3$On.foot[sel2])        # 0.339/ (1+ 0.339)   
+      gm.od3$CycleGM[sel3] = 1.3  * gm.od3$FootGM[sel3] * gm.od3$Bicycle[sel3]/(gm.od3$Bicycle[sel3] + gm.od3$On.foot[sel3]) 
+      gm.od3$CycleGM[sel4] = 0.92  * gm.od3$FootGM[sel4] *  gm.od3$Bicycle[sel4]/(gm.od3$Bicycle[sel4] + gm.od3$On.foot[sel4])       # 92% of total
+      gm.od3$CycleGM[sel5] = 1* gm.od3$FootGM[sel5] *   gm.od3$Bicycle[sel5]/(gm.od3$Bicycle[sel5] + gm.od3$On.foot[sel5]  )                 # =1 => all people cycling
+   }
+   
+}
 
 
 #deprecated: correlation model not used anymore
@@ -57,12 +56,13 @@ gm.od3$CycleGM[sel6] =  0
 
 #fix abnormally high flows
 sel30 = (gm.od3$CycleGM/gm.od3$AllGM)>0.3
-x = rnorm(n=sum(sel30),mean = 0.3, sd =0.02 )
-gm.od3$CycleGM[sel30] = x[sel30] *gm.od3$AllGM[sel30]
+x= runif(sum(sel30),0.2,0.3)     #x = rnorm(sum(sel30), 0.25, sd =0.02 )
+gm.od3$CycleGM[sel30] = x * gm.od3$AllGM[sel30]
 
 #round 0 dec
 gm.od3$CycleGM <- round(gm.od3$CycleGM, 0)
 gm.od3$FootGM <- gm.od3$FootGM - gm.od3$CycleGM  #adjusts
+gm.od3[is.na(gm.od3)] =  0
 sum(gm.od3$CycleGM)     #predicted total cyclists ~300 K
 
 #weekly factors per mode
@@ -78,30 +78,36 @@ gm.od3$BusGM   =  weekly_pt      * gm.od3$BusGM
 gm.od3$FootGM   = weekly_walking * gm.od3$FootGM
 gm.od3$CycleGM  =   weekly_cycling * gm.od3$CycleGM
 
-gm.od3[ , c(4:8)] = round(gm.od3[ , c(4:8)], 0)
+gm.od3[ , c(6:10)] = round(gm.od3[ , c(6:10)], 0)
 gm.od3$AllGM = gm.od3$CarDriver + gm.od3$CarPassenger + gm.od3$BusGM + gm.od3$FootGM + gm.od3$CycleGM
 
 ########### PREPARE for SCENARIOS GENERATION
-l <- gm.od3[,1:8]
+l <- gm.od3[,1:10]
 
 #gm.od3.Rds contains the no. of cyclists per each GM flow (intraflows included?)
 saveRDS(gm.od3, './Output/gm.od3.rds')     #gm.od3.Rds
 rm(gm.od3)
 
 #rename-sort-add cols to match l.Rds in PCT
-colnames(l)[3:8] <-c('all','car_driver','car_passenger', 'bus','foot','bicycle')
+l  = dplyr::rename(l,         all = AllGM,
+                   car_driver = CarDriver,
+                   car_passenger = CarPassenger,
+                   bus = BusGM,
+                   foot = FootGM,
+                   bicycle = CycleGM   )
 
-l <- cbind(l[,c(1:3)],  from_home=0, 
-                        light_rail=0,
-                        train=0,
-                        bus=l$bus, 
-                        taxi=0,  
-                        motorbike=0,
-                        car_driver=l$car_driver, 
-                        car_passenger=l$car_passenger, 
-                        bicycle=l$bicycle, 
-                        foot=l$foot, 
-                        other=0 )
+
+l <- cbind(l[,c(3:5)],  from_home=0, 
+           light_rail=0,
+           train=0,
+           bus=l$bus, 
+           taxi=0,  
+           motorbike=0,
+           car_driver=l$car_driver, 
+           car_passenger=l$car_passenger, 
+           bicycle=l$bicycle, 
+           foot=l$foot, 
+           other=0 )
 
 
 
@@ -127,9 +133,10 @@ save.dta13(l, './Output/l_scenariosGM.dta')
 #     other = v14
 
 dropcols = grep(pattern = 'sel',x = ls())
+rm(list=ls()[dropcols])
 
 dropcols = grep(pattern = 'weekly_',x = ls())
-
+rm(list=ls()[dropcols])
 
 #this is needed to run scenarios (and is not in GM layer)
 ########## add msoa m/f ratios to msoa_t2w_sex_GM.dta (m/f ratios & m/f cyclist ratios)
@@ -192,43 +199,19 @@ pct <-read.dta13('./Output/pct_lines_GM.dta')   #pct_lines_GM.dta (generated fro
 pct = pct[, c(1:length(names(pct)))]
 
 pct <-pct[pct$msoa2!='other', ]
-#colnames(pct)[1:2] <-c('Area.of.residence','Area.of.workplace')
 pct <- pct[pct$all!=0, ] 
 
 pct <-cbind.data.frame(id=(paste(pct$msoa1,pct$msoa2, sep=' ')),pct)
 pct$id <- as.character( pct$id)
-cents = pct[pct$msoa1 == pct$msoa2, ] #used to generate zones (zones=all flows)
-pct = pct[pct$msoa1!=pct$msoa2, ]
+cents = pct[pct$msoa1 == pct$msoa2, ] #used to generate centroids (inner flows)
+pct = pct[pct$msoa1!=pct$msoa2, ]     #used to generate outer flows
 
 
-## RECOVER DISTANCE **for all FLOWS** FROM gm.od1 (probably not needed)
-gm.od = readRDS('./Output/gm.od1.Rds')
-gm.od <-cbind.data.frame(id=(paste(gm.od$msoa1, 
-                                   gm.od$msoa2, sep=' ')), gm.od )
-gm.od$id = as.character(gm.od$id)
-pct = inner_join(pct, gm.od[,c(2,3,10)], by=c('msoa1'='msoa1', 'msoa2'='msoa2') )    
-
-# ###ADD missing col. DISTANCE FROM flow_nat
-# #keeping only same flows as PCT (optional)
-# path <-'V:/Group/GitHub/pct-bigdata/'
-# flow_nat <- readRDS(file.path(path,'pct_lines_oneway_shapes.Rds'))  
-# pct <-inner_join(pct,flow_nat@data[,c(1,84)], by='id')    
-
-
-#match PCT colnames (as most are uppercase)
-# pct <- dplyr::rename(.data = pct, All=all,
-#                                  Train=train,
-#                                  Bus=bus,
-#                                  Taxi=taxi,
-#                                   Motorbike=motorbike,
-#                                   Car_driver=car_driver,
-#                                   Car_passenger=car_passenger,
-#                                   Bicycle = bicycle,
-#                                   Foot = foot,
-#                                   Other = other)
-
-
-#pct = pct[, -c(2,3) ] #delete Area.of.residence & Area.of.workplace
+# ## RECOVER DISTANCE **for all FLOWS** FROM gm.od1
+# gm.od1 = readRDS('./Output/gm.od1.Rds')
+# gm.od1 <-cbind.data.frame(id=(paste(gm.od1$msoa1, gm.od1$msoa2, sep=' ')), gm.od1 )
+# gm.od1$id = as.character(gm.od1$id)
+# pct = inner_join(pct, gm.od1[,c(1:3)], by='id' )    
 
 #read c.Rds
 pathGM <- '../../pct-data/greater-manchester/'  #before w/o: -NC
@@ -240,12 +223,17 @@ saveRDS(c, '../../pct-bigdata/cents-scenarios_GM.rds')
 
 ###### TRANSFORMATION required for PCT
 #create Spatial Lines object (pct=DF, c=Spatial Polygons/Points DF).
-pct = pct[,c(2,3,1,4:83)]
-pct= stplanr::onewayid(pct, attrib= c(4:83))
-pct = inner_join(pct,gm.od[, c(2:3, 10)], by=c('msoa1'='msoa1', 'msoa2'='msoa2') )
-pct$dist= pct$dist/1000
+pct = pct[,c(2,3,4:83)]
+pct= stplanr::onewayid(pct, attrib= c(3:82))
+pct=data.frame(pct)
 
-l <- od2line(pct,c)
+l <- stplanr::od2line(pct,c)
+
+#Add dist-slope from gm.od
+l@data = inner_join(l@data,gm.od1[, c(1:5)], by=c('msoa1'='msoa1', 'msoa2'='msoa2') )
+l$dist= l$dist/1000
+
+
 saveRDS(l, '../../pct-bigdata/lines_oneway_shapes_updated_GM.Rds')
 saveRDS(l,'./Output/l.rds')    #save as l.rds in pathGM
 
