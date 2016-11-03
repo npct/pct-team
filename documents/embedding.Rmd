@@ -1,12 +1,14 @@
 ---
 title: "Embedding cycling in the transport planning process"
-author: "Robin Lovelace, John Parkin and Tom Cohen"
 date: '`r Sys.Date()`'
-output: word_document
+output:
+  pdf_document: default
+  word_document: default
 bibliography: references.bib
 ---
 
 ```{r setup, include=FALSE}
+# author: "Robin Lovelace, John Parkin and Tom Cohen"
 knitr::opts_chunk$set(echo = FALSE)
 # library(citr)
 # References are from the cycling-potential library
@@ -15,13 +17,13 @@ knitr::opts_chunk$set(echo = FALSE)
 # bib = httr::GET("https://www.zotero.org/api/groups/418217/collections/JBXTRB93/items/top?limit=100&format=bibtex&v=1", httr::write_disk("references.bib", overwrite = T))
 ```
 
-# Highlights:
-  
-- Explores the position of cycling within the transport planning discipline
-- Traces the historical reasons for the (still continuing) emphasis on motor traffic
-- Identifies practical actions that can be taken to make cycling more central
-- Discusses the structural, institutional barriers prevent cycling being taken seriously
-- Concludes that new open source models have the potential to legitimise cycling in transport planning
+<!-- # Highlights: -->
+
+<!-- - Explores the position of cycling within the transport planning discipline -->
+<!-- - Traces the historical reasons for the (still continuing) emphasis on motor traffic -->
+<!-- - Identifies practical actions that can be taken to make cycling more central -->
+<!-- - Discusses the structural, institutional barriers prevent cycling being taken seriously -->
+<!-- - Concludes that new open source models have the potential to legitimise cycling in transport planning -->
 
 # Abstract {-}
 
