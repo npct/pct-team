@@ -354,8 +354,8 @@ straight 'desire lines' or as routes allocated to the transport network.
 <!-- hilliness and route network distance as additional variables at the OD level. -->
 
 ```{r, echo=FALSE, fig.cap="Flow diagram illustrating the input data and processing steps used to create the input data used by the PCT. The abbreviations are as follows: HEAT = Health Economic Assessment Tool, OD pair = origin-destination pair, MSOA = Middle-Layer Super Output Area"}
-knitr::include_graphics("160516_Fig1.pdf")
-file.copy("160516_Fig1.pdf", "/tmp/flow-model/")
+knitr::include_graphics("161103_NatModel2_MainPaper_Fig1Fig2.pdf")
+file.copy("161103_NatModel2_MainPaper_Fig1Fig2.pdf", "/tmp/flow-model/")
 ```
 
 ## Processing OD data
@@ -440,8 +440,8 @@ We also developed equations to estimate commuting mode share among groups not re
 This model of baseline propensity to cycle formed the basis of three of the four scenarios (Government Target, Go Dutch and Ebikes), as described in more detail in the next section.
 
 ```{r, echo=FALSE, fig.cap="The relationship between distance (left) and hilliness (right) and cycling mode share based on data from the 2011 Census for England and Wales. The plots show actual (blue) vs predicted (red) prevalence of cycling to work among commuters travelling <30km to work."}
-knitr::include_graphics("dist-curve2-ag.pdf")
-file.copy("dist-curve2-ag.pdf", "/tmp/flow-model/")
+knitr::include_graphics("fig1.png")
+file.copy("fig1.png", "/tmp/flow-model/")
 ```
 
 
