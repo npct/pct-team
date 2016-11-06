@@ -1,7 +1,13 @@
 
+rm(list=ls())
+
+gm.od3 <- readRDS('./Output/gm.od2.rds')     #flows file w. fast route distances   
 walkfile <- 'C:/temp/Manchester_Traffic_data/2-L2_L3_level/L2_WC_MSOA.Rds'
 wc <- readRDS(walkfile)  #reads L2_WC_MSOA.Rds
 wc = left_join(wc, gm.od3[ ,c('dist','slope','msoa1', 'msoa2')], by=c("MSOAOrig"='msoa1',"MSOADest"='msoa2'     ))
+
+area_vdm = read.csv('C:/temp/Manchester_Traffic_data/2-L2_L3_level/Areas_VDM.csv',header=T, as.is=T)   
+
 
 #calc mean dist by O-D
 wc.agg.od = aggregate(wc$dist,by=list(wc$Origin, wc$Destination), FUN=mean,na.rm=T)
@@ -14,7 +20,7 @@ wc = inner_join(wc, area_vdm[c("VDMZone", "AreaVDM")],  by=c("Origin" = "VDMZone
 wc = inner_join(wc, area_vdm[c("VDMZone", "AreaVDM")],  by=c("Destination" = "VDMZone") )
 colnames(wc)
 wc = dplyr::rename(.data = wc, AreaOrig = AreaVDM.x,
-AreaDest  = AreaVDM.y  )
+                                 AreaDest  = AreaVDM.y  )
 walkfile <- 'C:/temp/Manchester_Traffic_data/2-L2_L3_level/L2_WC_MSOA.Rds'
 wc <- readRDS(walkfile)  #reads L2_WC_MSOA.Rds
 wc = left_join(wc, gm.od3[ ,c('dist','slope','msoa1', 'msoa2')], by=c("MSOAOrig"='msoa1',"MSOADest"='msoa2'     ))
@@ -31,7 +37,7 @@ wc = inner_join(wc, area_vdm[c("VDMZone", "AreaVDM")],  by=c("Origin" = "VDMZone
 wc = inner_join(wc, area_vdm[c("VDMZone", "AreaVDM")],  by=c("Destination" = "VDMZone") )
 colnames(wc)
 wc = dplyr::rename(.data = wc, AreaVDMOrig = AreaVDM.x,
-AreaVDMDest  = AreaVDM.y  )
+                              AreaVDMDest  = AreaVDM.y  )
 wc$xDemand <- wc$DemandOD *  wc$AreaOrig / wc$AreaVDMOrig
 wc$yDemand <-  wc$AreaDest  / wc$AreaVDMDest
 wc$xyDemand <- wc$xDemand * wc$yDemand
@@ -91,7 +97,7 @@ for (i in c(1, 2))   {
 }
 
 #aggregation
-wc = wc[, c()]
+
 wc <-aggregate(wc[, c('xyDemand','CycleGM')], by=list(wc$MSOAOrig,wc$MSOADest), FUN=sum,na.rm=T)
 colnames(wc) <- c('MSOAOrig','MSOADest','FootGM','CycleGM')
 
