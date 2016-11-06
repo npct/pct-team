@@ -1,26 +1,13 @@
 
 rm(list=ls())
+library("readstata13")
+library(dplyr)
 
-gm.od3 <- readRDS('./Output/gm.od2.rds')     #flows file w. fast route distances   
-walkfile <- 'C:/temp/Manchester_Traffic_data/2-L2_L3_level/L2_WC_MSOA.Rds'
-wc <- readRDS(walkfile)  #reads L2_WC_MSOA.Rds
-wc = left_join(wc, gm.od3[ ,c('dist','slope','msoa1', 'msoa2')], by=c("MSOAOrig"='msoa1',"MSOADest"='msoa2'     ))
-
+gm.od3 <- readRDS('./Output/gm.od1.rds')     #flows file w. fast route distances   
 area_vdm = read.csv('C:/temp/Manchester_Traffic_data/2-L2_L3_level/Areas_VDM.csv',header=T, as.is=T)   
 
 
-#calc mean dist by O-D
-wc.agg.od = aggregate(wc$dist,by=list(wc$Origin, wc$Destination), FUN=mean,na.rm=T)
-names(wc.agg.od)=c('Origin','Destination', 'distmean')
-hist(wc.agg.od$distmean)
-summary(wc.agg.od$distmean)
-wc = inner_join(wc, wc.agg.od, by=c("Origin" = "Origin", "Destination" = "Destination"))
-rm(wc.agg.od)
-wc = inner_join(wc, area_vdm[c("VDMZone", "AreaVDM")],  by=c("Origin" = "VDMZone") )
-wc = inner_join(wc, area_vdm[c("VDMZone", "AreaVDM")],  by=c("Destination" = "VDMZone") )
-colnames(wc)
-wc = dplyr::rename(.data = wc, AreaOrig = AreaVDM.x,
-                                 AreaDest  = AreaVDM.y  )
+###########################
 walkfile <- 'C:/temp/Manchester_Traffic_data/2-L2_L3_level/L2_WC_MSOA.Rds'
 wc <- readRDS(walkfile)  #reads L2_WC_MSOA.Rds
 wc = left_join(wc, gm.od3[ ,c('dist','slope','msoa1', 'msoa2')], by=c("MSOAOrig"='msoa1',"MSOADest"='msoa2'     ))
@@ -33,6 +20,8 @@ summary(wc.agg.od$distmean)
 #add distmean to wc flows
 wc = inner_join(wc, wc.agg.od, by=c("Origin" = "Origin", "Destination" = "Destination"))
 rm(wc.agg.od)
+
+#add VDM areas
 wc = inner_join(wc, area_vdm[c("VDMZone", "AreaVDM")],  by=c("Origin" = "VDMZone") )
 wc = inner_join(wc, area_vdm[c("VDMZone", "AreaVDM")],  by=c("Destination" = "VDMZone") )
 colnames(wc)
@@ -52,8 +41,8 @@ wc <-left_join(wc, wu03.gm, by=c('MSOAOrig'='msoa1','MSOADest'='msoa2'))
 wc[is.na(wc)] = 0
 rm(wu03.gm)
 
-###run prediction on   wc dataset
-wc$distmean = wc$distmean/1000    #convert to Km
+###run prediction on wc dataset
+wc$distmean = wc$distmean*2/3000    #convert to Km
 
 sel10minus= (wc$Bicycle + wc$On.foot<=10) |(wc$Bicycle== 0)  | (wc$On.foot== 0)
 sel10plus=  ! sel10minus
@@ -104,9 +93,41 @@ colnames(wc) <- c('MSOAOrig','MSOADest','FootGM','CycleGM')
 #check & roundings
 sum(wc$FootGM)  #checking demand is ~unchanged= 2.83
 sum(wc$CycleGM)
+
+wc$FootGM = wc$FootGM - wc$CycleGM
+wc$FootGM[wc$FootGM<0 ]=0
 wc[ , c("FootGM","CycleGM")] <- round(wc[ , c("FootGM","CycleGM")], 0)
+
 
 wc <- cbind(wc,mode=1)
 wc <- wc[wc$FootGM!=0 | wc$CycleGM!=0,]
 
 saveRDS(wc,'./Intermediate/L3_wc_meandistance.rds')
+
+#########
+#weekly factors per mode
+weekly_carDriver = 6.57
+weekly_carPassenger = 7.83
+weekly_walking = 6.77
+weekly_cycling = 7.53
+weekly_pt      = 6.35
+
+gm.od3$CarDriver =    weekly_carDriver * gm.od3$CarDriver 
+gm.od3$CarPassenger =     weekly_carPassenger * gm.od3$CarPassenger
+gm.od3$BusGM   =  weekly_pt      * gm.od3$BusGM   
+gm.od3$FootGM   = weekly_walking * gm.od3$FootGM
+gm.od3$CycleGM  =   weekly_cycling * gm.od3$CycleGM
+
+gm.od3[ , c(6:10)] = round(gm.od3[ , c(6:10)], 0)
+gm.od3$AllGM = gm.od3$CarDriver + gm.od3$CarPassenger + gm.od3$BusGM + gm.od3$FootGM + gm.od3$CycleGM
+
+########### PREPARE for SCENARIOS GENERATION
+l <- gm.od3[,1:10]
+
+#gm.od3.Rds contains the no. of cyclists per each GM flow (intraflows included?)
+saveRDS(gm.od3, './Output/gm.od3.rds')     #gm.od3.Rds
+rm(gm.od3)
+
+
+
+

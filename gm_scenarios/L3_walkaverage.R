@@ -1,7 +1,9 @@
 #new approach, uses average distances by O-D and not converted to MSOA distances
+rm(list=ls())
 
 #read wc flows
 library(dplyr)
+
 walkfile <- 'C:/temp/Manchester_Traffic_data/2-L2_L3_level/L2_WC_MSOA.Rds'
 wc <- readRDS(walkfile)  #reads L2_WC_MSOA.Rds
 #wc=wc[,c("Origin","Destination","DemandOD","MSOAOrig","MSOADest")]

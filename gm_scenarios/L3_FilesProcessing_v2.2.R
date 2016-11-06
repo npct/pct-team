@@ -157,12 +157,12 @@ saveRDS(pt,'./Intermediate/L3_pt.rds')
 rm(list=ls())   #clean previous vars
 
 path <- './Intermediate/'
-wc <- readRDS(paste0(path,'L3_wc.Rds'))
+wc <- readRDS(paste0(path,'L3_wc.Rds'))   # wc <- readRDS(paste0(path,'L3_wc_meandistance.Rds'))
 pt <- readRDS(paste0(path,'L3_pt.Rds'))
 car <- readRDS(paste0(path,'L3_car.Rds'))
 
 #reshape for rbind
-colnames(wc) <- c("MSOAOrig","MSOADest","FootGM", "mode")
+colnames(wc) <- c("MSOAOrig","MSOADest","FootGM", "mode") 
 colnames(pt) <- c("MSOAOrig","MSOADest","BusGM", "mode")
 colnames(car) <- c("MSOAOrig","MSOADest","CarDriver","CarPassenger", "mode")
 
