@@ -17,34 +17,33 @@ c <-readRDS(file.path(pathGM,'c.Rds'))
 gm.od1 = data.frame(gm.od1)
 l <- stplanr::od2line(gm.od1,c)
 
-#rf = line2route(l = l, route_fun = "route_cyclestreet", plan = "fastest")
+#use PCT-Cyclestreet server
 rf = line2route(l=l, route_fun = route_cyclestreet, base_url = "http://pct.cyclestreets.net", plan = "fastest")
-saveRDS(rf, '../../pct-bigdata/rf_gm.rds')
+saveRDS(rf, '../../pct-bigdata/rf_gm1.rds')
 
 rq = line2route(l=l, route_fun = route_cyclestreet, base_url = "http://pct.cyclestreets.net", plan = "quietest")
-saveRDS(rq, '../../pct-bigdata/rq_gm.rds')
+saveRDS(rq, '../../pct-bigdata/rq_gm1.rds')
 
-ldist= cbind(l@data, rf@data[, c(1:11)])
+ldist= cbind(l@data, rf@data[, c(1:15)])    #rf 15+1 columns now
 ldist$length[is.na(ldist$length)]  = 0  #inner flows distances=0
 
 ######## DISAGGREGATING file
 rm(gm.od1, rf)
 
-gm.od=cbind(id1=paste(gm.od$msoa1 , gm.od$msoa2), id2=paste(gm.od$msoa2 , gm.od$msoa1), gm.od)
+gm.od=cbind(id1=paste(gm.od$msoa1 , gm.od$msoa2), id2=paste(gm.od$msoa2 , gm.od$msoa1),
+            dist=0, slope=0, gm.od)
 gm.od$id1 = as.character(gm.od$id1)
 gm.od$id2 = as.character(gm.od$id2)
 ldist$id =paste(ldist$msoa1 , ldist$msoa2)
 
-gm.od$dist = 0   #add distance column
-gm.od$slope = 0
 
-gm.od= left_join(gm.od, ldist[, c(9:21)], by=c('id1'='id') )
+gm.od= left_join(gm.od, ldist[, c(10:25)], by=c('id1'='id') )
 sel = ! is.na(gm.od$length) &  ! is.na(gm.od$av_incline)
 gm.od$dist[sel] = gm.od$length[sel]
 gm.od$slope[sel] = gm.od$av_incline[sel]
 
 
-gm.od= left_join(gm.od[ , c(1:12)], ldist[, c(9:21)], by=c('id2'='id') )
+gm.od= left_join(gm.od[ , c(1:12)], ldist[, c(10:25)], by=c('id2'='id') )
 sel = ! is.na(gm.od$length) &  ! is.na(gm.od$av_incline)
 gm.od$dist[sel] = gm.od$length[sel]
 gm.od$slope[sel] = gm.od$av_incline[sel]
@@ -52,18 +51,9 @@ gm.od$slope[sel] = gm.od$av_incline[sel]
 sum(is.na(gm.od$dist))   # must be 0 ( all distances rebuilt)
 sum(is.na(gm.od$slope))   
 
-saveRDS(gm.od[,c(3:12)], './Output/gm.od1.Rds')  # flows w. fast route distances 
+saveRDS(gm.od[,c(3:12)], './Output/gm.od1.Rds')  # flows w. fast route distances/slopes 
 
 
-###################  DEPRECATED for FAST ROUTES DISTANCES
-# rm(list=ls())
-# gm.od <- readRDS('./Output/gm.od1.rds')
-# sum(gm.od$Area.of.residence== gm.od$Area.of.workplace)
-# gm.od1 <-cbind(gm.od,CycleGM=0)
-# rm(gm.od)
-# 
-# gm.od1 = gm.od1[, c(1:8) ]
-# 
 # 
 # ########### read NATIONAL CENTROIDS file, subset to G.M.
 # cents = geojsonio::geojson_read("../../pct-bigdata/cents-scenarios.geojson", what = "sp")

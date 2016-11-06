@@ -50,6 +50,10 @@ for (i in c(1, 2))   {
    
 }
 
+sum(gm.od3$CycleGM)
+sum(gm.od3$CycleGM)/ sum(gm.od3$AllGM)
+summary(gm.od3$CycleGM/gm.od3$AllGM  )
+
 
 #deprecated: correlation model not used anymore
 #gm.od3$CycleGM[!sel] = 0.032639 * gm.od3$all[!sel] - 0.083 * gm.od3$car_driver[!sel]-0.01*gm.od3$foot[!sel]

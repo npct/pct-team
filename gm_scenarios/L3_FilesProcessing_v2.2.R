@@ -21,7 +21,7 @@ car0 <-read.csv('C:/temp/Manchester_Traffic_data/0-L0_level/0_CarOD.csv',header=
 colnames(car0)
 head(car0)
 
-#total sum(car0$DemandN) for G.M. region: 3.8M (people)
+#total Driv+Pass demand for G.M. region: 3.8M (people)
 #check commuter demand before processing: subset for commuters (UserClass==1)
 car0comm <- subset(x = car0,UserClass==1)
 sel= (car0comm$TimeID==2)
@@ -46,7 +46,7 @@ rm(car1)                #just checking 95% demand before DB processing
 ##################### NORMAL PROCESS #########################
 #
 ############# CAR TRAFFIC: L3 GENERATION FROM L2 (Car traffic processing)
-carfile <- 'C:/temp/Manchester_Traffic_data/2-L2_L3_level/L2_Car_MSOA_v1.rds'
+carfile <- 'C:/temp/Manchester_Traffic_data/2-L2_L3_level/L2Car_MSOA.rds'
 car <- readRDS(carfile)
 
 nrow(car)
@@ -70,7 +70,7 @@ car$xyDemand <- car$xDemand * car$yDemand
 
 carDriver <-aggregate(car$xyDemand,by=list(car$MSOAOrig,car$MSOADest), FUN=sum,na.rm=T)
 colnames(carDriver) <- c('MSOAOrig','MSOADest','DemandDriver')
-sum(carDriver$DemandDriver)  #checking demand is unchanged: ~2.4 M
+sum(carDriver$DemandDriver)  #checking demand is unchanged: ~3.268 M
 carDriver$DemandDriver <- round(carDriver$DemandDriver, 0)
 
 
@@ -80,7 +80,7 @@ car$xyDemand <- car$xDemand * car$yDemand
 
 carPass <-aggregate(car$xyDemand,by=list(car$MSOAOrig,car$MSOADest), FUN=sum,na.rm=T)
 colnames(carPass) <- c('MSOAOrig','MSOADest','DemandPassenger')
-sum(carPass$DemandPassenger)  #checking demand is unchanged ~1.36 M
+sum(carPass$DemandPassenger)  #checking demand is unchanged ~1.757 M
 carPass$DemandPassenger <- round(carPass$DemandPassenger, 0)
 
 # car global demand
@@ -102,13 +102,14 @@ wc = inner_join(wc, area_vdm[c("VDMZone", "AreaVDM")],  by=c("Origin" = "VDMZone
 wc = inner_join(wc, area_vdm[c("VDMZone", "AreaVDM")],  by=c("Destination" = "VDMZone") )
 colnames(wc)
 
-colnames(wc)[c(8,9)]= c('AreaVDMOrig','AreaVDMDest')
-
+wc = dplyr::rename(.data = wc, AreaVDMOrig = AreaVDM.x,
+                               AreaVDMDest  = AreaVDM.y  )
 
 ##################GLOBAL method: allocate AreaOrig first, then AreaDest
 wc$xDemand <- wc$DemandOD *  wc$AreaOrig / wc$AreaVDMOrig  
 wc$yDemand <-  wc$AreaDest  / wc$AreaVDMDest
 wc$xyDemand <- wc$xDemand * wc$yDemand
+sum(wc$xyDemand)
 
 wc <-aggregate(wc$xyDemand,by=list(wc$MSOAOrig,wc$MSOADest), FUN=sum,na.rm=T)
 colnames(wc) <- c('MSOAOrig','MSOADest','DemandT')
@@ -141,7 +142,7 @@ pt$xyDemand <- pt$xDemand * pt$yDemand
 
 pt <-aggregate(pt$xyDemand,by=list(pt$MSOAOrig,pt$MSOADest), FUN=sum, na.rm=T)
 colnames(pt) <- c('MSOAOrig','MSOADest','DemandT')
-sum(pt$DemandT)  #checking demand is unchanged at ~535K trips
+sum(pt$DemandT)  #checking demand is unchanged at ~775K trips
 pt$DemandT <- round(pt$DemandT, 0)
 pt <- cbind(pt, mode=2)
 pt <- pt[pt$DemandT!=0,]
@@ -194,7 +195,7 @@ colnames(c.df)
 #filtering for MSOAOrig & MSOADest ONLY in G.M.
 gm.od <-inner_join(gm.od, c.df[,1:2], by=c('MSOAOrig'='geo_code'))
 gm.od <-inner_join(gm.od, c.df[,1:2], by=c('MSOADest'='geo_code'))
-sum(gm.od$AllGM)   #inner G.M. demand=6.3 M
+sum(gm.od$AllGM)   #inner G.M. demand=7.48 M
 rm(c.df)
 
 #keeping flows >20
@@ -215,21 +216,16 @@ rm(list=ls())
 # ctw$AllTS <-rowSums(ctw[3:12])
 
 #GM flows w. distances + Census values
-gm.od = readRDS('./Output/gm.od1.Rds')     
+gm.od1 = readRDS('./Output/gm.od1.Rds')     
 
-# l <- readRDS('../../pct-data/greater-manchester/l.Rds')
-# l <- l@data
 #full Census original file from Anna 15-Oct-2016: 
 wu03.gm = readRDS('./Output/wu03.gm.rds')      # Census flows GM   
 
 #join gm.od (gm layer) <> l (Census flows) to prepare prediction
-gm.od <-left_join(gm.od, wu03.gm[,c(1:14)], by=c('msoa1'='msoa1','msoa2'='msoa2'))
+gm.od2 <-left_join(gm.od1, wu03.gm, by=c('msoa1'='msoa1','msoa2'='msoa2'))
 
-#Travel survey not used
-# gm.od <-left_join(gm.od, ctw,
-#          by=c('Area.of.residence'='StartMSOA','Area.of.workplace'='EndMSOA'))
-gm.od[is.na(gm.od)] <-0      #clean NAs
+gm.od2[is.na(gm.od2)] <-0      #clean NAs
 
-saveRDS(gm.od, './Output/gm.od2.rds')    #as gm.od.Rds=GM OD TRAFFIC+G.M. Census OD
+saveRDS(gm.od2, './Output/gm.od2.rds')    #as gm.od.Rds=GM OD TRAFFIC+G.M. Census OD
 
 
