@@ -93,12 +93,12 @@ saveRDS(gm.od3, './Output/gm.od3.rds')     #gm.od3.Rds
 rm(gm.od3)
 
 #rename-sort-add cols to match l.Rds in PCT
-l  = dplyr::rename(l,         all = AllGM,
-                   car_driver = CarDriver,
-                   car_passenger = CarPassenger,
-                   bus = BusGM,
-                   foot = FootGM,
-                   bicycle = CycleGM   )
+l  = dplyr::rename(l,   all = AllGM,
+                        car_driver = CarDriver,
+                        car_passenger = CarPassenger,
+                        bus = BusGM,
+                        foot = FootGM,
+                        bicycle = CycleGM   )
 
 
 l <- cbind(l[,c(3:5)],  from_home=0, 

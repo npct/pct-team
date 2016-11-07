@@ -1,15 +1,13 @@
 
 rm(list=ls())
 library(stplanr)
+library(dplyr)
 
 gm.od <- readRDS('./Output/gm.od.rds')
 names(gm.od)[c(1,2)]= c('msoa1', 'msoa2')
 
-gm.od <-cbind(gm.od,CycleGM=0)
-gm.od1 = gm.od[, c(1:8) ]
-
 #  NO NEED to ELIMINATE CENTROIDS before onewayid
-gm.od1= stplanr::onewayid(gm.od1, attrib= c(3:8))
+gm.od1= stplanr::onewayid(gm.od, attrib= c(3:8))
 
 pathGM <- '../../pct-data/greater-manchester/'  #before w/o: -NC
 c <-readRDS(file.path(pathGM,'c.Rds'))   
@@ -18,16 +16,19 @@ gm.od1 = data.frame(gm.od1)
 l <- stplanr::od2line(gm.od1,c)
 
 #use PCT-Cyclestreet server
-rf = line2route(l=l, route_fun = route_cyclestreet, base_url = "http://pct.cyclestreets.net", plan = "fastest")
-saveRDS(rf, '../../pct-bigdata/rf_gm1.rds')
+rf = readRDS('../../pct-bigdata/rf_gm1.rds')
 
-rq = line2route(l=l, route_fun = route_cyclestreet, base_url = "http://pct.cyclestreets.net", plan = "quietest")
-saveRDS(rq, '../../pct-bigdata/rq_gm1.rds')
+#if routes NOT generated:   
+# rf = line2route(l=l, route_fun = route_cyclestreet, base_url = "http://pct.cyclestreets.net", plan = "fastest")
+# saveRDS(rf, '../../pct-bigdata/rf_gm1.rds')
+# 
+# rq = line2route(l=l, route_fun = route_cyclestreet, base_url = "http://pct.cyclestreets.net", plan = "quietest")
+# saveRDS(rq, '../../pct-bigdata/rq_gm1.rds')
 
 ldist= cbind(l@data, rf@data[, c(1:15)])    #rf 15+1 columns now
 ldist$length[is.na(ldist$length)]  = 0  #inner flows distances=0
 
-######## DISAGGREGATING file
+######## DISAGGREGATING file & RECOVERING DISTANCE, ELEVATION...
 rm(gm.od1, rf)
 
 gm.od=cbind(id1=paste(gm.od$msoa1 , gm.od$msoa2), id2=paste(gm.od$msoa2 , gm.od$msoa1),

@@ -5,7 +5,7 @@ library(dplyr)
 
 gm.od3 <- readRDS('./Output/gm.od1.rds')     #flows file w. fast route distances   
 area_vdm = read.csv('C:/temp/Manchester_Traffic_data/2-L2_L3_level/Areas_VDM.csv',header=T, as.is=T)   
-
+summary(gm.od3$dist)
 
 ###########################
 walkfile <- 'C:/temp/Manchester_Traffic_data/2-L2_L3_level/L2_WC_MSOA.Rds'
@@ -27,6 +27,7 @@ wc = inner_join(wc, area_vdm[c("VDMZone", "AreaVDM")],  by=c("Destination" = "VD
 colnames(wc)
 wc = dplyr::rename(.data = wc, AreaVDMOrig = AreaVDM.x,
                               AreaVDMDest  = AreaVDM.y  )
+
 wc$xDemand <- wc$DemandOD *  wc$AreaOrig / wc$AreaVDMOrig
 wc$yDemand <-  wc$AreaDest  / wc$AreaVDMDest
 wc$xyDemand <- wc$xDemand * wc$yDemand
@@ -41,14 +42,17 @@ wc <-left_join(wc, wu03.gm, by=c('MSOAOrig'='msoa1','MSOADest'='msoa2'))
 wc[is.na(wc)] = 0
 rm(wu03.gm)
 
-###run prediction on wc dataset
-wc$distmean = wc$distmean*2/3000    #convert to Km
+###adjust dist mean & run prediction on wc dataset
+sel = (wc$Origin == wc$Destination)   #inner w/c flows
+wc$distmean = wc$distmean/1000    #convert to Km
+wc$distmean[sel] = 0.5 * wc$distmean[sel]    #convert to Km
+
 
 sel10minus= (wc$Bicycle + wc$On.foot<=10) |(wc$Bicycle== 0)  | (wc$On.foot== 0)
 sel10plus=  ! sel10minus
 
 #delete OD flows w/o a distance
-wc= wc[! is.na(wc$distmean),]
+wc= wc[! is.na(wc$distmean),]  #typically all have distance
 wc$CycleGM = 0
 
 for (i in c(1, 2))   {
@@ -93,6 +97,7 @@ colnames(wc) <- c('MSOAOrig','MSOADest','FootGM','CycleGM')
 #check & roundings
 sum(wc$FootGM)  #checking demand is ~unchanged= 2.83
 sum(wc$CycleGM)
+
 
 wc$FootGM = wc$FootGM - wc$CycleGM
 wc$FootGM[wc$FootGM<0 ]=0

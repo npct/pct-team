@@ -167,14 +167,15 @@ colnames(pt) <- c("MSOAOrig","MSOADest","BusGM", "mode")
 colnames(car) <- c("MSOAOrig","MSOADest","CarDriver","CarPassenger", "mode")
 
 #eliminates mode column
-wc <-wc[,-4]
+wc <-wc[,-4]   #wc <-wc[,-5]
 pt <-pt[,-4]
 car <-car[,-5]
 
 #create gm.od by joining car->pt->wc, then rounds flows  
 gm.od <-left_join(car, pt, by=c('MSOAOrig', 'MSOADest'))
 gm.od <-left_join(gm.od, wc, by=c('MSOAOrig', 'MSOADest'))
-gm.od[,3:6] <- round(gm.od[,3:6],0)
+gm.od[,3:6] <- round(gm.od[,3:6],0)     
+#  gm.od[,c("CarDriver","CarPassenger","BusGM","FootGM","CycleGM")] <- round(gm.od[,c("CarDriver","CarPassenger","BusGM","FootGM","CycleGM")],0)   
 gm.od[is.na(gm.od)] <-0
 
 #eliminate flows where ALL are 0
@@ -200,20 +201,14 @@ rm(c.df)
 
 #keeping flows >20
 #gm.od <-gm.od[gm.od$AllGM>20,]          --DEPRECATED
-gm.od <-gm.od[, -c(8, 9)]
-colnames(gm.od)<-c('Area.of.residence','Area.of.workplace','CarDriver','CarPassenger','BusGM','FootGM','AllGM')
-gm.od <- gm.od[,c(1:2,7,3:6)]
+gm.od <-gm.od[,-c(9,10)]
+colnames(gm.od)[1:2]<-c('Area.of.residence','Area.of.workplace')
+gm.od <- gm.od[,c(1:2,7,3:6)]         #  gm.od <- gm.od[,c(1:2,8,3:7)]
 saveRDS(gm.od, './Output/gm.od.rds')
 
 #only execute if not run before
 source('L3_addDistances.R')   #add distances to flows using stplanr (latest, from github)
 rm(list=ls())
-
-#get ctw (derived from GM. travel survey) 
-# ctwfile <- './Input/gm.tsurvey.csv'
-# ctw <- read.csv(ctwfile,header=T, as.is =T)
-# ctw[is.na(ctw)] <- 0
-# ctw$AllTS <-rowSums(ctw[3:12])
 
 #GM flows w. distances + Census values
 gm.od1 = readRDS('./Output/gm.od1.Rds')     
