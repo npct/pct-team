@@ -223,7 +223,7 @@ cents_gm <-readRDS(file.path(pathGM,'c.Rds'))
 
 #replace DF + add cols from c:  geo_code | geo_label | percent_fem | avslope
 cents_gm@data = inner_join(cents_gm@data[,c(1:3,84)], cents[,c(2,4:83)], by=c('geo_code'='msoa1') )
-saveRDS(cents, '../../pct-bigdata/cents-scenarios_GM.rds')
+saveRDS(cents_gm, '../../pct-bigdata/cents-scenarios_GM.rds')
 
 ###### TRANSFORMATION required for PCT
 #create Spatial Lines object (pct=DF, c=Spatial Polygons/Points DF).
@@ -231,7 +231,7 @@ pct = pct[,c(2,3,4:83)]
 pct= stplanr::onewayid(pct, attrib= c(3:82))
 pct=data.frame(pct)
 
-l <- stplanr::od2line(pct,cents)
+l <- stplanr::od2line2(pct,cents_gm)
 
 #Add dist-slope from gm.od
 l@data = inner_join(l@data,gm.od1[, c(1:5)], by=c('msoa1'='msoa1', 'msoa2'='msoa2') )
