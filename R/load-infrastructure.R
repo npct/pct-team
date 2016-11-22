@@ -49,7 +49,7 @@ hs2net = readRDS("input-data/hs2net.Rds")
 lewes_uckfield = readRDS("input-data/lewes_uckfield.Rds")
 
 # tmap_mode("view")
-# qtm(hs2net) +
+# qtm(hs2net, line.col = "HS2_Phase", line.lwd = 3) +
 #   qtm(hs2, line.col = "black") +
 #   qtm(lewes_uckfield, line.col = "blue")
 
