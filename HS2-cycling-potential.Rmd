@@ -1,0 +1,24 @@
+---
+title: "HS2 Cycle Network and Cycling Potential"
+author: "Robin Lovelace"
+date: "`r Sys.Date()`"
+output: bookdown::pdf_document2
+bibliography: documents/references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("../pct-load/set-up.R")
+```
+
+# Introduction
+
+The original plan for this analysis was to assess the cycling potential along the HS2 route.
+The new plan, based on feedback from the DfT about what would be most useful, is to assess the cycling potential along the *cycle path network* designed by consultants to be constructed in tandem with construction of the HS2 route.
+
+An overview of this plan is presented below, alongside some summary statistics of the proposed route.
+
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("figures/hs2-overview.png")
+```
+
