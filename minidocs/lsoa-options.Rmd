@@ -1,0 +1,72 @@
+---
+title: "LSOA layer options"
+author: "Robin Lovelace"
+date: "17 November 2016"
+output: html_document
+---
+
+## Option 1: Integration with existing app
+
+This option would seek to take the LSOA data and use it with the existing app framework and code-base in PCT-shiny. The result of complete integration could be that LSOA data would appear beyond a certain zoom level.
+
+### Pros
+
+Continuity with existing app, less training resources if it worked.
+
+### Cons
+
+Complexity - the pct-shiny codebase is already quite complex. Additional complexity will make it harder to maintain.
+
+Data confidentiality - because we're dealing with confidential data, the less data that can be 'reverse engineered' to the individual level the better. Doing it this way has the strong disadvantage that we'd have to load sensitive data on an external server.
+
+### Technical considerations
+
+Having attempted the switch to LSOA for Cambridge, we found that this option is very difficult and it's questionable whether it would work.
+
+## Option 2: Raster layers
+
+This option would use raster cells to aggregate the results, with a focus on (or exclusively reporting) the Route Network.
+
+### Pros
+
+Rapidly scalable.
+
+Shows innovative methodology.
+
+Overcomes current issue that level of potential on the route network is highly dependent on the current road network - a robust method for aggregating values that looses no information.
+
+Can be served as raster tiles to form the basemap in other applications (e.g. the MSOA PCT).
+
+Very data secure.
+
+### Cons
+
+Will look different from current layers so will need some documentation to explain it.
+
+### Technical considerations
+
+We have tested this method and it scales nationally.
+
+There are still questions about implementation, where we serve it from and visualisation (e.g. colourschemes).
+
+We are confident in our ability to deliver this option.
+
+## Option 3: Variable geographic zones scaling
+
+This would be a separate app in which the zone size varies depending on its size, thus meaning it would in reality be MSOA+ rather than LSOA.
+
+### Pros
+
+Computational efficiency.
+
+### Cons
+
+Easy to mis-understand.
+
+Difficult to explain, maintain and implement.
+
+Zone aggregation parameters are subjective and could be open to criticism, not based on solid research.
+
+### Technical considerations
+
+This is uncharted territory and it's unlikely that we have the technical capacity to implement solutions needed in a short timescale.
