@@ -133,7 +133,6 @@ mpub
 
 saveRDS(mpub, "input-data/hs2mpub.Rds")
 save_tmap(mpub, "hs2cn.html")
-file.rename("hs2cn.html", "../pct-shiny/regions_www/hs2cn.html")
 ```
 
 \newpage
