@@ -10,11 +10,12 @@ author:
 - James Woodcock (University of Cambridge)
 csl: ../documents/elsevier-harvard.csl
 output:
+  html_document: 
+    keep_md: yes
   pdf_document:
     fig_caption: yes
     keep_tex: yes
     number_sections: yes
-  html_document: default
   word_document: default
 header-includes: \usepackage{amsmath} \usepackage{longtable} \usepackage{booktabs}
   \usepackage{setspace} \doublespacing \usepackage{lscape} \usepackage{rotating} \usepackage{tabularx}
