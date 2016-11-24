@@ -225,6 +225,8 @@ There is high cycling potential around Nottingham and Derby and this is reflecte
 
 The HS2CN is denser to the east of the HS2 route in the area than to the west, yet there is high cycling potential both sides of the main track. A noticeable mismatch between the HS2CN and the PCT's Route Network is the high cycling potential of north-south corridors west of the HS2 route. There seems to be high cycling potential between the Derby and Kilburn, for example, which is only partly served by the Peak Links phase of the HS2CN, fro example. There is also high cycling potential in the roads connecting Ilkeston to the east, Little Eaton to the north and Ripley to the far north of Derby which could be better served by the HS2CN.
 
+\newpage
+
 ## Chesterfield and Sheffield
 
 ```{r sheff, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN around Chesterfield and Sheffield."}
@@ -233,7 +235,22 @@ include_graphics("figures/hs2-shef.png")
 
 Sheffield and Chesterfield in particular are well-served by the HS2CN. It is interesting to note that cycling potential in and around Sheffield seems to be higher than cycling potential in and around Chesterfied, probably due to the higher population densities in Sheffield, yet the HS2CN is denser around Chesterfield. This implies expanding the HS2CN in the Sheffield area could increase its benefits. The A618 between Swallownest and Rotherham, and the A6135 between Intake and Sheffield city centre, for example are two options that would build on the existing plans for the HS2CN while providing direct routes where there is strong evidence of high cycling potential.
 
+\newpage
+
 ## Barnsley, Wakefield and Leeds
+
+```{r}
+include_graphics("figures/hs2-shef2.png")
+```
+
+
+There is high cycling potential on both sides of HS2 in the almost continuously populated area within the km buffer of its route between Barnesley and Leeds. There is currently poor provision for cycling in this area, except for the relatively narrow and rural Pennine way off-road cycle path.
+
+A dense netork of routes with high cycling potential is supported by the HS2CN around Barnesley, with many crossings reducing the potential for severance impacts of HS2, for emaple between Wakefield and Pontefract. One area of slight divergence between the Route Network layer of the PCT and the HS2CN in this area is with respect to the relative density of cycling networks in urban centres and their surroundings. The PCT suggests that the density of cycle networks should be much denser in city centres, for example around Leeds, Huddersfile, Haliface and Wakefield. The HS2CN, by contrast, has a relatively uniform density in these areas compared with their suburban and rural surroundings. This is a pattern that applies throughout the HS2CN-PCT comparison but which is particularly noticeable in this area. To address this issue, the HS2CN could be supplemented by additional paths and other interventions encouraging cycling close to the city centres.
+
+It is interesting to note that the HS2CN duplicates the route of the CityConnect Leeds-Bradford route for much of he way and makes use of the existing canal tow-path in the area, while omitting Otley Road to whice has the highest cycling potential of all arterial routes in Leeds (and West Yorkshire overall) under the Government Target scenario used for this analysis. Another discrepancy between the PCT analysis and the HS2CN in the region is the density of east-west routes to the south of Leeds in the proposed network compared with the relative absence of proposed routes going due east further north, e.g. from Leeds city centre towards Garforth. There is clearly high cycling potential along York Road (which is only partly served by a thin extension of the CityConnect route a couple of km in that direction) and Selby Road that could be well served by extensions to the HS2CN.
+
+Another route with relatively high cycling potential in close proximity to the route of HS2 yet not served by the HS2CN is corridor to the east of Leeds/Wakefield running north-south between Tadcaster and knottingley/Pontefract. Extensions to the HS2CN along this corridor, e.g. along the A162, could greatly benefit utility cyclists in the area, building on the segments of the HS2CN that would connect Tadcaster to Castleford via Garforth and Aberford.
 
 
 
