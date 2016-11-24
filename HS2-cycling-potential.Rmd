@@ -120,13 +120,15 @@ rnet@data[,scen][rnet@data[,scen] > 5000] = 5000
 summary(rnet$govtarget_slc)
 rnet_high = rnet[rnet$govtarget_slc > 200,]
 tmap_mode("view")
-tm_shape(hs2net) +
-  tm_lines(col = "HS2_Phase", lwd = 3) +
+tm_shape(hs2) +
+  tm_lines(col = "black", lwd = 5) +
+  tm_shape(hs2net) +
+  tm_lines(col = "HS2_Phase", lwd = 3, palette = "Dark2") +
   tm_shape(rnet) +
   tm_lines(col = "darkblue", lwd = "govtarget_slc", scale = 50) +
   tm_shape(regions) +
   tm_borders(col = "grey", lwd = 2) +
-  qtm(hs2, line.col = "black", lwd = 5)
+  tm_scale_bar()
 
 # Create simple, usable output
 object.size(hs2net) / 1000000
@@ -212,4 +214,37 @@ include_graphics("figures/hs2-birm.png")
 ```
 
 \newpage
+
+## Nottingham and Derby
+
+```{r notts, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN around Nottingham and Derby region"}
+include_graphics("figures/hs2-notts.png")
+```
+
+There is high cycling potential around Nottingham and Derby and this is reflected in the HS2CN, which branches out substantially around the centres of both cities, especially Nottingham. There HS2CN is denser to the south of Nottingham than to the north. The Route Network suggests that there is high cycling potential to both the north and south, however, suggesting the opportunity to extend the HS2CN to the north, to increase the density of the cycle network in that part of the city.
+
+The HS2CN is denser to the east of the HS2 route in the area than to the west, yet there is high cycling potential both sides of the main track. A noticeable mismatch between the HS2CN and the PCT's Route Network is the high cycling potential of north-south corridors west of the HS2 route. There seems to be high cycling potential between the Derby and Kilburn, for example, which is only partly served by the Peak Links phase of the HS2CN, fro example. There is also high cycling potential in the roads connecting Ilkeston to the east, Little Eaton to the north and Ripley to the far north of Derby which could be better served by the HS2CN.
+
+## Chesterfield and Sheffield
+
+```{r sheff, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN around Chesterfield and Sheffield."}
+include_graphics("figures/hs2-shef.png")
+```
+
+Sheffield and Chesterfield in particular are well-served by the HS2CN. It is interesting to note that cycling potential in and around Sheffield seems to be higher than cycling potential in and around Chesterfied, probably due to the higher population densities in Sheffield, yet the HS2CN is denser around Chesterfield. This implies expanding the HS2CN in the Sheffield area could increase its benefits. The A618 between Swallownest and Rotherham, and the A6135 between Intake and Sheffield city centre, for example are two options that would build on the existing plans for the HS2CN while providing direct routes where there is strong evidence of high cycling potential.
+
+## Barnsley, Wakefield and Leeds
+
+
+
+## Staffordshire
+
+## Greater Manchester
+
+## Liverpool City Region
+
+and, if people think that would be useful,
+
+## West London
+
 
