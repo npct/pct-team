@@ -239,7 +239,7 @@ Sheffield and Chesterfield in particular are well-served by the HS2CN. It is int
 
 ## Barnsley, Wakefield and Leeds
 
-```{r sheff, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN around Barnesley, Wakefield and Leeds."}
+```{r lds, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN around Barnesley, Wakefield and Leeds."}
 include_graphics("figures/hs2-shef2.png")
 ```
 
@@ -256,7 +256,7 @@ Another route with relatively high cycling potential in close proximity to the r
 
 ## Staffordshire and Cheshire
 
-```{r sheff, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN in Staffordshire."}
+```{r staf, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN in Staffordshire."}
 include_graphics("figures/hs2-staf.png")
 ```
 
@@ -274,17 +274,25 @@ In Crewe the highest cycling potential is out towards the neighbouring settlemen
 
 ## Greater Manchester
 
-```{r sheff, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN in Staffordshire."}
+```{r man, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN in Staffordshire."}
 include_graphics("figures/hs2-man.png")
 ```
+
+As a densely populated connerbation with a strong regional economy, Greater Manchester has very high cycling potential. It therefore makes sense for the HS2CN to become more dense in this region. However, the densification does not correspond with the areas of highest cycling potental inferred from the Route Network layer of the PCT. There is a dense proposed network surrounding Knutsford and north of Wilmslow. However, there is only one route into Manchester city centre in the Phase 2 plans (although another is proposed in Phase 3), which has much higher levels of cycling potential. This suggests opportunities for extending the HS2CN to better meet the latent demand for utility cycling in the region.
+
+The HS2CN travels west towards Wigan not from Manchester via Salford, Stretford and Hindley (where there is substantial east-west cycling potential), but from Altrinchan following closely the HS2 route, which as lower cycling potential.
 
 \newpage
 
 ## Liverpool City Region
 
-```{r sheff, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN in Staffordshire."}
-include_graphics("figures/hs2-staf.png")
+```{r liv, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN in Staffordshire."}
+include_graphics("figures/hs2-liv.png")
 ```
+
+Strictly speaking the HS2CN does not pass through Liverpool City Region. It is only the proposed cycle paths associated with HS3 that go west of Wigan (HS3CN). This network passes through south and central Warrington (avoiding a route with high cycling potential to the northeast of Warrington centre) and on west and northwest, creating a triangular network with high cycling potental between Warrington, St Helens and Widnes. The short route with high cycling potential between Widness and Runcorn is omitted from the HS3CN.
+
+There is very high cycling potential in all directions fanning out from the monocentric Liverpool city centre. This potential is picked-up by only a single HS3CN route, which follows the River Mersey and therefore misses the areas of highest cycling potential to the north of the river.
 
 \newpage
 
