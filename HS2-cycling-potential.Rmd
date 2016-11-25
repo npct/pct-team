@@ -254,20 +254,28 @@ Another route with relatively high cycling potential in close proximity to the r
 
 \newpage
 
-## Staffordshire
+## Staffordshire and Cheshire
 
 ```{r sheff, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN in Staffordshire."}
 include_graphics("figures/hs2-staf.png")
 ```
 
+Stoke-on-Trent and Stafford are the only two major settlements in Staffordshire well-served by the HS2CN. There is a relatively dense proposed network around Cannock, Lichfield and Rugeley to the south of the region yet, interestingly, no HS2CN route into Cannock itself, which has relatively high cycling potential compared with its rural surroundings.
+
+In Stafford itself the HS2CN opens up and becomes substantially more dense, serving potential along east-west corridors and north of the city well. However, there is little provision for cycling potential directly south of the city, e.g. towards Stafford Grammar School and beyond along the A449 and Silmore Lane.
+
+The route going to Stone and onwards to Stoke-on-Trent is well thought-out, providing multiple options out of Stafford in the northern direction and providing plenty of opportunities to cross the HS2 route, reducing severence (although Eccleshall is not linked-up, although doing so would be straightforward, by extending the proposed route along Yarnfield lane west onto Swynnerton Road via Swynnerton Training Camp).
+
+Stoke-on-Trent is slightly less well catered for than Stafford, despite being larger and having higher cycling potential. There are no routes out to the north (e.g. to Hanley and Longport) although there is a route far out to the west, with various bifurcations, despite relatively low estimated potential to the west. It is recommented that a north-then-west route would be favourable than the west-then-north route to connect to Crewe, despite the latter option following more closely the HS2 route, although both routes could be complementary. 
+
+In Crewe the highest cycling potential is out towards the neighbouring settlement of Nantwich, but the HS2CN avoids Nantwich altogether. Instead, it provides two routes out to the north and east to Sandbach, which has les cycling potential
+
 \newpage
-
-
 
 ## Greater Manchester
 
 ```{r sheff, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN in Staffordshire."}
-include_graphics("figures/hs2-staf.png")
+include_graphics("figures/hs2-man.png")
 ```
 
 \newpage
