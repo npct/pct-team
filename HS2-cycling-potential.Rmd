@@ -179,7 +179,7 @@ What follows is an analysis of notable areas where there is a notable divergence
 
 ## London to Birmingham
 
-Between London and Birmingham, there appears to be more cycling potential directly to the west of the HS2CN than along its main route or to the east, implying extension in this direction (particularly between Bicester and Banbury, for example) could be an effect way to improve the utility of the HS2CN for commuting. The B4100 could be a potential candidate for such a route were it to be build on-road, as it follows a fairly direct path but stays away from the M40 and the existing rail track in along the travel corridor (Figure \@ref(fig:banbi)).
+Between London and Birmingham, there appears to be more cycling potential directly to the west of the HS2CN than along its main route or to the east, implying extension in this direction (particularly between Bicester and Banbury, for example) could be an effect way to improve the utility of the HS2CN for commuting. The B4100 could be a potential candidate for such a route were it to be built on-road, as it follows a fairly direct path but stays away from the M40 and the existing rail track in along the travel corridor (Figure \@ref(fig:banbi)).
 
 
 ```{r banbi, fig.cap="Example of where shifting the HS2CN to the west between London and Birmingham could benefit commuters, between Banbury and Bicester.", out.width="75%"}
@@ -202,11 +202,11 @@ include_graphics("figures/hs2leam.png")
 
 ## Birmingham region
 
-As a major city, Birmingham has very high cycling potential yet low current rates, reflecting very high potential for cycling uptake at city and regional levels there. The HS2CN designers seem to have recognised this, as there is a substantial densification and deliberate detour into Birmingham city centre. This seems to be very sensible [suggest 'in line with'] based on the results of the PCT, which show high cycling potential along all arterial routes leading into Birmingham (especially on North-South corridors), some of which are picked up by the HS2CN (see Figure \@ref(fig:birm)).
+As a major city, Birmingham has very high cycling potential yet low current rates, which translates into very high potential for cycling uptake at city and regional levels. The HS2CN designers seem to have recognised this, as there is a substantial densification and deliberate detour into Birmingham city centre. This seems to be in line with the results of the PCT, which show high cycling potential along all arterial routes leading into Birmingham (especially on North-South corridors), some of which are picked up by the HS2CN (see Figure \@ref(fig:birm)).
 
-From the perspective of cost-benefit, which would imply building along segments of highest cycling potential, it would seem that even more could be done to serve the dense urban populations to the east of Birmingham and surrounding Solihull (which currently has one of the lowest levels of cycling in England [maybe add something about potential in Solihull?]). While the HS2CN in dense around the largely suburban/rural settlements of Hampton in Arden, Meriden and Balsal Common, the PCT's Route Network layer is thickest along Hagley Road (the A456), which feeds Birmingham from the East and Bristol/Pershore Road (the A38 and A441 respectively).
+From the perspective of maximising cycling uptake by building along segments of highest cycling potential, it would seem that even more could be done to serve the dense urban populations to the east of Birmingham and surrounding Solihull. While the HS2CN is dense around the largely suburban/rural settlements of Hampton in Arden, Meriden and Balsal Common, the PCT's Route Network layer is thickest along Hagley Road (the A456), which feeds Birmingham from the East and Bristol/Pershore Road (the A38 and A441 respectively).
 
-The PCT also suggests that there is high cycling potential around Solihull (especially to the north and south, and to the West, towards Birmingham) and Walsall that is not catered for by the HS2CN.
+The PCT also suggests that there is high cycling potential around Solihull (especially to the north, south and west) and Walsall that is not catered for by the HS2CN.  Seeking to cater for this potential could be valuable as Solihull and Walsall currently are among the local authorities in England and Wales with the lowest commuter cycling relative to their potential, ranking 24/346 and 37/346 respectively.
 
 
 ```{r birm, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN around Leamington Spa"}
