@@ -29,7 +29,7 @@ We base the following analysis on the Government Target scenario in the PCT, bas
 
 There is only so much information that can be displayed on printed images. To overcome this issue, and to encourage decision makers at the DfT and elsewhere to draw their own conclusions from the data, we have, as with the PCT itself, made the results of the work available on an interactive web map: see [npct0.vs.mythic-beasts.com/hs2cn.html](http://npct0.vs.mythic-beasts.com/hs2cn.html).
 
-Note that the map hosted at npct0.vs.mythic-beasts.com omits much of the detail of the full PCT to enable the HS2CN and the PCT's Route Network layer to load on a normal web browser.  Any analysis based on this online map should take these simplifications into account: 
+Note that the map hosted at npct0.vs.mythic-beasts.com omits much of the detail of the full PCT to enable the HS2CN and the PCT's Route Network layer to load on a normal web browser.  Any analysis based on this online map (but not the images provided in the report) should take these simplifications into account: 
 
 - Simplification: Both the HS2CN and PCT Route Network Layer were 'simplified' so that intricate details of the path were removed. For this reason at high zoom levels the route segments will not always perfectly follow roads exactly.
 - Only segments with **200 or more cycle commuters under the Government Target** were included from the Route Network layer.
