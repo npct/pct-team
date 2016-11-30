@@ -29,7 +29,10 @@ Each map is followed by text describing the analyst's interpretation of the data
 
 ## Descriptive analysis of the HS2CN route
 
-An overview of this plan is presented in Figure \@ref(fig:overview); a more detailed version of the map is available online at  [npct0.vs.mythic-beasts.com/hs2cn.html](http://npct0.vs.mythic-beasts.com/hs2cn.html).  The proposal is split the HS2CN into 6 phases, including Phase 1, Phase 2 (East and West), Peak District links and HS3. The analysts at Royal Haskoning have done some preliminary analysis on the proposed HS2CN, which is briefly summarised below for context. 
+An overview of this plan is presented in Figure \@ref(fig:overview); a more detailed version of the HS2CN is available online at  [npct0.vs.mythic-beasts.com/hs2cn.html](http://npct0.vs.mythic-beasts.com/hs2cn.html).
+We recommend this route is viewed in conjunction with regional versions of the PCT, e.g. www.pct.bike/oxfordshire/ for the results that affect the Oxfordshire region.
+
+The proposal is split the HS2CN into 6 phases, including Phase 1, Phase 2 (East and West), Peak District links and HS3. The analysts at Royal Haskoning have done some preliminary analysis on the proposed HS2CN, which is briefly summarised below for context. 
 
 ```{r overview, out.width="100%", fig.cap="Overview of the HS2 cycle network (HS2CN). See npct0.vs.mythic-beasts.com/hs2cn.html for an interactive online version."}
 library(knitr)
