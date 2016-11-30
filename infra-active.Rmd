@@ -26,7 +26,15 @@ Active transport lies at the opposite end of the spectrum of transport investmen
 
 The lack of organisational overlap between major transport infrastructure and active travel interventions helps explain why the two are seldom considered. There has been very little research into the active travel impacts of major infrastructure projects. Yet, as we shall see in the next section, major transport infrastructure has the potential to have a wide range of impacts on transport behaviour overall and levels of active travel in particular. The purpose of this paper is to create a framework for the consideration of active travel impacts of major transport infrastructure. More importantly from a practitioner perspective, it outlines and demonstrates methods for assessing these impacts and prioritising interventions that will reduce the negative impacts on walking and cycling. The most radical option to minimise the active transport impacts of building large roads and railways etc is not to build them at all, and invest in a series of smaller walking and cycling interventions instead. Arguments for doing this are discussed in the final section.
 
+
+
 # A typology of active transport impacts of major transport infrastructure projects
+
+## Severance
+
+## Parallels
+
+## Travel to public transport
 
 # Methodology
 
@@ -287,6 +295,8 @@ In terms of the local case study, it seems there is greater potential parallel t
 In total, we estimate that around 2500 commuters make trips that are parallel to the line, of whom 1.1% currently cycle (N=28). We further estimate that under a Go Dutch scenario the proportion of these commuter cycling would be 6.1% (N=158), while under the Ebike scenario it would be 15.4% (N=397).  The Go Dutch and Ebike scenarios assume that English commuters acquire a Dutch cycling culture and Dutch levels of infrastructure: a high quality, traffic-free cycle route along the Lewes-Uckfield train line could be a useful step towards achieving Dutch infrastructure, although it should be remembered that the impact of the cycle path might also depend on the quality of the surrounding cycle network.  It should also be remembered that this analysis only examines commuter cycling; adding in cycling potential for other cycling types, e.g. leisure cycling, might generate considerably higher estimates as to the number of users.
 
 The proposed method raises questions about policy priorities related to mode choice: in cases where there is potential update of walking, cycling and public transport, which are favoured?
+
+The methods outlined in this paper have the potential to be used in situations beyond the assesment of new infrastructure. In places where there linear features that are conducive to conversion into walking and cycling paths (e.g. along disused railway lines, roads and along privately owned routes), they could be used to decide along which parts of these features investments should be prioritised.
 
 It is in terms of the methods for quanitifying the potential for desire lines parallel and perpendicular to proposed routes that this report will probably be of most use, as the basis for further work. The Lewes-Uckfield line has served a useful purpose in this regard, as the case study is small enough to identify specific desire lines of interest, and explore the methodology on local datasets that are not overwhelmingly large. The work provides many interesting avenues for further development and research, including:
 
