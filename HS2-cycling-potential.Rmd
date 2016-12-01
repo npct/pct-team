@@ -88,7 +88,6 @@ region_names = regions$Region
 # plot(hs2net, add = T, col = hs2net$HS2_Phase)
 # plot(regions_sel, lty = 3, col = NA, add = T)
 ```
-
 ```{r regions, fig.cap="Regions that HS2 pass through (dotted lines, highlighted in yess) and the HS2CN surrounded by a 10 km buffer (grey area)."}
 include_graphics("figures/hs2-over-reg.png")
 ```
@@ -98,7 +97,6 @@ include_graphics("figures/hs2-over-reg.png")
 
 <!-- ```{r, eval=FALSE} -->
 <!-- rnet = readRDS("../pct-data/avon/rnet.Rds") -->
-<!-- for(i in 2:length(region_names)){ -->
 <!--   f = paste0("../pct-data/", region_names[i], "/rnet.Rds") -->
 <!--   rnet = bind(rnet, readRDS(f)) -->
 <!-- } -->
@@ -108,7 +106,6 @@ include_graphics("figures/hs2-over-reg.png")
 ```{r, echo=FALSE, eval=FALSE}
 # rnet = readRDS("../pct-bigdata/rnet-england-msoa.Rds")
 # rnet = rnet[hs2buff,]
-# saveRDS(rnet, "input-data/rnet-hs2.Rds")
 rnet = readRDS("input-data/rnet-hs2.Rds")
 scen = "govtarget_slc"
 nolondon = regions[!grepl(pattern = "london", x = regions$Region),]
@@ -118,7 +115,6 @@ rnet = rnet[nolondon,]
 # summary(rnet_high$length)
 # rnet = rnet[rnet$length > 50,]
 # summary(rnet$govtarget_slc)
-nrow(rnet)
 rnet_high = rnet[rnet$govtarget_slc > 200,]
 
 
@@ -128,7 +124,6 @@ tmap_mode("view")
 tm_shape(hs2) +
   tm_lines(col = "black", lwd = 5) +
   tm_shape(hs2net) +
-  tm_lines(col = "HS2_Phase", lwd = 3, palette = "Dark2") +
   tm_shape(rnet_high) +
   tm_lines(col = "darkblue", lwd = "govtarget_slc", scale = 50) +
   tm_shape(regions) +
@@ -138,7 +133,6 @@ tm_shape(hs2) +
 library(leaflet)
 leaflet() %>% 
   addTiles() %>% 
-  addPolylines(data = rnet, weight = rnet$govtarget_slc / 100)
 
 # Create simple, usable output
 object.size(hs2net) / 1000000
@@ -148,7 +142,7 @@ object.size(rnet_high) / 1000000
 
 rnet_high = rnet_high[rnet_high$length > 50,]
 b
-rnet_high_simple = ms_simplify(rnet_high)
+nrnet_high_simple = ms_simplify(rnet_high)
 hs2net_simple = ms_simplify(hs2net)
 object.size(rnet_high_simple) / 1000000
 object.size(hs2net_simple) / 1000000
@@ -158,7 +152,7 @@ mpub =   tm_shape(hs2) +
   tm_shape(hs2net_simple) +
   tm_lines(col = "HS2_Phase", lwd = 3, palette = "Dark2") +
    tm_shape(regions) +
-  tm_borders(col = "grey", lwd = 2) 
+i  tm_borders(col = "grey", lwd = 2) 
 
 mpub
 
@@ -187,7 +181,7 @@ What follows is an analysis of regions where there is a notable divergence betwe
 
 ## Warwick, Coventry and Rugby
 
-Overall there is good correspondence between the PCT and the HS2CN in this area, with part of the 'fastest route' results of the Route Network following the path of the HS2CN between Leamington Spa and Stratford-upon-Avon, for example. There is relatively high commuter cycling potential in this area overall, with Warwick being in the top third of local authorities in England and Wales with respect to cycling potential in the Go Dutch scenario.  As such it makes sense to expand the HS2CN away from a single, linear route in this region, as has been done. One possible benefit of the PCT in this context is to highlight direct routes for consideration, for example the PCT highlights a fairly direct route between Rugby and Southam/Long Itchington (the A426) whereas currently the HS2CN joins these areas by detouring west before bearing northeast along small country lanes from Southam.  This highlights the 
+Overall there is good correspondence between the PCT and the HS2CN in this area, with part of the 'fastest route' results of the Route Network following the path of the HS2CN between Leamington Spa and Stratford-upon-Avon, for example. There is relatively high commuter cycling potential in this area overall, with Warwick being in the top 40% of local authorities in England and Wales with respect to modelled cycling increase in the Government Target scenario.  As such it makes sense to expand the HS2CN away from a single, linear route in this region, as has been done. One possible benefit of the PCT in this context is to highlight direct routes for consideration, for example the PCT highlights a fairly direct route between Rugby and Southam/Long Itchington (the A426) whereas currently the HS2CN joins these areas by detouring west before bearing northeast along small country lanes from Southam.  
 
 Interestingly there is also no cycle path proposed between Coventry and Rugby, despite there being some commuter cycling potential between the two settlements and Brandon (located halfway between them).
 
@@ -203,7 +197,7 @@ As a major city, Birmingham has very high commuter cycling potential yet low cur
 
 From the perspective of maximising cycling uptake by building along segments of highest commuter cycling potential, it would seem that even more could be done to serve the dense urban populations to the east of Birmingham. While the HS2CN is dense around the largely suburban/rural settlements of Hampton in Arden, Meriden and Balsal Common, the PCT's Route Network layer is thickest along Hagley Road (the A456), which feeds Birmingham from the East and Bristol/Pershore Road (the A38 and A441 respectively).  We appreciate that some of these connections may be made by Birmingham City Council under the auspices of the Cycling City Ambition scheme.
 
-The PCT also suggests that there is high commuter cycling potential around Solihull and Walsall that is not catered for by the HS2CN.  Seeking to cater for this potential could be valuable as Solihull and Walsall currently are among the local authorities in England and Wales with the lowest commuter cycling relative to their potential (calculated as observed cycling / predicted cycling), ranking 24/346 and 37/346 respectively.  For example, one could consider extending HS2CN such that a direct connection is made between Solihull and Birmingham city centre.
+The PCT also suggests that there is high commuter cycling potential around Solihull and Walsall that is not catered for by the HS2CN.  Seeking to cater for this potential could be valuable as Solihull and Walsall currently are among the local authorities in England and Wales with the lowest commuter cycling relative to their potential (calculated as observed cycling / predicted cycling), being on the 7th and the 11th percentiles.  For example, one could consider extending HS2CN such that a direct connection is made between Solihull and Birmingham city centre.
 
 
 ```{r birm, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN around Birmingham."}
@@ -220,7 +214,7 @@ include_graphics("figures/hs2-notts.png")
 
 There is high commuter cycling potential around Nottingham and this is reflected in the HS2CN, which branches out substantially around the centres of both cities, especially Nottingham. There HS2CN is denser to the south of Nottingham than to the north. The Route Network suggests that there is high commuter cycling potential to both the north and south, however, suggesting the opportunity to extend the HS2CN to the north, to increase the density of the cycle network in that part of the city.
 
-The HS2CN is denser to the east of the HS2 route (serving Nottingham) than to the west (serving Derby), yet there is high commuter cycling potential both sides of the main track with both being in the top quarter of local authorities in England and Wales for cycling in the Go Dutch scenario. Indeed, both current cycle commuting and modelled commuter cycling potential is modelled as being slightly higher in Derby (cycle mode share 4.0% at present, 22.0% in Go Dutch) than in Nottingham (cycle mode share 3.7% at present, 21.4% in Go Dutch).  As such, it would seem worthwhile considering extending the HS2CN such the Derby is served as well as Nottingham.
+The HS2CN is denser to the east of the HS2 route (serving Nottingham) than to the west (serving Derby), yet there is high commuter cycling potential both sides of the main track with both being in the top quarter of local authorities in England and Wales for cycling in the Go Dutch scenario. Indeed, both current cycle commuting and modelled commuter cycling potential is modelled as being slightly higher in Derby (cycle mode share 4.0% at present, 7.4% in Government Target) than in Nottingham (cycle mode share 3.7% at present, 7.0% in Government Target).  As such, it would seem worthwhile considering extending the HS2CN such the Derby is served as well as Nottingham.
 
 \newpage
 
@@ -230,7 +224,7 @@ The HS2CN is denser to the east of the HS2 route (serving Nottingham) than to th
 include_graphics("figures/hs2-shef.png")
 ```
 
-Sheffield and Chesterfield in particular are well-served by the HS2CN, with the HS2CN being denser around Chesterfield.  This dense network in Chesterfield could be beneficial in unlocking the area's considerable untapped commuter cycling potential - Chesterfield has a relatively high cycling potential (18.5% cycle mode share in the Go Dutch scenario, corresponding to the 62nd percentile of local authorities in England and Wales) but low current cycling (1.2% for current commuter cycling, corresponding to the 11th percentile).  In Sheffield, the gap between commuter cycling potential and current cycling is somewhat smaller although still substantial (11.5% mode share in Go Dutch scenario vs 1.9% currently).  Nevertheless because Sheffield has a population 5 times larger than Chesterfield, the absolute increase in number of cyclists is larger in Sheffield and so it might be worth considering expanding the HS2CN in this area. For example, additionally building provision along the A6135 between Intake and Sheffield city centre would build on the existing plans for the HS2CN while providing direct routes where there is evidence of relatively high commuter cycling potential.
+Sheffield and Chesterfield in particular are well-served by the HS2CN, with the HS2CN being denser around Chesterfield.  This dense network in Chesterfield could be beneficial in unlocking the area's considerable untapped commuter cycling potential - Chesterfield currently is one of the local authorities in England and Wales with the lowest commuter cycling relative to its potential (calculated as observed cycling / predicted cycling), being on the 3rd percentile. Sheffield performs better on this metric, being on the 73rd percentile, suggesting a relatively lower level of untapped cycling potential (although the potential for increase in Sheffield is still large, e.g. from the current 1.8% to 11.4% in the Go Dutch scenario).  Nevertheless because Sheffield has a population 5 times larger than Chesterfield, the absolute increase in number of cyclists is larger in Sheffield than in Chesterfield in the Government Target.  As such it might be worth considering expanding the HS2CN in Sheffield. For example, additionally building provision along the A6135 between Intake and Sheffield city centre would build on the existing plans for the HS2CN while providing direct routes where there is evidence of relatively high commuter cycling potential.
 
 \newpage
 
@@ -240,10 +234,9 @@ Sheffield and Chesterfield in particular are well-served by the HS2CN, with the 
 include_graphics("figures/hs2-shef2.png")
 ```
 
-
 There is high commuter cycling potential on both sides of HS2 in the almost continuously populated area within the 10 km buffer of its route between Barnesley and Leeds. There is currently poor provision for cycling in this area, except for the relatively narrow and rural Pennine way off-road cycle path.
 
-A dense network of routes with high commuter cycling potential is supported by the HS2CN around Barnsley, with many crossings reducing the potential for severance impacts of HS2, for example between Wakefield and Pontefract. One area of slight divergence between the route network layer of the PCT and the HS2CN in this area is with respect to the relative density of cycling networks in urban centres and their surroundings. The PCT suggests that the density of cycle networks should be much denser in city centres, for example around Leeds, Huddersfield, Halifax and Wakefield. The HS2CN, by contrast, has a relatively uniform density in these areas compared with their suburban and rural surroundings. This is a pattern that applies throughout the HS2CN-PCT comparison but which is particularly noticeable in this area. To address this issue, the HS2CN could be supplemented by additional cycle tracks and other interventions encouraging cycling close to the city centres (e.g. Cycling City Ambition work in the area).
+A dense network of routes with relatively high commuter cycling potential is supported by the HS2CN around Barnsley, with many crossings reducing the potential for severance impacts of HS2, for example between Wakefield and Pontefract. One area of slight divergence between the route network layer of the PCT and the HS2CN in this area is with respect to the relative density of cycling networks in urban centres and their surroundings. The PCT suggests that the density of cycle networks should be much denser in city centres, for example around Leeds, Huddersfield, Halifax and Wakefield. The HS2CN, by contrast, has a relatively uniform density in these areas compared with their suburban and rural surroundings. This is a pattern that applies throughout the HS2CN-PCT comparison but which is particularly noticeable in this area. To address this issue, the HS2CN could be supplemented by additional cycle tracks and other interventions encouraging cycling close to the city centres.
 
 The HS2CN duplicates the route of the CityConnect Leeds-Bradford route for much of the way and makes use of the existing canal tow-path in the area, while omitting Otley Road, which has the highest commuter cycling potential of all arterial routes in Leeds (and West Yorkshire overall) under the Government Target scenario used for this analysis. Another discrepancy between the PCT analysis and the HS2CN in the region is the density of east-west routes to the south of Leeds in the proposed network compared with the relative absence of proposed routes going due east further north, e.g. from Leeds city centre towards Garforth. There is clearly high commuter cycling potential along York Road (which is only partly served by a thin extension of the CityConnect route a couple of km in that direction) and Selby Road that could be well served by extensions to the HS2CN.
 
@@ -257,9 +250,9 @@ include_graphics("figures/hs2-staf.png")
 
 Stoke-on-Trent and Stafford are the only two major settlements in Staffordshire well-served by the HS2CN. There is a relatively dense proposed network around Cannock, Lichfield and Rugeley to the south of the region yet, interestingly, no HS2CN route into Cannock itself, which has relatively high commuter cycling potential compared with its rural surroundings.
 
-In Stafford itself the HS2CN opens up and becomes substantially more dense, serving potential along east-west corridors and north of the city well. However, there is little provision for cycling potential directly south of the city, e.g. towards Stafford Grammar School and beyond along the A449 and Silmore Lane.
+In Stafford the HS2CN opens up and becomes substantially more dense, serving potential along east-west corridors and north of the city well. However, there is little provision for cycling potential directly south of the city, e.g. towards Stafford Grammar School and beyond along the A449 and Silmore Lane.
 
-The route going to Stone and onward to Stoke-on-Trent is well thought-out, providing multiple options out of Stafford in the northern direction and providing plenty of opportunities to cross the HS2 route, reducing severance.  Stoke-on-Trent is slightly less well catered for than Stafford, despite being larger and having similar commuter cycling potential in terms of mode share (17.4% mode share in Go Dutch, vs. 19.6% in Stafford) and twice the population. There are no routes out directly to the north (e.g. to Hanley) or to the North-east (e.g. to Longport), despite relatively high cycling potentia; instead the only route going north is to the far west of Stoke-on-Trent. This suggests that a north-then-west route between Stoke-on-Trent and Crewe might be favourable to cycling uptake than the west-then-north route currently planned, despite the latter option following more closely the HS2 route (although both routes could be complementary). 
+The route going from Stafford to Stone and onward to Stoke-on-Trent is well thought-out, providing multiple options out of Stafford in the northern direction and providing plenty of opportunities to cross the HS2 route, reducing severance.  Stoke-on-Trent is slightly less well catered for than Stafford, despite being larger and having similar modelled potential increase in commuter cycling in the Government Target scenario (2.6% in Stoke-on-Trent, vs. 3.2% in Stafford) and twice the population. There are no routes out directly to the north (e.g. to Hanley) or to the North-east (e.g. to Longport), despite relatively high cycling potential; instead the only route going north is to the far west of Stoke-on-Trent. This suggests that a north-then-west route between Stoke-on-Trent and Crewe might be favourable to cycling uptake than the west-then-north route currently planned, despite the latter option following more closely the HS2 route (although both routes could be complementary). 
 
 In Crewe the highest commuter cycling potential is out towards the neighbouring settlement of Nantwich, but the HS2CN avoids Nantwich altogether. Instead, it provides two routes out to the north and east to Sandbach, which is smaller and therefore has less commuter cycling potential in terms of total numbers of cyclists.
 
