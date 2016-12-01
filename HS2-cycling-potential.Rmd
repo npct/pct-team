@@ -141,7 +141,6 @@ object.size(rnet_high) / 1000000
 
 
 rnet_high = rnet_high[rnet_high$length > 50,]
-b
 nrnet_high_simple = ms_simplify(rnet_high)
 hs2net_simple = ms_simplify(hs2net)
 object.size(rnet_high_simple) / 1000000
@@ -151,8 +150,8 @@ mpub =   tm_shape(hs2) +
   tm_lines(col = "black", lwd = 5) +
   tm_shape(hs2net_simple) +
   tm_lines(col = "HS2_Phase", lwd = 3, palette = "Dark2") +
-   tm_shape(regions) +
-i  tm_borders(col = "grey", lwd = 2) 
+  tm_shape(regions) +
+  tm_borders(col = "grey", lwd = 2) 
 
 mpub
 
@@ -204,7 +203,7 @@ The PCT also suggests that there is high commuter cycling potential around Solih
  include_graphics("figures/hs2-birm.png")
 ```
 
-e\newpage
+\newpage
 
 ## Nottingham and Derby
 
