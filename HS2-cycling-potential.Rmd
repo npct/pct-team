@@ -32,7 +32,7 @@ The proposal is split the HS2CN into 6 phases, including Phase 1, Phase 2 (East 
 
 ```{r overview, out.width="100%", fig.cap="Overview of the HS2 cycle network (HS2CN). See npct0.vs.mythic-beasts.com/hs2cn.html for an interactive online version."}
 library(knitr)
-include_graphics("figures/hs2-over-reg2.png")
+include_graphics("figures/hs2-over2.png")
 ```
 
 ```{r, echo=FALSE, warnings=FALSE, message = FALSE}
@@ -196,7 +196,7 @@ tm_shape(hs2) +
 
 
 ```{r leam, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN around Leamington Spa."}
-include_graphics("figures/hs2leam2.png")
+include_graphics("figures/hs2leam3.png")
 ```
 
 \newpage
@@ -209,17 +209,45 @@ From the perspective of maximising cycling uptake by building along segments of 
 
 The PCT also suggests that there is high commuter cycling potential around Solihull and Walsall that is not catered for by the HS2CN.  Seeking to cater for this potential could be valuable as Solihull and Walsall currently are among the local authorities in England and Wales with the lowest commuter cycling relative to their potential (calculated as observed cycling / predicted cycling), being on the 7th and the 11th percentiles.  For example, one could consider extending HS2CN such that a direct connection is made between Solihull and Birmingham city centre.
 
+```{r, eval=FALSE, echo=FALSE}
+rnet_war = readRDS("../pct-data/west-midlands/rnet.Rds")
+tmap_mode("view")
+tm_shape(hs2) +
+  tm_lines(col = "black", lwd = 5) +
+  tm_shape(hs2net) +
+  tm_lines(col = "HS2_Phase", lwd = 3, palette = "Dark2") +
+  tm_shape(rnet_war) +
+  tm_lines(col = "darkblue", lwd = "govtarget_slc", scale = 50) +
+  tm_shape(regions) +
+  tm_borders(col = "grey", lwd = 2) 
+```
 
 ```{r birm, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN around Birmingham."}
- include_graphics("figures/hs2-birm.png")
+ include_graphics("figures/hs2-birm3.png")
 ```
 
 \newpage
 
 ## Nottingham and Derby
 
+```{r, eval=FALSE, echo=FALSE}
+rnet_not = readRDS("../pct-data/nottinghamshire/rnet.Rds")
+rnet_der = readRDS("../pct-data/derbyshire/rnet.Rds")
+rnet_not$id = NULL
+rnet_not = sbind(rnet_not, rnet_der)
+tmap_mode("view")
+tm_shape(hs2) +
+  tm_lines(col = "black", lwd = 5) +
+  tm_shape(hs2net) +
+  tm_lines(col = "HS2_Phase", lwd = 3, palette = "Dark2") +
+  tm_shape(rnet_not) +
+  tm_lines(col = "darkblue", lwd = "govtarget_slc", scale = 20) +
+  tm_shape(regions) +
+  tm_borders(col = "grey", lwd = 2) 
+```
+
 ```{r notts, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN around Nottingham and Derby region"}
-include_graphics("figures/hs2-notts.png")
+include_graphics("figures/hs2-notts3.png")
 ```
 
 There is high commuter cycling potential around Nottingham and this is reflected in the HS2CN, which branches out substantially around the centres of both cities, especially Nottingham. There HS2CN is denser to the south of Nottingham than to the north. The Route Network suggests that there is high commuter cycling potential to both the north and south, however, suggesting the opportunity to extend the HS2CN to the north, to increase the density of the cycle network in that part of the city.
@@ -230,10 +258,26 @@ The HS2CN is denser to the east of the HS2 route (serving Nottingham) than to th
 
 \newpage
 
-## Chesterfield and Sheffield
+## Sheffield and Chesterfield
+
+```{r, eval=FALSE, echo=FALSE}
+rnet_not = readRDS("../pct-data/south-yorkshire/rnet.Rds")
+rnet_der = readRDS("../pct-data/derbyshire/rnet.Rds")
+rnet_not$id = NULL
+rnet_not = sbind(rnet_not, rnet_der)
+tmap_mode("view")
+tm_shape(hs2) +
+  tm_lines(col = "black", lwd = 5) +
+  tm_shape(hs2net) +
+  tm_lines(col = "HS2_Phase", lwd = 3, palette = "Dark2") +
+  tm_shape(rnet_not) +
+  tm_lines(col = "darkblue", lwd = "govtarget_slc", scale = 20) +
+  tm_shape(regions) +
+  tm_borders(col = "grey", lwd = 2) 
+```
 
 ```{r sheff, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN around Chesterfield and Sheffield."}
-include_graphics("figures/hs2-shef.png")
+include_graphics("figures/hs2-shef4.png")
 ```
 
 Sheffield and Chesterfield in particular are well-served by the HS2CN, with the HS2CN being denser around Chesterfield.  This dense network in Chesterfield could be beneficial in unlocking the area's considerable untapped commuter cycling potential - Chesterfield currently is one of the local authorities in England and Wales with the lowest commuter cycling relative to its potential (calculated as observed cycling / predicted cycling), being on the 3rd percentile. Sheffield performs better on this metric, being on the 73rd percentile, suggesting a relatively lower level of untapped cycling potential (although the potential for increase in Sheffield is still large, e.g. from the current 1.8% to 11.4% in the Go Dutch scenario).  Nevertheless because Sheffield has a population 5 times larger than Chesterfield, the absolute increase in number of cyclists is larger in Sheffield than in Chesterfield in the Government Target.  As such it might be worth considering expanding the HS2CN in Sheffield. For example, additionally building provision along the A6135 between Intake and Sheffield city centre would build on the existing plans for the HS2CN while providing direct routes where there is evidence of relatively high commuter cycling potential.
@@ -244,8 +288,24 @@ Sheffield and Chesterfield in particular are well-served by the HS2CN, with the 
 
 ## Barnsley, Wakefield and Leeds
 
+```{r, eval=FALSE, echo=FALSE}
+rnet_not = readRDS("../pct-data/west-yorkshire/rnet.Rds")
+rnet_der = readRDS("../pct-data/south-yorkshire/rnet.Rds")
+rnet_not$id = NULL
+rnet_not = sbind(rnet_not, rnet_der)
+tmap_mode("view")
+tm_shape(hs2) +
+  tm_lines(col = "black", lwd = 5) +
+  tm_shape(hs2net) +
+  tm_lines(col = "HS2_Phase", lwd = 3, palette = "Dark2") +
+  tm_shape(rnet_not) +
+  tm_lines(col = "darkblue", lwd = "govtarget_slc", scale = 20) +
+  tm_shape(regions) +
+  tm_borders(col = "grey", lwd = 2) 
+```
+
 ```{r lds, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN around Barnesley, Wakefield and Leeds."}
-include_graphics("figures/hs2-shef2.png")
+include_graphics("figures/hs2-shef3.png")
 ```
 
 There is high commuter cycling potential on both sides of HS2 in the almost continuously populated area within the 10 km buffer of its route between Barnesley and Leeds. There is currently poor provision for cycling in this area, except for the relatively narrow and rural Pennine way off-road cycle path.
