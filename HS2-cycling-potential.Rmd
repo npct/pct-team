@@ -277,7 +277,7 @@ tm_shape(hs2) +
   tm_borders(col = "grey", lwd = 2) 
 ```
 
-```{r sheff, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN around Chesterfield and Sheffield."}
+```{r sheff, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN around Chesterfield and Sheffield.", out.width="80%"}
 include_graphics("figures/hs2-shef4.png")
 ```
 
@@ -305,7 +305,7 @@ tm_shape(hs2) +
   tm_borders(col = "grey", lwd = 2) 
 ```
 
-```{r lds, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN around Barnsley, Wakefield and Leeds."}
+```{r lds, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN around Barnsley, Wakefield and Leeds.", out.width="80%"}
 include_graphics("figures/hs2-shef3.png")
 ```
 
@@ -323,7 +323,7 @@ Around Barnsley there is relatively high commuter cycling potential and this is 
 
 ## Staffordshire and Cheshire
 
-```{r staf, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN in Staffordshire."}
+```{r staf, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN in Staffordshire.", out.width="80%"}
 include_graphics("figures/hs2-staf.png")
 ```
 
@@ -339,7 +339,7 @@ In Crewe the highest commuter cycling potential is out towards the neighbouring 
 
 ## Greater Manchester
 
-```{r man, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN in Greater Manchester."}
+```{r man, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN in Greater Manchester.", out.width="80%"}
 include_graphics("figures/hs2-man.png")
 ```
 
@@ -353,7 +353,7 @@ When the HS2CN travels west towards Wigan it does not do so from Manchester via 
 
 ## Liverpool City Region
 
-```{r liv, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN in Liverpool City Region."}
+```{r liv, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN in Liverpool City Region.", out.width="80%"}
 include_graphics("figures/hs2-liv.png")
 ```
 
