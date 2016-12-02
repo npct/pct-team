@@ -210,14 +210,16 @@ From the perspective of maximising cycling uptake by building along segments of 
 The PCT also suggests that there is high commuter cycling potential around Solihull and Walsall that is not catered for by the HS2CN.  Seeking to cater for this potential could be valuable as Solihull and Walsall currently are among the local authorities in England and Wales with the lowest commuter cycling relative to their potential (calculated as observed cycling / predicted cycling), being on the 7th and the 11th percentiles.  For example, one could consider extending HS2CN such that a direct connection is made between Solihull and Birmingham city centre.
 
 ```{r, eval=FALSE, echo=FALSE}
-rnet_war = readRDS("../pct-data/west-midlands/rnet.Rds")
+rnet_not = readRDS("../pct-data/west-midlands/rnet.Rds")
+rnet_der = readRDS("../pct-data/warwickshire/rnet.Rds")
+rnet_not = sbind(rnet_not, rnet_der)
 tmap_mode("view")
 tm_shape(hs2) +
   tm_lines(col = "black", lwd = 5) +
   tm_shape(hs2net) +
   tm_lines(col = "HS2_Phase", lwd = 3, palette = "Dark2") +
-  tm_shape(rnet_war) +
-  tm_lines(col = "darkblue", lwd = "govtarget_slc", scale = 50) +
+  tm_shape(rnet_not) +
+  tm_lines(col = "darkblue", lwd = "govtarget_slc", scale = 20) +
   tm_shape(regions) +
   tm_borders(col = "grey", lwd = 2) 
 ```
