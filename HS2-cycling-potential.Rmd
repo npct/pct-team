@@ -292,7 +292,7 @@ There is very high commuter cycling potential in all directions fanning out from
 
 \newpage
 
-## Discussion
+# Discussion
 
 This report has provided visual evidence on the geographic correspondence between the results of the PCT, presented in the form of the higher-potential sections of the Route Network layer under the Government Target scenario within a 10 km buffer of the HS2 route, and the routes comprising the plans for the HS2CN. This evidence is analysed verbally based on visual inspection and some knowledge of the surroundings, based partly on the use of the main PCT hosted at www.pct.bike.
 
