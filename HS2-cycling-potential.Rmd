@@ -67,10 +67,10 @@ These were: Buckinghamshire, Cheshire, Derbyshire, Greater Manchester,
  West Yorkshire.
 
 
-```{r, echo=FALSE, eval=FALSE}
+```{r, echo=FALSE, include=FALSE}
 # library(sf)
 library(sp)
-# regions = st_read("../pct-data/regions.geojson")
+rnet = readRDS("input-data/rnet-hs2.Rds")
 regions = geojson_read("../pct-shiny/regions_www/regions.geojson", what = "sp")
 proj4string(regions) = proj4string(hs2net)
 proj4string(rnet)
@@ -80,7 +80,6 @@ hs2points = spsample(hs2net, n = 1000, type = "random")
 hs2buff = stplanr::buff_geo(hs2points, width = 10000)
 # hs2buff = rgeos::gBuffer(hs2net, width = 10000)
 regions_sel = regions[hs2net,]
-region_names = regions$Region
 # plot(regions_sel, lty = 3)
 # plot(regions, add = TRUE, lty = 3)
 # plot(regions_sel, col = "yellow", add = TRUE, lty = 3)
@@ -107,7 +106,6 @@ include_graphics("figures/hs2-over-reg.png")
 # rnet = readRDS("../pct-bigdata/rnet-england-msoa.Rds")
 # rnet = rnet[hs2buff,]
 # saveRDS(rnet, "input-data/rnet-hs2.Rds")
-rnet = readRDS("input-data/rnet-hs2.Rds")
 scen = "govtarget_slc"
 nolondon = regions[!grepl(pattern = "london", x = regions$Region),]
 rnet = rnet[nolondon,]
@@ -183,9 +181,23 @@ What follows is an analysis of regions where there is a notable divergence betwe
 
 ## Warwick, Coventry and Rugby
 
-Overall there is good correspondence between the PCT and the HS2CN in this area, with part of the 'fastest route' results of the Route Network following the path of the HS2CN between Leamington Spa and Stratford-upon-Avon, for example. There is relatively high commuter cycling potential in this area overall, with Warwick being in the top 40% of local authorities in England and Wales with respect to modelled cycling increase in the Government Target scenario.  As such it makes sense to expand the HS2CN away from a single, linear route in this region, as has been done. One possible benefit of the PCT in this context is to highlight direct routes for consideration, for example the PCT highlights a fairly direct route between Rugby and Southam/Long Itchington (the A426) whereas currently the HS2CN joins these areas by detouring west before bearing northeast along small country lanes from Southam.  
+Overall there is good correspondence between the PCT and the HS2CN in this area, with part of the 'fastest route' results of the Route Network following the path of the HS2CN between Leamington Spa and Stratford-upon-Avon, for example. There is relatively high commuter cycling potential in this area overall, with Warwick being in the top 40% of local authorities in England and Wales with respect to modelled cycling increase in the Government Target scenario.  As such it makes sense to expand the HS2CN away from a single, linear route in this region, as has been done. One possible benefit of the PCT in this context is to highlight direct routes for consideration, for example between Rugby and Coventry. 
+Interestingly there is no cycle path proposed between Coventry and Rugby, despite evidence of commuter cycling potential between the two settlements and Brandon (located halfway between them).
 
-Interestingly there is also no cycle path proposed between Coventry and Rugby, despite there being some commuter cycling potential between the two settlements and Brandon (located halfway between them).
+```{r, eval=FALSE, echo=FALSE}
+rnet_war = readRDS("../pct-data/warwickshire/rnet.Rds")
+tmap_mode("view")
+tm_shape(hs2) +
+  tm_lines(col = "black", lwd = 5) +
+  tm_shape(hs2net) +
+  tm_lines(col = "HS2_Phase", lwd = 3, palette = "Dark2") +
+  tm_shape(rnet_war) +
+  tm_lines(col = "darkblue", lwd = "govtarget_slc", scale = 50) +
+  tm_shape(regions) +
+  tm_borders(col = "grey", lwd = 2) +
+  tm_scale_bar()
+```
+
 
 ```{r leam, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN around Leamington Spa."}
 include_graphics("figures/hs2leam2.png")
