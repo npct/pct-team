@@ -200,7 +200,7 @@ tm_shape(hs2) +
 
 
 ```{r leam, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN around Leamington Spa."}
-include_graphics("figures/hs2leam2.png")
+include_graphics("figures/hs2leam3.png")
 ```
 
 \newpage
@@ -213,17 +213,45 @@ From the perspective of maximising cycling uptake by building along segments of 
 
 The PCT also suggests that there is high commuter cycling potential around Solihull and Walsall that is not catered for by the HS2CN.  Seeking to cater for this potential could be valuable as Solihull and Walsall currently are among the local authorities in England and Wales with the lowest commuter cycling relative to their potential (calculated as observed cycling / predicted cycling), being on the 7th and the 11th percentiles.  For example, one could consider extending HS2CN such that a direct connection is made between Solihull and Birmingham city centre.
 
+```{r, eval=FALSE, echo=FALSE}
+rnet_war = readRDS("../pct-data/west-midlands/rnet.Rds")
+tmap_mode("view")
+tm_shape(hs2) +
+  tm_lines(col = "black", lwd = 5) +
+  tm_shape(hs2net) +
+  tm_lines(col = "HS2_Phase", lwd = 3, palette = "Dark2") +
+  tm_shape(rnet_war) +
+  tm_lines(col = "darkblue", lwd = "govtarget_slc", scale = 50) +
+  tm_shape(regions) +
+  tm_borders(col = "grey", lwd = 2) 
+```
 
 ```{r birm, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN around Birmingham."}
- include_graphics("figures/hs2-birm.png")
+ include_graphics("figures/hs2-birm3.png")
 ```
 
 \newpage
 
 ## Nottingham and Derby
 
+```{r, eval=FALSE, echo=FALSE}
+rnet_not = readRDS("../pct-data/nottinghamshire/rnet.Rds")
+rnet_der = readRDS("../pct-data/derbyshire/rnet.Rds")
+rnet_not$id = NULL
+rnet_not = sbind(rnet_not, rnet_der)
+tmap_mode("view")
+tm_shape(hs2) +
+  tm_lines(col = "black", lwd = 5) +
+  tm_shape(hs2net) +
+  tm_lines(col = "HS2_Phase", lwd = 3, palette = "Dark2") +
+  tm_shape(rnet_not) +
+  tm_lines(col = "darkblue", lwd = "govtarget_slc", scale = 20) +
+  tm_shape(regions) +
+  tm_borders(col = "grey", lwd = 2) 
+```
+
 ```{r notts, fig.cap="Overlay of the PCT's Route Network layer and the HS2CN around Nottingham and Derby region"}
-include_graphics("figures/hs2-notts.png")
+include_graphics("figures/hs2-notts3.png")
 ```
 
 There is high commuter cycling potential around Nottingham and this is reflected in the HS2CN, which branches out substantially around the centres of both cities, especially Nottingham. There HS2CN is denser to the south of Nottingham than to the north. The Route Network suggests that there is high commuter cycling potential to both the north and south, however, suggesting the opportunity to extend the HS2CN to the north, to increase the density of the cycle network in that part of the city.
