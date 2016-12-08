@@ -20,22 +20,28 @@ The impacts of major infrastructure projects on many aspects of life are well es
 
 Major transport infrastructure projects are a major beneficiary of large-scale investment of public funding across the world. There are many reasons for this, the primary being that they are seen as an 'engine for growth', stimulating regional economic integration and the increased specialisation of labour due to the reduction in travel times. Secondary benefits are seen to include the reduction of geographical inequalities between core and peripheral regions; economic saving via reduced costs for trips that are taking place already; and improved 'quality of life' for people who would be enabled to visit friends and family. In some cases, environmental arguments have been made for investment in transport infrastructure, despite the finding that increased transport connectivity tends to increase demand. In practice, psychological factors may play an important role in explaining preferences for expenditure on major infrastructure in general, rather than revenue expenditure, e.g. on research and education which could boost economic growth through technological development and a more productive workforce.
 
-Regardless of the diverse motivations for transport infrastructure investment, it is clear that they have, and will continue to have, major impacts: economic, social and environmental. It is, therefore, unsurprising that there is a substantial body of literature dedicated to the evaluation of the impacts of major infrastructure, which can be considered a sub-discipline in the field of transport studies in its own right. In parallel to such research programs, there has been growing interest from transport researchers in the impacts of major infrastructure projects on transport patterns overall (going beyond the question of utilisation of the transport service provided by the specific piece of new infrastructure).
+Regardless of the diverse motivations for transport infrastructure investment, it is clear that they have, and will continue to have, major impacts: economic, social and environmental. 
+It is unsurprising that there is a substantial body of literature dedicated to the evaluation of the impacts of major infrastructure, which can be considered a sub-discipline in the field of transport studies in its own right, with a focus on economic, health and environmental impacts (each of which link to active travel, as discussed in the subsequent paragraphs). In parallel to such research programs, there has been growing interest from transport researchers in the impacts of major infrastructure projects on transport patterns overall (going beyond the question of utilisation of the transport service provided by the specific piece of new infrastructure).
 
-@parkin_planning_2015 said blah
+*Economic impact assessment* ...
 
+*Environmental impact assessment* ...
+
+*Health impact assssment* is relatively new compared with the previously mentioned sub-fields. The emerging field Health Impact Assessment, for example, fits  although "there is very little empirical data on the impact of road transport interventions", aside from injury reduction estimates [@thomson_assessing_2008].
 
 Active transport lies at the opposite end of the spectrum of transport investment. Interventions that increase 'walkability' and 'cyclability' are usually (but not always or necessarily) smaller, cheaper and less disruptive than major infrastructure. They are often localised. They are often the responsibility of local transport authorities, whereas major infrastructure projects are almost always overseen by national transport departments or dedicated organisations reporting directly to central government.
+This helps explain why the active travel impacts of major transport infrastructure projects are seldom considered, despite a number of obvious overlaps.
+
+"Major transport projects may promote or discourage physical activity in the form of walking and cycling", yet there has been very little quantitative *a posteri* evaluation of past projects [@ogilvie_evaluating_2006], let alone *a priori* assesment of potential impacts. The present paper seeks to address this research and methodological gap, via geographical methods and emphasis on cycling potential.
 
 The lack of organisational overlap between major transport infrastructure and active travel interventions helps explain why the two are seldom considered. There has been very little research into the active travel impacts of major infrastructure projects. Yet, as we shall see in the next section, major transport infrastructure has the potential to have a wide range of impacts on transport behaviour overall and levels of active travel in particular. The purpose of this paper is to create a framework for the consideration of active travel impacts of major transport infrastructure. More importantly from a practitioner perspective, it outlines and demonstrates methods for assessing these impacts and prioritising interventions that will reduce the negative impacts on walking and cycling. The most radical option to minimise the active transport impacts of building large roads and railways etc is not to build them at all and invest in a series of smaller walking and cycling interventions instead. Arguments for doing this are discussed in the final section.
-
-
 
 # A typology of active transport impacts of major transport infrastructure projects
 
 Major infrastructure can impact upon active transport in a range of different ways. This section discusses those impact in the abstract, while later sections provide specific examples.
 
 ## Severance
+
 Linear infrastructure can become a barrier to travel perpendicular to the new infrastructure, severing routes that were used before the new infrastructure was built. This is especially true for railways and motorways, which may be at a different level to the surrounding road network, and are not crossable by walkers and cyclists without dedicated crossings. Understanding where severance occurs and how may people are affected can aid in effectively planning  the construction of bridges, tunnels, and other crossings.
 
 ## Parallels
