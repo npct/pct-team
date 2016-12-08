@@ -15,12 +15,12 @@ p = spsample(x = rf, n = 5e4, type = "regular", weight = rf$all)
 plot(p)
 leaflet() %>%
   addTiles() %>%
-  addWebGLHeatmap(lng = p@coords[,1], lat = p@coords[,2], size = 10, units = "px")
+  addWebGLHeatmap(lng = p@coords[,1], lat = p@coords[,2], size = 10, units = "px", alphaRange = 0.0001)
 
 # Test weight argument
 rf_minmax = rf[c(which.min(rf$all), which.max(rf$all)),]
 plot(rf_minmax)
-p = spsample(x = rf_minmax, n = 5e4, type = "regular", weight = rf_minmax$all)
+p = spsample(x = rf_minmax, n = 10e6, type = "regular", weight = rf_minmax$all)
 plot(p)
 leaflet() %>%
   addTiles() %>%
