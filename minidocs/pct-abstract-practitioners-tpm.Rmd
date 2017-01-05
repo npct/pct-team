@@ -1,0 +1,58 @@
+---
+title: 'The propensity to cycle tool: from conception in the clouds to implementation on the ground'
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Submitted as a: Paper
+
+
+### Robin Lovelace (behalf of the PCT team)
+
+University Academic Fellow in Transport and Big Data
+
+Leeds Institute for Transport Studies (ITS)
+
+34 - 40, University Road, University of Leeds
+
+Leeds, LS2 9JT
+
+Tel: 0113 343 0691
+
+R.Lovelace@Leeds.ac.uk
+
+## Abstract
+
+### Project Idea: 
+
+The Propensity to Cycle Tool (PCT) was proposed in late 2014 by the Department for Transport (DfT) as a tool to provide an evidence base on current and possible future cycling levels.
+
+### Purpose and Objectives:
+
+The purpose of the PCT to enable better prioritisation of funding and transport interventions for cycling in England and beyond. This presentation will provide a brief outline of the concept and methods underlying the PCT, before going into the detail of how it can be used to inform the decision-making process. The focus is on the question: where to build? However, the presentation will also look at how the PCT, and related tools and analyses, can be used to answer wider questions such as: how wide cycle paths be at different parts on the network? and where should new cycle parking be prioritised? 
+
+### Findings and Originality:
+
+We found that using a national origin-destination dataset we could visualise current cycling levels at area, desire line, route and route-network levels. Furthermore, we could visualise scenarios of cycling uptake at each of these levels and present the results using on an interactive on-line map covering all of England. This is the first publicly-accessible, interactive map-based planning support system focussed on cycling that has been deployed at the national level, to the best of our knowledge.
+
+### Conclusion and Policy Implications: 
+
+We conclude that open source and publicly accessible tools have great potential to improve the transport planning process. The case of the PCT has many policy implications: it shows that open source software can deliver scalable solutions and reduce barriers to sharing data and methods between practioners; it shows that careful consideration of the data can lead to more effective investment; and that by engaging the public, transport planning can become a more democratic and transparent process.
+
+The talk will wrap-up with a discussion of desirable directions of travel for the PCT to maximise its use in the global transition away from fossil fuels.
+
+<!-- Please send your abstract to info@ptrc-training.co.uk  -->
+<!-- by noon on Wednesday 18 January 2017. -->
+
+### Keywords: cycling, modelling, big data, infrastructure
+
+### Summary:
+
+This paper describes the development, uses and future directions of travel of the Department for Transport-funded Propensity to Cycle Tool (PCT). This involved analysis of current cycling behaviour, development of scenario-based models, and the creation of an on-line interactive tool. Over two years later and the PCT has been deployed nationwide and used in numerous transport plans and can be used by practitioners to improve the effectiveness of interventions for sustaining growth in cycling.
+
+### Biographical Details of Authors:
+
+**Robin Lovelace** is a University Academic Fellow in Transport and Big Data at the Leeds Institute for Transport Studies. His academic work involves the development of methods for analysing and modelling spatial data, which are well suited to help plan more sustainable transport systems. His recent research, as lead developer of the Propensity to Cycle Tool, has focussed on modelling and visualising transport scenarios of the future. This involves quantifying the health, energy and local infrastructural implications of a future where cycling is the main mode of transport for urban travel.
