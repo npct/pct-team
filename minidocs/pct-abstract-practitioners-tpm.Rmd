@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ### Submitted as a: Paper
 
 
-### Robin Lovelace (behalf of the PCT team)
+### Robin Lovelace (on behalf of the PCT team)
 
 University Academic Fellow in Transport and Big Data
 
