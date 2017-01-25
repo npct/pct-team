@@ -12,10 +12,16 @@ sel_high = rf$all > 100
 plot(rf[sel_high,])
 rf = rf[sel_high,]
 p = spsample(x = rf, n = 5e4, type = "regular", weight = rf$all)
-plot(p)
+# plot(p)
 leaflet() %>%
   addTiles() %>%
   addWebGLHeatmap(lng = p@coords[,1], lat = p@coords[,2], size = 10, units = "px", alphaRange = 0.0001)
+
+ptest2 = p[1:2,]
+leaflet() %>%
+  addTiles() %>%
+  addWebGLHeatmap(lng = ptest2@coords[,1], lat = ptest2@coords[,2], size = 100, units = "px", intensity = c(1, 20))
+
 
 # Test weight argument
 rf_minmax = rf[c(which.min(rf$all), which.max(rf$all)),]
