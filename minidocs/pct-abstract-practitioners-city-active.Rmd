@@ -1,6 +1,5 @@
 ---
-title: 'The propensity to cycle tool: from conception to national deployment'
-date: "February 5, 2016"
+title: 'The propensity to cycle tool: from conception to implementation'
 output: word_document
 ---
 
@@ -10,4 +9,4 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Abstract
 
-The Propensity to Cycle Tool (PCT) was proposed in late 2014 by the Department for Transport (DfT) to enable better prioritisation of funding for cycling in England and beyond. This involved analysis of current cycling behaviour, scenario-based models, and the creation of an on-line interactive tool. A year and a half later and the Propensity to Cycle tool is ready for nationwide deployment. It aims to provide an evidence base for transport planners, researchers and the public to help understand where cycling has the greatest potential to grow. This paper traces the development of the PCT from its inception through to user testing and its possible futures for its future development. The focus is on how new open source tools can empower transport decision makers to plan for a low carbon future.
+The Propensity to Cycle Tool (PCT) was proposed in late 2014 by the Department for Transport (DfT) to enable better prioritisation of funding for cycling in England and beyond. This involved analysis of current cycling behaviour, scenario-based models, and the creation of an on-line interactive tool. A two years later and the PCT has been deployed nationwide, and used in numerous transport plans. This presentation will provide a brief outline of the concept and methods underlying the PCT, before going into the detail of how it can be used to inform the decision-making process. The focus is on the question: where to build? However, the presentation will also look at how the PCT, and related tools and analyses, can be used to answer wider questions such as: how wide cycle paths be at different parts on the network? and where should new cycle parking be prioritised? The talk will wrap-up with a discussion of desirable directions of travel for the PCT to maximise its use in the global transition away from fossil fuels.
