@@ -1,6 +1,6 @@
 ---
 title: 'Methods for assessing the active travel impacts of major transport infrastructure projects'
-author: "Robin Lovelace"
+author: "Robin Lovelace, Malcolm Morgan"
 date: "`r Sys.Date()`"
 output: bookdown::html_document2
 bibliography: documents/references.bib
@@ -19,6 +19,7 @@ This is well established thanks to the field and practice of impact assessment.
 Many methods have been used, including economic appraisal or benefit-cost analysis (CBA), environmental impact assessment (EIA).
 Recently other types of assessment have emerged, including, health, equality and transport impact assessment (HIA, EqIA and TIA respectively).
 <!-- This is well-documented: a growing academic literature reports methods and findings on the subject. -->
+<!-- Have you seen Health impact assessment of active transportation: A systematic review (2015), it would seem to undermin your assertion http://www.sciencedirect.com/science/article/pii/S0091743515001164 -->
 However, there has been little work on active travel impacts.
 This is surprising, given the high potential for new schemes to affect walking and cycling, modes with well-know environmental, health and equality benefits.
 <!-- This can partly been explained by the lack of concepts, methods and precedents for estimating how new roads, railways and other projects are likely to affect walking and cycling levels. -->
@@ -74,10 +75,11 @@ Major infrastructure can impact upon active transport in a range of different wa
 knitr::include_graphics("infra-active/active-travel-options.png")
 ```
 
+<!-- *Lable indervidual diagrams ... -->
 
 ## Severance
 
-Linear infrastructure can become a barrier to travel perpendicular to the new infrastructure, severing routes that were used before the new infrastructure was built. This is especially true for railways and motorways, which may be at a different level to the surrounding road network, and are not crossable by walkers and cyclists without dedicated crossings. Understanding where severance occurs and how may people are affected can aid in effectively planning  the construction of bridges, tunnels, and other crossings.
+Linear infrastructure can become a barrier to travel perpendicular to the new infrastructure, severing routes that were used before the new infrastructure was built. This is especially true for railways and motorways, which may be at a different level to the surrounding road network, and are not crossable by walkers and cyclists without dedicated crossings. Understanding where severance occurs and how many people are affected can aid in effectively planning  the construction of bridges, tunnels, and other crossings.
 
 ## Parallels
 New linear infrastructure provides an opportunity to construct new footpaths and cycle paths alongside the infrastructure. The marginal cost of adding active transport routes alongside other planned infrastructure can be lower than constructing a dedicated route.  There are several different types of active transport that may take place along a parallel route:
@@ -89,9 +91,10 @@ New linear infrastructure provides an opportunity to construct new footpaths and
 The number of people who are affected by these scenarios will depend on the type of infrastructure, its design, and the nature of the surrounding area. By analysing parallels, it can aid in understanding if an active travel route would be useful alongside on some or all of the new linear infrastructure.
 
 ## Travel to public transport
-New infrastructure can result in an increase in active travel  in nearby areas along the route. For example, a railway extension may result in more people walking or cycling in the centre of town to the local station who previously drove out of town to their destination.
+New infrastructure can result in an increase in active travel  in nearby areas along the route. For example, a railway extension may result in more people walking or cycling in the centre of town to the local station who previously drove out of town to their destination. This effect can manifest at significant distance from the new infrastructure, by linking previously disconnected areas.
 
 # Methodology
+A method for assess each of the three types of active travel impact is outlined in this section in the abstract, such that it could be applied to any linear feature of interest. Then Section 4 provides specific examples using a case study of the Lewes-Uckfield train line.
 
 ## Identifying 'parallels' to linear features
 
@@ -105,17 +108,6 @@ A 'desire line' refers to a straight line connecting an origin-destination pair.
 - Subset the desire lines again, to include only those that are within a threshold angle (set at 30 degrees) of the mean bearing of their closest rail line segment
 - Aggregate the cycling potential of all parallel lines within the threshold distance of each segment and assign the values to the route segments.
 
-## Identifying travel to public transport
-Increased travel to public transport is likely to occur near public transport stops and on desire lines that have an origin and destination near connected public transport stops.
-
-The methodology used to identify these severance points consists of XXXX stages:
-
-- Subset desire lines that have both and origin and destination within 5km of a station/stop
-- Remove lines that have the same stop as their closest origin and destination
-- Create new desire lines that are from Origin to Station A and from Station B to destination
-- Calculate change in cyclin potential along these new desire lines
-
-
 ## Identifying potential 'severance points'
 
 Severance occurs when active travel along cyclable desire lines with high cycling potential is prevented or made more difficult by obstacles such as rivers, fast roads or railway tracks. A degree of severance can be expected along the full length of linear features, as most desire lines have at least some cycling potential. However, the degree of severance will be greatest in certain *severance pinch points* (henceforth referred to as severance points), for example, points along a rail track which intersect desire lines connecting residential areas with employment zones on the other side.
@@ -128,7 +120,16 @@ The methodology used to identify these severance points consists of 3 stages:
 
 Note that based on the three-stage methodology outlined above, severance points are in fact more precisely described as 'severance segments', along which a range of points could be chosen for crossing points. However, the term 'severance point' is more intuitive so we use this term throughout.
 
+## Identifying travel to public transport
 
+Increased travel to public transport is likely to occur near public transport stops and on desire lines that have an origin and destination near connected public transport stops.
+
+The methodology used to identify these severance points consists of four stages:
+
+- Subset desire lines that have both and origin and destination within 5km of a station/stop
+- Remove lines that have the same stop as their closest origin and destination
+- Create new desire lines that are from Origin to Station A and from Station B to destination
+- Calculate change in cyclin potential along these new desire lines
 
 \newpage
 
@@ -165,7 +166,7 @@ load("input-data/lewes_uckfield_objects.Rdata")
 
 There are `r nrow(cents_lc)` MSOAs whose population weighted centroids lie within a 10 km buffer of the train line, representing `r sum(cents_lc$all)` commuters. This area is illustrated in Figure \@ref(fig:lc).
 
-```{r lc, fig.cap="Overview of the Lewes-Uckfiled line with a 10 km buffer (blue). Width is proportional to the number of commutes, colour represents the proportion of people who cycle. Thanks to Matthew Whittle who digitised a scanned image of the proposed route.", fig.height=8}
+```{r lc, fig.cap="Overview of the Lewes-Uckfiled line with a 10 km buffer (blue). Width is proportional to the number of commutes, colour represents the proportion of people who cycle.", fig.height=8}
 # osm_tiles = read_osm(bb(z_lc, 1.05), type = "stamen-toner")
 # saveRDS(osm_tiles, "data-sources/osm_tiles_ukfield.Rds")
 osm_tiles = readRDS("data-sources/osm_tiles_ukfield.Rds")
@@ -177,7 +178,7 @@ qtm(osm_tiles) +
 # knitr::include_graphics("figures/lewes-uckfield-overview.png")
 ```
 
-The total number of single-stage commutes that pass through the buffer is higher: `r sum(l_lc$all)` commuters. As Figure \@ref(fig:lc) illustrates, many of these commuters would not interact with the train line, as they are focused on commutes between Brighton and surrounding settlements in the far southeast of the 20 km buffer. Only a few hundred commutes pass directly parallel to the route, mostly due to 10 to 20 km (route distance) commutes between MSOAs in Lewes, Ringmer, and Uckfield. This implies that cycle paths running parallel to the train line itself have quite low commuter cycling potential. The next section analyses this potential in more detail.
+The total number of single-stage commutes <!-- # Clarify, what is a multi-stage commute in the context of desire lines? --> that pass through the buffer is higher: `r sum(l_lc$all)` commuters. As Figure \@ref(fig:lc) illustrates, however many of these commuters are not travelling parelle to the train line. The majority of desire lines intresecting the buffer are between Brighton and its surrounding settlements <!-- # Brighton must be labled on the map -->. Only a few hundred commutes pass directly parallel to the route, mostly <!-- due to 10 to 20 km (route distance) {I don't know what this means} -->commutes between MSOAs in Lewes, Ringmer, and Uckfield. This implies that cycle paths running parallel to the train line itself have quite low commuter cycling potential. The next section analyses this potential in more detail.
 
 
 ## Cycling potential parallel to the route
@@ -373,6 +374,11 @@ It is in terms of the methods for quantifying the potential for desire lines par
 - The extension of the method to quantify the level of overlap between proposed cycle networks and a series of desire lines or a route network.
 
 # References
+
+
+#Acknowledgements
+
+Thanks to Matthew Whittle who digitised a scanned image of the proposed route.
 
 <!-- ## The impacts of high-speed rail on cycling in the UK -->
 
