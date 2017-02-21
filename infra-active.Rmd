@@ -8,7 +8,7 @@ bibliography: documents/references.bib
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = F, message = FALSE, fig.align = "center", fig.height = 4, options(scipen=999))
-pkgs = c("sp", "tmap", "rgeos", "stplanr", "dplyr")
+pkgs = c("sp", "tmap", "tmaptools", "rgeos", "stplanr", "dplyr")
 lapply(pkgs, library, character.only = T)
 ```
 

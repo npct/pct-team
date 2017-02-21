@@ -20,9 +20,9 @@ opts_chunk$set(echo = FALSE)
 
 ## Talk structure
 
-1) Open source tools in statistics/transport
-
 2) Computing needs of transport planners
+
+1) Open source tools in statistics/transport
 
 3) Case studies (stplanr + PCT)
 
@@ -56,6 +56,18 @@ opts_chunk$set(echo = FALSE)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/zI0dPGuP2zE" frameborder="0" allowfullscreen></iframe>
 
+## Locally targetted vs national interventions
+
+- Nationally uniform transport policies have several advantages
+    - Avoid 'mixed messages'
+    - In some cases essential (e.g. fuel prices)
+    - We're all in it together
+
+- BUT, locally specific transport policies can boost cost-effectiveness
+    - Should walking/cycle paths be the same width throughout?
+    - Point facilities will be used more if they're located sensibly (e.g. bus stops)
+    - Cycle share schemes much more effective when spatial configuration matches urban form
+
 ## Some transport statistics
 
 - Transport eats time. We spend on average 6% of our lives (sleeping/resting: 37%; commuting: 1%; paid work:  25%)   [@king_worktime_2017].
@@ -76,8 +88,6 @@ knitr::include_graphics("http://2.bp.blogspot.com/-qCJTu0lkA4A/TuVawC6PDTI/AAAAA
 knitr::include_graphics("../figures/transport-40pc-energy.png")
 ```
 
-
-
 ## Energy use in Transport nationally
 
 > Final  energy  consumption  (excluding  non-energy  use)  was  1.9  per  cent  higher  than  in  
@@ -91,6 +101,8 @@ transport demand likely due to lower petroleum prices.
 ```{r}
 knitr::include_graphics("../figures/transport-fuel-prices-to-2016.png")
 ```
+
+# Computational needs of transport planners
 
 ## Tools for the trade
 
@@ -126,9 +138,7 @@ knitr::include_graphics(c("../figures/746px-Pistol-grip_drill.svg.png", "../figu
 <!-- knitr::include_graphics("../figures/dft-organogram-all.png") -->
 <!-- ``` -->
 
-# The origins of transport modelling
-
-## Inspiration for this section | Forecasting urban travel
+## Transport planning needs have a history | Forecasting urban travel
 
 - Book by @boyce_forecasting_2015
 
@@ -150,7 +160,7 @@ knitr::include_graphics("../figures/sdna-san-fran.png")
 
 > - no consideration of walking or cycling
 
-# Proprietary software vs sustainability
+# Available tools 
 
 ## Transport planning tools: expensive...
 
@@ -195,8 +205,6 @@ knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/c/
 > - Are sometimes too complex!
 
 > - Implications for others
-
-# An open source approach
 
 ## Open source software for transport planning {.smaller}
 
@@ -265,7 +273,7 @@ knitr::include_graphics("http://robinlovelace.net/figure/cconnect.png")
 knitr::include_graphics("http://leedscyclingcampaign.co.uk/sites/default/files/Residential%20Street%20small_0.jpg")
 ```
 
-## Incorporation of new digital technologies
+## Incorporation of new (open source?) digital technologies
 
 ```{r, echo=FALSE}
 knitr::include_graphics("http://images.cdn.stuff.tv/sites/stuff.tv/files/styles/big-image/public/news/see-sense-light.jpg")
@@ -284,7 +292,7 @@ knitr::include_graphics("http://images.cdn.stuff.tv/sites/stuff.tv/files/styles/
 
 <!-- > - How do we get there? -->
 
-# Live demo
+# Case studies
 
 ## Origin-destination data
 
@@ -315,7 +323,49 @@ See http://www.pct.bike/
 
 [![](https://github.com/npct/pct/raw/master/figures/rnet-leeds-base-to-godutch.png)](https://github.com/npct/pct/raw/master/figures/rnet-leeds-base-to-godutch.png)
 
-# Discussion
+## Hot off the press: the cycle to schools layer | See our [test server](http://npct0.vs.mythic-beasts.com/schools/)
+
+```{r}
+knitr::include_graphics("../figures/pct-schools-image.png")
+```
+
+## The overlay between travel to school and work layers
+
+- Setup:
+
+```{r, echo=TRUE, warning=FALSE}
+# load data
+rf_schools = readRDS("~/npct/pctSchoolsUK/pctSchoolsApp/data/west-yorkshire/rnet.Rds")
+rf_commute = readRDS("~/npct/pct-data/west-yorkshire/rnet.Rds")
+
+# create bounding box polygon
+bbox_poly = stplanr::bb2poly(rf_schools)
+proj4string(bbox_poly) = proj4string(rf_commute)
+
+# spatial subset
+rf_commute = rf_commute[bbox_poly,]
+```
+
+## Visualisation code | Results: see [rpubs.com/RobinLovelace/](http://rpubs.com/RobinLovelace/244545)
+
+```{r, echo=TRUE}
+library(tmap)
+tmap_mode("view")
+m = tm_shape(rf_schools) +
+  tm_lines(lwd = "dutch_slc", scale = 20, col = "darkgreen") +
+  tm_shape(rf_commute) +
+  tm_lines(lwd = "dutch_slc", scale = 20, col = "darkblue")
+```
+
+## Headline result: huge potential to optimise network for children and adults
+
+- See [rpubs.com/RobinLovelace/](http://rpubs.com/RobinLovelace/244545) for interactive map
+
+```{r}
+knitr::include_graphics("../figures/schools-commuter-overlay.png")
+```
+
+# Solutions
 
 ## The case for open source software in transport planning
 
@@ -343,7 +393,12 @@ Philosophical reasons
 
 ## Open source software has no warranty...
 
-Twitter image of other software
+See https://twitter.com/thosjleeper/status/793107956632084480
+
+```{r}
+knitr::include_graphics("../figures/rstats-license.png")
+```
+
 
 ## What to keep, what to replace?
 
@@ -370,14 +425,11 @@ Could there be a mutually reinforcing feedback loop:
 
 Shift in (digital) infrastructure -> change in behaviour and priorities?
 
-# Solutions
-
 ## We're (accidentally) doing something right in terms of coal | Source: [DECC](https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/579542/ET_Dec_16.pdf). Risk: electric cars.
 
 ```{r}
 knitr::include_graphics("../figures/coal-stats-2013-2016.png")
 ```
-
 
 ## Points of contention
 
@@ -405,11 +457,19 @@ Areas of disagreement:
 
 ## Solutions - policy
 
-- Reducing worktime hours: "The three best performing scenarios were those that involved
+
+- Incentivise low carbon, healthy travel
+
+> - Build cycle paths (where they are most needed, of appropriate design)
+> - Embed walking and cycling - urban realm improvements, facilities sign-posting
+> - Subsidise car sharing solutions
+
+- Disincentivise high carbon solutions
+
+- Creative approaches
+> - Reducing worktime hours: "The three best performing scenarios were those that involved
 employees working a four-day week as they enabled companies to reduce
 energy use, and employees to reduce commuting" [@king_worktime_2017]. 
-
-- Incentivise low carbon solutions
 
 ## References {.smaller}
 

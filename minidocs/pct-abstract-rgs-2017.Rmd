@@ -1,0 +1,27 @@
+---
+title: 'The propensity to cycle tool: from conception in the clouds to implementation
+  on the ground'
+output:
+  word_document: default
+  html_document: default
+---
+
+### Robin Lovelace (on behalf of the PCT team)
+
+University Academic Fellow in Transport and Big Data
+
+Leeds Institute for Transport Studies (ITS)
+
+34 - 40, University Road, University of Leeds
+
+Leeds, LS2 9JT
+
+Tel: 0113 343 0691
+
+R.Lovelace@Leeds.ac.uk
+
+## Abstract
+
+The Propensity to Cycle Tool (PCT) was proposed in late 2014 by the Department for Transport (DfT) as a tool to provide an evidence base on current and possible future cycling levels (see [www.pct.bike](http://pct.bike/)). It's central aim was to enable better prioritisation of funding and transport interventions for cycling in England and beyond. The aim of this presentation is different: to show how advancements in map-making 'in the clouds', conceptually and methodologically, can be translated into practical inform the decision-making process 'on the ground'. The focus is on the question: where to build? However, the presentation will also look at how the PCT, and related tools and analyses, can be used to answer wider questions such as: how wide cycle paths be at different parts on the network? and where should new cycle parking be prioritised? 
+
+We found that using a national origin-destination dataset we could visualise current cycling levels at area, desire line, route and route-network levels. Furthermore, we could visualise scenarios of cycling uptake at each of these levels and present the results using on an interactive on-line map covering all of England. This is the first publicly-accessible, interactive map-based planning support system focussed on cycling that has been deployed at the national level, to the best of our knowledge. It has major implications for investment in cycling, public funding in transport modelling, and how academics, especially transport geographers, can empower themselves via open source technology to influence the wider world outside their ivory towers.

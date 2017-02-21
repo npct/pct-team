@@ -2,8 +2,8 @@
 title: "Embedding cycling in the transport planning process"
 date: '`r Sys.Date()`'
 output:
-  pdf_document: default
   word_document: default
+  pdf_document: default
 bibliography: references.bib
 ---
 
