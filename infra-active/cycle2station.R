@@ -5,6 +5,13 @@ library(rgdal)
 library(leaflet)
 library(stplanr)
 
+lewes_uckfield = readRDS("input-data/lewes_uckfield.Rds")
+load("input-data/lewes_uckfield_objects.Rdata")
+cents = geojsonio::geojson_read("../pct-bigdata/cents-scenarios.geojson", what = "sp")
+cents = cents[(cents$geo_code %in% l_lc$msoa1)|(cents$geo_code %in% l_lc$msoa2),]
+cents <- spTransform(cents, CRS("+init=epsg:4326"))
+cents_lc <- cents
+
 #Read in stops
 stops <- readOGR(dsn="../pct/input-data",layer = "lews_uckfiled_stations", encoding = "ESRI Shapefile")
 stops@data <- stops@data[,c(2,3,1)]
@@ -48,25 +55,44 @@ nrow(l_sub)
 l_sub <- l_sub[l_sub$Ostat != l_sub$Dstat,]
 nrow(l_sub)
 
+#Get lines that can't use the old network
+l_sub$Ogrp <- NA
+l_sub$Dgrp <- NA
+for(m in 1:nrow(l_sub)){
+  l_sub$Ogrp[m] <- as.character(stops$Type[stops$Name == l_sub$Ostat[m]])
+  l_sub$Dgrp[m] <- as.character(stops$Type[stops$Name == l_sub$Dstat[m]])
+}
+
+l_sub <- l_sub[l_sub$Ogrp != l_sub$Dgrp,]
+
+
 #Make lines and routes to stations
 l2stat <- od2line(flow = stat_near, zones = cents_lc, destinations = stops_proj)
 l2stat$id <- paste0(l2stat$mosa," ",l2stat$station)
 ##########################################################
-#r2stat <- line2route(l2stat,route_fun = "route_cyclestreet", l_id = "id")
-#saveRDS(r2stat,"../pct/input-data/routes2station.Rds")
+r2stat <- line2route(l2stat,route_fun = "route_cyclestreet", l_id = "id")
+saveRDS(r2stat,"../pct/input-data/routes2station.Rds")
 
 #Or Load in data
-r2stat <- readRDS("../pct/input-data/routes2station.Rds")
+#r2stat <- readRDS("../pct/input-data/routes2station.Rds")
 ############################################################
 
 #Remove lines where cycling via station would be futher than cycling direct
 
 #Get direct routes
 r_direct <- line2route(l_sub,route_fun = "route_cyclestreet", l_id = "id")
+saveRDS(r_direct,"../pct/input-data/routesdirect.Rds")
+#Or Load in data
+#r_direct <- readRDS("../pct/input-data/routesdirect.Rds")
 l_sub$dist_dir <- r_direct$length[base::match(r_direct$id, l_sub$id)]
 l_sub$dist_train <- r2stat$length[base::match(paste0(l_sub$msoa1," ",l_sub$Ostat),r2stat$id)] + r2stat$length[base::match(paste0(l_sub$msoa2," ",l_sub$Dstat),r2stat$id)]
 l_short <- l_sub[(l_sub$dist_train * 1.1) < l_sub$dist_dir,]
+l_short_list <- data.frame(msoa1 = l_short$msoa1, msoa2 = l_short$msoa2, Ostat = l_short$Ostat, Dstat = l_short$Dstat)
+l_short_list$Oid <- paste0(l_short_list$msoa1," ",l_short_list$Ostat)
+l_short_list$Did <- paste0(l_short_list$msoa2," ",l_short_list$Dstat)
+list <- c(l_short_list$Oid,l_short_list$Did)
 
+r_short <- r2stat[r2stat$id %in% list,]
 
 #Calcualte the number of cylist on the route
 l2stat$bicycle <- 0
@@ -85,13 +111,15 @@ station_icon <- makeIcon(
 
 
 leaflet() %>%
-  addProviderTiles("Stamen.Toner") %>%
-  addMarkers(data = cents_lc) %>%
+  #addProviderTiles("OpenStreetMap") %>%
+  #addMarkers(data = cents_lc) %>%
   addMarkers(data = stops_proj, icon = station_icon) %>%
   #addPolylines(data = l_sub, color = "red") %>%
+  #addPolylines(data = l_lc, color = "green") %>%
   #addPolylines(data = l2stat[l2stat$bicycle > 0, ], color = "blue") %>%
-  #addPolylines(data = l_short, color = "green")
-  addPolylines(data = r2stat, color = "green", weight = (r2stat$bicycle)/2)
-  #addPolylines(data = r_direct[r_direct$], color = "red")
+  addPolylines(data = l_short, color = "green") %>%
+  #addPolylines(data = r2stat, color = "blue") %>%
+  addPolylines(data = r_short, color = "red") %>%
+  addProviderTiles("OpenStreetMap")
   #addPolygons(data = buff)
 
