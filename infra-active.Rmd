@@ -71,7 +71,7 @@ The lack of organisational overlap between major transport infrastructure and ac
 
 Major infrastructure can impact upon active transport in a range of different ways. To organise the assessment process, these can be categorised into 3 broad types of impact, as illustrated in Figure \@ref(fig:type).
 
-```{r type, echo=FALSE, fig.cap="A typology of active travel options."}
+```{r type, echo=FALSE, fig.cap="A typology of active travel options.", out.width="100%"}
 knitr::include_graphics("infra-active/active-travel-options.png")
 ```
 
@@ -90,10 +90,12 @@ New linear infrastructure provides an opportunity to construct new footpaths and
 
 The number of people who are affected by these scenarios will depend on the type of infrastructure, its design, and the nature of the surrounding area. By analysing parallels, it can aid in understanding if an active travel route would be useful alongside on some or all of the new linear infrastructure.
 
-## INtergration of active travel and public transport
+## Intergration of active travel and public transport
+
 New infrastructure can result in an increase in active travel  in nearby areas along the route. For example, a railway extension may result in more people walking or cycling in the centre of town to the local station who previously drove out of town to their destination. This effect can manifest at significant distance from the new infrastructure, by linking previously disconnected areas.
 
 # Methodology
+
 A method for assessing each of the three types of active travel impact is outlined in this section in the abstract, such that it could be applied to any linear feature of interest. Then Section 4 provides specific examples using a case study of the Lewes-Uckfield train line.
 
 ## Identifying 'parallels' to linear features
@@ -210,8 +212,8 @@ l_seg = readRDS("data-sources/l_seg.Rds")
 l_lc$Perpendicular = a > 60
 sel_intersects = over(l_lc, l_seg)
 l_lc$`Perpendicular selection` = !is.na(sel_intersects[,1]) & a > 60
+l_agg = aggregate(l_lc["govtarget_slc"], l_seg, FUN = sum)
 ```
-
 
 ### Subsetting desire lines by centrepoint proximity
 
@@ -230,17 +232,21 @@ These represent `r round(sum(sel_centrepoint)/length(sel_centrepoint) * 100, 1)`
 knitr::include_graphics("figures/infra-selection-all.png")
 ```
 
-
 ### Break the train line into segments
 
 Because the Lewes-Uckfield line is short and relatively straight, we used the entire line as a single segment.
-However, if the line were to be broken into segments, the results would resemble Figure \@ref(fig:segments).
+However, if the line were to be broken into segments, the results would resemble Figure \@ref(fig:segs)a. This demonstration of method could be applied to larger and more complex routes, e.g. that of the proposed HS2 or HS2 cycle network route.
 
-```{r segments, fig.cap="Demonstration of the method for splitting the route into segments.", out.height="7cm"}
+```{r segments, fig.cap="Demonstration of the method for splitting the route into segments.", out.height="7cm", eval=FALSE}
 knitr::include_graphics("figures/lewes-uckfield-segments.png")
 ```
 
-This demonstration of method could be applied to larger and more complex routes, e.g. that of the proposed HS2 or HS2 cycle network route.
+```{r segs, fig.cap="Illustration of the method of splitting the route into discrete segments, using the line_segment function from the stplanr R package  ", echo=FALSE}
+# Line width in (b) is proportional to the square root of the total cycling potential for each segment.
+# and cycling potential (under the Government Target scenario) severed by the proposed rail line (b).
+knitr::include_graphics("figures/route-sel.jpg")
+```
+
 
 ### Calculate the angle of the train routes
 
@@ -298,10 +304,9 @@ tm_shape(l_lc) + tm_lines(col = "grey", lwd = 3) +
 
 ### Quantifying severance per segments of the train line
 
-The cycling potential of the intersecting 'perpendicular' lines was then summed *per 1 km segment* of the rail line. The results, for the Government Target scenario, are presented in \@ref(fig:perpagg).
+The cycling potential of the intersecting 'perpendicular' lines was then summed *per 1 km segment* of the rail line. The results, for the Government Target scenario, are presented in \@ref(fig:seg)b.
 
-```{r perpagg, fig.cap="Total cycling potential (under the Government Target scenario) 'severed' by the proposed rail line. Line width is proportional to the square root of the total cycling potential for each segment.", fig.height=5}
-l_agg = aggregate(l_lc["govtarget_slc"], l_seg, FUN = sum)
+```{r perpagg, fig.cap="Total cycling potential (under the Government Target scenario) 'severed' by the proposed rail line. Line width is proportional to the square root of the total cycling potential for each segment.", fig.height=5, eval=FALSE}
 plot(l_agg, lwd = sqrt(l_agg$govtarget_slc) * 2)
 ```
 
