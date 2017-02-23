@@ -2,12 +2,12 @@
 title: 'Methods for assessing the active travel impacts of major transport infrastructure projects'
 author: "Robin Lovelace, Malcolm Morgan"
 date: "`r Sys.Date()`"
-output: bookdown::html_document2
+output: bookdown::pdf_document2
 bibliography: documents/references.bib
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, warning = F, message = FALSE, fig.align = "center", fig.height = 4, options(scipen=999))
+knitr::opts_chunk$set(echo = FALSE, warning = F, message = FALSE, fig.align = "center", fig.height = 4, options(scipen=999), out.width = "80%")
 pkgs = c("sp", "tmap", "tmaptools", "rgeos", "stplanr", "dplyr")
 lapply(pkgs, library, character.only = T)
 ```
@@ -371,7 +371,7 @@ The first stage in identifying people who may use active travel to reach a stati
 Having identified the desire lines and their corresponding stations, it is possible to calculate routes from each origin/destination to the nearest station.  In this case, the cyclestreets.net routing algorithm was used.
 The results of the sub-setting and routing are show in Figure XXX, eight desire lines were identified (green) representing 574 commuters.  Their associated active travel routes are shown in red.  Calculating the increase in active travellers along these routes would be dependent on the number of commuters switching to the new railway after it was constructed.  However, even without a precise quantification the mode shift, the method highlights which areas may have increased active travel.  It is notable that in Figure XXX not every station has an associated active travel route, this is because the new railway would not affect travel options evenly.
 
-```{r type, echo=FALSE, fig.cap="Active Travel To Stations"}
+```{r stns, echo=FALSE, fig.cap="Active Travel To Stations", fig.width= "100%"}
 knitr::include_graphics("infra-active/stations.png")
 ```
 
