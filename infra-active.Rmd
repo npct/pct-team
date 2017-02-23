@@ -166,7 +166,7 @@ load("input-data/lewes_uckfield_objects.Rdata")
 
 There are `r nrow(cents_lc)` MSOAs whose population weighted centroids lie within a 10 km buffer of the train line, representing `r sum(cents_lc$all)` commuters. This area is illustrated in Figure \@ref(fig:lc).
 
-```{r lc, fig.cap="Overview of the Lewes-Uckfiled line with a 10 km buffer (blue). Width is proportional to the number of commutes, colour represents the proportion of people who cycle.", fig.height=8}
+```{r lc, fig.cap="Overview of the Lewes-Uckfiled line with a 10 km buffer (blue). Width is proportional to the number of commutes, colour represents the proportion of people who cycle.", out.width="70%"}
 # osm_tiles = read_osm(bb(z_lc, 1.05), type = "stamen-toner")
 # saveRDS(osm_tiles, "data-sources/osm_tiles_ukfield.Rds")
 osm_tiles = readRDS("data-sources/osm_tiles_ukfield.Rds")
@@ -180,7 +180,7 @@ qtm(osm_tiles) +
 
 The total number of single-stage commutes that pass through the buffer is higher: `r sum(l_lc$all)` commuters. As Figure \@ref(fig:lc) illustrates, however, many of these commuters are not travelling parellel to the train line.
 The majority of desire lines intersecting the buffer are between Brighton (see the high density of flows in the far southwest of Figure \@ref(fig:lc)) and its surrounding settlements.
-Only a few hundred commutes pass directly parallel to the route, mostly of medium distance from 10 to 20 km (route distance) between MSOAs in Lewes, Ringmer, and Uckfield. This implies that cycle paths running parallel to the train line itself have quite low commuter cycling potential.
+Only a few hundred commutes pass directly parallel to the route, mostly of medium distance from 10 to 20 km (route distance) between MSOAs in Lewes, Ringmer, and Uckfield. This implies that cycle paths running parallel to the train line itself has relatively low commuter cycling potential.
 
 ## Cycling potential parallel to the route
 
@@ -226,7 +226,7 @@ tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
 The centrepoints of the desire lines intersecting with the Lewes-Uckfield route buffer are presented in Figure \@ref(fig:metafigure)a.
 These represent `r round(sum(sel_centrepoint)/length(sel_centrepoint) * 100, 1)`% of the desire lines in the study area, defined by the 10 km buffer.
 
-```{r metafigure, echo=FALSE, fig.cap="The paralell, perpendicular and station access methods of subsetting desire lines affected by the new rail line."}
+```{r metafigure, echo=FALSE, fig.cap="The centrepoint-buffer (a), paralell (b), perpendicular (c) and station access (d) methods of subsetting desire lines affected by the new rail line. In all figures the subsetted lines are plotted in red. In (b) the updated parallel desire lines, whose centre-points lie within 5 km of the route, are illustrated in orange."}
 knitr::include_graphics("figures/infra-selection-all.png")
 ```
 
@@ -254,7 +254,7 @@ line_bearing(lewes_uckfield)
 
 ### Subsetting desire lines parallel with the train line
 
-To find the lines that were close to parallel with the train line, the function `angle_diff()` was developed. All lines within 30 degrees, clockwise or anti-clockwise, to the train line, *and* have their midpoint within the route buffer, are illustrated in Figure \@ref(fig:para). It is clear from this Figure that a high number of lines were selected which are very unlikely benefit from cycling provision along the route, especially in the southwest segment of the plot. 
+To find the lines that were close to parallel with the train line, the function `angle_diff()` was developed. All lines within 30 degrees, clockwise or anti-clockwise, to the train line, *and* have their midpoint within the route buffer, are illustrated in the red lines in Figure \@ref(fig:metafigure)b. It is clear from this Figure that a high number of lines were selected which are very unlikely benefit from cycling provision along the route, especially in the southwest segment of the plot. 
 
 ```{r para, fig.cap="Illustration of the paralell lines subsettting method", eval=FALSE}
 tm_shape(l_lc) + tm_lines(col = "grey", lwd = 3) +
@@ -266,9 +266,8 @@ tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
 
 To resolve this issue a smaller buffer was used to select line centrepoints. This was set at 5 km.
 To remove desire lines that were still far from the train line a further subsetting method was developed.
-This involves selecting desire lines that pass within an even shorter distance of the train line, 2 km in this case.
-The results are presented in Figure \@ref(fig:paranew).
-The red lines represent the lines selected through these selection criteria;
+This involved selecting desire lines that pass within an even shorter distance of the train line, 2 km in this case.
+The results are presented in Figure Figure \@ref(fig:metafigure)b, in which
 the orange lines were included through the centrepoint selection method but omitted by 'buffer intersection' method.
 
 ```{r paranew, fig.cap="Updated 'parallel' desire lines, whose centre-points lie within 5 km of the proposed route (orange) and passes within 2 km of the train line (red). The red lines represent the lines selected through this method.", eval=FALSE}
@@ -282,13 +281,13 @@ tm_shape(buff_small) + tm_borders(col = "blue", lwd = 3) +
   tm_shape(l_lc[sel_finalpar,]) + tm_lines()
 ```
 
-From the subset of the lines highlighted in red in Figure \@ref(fig:paranew) we can now report summary statistics on the cycling potential of commuter desire lines which run parallel to the Lewes-Uckfield route. These results are presented alongside the equivalent statistics for *all* desire lines which intersect the 10 km buffer surrounding the proposed route.
+From the subset of the lines highlighted in red in Figure \@ref(fig:metafigure)b, we can now report summary statistics on the cycling potential of commuter desire lines which run parallel to the Lewes-Uckfield route. These results are presented alongside the equivalent statistics for *all* desire lines which intersect the 10 km buffer surrounding the proposed route.
 
 ## The potential for severance along the proposed route
 
 ### Subsetting 'perpendicular' desire lines
 
-The subsetting process involved finding which lines ran perpendicular to the proposed rail line and then selecting only those intersecting with it, as illustrated in Figure \@ref(fig:perpsel).
+The subsetting process involved finding which lines ran perpendicular to the proposed rail line and then selecting only those intersecting with it, as illustrated in Figure \@ref(fig:metafigure)c.
 
 ```{r perpsel, fig.cap="'Perpendicular' desire lines intersecting with the proposed rail line. Orange lines are within 30 degrees from perpendicular to the proposed train line, red lines are both close to perpendicular to the line and intersect with the rail line.", eval=FALSE}
 tm_shape(l_lc) + tm_lines(col = "grey", lwd = 3) +
@@ -299,7 +298,7 @@ tm_shape(l_lc) + tm_lines(col = "grey", lwd = 3) +
 
 ### Quantifying severance per segments of the train line
 
-The cycling potential of the intersecting 'perpendicular' lines was then summed *per 1 km segment* of the rail line. The results, for the Government Target scenario, are presented in \@ref(fig:perpsel).
+The cycling potential of the intersecting 'perpendicular' lines was then summed *per 1 km segment* of the rail line. The results, for the Government Target scenario, are presented in \@ref(fig:perpagg).
 
 ```{r perpagg, fig.cap="Total cycling potential (under the Government Target scenario) 'severed' by the proposed rail line. Line width is proportional to the square root of the total cycling potential for each segment.", fig.height=5}
 l_agg = aggregate(l_lc["govtarget_slc"], l_seg, FUN = sum)
@@ -319,7 +318,11 @@ tm_shape(osm_tiles_most) + tm_raster() +
 ```
 
 ## Cycling to Public Transport
-Figure XXX shows that there are only a few desire lines, representing 2351 commuters, that affected by the Lewes-Uckfield Line.  The main beneficiaries in the local area would be people north of Uckfield communing to Lewes and vice versa.  Desire lines between Lewes and Brighton can use the existing railway, while there are no desire lines between Brighton and North of Uckfield. The lack of desire lines likely reflects the current transport networks lack of connectivity between Lewes and Uckfield.  
+
+Beyond direct impacts of the proposed scheme on cycling potential, along desire lines in parallel with and crossing perpendicular to the railway, there are indirect impacts created by the potential to cycle to the stations. Because the proposed rail stations are located in areas of high population density, this could generate new cycle trips when they are taken as part of a multi-stage trip (e.g. cycle to the rail station, catch the train towards work, walk from the 'activity end' rail station to work).
+
+Analysis of the OD data in relation to proposed rail station locations suggests that relatively few desire lines, representing 2351 commuters, currently commute between areas served by the new rail stations, within a 3 km buffer (see \@ref(fig:metafigure)d).
+The main beneficiaries in the local area would be people north of Uckfield communing to Lewes and vice versa.  Desire lines between Lewes and Brighton can use the existing railway, while there are no desire lines between Brighton and North of Uckfield. The lack of desire lines likely reflects the current transport networks lack of connectivity between Lewes and Uckfield.  
 Changes in travel patterns caused by new rail links are beyond the scope of this paper. However, the method outlined above could be combined with existing techniques to understand the mode shift to rail, and thus predict any cycling increase resulting from a change in rail connectivity.
 
 ## Results
