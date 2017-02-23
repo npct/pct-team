@@ -69,6 +69,7 @@ l_sub <- l_sub[l_sub$Ogrp != l_sub$Dgrp,]
 #Make lines and routes to stations
 l2stat <- od2line(flow = stat_near, zones = cents_lc, destinations = stops_proj)
 l2stat$id <- paste0(l2stat$mosa," ",l2stat$station)
+saveRDS(l2stat, "input-data/l2stat.Rds")
 ##########################################################
 r2stat <- line2route(l2stat,route_fun = "route_cyclestreet", l_id = "id")
 saveRDS(r2stat,"../pct/input-data/routes2station.Rds")
@@ -101,7 +102,7 @@ for (l in 1:nrow(l2stat)){
   l2stat$bicycle[l] <- sum(sel$bicycle)
 }
 l2stat <- l2stat[l2stat$bicycle > 0, ]
-r2stat <- r2stat[r2stat$id %in% l2stat$id]
+r2stat <- r2stat[r2stat$id %in% l2stat$id,]
 r2stat$bicycle <- l2stat$bicycle[match(l2stat$id, r2stat$id)]
 
 station_icon <- makeIcon(
@@ -123,3 +124,6 @@ leaflet() %>%
   addProviderTiles("OpenStreetMap")
   #addPolygons(data = buff)
 
+
+saveRDS(l_short, "input-data/l_short.Rds")
+saveRDS(stops, "input-data/stops.Rds")
