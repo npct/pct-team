@@ -237,14 +237,14 @@ knitr::include_graphics("figures/infra-selection-all.png")
 Because the Lewes-Uckfield line is short and relatively straight, we used the entire line as a single segment.
 However, if the line were to be broken into segments, the results would resemble Figure \@ref(fig:segs)a. This demonstration of method could be applied to larger and more complex routes, e.g. that of the proposed HS2 or HS2 cycle network route.
 
-```{r segments, fig.cap="Demonstration of the method for splitting the route into segments.", out.height="7cm", eval=FALSE}
+<!-- 
+```{r segments, fig.cap="Demonstration of the method for splitting the route into segments (a) and cycling potential (under the Government Target scenario) severed by the proposed rail line (b) (with line width proportional to the square root of the total cycling potential for each segment).", out.height="7cm", eval=FALSE}
 knitr::include_graphics("figures/lewes-uckfield-segments.png")
 ```
+-->
 
-```{r segs, fig.cap="Illustration of the method of splitting the route into discrete segments, using the line_segment function from the stplanr R package  ", echo=FALSE}
-# Line width in (b) is proportional to the square root of the total cycling potential for each segment.
-# and cycling potential (under the Government Target scenario) severed by the proposed rail line (b).
-knitr::include_graphics("figures/route-sel.jpg")
+```{r segs, fig.cap="Illustration of the method of splitting the route into discrete segments using the linesegment function from the stplanr R package (a) and ", echo=FALSE}
+knitr::include_graphics("figures/route-sel.png")
 ```
 
 
