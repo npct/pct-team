@@ -15,15 +15,14 @@ lapply(pkgs, library, character.only = T)
 # Abstract {-}
 
 Major transport infrastructure projects affect many aspects of life.
-This is well established thanks to the field and practice of impact assessment.
-Many methods have been used, including economic appraisal or benefit-cost analysis (CBA), environmental impact assessment (EIA).
-Recently other types of assessment have emerged, including, health, equality and transport impact assessment (HIA, EqIA and TIA respectively).
+This is well known and sometimes acted on, thanks in part to well established methods in 
+economic appraisal, cost-benefit analysis and environmental impact assessment.
+Recently other types of assessment have emerged, including, health, equality and transport impact assessment.
 <!-- This is well-documented: a growing academic literature reports methods and findings on the subject. -->
 <!-- Have you seen Health impact assessment of active transportation: A systematic review (2015), it would seem to undermin your assertion http://www.sciencedirect.com/science/article/pii/S0091743515001164 -->
-However, there has been little work on active travel impacts.
-This is surprising, given the high potential for new schemes to affect walking and cycling, modes with well-know environmental, health and equality benefits.
+However, there has been relatively little work focussing explicitly on active travel impacts, despite the high potential for new schemes to affect walking and cycling and the increased policy interest in these modes in recent years.
 <!-- This can partly been explained by the lack of concepts, methods and precedents for estimating how new roads, railways and other projects are likely to affect walking and cycling levels. -->
-Motivated by the need to ensure active travel is accounted for, this paper sets out methods for 'active travel impact assessment (ATIA), based around 3 types of impact:
+Motivated by the need to ensure active travel is accounted for, this paper sets out methods for active travel impact assessment, based around 3 types of impact:
 *severance*, when new infrastructure cuts across routes with high active travel potential;
 *parallels*, opportunities for constructing new routes parallel new infrastructure;
 and *integration* with existing transport services.
@@ -238,12 +237,12 @@ Because the Lewes-Uckfield line is short and relatively straight, we used the en
 However, if the line were to be broken into segments, the results would resemble Figure \@ref(fig:segs)a. This demonstration of method could be applied to larger and more complex routes, e.g. that of the proposed HS2 or HS2 cycle network route.
 
 <!-- 
-```{r segments, fig.cap="Demonstration of the method for splitting the route into segments (a) and cycling potential (under the Government Target scenario) severed by the proposed rail line (b) (with line width proportional to the square root of the total cycling potential for each segment).", out.height="7cm", eval=FALSE}
+```{r segments, fig.cap="Demonstration of the method for splitting the route into segments (a) ", out.height="7cm", eval=FALSE}
 knitr::include_graphics("figures/lewes-uckfield-segments.png")
 ```
 -->
 
-```{r segs, fig.cap="Illustration of the method of splitting the route into discrete segments using the linesegment function from the stplanr R package (a) and ", echo=FALSE}
+```{r segs, fig.cap="Illustration of the method of splitting the route into discrete segments using the linesegment function from the stplanr R package (a) and cycling potential (under the Government Target scenario) severed by the proposed rail line (b), in which line width is proportional to the square root of cycling potential severed.", echo=FALSE}
 knitr::include_graphics("figures/route-sel.png")
 ```
 
@@ -304,7 +303,7 @@ tm_shape(l_lc) + tm_lines(col = "grey", lwd = 3) +
 
 ### Quantifying severance per segments of the train line
 
-The cycling potential of the intersecting 'perpendicular' lines was then summed *per 1 km segment* of the rail line. The results, for the Government Target scenario, are presented in \@ref(fig:seg)b.
+The cycling potential of the intersecting 'perpendicular' lines was then summed *per 1 km segment* of the rail line. The results, for the Government Target scenario, are presented in \@ref(fig:seg)b which shows, as one would expect, that severance impacts would be greatest at the ends of the proposed route, where population densities and employment opportunities are greatest.
 
 ```{r perpagg, fig.cap="Total cycling potential (under the Government Target scenario) 'severed' by the proposed rail line. Line width is proportional to the square root of the total cycling potential for each segment.", fig.height=5, eval=FALSE}
 plot(l_agg, lwd = sqrt(l_agg$govtarget_slc) * 2)
