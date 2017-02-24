@@ -359,7 +359,20 @@ for(j in 1:length(scens)){
   row.names(res_p) = paste(sc_name_df$sc_f_name[j], lines_subset)
   res = rbind(res, res_p)
 }
-knitr::kable(res, digits = 1, caption = "Cycling potential in the study area surrounding the proposed rail line. The Touching buffer column refers to the cycling potential of desire lines which pass within the 10 km buffer. The  Parallel selection criteria described in Section 3.2. The Perpendicular selection criteria are described in Section 3.3.")
+# saveRDS(res, "input-data/res.Rds") # without stations data
+res = readRDS("input-data/res.Rds")
+res_stations = readRDS("input-data/res_stns.Rds")
+# sel_res = grepl(pattern = "11|Gov", rownames(res))
+# res_sub = res[sel_res,]
+res_sub = rbind(res[1:3,], res_stations[1,], res[4:6,], res_stations[2,])
+names_scens = c(gsub(pattern = "Census 2011: ", replacement = "", row.names(res_sub[1:3,])),
+                "Cycling to stations")
+names_scens = c("Baseline", names_scens, "Scenario", names_scens)
+res_sub[2:4] = apply(res_sub[2:4], 2, round, 1)
+empty_string = rep("", ncol(res_sub))
+res_sub = rbind(empty_string, res_sub[1:4,], empty_string, res_sub[5:8,])
+res_sub = cbind(Scenario = names_scens, res_sub)
+knitr::kable(res_sub, digits = 1, caption = "Current and potential future cycle commuters who may be affected by the proposed rail line, under baseline and future scenarios (based on the 2011 Census and a doubline in cycling potential) for the three types of affected desire lines plus all desire lines in the vecinity (touching the 10 km buffer) surrounding the proposed route.", row.names = F)
 ```
 
 Overall the potential for cycling along routes parallel to the track appears to be somewhat greater than the cycling potential of 'severed' routes.

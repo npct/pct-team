@@ -127,3 +127,76 @@ leaflet() %>%
 
 saveRDS(l_short, "input-data/l_short.Rds")
 saveRDS(stops, "input-data/stops.Rds")
+
+# estimate cycling potential to the stations
+summary(l_short$dist) # Those that are shorter cycled to train stations
+summary(l_short$all)
+
+# which desire lines (l_short) touch which cycle routes (r_short)
+i = 1
+l_short$cycle_dist = NA # distance cycled to populate
+for(i in 1:length(l_short)){
+
+  sel_home = r_short$id %in% paste(l_short$msoa1[i], l_short$Ostat[i])
+  r_short_home = r_short[sel_home,]
+
+  sel_work = r_short$id %in% paste(l_short$msoa2[i], l_short$Dstat[i])
+  r_short_work = r_short[sel_work,]
+
+  l_short$cycle_dist[i] = sum(r_short_home$length + r_short_work$length)
+
+}
+l_short$cycle_dist = l_short$cycle_dist / 1000
+summary(l_short$cycle_dist)
+sum(l_short$bicycle)
+
+# scenarios - see https://github.com/Robinlovelace/pct-menai/blob/master/vignettes/menai-bridge-cycle.Rmd
+logit_pcycle = -3.894 + (-0.5872 * l_short$cycle_dist) +
+  (1.832 * sqrt(l_short$cycle_dist) ) + (0.007956 * l_short$cycle_dist^2)
+l_short$govtarget =
+  boot::inv.logit(logit_pcycle) + l_short$`Percent cycling` / 100
+l_short$`Government Target` = l_short$govtarget * l_short$all
+logit_pcycle_dutch = logit_pcycle + 2.499 -0.07384 * l_short$cycle_dist
+l_short$godutch = boot::inv.logit(logit_pcycle_dutch)
+l_short$`Go Dutch` = l_short$godutch * l_short$all
+
+# save results
+res = readRDS("input-data/res.Rds")
+res_stns = res[0,]
+res_stns[1,] = c(sum(l_short$all),
+                 sum(l_short$bicycle),
+                 sum(l_short$bicycle) / sum(l_short$all) * 100,
+                 mean(l_short$dist)
+                 )
+res_stns[2,] = c(sum(l_short$all),
+                 sum(l_short$`Government Target`),
+                 sum(l_short$`Government Target`) / sum(l_short$all) * 100,
+                 mean(l_short$cycle_dist)
+)
+res_stns[3,] = c(sum(l_short$all),
+                 sum(l_short$`Go Dutch`),
+                 sum(l_short$`Go Dutch`) / sum(l_short$all) * 100,
+                 mean(l_short$cycle_dist)
+)
+addition_cyclists = sum(l_short$govtarget * l_short$all)
+
+saveRDS(res_stns, "input-data/res_stns.Rds")
+
+# out-takes:
+tmap_mode("view")
+qtm(l_short[1,]) +
+  qtm(r_short)
+l_short_buff = buff_geo(l_short, width = 20)
+qtm(l_short_buff)
+qtm(l_short[1,]) +
+  qtm(r_short[l_short_buff[1,],])
+summary(l)
+
+
+
+qtm(l_short[i,])
+cent_o = cents[cents$geo_code == l_short$msoa1[i],]
+r_o = r_short[buff_geo(cent_o, width = 20),]
+qtm(l_short[i,]) +
+  qtm(r_short) +
+  qtm(buff_geo(cent_o, width = 20))
