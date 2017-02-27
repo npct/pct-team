@@ -1,39 +1,49 @@
 ---
 title: "Modelling and visualising Big Data for active travel: lessons from the PCT"
-author: "Robin Lovelace (CDRC Leeds), James Woodcock (CEDAR Cambridge)"
-date: "Obesity Network workshop, 16th March 2016, Cambridge <br> Slides (`r Sys.Date()`): [rpubs.com/robinlovelace](http://rpubs.com/RobinLovelace/161336). Code: [github.com/npct](https://github.com/npct/pct/blob/master/minidocs/big-data-pres.Rmd)."
+author: "Robin Lovelace (University Academic Fellow, Transport and Big Data)"
+date: "`r Sys.Date()`"
 output:
   ioslides_presentation:
     transition: slower
-logo: ../figures/cdrc-square.png
+logo: ../figures/its-logo-square.png
 bibliography: ../documents/references.bib
 ---
-
-```{r, echo=FALSE}
-library(RefManageR)
-refs = ReadZotero(group = "418217", .params = list(collection = "JFR868KJ"))
-# RefManageR::WriteBib(refs, "refs.bib")
-# names(refs)
-library(grid)
-library(png)
-```
 
 ## Contents
 
 > - What we did: Big Data in the PCT
 > - What is Big Data: worked example (with code!)
-> - Implications for obesity research
+> - Implications for ITS
 > - Lessons learned
 
+## Context: from concept to implementation
+
+It's been an intense 2 years!
+
+```
+Concept (PhD) -> Job at UoL (2009 - 2013)
+ Discovery of R programming and shiny (2013)
+  'Propensity to Cycle' bid by DfT via SDG (214)
+    Link-up with Cambridge University and colleagues (2015)
+     Implementation on national OD dataset, 700k routes (2016)
+      Completed LSOA phase (4 million lines!) (2017)
+```
+
+ > - 2018: (Global PCT?) 
+ 
 # How we've used Big Data in the Propensity to Cycle Tool
 
 ## The PCT: a Big Data project
 
-```{r, echo=FALSE}
-# > "The PCT is a brilliant example of using Big Data to better plan infrastructure investment. It will allow us to have more confidence that new schemes are built in places and along travel corridors where there is high latent demand."
-# 
-# Shane Snow: Head of Seamless Travel Team, Sustainable and Acessible Travel Division 
-```
+"The PCT is a brilliant example of using Big Data to better plan infrastructure investment. It will allow us to have more confidence that new schemes are built in places and along travel corridors where there is high latent demand."
+
+- Shane Snow: Head of Seamless Travel Team, Sustainable and Acessible Travel Division
+
+"The PCT shows the country’s great potential to get on their bikes, highlights the areas of highest possible growth and will be a useful innovation for local authorities to get the greatest bang for their buck from cycling investments  and realise cycling potential."
+
+- Andrew Jones, Parliamentary Under Secretary of State for Transport
+
+## Some key 'big data' numbers
 
 - 1hr plus to build a single region
 - 10,000+ calls to route planning apis
@@ -94,7 +104,8 @@ knitr::include_graphics("../figures/haystack.png")
 Big data is an ubrella term.
 
 "**unconventional**  datasets  that  are  **difficult**  to  analyze
-**using established methods**. Often this difficulty relates to **size** but the form, format, and **complexity** are equally important" [[@lovelace_big_2016]](http://onlinelibrary.wiley.com/doi/10.1111/gean.12081/pdf). 
+**using established methods**. Often this difficulty relates to **size** but the form, format, and **complexity** are equally important"
+[@lovelace_big_2016]. 
 
 ```{r, echo=FALSE, fig.width=3}
 # download.file("https://openclipart.org/image/300px/svg_to_png/170637/1339577112.png",
@@ -119,15 +130,22 @@ King's
 
 This code automatically pulls out the geographical essentials.
 
-```{r, eval=FALSE}
+```{r}
 request = "http://fcc.transportapi.com/v3/uk/public/journey/from/lonlat:-1.5490774,53.8007554/to/lonlat:0.121817,52.205337.json?region=southeast&"
 txt <- httr::content(httr::GET(request), as = "text")
-obj <- jsonlite::fromJSON(txt)#
+obj <- jsonlite::fromJSON(txt)
 coords <- obj$routes$route_parts[[1]]$coordinates
 coords <- do.call(rbind, coords)
 ```
 
 Credit: Ali Abbas's code from the LandorLinks [TransportHack](http://www.landor.co.uk/smartertravel/2016/hackathon.php).
+
+## This allows you to plot the route
+
+```{r}
+plot(coords)
+```
+
 
 ## Interactive visualisations - to tell a story
 
@@ -146,6 +164,9 @@ Not pretty but the results are pretty.
 
 ## An interactive map for anyone to see!
 
+See result on [rpubs](http://rpubs.com/RobinLovelace/254055)
+or http://robinlovelace.net/figure/leeds-cam-data.html
+
 ```
 <iframe src="../figures/map-cyclenet.html" width="100%" height="600"></iframe>
 ```
@@ -156,9 +177,9 @@ cp ../figures/leeds-cam-data.html ~/repos/robinlovelace.github.io/
 
 <iframe src="../figures/leeds-cam-data.html" width="100%" height="600"></iframe>
 
-# Implications for obesity research
+# Implications for transport research
 
-## Why Obesity research needs big data
+## Why transport research needs big data
 
 - It's a multidisciplinary field
 
@@ -178,7 +199,6 @@ Multi-level methods (e.g. spatial microsimulation and agent-based modelling) nee
 knitr::include_graphics(rep("../figures/food-exposure.png", 3))
 ```
 
-
 ## Lessons from other disciplines
 
 > - Economics: The Rogoff scandal [@rogoff_growth_2010] leading to calls that "Data and computer code should be made publicly available at an early stage – [or else"](https://theconversation.com/the-reinhart-rogoff-error-or-how-not-to-excel-at-economics-13646).
@@ -191,7 +211,7 @@ knitr::include_graphics(rep("../figures/food-exposure.png", 3))
 ## Challenges around making the work accessible
 
 ```{r, echo=FALSE}
-grid.raster(readPNG("../figures/software-costs.png"))
+knitr::include_graphics("../figures/software-costs.png")
 ```
 
 ## Future challenges for the PCT
@@ -219,8 +239,6 @@ Manchester Traffic model
 
 - Processing: R+ SQL Server DB. ~50 million point-to-point flows aggregated- when converted into MSOAs- scale up (already simplified)
 - Outcome: Census-style 500K lines (a->b MSOA level).
-
-
 
 # Lessons learned 
 
