@@ -2,7 +2,7 @@
 title: 'Methods for assessing the active travel impacts of major transport infrastructure projects'
 author: "Robin Lovelace, Malcolm Morgan"
 date: "`r Sys.Date()`"
-output: bookdown::word_document2
+output: bookdown::pdf_document2
 bibliography: documents/references.bib
 ---
 
@@ -395,7 +395,10 @@ tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
 ```
 
 ## Potential for integation with public transport network
-The first stage in identifying people who may use active travel to reach a station is to identify those who wish to travel between two stations. This is done by selecting desire lines, which have both origin and destination within 3km of a station.  From this subset of desire lines, any which have the same station as the closest to both origin and destination are excluded. Finally, lines between stations that are already connected by the existing rail network are removed, as these routes will not be changed by the new Lewes-Uckfield Line, thus travel patterns in these areas are likely to remain the same.
+
+The method we used to estimate the potential uptake in active travel resulting from walking and cycling to and from public transport stops was undertaken in three stages:
+
+first stage in estimating the cycling  people who may use active travel to reach a station is to identify those who wish to travel between two stations. This is done by selecting desire lines, which have both origin and destination within 3km of a station.  From this subset of desire lines, any which have the same station as the closest to both origin and destination are excluded. Finally, lines between stations that are already connected by the existing rail network are removed, as these routes will not be changed by the new Lewes-Uckfield Line, thus travel patterns in these areas are likely to remain the same.
 
 Having identified the desire lines and their corresponding stations, it is possible to calculate routes from each origin/destination to the nearest station.  In this case, the cyclestreets.net routing algorithm was used.
 The results of the sub-setting and routing are show in \@ref(fig:segs)d, eight desire lines were identified (green) representing 574 commuters.  Their associated active travel routes are shown in red.  Calculating the increase in active travellers along these routes would be dependent on the number of commuters switching to the new railway after it was constructed.  However, even without a precise quantification the mode shift, the method highlights which areas may have increased active travel.
