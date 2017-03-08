@@ -9,6 +9,8 @@ logo: ../figures/its-logo-square.png
 bibliography: ../documents/references.bib
 ---
 
+<!-- Comments:  -->
+
 ## Contents
 
 > - What we did: Big Data in the PCT
@@ -30,6 +32,20 @@ Concept (PhD) -> Job at UoL (2009 - 2013)
 ```
 
  > - 2018: (Global PCT?) 
+ 
+ - Now publised in the Journal of Transport and Land Use (JTLU) [@lovelace_propensity_2016]
+
+## The PCT team | "If you want to go far, go as a team"
+
+Robin Lovelace (Lead Developer, University of Leeds)
+
+- James Woodcock (Principal Investigator, Cambridge University)
+- Anna Goodman (Lead Data Analyst, LSHTM)
+- Rachel Aldred (Implementation Lead, Westminster University)
+- Ali Abbas (User Interface, University of Cambridge)
+- Alvaro Ullrich (Data Management, University of Cambridge)
+- Nikolai Berkoff (System Architecture, Independent Developer)
+- Malcolm Morgan (GIS and infrastructure expert, UoL)
  
 # How we've used Big Data in the Propensity to Cycle Tool
 

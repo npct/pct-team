@@ -60,12 +60,7 @@ revisited and refined and in some cases sought to overturn pre-existing
 (and often context-specific) formulations, such as
 $p = \alpha e^{\beta d}$ [@Wilson1971] and $p = \alpha d^{\beta}$
 [@Fotheringham1981].
-In other words, the concept of *dd* begs the question: what is the precise function 
-that links the proportion of trips to distance:
 
-$$
-p = f(d)
-$$
 
 ```{r, echo=FALSE}
 # Look into changing this to a partial variable 

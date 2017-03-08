@@ -6,7 +6,7 @@ r = geojsonio::geojson_read("../pct-shiny/regions_www/regions.geojson", what = "
 cr = over(cents, r)
 class(cr)
 summary(z$Region) # 400 missing!
-sel = which(is.na(z$Region))
+sel = which(is.na(cr$Region))
 plot(z[sel,])
 
 # for loop way
@@ -15,13 +15,15 @@ zfiles = paste0(rdirs, "/z.Rds")
 for(i in 1:length(zfiles)) {
   ztemp = readRDS(zfiles[i])
   plot(ztemp)
-  ztemp_buff = stplanr::buff_geo(ztemp, width = 10)
+  ztemp_buff = stplanr::buff_geo(ztemp, width = 20)
   plot(ztemp_buff)
-  plot(r[i,])
   r@polygons[[i]] = ztemp_buff@polygons[[1]]
+  plot(r[i,])
 }
-saveRDS(r, "/tmp/regions-highres.Rds")
-zip(zipfile = "/tmp/regions-highres.zip", files = "/tmp/regions-highres.Rds")
+row.names(r) = as.character(1:length(r))
+mapview::mapview(r)
+saveRDS(r, "/tmp/regions-highres2.Rds")
+zip(zipfile = "/tmp/regions-highres2.zip", files = "/tmp/regions-highres2.Rds")
 
 # find, add missing zones
 missing_ids = c(
