@@ -1,18 +1,18 @@
 ---
-title: "Modelling and visualising Big Data for active travel: lessons from the PCT"
-author: "Robin Lovelace (CDRC Leeds), James Woodcock (CEDAR Cambridge)"
-date: "Obesity Network workshop, 16th March 2016, Cambridge <br> Slides (`r Sys.Date()`): [rpubs.com/robinlovelace](http://rpubs.com/RobinLovelace/161336). Code: [github.com/npct](https://github.com/npct/pct/blob/master/minidocs/big-data-pres.Rmd)."
+title: "Transport and Big Data: lessons from the PCT"
+author: "Robin Lovelace"
+date: "`r Sys.Date()`"
 output:
   ioslides_presentation:
     transition: slower
 logo: ../figures/cdrc-square.png
-bibliography: ../documents/references.bib
+bibliography: ../documents/refs.bib
 ---
 
 ```{r, echo=FALSE}
 library(RefManageR)
-refs = ReadZotero(group = "418217", .params = list(collection = "JFR868KJ"))
-# RefManageR::WriteBib(refs, "refs.bib")
+# refs = ReadZotero(group = "418217", .params = list(collection = "JFR868KJ"))
+# RefManageR::WriteBib(refs, "~/npct/pct/documents/refs.bib")
 # names(refs)
 library(grid)
 library(png)
