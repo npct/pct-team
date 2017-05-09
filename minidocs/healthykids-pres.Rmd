@@ -1,0 +1,17 @@
+---
+title: 'The potential of open access tools for health planning and modelling: a case
+  study of the Propensity to Cycle Tool'
+author: "Robin Lovelace"
+date: "5 May 2017"
+output: html_document
+---
+
+## Abstract
+
+Tools for planning healthy cities and modelling health outcomes of policy scenarios have become increasingly sophisticated, large scale (with national and global models on the horizon) and detailed.
+With increasing model complexity there are risks, however.
+Tools can become perceived as 'black boxes' only available to a small number of experts in the field. 
+This presentation will argue that for tools for planning should be open source.
+Furthermore, to have maximum policy impact, as part of a democratic decision making process in the public interest, the results should be made publicly accessible, to encourage public debate of the issues raised by research.
+A case study of the Propensity to Cycle Tool (PCT), an open source, publicly accessible toolkit for planning healthier cities, will be used to support these arguments.
+The talk will conclude pragmatically, by outlining concrete steps that researchers can take to ensure maximum benefits arising from their work.
