@@ -133,6 +133,15 @@ knitr::include_graphics("../figures/schools-commuter-overlay.png")
 knitr::include_graphics("../figures/lsoa-layer-london.png")
 ```
 
+## Where to prioritise? (CyIPT)
+
+- Cycling Infrastructure Prioritisation Toolkit (CyIPT): DfT-funded toolkit for cycling infrastructure prioritisation 
+- Combines many datasets ("PCT + Infra") to identify 'low hanging fruit'
+
+```{r, echo=FALSE, out.width="60%"}
+knitr::include_graphics("https://github.com/cyipt/cyipt/raw/master/figures/schematic-flow-diagram.png")
+```
+
 # Tech for cycling uptake
 
 ## Crowd sourced data (Strava vs PCT)
@@ -149,15 +158,6 @@ effect  of  bicycle-specific  treatments,  including  bike  boxes,  traffic  sig
 two-stage  queue  boxes,  and  treatments  where  cycle  tracks  reach  intersections"
 
 - But whole network design found to be important [@buehler_bikeway_2016].
-
-## Where to prioritise? 
-
-- Plans to create a toolkit for cycling infrastructure prioritisation 
-- Combines many datasets to identify 'low hanging fruit'
-
-```{r, echo=FALSE, out.width="60%"}
-knitr::include_graphics("https://github.com/cyipt/cyipt/raw/master/figures/schematic-flow-diagram.png")
-```
 
 ## Recommendations
 
