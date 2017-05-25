@@ -1,8 +1,0 @@
-name: Publish Document
-title:
-account: rpubs
-server: rpubs.com
-appId: https://api.rpubs.com/api/v1/document/278921/a7ff49009d074b95b2c37b56fdc840fd
-bundleId: https://api.rpubs.com/api/v1/document/278921/a7ff49009d074b95b2c37b56fdc840fd
-url: http://rpubs.com/RobinLovelace/278921
-when: 1495714569.43737
