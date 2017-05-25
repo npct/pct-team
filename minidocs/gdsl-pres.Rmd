@@ -1,242 +1,423 @@
 ---
-title: 'Can Geographic Data Science Save the World? A case study of the propensity to cycle tool'
-author: 'Robin Lovelace, University of Leeds. '
-date: "University of Liverpool, `r Sys.Date()`"
+title: "Can Geographic Data Save the World?"
+author: "Robin Lovelace"
+date: "2017-05-02"
+subtitle: "University of Liverpool's Laboratory for Geographic Data Science"
+bibliography: /home/robin/allrefs.bib
 output:
   ioslides_presentation:
     widescreen: true
-    # smaller: true
-logo: ../figures/its-logo-square.png
-bibliography: ../flow-model/references.bib
+    transition: slower
+    logo: ../../static/images/its-logo-square.png
 ---
 
-```{r, echo=FALSE, include=FALSE}
-# runtime: shiny
-pkgs <- c("grid", "png", "knitr")
-lapply(pkgs, library, character.only = T)
-# bibliography: "~/Documents/R.bib"
-# Notes for Judith's talk
-# Add paper on replacing car trips with bike trips
-# Add stuff on QGIS
-# 
+## Contents
+
+- Introductory comments
+- An example: the propensity to cycle tool
+- **dplyr** and tibbles (if time allows)
+- Discussion: can GDS save the world?
+
+```{r, include=FALSE}
+library(dplyr)
 ```
 
-## Presentation structure
+# Introduction
 
--  Intoduction and demo of the tool 
--  Design and development
--  Uses of the PCT
+## What is saving the world?
 
-# Introduction and demo
+Many ways of saying the same thing:
 
-## A definition of Propensity to Cycle and its uses
+> - 'Policy-led research'
+> - 'Impact'
+> - 'Socially beneficial research'
+> - Don't be evil (Google)
 
-> Propensity to cycle refers to the modelled
-uptake of cycling at area, desire line and
-route network levels under different
-scenarios of the future. Policy relevant
-scenarios include meeting national or local
-targets, the potential uptake if people in the
-study area cycled as much as the Dutch do
-or the impact of electric bikes on people's
-willingness to cycle longer distances. ([see Get Britain Cycling article](http://getbritaincycling.net/wp-content/uploads/2016/05/Get-Britain-Cycling_2016.pdf), 2016)
+My definition: **building an evidence-base for sustainable systems**.
 
-The tool aims to help prioritise **where** interventions are most needed based on where cyclable trips are most common
+- In the context of climate change that means:
 
-## Policy impact
+> - Building an evidence-base to transition away from fossil fuels
 
-“The PCT shows the country’s great potential to get on their bikes, highlights the areas of highest possible growth and will be a useful innovation for local authorities to get the greatest bang for their buck from cycling investments  and realise cycling potential.” Andrew Jones, Parliamentary Under Secretary of State for Transport
+- But could also be interpretted in terms of other (quantifiable) social/economic/environmental indicators
 
-“A world first from a brilliant academic team. As a Department we should be celebrating this example of innovation in promoting the UK’s capability to deliver innovation in transport planning.” Pauline Reeves, DfT Deputy Director Sustainable Accessible Transport
+## Why bother?
 
-## Policy impact II
+- If we're doomed anyway?
 
- “The PCT provides evidence that is required in justifying the merits of policy and project decisions. The identification of unmet demand for cycling will support future funding bids and negotiations to deliver key cycle projects. Tunbridge Wells Borough Council is very pleased to have been part of the development of the tool.” Bartholomew Wren, Royal Tunbridge Wells
- 
-“Initial outputs from the PCT for Cornwall have already been useful in evidencing that our relatively hilly area has good cycling potential, concentrated in specific  areas. The areas we are focusing capital investment e.g. Bodmin are indicated as having high potential, despite low current cycling. Given the greater potential under the E-bike scenario, we will be exploring ways to make this option more affordable.” Victoria Fraser, Team Leader, Cornwall Council
- "ECF is pleased to support the PCT and its international potential to use data for the development of bicycle policies" Randy Rzewnicki, European Cycling Federation
+> - <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">I urge everyone to read this  series of tweets: it is clear that the govt is incompetent, the prime minister is deluded, &amp; we are damned. <a href="https://t.co/aaNYvSpxK9">https://t.co/aaNYvSpxK9</a></p>&mdash; Michael Cashman (mcashmanCBE) <a href="https://twitter.com/mcashmanCBE/status/858821602611474432">April 30, 2017</a></blockquote>
+<script async src="http://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-## Live demo of the PCT
+> - <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Rapid Ice Melt In East Antarctica Could Lead to 11-Foot Rise In Global Sea Level, Scientists Say <a href="https://t.co/3jYOQhyeUL">https://t.co/3jYOQhyeUL</a> <a href="https://t.co/QdTOQNC6m7">pic.twitter.com/QdTOQNC6m7</a></p>&mdash; Weather Underground (@wunderground) <a href="https://twitter.com/wunderground/status/811307713128865792">December 20, 2016</a></blockquote>
 
-See http://pct.bike/
+## Aren't the machines 'on it' anyway?
 
-[![](https://github.com/npct/pct/raw/master/figures/rnet-leeds-base-to-godutch.png)](https://github.com/npct/pct/raw/master/figures/rnet-leeds-base-to-godutch.png)
+- Agency is no longer exclusively human domain 
+- Machine learning is "is finding commercial applications that range from self-driving cars to websites that recommend products on the basis of a user's browsing history" [@castelvecchi_can_2016].
 
+- Where does the (data) scientist come in in this context?
 
-# Design and development
+> - More important than ever to set high level aims/goals
 
-## Motivations
-<!-- ![for recumbents](http://homepage.ntlworld.com/pete.meg/wcc/facility-of-the-month/prestonpipeline.jpg) -->
+> - Autonomous vehicle analogy: robots are good at getting from A to B but not deciding where and when to travel
 
-```{r, echo=FALSE}
-knitr::include_graphics("http://static.tweakers.net/ext/f/9PVa9WKvx5SPZw3clpxEPkGA/full.jpg")
+ <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Before scientists can trust AI, they first need to understand how machines learn: <a href="https://t.co/DekQuyP8YE">https://t.co/DekQuyP8YE</a> <a href="https://t.co/Phqtj3mRc1">pic.twitter.com/Phqtj3mRc1</a></p>&mdash; Nature News&amp;Comment (NatureNews) <a href="https://twitter.com/NatureNews/status/859112847930007552">May 1, 2017</a></blockquote>
+<script async src="http://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+## What is Geographic Data Science?
+
+> - You tell me!
+
+- How does it differ from good old 'GIS'?
+- What does the science in the title mean?
+- Why the focus on data rather than information
+
+Code example:
+
+```{r}
+d = frame_data(
+  ~Attribute, ~GIS, ~GDS,
+  "Home disciplines", "Geography", "Geography, Computing, Statistics",
+  "Software focus", "Graphic User Interface", "Code",
+  "Reproduciblility", "Minimal", "Maximal"
+)
 ```
 
-Disjointed networks 
+## Comparing GDS with GIS
 
-<!-- ## Background research -->
+```{r}
+knitr::kable(d)
+```
 
-<!-- ```{r, echo=FALSE} -->
-<!-- knitr::include_graphics("../figures/prop20-top.png") -->
+## Geographic data science CAN 'save the world' | But only if it's open and scientific
+
+Reasoning:
+
+- Evidence inevitably gets skewed by political aims
+
+> - If the people doing the research are influenced by dominant political forces, findings will be biases for political gain (solved by independent well-funded public research).
+
+- People doing policy relevant research watch out (regarding politicians):
+
+> “Their very spirit undergoes a pervasive
+transformation,” and they finally end up as “experts at exchanging smiles,
+handshakes, and favors.” [@reclus_anarchy_2013, original: 1898]
+
+## Importance of open data and methods
+
+> - If the data underlying policy is hidden, it can be represented to push certain aims (solved by open data)
+
+> - If the data is 'open' but the tools are closed, results open to political influence
+
+> - Which brings us onto our next topic...
+
+# Where will cycling uptake happen?
+
+<!-- ## Context: from concept to implementation -->
+
+<!-- A life-course of my involvement with the PCT -->
+
+<!-- ``` -->
+<!-- Concept of algorithms for cycling uptake (PhD 2009 - 2013) -->
+<!--  Discovery of programming (R) and shiny (2013) -->
+<!--   'Propensity to Cycle' bid by DfT via SDG (2014) -->
+<!--     Start work w. Cambridge University and colleagues (2015) -->
+<!--      Implementation on national OD dataset, 700k routes (2016) -->
+<!--        Addition of school and near-market prototypes (late 2016) -->
+<!--          LSOA phase (Malcolm Morgan) (early 2017) -->
+<!--            ... -->
 <!-- ``` -->
 
-Source: PhD Thesis "The Energy Costs of Commuting" (Lovelace, 2014).
+<!--  > - 2018: (Global PCT?)  -->
 
-## The PCT team
+<!--  - Academic write-up [@lovelace_propensity_2017] -->
+ 
+## Prior work (source: Lovelace et al. 2017)
+
+```{r, echo=FALSE, message=FALSE}
+dft = readr::read_csv("~/npct/pct/data-sources/cycle-tools-wide.csv")
+dft$Tool = gsub("Permeability Assessment Tool", "PAT", dft$Tool)
+knitr::kable(dft)
+```
+
+## The PCT team | "If you want to go far, go as a team"
+
+Robin Lovelace (Lead Developer, University of Leeds)
 
 - James Woodcock (Principal Investigator, Cambridge University)
 - Anna Goodman (Lead Data Analyst, LSHTM)
-- Rachel Aldred (Implementation Lead, Westminster University)
-- Robin Lovelace (Lead Developer, University of Leeds)
+- Rachel Aldred (Lead Policy and Practice, Westminster University)
 - Ali Abbas (User Interface, University of Cambridge)
 - Alvaro Ullrich (Data Management, University of Cambridge)
 - Nikolai Berkoff (System Architecture, Independent Developer)
+- Malcolm Morgan (GIS and infrastructure expert, UoL)
+ 
+<!-- ## Policy feedback -->
 
-## How it works
+<!-- "The PCT is a brilliant example of using Big Data to better plan infrastructure investment. It will allow us to have more confidence that new schemes are built in places and along travel corridors where there is high latent demand." -->
 
-See Lovelace, Goodman et al. (2016) for details
+<!-- - Shane Snow: Head of Seamless Travel Team, Sustainable and Acessible Travel Division -->
 
-![](../figures/coventry-centroids-4pres.png)
+<!-- "The PCT shows the country’s great potential to get on their bikes, highlights the areas of highest possible growth and will be a useful innovation for local authorities to get the greatest bang for their buck from cycling investments  and realise cycling potential." -->
 
-## How it works II | It depends on trip distances
+<!-- - Andrew Jones, Parliamentary Under Secretary of State for Transport -->
 
-```{r, echo=FALSE, out.width = '50%', fig.cap="Modal share of trips made by cycling for English commutes in West Yorkshire (left) and Oxfordshire (right) currently and under 4 scenarios of change.", fig.show='hold'}
-knitr::include_graphics(c("../figures/dd-west-yorks.png", "../figures/dd-ox.png"))
-```
+## The PCT in CWIS and LCWIP
 
-
-## Route allocation
-
-![](../figures/fast-quiet-man.png)
-
-## Route network analysis
-
-![](../figures/cov-rnet.png)
-
-## Timeline
+Included in Cycling and Walking Infrastructure Strategy (CWIS) and the Local Cycling and Walking Infrastructure Plan (LCWIP)
 
 ```{r, echo=FALSE}
-knitr::include_graphics("../figures/milestones.png")
+knitr::include_graphics("~/npct/pct/figures/front-page-leeds-pct-demo.png")
 ```
 
-- See [github.com/npct/pct-shiny/milestones](https://github.com/npct/pct-shiny/milestones) to track the PCT's development
+## How the PCT works
 
-## Phase I (Feb - July 2015)
+Shows on the map where there is high cycling potential,
+for 4 scenarios of change
 
--  Build and test a prototype model
--  Identify 'desire lines' of greatest potential
--  Make the tool scalable nationally
--  Create a website that will make the Propensity to Cycle Tool a publicly accessible resource
+- Government Target
+- Gender Equality
+- Go Dutch
+- Ebikes
 
-## Phase II (January 2016 - March 2017)
-
-**Version 1 - nationwide (V1 launch: June 2016)**
-
--  Route-allocated hilliness, network layer (done)
--  Include health outcomes (HEAT) (done)
--  National-level results (done)
--  V1.5 - smaller (LSOA) zones (Jan 2017)
--  Training
-
-**Version 2 - local deployment**
-
--  Include non-commute trips (working on travel to school data)
--  Compatibility with Local Authority trip demand models
--  Micro-level analysis (V 2.2)
-
-## Quantifying impacts
-
-- Health economic benefits
-- CO~2~ savings
+## Scenario shift in desire lines | Source: @lovelace_propensity_2017
 
 ```{r, echo=FALSE}
-knitr::include_graphics("../figures/rivers.png")
+knitr::include_graphics("~/npct/pct/flow-model/od-data-leeds.png")
 ```
 
-## The stplanr R package
+- Origin-destination data shows 'desire lines'
+- How will these shift with cycling uptake
 
-- We wanted to ensure that our work was reproducible
-- So we created an R package, **stplanr**, that enables others to reproduce the results
-- This has been downloaded over **3,000** time by researchers around the world
+## Scenario shift in network load
 
-## stplanr in action | Credit: Dr Richard Ellison
-
-```{r, echo=FALSE, out.width="90%"}
-knitr::include_graphics("https://cloud.githubusercontent.com/assets/10625733/17854093/9e0011ec-68b3-11e6-90dc-267a19dc2fdd.png")
+```{r, echo=FALSE}
+knitr::include_graphics("~/npct/pct/flow-model/leeds-rnet-gov-go.png")
 ```
 
-# Uses of the PCT
+## A live demo for Liverpool | "Actions speak louder than words"
 
-## Currently
+- Test version of [p](http://npct0.vs.mythic-beasts.com/m/?r=liverpool-city-region)[www.pct.bike](http://pct.bike/)
 
-> - Strategic network planning
-> - Public engagement
-> - 'Visioning' 
-> - Estimating health and carbon benefits of uptake
-> - Overlay demand for cycling with supply of safe infrastructure, e.g. to inform Local Cycling and Walking Infrastructure Plans (LCWIP) (credit: Adrian Lord)
-> - Providing ready made mappable data (via data download)
-
-## With further work
-
-> - Creating local builds and informing local targets and 
-> - Modelling impacts of new developments
-> - Crowd-sourced transport planning (e.g. by integrating data from 'citizens as sensors' and Cycling Environment Assessment Tool)
-> - A global PCT?
-    > - Data available in some countries, but not all
-    > - Should we estimate OD matrices or acquire them from other sources
-
-<!-- ## Another example use: are 'fast' routes 'quiet'? -->
-
-<!-- Which cities are these? What's the difference? -->
-
-<!-- ```{r, echo=FALSE, out.width="100%"} -->
-<!-- knitr::include_graphics(c("../figures/rf-lei.png", "../figures/fq-cam.png")) -->
-<!-- ``` -->
-
-## What about validation? 
-
-```{r, echo=FALSE, out.width="60%"}
-knitr::include_graphics("../figures/pct-vs-strava-for-leeds.png")
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("~/npct/pct/flow-model/man-trinity-way-satellite.png")
 ```
 
-Source: Lovelace and Whittle (in press)
+# tibbles and dplyr: A detour for programmers
 
-## In summary...
+## Why data carpentry?
 
-> - The PCT provides an evidence base about **where** to intervene
-> - Freely available for all to use
-> - Open source and transparent
-> - Complements local knowledge, tools and data
-> - Should help get people on same page
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Data analysts and &#39;scientists&#39;: don&#39;t wrangle, munge or &#39;hack&#39; your valuable datasets. Use <a href="https://twitter.com/hashtag/datacarpentry?src=hash">#datacarpentry</a>: <a href="https://t.co/gXrlIJH91R">https://t.co/gXrlIJH91R</a> <a href="https://t.co/GSWS7O7zBz">pic.twitter.com/GSWS7O7zBz</a></p>&mdash; Robin Lovelace (robinlovelace) <a href="https://twitter.com/robinlovelace/status/833622374037721089">February 20, 2017</a></blockquote>
 
-<!-- ## The propensity to cycle in Leicester -->
+- If you 'hack' or 'munge' data, it won't scale
+- So ultimately it's about being able to handle Big Data
+- We'll cover the basics of data frames and tibbles
+- And the basics of **dplyr**, an excellent package for data carpentry
+    - **dplyr** is also compatible with the **sf** package
 
-<!-- Local 'build' for the local authority -->
+## The data frame
+
+The humble data frame is at the heart of most analysis projects:
+
+```{r}
+d = data.frame(x = 1:3, y = c("A", "B", "C"))
+d
+```
+
+In reality this is a list, making function work on each column:
+
+```{r}
+summary(d)
+plot(d)
+```
+
+## Subsetting
+
+In base R, there are many ways to subset:
+
+```{r}
+d[1,] # the first line
+d[,1] # the first column
+d$x # the first column
+d [1] # the first column, as a data frame
+```
+
+## The tibble
+
+Recently the data frame has been extended:
+
+```{r}
+library("tibble")
+dt = tibble(x = 1:3, y = c("A", "B", "C"))
+dt
+```
+
+## Advantages of the tibble
+
+It comes down to efficiency and usability
+
+ - When printed, the tibble diff reports class
+ - Character vectors are not coerced into factors
+ - When printing a tibble diff to screen, only the first ten rows are displayed
+ 
+## dplyr
+
+Like tibbles, has advantages over historic ways of doing things
+
+- Type stability (data frame in, data frame out)
+- Consistent functions - functions not `[` do everything
+- Piping make complex operations easy
+
+```{r, eval=FALSE}
+ghg_ems %>%
+  filter(!grepl("World|Europe", Country)) %>% 
+  group_by(Country) %>% 
+  summarise(Mean = mean(Transportation),
+            Growth = diff(range(Transportation))) %>%
+  top_n(3, Growth) %>%
+  arrange(desc(Growth))
+```
+
+```{r}
+# dplyr must be loaded with
+library(dplyr)
+```
+
+## Why pipes?
+
+```{r, eval=FALSE}
+wb_ineq %>% 
+  filter(grepl("g", Country)) %>%
+  group_by(Year) %>%
+  summarise(gini = mean(gini, na.rm  = TRUE)) %>%
+  arrange(desc(gini)) %>%
+  top_n(n = 5)
+```
+
+vs
+
+```{r, eval=FALSE}
+top_n(
+  arrange(
+    summarise(
+      group_by(
+        filter(wb_ineq, grepl("g", Country)),
+        Year),
+      gini = mean(gini, na.rm  = TRUE)),
+    desc(gini)),
+  n = 5)
+```
+
+## Subsetting with dplyr
+
+Only 1 way to do it, making life simpler:
+
+```{r}
+select(dt, x) # select columns
+slice(dt, 2) # 'slice' rows
+```
+
+# How we've used this in the PCT
+
+## Worked example: pct data in West Yorksire
+
+- We'll download and visualise some transport data
+
+```{r}
+u_pct = "https://github.com/npct/pct-data/raw/master/west-yorkshire/l.Rds"
+if(!file.exists("l.Rds"))
+  download.file(u_pct, "l.Rds")
+library(stplanr)
+l = readRDS("l.Rds")
+plot(l)
+```
+
+## Analysing where people walk
+
+```{r}
+sel_walk = l$foot > 9
+l_walk = l[sel_walk,]
+plot(l)
+plot(l_walk, add = T, col = "red")
+
+library(dplyr) # for next slide...
+```
+
+## Doing it with sf (!)
+
+```{r, eval=FALSE}
+l_walk1 = l %>% filter(All > 10) # fails
+```
+
+```{r}
+library(sf)
+l_sf = st_as_sf(l)
+plot(l_sf[6])
+```
+
+## Subsetting with sf | much easier
+
+```{r, eval=FALSE}
+l_walk2 = l_sf %>% 
+  filter(foot > 9)
+plot(l_sf[6])
+plot(l_walk2, add = T)
+```
+
+## Subsetting with sf | results
+
+```{r, echo=FALSE}
+l_walk2 = l_sf %>% 
+  filter(foot > 9)
+
+# plot the result
+plot(l_sf[6])
+plot(l_walk2, add = T)
+```
+
+## A more advanced example
+
+```{r}
+l_sf$distsf = as.numeric(st_length(l_sf))
+l_drive_short2 = l_sf %>% 
+  filter(distsf < 1000) %>% 
+  filter(car_driver > foot)
+```
+
+## Result: where people drive short distances rather than drive
+
+```{r}
+library(tmap)
+tmap_mode("view")
+qtm(l_drive_short2)
+```
+
+<!-- ## Overall results: the [PCT](http://pct.bike/) -->
 
 <!-- ```{r, echo=FALSE} -->
-<!-- knitr::include_graphics("../figures/leicester.png") -->
+<!-- knitr::include_graphics("https://previews.magnoliabox.com/corbis/flat/42-32403684/MUS-FAPC2020_500.jpg") -->
 <!-- ``` -->
 
-## Thanks for listening!
+# Discussion: ensuring research is used for the greater good
 
-- Thanks to the institutions behind the PCT team: Universities of Cambridge, Leeds and Westminster.
+## Points of discussion
 
-- The PCT was delivered in partnership with Brook Lyndhurst (Phase I) and Atkins (Phase II).
+It is clear that geographical research can have large policy impacts.
 
-- Thanks to CycleStreets.net and everyone who has contributed
+- That researchers can act to maximise the social benefit of the research
+- That involves getting the evidence out to as many people as possible
+- And using open source, accessible tools - the 'science' in GDS?
 
-- Thanks to the Department for Transport for funding and especially to Shane Snow for commissioning the tool, and for support and feedback.
+But many questions remain:
 
-- See `@robinlovelace` for updates from me!
+> - Where to draw the line between impartial research and campaigning?
+> - To what extent should researchers open-sourcing their work defend against commercial exploitation?
+
+## Final question
+
+- What can you do to maximise the social benefits arising from your work?
+
+> - Thanks for listening - get in touch via `r.lovelace@leeds.ac.uk` or `@robinlovelace`
 
 ## References
-
-Lovelace, Robin, Richard Ellison, Barry Rowlingson, and Nick Bearman. Stplanr: Sustainable Transport Planning, 2016. https://github.com/ropensci/stplanr.
-
-Lovelace, Robin. 2016. "Mapping out the future of cycling." Get Britain Cycling, 2016. P. 22 - 24. Available from [getbritaincycling.net](http://getbritaincycling.net/)
-
-Lovelace, Robin, Anna Goodman, Rachel Aldred, Nikolai Berkoff, Ali Abbas, and James Woodcock. “The Propensity to Cycle Tool: An Open Source Online System for Sustainable Transport Planning.” arXiv:1509.04425 [Cs], 2016. http://arxiv.org/abs/1509.04425.
-
-
-<!-- [arxiv.org/abs/1509.04425](http://arxiv.org/abs/1509.04425) -->
 
