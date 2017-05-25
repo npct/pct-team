@@ -8,7 +8,7 @@ output:
   ioslides_presentation:
     widescreen: true
     transition: slower
-    logo: ../../static/images/its-logo-square.png
+    logo: ../figures/its-logo-square.png
 ---
 
 ## Contents

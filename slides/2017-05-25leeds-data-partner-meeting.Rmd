@@ -19,10 +19,16 @@ bibliography: ../documents/references.bib
 > - Recent additions to the PCT
 > - Conclusion
 
-> - Question: who has heard of the PCT?
-> - Who has used the PCT?
+# Context
 
-# Where will cycling uptake happen?
+## Motivation | Source: [Warrington cycle campaign](http://wcc.crankfoot.xyz/facility-of-the-month/July2016.htm)
+
+> - Sub-optimal resource allocation
+
+```{r, echo=FALSE}
+knitr::include_graphics("http://wcc.crankfoot.xyz/facility-of-the-month/finchley-hospital.jpg")
+```
+
 
 ## Prior work (source: Lovelace et al. 2017)
 
@@ -31,6 +37,18 @@ dft = readr::read_csv("../data-sources/cycle-tools-wide.csv")
 dft$Tool = gsub("Permeability Assessment Tool", "PAT", dft$Tool)
 knitr::kable(dft)
 ```
+
+## Technical work | stplanr R package
+
+```{r, eval=FALSE}
+install.packages("stplanr")
+```
+
+```{r}
+od_
+```
+
+
 
 ## The PCT team | "If you want to go far, go as a team"
 
