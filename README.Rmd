@@ -19,6 +19,26 @@ methods will be of use elsewhere. For that reason, attempts have been made
 to make the examples generalisable. All examples presented here
 are reproducible using data stored in the [pct-data repository](https://github.com/npct/pct-data/).
 
+## National results
+
+```{r}
+la_results = read.csv("../pct-shiny/regions_www/laresults.csv")
+sum(la_results$bicycle) / sum(la_results$all) # current level of cycling
+sum(la_results$dutch_slc) / sum(la_results$all) # go dutch level
+```
+
+## Cycle trip statistics
+
+```{r}
+l_nat = readRDS("../pct-bigdata/msoa/l_nat.Rds")
+rf_nat = readRDS("../pct-bigdata/msoa/rf_nat.Rds")
+l_nat$dist_fast = rf_nat$length / 1000
+weighted.mean(l_nat$dist_fast, w = l_nat$bicycle)
+weighted.mean(l_nat$dist_fast, w = l_nat$bicycle)
+```
+
+
+
 ## A simple example
 
 If you run the following lines of code on from a local copy of the [pct repository](https://github.com/npct/pct) you will get the same results.

@@ -1,0 +1,174 @@
+---
+title: "The propensity to cycle tool: from conception in the clouds to
+implementation on the ground"
+author: "Robin Lovelace"
+date: "`r Sys.Date()`. Slides: [rpubs.com/RobinLovelace](http://rpubs.com/RobinLovelace/258956)."
+output:
+  ioslides_presentation:
+    transition: slower
+widescreen: true
+logo: ../figures/cdrc-square.png
+bibliography: ../documents/references.bib
+---
+
+<!-- Comments:  -->
+
+## Contents
+
+> - Where will cycling uptake happen?
+> - Recent additions to the PCT
+> - Tech for cycling uptake
+
+> - Question: who has heard of the PCT?
+> - Who has used the PCT?
+
+# Where will cycling uptake happen?
+
+<!-- ## Context: from concept to implementation -->
+
+<!-- A life-course of my involvement with the PCT -->
+
+<!-- ``` -->
+<!-- Concept of algorithms for cycling uptake (PhD 2009 - 2013) -->
+<!--  Discovery of programming (R) and shiny (2013) -->
+<!--   'Propensity to Cycle' bid by DfT via SDG (2014) -->
+<!--     Start work w. Cambridge University and colleagues (2015) -->
+<!--      Implementation on national OD dataset, 700k routes (2016) -->
+<!--        Addition of school and near-market prototypes (late 2016) -->
+<!--          LSOA phase (Malcolm Morgan) (early 2017) -->
+<!--            ... -->
+<!-- ``` -->
+
+<!--  > - 2018: (Global PCT?)  -->
+
+<!--  - Academic write-up [@lovelace_propensity_2017] -->
+ 
+## Prior work (source: Lovelace et al. 2017)
+
+```{r, echo=FALSE, message=FALSE}
+dft = readr::read_csv("../data-sources/cycle-tools-wide.csv")
+dft$Tool = gsub("Permeability Assessment Tool", "PAT", dft$Tool)
+knitr::kable(dft)
+```
+
+## The PCT team | "If you want to go far, go as a team"
+
+Robin Lovelace (Lead Developer, University of Leeds)
+
+- James Woodcock (Principal Investigator, Cambridge University)
+- Anna Goodman (Lead Data Analyst, LSHTM)
+- Rachel Aldred (Lead Policy and Practice, Westminster University)
+- Ali Abbas (User Interface, University of Cambridge)
+- Alvaro Ullrich (Data Management, University of Cambridge)
+- Nikolai Berkoff (System Architecture, Independent Developer)
+- Malcolm Morgan (GIS and infrastructure expert, UoL)
+ 
+## Policy feedback
+
+"The PCT is a brilliant example of using Big Data to better plan infrastructure investment. It will allow us to have more confidence that new schemes are built in places and along travel corridors where there is high latent demand."
+
+- Shane Snow: Head of Seamless Travel Team, Sustainable and Acessible Travel Division
+
+"The PCT shows the country’s great potential to get on their bikes, highlights the areas of highest possible growth and will be a useful innovation for local authorities to get the greatest bang for their buck from cycling investments  and realise cycling potential."
+
+- Andrew Jones, Parliamentary Under Secretary of State for Transport
+
+## The PCT in CWIS and LCWIP
+
+Included in Cycling and Walking Infrastructure Strategy (CWIS) and the Local Cycling and Walking Infrastructure Plan (LCWIP)
+
+```{r, echo=FALSE}
+knitr::include_graphics("../figures/front-page-leeds-pct-demo.png")
+```
+
+## How the PCT works
+
+Shows on the map where there is high cycling potential,
+for 4 scenarios of change
+
+- Government Target
+- Gender Equality
+- Go Dutch
+- Ebikes
+
+## Scenario shift in desire lines | Source: @lovelace_propensity_2017
+
+```{r, echo=FALSE}
+knitr::include_graphics("../flow-model/od-data-leeds.png")
+```
+
+- Origin-destination data shows 'desire lines'
+- How will these shift with cycling uptake
+
+## Scenario shift in network load
+
+```{r, echo=FALSE}
+knitr::include_graphics("../flow-model/leeds-rnet-gov-go.png")
+```
+
+## A live demo for Leeds | "Actions speak louder than words"
+
+- Test version of [p](http://npct0.vs.mythic-beasts.com/m/?r=west-yorkshire)[ct.bike](http://pct.bike/)
+
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("../flow-model/man-trinity-way-satellite.png")
+```
+
+# Recent additions to the PCT
+
+## Travel to schools layer | [Prototype online](http://npct0.vs.mythic-beasts.com/schools/?r=west-yorkshire)
+
+```{r, echo=FALSE}
+knitr::include_graphics("../figures/pct-schools-image.png")
+```
+
+## Overlaying propensity to cycle to school and work
+
+```{r, echo=FALSE}
+knitr::include_graphics("../figures/schools-commuter-overlay.png")
+```
+
+## New LSOA layer (Morgan et al. in Press)
+
+```{r, echo=FALSE, out.width="90%"}
+knitr::include_graphics("../figures/lsoa-layer-london.png")
+```
+
+## Where to prioritise? (CyIPT)
+
+- Cycling Infrastructure Prioritisation Toolkit (CyIPT): DfT-funded toolkit for cycling infrastructure prioritisation 
+- Combines many datasets ("PCT + Infra") to identify 'low hanging fruit'
+
+```{r, echo=FALSE, out.width="60%"}
+knitr::include_graphics("https://github.com/cyipt/cyipt/raw/master/figures/schematic-flow-diagram.png")
+```
+
+# Tech for cycling uptake
+
+## Crowd sourced data (Strava vs PCT)
+
+```{r, echo=FALSE, out.width="70%"}
+knitr::include_graphics("../figures/pct-vs-strava-for-leeds.png")
+```
+
+## Innovative infrastructure | More research needed to find what works
+
+> "few studies link ridership with newer (innovative) types of infra-
+structure,  particularly  intersection  treatments.  More  research  is  needed  on  the
+effect  of  bicycle-specific  treatments,  including  bike  boxes,  traffic  signals,  and
+two-stage  queue  boxes,  and  treatments  where  cycle  tracks  reach  intersections"
+
+- But whole network design found to be important [@buehler_bikeway_2016].
+
+## Recommendations
+
+> 1. [Use](http://www.pct.bike/manual.html) the Propensity to Cycle Tool. [Download](https://rawgit.com/npct/pct-shiny/master/static/pct-bike-user-manual-b.pdf) its data.
+> 2. Design cycling networks not schemes [@buehler_bikeway_2016]
+> 3. Design for the long term - have a vision and prioritise it
+> 4. Experiment, monitor, adapt. (See experimental Traffic Regulation Order (TRO) case in [Tavistock Place](https://www.camden.gov.uk/ccm/content/transport-and-streets/transport-strategies/torrington-place-to-tavistock-place-experimental-traffic-changes.en?page=4))
+> 5. Get yourself and team skilled up in open source software
+> 6. Collaborate
+
+## References {.smaller}
+
+> - Thanks for listening. Find me [`@robinlovelace`](https://twitter.com/robinlovelace) or contact me on r . lovelace@leeds.ac.uk

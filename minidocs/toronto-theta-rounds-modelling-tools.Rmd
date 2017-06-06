@@ -1,0 +1,262 @@
+---
+title: 'The potential of open access tools for health planning and modelling'
+author: 'Robin Lovelace, University of Leeds. '
+date: "Toronto General Hospital to the world via webinar, `r Sys.Date()`"
+output:
+  ioslides_presentation:
+    widescreen: true
+    # smaller: true
+logo: ../figures/its-logo-square.png
+bibliography: /home/robin/allrefs.bib
+---
+
+<!-- Tools for planning healthy cities and modelling health outcomes of policy scenarios have become increasingly sophisticated, large scale (with national and global models on the horizon) and detailed. With increasing model complexity there are risks, however. Tools can become perceived as ‘black boxes’ only available to a small number of experts in the field. This presentation will argue that for tools for planning should be open source. Furthermore, to have maximum policy impact, as part of a democratic decision making process in the public interest, the results should be made publicly accessible, to encourage public debate of the issues raised by research. A case study of the Propensity to Cycle Tool (PCT) illustrates these points, building on a recently published paper on the subject (Lovelace et al., 2017). The PCT is an open source and publicly accessible (try it out at www.pct.bike !) toolkit for planning healthier cities, funded by the UK's Department for Transport. The talk will conclude pragmatically, by outlining concrete steps that researchers can take to ensure maximum benefits arising from their work. -->
+
+```{r, echo=FALSE, include=FALSE}
+# runtime: shiny
+pkgs <- c("grid", "png", "knitr")
+lapply(pkgs, library, character.only = T)
+# bibliography: "~/Documents/R.bib"
+# Notes for Judith's talk
+# Add paper on replacing car trips with bike trips
+# Add stuff on QGIS
+# 
+```
+
+## Presentation structure
+
+-  Existing tools for planning
+-  A case study of the PCT
+-  Future directions
+
+> - But first: a test of interactivity
+> - Who uses (broadly defined) tools for policy-making?
+> - What % of those are open access?
+> - Open source?
+
+## Context
+
+> - In January 2015 we were commissioned by the Department for Transport
+> - In April 2017 the Propensity to Cycle Tool is finally officially launched
+> - As part of the UK's Cycling and Walking Infrastructure Strategy (CWIS)
+> - Our tool is a key part of the local implementation (quote below from the Transport Minister Chris Grayling)
+
+![](https://pbs.twimg.com/media/C98nYyJXgAAM_Kw.jpg:small)
+
+## Reaction to the Cycling and Walking Infrastructure Strategy
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">£1m Big Bike Revival funding will help people get back in the saddle and make cycling the natural choice <a href="https://t.co/BYZDk9NqHK">https://t.co/BYZDk9NqHK</a> <a href="https://twitter.com/hashtag/CWIS?src=hash">#CWIS</a> <a href="https://t.co/UNp6jyXPnd">pic.twitter.com/UNp6jyXPnd</a></p>&mdash; Dept for Transport (@transportgovuk) <a href="https://twitter.com/transportgovuk/status/855350123039264768">April 21, 2017</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<!-- ## Funding for healthy cities -->
+
+<!-- <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Our initial reaction to <a href="https://twitter.com/hashtag/CWIS?src=hash">#CWIS</a> - great it&#39;s finally here, now hard work begins. <a href="https://t.co/ioYWYEIVV6">https://t.co/ioYWYEIVV6</a></p>&mdash; Cycling UK (@WeAreCyclingUK) <a href="https://twitter.com/WeAreCyclingUK/status/855382509923823616">April 21, 2017</a></blockquote> -->
+<!-- <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script> -->
+
+<!-- > - But where's the funding? £2000/person/yr for health. Recommends £10 for cycling. -->
+
+
+## Definition of health
+
+>  A state of complete physical, mental, and social well-being and not merely the absence of disease or infirmity. 
+
+> - From the World Health Organisation's Constitution, 1946 [@grad_public_2002].
+
+> - We need to shift towards tackling the root causes of bad health
+
+> - Rather than "fixing people who've fallen off a cliff"
+
+> - Good (and bad) health behaviours are learned early on -> work of SickKids = vital
+
+# Tools for planning healthy cities
+
+## Modelling context
+
+![](http://bettertransport.org.uk/sites/default/files/12.04.17.DfT_forecasts_LTT_phil_goodwin.jpg)
+
+Source: [Campaign for Better Transport](http://bettertransport.org.uk/campaigns/roads-to-nowhere/ltt-130412)
+
+## Interactive online tools
+
+-  [AURIN](http://aurin.org.au/)
+-  Leeds-Bradford cycle path [interactive map](http://www.cyclecityconnect.co.uk/participate.php)
+-  DECC's 'Energy 2050' [planning tool](http://2050-calculator-tool.decc.gov.uk/)
+-  Walkability index site [walkscore.com](https://www.walkscore.com/score/leeds-uk) (Leeds has 99% walkability!)
+-  Interactive download of bicycle paths (but for research?): https://www.velomap.org/
+
+## Importance of open data and methods
+
+> - If the data underlying policy is hidden, it can be represented to push certain aims (solved by open data)
+
+> - If the data is 'open' but the tools are closed, results open to political influence
+
+> - Which brings us onto our next topic...
+
+# A case study of the Propensity to Cycle Tool
+
+## Context: from concept to implementation
+
+A life-course of my involvement with the PCT
+
+```
+Concept of algorithms for cycling uptake (PhD 2009 - 2013)
+ Discovery of programming (R) and shiny (2013)
+  'Propensity to Cycle' bid by DfT via SDG (2014)
+    Start work w. Cambridge University and colleagues (2015)
+     Implementation on national OD dataset, 700k routes (2016)
+       Addition of school and near-market prototypes (late 2016)
+         LSOA phase (Malcolm Morgan) (early 2017)
+           ...
+```
+
+ > - 2018: (Global PCT?)
+
+ - Academic write-up [@lovelace_propensity_2017]
+
+## A definition of Propensity to Cycle and its uses
+
+> Propensity to cycle refers to the modelled
+uptake of cycling at area, desire line and
+route network levels under different
+scenarios of the future. Policy relevant
+scenarios include meeting national or local
+targets, the potential uptake if people in the
+study area cycled as much as the Dutch do
+or the impact of electric bikes on people's
+willingness to cycle longer distances. ([see Get Britain Cycling article](http://getbritaincycling.net/wp-content/uploads/2016/05/Get-Britain-Cycling_2016.pdf), 2016)
+
+The tool aims to help prioritise **where** interventions are most needed based on where cyclable trips are most common
+
+## Policy impact
+
+“The PCT shows the country’s great potential to get on their bikes, highlights the areas of highest possible growth and will be a useful innovation for local authorities to get the greatest bang for their buck from cycling investments  and realise cycling potential.” Andrew Jones, Parliamentary Under Secretary of State for Transport
+
+“A world first from a brilliant academic team. As a Department we should be celebrating this example of innovation in promoting the UK’s capability to deliver innovation in transport planning.” Pauline Reeves, DfT Deputy Director Sustainable Accessible Transport
+ 
+## Prior work (source: Lovelace et al. 2017)
+
+```{r, echo=FALSE, message=FALSE}
+dft = readr::read_csv("../data-sources/cycle-tools-wide.csv")
+dft$Tool = gsub("Permeability Assessment Tool", "PAT", dft$Tool)
+knitr::kable(dft)
+```
+
+## The PCT team | "If you want to go far, go as a team"
+
+Robin Lovelace (Lead Developer, University of Leeds)
+
+- James Woodcock (Principal Investigator, Cambridge University)
+- Anna Goodman (Lead Data Analyst, LSHTM)
+- Rachel Aldred (Lead Policy and Practice, Westminster University)
+- Ali Abbas (User Interface, University of Cambridge)
+- Alvaro Ullrich (Data Management, University of Cambridge)
+- Nikolai Berkoff (System Architecture, Independent Developer)
+- Malcolm Morgan (GIS and infrastructure expert, UoL)
+ 
+## Policy feedback
+
+"The PCT is a brilliant example of using Big Data to better plan infrastructure investment. It will allow us to have more confidence that new schemes are built in places and along travel corridors where there is high latent demand."
+
+- Shane Snow: Head of Seamless Travel Team, Sustainable and Acessible Travel Division
+
+"The PCT shows the country’s great potential to get on their bikes, highlights the areas of highest possible growth and will be a useful innovation for local authorities to get the greatest bang for their buck from cycling investments  and realise cycling potential."
+
+- Andrew Jones, Parliamentary Under Secretary of State for Transport
+
+## The PCT in CWIS and LCWIP
+
+Included in Cycling and Walking Infrastructure Strategy (CWIS) and the Local Cycling and Walking Infrastructure Plan (LCWIP)
+
+```{r, echo=FALSE}
+knitr::include_graphics("../figures/front-page-leeds-pct-demo.png")
+```
+
+## How the PCT works
+
+Shows on the map where there is high cycling potential,
+for 4 scenarios of change
+
+- Government Target
+- Gender Equality
+- Go Dutch
+- Ebikes
+
+## Scenario shift in desire lines | Source: @lovelace_propensity_2017
+
+```{r, echo=FALSE}
+knitr::include_graphics("../flow-model/od-data-leeds.png")
+```
+
+- Origin-destination data shows 'desire lines'
+- How will these shift with cycling uptake
+
+## Scenario shift in network load
+
+```{r, echo=FALSE}
+knitr::include_graphics("../flow-model/leeds-rnet-gov-go.png")
+```
+
+## A live demo for Leeds | "Actions speak louder than words"
+
+- Test version of [p](http://npct0.vs.mythic-beasts.com/m/?r=west-yorkshire)[ct.bike](http://pct.bike/)
+
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("../flow-model/man-trinity-way-satellite.png")
+```
+
+# Recent additions to the PCT
+
+## Travel to schools layer | [Prototype online](http://npct0.vs.mythic-beasts.com/schools/?r=west-yorkshire)
+
+```{r, echo=FALSE}
+knitr::include_graphics("../figures/pct-schools-image.png")
+```
+
+## Overlaying propensity to cycle to school and work
+
+```{r, echo=FALSE}
+knitr::include_graphics("../figures/schools-commuter-overlay.png")
+```
+
+## New LSOA layer (Morgan et al. in Press)
+
+```{r, echo=FALSE, out.width="90%"}
+knitr::include_graphics("../figures/lsoa-layer-london.png")
+```
+
+## What to prioritise? (CyIPT)
+
+- PCT covers 'where'. Cycling Infrastructure Prioritisation Toolkit (CyIPT): DfT-funded toolkit for cycling infrastructure prioritisation in progress
+- Combines many datasets ("PCT + Infra") to identify 'low hanging fruit'
+
+```{r, echo=FALSE, out.width="60%"}
+knitr::include_graphics("https://github.com/cyipt/cyipt/raw/master/figures/schematic-flow-diagram.png")
+```
+
+# Future directions
+
+## Crowd sourced data (Strava vs PCT)
+
+```{r, echo=FALSE, out.width="70%"}
+knitr::include_graphics("../figures/pct-vs-strava-for-leeds.png")
+```
+
+## Innovative infrastructure | More research needed to find what works
+
+> "few studies link ridership with newer (innovative) types of infra-
+structure,  particularly  intersection  treatments.  More  research  is  needed  on  the
+effect  of  bicycle-specific  treatments,  including  bike  boxes,  traffic  signals,  and
+two-stage  queue  boxes,  and  treatments  where  cycle  tracks  reach  intersections"
+
+- But whole network design found to be important [@buehler_bikeway_2016].
+
+## Recommendations
+
+> 1. Use existing interactive on-line tools such as the [Propensity to Cycle Tool](http://www.pct.bike/). [Download](https://rawgit.com/npct/pct-shiny/master/static/pct-bike-user-manual-b.pdf) and explore open data data.
+> 3. Design for the long term - have a vision and prioritise it
+> 4. Experiment, monitor, adapt. (See experimental Traffic Regulation Order (TRO) case in [Tavistock Place](https://www.camden.gov.uk/ccm/content/transport-and-streets/transport-strategies/torrington-place-to-tavistock-place-experimental-traffic-changes.en?page=4))
+> 5. Get yourself and team skilled up in open source software
+> 6. Collaborate
+
+## References
+
