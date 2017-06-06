@@ -1,6 +1,10 @@
 ---
-title: 'The propensity to cycle tool: from conception in the clouds to implementation on the ground'
-output: word_document
+title: 'The propensity to cycle tool: from conception in the clouds to implementation
+  on the ground'
+output:
+  pdf_document: 
+    keep_tex: yes
+  word_document: default
 ---
 
 ```{r setup, include=FALSE}
