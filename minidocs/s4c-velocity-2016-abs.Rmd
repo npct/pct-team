@@ -29,7 +29,7 @@ cycling advocacy. Ricardo will help answer the question: how can such tools be u
 by local campaign groups?
 
 **James Woodcock**
-James lead a programme on Public Health Modelling at the Centre for Diet and Activity Research (CEDAR), University of Cambridge. He is PI on the PCT and has led the development of the Integrated Transport and Health Impact Modelling tool (ITHIM). He has recently received funding for two new projects, TIGTHAT and METAHIT. He is one of the core expert group of the WHO HEAT tool.
+James lead a program on Public Health Modelling at the Centre for Diet and Activity Research (CEDAR), University of Cambridge. He is PI on the PCT and has led the development of the Integrated Transport and Health Impact Modelling tool (ITHIM). He has recently received funding for two new projects, TIGTHAT and METAHIT. He is one of the core expert group of the WHO HEAT tool.
 
 **Susan Handy.**
 Susan has expertise researching the relationships between transportation and land use. Her input will help explore the how the PCT approach can be used to model shifting travel behaviors, an input into wider strategies for a transition to a post carbon transport system.
@@ -63,7 +63,7 @@ Keywords: cycling potential, modal shift, infrastructure evaluation
 
 ## How the panel session will be organised
 
-The panel session will be organized in 2 parts, the first will provide a 5 minute overview of the PCT followed by cooments from panel members and questions from the audience. The latter will be 20 minutes, which will provide time (up to 2 minutes) for panelist statements and then discussion with the audience.
+The panel session will be organized in 2 parts, the first will provide a 5 minute overview of the PCT followed by comments from panel members and questions from the audience. The latter will be 20 minutes, which will provide time (up to 2 minutes) for panelist statements and then discussion with the audience.
 
 1. What is the Propensity to Cycle Tool and how could it scale globally? This will focus on clarifying what the tool is, how it can be used and its potential to help plan for cycling in settlements and countries worldwide (5 minute presentation by Robin). It will touch on how the PCT differs existing tools such as Bikeprint for strategic cycle planning and its strengths, limitations and future potential. 
 
@@ -79,7 +79,7 @@ In it we will focus on the follow issues:
 - Training
 - Public engagement
 
-Each session will be time limited and will provide an opportunity for the audience to input points of information, suggested actions or questions.Outcomes
+Each session will be time limited and will provide an opportunity for the audience to input points of information, suggested actions or questions.
 The expected outcomes from the panel session will be:
 
 - Better understanding among session attendees and, via online dissemination, the international cycling community, of the strengths and weaknesses of existing tools and how they can be used, currently, to improve transport planning from a cycling perspective. (There will be recordings and a write-up for the international cycling community.)
