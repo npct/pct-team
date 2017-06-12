@@ -1,0 +1,87 @@
+---
+title: "A global propensity to cycle tool?"
+author: "Robin Lovelace, on behalf of the PCT team"
+date: "12 June 2017. Slides: [rpubs.com/RobinLovelace](http://rpubs.com/RobinLovelace/)"
+output: ioslides_presentation
+bibliography: ../documents/references.bib
+logo: ../figures/its-logo-square.png
+---
+
+## Logistics
+
+30 minute session
+
+- 10 minutes introduction to PCT and other tools
+- 20 minutes on what is needed
+- 2 minutes: max intervention 
+- Try it: [www.pct.bike](http://www.pct.bike/)
+
+## Motivation | Source: [Warrington cycle campaign](http://wcc.crankfoot.xyz/facility-of-the-month/July2016.htm)
+
+> - Sub-optimal resource allocation
+
+```{r, echo=FALSE}
+knitr::include_graphics("http://wcc.crankfoot.xyz/facility-of-the-month/finchley-hospital.jpg")
+```
+
+## How to *best* 'Go Dutch' | Source: Author, Utrecht, 2017
+
+```{r, echo=FALSE}
+knitr::include_graphics("https://farm5.staticflickr.com/4218/35223928495_75d92bf46c_z_d.jpg")
+```
+
+## Prior work (source: Lovelace et al. 2017)
+
+```{r, echo=FALSE, message=FALSE}
+dft = readr::read_csv("../data-sources/cycle-tools-wide.csv")
+dft$Tool = gsub("Permeability Assessment Tool", "PAT", dft$Tool)
+knitr::kable(dft)
+```
+
+## What is the Propensity to Cycle Tool? | Source: @lovelace_propensity_2017
+
+```{r, echo=FALSE}
+knitr::include_graphics("../flow-model/od-data-leeds.png")
+```
+
+> - Online, public tool showing *where* to intervene
+- Based on origin-destination data showing 'desire lines'
+- Scenarios indicates shifts with cycling uptake
+
+## Starter for 10 | A checklist for a global sustainable planning tool
+
+> - Open source and extensible
+- Free to access and use, based on open data
+- Not-for-profit
+- International steering committee
+- Internationally funded
+- International developers from academia, industry and public sector
+- Monitoring and evaluation capability built-in (e.g. with the **bikedata** R package)
+- Publicly accessible results and interactive map
+
+## A live demo for Leeds | "Actions speak louder than words"
+
+- Test version of [p](http://npct0.vs.mythic-beasts.com/m/?r=west-yorkshire)[ct.bike](http://pct.bike/)
+
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("../flow-model/man-trinity-way-satellite.png")
+```
+
+## The PCT in CWIS and LCWIP
+
+Included in Cycling and Walking Infrastructure Strategy (CWIS) and the Local Cycling and Walking Infrastructure Plan (LCWIP)
+
+```{r, echo=FALSE}
+knitr::include_graphics("../figures/front-page-leeds-pct-demo.png")
+```
+
+## The route network layer
+
+> - In alignment with research advocating network-level design [@buehler_bikeway_2016]
+
+```{r, echo=FALSE, out.width="90%"}
+knitr::include_graphics("../figures/lsoa-layer-london.png")
+```
+
+## References
+

@@ -1,7 +1,9 @@
 ---
 title: "A global Propensity to Cycle Tool?"
 author: "Robin Lovelace"
-output: word_document
+output:
+  html_document: default
+  word_document: default
 ---
 
 **Organizer: Robin Lovelace.**
@@ -31,8 +33,8 @@ by local campaign groups?
 **James Woodcock**
 James lead a program on Public Health Modelling at the Centre for Diet and Activity Research (CEDAR), University of Cambridge. He is PI on the PCT and has led the development of the Integrated Transport and Health Impact Modelling tool (ITHIM). He has recently received funding for two new projects, TIGTHAT and METAHIT. He is one of the core expert group of the WHO HEAT tool.
 
-**Susan Handy.**
-Susan has expertise researching the relationships between transportation and land use. Her input will help explore the how the PCT approach can be used to model shifting travel behaviors, an input into wider strategies for a transition to a post carbon transport system.
+**Joost de Kruijff**
+Joost de Kruijff joined the department of Industrial Engineering and Innovation Science as a PhD student in November 2014. He has received his BSc degree in Mathematics from Utrecht University in September 2012 and his MSc degree in Industrial and Applied Mathematics from Eindhoven University of Technology in September 2014. Under supervision of Ton de Kok and Cor Hurkens and funded by ASML, he conducts research on deterministic models for the Supply Chain Operation Planning problem.
 
 
 
@@ -88,4 +90,10 @@ The expected outcomes from the panel session will be:
 
 - A roadmap outlining how to proceed to create and improve internationally
 scalable open source, online tools for sustainable transport planning.
+
+## Discussion
+
+<!-- I think we should go for as many people asking questions as possible - I think many will have them + we can do depth after. -->
+
+
 
