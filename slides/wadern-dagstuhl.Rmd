@@ -95,6 +95,14 @@ knitr::include_graphics("../figures/sev-eg.png")
 > - Citizen science / crowd funded add-ons
 > - Next case study cities?
 
+## Abstract
+
+It is important to know where people travel for a number of reasons. Most important among these is the urgent need to transition away from fossil fuels: models of travel patterns can help identify the most effective interventions to make this happen. 
+
+This paper explores globally scalable methods for generating estimates of travel patterns that build on areal and point-based data to estimate movements down to the road network level currently, and under scenarios of the change. The presentation is based on my experience developing the Propensity to Cycle Tool (PCT) and scaling it across all areas and major cyclable roads in England (see [pct.bike](http://ww.pct.bike/)) and recent experiments extending it internationally with a case study in Seville, Spain.
+
+Methodologically I will explore the possibility of extending the methods to be dynamic and multi-modal, themes that will be prominent during the summer school.
+
 ## References
 
 Lovelace, Robin, Anna Goodman, Rachel Aldred, Nikolai Berkoff, Ali Abbas, and James Woodcock. “The Propensity to Cycle Tool: An Open Source Online System for Sustainable Transport Planning.” Journal of Transport and Land Use 10, no. 1 (January 1, 2017). doi:10.5198/jtlu.2016.862.
@@ -102,19 +110,7 @@ Lovelace, Robin, Anna Goodman, Rachel Aldred, Nikolai Berkoff, Ali Abbas, and Ja
 Lovelace, Robin, and Richard Ellison. “Stplanr: A Package for Transport Planning.” The R Journal, Under Review. https://github.com/ropensci/stplanr.
 
 
-<!-- ## Background -->
 
-<!-- In parallel with the growing evidence base supporting modal shift to walking and cycling for health and environmental reasons, tools for prioritising interventions to encourage active travel have evolved. Increasingly detailed datasets provide researchers with insights into how transport systems operate and change, at levels of geographical and temporal resolution that were unavailable a few decades ago. Used in combination with new digital technologies and modelling techniques, such evidence can be made publicly accessible via interactive on-line 'web apps'. This paper explores the potential of such emerging tools to improve and democratise transport decision making for healthier outcomes, with a focus on an implementation of the Propensity to Cycle Tool (PCT) in Seville, Spain. -->
 
-<!-- ## Methods -->
 
-<!-- The PCT was originally funded by the UK's Department for Transport to improve the effectiveness of interventions to get people cycling. This paper reports methods for implementing the approach at the city in new contexts, with a case study of Seville. We report the preparation of Open Street Map (OSM) transport network data, the aggregation of geographical datasets into and origin-destination (OD) matrix of appropriate spatial resolution, and the estimation of current cycling levels and the potential for growth at desire line and route network levels. -->
-
-<!-- ## Results -->
-
-<!-- It was found that publicly accessible tools to help prioritise investment in walking and cycling are increasingly viable, even in contexts where detailed OD data (reporting mode split at the desire line level) is absent. The case study of Seville shows how open source software can be used to create reproducible transport planning workflows, the results of which can be made accessible online for public scrutiny and exploration. The methods used in the PCT provide an example of how open source tools can reduce the need to 'reinvent the wheel' each time a transport planning toolkit is required and ensure that decisions are based on transparent and reproducible results. -->
-
-<!-- ## Conclusion -->
-
-<!-- The case study of implementing the PCT internationally shows the potential for uptake of open source and open access tools for designing healthier transport system. New digital technologies, if used appropriately and building on the best available evidence, can empower researchers, planners and public with the evidence-based needed to design effective interventions for active travel. -->
 
