@@ -1,7 +1,7 @@
 ---
-title: 'Scalable, accessible tools for prioritising for active travel'
-author: Robin Lovelace, Vicente Hernández-Herrador, Javier Herrera-Sánchez, Ricardo Marqués
-date: "International Conference of Transport and Health, Barcelona, `r Sys.Date()`"
+title: 'Scalable methods for modelling movement patterns: from areal to road segment levels'
+author: Robin Lovelace
+date: "Dagstuhl Summer School on movement patterns, `r Sys.Date()`"
 output:
   ioslides_presentation:
     widescreen: true
@@ -20,6 +20,13 @@ knitr::opts_chunk$set(echo = FALSE)
 > - Discussion
 
 # Introductory comments
+
+## What do I mean by 'scalable'
+
+> Large surface area (countries, planets)
+> Reproducible, e.g. for infinite new scenarios of future
+> Accessible - so results can 'scale' to be seen and *used interactively* by millions of people
+> Resilient: methods can operate in data rich and data poor environments
 
 ## Context (see the ['CWIS' report](https://www.gov.uk/government/publications/cycling-and-walking-investment-strategy))
 
