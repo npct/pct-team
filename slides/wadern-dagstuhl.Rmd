@@ -21,12 +21,20 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Introductory comments
 
+## The title
+
+> - Was initially titled "The Propensity to Cycle Tool: from conception in the clouds to implementation on the ground"
+
+![](http://images2.fanpop.com/image/photos/9900000/Heavenly-Clouds-god-the-creator-9912326-500-375.jpg)
+
+
 ## What do I mean by 'scalable'
 
-> Large surface area (countries, planets)
-> Reproducible, e.g. for infinite new scenarios of future
-> Accessible - so results can 'scale' to be seen and *used interactively* by millions of people
-> Resilient: methods can operate in data rich and data poor environments
+> -  Large surface area (countries, planets)
+> -  Reproducible, e.g. for infinite new scenarios of future
+> -  Accessible - so results can 'scale' to be seen and *used interactively* by millions of people
+> -  Resilient: methods can operate in data rich and data poor environments
+> - Rationale: a 'rolled-out' simple method can have a greater impact than a non-scalable complex one
 
 ## Context (see the ['CWIS' report](https://www.gov.uk/government/publications/cycling-and-walking-investment-strategy))
 
@@ -40,8 +48,10 @@ knitr::include_graphics("../../pct/figures/front-page-leeds-pct-demo.png")
 
 ## The propensity to cycle tool method | Source:  [Source:](https://www.jtlu.org/index.php/jtlu/article/view/862) (Lovelace et al. 2017)
 
+See [www.pct.bike](https://www.pct.bike/) for demo of 'finished product'.
+
 ```{r}
-knitr::include_graphics("../flow-model/od-scens-leeds.png")
+knitr::include_graphics("../flow-model/leeds-rnet-gov-go.png")
 ```
 
 # Demonstration
@@ -63,10 +73,8 @@ plot(flow_est, lwd = flow_est$flow)
 
 ## For England we have OD data
 
-See [www.pct.bike](https://www.pct.bike/)
-
 ```{r}
-knitr::include_graphics("../flow-model/leeds-rnet-gov-go.png")
+knitr::include_graphics("../flow-model/od-scens-leeds.png")
 ```
 
 ## For Spain we do not - so model it
