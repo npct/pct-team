@@ -1,7 +1,7 @@
 ---
 title: 'Scalable methods for modelling movement patterns: from areal to road segment levels'
-author: Robin Lovelace
-date: "Dagstuhl Summer School on movement patterns, `r Sys.Date()`"
+author: "[`@robinlovelace`](https://twitter.com/robinlovelace), r. lovelace@leeds. ac.uk"
+date: "Dagstuhl, `r Sys.Date()`. Slides: [rpubs.com.Robinlovelace](http://rpubs.com/RobinLovelace/). Source: [GitHub](https://github.com/npct/pct/blob/master/slides/wadern-dagstuhl.Rmd)"
 output:
   ioslides_presentation:
     widescreen: true
@@ -180,7 +180,7 @@ knitr::include_graphics("../figures/streetmix-chapeltown-road.png")
 
 It is important to know where people travel for a number of reasons. Most important among these is the urgent need to transition away from fossil fuels: models of travel patterns can help identify the most effective interventions to make this happen. 
 
-This paper explores globally scalable methods for generating estimates of travel patterns that build on areal and point-based data to estimate movements down to the road network level currently, and under scenarios of the change. The presentation is based on my experience developing the Propensity to Cycle Tool (PCT) and scaling it across all areas and major cyclable roads in England (see [pct.bike](http://ww.pct.bike/)) and recent experiments extending it internationally with a case study in Seville, Spain.
+This paper explores globally scalable methods for generating estimates of travel patterns that build on areal and point-based data to estimate movements down to the road network level currently, and under scenarios of change. The presentation is based on my experience developing the Propensity to Cycle Tool (PCT) and scaling it across all areas and major cyclable roads in England (see [pct.bike](http://ww.pct.bike/)) and recent experiments extending it internationally with a case study in Seville, Spain.
 
 Methodologically I will explore the possibility of extending the methods to be dynamic and multi-modal, themes that will be prominent during the summer school.
 
