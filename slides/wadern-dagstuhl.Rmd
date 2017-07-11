@@ -36,6 +36,12 @@ knitr::opts_chunk$set(echo = FALSE)
 > -  Resilient: methods can operate in data rich and data poor environments
 > - Rationale: a 'rolled-out' simple method can have a greater impact than a non-scalable complex one
 
+## Real world problem | Source: [Warrington Cycle Campaign](http://wcc.crankfoot.xyz/)
+
+```{r, echo=FALSE}
+knitr::include_graphics("http://wcc.crankfoot.xyz/facility-of-the-month/finchley-hospital.jpg")
+```
+
 ## Context (see the ['CWIS' report](https://www.gov.uk/government/publications/cycling-and-walking-investment-strategy))
 
 - 2 years in the making, the PCT is now part of the Cycling and Walking Infrastructure Strategy (CWIS)
@@ -46,7 +52,7 @@ knitr::opts_chunk$set(echo = FALSE)
 knitr::include_graphics("../../pct/figures/front-page-leeds-pct-demo.png")
 ```
 
-## The propensity to cycle tool method | Source:  [Source:](https://www.jtlu.org/index.php/jtlu/article/view/862) (Lovelace et al. 2017)
+## The propensity to cycle tool method | [Source:](https://www.jtlu.org/index.php/jtlu/article/view/862) (Lovelace et al. 2017)
 
 See [www.pct.bike](https://www.pct.bike/) for demo of 'finished product'.
 
@@ -54,9 +60,58 @@ See [www.pct.bike](https://www.pct.bike/) for demo of 'finished product'.
 knitr::include_graphics("../flow-model/leeds-rnet-gov-go.png")
 ```
 
+## Code as a tool/language (source: [UseR2016](https://channel9.msdn.com/Events/useR-international-R-User-conference/useR2016/Literate-Programming))
+
+- As a tool: to get stuff done 
+
+```{r, echo=TRUE}
+data("chickwts")
+mean(chickwts$weight)
+sd(chickwts$weight)
+```
+
+- As a language: to communicate [@knuth1984literate]
+
+```{r, message=FALSE, echo=TRUE}
+library(dplyr)
+res = chickwts %>%
+  group_by(feed) %>% 
+  summarise(n = n(), mean = mean(weight), standard_deviation = sd(weight))
+```
+
+## That also 'gets stuff done'
+
+```{r}
+knitr::kable(res, digits = 1)
+```
+
+- Hat tip: Jack Snoeyink
+
 # Demonstration
 
-## A spatial interaction model (Lovelace and Ellison, in press)
+## For England we have OD data
+
+> - Also see example generated yesterday representing trips to [Leeds University](http://rpubs.com/RobinLovelace/290366)
+
+```{r}
+knitr::include_graphics("../flow-model/od-scens-leeds.png")
+```
+
+## For Spain we do not - so model it
+
+- Reproducible example: [rpubs.com/RobinLovelace](http://rpubs.com/RobinLovelace/275315)
+
+```{r}
+knitr::include_graphics("../figures/sev-eg.png")
+```
+
+## How to model OD data? Spatial interaction model
+
+> - Mature method for estimating flow [@kariel_student_1968; @wilson_family_1971]
+> - Can be extended towards agent-based modelling (ABM) [@wu_spatial_2008;@lovelace_spatial_2016] 
+> - Can be calibrated with 'Big Data' [@lovelace_big_2016]
+
+> - Theotical advance: the radiation model [@simini_universal_2012]
 
 ```{r, echo=TRUE}
 library(stplanr)
@@ -69,20 +124,6 @@ plot(cents, cex = cents$pop)
 ```{r, message=FALSE, echo=TRUE}
 flow_est = od_radiation(p = cents, pop_var = "pop")
 plot(flow_est, lwd = flow_est$flow)
-```
-
-## For England we have OD data
-
-```{r}
-knitr::include_graphics("../flow-model/od-scens-leeds.png")
-```
-
-## For Spain we do not - so model it
-
-See [rpubs.com/RobinLovelace](http://rpubs.com/RobinLovelace/275315)
-
-```{r}
-knitr::include_graphics("../figures/sev-eg.png")
 ```
 
 # Discussion
@@ -111,14 +152,5 @@ This paper explores globally scalable methods for generating estimates of travel
 
 Methodologically I will explore the possibility of extending the methods to be dynamic and multi-modal, themes that will be prominent during the summer school.
 
-## References
-
-Lovelace, Robin, Anna Goodman, Rachel Aldred, Nikolai Berkoff, Ali Abbas, and James Woodcock. “The Propensity to Cycle Tool: An Open Source Online System for Sustainable Transport Planning.” Journal of Transport and Land Use 10, no. 1 (January 1, 2017). doi:10.5198/jtlu.2016.862.
-
-Lovelace, Robin, and Richard Ellison. “Stplanr: A Package for Transport Planning.” The R Journal, Under Review. https://github.com/ropensci/stplanr.
-
-
-
-
-
+## References {.smaller}
 
