@@ -62,30 +62,38 @@ knitr::include_graphics("../flow-model/leeds-rnet-gov-go.png")
 
 ## Code as a tool/language (source: [UseR2016](https://channel9.msdn.com/Events/useR-international-R-User-conference/useR2016/Literate-Programming))
 
-- As a tool: to get stuff done 
+- As a tool: to get stuff done (see [github.com/homeRangeOD](https://github.com/homeRangeOD/homeRangeOD))
 
-```{r, echo=TRUE}
-data("chickwts")
-mean(chickwts$weight)
-sd(chickwts$weight)
+```{r, engine='bash', eval=FALSE, echo=TRUE}
+# Download all code and data to reproduce example
+git clone git@github.com:homeRangeOD/homeRangeOD
+
+## Cloning into 'homeRangeOD'...
+cp -r homeRangeOD/input-data/* . # move the data
 ```
+
+## As a language
 
 - As a language: to communicate [@knuth1984literate]
 
 ```{r, message=FALSE, echo=TRUE}
-library(dplyr)
-res = chickwts %>%
-  group_by(feed) %>% 
-  summarise(n = n(), mean = mean(weight), standard_deviation = sd(weight))
+library(stplanr)
+oas_lds = readRDS("oas_lds.Rds")
+wpz_lds = readRDS("wpz_lds.Rds")
+flow = readr::read_csv("f_lds.csv")
+f_sp = od2line(flow = flow, zones = oas_lds, destinations = wpz_lds)
 ```
 
-## That also 'gets stuff done'
+## That also 'gets stuff done' (Thanks: Jack Snoeyink)
 
-```{r}
-knitr::kable(res, digits = 1)
+
+```{r, echo=TRUE}
+library(tmap)
+tmap_mode("view")
+qtm(oas_lds) +
+  qtm(wpz_lds, symbols.col = "red", symbols.size = 2) +
+  qtm(f_sp)
 ```
-
-- Hat tip: Jack Snoeyink
 
 # Demonstration
 
@@ -143,6 +151,30 @@ plot(flow_est, lwd = flow_est$flow)
 > - How to institutionalise the open (data, science) approach
 > - Citizen science / crowd funded add-ons
 > - Next case study cities?
+
+## Crowd-sourcing transport planning? | Source: [streetmix.net](https://streetmix.net/-/551720)
+
+```{r, out.width="100%"}
+knitr::include_graphics("../figures/streetmix-chapeltown-road.png")
+```
+
+## Questions / Issues to consider
+
+- How to link this back to theory?
+- How to move from simulation / theory to implementation?
+- Where does prediction and validation fit in? 
+     - How to do natural experiments in this area?
+- How can ecological theory / models inform transport simulations?
+    - Defining and modelling 'home ranges' (activity spaces)
+    - Modelling GPS traces ('bread crumb data')
+    - Group behaviour / 'contagion' 
+    
+> - A unified framework for ecological/movement modelling?
+    
+## Plug: Open source geocomputation book
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Geocomputation with R book project with <a href="https://twitter.com/jakub_nowosad">`@jakub_nowosad`</a> now up 🎉 Contributions/suggestions welcome: <a href="https://t.co/QD1GjiVtP9">https://t.co/QD1GjiVtP9</a> <a href="https://t.co/Mi5SUalZgJ">pic.twitter.com/Mi5SUalZgJ</a></p>&mdash; Robin Lovelace (`@robinlovelace`) <a href="https://twitter.com/robinlovelace/status/865077154941480960">May 18, 2017</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 ## Abstract
 
