@@ -1,0 +1,23 @@
+---
+title: 'Implementing spatial interaction models: from prototype to globally scalable tools'
+author: "Robin Lovelace"
+date: "`r Sys.Date()`. Slides: [rpubs.com/RobinLovelace](http://rpubs.com/RobinLovelace/258956)."
+output:
+  ioslides_presentation:
+    transition: slower
+widescreen: true
+logo: ../figures/cdrc-square.png
+bibliography: ../documents/references.bib
+---
+
+## Abstract
+
+Origin-destination (OD) data forms the basis of much research, in transport, migration and transport studies.
+In parallel with the growth in the number and size of such datasets, methods for simulating and updating them have proliferated.
+Many of these methods are known as spatial interaction models (SIMs).
+SIMs are thus vital for furthering our understanding of large-scale human movemement patterns.
+However, much of the academic literature focusses on the development of new and sophisticated methods, rather than the implementation of SIMs on large datasets.
+This is problematic for practitioners wishing to use SIMs in their work:
+while there is much information on which SIMs are most flexible or effective theoretically, there are few resources for assessing how scalable different methods are 'on the ground'.
+Taking a broad definition of scalable, this paper will explore SIMs in terms scalability and computational efficiency.
+The results will be demonstrated with reference a planned modelling project, which would use globally scalable SIMs with the aim of informing effective sustainable transport policies worldwide.
