@@ -40,7 +40,7 @@ Regardless of the diverse motivations for transport infrastructure investment, i
 There is a substantial body of literature dedicated to the evaluation of the impacts of transport infrastructure, which can be considered a sub-discipline in the field of transport studies in its own right.
 Despite the wide range of impacts incorporated in impact assessments, and the widening of assessments to incorporate social impacts [@jones_social_2012], active travel considerations are seldom taken into account, let alone analysed quantitatively.
 
-A recent review of impact assessment methods in the English context found that an increasingly wide range of methods and approaches were being used, including environmental impact assessment (EIA), strategic environmental assessment (SEA), health impact assessment (HIA), gender impact assessment (GIA) and equality impact assessment (EqIA) [@tajima_should_2013].
+A recent review of impact assessment methods in the English context found that an increasingly wide range of methods and approaches were being used, including Environmental Impact Assessment (EIA), Strategic Environmental Assessment (SEA), Health Impact Assessment (HIA), Gender Impact Assessment (GIA) and Equality Impact Assessment (EqIA) [@tajima_should_2013].
 However, in that paper (and in much practitioner literature) no mention is made of potential impacts on walking and cycling, despite the well-known broad-ranging benefits of these active travel modes, that include:
 
 - Increased life expectancy and physical well-being as a result of regular physical activity, estimated to have a major reduction of disability-adjusted life years lost due to non-communicable disease such as heart attacks [e.g. @gotschi_contrasts_2015].
