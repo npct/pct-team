@@ -194,7 +194,7 @@ Only a few hundred commuters pass directly parallel to the route, mostly of medi
 
 ```{r gendata, echo=FALSE}
 # centre point subsetting
-l_cp = gprojected(l_lc, fun = maptools::SpatialLinesMidPoints)
+l_cp = geo_projected(l_lc, fun = maptools::SpatialLinesMidPoints)
 sel_centrepoint = rgeos::gContains(buff, l_cp, byid = T)[,1]
 
 # Line bearing code
