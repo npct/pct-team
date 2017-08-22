@@ -1,0 +1,110 @@
+---
+title: "Assessing the active travel impacts of major transport infrastructure projects"
+author: "Robin Lovelace, University of Leeds"
+date: "`r Sys.Date()`"
+bibliography: /home/robin/allrefs.bib
+output:
+  ioslides_presentation:
+    widescreen: true
+    transition: slower
+    logo: ../figures/its-logo-square.png
+---
+
+## Contents
+
+- Introduction: the Propensity to Cycle Tool
+- The impacts of transport infrastructure
+- Methods
+- Results and discussion
+
+# Introduction
+
+## The Propensity to Cycle Tool
+ 
+## Prior work (source: Lovelace et al. 2017)
+
+```{r, echo=FALSE, message=FALSE}
+dft = readr::read_csv("~/npct/pct/data-sources/cycle-tools-wide.csv")
+dft$Tool = gsub("Permeability Assessment Tool", "PAT", dft$Tool)
+knitr::kable(dft)
+```
+
+## The PCT team | "If you want to go far, go as a team"
+
+Robin Lovelace (Lead Developer, University of Leeds)
+
+- James Woodcock (Principal Investigator, Cambridge University)
+- Anna Goodman (Lead Data Analyst, LSHTM)
+- Rachel Aldred (Lead Policy and Practice, Westminster University)
+- Ali Abbas (User Interface, University of Cambridge)
+- Alvaro Ullrich (Data Management, University of Cambridge)
+- Nikolai Berkoff (System Architecture, Independent Developer)
+- Malcolm Morgan (GIS and infrastructure expert, UoL)
+ 
+<!-- ## Policy feedback -->
+
+<!-- "The PCT is a brilliant example of using Big Data to better plan infrastructure investment. It will allow us to have more confidence that new schemes are built in places and along travel corridors where there is high latent demand." -->
+
+<!-- - Shane Snow: Head of Seamless Travel Team, Sustainable and Acessible Travel Division -->
+
+<!-- "The PCT shows the country’s great potential to get on their bikes, highlights the areas of highest possible growth and will be a useful innovation for local authorities to get the greatest bang for their buck from cycling investments  and realise cycling potential." -->
+
+<!-- - Andrew Jones, Parliamentary Under Secretary of State for Transport -->
+
+## The PCT in CWIS and LCWIP
+
+Included in Cycling and Walking Infrastructure Strategy (CWIS) and the Local Cycling and Walking Infrastructure Plan (LCWIP)
+
+```{r, echo=FALSE}
+knitr::include_graphics("~/npct/pct/figures/front-page-leeds-pct-demo.png")
+```
+
+## How the PCT works
+
+Shows on the map where there is high cycling potential,
+for 4 scenarios of change
+
+- Government Target
+- Gender Equality
+- Go Dutch
+- Ebikes
+
+## Scenario shift in desire lines | Source: @lovelace_propensity_2017
+
+```{r, echo=FALSE}
+knitr::include_graphics("~/npct/pct/flow-model/od-data-leeds.png")
+```
+
+- Origin-destination data shows 'desire lines'
+- How will these shift with cycling uptake
+
+## Scenario shift in network load
+
+```{r, echo=FALSE}
+knitr::include_graphics("~/npct/pct/flow-model/leeds-rnet-gov-go.png")
+```
+
+# The impacts of transport infrastructure
+
+## The impacts of transport infrastructre | Credit: flickr user [thestuff](https://www.flickr.com/photos/thestuff/), Creative Commons Licence
+
+![](https://farm4.staticflickr.com/3041/2646783176_7ba553391b_z_d.jpg)
+
+## Active travel impacts: a typology
+
+```{r type, echo=FALSE, fig.cap="A typology of active travel options.", out.width="100%"}
+knitr::include_graphics("../infra-active/active-travel-options.png")
+```
+
+# Method
+
+## 
+
+## Final question
+
+- What can you do to maximise the social benefits arising from your work?
+
+> - Thanks for listening - get in touch via `r.lovelace@leeds.ac.uk` or `@robinlovelace`
+
+## References
+
