@@ -444,6 +444,7 @@ The methods outlined in this paper have the potential to be used in situations b
 It is in terms of the methods for quantifying the potential for desire lines parallel and perpendicular to proposed routes that this report will probably be of most use, as the basis for further work. The Lewes-Uckfield line has served a useful purpose in this regard, as the case study is small enough to identify specific desire lines of interest and explore the methodology on local datasets that are not overwhelmingly large. The work provides many interesting avenues for further development and research, including:
 
 - The estimation of angles on a *per segment* basis, rather than simply for the whole route.
+- Improvements to the input data, including additional trip purposes (the analysis only considers cycle commuting), increased geographical resolution (e.g. to the Lower Super Output Area level used in recent versions of the PCT), and analysis of a range of proposed route options rather than just one.
 - The automation of the analysis of 'parallels' and 'severance points' by creating functions which take desire lines and a proposed route as inputs and output the results with a single command. This could potentially be implemented in the R package **stplanr**.
 - The extension of the method to quantify the level of overlap between proposed cycle networks and a series of desire lines or a route network.
 
