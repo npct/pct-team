@@ -129,8 +129,7 @@ Note that based on the three-stage methodology outlined above, severance points 
 ## Identifying integrated travel to public transport
 
 Increased travel to public transport is likely to occur near public transport stops and on desire lines that have an origin and destination near connected public transport stops.
-
-The methodology used to identify these severance points consists of six stages:
+The methodology used to identify the potenial uptake of cycling due to integration with new public transport services associated with the new route consists of six stages:
 
 - Subset desire lines that have both and origin and destination within three kilometres of a station/stop;
 - Remove lines that have the same stop as their closest origin and destination;
