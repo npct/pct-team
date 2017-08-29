@@ -457,46 +457,9 @@ This final recommendation resonates with the wider project from which these meth
 the PCT is an explicitly open source and publicly accessible tool [@lovelace_propensity_2017].
 As such, impact assessment work or software resulting from the methods presented here should also be open source and open access, e.g. via an interactive on-line web tool and publication of the 'source code' underlying the work and resulting datasets.
 
-and other impact assessment pr
-, who may be paid by entities with a vested interest in the major infrastructure project going ahead,
-
-#Acknowledgements
+# Acknowledgements
 
 Thanks to Matthew Whittle who digitised a scanned image of the proposed route.
 
 # References
 
-
-
-
-<!-- ## The impacts of high-speed rail on cycling in the UK -->
-
-<!-- To assess the potential benefits of new crossings for cycling uptake during and after construction of HS2, the method was applied to geographical data about the route and current travel patterns surrounding it. The first stage was to identify all commutes that could potentially be directly affected by the HS2 infrastructure, by selecting all commuter desire lines that pass anywhere within a 20 km buffer. This is illustrated in Figure xx. -->
-
-<!-- ```{r} -->
-<!-- hs2 = readRDS("input-data/hs2.Rds") -->
-<!-- l = readRDS("input-data/l_mini.Rds") -->
-<!-- proj4string(hs2) = proj4string(l) -->
-<!-- hs2_buf20 = stplanr::buff_geo(hs2, 20000) -->
-<!-- # l = readRDS("../pct-bigdata/pct_lines_oneway_shapes.Rds") -->
-<!-- l_sev = l[hs2,] -->
-<!-- l_sam = l[sample(nrow(l), 1000),] # work with sample (comment for all) -->
-<!-- # osm_tiles = read_osm(bb(hs2, ext = 1.2)) -->
-<!-- # saveRDS(osm_tiles, "input-data/osm_tiles_hs2.Rds") -->
-<!-- l_buf = l[hs2_buf20,] -->
-<!-- osm_tiles = readRDS("input-data/osm_tiles_hs2.Rds") -->
-<!-- qtm(osm_tiles) + -->
-<!--   qtm(l_buf, line.col = "blue") + -->
-<!--   qtm(hs2, line.col = "black", line.lwd = 3) + -->
-<!--   tm_shape(hs2_buf20) + -->
-<!--   tm_borders(lwd = 4) -->
-<!-- # select lines that cross the route -->
-
-<!-- ``` -->
-
-<!-- ###  Cycling potential along the the HS2 route -->
-
-<!-- The section between Sheffield and Rotherham, for example, has relatively high cycling potential. -->
-
-<!-- Ideas: -->
-<!-- Use a regression model of distance to transport infrastructure to estimate deterrence of motorways - and therefore how it could be mitigated. Outliers with high cycling relative to road proximity could show how to mitigate negative impact. -->
