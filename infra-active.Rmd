@@ -107,7 +107,7 @@ A method for assessing each of the three types of active travel impact is outlin
 To identify parallels to linear features, a five stage methodology was developed.
 
 - Subset cycling desire lines^[
-A 'desire line' refers to a straight line connecting an origin-destination pair. In the context of this paper, which uses the outputs of the PCT version 1 as its input dataset, this means straight lines with a distance of 20 km or less connecting Middle Super Output Area population weighted centroids, with data on the number of people commuting in both directions. See @lovelace_propensity_2016 for further details.
+A 'desire line' refers to a straight line connecting an origin-destination pair. In the context of this paper, which uses the outputs of the PCT version 1 as its input dataset, this means straight lines with a distance of 20 km or less connecting Middle Super Output Area population weighted centroids, with data on the number of people commuting in both directions. See @lovelace_propensity_2017 for further details.
 ] to include only those in which the *centre point  of the line* passes in close proximity to the new infrastructure. This was set as 10 km for this paper;
 - Break the linear infrastructure of interest into segments of even distance;
 - Calculate the angle of the segments and desire lines;
@@ -145,7 +145,7 @@ This method makes a number of simplifying assumptions that may or may not be val
 
 The Lewes-Uckfield train line is a proposed project to restore a rail link between Uckfield and Lewes. This is part of wider plans to increase rail capacity in the area. As stated in the project brief, "Such infrastructure has the potential to support cycling if high-quality infrastructure is built alongside." This appendix analyses cycling potential along the proposed route, which is 16 km in length (see Figure \@ref(fig:lc)).
 
-Data on existing an potential future travel active travel patters was taken from the Propencity to CYcle Tool  @lovelace_propensity_2016. The data represents commuter travel between zones created for the 2011 census. These zones are known as Middle layer Super Ouput Areas (MSOA), and the population weighted centroids of each MSOA are used as the origin and destinations in this analysis.
+Data on existing an potential future travel active travel patters was taken from the Propencity to Cycle Tool  [@lovelace_propensity_2017]. The data represents commuter travel between zones created for the 2011 census. These zones are known as Middle layer Super Ouput Areas (MSOA), and the population weighted centroids of each MSOA are used as the origin and destinations in this analysis.
 
 <!-- # Cycling potential surrounding the Lewes-Uckfield trainline -->
 
@@ -224,11 +224,11 @@ l_agg = aggregate(l_lc["govtarget_slc"], l_seg, FUN = sum)
 ### Subsetting desire lines by centre point proximity
 
 ```{r centre points, fig.cap="Illustration of the 'line centre point' subsetting method.", eval=FALSE}
-  tm_shape(l_lc) + tm_lines(col = "grey", lwd = 3) +
+tm_shape(l_lc) + tm_lines(col = "grey", lwd = 3) +
 tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
   tm_shape(lewes_uckfield) + tm_lines(lwd = 5, col = "black") +
   tm_shape(l_cp) + tm_dots() +
-  tm_shape(l_lc[sel_centre point,]) + tm_lines()
+  tm_shape(l_lc[sel_centrepoint,]) + tm_lines()
 ```
 
 The centre points of the desire lines intersecting with the Lewes-Uckfield route buffer are presented in Figure \@ref(fig:metafigure)a.
