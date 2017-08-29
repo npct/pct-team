@@ -86,7 +86,7 @@ knitr::include_graphics("infra-active/active-travel-options.png")
 Linear infrastructure can become a barrier to travel perpendicular to the new infrastructure, severing routes that were used before the new infrastructure was built. This is especially true for railways and motorways, which may be at a different level to the surrounding road network, and are not crossable by walkers and cyclists without dedicated crossings. Understanding where severance occurs and how many people are affected can aid in effectively planning  the construction of bridges, tunnels, and other crossings.
 
 ## Parallels
-New linear infrastructure provides an opportunity to construct new footpaths and cycle paths alongside the infrastructure. The marginal cost of adding active transport routes alongside other planned infrastructure can be lower than constructing a dedicated route.  There are several different types of active transport that may take place along a parallel route:
+New linear infrastructure provides an opportunity to construct new footpaths and cycle paths alongside the infrastructure. The marginal cost of adding active transport routes alongside other planned infrastructure can be lower than constructing a dedicated route.  There are several types of active transport that may take place along a parallel route:
 
 1) People who would have used the new infrastructure choose the active travel option instead;
 2) People starting or finishing a journey at a place that is near the linear infrastructure but does not have access to the infrastructure (due to a lack of station or junction). Use active travel for part of their journey to reach the nearest junction/station.
@@ -108,7 +108,7 @@ To identify parallels to linear features, a five stage methodology was developed
 
 - Subset cycling desire lines^[
 A 'desire line' refers to a straight line connecting an origin-destination pair. In the context of this paper, which uses the outputs of the PCT version 1 as its input dataset, this means straight lines with a distance of 20 km or less connecting Middle Super Output Area population weighted centroids, with data on the number of people commuting in both directions. See @lovelace_propensity_2017 for further details.
-] to include only those in which the *centre point  of the line* passes in close proximity to the new infrastructure. This was set as 10 km for this paper;
+] to include only those in which the *centre point  of the line* passes close to the new infrastructure. This was set as 10 km for this paper;
 - Break the linear infrastructure of interest into segments of even distance;
 - Calculate the angle of the segments and desire lines;
 - Subset the desire lines again, to include only those that are within a threshold angle (set at 30 degrees) of the mean bearing of their closest rail line segment;
@@ -447,8 +447,18 @@ It is in terms of the methods for quantifying the potential for desire lines par
 - The automation of the analysis of 'parallels' and 'severance points' by creating functions which take desire lines and a proposed route as inputs and output the results with a single command. This could potentially be implemented in the R package **stplanr**.
 - The extension of the method to quantify the level of overlap between proposed cycle networks and a series of desire lines or a route network.
 
-#Conclusions
+A limitation of the current approach from a policy perspective is that the estimated impacts are presented as absolute values.
+Although this could be justified from methodological and public engagement perspectives --- in terms of ease of generating and understanding the results --- there is a danger that the perceived objectivity of the approach could reduce opportunities for legitimate debate.
+As with any a-priori impact evaluation process, modelling undertaken by experts could be used *intead of* a rigorous public consultation, taking into account the views of the affected population.
+To take hypothetical example, if the method were used to justify a major project, which ended-up having negative overall impacts, it could do more harm than good.
+Of course this hypothetical example is unlikely to arise in practice as ATIA is currently non-existant.
+However, it is useful as it leads to recommendations about how the methods should be used: that sensitivity analysis (not conducted in this paper) should be undertaken to demonstrate the range of potential impacts; that the results should feed-into wider processes of impact assessment; and that the method should be transparent.
+This final recommendation resonates with the wider project from which these methods arose:
+the PCT is an explicitly open source and publicly accessible tool [@lovelace_propensity_2017].
+As such, impact assessment work or software resulting from the methods presented here should also be open source and open access, e.g. via an interactive on-line web tool and publication of the 'source code' underlying the work and resulting datasets.
 
+and other impact assessment pr
+, who may be paid by entities with a vested interest in the major infrastructure project going ahead,
 
 #Acknowledgements
 
