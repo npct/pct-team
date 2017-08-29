@@ -114,11 +114,11 @@ A 'desire line' refers to a straight line connecting an origin-destination pair.
 - Subset the desire lines again, to include only those that are within a threshold angle (set at 30 degrees) of the mean bearing of their closest rail line segment;
 - Aggregate the cycling potential of all parallel lines within the threshold distance of each segment and assign the values to the route segments.
 
-## Identifying potential 'severance points'
+## Identifying the potential for severance
 
-Severance occurs when active travel along cyclable desire lines with high cycling potential is prevented or made more difficult by obstacles such as rivers, fast roads or railway tracks. A degree of severance can be expected along the full length of linear features, as most desire lines have at least some cycling potential. However, the degree of severance will be greatest in certain *severance pinch points* (henceforth referred to as severance points), for example, points along a rail track which intersects desire lines connecting residential areas with employment zones on the other side.
+Severance occurs when active travel along cyclable desire lines with high cycling potential is prevented or made more difficult by obstacles such as rivers, fast roads or railway tracks. A degree of severance can be expected along the full length of linear features, as most desire lines have at least some cycling potential. However, the degree of severance will be greatest in certain *severance pinch points* (henceforth referred to as severance points), for example, segments along a rail track which intersects desire lines connecting residential areas with employment zones on the other side.
 
-The methodology used to identify these severance points consists of three stages:
+The methodology used to identify the proposed route segments with highest potential to cause severance (assuming the transport infrastructure is new) consists of three stages:
 
 - Identify the desire lines which intersect with the infrastructure;
 - Quantify the number of potential cyclists blocked along segments of the infrastructure of even length;
