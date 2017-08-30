@@ -1,0 +1,60 @@
+---
+title: "Putting Transport on the Map: Advancements in Mapping and Visualising Transport Systems"
+author: "Robin Lovelace and Craig Morton, University of Leeds"
+date: " `r Sys.Date()`"
+bibliography: ../documents/references.bib
+output:
+  ioslides_presentation:
+    widescreen: true
+    transition: slower
+    logo: ../figures/its-logo-square.png
+---
+
+## Putting Transport on the Map: overview | Advancements in Mapping and Visualising Sustainable Transport Systems
+
+### Presentation Session 1: methodological focus (09:00 - 10:40)
+
+### Presentation Session 2: applications focus (11:10 - 12:50)
+### Presentation Session 3: workshop (14:40 - ...)
+
+> - GIS4TA workshop, 2015
+> - 'Critical quant' approach (citizen engagement, open source, sustainability)
+
+## The session
+
+Format: 25 minutes (max) talks then 5 minutes of questions.
+
+- Re-projected cities, urban form and accessibility: lessons from Bogotá, Colombia (09:00 - 09:25)
+
+    - Daniel Oviedo Hernández (University College London, UK)
+    - Orlando Sabogal Cardona (Universidad Tecnológica de Pereira, Colombia)
+
+- Navigating multi-modal public transport: mixed-scale and mixed-space information to support complex journeys (09:30 - 09:55)
+
+    - Lucas Godfrey (The University of Edinburgh, UK)
+    - William Mackaness (The University of Edinburgh, UK)
+
+- The propensity to cycle tool: from conception in the clouds to implementation on the ground (10:00 - 10:25)
+
+    - Robin Lovelace (University of Leeds, UK)
+
+## Session 2 (focus on applications)
+
+Format: 20 minutes (max) talks then 5 minutes of questions.
+
+-  Spatial visualisation to engage policy stakeholders in the development of a spatial typology of car use.
+Ian Phillips (University of Leeds, UK) (11:10 - 11:30)
+
+- Collaborative mapping as a tool to enhance minibus systems in the Global South
+Clemence Cavoli (University College London, UK) (11:35 - 11:55)
+
+-  Privacy-preserving socioeconomic attribute enrichment for mapping of passively-derived OD matrices
+Yuanying Zhao (Imperial College London, UK) (12:00 - 12:20)
+
+- The Effect of Spatial Arbitrage in Fuel Prices over the Geographical Structure of Northern Ireland’s Car Fleet
+Craig Morton (University of Leeds, UK) (12:25 - 12:45)
+
+## Thanks + References
+
+    - Thanks for listening - get in touch via `r.lovelace@leeds.ac.uk` or `@robinlovelace`
+
