@@ -102,7 +102,7 @@ New infrastructure can result in an increase in active travel  in nearby areas a
 
 A method for assessing each of the three types of active travel impact is outlined in this section in the abstract, such that it could be applied to any linear feature of interest. Then Section 4 provides specific examples using a case study of the Lewes-Uckfield train line.
 
-## Identifying 'parallels' to linear features
+## Potential cycling uptake along 'parallels'
 
 To identify parallels to linear features, a five stage methodology was developed.
 
@@ -114,7 +114,7 @@ A 'desire line' refers to a straight line connecting an origin-destination pair.
 - Subset the desire lines again, to include only those that are within a threshold angle (set at 30 degrees) of the mean bearing of their closest rail line segment;
 - Aggregate the cycling potential of all parallel lines within the threshold distance of each segment and assign the values to the route segments.
 
-## Identifying the potential for severance
+## Potential for severance
 
 Severance occurs when active travel along cyclable desire lines with high cycling potential is prevented or made more difficult by obstacles such as rivers, fast roads or railway tracks. A degree of severance can be expected along the full length of linear features, as most desire lines have at least some cycling potential. However, the degree of severance will be greatest in certain *severance pinch points* (henceforth referred to as severance points), for example, segments along a rail track which intersects desire lines connecting residential areas with employment zones on the other side.
 
@@ -126,7 +126,7 @@ The methodology used to identify the proposed route segments with highest potent
 
 Note that based on the three-stage methodology outlined above, severance points are in fact more precisely described as 'severance segments', along which a range of points could be chosen for crossing points. However, the term 'severance point' is more intuitive, so we use this term throughout.
 
-## Identifying integrated travel to public transport
+## Potential for cycling and public transport integration
 
 Increased travel to public transport is likely to occur near public transport stops and on desire lines that have an origin and destination near connected public transport stops.
 The methodology used to identify the potenial uptake of cycling due to integration with new public transport services associated with the new route consists of six stages:
