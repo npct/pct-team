@@ -7,8 +7,246 @@ output:
     transition: slower
 widescreen: true
 logo: ../figures/cdrc-square.png
-bibliography: ../documents/references.bib
+bibliography: /home/robin/allrefs.bib
 ---
+
+<!-- Plan: 15 minute presentation building on pct work and mlCars stuff -->
+
+## Outline
+
+- Are SIMs still relevant?
+- Barriers to scalable SIMs
+- Case study and discussion
+
+# Are SIMs still relevant?
+
+## What have SIMs ever done for us?
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Y7tvauOJMHo" frameborder="0" allowfullscreen></iframe>
+
+## Search terms
+
+```{r, echo=FALSE}
+knitr::include_graphics("../figures/timeline.png")
+```
+
+
+## Citations over [time](https://scholar.google.com/scholar?q=%22Spatial+Interaction+Model%22+transport&hl=en&num=20&as_sdt=0%2C5&as_ylo=2000&as_yhi=2009) | Articles that mention "Spatial Interaction Model"
+
+```{r, echo=FALSE, include=FALSE}
+library(tidyverse)
+```
+
+```{r, echo=FALSE}
+data_frame(date = c("70s", "80s", "90s", "00s", "10s"),
+           papers = c(172, 388, 544, 1280, 1910)) %>% 
+  knitr::kable()
+```
+
+## SIM literature in context
+
+```{r, echo=FALSE}
+brt <-  theme(axis.text.x = element_text(angle=20, color = "black"),
+        panel.background = element_rect(fill = "white"),
+        panel.grid.major.y = element_line(color = "grey", linetype=3))
+ddt <- read.csv("../input-data/dd-terms-scholar.csv")
+ggplot(ddt) +
+  geom_line(aes(x = Decade, y = Frequency, color = Term, group = Term)) +
+  scale_y_log10() + brt +
+  ylab("Number of 'transport' papers in Google Scholar")
+```
+
+## In the 1960s - Were they called SIMs at all?
+
+(Wilson, 1969):
+
+```{r, out.width="60%", echo=FALSE}
+knitr::include_graphics("../figures/heggie-viewpoint.png")
+```
+
+## 1970s: Theoretical foundations
+
+```{r, out.width="90%", echo=FALSE}
+knitr::include_graphics("../figures/wilson1971.png")
+```
+
+[@wilson_family_1971]
+
+## 1980s: Computerization
+
+```{r, out.width="90%", echo=FALSE}
+knitr::include_graphics("../figures/openshaw-zoning.png")
+```
+
+[@openshaw_optimal_1977]
+
+## 1990s: Applications
+
+```{r, out.width="90%", echo=FALSE}
+knitr::include_graphics("../figures/miller-1999.png")
+```
+
+## 2000 onwards: sophistication
+
+- Increase in complexity but not necessarily scalability
+- Hybrid models, combining with ABM [@heppenstall_simulating_2013]
+- Proliferation in the range of applications
+- And are they still relevant in the age of GPS?
+- But what about scalability?
+
+## What do I mean by 'scalable'
+
+> -  Large surface area (countries, planets)
+> -  Reproducible, e.g. for infinite new scenarios of future
+> -  Accessible - so results can 'scale' to be seen and *used interactively* by millions of people
+> -  Resilient: methods can operate in data rich and data poor environments
+> - Rationale: a 'rolled-out' simple method can have a greater impact than a non-scalable complex one
+
+# Barriers to scalable SIMs
+
+## Problem: Reproducibility
+
+![](https://user-images.githubusercontent.com/1825120/29629829-117d212a-8832-11e7-91e5-7599d418dc2a.gif)
+
+## Solution: command-line interfaces
+
+```{r, eval=FALSE}
+library(stplanr)
+# load some points data
+data(cents)
+# plot the points to check they make sense
+plot(cents)
+flowlines_radiation <- od_radiation(cents, pop_var = "population")
+```
+
+## Problem: Data
+
+![](https://www.researchgate.net/profile/Goncalo_Homem_De_Almeida_Correia/publication/309727462/figure/fig1/AS:425501278904320@1478458818442/Fig-1-Main-trip-generatorsattractors-by-purpose-and-road-hierarchy-in-Tomar.jpg)
+
+## Solution: OSM(data)
+
+```{r}
+library(osmdata)
+unis = opq(bbox = "Leeds, UK") %>% 
+  add_osm_feature(key = "amenity", value = "university") %>% 
+  osmdata_sf() %>% .$osm_polygons
+```
+
+```{r, echo=FALSE}
+library(tmap)
+tmap_mode("view")
+qtm(unis)
+```
+
+
+## Problem: standards
+
+Source: *Geocomputation with R* (Lovelace, Nowosad and Meunchow, forthcoming)
+
+![](http://robinlovelace.net/geocompr/figures/sf-classes.png)
+
+## Solution: create open standard for OD data / SI models
+
+```{r, echo=FALSE}
+knitr::include_graphics("http://www.opengeospatial.org/pub/www/files/OGC_Logo_2D_Blue_x_0_0.png")
+```
+
+# Priorities
+
+## Real world problem | Source: [Warrington Cycle Campaign](http://wcc.crankfoot.xyz/)
+
+```{r, echo=FALSE}
+knitr::include_graphics("http://wcc.crankfoot.xyz/facility-of-the-month/finchley-hospital.jpg")
+```
+
+## Context (see the ['CWIS' report](https://www.gov.uk/government/publications/cycling-and-walking-investment-strategy))
+
+- 2 years in the making, the PCT is now part of the Cycling and Walking Infrastructure Strategy (CWIS)
+- Mentioned in the forword of this legally binding document
+- Being used by dozens of local authorities to design strategic cycling networks
+
+```{r, echo=FALSE}
+knitr::include_graphics("../../pct/figures/front-page-leeds-pct-demo.png")
+```
+
+## The propensity to cycle tool method | [Source:](https://www.jtlu.org/index.php/jtlu/article/view/862) (Lovelace et al. 2017)
+
+See [www.pct.bike](https://www.pct.bike/) for demo of 'finished product'.
+
+```{r, echo=FALSE}
+knitr::include_graphics("../flow-model/leeds-rnet-gov-go.png")
+```
+
+## Language
+
+- Code can be a language: to communicate [@knuth1984literate]
+
+```{r, message=FALSE, echo=TRUE}
+library(stplanr)
+oas_lds = readRDS("oas_lds.Rds")
+wpz_lds = readRDS("wpz_lds.Rds")
+flow = readr::read_csv("f_lds.csv")
+f_sp = od2line(flow = flow, zones = oas_lds, destinations = wpz_lds)
+```
+
+## That also 'gets stuff done' (Thanks: Jack Snoeyink)
+
+```{r, echo=TRUE}
+library(tmap)
+tmap_mode("view")
+qtm(oas_lds) +
+  qtm(wpz_lds, symbols.col = "red", symbols.size = 2) +
+  qtm(f_sp)
+```
+
+## Case study
+
+> - Also see example generated yesterday representing trips to [Leeds University](http://rpubs.com/RobinLovelace/290366)
+
+```{r, echo=FALSE}
+knitr::include_graphics("../flow-model/od-scens-leeds.png")
+```
+
+## For Spain we do not - so model it
+
+- Reproducible example: [rpubs.com/RobinLovelace](http://rpubs.com/RobinLovelace/275315)
+
+```{r, echo=FALSE}
+knitr::include_graphics("../figures/sev-eg.png")
+```
+
+## How to model OD data? Spatial interaction model
+
+> - Mature method for estimating flow [@kariel_student_1968; @wilson_family_1971]
+> - Can be extended towards agent-based modelling (ABM) [@wu_spatial_2008;@lovelace_spatial_2016] 
+> - Can be calibrated with 'Big Data' [@lovelace_big_2016]
+
+> - Theotical advance: the radiation model [@simini_universal_2012]
+
+```{r, echo=TRUE}
+library(stplanr)
+cents$pop = 1:nrow(cents)
+plot(cents, cex = cents$pop)
+```
+
+## The radiation model [@simini_universal_2012]
+
+```{r, message=FALSE, echo=TRUE}
+flow_est = od_radiation(p = cents, pop_var = "pop")
+plot(flow_est, lwd = flow_est$flow)
+```
+
+## Issues
+
+> - For scalability generalisability is vital
+> - software engineering/compsci approach
+> - But political leadership vital
+
+
+## Thanks + References
+
+> - Thanks for listening - get in touch via `r.lovelace@leeds.ac.uk` or `@robinlovelace`
+
 
 ## Abstract
 
@@ -21,3 +259,6 @@ This is problematic for practitioners wishing to use SIMs in their work:
 while there is much information on which SIMs are most flexible or effective theoretically, there are few resources for assessing how scalable different methods are 'on the ground'.
 Taking a broad definition of scalable, this paper will explore SIMs in terms scalability and computational efficiency.
 The results will be demonstrated with reference a planned modelling project, which would use globally scalable SIMs with the aim of informing effective sustainable transport policies worldwide.
+
+## References
+

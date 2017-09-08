@@ -1,7 +1,7 @@
 ---
-title: "Assessing the active travel impacts of major transport infrastructure projects"
+title: "The propensity to cycle tool: from conception in the clouds to implementation on the ground"
 author: "Robin Lovelace, University of Leeds"
-date: "Source code: [github.com/npct/pct/](https://github.com/npct/pct/tree/master/slides) `r Sys.Date()`"
+date: " `r Sys.Date()`"
 bibliography: ../documents/references.bib
 output:
   ioslides_presentation:
@@ -23,9 +23,8 @@ osm_tiles = readRDS("../data-sources/osm_tiles_ukfield.Rds")
 ## Contents
 
 - Introduction: the Propensity to Cycle Tool
-- The impacts of transport infrastructure
-- Methods
-- Results and discussion
+- Putting active travel 'on the map'
+- Some Results and discussion
 
 # Introduction
 
@@ -34,6 +33,25 @@ osm_tiles = readRDS("../data-sources/osm_tiles_ukfield.Rds")
 ```{r, echo=FALSE, fig.cap="The front page of the open source, open access Propensity to Cycle Tool (PCT).", out.width="100%"}
 knitr::include_graphics("../figures/pct-frontpage.png")
 ```
+
+## Context: from concept to implementation
+
+<!-- Not a rabbit out of a hat! -->
+
+It's been an intense 2.5 years!
+
+```
+Concept (PhD) -> Job at UoL (2009 - 2013)
+ Discovery of R programming and shiny (2013)
+  'Propensity to Cycle' bid by DfT via SDG (2014)
+    Link-up with Cambridge University and colleagues (2015)
+     Implementation on national OD dataset, 700k routes (2016)
+      Completed LSOA phase (4 million lines!) (2017)
+```
+
+ > - 2018: (Global PCT?) 
+ 
+ - Now publised in the Journal of Transport and Land Use (JTLU) [@lovelace_propensity_2017]
 
  
 ## Prior work (source: Lovelace et al. 2017)
@@ -99,7 +117,44 @@ knitr::include_graphics("~/npct/pct/flow-model/od-data-leeds.png")
 knitr::include_graphics("~/npct/pct/flow-model/leeds-rnet-gov-go.png")
 ```
 
-# The impacts of transport infrastructure
+## A live demo for Leeds | "Actions speak louder than words"
+
+- Test version of [p](http://npct0.vs.mythic-beasts.com/m/?r=west-yorkshire)[ct.bike](http://pct.bike/)
+
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("../flow-model/man-trinity-way-satellite.png")
+```
+
+# Putting active travel 'on the map'
+
+## Overlaying propensity to cycle to school and work
+
+```{r, echo=FALSE}
+knitr::include_graphics("../figures/schools-commuter-overlay.png")
+```
+
+## New LSOA layer
+
+```{r, echo=FALSE}
+knitr::include_graphics("https://cloud.githubusercontent.com/assets/1825120/22934777/13a992bc-f2c8-11e6-8f20-fff66ad1ee5f.png")
+```
+
+## Crowd sourced data (Strava vs PCT)
+
+```{r, echo=FALSE, out.width="70%"}
+knitr::include_graphics("../figures/pct-vs-strava-for-leeds.png")
+```
+
+## Where to prioritise?
+
+- Plans to create a toolkit for cycling infrastructure prioritisation 
+- Combines many datasets to identify 'low hanging fruit'
+
+```{r, echo=FALSE}
+knitr::include_graphics("~/cyipt/cyipt/figures/schematic-flow-diagram.png")
+```
+
+Credit: Malcolm Morgan
 
 ## The impacts of transport infrastructre | Credit: flickr user [thestuff](https://www.flickr.com/photos/thestuff/), Creative Commons Licence
 
@@ -109,8 +164,8 @@ knitr::include_graphics("~/npct/pct/flow-model/leeds-rnet-gov-go.png")
 
 The extension of the M74 motorway = 'natural experiment':
 
-- People who live near motorways seem to be less physically active [@ogilvie_evaluating_2006]
-- And more car dependent [@prins_effects_2017]
+- People who live near motorways seem to be less physically active (Ogilvie et al. 2017)
+- And more car dependent (Prins et al. 2017)
     - Although no evidence of impacts on active travel
     
 ![](https://ichef-1.bbci.co.uk/news/660/media/images/53729000/jpg/_53729740_53729737.jpg)
@@ -135,128 +190,23 @@ A recent review of impact assessment methods in the English context found that a
 ```{r type, echo=FALSE, fig.cap="A typology of active travel options.", out.width="100%"}
 knitr::include_graphics("../infra-active/active-travel-options.png")
 ```
+# Some results and Discussion
 
-# Methods
+## National-level of results
 
-## The study area
+<div class="columns-2">
 
-```{r lc, fig.cap="Overview of the Lewes-Uckfield line with a 10 km buffer (blue). Width is proportional to the number of commutes; colour represents the proportion of people who cycle.", out.width="70%"}
-tmap_mode("view")
-qtm(osm_tiles) +
-  tm_shape(buff) + tm_borders(col = "blue", lwd = 3) +
-  tm_shape(l_lc) + tm_lines(lwd = "all", scale = 20, col = "Percent cycling", alpha = 0.5, n = 5, breaks = 2^(-1:4),
-                              palette = "Spectral", auto.palette.mapping = F, ) +
-  tm_shape(lewes_uckfield) + tm_lines(lwd = 5, col = "black") 
+
+
+- Simulated uptake of cycling across UK: 3 -> 18% travel to work under Go Dutch, 2 million fewer car commutes.
+- Estimates of benefits *authority by authority* (e.g. £50 million/yr health benefit in Birmingham)
+- Large environmental benefit in the numbers (but not pushed in our write-up)
+
+```{r, echo=FALSE}
+knitr::include_graphics("http://www.cedar.iph.cam.ac.uk/wp-content/uploads/2017/02/LA_Census_Dutch_Ebike.png")
 ```
 
-## Parallels (Credit: Philip McErlean, [CC](https://www.flickr.com/photos/64320477@N05/26962563542/in/photolist-H5AbMd-bmHtys-dj4dSc-Sxr1LN-g9QaLe-aj6osS-Vmn2Hi-drTqjZ-REBnZ2-oqzWJR-XygYk8-ey86yJ-RRsPyK-add2nu-oo97HL-Terhrw-nQAUzG-riVbre-q9wH2F-ePNB8p-jEZP1S-VMUuuc-bMRHFv-78dQhE-SeWFgk-X1dL4Z-TL49Em-XRRpbc-rhLmKz-SeWEbK-ngH1X9-nxuaC1-h1CoA4-XiryLb-W2FdM8-gornno-RMUcBN-TKLMbc-TP1YNc-UzXyjS-4QEVnh-mNtNkj-pNHTWM-fGj2CS-qev2ig-6fZCEZ-pdmJRp-QyZapf-S9tX7x-QyZp99) )
-
-![](https://farm8.staticflickr.com/7040/26962563542_611c676e45_z_d.jpg)
-
-## Cycling potential parallel to the route
-
-3 stage methodology to identify parallel lines:
-
-> - Subset desire lines whose cetrepoints are far from the proposed route
-> - Segment the proposed route
-> - Calculate the angle of each route
-
-Then keep only lines parallel to proposed route segments
-
-```{r gendata, echo=FALSE}
-l_cp = geo_projected(l_lc, fun = maptools::SpatialLinesMidPoints)
-sel_centrepoint = rgeos::gContains(buff, l_cp, byid = T)[,1]
-
-# Line bearing code
-l_a = line_bearing(lewes_uckfield)
-a = angle_diff(l = l_lc, angle = l_a, bidirectional = TRUE)
-sel_para = a < 30
-
-# Parallel subsetting
-buff7 = buff_geo(lewes_uckfield, width = 5000)
-buff_small = buff_geo(lewes_uckfield, width = 2000)
-sel_centrepoint5 = rgeos::gContains(buff7, l_cp, byid = T)[,1]
-sel_smallbuff = !is.na(over(l_lc, buff_small))
-sel_finalpar = sel_para & sel_centrepoint5 & sel_smallbuff
-l_lc$`Parallel selection` = sel_finalpar
-l_lc$`Touching buffer` = TRUE
-
-# Perpendicular lines
-# l_seg = line_segment(lewes_uckfield, segment_length = 1000)
-# saveRDS(l_seg, "data-sources/l_seg.Rds")
-l_seg = readRDS("../data-sources/l_seg.Rds")
-l_lc$Perpendicular = a > 60
-sel_intersects = over(l_lc, l_seg)
-l_lc$`Perpendicular selection` = !is.na(sel_intersects[,1]) & a > 60
-l_agg = aggregate(l_lc["govtarget_slc"], l_seg, FUN = sum)
-```
-
-## Subsetting desire lines by centre point proximity
-
-```{r centre points, fig.cap="Illustration of the 'line centre point' subsetting method."}
-buff = SpatialPolygonsDataFrame(Sr = buff, data = data.frame(n = 1), match.ID = F)
-tm_shape(l_lc) + tm_lines(col = "grey", lwd = 3) +
-tm_shape(buff) + tm_fill(col = "blue", alpha = 0.3) +
-  tm_shape(lewes_uckfield) + tm_lines(lwd = 5, col = "black") +
-  tm_shape(l_cp) + tm_dots() +
-  tm_shape(l_lc[sel_centrepoint,]) + tm_lines() 
-```
-
-## Finding desire lines that are (roughly) parallel
-
-This involved the development of a new R function:
-
-```{r}
-a = angle_diff(l = l_lc, angle = l_a, bidirectional = TRUE)
-sel_para = a < 30
-qtm(l_lc, lines.col = "grey") +
-  qtm(l_lc[sel_para,]) +
-  qtm(lewes_uckfield, lines.lwd = 4, lines.col = "black") 
-```
-
-## The angle_diff function
-
-From the R package **stplanr**
-
-```{r}
-angle_diff
-```
-
-## What about perpendicular lines (severance)?
-
-The same method!
-
-```{r}
-l_lc$Perpendicular = a > 60
-qtm(l_lc, lines.col = "grey") +
-  qtm(l_lc[l_lc$Perpendicular,]) +
-  qtm(lewes_uckfield, lines.lwd = 4, lines.col = "black") 
-```
-
-## 3: Access to stations (Credit: M. Morgan)
-
-> - Divide each route into 3
-
-```{r, echo=FALSE, out.width="60%"}
-knitr::include_graphics("../infra-active/stations.png")
-```
-
-
-## How to deal with long, windy routes?
-
-> - Break the train line into segments
-
-```{r segs, fig.cap="Method of splitting the route into discrete segments using the line segment function from the stplanr R package (a) and cycling potential severed (b).", echo=FALSE}
-knitr::include_graphics("../figures/route-sel.png")
-```
-
-## All methods together
-
-```{r metafigure, echo=FALSE, fig.cap="Centre point-buffer (a), parallel (b), perpendicular (c) and station access (d) methods.", out.width="50%"}
-knitr::include_graphics("../figures/infra-selection-all.png")
-```
-
-# Results and discussion
+</div>
 
 ## Cycling opportunities and threats
 
@@ -276,14 +226,31 @@ res_sub = cbind(Scenario = names_scens, res_sub)
 knitr::kable(res_sub, digits = 1, row.names = F)
 ```
 
+## How to maximise the benefits of research -> implementation step?
+
+Lessons learned:
+
+- Decision makers want evidence and visualisations to support decision making
+- Focus on a vision of the 'end product' at the outset
+- Don't become a consultant!
+
+But where next?
+
+- UrbanSim model: Privatise code? Privatise company?
+- Conveyal model: Open source code? Privatise profits?
+- Academic model: Open source code? Profits -> research?
+- Non-profit options?
 
 ## Final question
 
-- How to integrate this work in existing tools?
-- How to ensure maximum policy impact?
-- How reproducibility can help?
+> - How to integrate this work in existing tools?
+> - How to ensure maximum policy impact?
+> - How reproducibility can help?
+
+- Check out CyIPT  ![](https://avatars2.githubusercontent.com/u/26133780?v=4&s=200)
 
 ## Thanks + References
 
 > - Thanks for listening - get in touch via `r.lovelace@leeds.ac.uk` or `@robinlovelace`
+
 

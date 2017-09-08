@@ -108,10 +108,10 @@ To identify parallels to linear features, a five stage methodology was developed
 
 - Subset cycling desire lines^[
 A 'desire line' refers to a straight line connecting an origin-destination pair. In the context of this paper, which uses the outputs of the PCT version 1 as its input dataset, this means straight lines with a distance of 20 km or less connecting Middle Super Output Area population weighted centroids, with data on the number of people commuting in both directions. See @lovelace_propensity_2017 for further details.
-] to include only those in which the *centre point  of the line* passes close to the new infrastructure. This was set as 10 km for this paper;
-- Break the linear infrastructure of interest into segments of even distance;
-- Calculate the angle of the segments and desire lines;
-- Subset the desire lines again, to include only those that are within a threshold angle (set at 30 degrees) of the mean bearing of their closest rail line segment;
+] to include only those in which the *centre point  of the line* passes close to the new infrastructure. This was set as 10 km for this paper.
+- Break the linear infrastructure of interest into segments of even distance.
+- Calculate the angle of the segments and desire lines.
+- Subset the desire lines again, to include only those that are within a threshold angle (set at 30 degrees) of the mean bearing of their closest rail line segment.
 - Aggregate the cycling potential of all parallel lines within the threshold distance of each segment and assign the values to the route segments.
 
 ## Potential for severance
@@ -120,22 +120,22 @@ Severance occurs when active travel along cyclable desire lines with high cyclin
 
 The methodology used to identify the proposed route segments with highest potential to cause severance (assuming the transport infrastructure is new) consists of three stages:
 
-- Identify the desire lines which intersect with the infrastructure;
-- Quantify the number of potential cyclists blocked along segments of the infrastructure of even length;
-- Subset the segments which block the highest number of potential cyclists and identify potential crossing points;
+- Identify the desire lines which intersect with the infrastructure.
+- Quantify the number of potential cyclists blocked along segments of the infrastructure of even length.
+- Subset the segments which block the highest number of potential cyclists and identify potential crossing points.
 
 Note that based on the three-stage methodology outlined above, severance points are in fact more precisely described as 'severance segments', along which a range of points could be chosen for crossing points. However, the term 'severance point' is more intuitive, so we use this term throughout.
 
 ## Potential for cycling and public transport integration
 
-Increased travel to public transport is likely to occur near public transport stops and on desire lines that have an origin and destination near connected public transport stops.
-The methodology used to identify the potenial uptake of cycling due to integration with new public transport services associated with the new route consists of six stages:
+Increased travel to public transport is likely to occur near public transport stops and on desire lines that have an origin and destination near connected public transport nodes (typically bus stops or train stations).
+The methodology used to estimate the potenial uptake of cycling due to integration with new public transport services associated with the new route assumes that new nodes have suitable provision for cycling, with safe routes to get there and sufficient cycle parking spaces, and consists of the following stages:
 
-- Subset desire lines that have both and origin and destination within three kilometres of a station/stop;
-- Remove lines that have the same stop as their closest origin and destination;
-- Remove lines which are linked by existing public transport, thus will not change with the new linear infrastructure;
-- Create new desire lines and routes that are from Origin/Destinations to public transport;
-- Remove desire lines and routes where the cycling to and from public transport is greater than 1.1 times the direct cycling route, as these travellers are unlikely to use public transport;
+- Subset trips that could feasibly use public transport in terms of boarding and alighting, by subsetting those with both origin and destination within a given distance a planned station/stop.
+- Remove lines that have the same stop as their closest origin and destination.
+- Remove lines which are linked by existing public transport, thus will not change with the new linear infrastructure.
+- Create new desire lines and routes that are from Origin/Destinations to public transport.
+- Remove desire lines and routes where the cycling to and from public transport is greater than 1.1 times the direct cycling route, as these travellers are unlikely to use public transport.
 - Calculate change in cycling potential along these new desire lines.
 
 This method makes a number of simplifying assumptions that may or may not be valid depending on the nature of the new linear infrastructure.  Firstly, the method is ignorant of the public transport network and so assumes that travel between any pair of stops is possible and practical.  If this were not the case, it would be necessary to break the analysis into connected parts and analyse each part of the networks separately.  Secondly, the method is not aware of financial and time costs associated with public transport. While the method can identify routes that are likely to be quicker to take a combined active travel and public transport journey than merely active travel directly, it does not consider the relative difference with driving directly. Therefore, care should be taken when assigning cyclist to these new routes.  Finally, the method does not consider the proportion of walking and cycling to and from the public transport stop.  This is likely to be affected by a range of variables such as distance and the ability to take a bike on public transport. 
