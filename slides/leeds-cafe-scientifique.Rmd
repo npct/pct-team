@@ -34,4 +34,11 @@ knitr::include_graphics("../flow-model/leeds-rnet-gov-go.png")
 ```
 
 
+# Where next?
+
+## The trolleybus fiasco
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ycAYcKANuoQ" frameborder="0" allowfullscreen></iframe>
+
+## What could you get for $173m?
 
