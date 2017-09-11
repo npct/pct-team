@@ -1,50 +1,37 @@
 ---
-title: 'Going Dutch? Crunching transport ‘big data’, for a sustainable world'
-author: Robin Lovelace
-date: "Cafe Scientifique, `r Sys.Date()`"
-output: word_document
-#   ioslides_presentation:
-#     widescreen: true
-# logo: ../figures/its-logo-square.png
+title: 'Implementing spatial interaction models: from prototype to globally scalable tools'
+author: "Robin Lovelace"
+date: "`r Sys.Date()`. Slides: [rpubs.com/RobinLovelace](http://rpubs.com/RobinLovelace/258956)."
+output:
+  ioslides_presentation:
+    transition: slower
+widescreen: true
+logo: ../figures/its-square.png
 bibliography: /home/robin/allrefs.bib
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
+<!-- Plan: 15 minute presentation building on pct work and mlCars stuff -->
 
-Mounting evidence about the damage caused by car-dominated transport systems to human and environmental health have led many to ask: is another transport system possible?
-Ultimately, as with other sectors of the economy, only a full transition away from fossil fuels will constitute a 'sustainable' transport system: **an effective zero carbon transport system is possible**.
+## Outline
 
-To arrive at a zero carbon transport system it is clear that there must be more cycling, the most efficient form of personal travel.
-This talk focusses on this small part of the decarbonisation challenge, which requires political will, planning and evidence.
-It is this final ingredient that this talk will focus on, building on the speaker's experience researching transport and energy use [@lovelace_assessing_2011; @lovelace_energy:_2008; @lovelace_energy_2014] and leading the development of the national Propensity to Cycle Tool (PCT) [@lovelace_propensity_2017] and the **stplanr** R package for processing transport data[@lovelace_stplanr:_2017].
+- Why Go Dutch
+- Dutch Leeds
+- Where next?
 
-## What is the Propensity to Cycle Tool? 
-
-- Context (see the government's ['CWIS' report](https://www.gov.uk/government/publications/cycling-and-walking-investment-strategy))
-- 2 years in the making, the PCT is now part of the legally binding Cycling and Walking Infrastructure Strategy (CWIS)
-- Mentioned in the forword of this legally binding document
-- Being used by dozens of local authorities to design strategic cycling networks
-
-## Images
+# Why Go Dutch?
 
 
-```{r, fig.cap="Robin demonstrating the PCT to transport minister Chris Grayling"}
-knitr::include_graphics("../../pct/figures/front-page-leeds-pct-demo.png")
-```
+## Provided a framework to model any travel phenomenon
 
-```{r, fig.cap="The propensity to cycle tool in action."}
-knitr::include_graphics("../flow-model/od-scens-leeds.png")
-```
+> - Vital to the history of transport modelling [@boyce_forecasting_2015]
 
-```{r, fig.cap="Estimates of cycling potential on the roads of Leeds"}
+![](../figures/sdna-san-fran.png)
+
+## The propensity to cycle tool ([www.pct.bike](https://www.pct.bike/))  | [Source:](https://www.jtlu.org/index.php/jtlu/article/view/862) [@lovelace_propensity_2017]
+
+```{r, echo=FALSE}
 knitr::include_graphics("../flow-model/leeds-rnet-gov-go.png")
 ```
 
-```{r, fig.cap="Cycling potential in Spain"}
-knitr::include_graphics("../figures/sev-eg.png")
-```
 
-## References
 
