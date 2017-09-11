@@ -100,7 +100,7 @@ knitr::include_graphics("../figures/openshaw-zoning.png")
 
 ## 1990s: Applications
 
-```{r, out.width="40%", echo=FALSE}
+```{r, out.width="30%", echo=FALSE}
 knitr::include_graphics("../figures/miller-1999.png")
 ```
 
@@ -123,7 +123,9 @@ knitr::include_graphics("../figures/miller-1999.png")
 
 > - Theotical advance: the radiation model [@simini_universal_2012]
 
-```{r, echo=TRUE}
+## 2010s: The open source software revolution
+
+```{r, echo=TRUE, message=FALSE}
 library(stplanr)
 cents$pop = 1:nrow(cents)
 plot(cents, cex = cents$pop)
@@ -163,7 +165,11 @@ flowlines_radiation <- od_radiation(cents, pop_var = "population")
 
 ## Problem: Data
 
-![](https://www.researchgate.net/profile/Goncalo_Homem_De_Almeida_Correia/publication/309727462/figure/fig1/AS:425501278904320@1478458818442/Fig-1-Main-trip-generatorsattractors-by-purpose-and-road-hierarchy-in-Tomar.jpg)
+(Ribeiro et al. 2012)
+
+```{r, echo=FALSE, out.width="50%"}
+knitr::include_graphics("https://www.researchgate.net/profile/Goncalo_Homem_De_Almeida_Correia/publication/309727462/figure/fig1/AS:425501278904320@1478458818442/Fig-1-Main-trip-generatorsattractors-by-purpose-and-road-hierarchy-in-Tomar.jpg")
+```
 
 ## Solution: OSM(data)
 
@@ -193,8 +199,8 @@ Source: *Geocomputation with R* (Lovelace, Nowosad and Meunchow, forthcoming)
 
 > - What is the potential uptake of cycling to rail stations in Seville?
 
-```{r, echo=FALSE}
-knitr::include_graphics("file:///home/robin/npct/pctSeville/figures/README-unnamed-chunk-13-1.png")
+```{r, echo=FALSE, out.width="75%"}
+knitr::include_graphics("/home/robin/npct/pctSeville/figures/README-unnamed-chunk-13-1.png")
 ```
 
 ## No OD data: model it
