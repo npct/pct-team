@@ -1,27 +1,33 @@
 ---
-title: 'Implementing spatial interaction models: from prototype to globally scalable tools'
+title: 'Going Dutch?'
+subtitle: " Crunching transport ‘big data’ for a sustainable world"
 author: "Robin Lovelace"
 date: "`r Sys.Date()`. Slides: [rpubs.com/RobinLovelace](http://rpubs.com/RobinLovelace/258956)."
 output:
   ioslides_presentation:
     transition: slower
 widescreen: true
-logo: ../figures/its-square.png
+logo: ../figures/its-logo-square.png
 bibliography: /home/robin/allrefs.bib
 ---
+
+```{r, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
 
 <!-- Plan: 15 minute presentation building on pct work and mlCars stuff -->
 
 ## Outline
 
 - Why Go Dutch
-- Dutch Leeds
+- Going Dutch in Leeds
 - Where next?
 
 # Why Go Dutch?
 
 
-## Provided a framework to model any travel phenomenon
+## A brief history of transport modelling
 
 > - Vital to the history of transport modelling [@boyce_forecasting_2015]
 
@@ -29,16 +35,176 @@ bibliography: /home/robin/allrefs.bib
 
 ## The propensity to cycle tool ([www.pct.bike](https://www.pct.bike/))  | [Source:](https://www.jtlu.org/index.php/jtlu/article/view/862) [@lovelace_propensity_2017]
 
-```{r, echo=FALSE}
+```{r}
 knitr::include_graphics("../flow-model/leeds-rnet-gov-go.png")
 ```
+
+# Going Dutch in Leeds
+
+## The Propensity to Cycle Tool - see [w](http://npct0.vs.mythic-beasts.com/shiny_interface/?r=west-yorkshire)[ww.pct.bike](www.pct.bike)
+
+```{r, echo=FALSE, fig.cap="The front page of the open source, open access Propensity to Cycle Tool (PCT).", out.width="100%"}
+knitr::include_graphics("../figures/pct-frontpage.png")
+```
+
+```{r, eval=FALSE}
+library(dplyr)
+z = readRDS("~/npct/pct-outputs-regional-R/commute/msoa/west-yorkshire/z.Rds")
+names(z)
+headline_results = as_data_frame(matrix(nrow = 2, ncol = 5))
+names(headline_results) = c("Scenario", "Cycle_commuters", "Car_drivers", "All", "Percent_cycling")
+headline_results$Scenario = c("2011", "Go Dutch")
+headline_results[1, 2:4] = z@data %>% 
+  filter(lad_name == "Leeds") %>% 
+  mutate(Percent_cycling = bicycle / all) %>% 
+  select(bicycle, car_driver, all) %>% 
+  summarise_all(funs(sum))
+
+headline_results[2, 2:4] = z@data %>% 
+  filter(lad_name == "Leeds") %>% 
+  mutate(Percent_cycling = bicycle / all) %>% 
+  select(dutch_slc, dutch_sld, all) %>% 
+  summarise_all(funs(sum))
+
+headline_results$Percent_cycling = headline_results$Cycle_commuters / headline_results$All * 100
+knitr::kable(headline_results, digits = 0)
+```
+
+## Headline results
+
+> - Cycling uptake on a large scale:
+
+|Scenario | Cycle_commuters| Car_drivers|    All| Percent_cycling|
+|:--------|---------------:|-----------:|------:|---------------:|
+|2011     |            6250|      191282| 326680|               2|
+|Go Dutch |           51442|      168541| 326680|              16|
+
+## Health savings
+
+> - Estimated at £24m/yr for Leeds
+> - Using the HEAT methodology
+> - Not including improved air quality
+> - Or improved road traffic safety levels
+> - Or wider benefits
+
+```{r, message=FALSE, eval=FALSE}
+z = readRDS("~/npct/pct-outputs-regional-R/commute/msoa/west-yorkshire/z.Rds")
+z@data %>% 
+    filter(lad_name == "Leeds") %>% 
+  select(dutch_sivalue_heat) %>% 
+  summarise_all(sum ) / 1e6
+```
+
+## Geographic distribution of cycling
+
+- Live exploration on www.pct.bike
 
 
 # Where next?
 
-## The trolleybus fiasco
+## Next steps for the Propensity to Cycle Tool
+
+- Plans to create a toolkit for cycling infrastructure prioritisation  - see [cyip.bike](http://www.cyipt.bike/map/#14/53.7956/-1.5456/grayscale)
+- Combines many datasets to identify 'low hanging fruit'
+
+```{r, echo=FALSE}
+knitr::include_graphics("~/cyipt/cyipt/figures/schematic-flow-diagram.png")
+```
+
+Credit: Malcolm Morgan
+
+## Next steps for Leeds?
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ycAYcKANuoQ" frameborder="0" allowfullscreen></iframe>
 
-## What could you get for $173m?
+## What could you get for £173m?
 
+> - £1.15 m/km for 23 km Leeds-Bradford superhighway
+> - ~£0.5 m/km for strategic cycle network (variety)
+> - £0.25 - £1.9m for junction remodelling
+
+```{r, out.width="60%"}
+knitr::include_graphics("~/cyipt/cyipt/figures/typical-costs-front-page.png")
+```
+
+Source: Transport and Quality of Life (interim report)
+
+## What could the trolleybus scheme get?
+
+> - ~10 km for £250m (source: [tbus.org.uk](http://www.tbus.org.uk/leeds.htm))
+
+![](http://www.tbus.org.uk/LeedsMap061212.jpg)
+
+## What could we get in Leeds?
+
+> - Preliminary scenario of uptake based on Highways England Advice Note 195/16 
+> - 157 km of Cycle Lanes, Streets, and Seggregated Tracks
+> - Not including junction remodelling
+> - See interactive map at [rpubs.com/Robinlovelace](http://rpubs.com/RobinLovelace/306682) 
+
+|type                   | length (km)|     cost (£)| Cost pkm (£1000)|
+|:----------------------|------:|--------:|----------------:|
+|Cycle Lanes            |  70.43| 31829.75|           451.92|
+|Cycle Street           |  11.86|   177.86|            14.99|
+|Segregated Cycle Track |  36.08| 52310.85|          1450.00|
+|Stepped Cycle Tracks   |  39.05| 36938.27|           945.84|
+
+## Zooming in: northwest Leeds
+
+```{r, out.width="80%"}
+knitr::include_graphics("~/cyipt/cyipt/figures/north-leeds-scenario.png")
+```
+
+
+```{r, eval=FALSE}
+schemes <- readRDS("~/cyipt/cyipt-bigdata/osm-prep/Leeds/schemes.Rds")
+library(tmap)
+tmap_mode("view")
+qtm(schemes, "type")
+sum(schemes$length) / 1000
+library(tidyverse)
+library(sf)
+schemes %>% 
+  st_set_geometry(value = NULL) %>% 
+  select(length, type, cost) %>% 
+  group_by(type) %>% 
+    summarise_at(c("length", "cost"), function(x) sum(x) / 1000) %>% 
+  mutate(`Cost pkm (£1000)` = cost / length) %>% 
+  knitr::kable(digits = 2)
+  
+```
+
+## Potential for cycling - public transport integration
+
+```{r type, echo=FALSE, fig.cap="A typology of active travel options.", out.width="100%"}
+knitr::include_graphics("../infra-active/active-travel-options.png")
+```
+
+## Next steps
+
+> - Create a vision of a strategic cycle network
+> - Make it evidence-based (e.g. using CyIPT/PCT)
+> - With costings of estimated benefits and costs
+> - Compare with benefits and cost of alternatives
+> - Integration with different modes (walking, public transport co-benefits)
+> - And linked-in with the council
+
+## Plug: Pedaller's Arms | Cycle repair cooperative in Leeds
+
+- 'Go Dutch' assumes everyone has access to a good working cycle
+
+> - Many people do not!
+
+- Anyone can work on their bike for free
+- Great way to build a 'cycling culture' for everyone in Leeds
+
+- See https://pedallers-arms.org/
+
+## Get your bikes and others fixed up
+
+![](https://pedallers.files.wordpress.com/2012/02/p1030757-2.jpg)
+
+
+## Thanks + References
+
+> - Thanks for listening - get in touch via `r.lovelace@leeds.ac.uk` or `@robinlovelace`
