@@ -55,13 +55,9 @@ See full draft agenda here: https://github.com/npct/pct/blob/master/minidocs/pct
 
 The rough running order of the event will be as follows:
 
-Registration and refreshments 09:00 - 09:15
+### Getting up to speed 9:00-10AM (optional)
 
-### Getting up to speed 9:15-10AM
-
-The aim of this section is to get started.
-
-- Live demo and where we're at with the Propensity to Cycle Project and quick demo (Robin - 15 minutes)
+The aim of this section is familiarise attendees with the PCT. Optional for experienced users.
 
 - Policy relevance and the type of questions we want to answer (15 minutes)
 
@@ -69,11 +65,15 @@ The aim of this section is to get started.
 
 - Meet and greet and team formation - talk to person next to you and decide what you want to get out of it (15 minutes over coffee) 
 
+- Coffee break, discussion and set-up (15 minutes)
+
 ### Learning to use and hack the PCT (10 - 12)
+
+- Live demo and where we're at with the Propensity to Cycle Project and quick demo (Robin - 15 minutes)
 
 The aim of this section is to learn skills needed for the hackathon. By the end of it everyone should be in a team with a plan.
 
-- Split session. Getting up to speed with the tool - Robin, Nikolai and Ali to do tech explanation for people with PCT installed, Rachel and ... to demonstrate use cases for people without (1 hr)
+- Split session. Getting up to speed with the tool - Robin, Nikolai and Ali to do tech explanation for people with PCT installed, others to demonstrate use cases for people without (45 minutes)
 
 - Free time to play with the tool, test hacks and network to finalise teams (1 hr)
 
