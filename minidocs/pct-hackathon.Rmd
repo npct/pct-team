@@ -30,7 +30,7 @@ With it installed the following commands will download all files you need to rep
 
 ```{r, engine='bash', eval=FALSE}
 # clone the pct data creation scripts
-git clone git@github.com:npct/pct-demo
+git clone https://github.com/npct/pct-demo
 ```
 
 If you want to work on the 'full' PCT you'll need these on your laptop before the hackathon.
@@ -40,15 +40,15 @@ To download the input data, install git lfs from [GitHub](https://git-lfs.github
 ```bash
 git lfs install # check lfs is working
 # clone the data (warning - large)
-git clone git@github.com:npct/pct-inputs.git # raw input files
-git clone git@github.com:npct/pct-outputs-national.git # national outputs
-git clone git@github.com:npct/pct-outputs-regional-R.git # regional outputs used by pct-shiny
+git clone https://github.com/npct/pct-inputs.git # raw input files
+git clone https://github.com/npct/pct-outputs-national.git # national outputs
+git clone https://github.com/npct/pct-outputs-regional-R.git # regional outputs used by pct-shiny
 ```
 
 The contents of the regional outputs are used by the code in pct-shiny, which can be downloaded with:
 
 ```bash
-git clone git@github.com:npct/pct-shiny.git 
+git clone https://github.com/npct/pct-shiny.git 
 ```
 
 ## Agenda
