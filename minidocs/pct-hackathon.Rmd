@@ -75,7 +75,7 @@ The aim of this section is familiarise attendees with the PCT. Optional for expe
 
 The aim of this section is to learn skills needed for the hackathon. By the end of it everyone should be in a team with a plan.
 
-- Split session. Getting up to speed with the tool - Robin, Nikolai and Ali to do tech explanation for people with PCT installed, others to demonstrate use cases for people without (45 minutes)
+- Split session. Getting up to speed with the tool - Malcolm to do tech explanation for people with PCT installed, others to demonstrate use cases for people without (45 minutes)
 
 - Free time to play with the tool, test hacks and network to finalise teams (1 hr)
 
