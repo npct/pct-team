@@ -18,6 +18,7 @@ Attendees will likely split into teams at the outset to work on issues such as:
 - Modifications to the PCT user interface
 - Extensions to the PCT (e.g. rail or cycle parking)
 - Modification to the code (e.g. refactor for database, sf support or conversion of stata code to R)
+- Creation of a short video explaining some of the lesser-known features of the PCT
 
 It is hoped that the knowledge learned will be shared beyond the event via write-ups, workshops and extensions to the PCT by attendees.
 
