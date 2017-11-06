@@ -1,6 +1,6 @@
 ---
 title: 'Going Dutch?'
-subtitle: " Crunching transport ‘big data’ for a sustainable world"
+subtitle: "Using open source software (R) to model sustainable transport (cycling)"
 author: "Robin Lovelace"
 date: "`r Sys.Date()`. Slides: [rpubs.com/RobinLovelace](http://rpubs.com/RobinLovelace/258956)."
 output:
@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Outline
 
 - Why Go Dutch
-- Going Dutch in Leeds
+- Packages for transport data
 - Where next?
 
 # Why Go Dutch?
@@ -39,7 +39,7 @@ knitr::opts_chunk$set(echo = FALSE)
 knitr::include_graphics("../flow-model/leeds-rnet-gov-go.png")
 ```
 
-# Going Dutch in Leeds
+# Packages for transport data
 
 ## The Propensity to Cycle Tool - see [w](http://npct0.vs.mythic-beasts.com/shiny_interface/?r=west-yorkshire)[ww.pct.bike](www.pct.bike)
 
