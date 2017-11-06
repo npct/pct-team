@@ -2,50 +2,55 @@
 
 Title of your activity *
 
-Prioritising Cycling Infrastructure in Leeds
+Design a cycle-friendly city
 
 Up to 10 words
 Description of your activity *
 
-This activity will give the public a unique and interactive insight into the high-impact and international research into sustainable transport being led by the University of Leeds.
-It will guide attendees through a scenario whereby they design a sustainable transport system in the city, with an emphasis on cycling infrastructure.
-After developing their vision of the future attendees will be encouraged to see how this could scale internationally.
-Results will be saved on-line and disseminated for future engagement, using the on-line code sharing website GitHub.
+This activity will give the public an interactive insight into high-impact and international research into sustainable transport being led by the University of Leeds.
+It will guide attendees through a role-playing game where they design cycling infrastructure for Leeds or another city of their choice, with options including Accra or Kathmandu.
+Results will be saved on-line and disseminated for future engagement.
 Options range from new 'cycle superhighways' and junctions redesigned for safety to simple measures like new cycle parking points.
-The Department for Transport funded Cycling Infrastructure Prioritisation Toolkit (CyIPT) will make these visions come to life, in an interactive map that you will be able to save for future reference.
-The activity will give attendees early access to the CyIPT, developed by researchers at the University of Leeds' Institute for Transport Studies (ITS).
+The activity will be based on the Department for Transport funded Cycling Infrastructure Prioritisation Toolkit (CyIPT).
 
 Aimed at the public audience making a clear link to the theme 'We are International' (up to 50 words)
 
-This activity will put you in control of Leeds' investment in cycling infrastructure up to 2050.
-You will be able to decide what is built, where to put it, and how to prioritise this investment.
+This activity will put you in control of a city's investment in cycling infrastructure up to 2050.
+For Leeds or elsewhere you will decide what is built and where.
 In the process you'll learn how evidence can help prioritise investment for a 'zero carbon' future internationally.
 <!-- Options range from new 'cycle superhighways' and junctions redesigned for safety to simple measures like new cycle parking points. -->
 
 
 Format of your activity *
+
 Table top activity
 Tour
 Talk
 Other:
+Interactive design of city infrastructure using the CyIPT interactive mapping tool
+
 Timing of your activity
+
 We hope all activities would be available for the duration of the event (10-4). If your activity has some specific requirements of start/finish times, please detail them below.
+
 Is your activity suitable for all age groups? *
 Yes
-No
-If you clicked no, please give details.
-How many people will be involved in delivering your activity on the day? *
-Logistics: Do you require power? If so, how many sockets? *
-Logistics: Do you require tables and chairs? If so, how many? *
-Logistics: Do you require a poster board? If so, please be advised that conference posters aimed at an academic audience are not usually well received. What the poster board is useful for is displaying images. *
-Logistics: Do you require extra space around your table? If so, approx. how much? *
-Logistics: We expect stall holders to provide all equipment (and ensure electrical equipment is PAT tested), if there is anything extra you require us to source please detail below and we will get back to you whether this is possible *
-Logistics: Any further requests not covered in the above?
+
+How many people will be involved in delivering your activity on the day? 3
+
+Logistics: Do you require power? If so, how many sockets? 4
+
+Logistics: Do you require tables and chairs? If so, how many? 2 tables, 3 chairs
+
+Logistics: Do you require extra space around your table? If so, approx. how much? Yes: around 1 m for people to watch.
+
+Logistics: We expect stall holders to provide all equipment (and ensure electrical equipment is PAT tested), if there is anything extra you require us to source please detail below and we will get back to you whether this is possible * - a large projector and screen.
+
 Which category of engagement does your activity sit within? You can select more than one. *
 Dissemination of research outcomes
 Development of research ideas
 Co-Production of research (the public will be involved in the research on the day)
-Never submit passwords through Google Forms.
+
 This content is neither created nor endorsed by Google. Report Abuse - Terms of Service - Additional Terms
 Google Forms
 
