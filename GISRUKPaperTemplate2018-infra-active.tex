@@ -1,0 +1,438 @@
+\documentclass[11pt]{article}
+\usepackage[left=25mm, right=25mm, top=25mm, bottom=25mm, includehead=true, includefoot=true]{geometry}
+
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{natbib} % For referencing
+\usepackage{authblk} % For author lists
+\usepackage[parfill]{parskip} % Line between paragraphs
+
+\pagenumbering{gobble} % Turn off page numbers
+
+% Make all headings the same size (11pt):
+\usepackage{sectsty}
+\sectionfont{\normalsize}
+\subsectionfont{\normalsize}
+\subsubsectionfont{\normalsize}
+\paragraphfont{\normalsize}
+
+\usepackage{caption}
+\captionsetup[table]{skip=10pt}
+
+\renewcommand{\abstractname}{Summary} % Make 'abstract' be called 'Summary'
+
+
+% This makes links and bookmarks in the pdf output (should be last usepackage command because it overrides lots of other commands)
+\usepackage[pdftex]{hyperref}
+\hypersetup{pdfborder={0 0 0} } % This turns off the stupid colourful border around links
+
+
+
+% **************  TITLE AND AUTHOR INFORMATION **************
+
+\title{Using Geocomputation to explore the active travel impacts of new roads and railways}
+
+\author[1]{Robin Lovelace\thanks{R.Lovelace@leeds.ac.uk}}
+\author[1]{Malcolm Morgan\thanks{M.Morgan1@leeds.ac.uk}}
+\affil[1]{Institute for Transport Studies, University or Leeds}
+
+\renewcommand\Authands{ and } % correct last comma in author list
+
+\begin{document}
+\date{}
+\maketitle
+
+% **************  ABSTRACT/SUMMARY  **************
+
+\begin{abstract}
+\centering
+
+
+There has been relatively little GIS work focussing
+on active travel impacts of infrastructure projects despite the high potential for new
+schemes to affect walking and cycling, the clear geographic footprint of major projects and the increased policy interest
+in these modes of transport in recent years. Motivated by the need to
+ensure active travel is accounted for, this paper sets out methods for
+active travel impact assessment, based on three types of impact.
+We look at \emph{Severance}, when new infrastructure cuts across routes with high
+active travel potential; \emph{parallels}, opportunities for
+constructing new routes parallel new infrastructure; and
+\emph{integration} with existing transport services, where new or
+different active travel options are unlocked by new infrastructure.
+The impacts are explored using example datasets and new functions developed in the
+\textbf{stplanr} R package; a future direction of travel
+will be applying these methods to a real case study.
+
+$ $ \\ {\bf KEYWORDS:} Transport, Geocomputation, Active Travel, Route Analysis, Software.
+
+\end{abstract}
+
+\section{Introduction}
+
+``Major transport projects may promote or discourage physical activity
+in the form of walking and cycling'', yet there has been very little
+quantitative \emph{a posteriori} evaluation of past projects (Ogilvie et
+al. 2006), let alone \emph{a priori} assessment of potential impacts.
+The present paper seeks to address this research and methodological gap,
+via geographical methods and emphasis on cycling potential.
+
+\section{A typology of active transport impacts of major transport
+infrastructure
+projects}\label{a-typology-of-active-transport-impacts-of-major-transport-infrastructure-projects}
+
+Major infrastructure can impact upon active transport in a range of
+different ways. To organise the assessment process, these can be
+categorised into three broad types of impact.
+
+\subsection{Severance}\label{severance}
+
+Linear infrastructure can become a barrier to travel perpendicular to
+the new infrastructure, severing routes that were used before the new
+infrastructure was built. This is especially true for railways and
+motorways, which may be at a different level to the surrounding road
+network, and are not crossable by walkers and cyclists without dedicated
+crossings. Understanding where severance occurs and how many people are
+affected can aid in effectively planning the construction of bridges,
+tunnels, and other crossings.
+
+\subsection{Parallels}\label{parallels}
+
+New linear infrastructure provides an opportunity to construct new
+footpaths and cycle paths alongside the infrastructure. The marginal
+cost of adding active transport routes alongside other planned
+infrastructure can be lower than constructing a dedicated route. There
+are several types of active transport that may take place along a
+parallel route:
+
+\begin{enumerate}
+\item
+  People who would have used the new infrastructure choose the active
+  travel option instead;
+\item
+  People starting or finishing a journey at a place that is near the
+  linear infrastructure but does not have access to the infrastructure
+  (due to a lack of station or junction). Use active travel for part of
+  their journey to reach the nearest junction/station.
+\item
+  People taking journeys that are shorter than the gap between
+  junctions/stations
+\end{enumerate}
+
+The number of people who are affected by these scenarios will depend on
+the type of infrastructure, its design, and the nature of the
+surrounding area. By analysing parallels, it can aid in understanding if
+an active travel route would be useful alongside on some or all of the
+new linear infrastructure.
+
+\subsection{Integration of active travel and public
+transport}\label{integration-of-active-travel-and-public-transport}
+
+New infrastructure can result in an increase in active travel in nearby
+areas along the route. For example, a railway extension may result in
+more people walking or cycling in the centre of town to the local
+station which previously drove out of town to their destination. This
+effect can manifest at a substantial distance from the new
+infrastructure, by linking previously disconnected areas.
+
+\section{Methodology}\label{methodology}
+
+A method for assessing each of the three types of active travel impact
+is outlined in this section in the abstract, such that it could be
+applied to any linear feature of interest. Then Section 4 provides
+specific examples using a case study of the Lewes-Uckfield train line.
+The methods have been implemented as functions in the R package
+\textbf{stplanr} (Lovelace and Ellison 2016).
+
+\subsection{\texorpdfstring{Potential cycling uptake along
+`parallels'}{Potential cycling uptake along parallels}}\label{potential-cycling-uptake-along-parallels}
+
+To identify parallels to linear features, a five stage methodology was
+developed.
+
+\begin{itemize}
+\item
+  Subset cycling desire lines
+  to include only those in which the \emph{centre point of the line}
+  passes close to the new infrastructure. This was set as 10 km for this
+  paper.
+\item
+  Break the linear infrastructure of interest into segments of even
+  distance.
+\item
+  Calculate the angle of the segments and desire lines.
+\item
+  Subset the desire lines again, to include only those that are within a
+  threshold angle (set at 30 degrees) of the mean bearing of their
+  closest rail line segment.
+\item
+  Aggregate the cycling potential of all parallel lines within the
+  threshold distance of each segment and assign the values to the route
+  segments.
+\end{itemize}
+
+\subsection{Potential for severance}\label{potential-for-severance}
+
+Severance occurs when active travel along cyclable desire lines with
+high cycling potential is prevented or made more difficult by obstacles
+such as rivers, fast roads or railway tracks. A degree of severance can
+be expected along the full length of linear features, as most desire
+lines have at least some cycling potential. However, the degree of
+severance will be greatest in certain \emph{severance pinch points}
+(henceforth referred to as severance points), for example, segments
+along a rail track which intersects desire lines connecting residential
+areas with employment zones on the other side.
+
+The methodology used to identify the proposed route segments with
+highest potential to cause severance (assuming the transport
+infrastructure is new) consists of three stages:
+
+\begin{itemize}
+\item
+  Identify the desire lines which intersect with the infrastructure.
+\item
+  Quantify the number of potential cyclists blocked along segments of
+  the infrastructure of even length.
+\item
+  Subset the segments which block the highest number of potential
+  cyclists and identify potential crossing points.
+\end{itemize}
+
+Note that based on the three-stage methodology outlined above, severance
+points are in fact more precisely described as `severance segments',
+along which a range of points could be chosen for crossing points.
+However, the term `severance point' is more intuitive, so we use this
+term throughout.
+
+\subsection{Potential for cycling and public transport
+integration}\label{potential-for-cycling-and-public-transport-integration}
+
+Increased travel to public transport is likely to occur near public
+transport stops and on desire lines that have an origin and destination
+near connected public transport nodes (typically bus stops or train
+stations). The methodology used to estimate the potenial uptake of
+cycling due to integration with new public transport services associated
+with the new route assumes that new nodes have suitable provision for
+cycling, with safe routes to get there and sufficient cycle parking
+spaces, and consists of the following stages:
+
+\begin{itemize}
+\item
+  Subset trips that could feasibly use public transport in terms of
+  boarding and alighting, by subsetting those with both origin and
+  destination within a given distance a planned station/stop.
+\item
+  Remove lines that have the same stop as their closest origin and
+  destination.
+\item
+  Remove lines which are linked by existing public transport, thus will
+  not change with the new linear infrastructure.
+\item
+  Create new desire lines and routes that are from Origin/Destinations
+  to public transport.
+\item
+  Remove desire lines and routes where the cycling to and from public
+  transport is greater than 1.1 times the direct cycling route, as these
+  travellers are unlikely to use public transport.
+\item
+  Calculate change in cycling potential along these new desire lines.
+\end{itemize}
+
+\section{Implementation}\label{a-case-study-of-lewes-uckfield}
+
+The Lewes-Uckfield train line is a proposed project to restore a rail
+link between Uckfield and Lewes. This is part of wider plans to increase
+rail capacity in the area. As stated in the project brief, ``Such
+infrastructure has the potential to support cycling if high-quality
+infrastructure is built alongside.'' This appendix analyses cycling
+potential along the proposed route, which is 16 km in length.
+
+Data on existing cycling levels was
+taken from the Propensity to Cycle Tool (Lovelace et al. 2017).
+The data represents commuter travel between zones created for the 2011
+census. These zones are known as Middle layer Super Ouput Areas (MSOA),
+and the population weighted centroids of each MSOA are used as the
+origin and destinations in this analysis.
+
+There are 24 MSOAs whose population weighted centroids lie within a 10
+km buffer of the train line, representing 7756 commuters.
+This case study was used to illustrate each element of the proposed active travel assessment
+methodology using 'geocompuational' functions written in R.
+
+\subsection{Cycling potential parallel to the
+route}\label{cycling-potential-parallel-to-the-route}
+
+\subsubsection{Subsetting desire lines by centre point
+proximity}\label{subsetting-desire-lines-by-centre-point-proximity}
+
+The centre points of the desire lines intersecting with the
+Lewes-Uckfield route buffer are presented in Figure
+\ref{fig:metafigure}a. These represent 65.5\% of the desire lines in the
+study area, defined by the 10 km buffer.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{figures/infra-selection-all}
+
+}
+
+\caption{The centre point-buffer (a), parallel (b), perpendicular (c) and station access (d) methods of subsetting desire lines affected by the new rail line. In all figures, the subsetted lines are plotted in red. In (b) the updated parallel desire lines, whose centre points lie within 5 km of the route, are illustrated in orange.}\label{fig:metafigure}
+\end{figure}
+
+\subsubsection{Break the train line into
+segments}\label{break-the-train-line-into-segments}
+
+Because the Lewes-Uckfield line is short and relatively straight, we
+used the entire line as a single segment. However, if the line were to
+be broken into segments, the results would resemble Figure
+\ref{fig:segs}a. This demonstration of the method could be applied to
+larger and more complex routes, e.g.~that of the proposed HS2 or HS2
+cycle network route.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{figures/route-sel}
+
+}
+
+\caption{Illustration of the method of splitting the route into discrete segments using the line segment function from the stplanr R package (a) and cycling potential (under the Government Target scenario) severed by the proposed rail line (b), in which line width is proportional to the square root of cycling potential severed.}\label{fig:segs}
+\end{figure}
+
+\subsubsection{Calculate the angle of the train
+routes}\label{calculate-the-angle-of-the-train-routes}
+
+The angle of the train track was calculated by a function
+\texttt{line\_bearing()} which was developed for the \textbf{stplanr} R
+package specifically to solve this problem.
+
+Using this function, the angle of the route was calculated as follows:
+
+\begin{verbatim}
+line_bearing(lewes_uckfield)
+## [1] 25.30456
+\end{verbatim}
+
+\subsubsection{Subsetting desire lines parallel with the train
+line}\label{subsetting-desire-lines-parallel-with-the-train-line}
+
+To find the lines that were close to parallel with the train line, the
+function \texttt{angle\_diff()} was developed. All lines within 30
+degrees, clockwise or anti-clockwise, to the train line, \emph{and} have
+their midpoint within the route buffer, are illustrated in the red lines
+in Figure \ref{fig:metafigure}b. It is clear from this Figure that a
+high number of lines were selected which are very unlikely benefit from
+cycling provision along the route, especially in the south-west segment
+of the plot.
+
+To resolve this issue, a smaller buffer was used to select line centre
+points. This was set at 5 km. To remove desire lines that were still far
+from the train line a further subsetting method was developed. This
+involved selecting desire lines that pass within an even shorter
+distance to the train line, 2 km in this case. The results are presented
+in Figure Figure \ref{fig:metafigure}b, in which the orange lines were
+included through the centre point selection method but omitted by
+`buffer intersection' method.
+
+From the subset of the lines highlighted in red in Figure
+\ref{fig:metafigure}b, we can now report summary statistics on the
+cycling potential of commuter desire lines which run parallel to the
+route. These results are presented alongside the
+equivalent statistics for \emph{all} desire lines which intersect the 10
+km buffer surrounding the proposed route.
+
+\subsection{The potential for severance along the proposed
+route}\label{the-potential-for-severance-along-the-proposed-route}
+
+\subsubsection{\texorpdfstring{Subsetting `perpendicular' desire
+lines}{Subsetting perpendicular desire lines}}\label{subsetting-perpendicular-desire-lines}
+
+The subsetting process involved finding which lines ran perpendicular to
+the proposed rail line and then selecting only those intersecting with
+it, as illustrated in Figure \ref{fig:metafigure}c.
+
+\subsubsection{Quantifying severance per segments of the train
+line}\label{quantifying-severance-per-segments-of-the-train-line}
+
+The cycling potential of the intersecting `perpendicular' lines was then
+summed \emph{per 1 km segment} of the rail line. The results, for the
+Government Target scenario, are presented in \ref{fig:segs}b which
+shows, as one would expect, that severance impacts would be greatest at
+the ends of the proposed route, where population densities and
+employment opportunities are greatest.
+
+\subsubsection{Identifying potential crossing
+points}\label{identifying-potential-crossing-points}
+
+From Figure \ref{fig:segs}b it is clear that the points of highest
+potential severance lie at either end of the line. Overall, because the
+proposed line does not separate any large settlements or workplaces, the
+potential for severance is low. However, to demonstrate the method of
+identifying places to intervene to minimise severance, Figure
+\ref{fig:perpmost} illustrates the 1 km segment of the proposed line
+with the highest potential for severance in context. This is clearly in
+a populated part of Lewes, where travel between both sides of the new
+line could be affected by the route.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{infra-active_files/figure-latex/perpmost-1}
+
+}
+
+\caption{The 1 km segment on the proposed rail line with the highest level of severance in cycling potential, under the Government Target scenario.}\label{fig:perpmost}
+\end{figure}
+
+\subsection{Cycling to Public
+Transport}\label{cycling-to-public-transport}
+
+Beyond direct impacts of the proposed scheme on cycling potential,
+associated with desire lines in parallel with and crossing perpendicular
+to the railway, there are indirect impacts created by the potential to
+cycle to the stations(Flamm and Rivasplata 2014).
+Because the proposed rail stations are located in
+areas of high population density, this could generate new cycle trips
+when they are taken as part of a multi-stage trip (e.g.~cycle to the
+rail station, catch the train towards work, walk from the `activity end'
+rail station to work).
+In further work we plan to develop methods to estimate the potential uptake of cycling to public transport nodes on the system.
+
+\section{Acknowledgements}
+
+Thanks to the Department for Transport, the ESRC-Funded Consumer Data Research Centre and the Leeds Institute for Data Analytics.
+Thanks everyone involved in the Propensity to Cycle Tool team, especially Anna Goodman, who helped develop the methods.
+
+\section{Biography}
+
+Robin Lovelace is a University Academic Fellow at the Leeds Institute for Transport Studies (ITS). Robin has wide ranging experience modeling sustainable transport systems and visualizing transport futures. These skills have been applied on a number of projects with real-world applications, most recently as Lead Developer of the Propensity to Cycle Tool (see www.pct.bike) and the stplanr package for sustainable transport planning. Twitter: @robinlovelace.
+
+Malcolm Morgan is a Civil Engineer by background, but his research interests focus on Sustainable Urban Development particularly in the area of housing retrofit and transport. Malcolm is a keen Glider pilot.
+
+% **************  REFERENCES **************
+
+\bibliographystyle{apa}
+\bibliography{documents/references.bib}
+
+\hypertarget{ref-flamm_public_2014}{}
+Flamm, Bradley J., and Charles R. Rivasplata. 2014. ``Public Transit
+Catchment Areas the Curious Case of Cycle-Transit Users.''
+\emph{Transportation Research Record}, no. 2419: 101--8.
+doi:\href{https://doi.org/10.3141/2419-10}{10.3141/2419-10}.
+
+\hypertarget{ref-lovelace_propensity_2017}{}
+Lovelace, Robin, Anna Goodman, Rachel Aldred, Nikolai Berkoff, Ali
+Abbas, and James Woodcock. 2017. ``The Propensity to Cycle Tool: An Open
+Source Online System for Sustainable Transport Planning.'' \emph{Journal
+of Transport and Land Use}, December.
+doi:\href{https://doi.org/10.5198/jtlu.2016.862}{10.5198/jtlu.2016.862}.
+
+\hypertarget{ref-lovelace_stplanr:_2016}{}
+Lovelace, Robin, and Richard Ellison. 2016. \emph{Stplanr: Sustainable
+Transport Planning}. \url{https://github.com/ropensci/stplanr}.
+
+\hypertarget{ref-ogilvie_evaluating_2006}{}
+Ogilvie, David, Richard Mitchell, Nanette Mutrie, Mark Petticrew, and
+Stephen Platt. 2006. ``Evaluating Health Effects of Transport
+Interventions: Methodologic Case Study.'' \emph{American Journal of
+Preventive Medicine} 31 (2): 118--26.
+doi:\href{https://doi.org/10.1016/j.amepre.2006.03.030}{10.1016/j.amepre.2006.03.030}.
+
+\end{document}

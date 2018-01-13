@@ -2,8 +2,10 @@
 title: 'Methods for assessing the active travel impacts of major transport infrastructure projects'
 author: "Robin Lovelace, Malcolm Morgan"
 date: "`r Sys.Date()`"
-output: bookdown::pdf_document2
-bibliography: documents/references.bib
+output:
+    bookdown::pdf_document2:
+      keep_tex: true
+bibliography: /home/robin/allrefs.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -101,6 +103,7 @@ New infrastructure can result in an increase in active travel  in nearby areas a
 # Methodology
 
 A method for assessing each of the three types of active travel impact is outlined in this section in the abstract, such that it could be applied to any linear feature of interest. Then Section 4 provides specific examples using a case study of the Lewes-Uckfield train line.
+The methods have been implemented as functions in the R package **stplanr** [@lovelace_stplanr:_2016].
 
 ## Potential cycling uptake along 'parallels'
 
@@ -329,7 +332,7 @@ tm_shape(osm_tiles_most) + tm_raster() +
 
 ## Cycling to Public Transport
 
-Beyond direct impacts of the proposed scheme on cycling potential, associated with desire lines in parallel with and crossing perpendicular to the railway, there are indirect impacts created by the potential to cycle to the stations. Because the proposed rail stations are located in areas of high population density, this could generate new cycle trips when they are taken as part of a multi-stage trip (e.g. cycle to the rail station, catch the train towards work, walk from the 'activity end' rail station to work).
+Beyond direct impacts of the proposed scheme on cycling potential, associated with desire lines in parallel with and crossing perpendicular to the railway, there are indirect impacts created by the potential to cycle to the stations[@flamm_public_2014] . Because the proposed rail stations are located in areas of high population density, this could generate new cycle trips when they are taken as part of a multi-stage trip (e.g. cycle to the rail station, catch the train towards work, walk from the 'activity end' rail station to work).
 
 Analysis of the OD data in relation to proposed rail station locations suggests that relatively few desire lines, representing 2351 commuters, currently commute between areas served by the new rail stations, within a 3 km buffer (see \@ref(fig:metafigure)d).
 The main beneficiaries in the local area would be people north of Uckfield commuting to Lewes and vice versa.  Desire lines between Lewes and Brighton can use the existing railway, while there are no desire lines between Brighton and North of Uckfield. The lack of desire lines likely reflects the current transport network's lack of connectivity between Lewes and Uckfield.  
