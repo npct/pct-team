@@ -39,6 +39,16 @@ My definition: **building an evidence-base for sustainable systems**.
 
 - But could also be interpretted in terms of other (quantifiable) social/economic/environmental indicators
 
+## An example from Sheffield
+
+- From @lovelace_assessing_2011 - how to reduce transport-related emissions?
+    - Source: https://doi.org/10.1016/j.enpol.2011.01.051
+
+```{r, echo=FALSE}
+knitr::include_graphics("https://ars.els-cdn.com/content/image/1-s2.0-S0301421511000620-gr2.jpg")
+```
+
+
 ## What is Geographic Data Science?
 
 > - And how does it differ from spatial modelling?
@@ -160,7 +170,7 @@ knitr::include_graphics("~/npct/pct-team/flow-model/man-trinity-way-satellite.pn
 
 Live demo of the Cycling Infrastructure Prioritisation Toolkit (CyIPT): https://www.cyipt.bike
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, out.width="80%"}
 knitr::include_graphics("https://github.com/cyipt/cyipt/blob/master/figures/recommended-york.png?raw=true")
 ```
 
