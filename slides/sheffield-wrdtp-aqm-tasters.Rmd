@@ -1,0 +1,225 @@
+---
+title: "Can Spatial Modelling Save the World?"
+author: "Robin Lovelace"
+date: "`r Sys.Date()`"
+subtitle: "University of Leeds, Institute for Transport Studies (ITS)"
+bibliography: /home/robin/allrefs.bib
+output:
+  ioslides_presentation:
+    widescreen: true
+    transition: slower
+    logo: ../figures/its-logo-square.png
+---
+
+## Contents
+
+- An example: the propensity to cycle tool
+- Using spatial modelling for social benefit
+
+```{r, include=FALSE}
+library(dplyr)
+```
+
+# Introduction
+
+## What is saving the world?
+
+Many ways of saying the same thing:
+
+> - 'Policy-led research'
+> - 'Impact'
+> - 'Socially beneficial research'
+> - Don't be evil (Google)
+
+My definition: **building an evidence-base for sustainable systems**.
+
+- In the context of climate change that means:
+
+> - Building an evidence-base to transition away from fossil fuels
+
+- But could also be interpretted in terms of other (quantifiable) social/economic/environmental indicators
+
+## What is Geographic Data Science?
+
+> - And how does it differ from spatial modelling?
+
+- How does it differ from good old 'GIS'?
+- What does the science in the title mean?
+- Why the focus on data rather than information
+
+Code example:
+
+```{r}
+d = frame_data(
+  ~Attribute, ~GIS, ~GDS,
+  "Home disciplines", "Geography", "Geography, Computing, Statistics",
+  "Software focus", "Graphic User Interface", "Code",
+  "Reproduciblility", "Minimal", "Maximal"
+)
+```
+
+## Comparing GDS with GIS
+
+```{r}
+knitr::kable(d)
+```
+
+## Spatial modelling CAN 'save the world' | But only if it's open and scientific
+
+Reasoning:
+
+- Evidence inevitably gets skewed by political aims
+
+> - If the people doing the research are influenced by dominant political forces, findings will be biases for political gain (solved by independent well-funded public research).
+
+- People doing policy relevant research watch out (regarding politicians):
+
+> “Their very spirit undergoes a pervasive
+transformation,” and they finally end up as “experts at exchanging smiles,
+handshakes, and favors.” [@reclus_anarchy_2013, original: 1898]
+
+## Importance of open data and methods
+
+> - If the data underlying policy is hidden, it can be represented to push certain aims (solved by open data)
+
+> - If the data is 'open' but the tools are closed, results open to political influence
+
+> - Which brings us onto our next topic...
+
+# Where will cycling uptake happen?
+
+<!-- ## Context: from concept to implementation -->
+
+<!-- A life-course of my involvement with the PCT -->
+
+<!-- ``` -->
+<!-- Concept of algorithms for cycling uptake (PhD 2009 - 2013) -->
+<!--  Discovery of programming (R) and shiny (2013) -->
+<!--   'Propensity to Cycle' bid by DfT via SDG (2014) -->
+<!--     Start work w. Cambridge University and colleagues (2015) -->
+<!--      Implementation on national OD dataset, 700k routes (2016) -->
+<!--        Addition of school and near-market prototypes (late 2016) -->
+<!--          LSOA phase (Malcolm Morgan) (early 2017) -->
+<!--            ... -->
+<!-- ``` -->
+
+<!--  > - 2018: (Global PCT?)  -->
+
+<!--  - Academic write-up [@lovelace_propensity_2017] -->
+ 
+## Prior work (source: Lovelace et al. 2017)
+
+```{r, echo=FALSE, message=FALSE}
+dft = readr::read_csv("~/npct/pct-team/data-sources/cycle-tools-wide.csv")
+dft$Tool = gsub("Permeability Assessment Tool", "PAT", dft$Tool)
+knitr::kable(dft)
+```
+
+## The PCT in government policy
+
+Included in Cycling and Walking Infrastructure Strategy (CWIS) and the Local Cycling and Walking Infrastructure Plan (LCWIP)
+
+```{r, echo=FALSE}
+knitr::include_graphics("~/npct/pct-team/figures/front-page-leeds-pct-demo.png")
+```
+
+## How the PCT works
+
+Shows on the map where there is high cycling potential,
+for 4 scenarios of change
+
+- Government Target
+- Gender Equality
+- Go Dutch
+- Ebikes
+
+## Scenario shift in desire lines | Source: @lovelace_propensity_2017
+
+```{r, echo=FALSE}
+knitr::include_graphics("~/npct/pct-team/flow-model/od-data-leeds.png")
+```
+
+- Origin-destination data shows 'desire lines'
+- How will these shift with cycling uptake
+
+## Scenario shift in network load
+
+```{r, echo=FALSE}
+knitr::include_graphics("~/npct/pct-team/flow-model/leeds-rnet-gov-go.png")
+```
+
+## A live demo for Sheffield | "Actions speak louder than words"
+
+- See [www.pct.bike](http://pct.bike/south-yorkshire)
+
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("~/npct/pct-team/flow-model/man-trinity-way-satellite.png")
+```
+
+## Follow-on work
+
+Live demo of the Cycling Infrastructure Prioritisation Toolkit (CyIPT): https://www.cyipt.bike
+
+```{r, echo=FALSE}
+knitr::include_graphics("https://github.com/cyipt/cyipt/blob/master/figures/recommended-york.png?raw=true")
+```
+
+## Globalisation of research | World Health Organisation funding for globally scalable toolkit
+
+- If it can work in Sheffield, it can work anywhere.
+
+> As a prominent Sheffield-based cycling advocate put it: ‘‘if cycling can work here, it
+can work anywhere in the world’’ (Bocking, 2010, personal
+communication) [@lovelace_assessing_2011] - see https://doi.org/10.1016/j.enpol.2011.01.051
+
+- Feasibility study on generalising PCT/CyIPT methods: https://github.com/ATFutures/who
+
+## A cycling network for Accra?
+
+```{r, echo=FALSE, out.width="90%"}
+knitr::include_graphics("https://github.com/ATFutures/who/raw/master/fig/accra-flow1-interactive.png")
+```
+
+## This is what happened in Seville
+
+```{r, echo=FALSE, out.width="90%"}
+knitr::include_graphics("https://github.com/ATFutures/who/raw/master/fig/sevnet2.png")
+```
+
+# Discussion: ensuring research is used for the greater good
+
+## Points of discussion
+
+It is clear that geographical research can have large policy impacts.
+
+- That researchers can act to maximise the social benefit of the research
+- That involves getting the evidence out to as many people as possible
+- And using open source, accessible tools - the 'science' in GDS?
+
+But many questions remain:
+
+> - Where to draw the line between impartial research and advocacy?
+> - To what extent should researchers open-sourcing their work defend against commercial exploitation?
+
+## Final question
+
+- What can you do to maximise the social benefits arising from your work?
+
+> - Thanks for listening - get in touch via `r.lovelace@leeds.ac.uk` or `@robinlovelace`
+
+## Plug: Geocompr book and collaboration offerings
+
+- Check-out our open source book, *Geocomputation with R*
+  - Available on-line at: 
+  - Source code:
+  
+- Collaboration - be in touch if you want to work on these methods/applications:
+  - PhD opportunities and more at https://www.its.leeds.ac.uk/ 
+  - Contribute to existing projects rather than 're-inventing the wheel'
+
+- Upcoming course: R for Transport Applications - 26^th^ to 27^th April
+  - Learn cutting-edge methods underlying the PCT and more
+  - Leeds Institute for Data Analytics (LIDA)
+
+## References
+
