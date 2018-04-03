@@ -1,16 +1,15 @@
 ---
-title: 'Distance decay: exploring a universal concept for modelling transport systems'
-author: "Robin Lovelace"
-cls: journal-of-transport-geography.csl
+title: 'Distance decay: assessing existing and novel functional forms for modeling uptake of active transport'
+author: "Robin Lovelace & David Lovelace"
 output:
+  word_document: default
   html_document: 
     keep_md: yes
     toc: yes
-  word_document: default
   pdf_document:
     fig_caption: yes
     toc: yes
-bibliography: Transport.bib
+bibliography: references.bib
 ---
 
 ```{r, include=FALSE}
@@ -22,6 +21,7 @@ bibliography: Transport.bib
 pkgs <- c("gdata", "dplyr", "tidyr", "ggmap", "grid", "png", "knitr")
 lapply(pkgs, library, character.only = T)
 opts_knit$set(root.dir = "../")
+opts_chunk$set(echo = FALSE)
 ```
 
 # Abstract
@@ -46,20 +46,20 @@ to zero as distance tends to infinity.
 ```
 
 
-*Distance decay* --- along with the synonymous *deterence function* [@Simini2012]
+*Distance decay* --- along with the synonymous *deterence function* [@simini_universal_2012]
 --- builds on older terms expressing the same fundamental truth,
 such as the 'friction of distance' and the 'gravity model' (described in the
 subsequent section). 
 Unlike these established terms, $dd$ encourages quantitative
 exploration of *how* the proportion of trips
-($p$) declines with distance ($d$) [@Iacono2008],
+($p$) declines with distance ($d$) [@iacono_models_2008],
 beyond the simple observation that the
 slope is negative beyond a certain threshold distance. 
 A resergence of interest in the distance-frequency relationship has
 revisited and refined and in some cases sought to overturn pre-existing
 (and often context-specific) formulations, such as
-$p = \alpha e^{\beta d}$ [@Wilson1971] and $p = \alpha d^{\beta}$
-[@Fotheringham1981].
+$p = \alpha e^{\beta d}$ [@wilson_family_1971] and $p = \alpha d^{\beta}$
+[@fotheringham_spatial_1981].
 
 
 ```{r, echo=FALSE}
@@ -81,7 +81,7 @@ The type of trip (e.g. time of day,
 purpose), the characteristics of the people making the trip
 (e.g. age and sex) and the location and physical surroundings of the
 trip (e.g. hilliness, transport infrastructure) have all been found to
-affect the shape of distance decay curves [@Fotheringham1981;@Fingleton2005].
+affect the shape of distance decay curves [@fingleton_beyond_2005; @fotheringham_spatial_1981].
 Critically for understanding transport systems is the *mode*, or 'method'
 of transport. Mode refers to the
 choice of 'vehicle' (e.g. walking, cycling, car driving) and has been found,
@@ -108,10 +108,10 @@ explicitly using the term 'distance decay' to explore the concept
 ## The gravity model
 
 The 'gravity model' of movement patterns
-helped to quantify and generalise early incarnations if *dd* [@zipf1946p1].
+helped to quantify and generalise early incarnations if *dd* [@zipf_p1_1946].
 This rule (it is sometimes referred to as the 'gravity law')
 suggests that travel incentives are roughly analogous to
-Newtonian gravitation [@Ravenstein1885]. The resulting formulae imply that
+Newtonian gravitation [@ravenstein_law_1885]. The resulting formulae imply that
 the total movement between two places
 ($T_{ij}$ between origin $i$ and destination $j$) is proportional
 to the product of their populations ($m_i$ and $n_j$),
@@ -122,20 +122,20 @@ T_{ij} = \frac{m_i n_j}{d^\beta}
 $$
 
 as it has sometimes been called has been a rich source of theoretical and methodological advance in many fields, primarily
-urban modelling but also in fields as diverse as highway planning [@Jung2008],
+urban modelling but also in fields as diverse as highway planning [@jung_gravity_2008],
 national transport of minerals [@Zuo2013]
-and spatial epidemiology [@Balcan2009].
+and spatial epidemiology [@balcan_multiscale_2009].
 
 ## The radiation model
 
 Despite dissenting voices --- including the statement that "a strict gravity
 model simply did not work" for modelling urban systems and that some subsequent
-refinements to the gravity model were "fudge factors" [@Wilson1998-past] ---
+refinements to the gravity model were "fudge factors" [@wilson_land-use/transport_1998] ---
 the gravity model has been one of the dominant tools for understanding
 urban mobility over the past 100 years [@masucci2013gravity]. A recent
 development in this field has been the 'radiation model', which has been
 found to fit travel to work and other flow data well
-[@Simini2012]. This new formula for estimating flow rates between geographic
+[@simini_universal_2012]. This new formula for estimating flow rates between geographic
 zones is interesting in its ommission of distance as an explicit explanatory
 variable. Instead, the radiation model uses the
 number 'intervening opportunities' ($IO$)
@@ -164,17 +164,17 @@ exclusive) terms for exploring $dd$ th
 
 Tobler's famous **first law of geography** states that
 "everything is related to everything
-else, but near things are more related than distant things" [@Tobler1970].
+else, but near things are more related than distant things" [@tobler_computer_1970].
 The phrase implies that interaction between things declines
 with distance without specifying how or why. Clearly,
 the increased frequency of communications and transport between places that
 are close to each other can help explain spatial autocorrelation
- [@Miller2004a]. However, unlike $dd$,
+ [@miller_toblers_2004-1]. However, unlike $dd$,
 the 'first law' says little about the way in which
 relatedness between entities declines with distace.
 Moreover, in a world of accelerating globalisation
 under the auspices of the ongoing 'digital revolution', the relevance of the
-'first law' to the system-level processes it was proposed to explain has come under scrutiny [@Westlund2013].
+'first law' to the system-level processes it was proposed to explain has come under scrutiny [@westlund_brief_2013].
 
 ```{r, echo=FALSE}
 # and related quantitative measures of Tobler's law
@@ -184,7 +184,7 @@ To overcome this issue, the scope of this paper is limited to transportation
 of people and goods, opposed to immaterial communication.
 This simplifies the issue and makes it more tangible.
 Due to fundament physical limits on the efficiency with which matter
-can be moved [@MacKay2009], and a limited supply of energy
+can be moved [@mackay_sustainable_2009], and a limited supply of energy
 (especially pertinent in an era of resource over-extraction and
 climate change), such physical transport
 will always be limited to some degree by distance.
@@ -199,13 +199,13 @@ enjoying steady (albeit slowing) growth in use until the early 2000s
 (Fig. 1). The term helps to explain why Tobler's Law is true,
 implying that it is more *difficult* (e.g. in terms of energy use)
 for distant things to interact. 'Friction' is thus defined as
-"the difficulty of moving a volume (passengers or goods)" 
+"the difficulty of moving a volume (passengers or goods)"  
 [@Muvingi2012].
 The friction of distance is predominantly used as a synonym for $dd$,
 and to some extent the slowing use of the term illustrated in Fig. 1
 can be seen as a consequence of the latter simply replacing the former.
-@cliff1974evaluating, for example, refer to "the friction of distance
-parameter in gravity models" whereas @Griffith1980 and @McCall2006 
+@cliff_evaluating_1974, for example, refer to "the friction of distance
+parameter in gravity models" whereas @griffith_explorations_1980 and @McCall2006 
 refer to 'distance decay' in spatial interaction and gravity models
 respectively: the terms are largely interchangeable.
 However, the question of precisely *how* the metaphorical friction 
@@ -275,31 +275,30 @@ least generalisable as it is highly dependent on the total amount of travel.
 For each of these definitions the *functional form* of the *dd* equation
 can take many different forms. These are explored in the next section.
 
-# Data
 
-We use a variety of datasets for this study. Primarily, we use data on distance
-vs *clc* (current level of cycling) derived from the census (Fig. 1).
+<!-- We use a variety of datasets for this study. Primarily, we use data on distance -->
+<!-- vs *clc* (current level of cycling) derived from the census (Fig. 1). -->
 
 ```{r, fig.cap="The relationship between distance and current level of cycling amongst 8 different groups."}
 f <- "data-sources/150304_SegmentationCompare_8cat.xlsx"
 nts_seg <- read.xls(f, sheet = 2) # load in the .xlsx file with dist:pcycle values
 nts_seg <- rename(nts_seg, dist = X) # rename the "X" column as dist (miles)
 ntss <- gather(nts_seg, segment, clc, -dist)
-(p1 <- ggplot(aes(x = dist), data = ntss) + geom_line(aes(y = clc)) +
-  facet_wrap(~ segment))
+p1 <- ggplot(aes(x = dist), data = ntss) + geom_line(aes(y = clc)) +
+  facet_wrap(~ segment)
 ```
 
 # Functional forms of distance decay
 
-@Martinez2013 identified 4 main functional forms commonly used in the
+[@martinez_new_2013] identified 4 main functional forms commonly used in the
 literature to characterise distance decay curves:
 
-- Exponential functions, $e^{\beta x}$ [e.g. @Wilson1971]
-- Power functions, $x^{\beta}$ [e.g. @Fotheringham1981]
-- Tanner functions, $x^{\beta_1}e^{\beta_2 x}$ [e.g. @Openshaw1977]
+- Exponential functions, $e^{\beta x}$ [e.g. @wilson_family_1971]
+- Power functions, $x^{\beta}$ [e.g. @fotheringham_spatial_1981]
+- Tanner functions, $x^{\beta_1}e^{\beta_2 x}$ [e.g. @openshaw_optimal_1977]
 - Box-Cox functions, $exp(\beta \frac{x^{\gamma} - 1}{\gamma})$ when the parameter $\gamma \neq 0$ and $x^{\beta}$ when $\gamma = 0$ 
 
-In addition to these, @Martinez2013 advocated their own distance decay function, a modified version of the generalised logistic or 'Richards' function:
+In addition to these, @martinez_new_2013 advocated their own distance decay function, a modified version of the generalised logistic or 'Richards' function:
 
 $$
 f(x) = \frac{1}{(1 + Qe^{-B(x - M)})^{1/v}}
@@ -520,7 +519,7 @@ decay and longer-term distance decay respectively. The function fits the census 
 grid.raster(readPNG("figures/log-sqrt-params.png"))
 ```
 
-## Simple exponential decay
+## Exponential decay
 
 A feature present in all relationships between frequency and distance
 of trip is decay to zero as distance increases to infinity. This is especially
@@ -538,15 +537,33 @@ $$
 
 Where each $\beta$ term is estimated for each group, as with the twin parameter
 linear model illustrated Fig. 1. We can fit this to the data using
-*non-linear regression* (e.g. by using `nls()` in R) but this seems likely to
-make parameter estimation more complicated.
+*non-linear regression* (e.g. by using `nls()` in R).
 
-```{r, echo=FALSE}
-# `nls()` can also be used...
-# m13 <- nls(clc ~ a * dist / exp(I(dist) * b), data = ntss, 
-#   start = list(a = 1, b = 1))
-# m14 <- gnls(clc ~ a * dist / exp(I(dist) * b) * segment, data = ntss, 
-#   start = list(a = 1, b = 1))
+```{r}
+od_all = readRDS("~/npct/pct-outputs-regional-R/commute/msoa/cambridgeshire/l.Rds")@data %>% as_data_frame()
+od = select(od_all, id, all, bicycle, d = rf_dist_km) %>% 
+  mutate(., pcycle = bicycle / all)
+
+dd_exp1 = function(x, a1, a2, a0 = 0) {
+  px = a1 * x
+  ex = exp(a2 * x)
+  px / ex + a0
+}
+measure_fit <- function(par, mod, data) {
+  if(length(par) == 1) {
+    diff <- data$pcycle - mod(data$d, par[1])
+  } else if(length(par) == 2) {
+    diff <- data$pcycle - mod(data$d, par[1], par[2])
+  } else if(length(par) == 3) {
+    diff <- data$pcycle - mod(data$d, par[1], par[2], par[3])
+  } else {
+    diff <- data$pcycle - mod(data$d, par[1], par[2], par[3], par[4])
+  }
+  sqrt(mean(diff ^ 2))
+}
+par = c(2, 1.5)
+fit = optim(par, fn = measure_fit, data = od, mod = dd_exp1)
+plot(od$d, dd_exp1(od$d, fit$par[1], fit$par[2]))
 ```
 
 
@@ -564,7 +581,7 @@ Using the functional forms for distance decay as an input to
 predict binary outcomes is relatively simple.
 "We can transform the output of a linear regression to be
 suitable for probabilities by using a logit link
-function" [@Manning2007]:
+function" [@manning_logistic_2007]:
 
 $$
 logit(p) = ln \left( \frac{p}{1 - p} \right)
