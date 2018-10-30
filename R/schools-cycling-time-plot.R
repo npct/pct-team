@@ -10,3 +10,5 @@ ggplot(d) +
   ylab("% Active modes") +
   ylim(c(0, NA)) +
   theme_bw()
+ggsave("figures/schools-cycling-time-plot.png")
+browseURL("figures/schools-cycling-time-plot.png")

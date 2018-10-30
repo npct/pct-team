@@ -39,7 +39,7 @@ knitr::include_graphics("../figures/pct-frontpage.png")
 ## Prior work (source: Lovelace et al. 2017)
 
 ```{r, echo=FALSE, message=FALSE}
-dft = readr::read_csv("~/npct/pct/data-sources/cycle-tools-wide.csv")
+dft = readr::read_csv("/home/robin/h/npct/pct-teamdata-sources/cycle-tools-wide.csv")
 dft$Tool = gsub("Permeability Assessment Tool", "PAT", dft$Tool)
 knitr::kable(dft)
 ```
@@ -71,7 +71,7 @@ Robin Lovelace (Lead Developer, University of Leeds)
 Included in Cycling and Walking Infrastructure Strategy (CWIS) and the Local Cycling and Walking Infrastructure Plan (LCWIP)
 
 ```{r, echo=FALSE}
-knitr::include_graphics("~/npct/pct/figures/front-page-leeds-pct-demo.png")
+knitr::include_graphics("/home/robin/h/npct/pct-teamfigures/front-page-leeds-pct-demo.png")
 ```
 
 ## How the PCT works
@@ -87,7 +87,7 @@ for 4 scenarios of change
 ## Scenario shift in desire lines | Source: @lovelace_propensity_2017
 
 ```{r, echo=FALSE}
-knitr::include_graphics("~/npct/pct/flow-model/od-data-leeds.png")
+knitr::include_graphics("/home/robin/h/npct/pct-teamflow-model/od-data-leeds.png")
 ```
 
 - Origin-destination data shows 'desire lines'
@@ -96,7 +96,7 @@ knitr::include_graphics("~/npct/pct/flow-model/od-data-leeds.png")
 ## Scenario shift in network load
 
 ```{r, echo=FALSE}
-knitr::include_graphics("~/npct/pct/flow-model/leeds-rnet-gov-go.png")
+knitr::include_graphics("/home/robin/h/npct/pct-teamflow-model/leeds-rnet-gov-go.png")
 ```
 
 # The impacts of transport infrastructure
