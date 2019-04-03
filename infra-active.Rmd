@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 output:
     bookdown::pdf_document2:
       keep_tex: true
-bibliography: /home/robin/allrefs.bib
+bibliography: references.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -34,7 +34,7 @@ A case study of a proposed railway, between Lewes and Uckfield in Essex, UK, dem
 
 # Introduction
 
-Major transport infrastructure projects are a major beneficiary of large-scale investment of public funding across the world. There are many reasons for this. Major projects such as new roads and railways are seen as an 'engine for growth', stimulating regional economic integration and the increased specialisation of labour, primarily through reduced travel times [@preston_economics_2013]. Secondary benefits may include the reduction of geographical inequalities [@liu_spatial_2016], a modal shift away from highly polluting modes (in the case of rail) [@dobruszkes_high-speed_2011], and improved quality of life [@jamie_montague_fischer_quality_2011].
+Major transport infrastructure projects are a major beneficiary of large-scale investment of public funding across the world. There are many reasons for this. Major projects such as new roads and railways are seen as an 'engine for growth', stimulating regional economic integration and the increased specialisation of labour, primarily through reduced travel times . Secondary benefits may include the reduction of geographical inequalities [@liu_spatial_2016], a modal shift away from highly polluting modes (in the case of rail) [@dobruszkes_high-speed_2011], and improved quality of life [@jamie_montague_fischer_quality_2011].
 
 In some cases, environmental arguments have been made for investment in transport infrastructure, despite the finding that increased transport connectivity tends to increase demand [@akerman_role_2011]. In practice, psychological and political factors may play an important role in explaining preferences for expenditure on major infrastructure in general, rather than revenue expenditure, e.g. on research and education which could boost economic growth through technological development and a more productive workforce [@flyvbjerg_policy_2005].
 
