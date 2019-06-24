@@ -1,0 +1,14 @@
+---
+output: github_document
+title: "Advanced Propensity to Cycle Tool training: write-up, materials, and next workshop"
+bibliography: ../documents/software.bib
+---
+
+```{r, eval=FALSE}
+refs = RefManageR::ReadZotero(group = "418217", .params = list(collection = "JFR868KJ", limit = 100))
+RefManageR::WriteBib(refs, "documents/software.bib")
+```
+
+[@lovelace_propensity_2017]
+
+# References

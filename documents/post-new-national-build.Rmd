@@ -1,5 +1,6 @@
 ---
-title: New national commuting data and Near Market scenario data available
+title: "New national commuting data and Near Market scenario data available"
+output: word_document
 ---
 
 Part of Phase III of the Propensity to Cycle Tool project, awarded to the team by the Department for Transport to add new features, was to ensure the routing data remained up-to-date.
