@@ -6,26 +6,29 @@ next workshop
 
 The first of two Propensity to Cycle Tool (PCT) Advanced Training
 Workshops took place last week in London. This post provides an outline
-of the contents of the workshop and provides links and ideas for people
-interested in using or extending the PCT, who were unable to make the
-event in person. The course was delivered by me (Robin, Lead Developer
-of the PCT) and my colleague Malcolm Morgan (who led on some of the big
-data processing and raster tile generation elements of the project) at
-the University of Westminster.
+of the contents of the workshop, plus links, ideas and sample code for
+people interested in using or extending the PCT, who were unable to make
+the event in person. The course was delivered by me (Robin, Lead
+Developer of the PCT) and my colleague Malcolm Morgan (who led on some
+of the big data processing and raster tile generation elements of the
+project). Warning: both of us are heavy R users, so the materials
+contained plenty of code (more on that soon)\!
 
 The overall aim was to get people up-to-speed with the methods and
 technologies underlying the PCT, to support wider processes of designing
-for ‘bikeway networks’ (Buehler and Dill 2016) for cycle traffic and
-more sustainable settlements overall (Parkin 2018). The introductory and
-intermediate training courses used the online interface and the
-excellent [QGIS](https://itsleeds.github.io/QGIS-intro/) as the basis
-for analysing cycle potential. This workshop, however, focussed on
-working with cycle potential data in R, a statistical programming
-language, doing interactive data analysis and programming in
-[RStudio](http://rstudio.com/), a space-aged integrated development
-environment designed for maximising productivity when using R, as
-illustrated in this
-[tweet](https://twitter.com/robinlovelace/status/1143064986673176576).
+for ‘bikeway networks’ (Buehler and Dill 2016), as part of a wider
+process of planning for cycle traffic and people, rather than cars
+(Parkin 2018). The introductory and intermediate training courses used
+the online interface and the excellent
+[QGIS](https://itsleeds.github.io/QGIS-intro/) as the basis for
+analysing cycle potential. This workshop, however, focussed on working
+with transport data in R, an open source statistical programming
+language that can be downloaded from
+[cran.r-project.org](https://cran.r-project.org/) and used by anyone for
+free. The emphasis on doing interactive data analysis and programming in
+RStudio, a free and open source high performancy integrated development
+environment (IDE) for R that can be downloaded from
+[rstudio.com](https://www.rstudio.com/products/rstudio/download/).
 
 This ‘command line’ approach allows reproducibility, automation and,
 once you have overcome R’s steep learning curve, high productivity.
@@ -44,10 +47,26 @@ original PCT paper (Lovelace et al. 2017):
 
 # The PCT R package
 
-The workshop was partly based on **pct**, a small R package that was
-written to enable ease of access to data and methods underlying the PCT
-from R’s command line interface. For more on the package, the latest
-version of which has just been released, see it’s online home at
+An important aspect of the PCT, which we advocate others developing
+publicly funding transport modelling tools to adopt, is that it is open
+source and based on open data, ensuring transparency, reproducibility,
+and preventing monopolisation by single companies and ‘cloud lock-in’.
+These are vital if transport modelling is to be a fully fledged part of
+an open and democratically accountable transport planning system, that
+is part of the democratic process.
+
+‘Open source’ means you can see the PCT’s codebase, which is hosted at
+[github.com/npct](https://github.com/npct/). Rather than use this
+codebase, which was developed using R packages such as **sp** that are
+now slightly out of date, we taught the course based on data that could
+be downloaded in the **sf** class system (if that sounds like double
+Dutch to you, see an explanation
+[here](https://geocompr.robinlovelace.net/spatial-class.html#intro-sf)).
+Data was provided by **pct**, a small R package that was written to
+enable ease of access to data and methods underlying the PCT from R’s
+command line interface. For more on the package, the latest version of
+which has just been [released on
+CRAN](https://cran.r-project.org/package=pct), see it’s online home at
 [itsleeds.github.io/pct](https://itsleeds.github.io/pct/).
 
 In terms of learning objectives, the aim was for participants able to be
