@@ -26,7 +26,7 @@ with transport data in R, an open source statistical programming
 language that can be downloaded from
 [cran.r-project.org](https://cran.r-project.org/) and used by anyone for
 free. The emphasis on doing interactive data analysis and programming in
-RStudio, a free and open source high performancy integrated development
+RStudio, a free and open source high performance integrated development
 environment (IDE) for R that can be downloaded from
 [rstudio.com](https://www.rstudio.com/products/rstudio/download/).
 
@@ -77,13 +77,12 @@ able to do the following things, with help from the \*\*pct\* R package:
   - Use R as a tool for transport data analysis and cycle network
     planning
 
-The workshop was divided into two halves. Before lunch we provided an
+The workshop was divided into two halves. Before lunch, we provided an
 overview of the PCT project with a focus on the different types of data
 used in the PCT and some of the strengths, limitations and opportunities
 of the national PCT data, with reference to an academic paper that
 provides an overview of the approach Lovelace et al. (2017). After lunch
-we progressed to a ‘minihack’ during which participants were provided an
-opportunity to apply the methods to their own data.
+we progressed to a ‘minihack’ during which participants were provided with an opportunity to apply the methods to their own data.
 
 ## Datasets processed
 
@@ -97,7 +96,7 @@ average, around 6000 people (around half of whom commute) at the Middle
 Super Output Area (MSOA) level, and around 1200 people at the Lower
 Super Output Area (LSOA) level. The key data level used by the PCT,
 however, is origin-destination data, which forms the basis of the route
-and route network levels. Theses datasets are generated using the
+and route network levels. These datasets are generated using the
 following processes:
 
   - Origin-destination (OD) data processed using functions such as
@@ -167,7 +166,7 @@ upcoming, this time in Leeds, on the 2<sup>nd</sup> August. If you would
 like to attend, please check out the course
 [prerequisites](https://itsleeds.github.io/pct/articles/pct_training.html#prerequisites)
 and, if you think it’s right for you, email me at R. Lovelace at Leeds.
-ac. uk (address in cryptic form to discourage spam)\!
+ac. uk (address in the cryptic form to discourage spam)\!
 
 # References
 
