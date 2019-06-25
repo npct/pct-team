@@ -70,7 +70,7 @@ CRAN](https://cran.r-project.org/package=pct), see it’s online home at
 [itsleeds.github.io/pct](https://itsleeds.github.io/pct/).
 
 In terms of learning objectives, the aim was for participants able to be
-able to do the following things, with help from the **pct** R package:
+able to do the following things, with help from the \*\*pct\* R package:
 
   - Understand the data and code underlying the PCT
   - Download data from the PCT at various geographic levels
@@ -81,8 +81,9 @@ The workshop was divided into two halves. Before lunch, we provided an
 overview of the PCT project with a focus on the different types of data
 used in the PCT and some of the strengths, limitations and opportunities
 of the national PCT data, with reference to an academic paper that
-provides an overview of the approach Lovelace et al. (2017). After lunch
-we progressed to a ‘minihack’ during which participants were provided with an opportunity to apply the methods to their own data.
+provides an overview of the approach Lovelace et al. (2017). After
+lunch, we progressed to a ‘minihack’ during which participants were
+provided with an opportunity to apply the methods to their own data.
 
 ## Datasets processed
 
@@ -166,7 +167,7 @@ upcoming, this time in Leeds, on the 2<sup>nd</sup> August. If you would
 like to attend, please check out the course
 [prerequisites](https://itsleeds.github.io/pct/articles/pct_training.html#prerequisites)
 and, if you think it’s right for you, email me at R. Lovelace at Leeds.
-ac. uk (address in the cryptic form to discourage spam)\!
+ac. uk (the address is in a cryptic form to discourage spam)\!
 
 # References
 

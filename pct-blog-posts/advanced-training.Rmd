@@ -27,7 +27,7 @@ Warning: both of us are heavy R users, so the materials contained plenty of code
 The overall aim was to get people up-to-speed with the methods and technologies underlying the PCT, to support wider processes of designing for 'bikeway networks' [@buehler_bikeway_2016], as part of a wider process of planning for cycle traffic and people, rather than cars [@parkin_designing_2018].
 The introductory and intermediate training courses used the online interface and the excellent [QGIS](https://itsleeds.github.io/QGIS-intro/) as the basis for analysing cycle potential.
 This workshop, however, focussed on working with transport data in R, an open source statistical programming language that can be downloaded from [cran.r-project.org](https://cran.r-project.org/) and used by anyone for free.
-The emphasis on doing interactive data analysis and programming in RStudio, a free and open source high performancy integrated development environment (IDE) for R that can be downloaded from [rstudio.com](https://www.rstudio.com/products/rstudio/download/).
+The emphasis on doing interactive data analysis and programming in RStudio, a free and open source high performance integrated development environment (IDE) for R that can be downloaded from [rstudio.com](https://www.rstudio.com/products/rstudio/download/).
 
 This 'command line' approach allows reproducibility, automation and, once you have overcome R's steep learning curve, high productivity. 
 Another reason for teaching the Advanced Workshop in R, is that it opens the possibility of extending the PCT, something envisaged in the original PCT paper [@lovelace_propensity_2017]:
@@ -57,8 +57,8 @@ In terms of learning objectives, the aim was for participants able to be able to
 - Use R as a tool for transport data analysis and cycle network planning
 
 The workshop was divided into two halves.
-Before lunch we provided an overview of the PCT project with a focus on the different types of data used in the PCT and some of the strengths, limitations and opportunities of the national PCT data, with reference to an academic paper that provides an overview of the approach @lovelace_propensity_2017.
-After lunch we progressed to a 'minihack' during which participants were provided an opportunity to apply the methods to their own data.
+Before lunch, we provided an overview of the PCT project with a focus on the different types of data used in the PCT and some of the strengths, limitations and opportunities of the national PCT data, with reference to an academic paper that provides an overview of the approach @lovelace_propensity_2017.
+After lunch, we progressed to a ‘minihack’ during which participants were provided with an opportunity to apply the methods to their own data.
 
 ## Datasets processed
 
@@ -66,7 +66,7 @@ In terms of the input data, the concept of a 'data hierarchy' was used to introd
 At the base of the pyramid is zonal data, which is widely available yet highly aggregated.
 In the PCT, zones represent, on average, around 6000 people (around half of whom commute) at the Middle Super Output Area (MSOA) level, and around 1200 people at the Lower Super Output Area (LSOA) level.
 The key data level used by the PCT, however, is origin-destination data, which forms the basis of the route and route network levels.
-Theses datasets are generated using the following processes:
+These datasets are generated using the following processes:
 
 - Origin-destination (OD) data processed using functions such as `od2line()` in the **stplanr** R package [@lovelace_stplanr:_2018]
 - Route network generation and analysis
@@ -120,6 +120,6 @@ Rather than explain what is going on here, this post (nearly) finishes by guidin
 - Paper on analysing OSM data in Python [@boeing_osmnx:_2017] (available [online](https://arxiv.org/pdf/1611.01890)) 
 
 The final thing to say is that there is another PCT Advanced Workshop upcoming, this time in Leeds, on the 2^nd^ August. 
-If you would like to attend, please check out the course [prerequisites](https://itsleeds.github.io/pct/articles/pct_training.html#prerequisites) and, if you think it's right for you, email me at R. Lovelace at Leeds. ac. uk (address in cryptic form to discourage spam)!
+If you would like to attend, please check out the course [prerequisites](https://itsleeds.github.io/pct/articles/pct_training.html#prerequisites) and, if you think it's right for you, email me at R. Lovelace at Leeds. ac. uk (the address is in a cryptic form to discourage spam)!
 
 # References
