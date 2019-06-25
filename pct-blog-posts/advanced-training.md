@@ -70,7 +70,7 @@ CRAN](https://cran.r-project.org/package=pct), see it’s online home at
 [itsleeds.github.io/pct](https://itsleeds.github.io/pct/).
 
 In terms of learning objectives, the aim was for participants able to be
-able to do the following things, with help from the \*\*pct\* R package:
+able to do the following things, with help from the **pct** R package:
 
   - Understand the data and code underlying the PCT
   - Download data from the PCT at various geographic levels
