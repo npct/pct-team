@@ -5,21 +5,45 @@ next workshop
 # Introduction
 
 The first of two Propensity to Cycle Tool (PCT) Advanced Training
-Workshops took place last week in London. This post provides an outline
-of the contents of the workshop, plus links, ideas and sample code for
-people interested in using or extending the PCT, who were unable to make
-the event in person. The course was delivered by me (Robin, Lead
-Developer of the PCT) and my colleague Malcolm Morgan (who led on some
-of the big data processing and raster tile generation elements of the
-project). Warning: both of us are heavy R users, so the materials
-contained plenty of code (more on that soon)\!
+Workshops took place last week in London, part of the Phase III of the
+project to inform investments in cycle networks and other interventions
+for sustainable transport. This post provides an outline of the contents
+of the workshop, plus links, ideas and sample code for people interested
+in using or extending the PCT, who were unable to make the event in
+person. The course was delivered by me (Robin, Lead Developer of the
+PCT) and my colleague Malcolm Morgan (who led on some of the big data
+processing and raster tile generation elements of the project). Warning:
+both of us are heavy R users, so the materials contained plenty of code
+(more on that soon)\!
 
-The overall aim was to get people up-to-speed with the methods and
-technologies underlying the PCT, to support wider processes of designing
-for ‘bikeway networks’ (Buehler and Dill 2016), as part of a wider
-process of planning for cycle traffic and people, rather than cars
-(Parkin 2018). The introductory and intermediate training courses used
-the online interface and the excellent
+The good news for people who were unable to attend the first advanced
+workshop and cannot make the next course in Leeds on the 2<sup>nd</sup>
+August is that all the materials are freely available, following ‘open
+source’ approach in the PCT: we believe that transport planning should
+be a more open process. If you already get this, have a good
+understanding of command line tools for data science and want to
+crack-on with the content you can do so with reference to the two key
+materials developed for the workshop:
+
+  - The exercises that demonstrate how to get, plot and explore data
+    from the PCT:
+    <https://itsleeds.github.io/pct/articles/pct_training.html#exercises>
+  - The slides that accompany the course:
+    <https://itsleeds.github.io/TDS/slides/pct-slides.html#1>
+
+![](pct-slides.png)
+
+If you’re interested in the wider context, read on (and perhaps return
+to these links in the future).
+
+# An open source, reproducible approach
+
+The overall aim of the workshop was to get people up-to-speed with the
+methods and technologies underlying the PCT, to support wider processes
+of designing for ‘bikeway networks’ (Buehler and Dill 2016), as part of
+a wider process of planning for cycle traffic and people, rather than
+cars (Parkin 2018). The introductory and intermediate training courses
+used the online interface and the excellent
 [QGIS](https://itsleeds.github.io/QGIS-intro/) as the basis for
 analysing cycle potential. This workshop, however, focussed on working
 with transport data in R, an open source statistical programming
