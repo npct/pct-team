@@ -1,6 +1,7 @@
 ---
 title: "Propensity to Cycle Tool: Updates and Improvements Scoping Document"
 output:
+  # bookdown::word_document2:
   bookdown::github_document2:
     number_sections: true
 bibliography: improvement-refs.bib
