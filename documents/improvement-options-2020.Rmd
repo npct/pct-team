@@ -1,0 +1,49 @@
+---
+title: "Propensity to Cycle Tool: Updates and Improvements Scoping Document"
+output:
+  bookdown::github_document2:
+    number_sections: true
+bibliography: improvement-refs.bib
+---
+
+```{r, eval=FALSE, echo=FALSE}
+citr::tidy_bib_file(rmd_file = "documents/improvement-options-2020.Rmd", messy_bibliography = "~/uaf/allrefs.bib", file = "documents/improvement-refs.bib")
+```
+
+
+# Introduction
+
+@departmentfortransport_cycling_2017
+
+@lovelace_propensity_2017
+
+@goodman_scenarios_2019
+
+@aldred_barriers_2017
+
+@departmentfortransport_decarbonising_2020
+
+# Data
+
+## Updated school travel data
+
+## Updated route network (OSM based) data
+
+## 2021 Census opportunities
+
+## Combined route network
+
+# User interface
+
+## Prominance of route network
+
+## Potential/existing network comparison
+
+## Links to OSM elements to enable updates
+
+# User feedback
+
+If possible
+
+# References
+
