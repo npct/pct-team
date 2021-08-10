@@ -1,0 +1,27 @@
+# Propensity to Cycle Tool: getting and using the data
+
+11:30 - 12:30
+
+In this session you will learn about the open datasets provided by the PCT project and how to use them.
+While the most common use of the PCT is via the interactive web application hosted at www.pct.bike, there is much value in downloading the data, e.g. to identify existing cycling infrastructure in close proximity to routes with high potential, and to help identify roads in need of interventions from a safety perspective.
+In this session, which assumes you know how to use QGIS, R, or other program for working with geographic data, you will learn how to:
+
+- Find data on travel behaviour from the 2011 Census and from the School Census
+- How to download and import data from the PCT into QGIS
+- How to process the data alongside infrastructure data, to help find gaps in the network
+
+
+# Propensity to Cycle Tool: build your own scenarios
+
+13:30 - 14:30
+
+This advanced workshop is for people with experience with the PCT and cycling uptake estimates who want to learn more about how uptake models work and how to generate new scenarios of change.
+Reproducible and open R code will be used to demonstrate the concepts so knowledge of R or other programming languages is recommended but not essential, as there will be conceptual exercises covering the factors linked to mode shift.
+In the workshop you will:
+
+- Learn about the uptake model underlying the Propensity to Cycle Tool scenarios
+- Develop your own uptake model in conceptual terms, e.g., to represent the government's target for 50% of all trips in cities to be made by walking and cycling by 2030
+- Learn how to train uptake models against data, to build evidence-based uptake models
+
+
+<!-- The training team recently hosted an 'introductory' training event which can now be viewed [here](https://www.youtube.com/watch?v=HaONmoU3XqY) (66 minutes).  -->
